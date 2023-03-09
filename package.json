@@ -1,0 +1,29 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "selenium ui tests",
+  "main": "entry.js",
+  "scripts": {
+    "smoke": "mocha --timeout=30000 --reporter list specs/smoke.spec.js"
+  },
+  "keywords": [
+    "js",
+    "selenium",
+    "mocha",
+    "chai"
+  ],
+  "author": "Alex",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/node": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0"
+  },
+  "dependencies": {
+    "chromedriver": "^110.0.0",
+    "geckodriver": "^3.2.0",
+    "selenium-webdriver": "^4.8.1"
+  }
+}
