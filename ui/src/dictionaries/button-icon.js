@@ -1,36 +1,36 @@
 module.exports = {
     add: {
         name: 'content_add',
-        description: 'Создать'
+        description: 'Создать',
     },
     edit: {
         name: 'editor_mode_edit_outline',
-        description: 'Редактировать'
+        description: 'Редактировать',
     },
     copy: '',
     delete: {
         name: 'content_remove',
-        description: 'Удалить'
+        description: 'Удалить',
     },
     search: {
         name: 'action_search',
-        description: 'Поиск'
+        description: 'Поиск',
     },
     unlock: {
         name: 'unsorted_unlock_outline',
-        description: 'Разблокировать'
+        description: 'Разблокировать',
     },
     lock: {
         name: 'unsorted_lock_outline',
-        description: 'Заблокировать'
+        description: 'Заблокировать',
     },
     card_add: {
         name: 'personal_card',
-        description: 'Выдать карту'
+        description: 'Выдать карту',
     },
     card_delete: {
         name: 'personal_card_delete',
-        description: 'Изъять карту'
+        description: 'Изъять карту',
     },
     card_search: '',
     barcode_add: '',
@@ -41,6 +41,6 @@ module.exports = {
     email: '',
     device_list: {
         name: 'unsorted_list_add',
-        description: 'Установить устройства'
-    }
+        description: 'Установить устройства',
+    },
 }

@@ -2,20 +2,28 @@ const BasePage = require('../../pages/base-page/base-page')
 const elements = require('../../dictionaries/selenium-elements')
 const selectXpand = new(require('./select-xpand'))
 
+//Календарь
 class Datepicker extends BasePage {
 
     constructor() {
         super();
     }
 
+    //Отображение календаря
     async datepicker(timeout) {
-        return await this.xpathElement(elements.datepicker, 'Отображение календаря', timeout)
+        return await this.xpathElement(elements.datepicker,
+            'Отображение календаря',
+            timeout)
     }
 
+    //Отсутствие календаря
     async datepickerNoElement(timeout) {
-        return await this.xpathNoElement(elements.datepicker, 'Отсутсвует отображение календаря', timeout)
+        return await this.xpathNoElement(elements.datepicker,
+            'Отсутсвует отображение календаря',
+            timeout)
     }
 
+    //Выбор дня, месяца, года, часа, минуты
     async dateParse({day, month, year, hour, minute}, timeout) {
         const yearSelect = await this.yearSelect(year, timeout)
         if(yearSelect.error) {
@@ -48,11 +56,12 @@ class Datepicker extends BasePage {
 
         return {
             error: false,
-            description: `Выбрана дата ${day} ${month} ${yearSelect}`
+            description: `Выбрана дата ${day} ${month} ${yearSelect}`,
         }
 
     }
 
+    //Выбор даты
     async date(obj, timeout) {
         const datepicker = await this.datepicker(timeout)
         if(datepicker.error) {
@@ -77,6 +86,7 @@ class Datepicker extends BasePage {
         return dateSelect
     }
 
+    //Выбор даты с двойным календарем
     async dateRange(objStart, objEnd, timeout) {
         const datepicker = await this.datepicker(timeout)
         if(datepicker.error) {
@@ -105,14 +115,17 @@ class Datepicker extends BasePage {
 
         return {
             error: false,
-            description: `${dateStartSelect},  ${dateEndSelect}`
+            description: `Выбран промежуток дат: ${dateStartSelect}, ${dateEndSelect}`,
         }
 
 
     }
 
+    //Выбор года в календаре
     async yearSelect(year, timeout) {
-        const selectHandler = await this.xpathHandler(elements.datepickerButtonYear, 'Нажатие по выбору года', timeout)
+        const selectHandler = await this.xpathHandler(elements.datepickerButtonYear,
+            'Нажатие по выбору года',
+            timeout)
         if(selectHandler.error) {
             return selectHandler
         }
@@ -134,19 +147,25 @@ class Datepicker extends BasePage {
             return xpandClose
         }
 
-        const yearSelected = await this.xpathElement(elements.datepickerYear(year), `Отображние выбраннго года "${year}" в календаре`)
+        const yearSelected = await this.xpathElement(elements.datepickerYear(year),
+            `Отображние выбраннго года "${year}" в календаре`,
+            timeout)
+
         if(yearSelected.error) {
             return yearSelected
         }
 
         return {
             error: false,
-            description: `Выбран год "${year}"`
+            description: `Выбран год "${year}"`,
         }
     }
 
+    //Выбор месяца в календаре
     async monthSelect(month, timeout) {
-        const selectHandler = await this.xpathHandler(elements.datepickerButtonMonth, 'Нажатие по выбору месяца', timeout)
+        const selectHandler = await this.xpathHandler(elements.datepickerButtonMonth,
+            'Нажатие по выбору месяца',
+            timeout)
         if(selectHandler.error) {
             return selectHandler
         }
@@ -168,19 +187,24 @@ class Datepicker extends BasePage {
             return xpandClose
         }
 
-        const monthSelected = await this.xpathElement(elements.datepickerMonth(month), `Отображние выбраннго месяца "${month}" в календаре`)
+        const monthSelected = await this.xpathElement(elements.datepickerMonth(month),
+            `Отображние выбраннго месяца "${month}" в календаре`,
+            timeout)
         if(monthSelected.error) {
             return monthSelected
         }
 
         return {
             error: false,
-            description: `Выбран месяц "${month}"`
+            description: `Выбран месяц "${month}"`,
         }
     }
 
+    //Выбор часа в календаре
     async hourSelect(hour, timeout) {
-        const selectHandler = await this.xpathHandler(elements.datepickerButtonHour, 'Нажатие по выбору часа', timeout)
+        const selectHandler = await this.xpathHandler(elements.datepickerButtonHour,
+            'Нажатие по выбору часа',
+            timeout)
         if(selectHandler.error) {
             return selectHandler
         }
@@ -202,19 +226,24 @@ class Datepicker extends BasePage {
             return xpandClose
         }
 
-        const hourSelected = await this.xpathElement(elements.datepickerHour(hour), `Отображние выбраннго часа "${hour}" в календаре`)
+        const hourSelected = await this.xpathElement(elements.datepickerHour(hour),
+            `Отображние выбраннго часа "${hour}" в календаре`,
+            timeout)
         if(hourSelected.error) {
             return monthSelected
         }
 
         return {
             error: false,
-            description: `Выбран час "${hour}"`
+            description: `Выбран час "${hour}"`,
         }
     }
 
+    //Выбор минуты в календаре
     async minuteSelect(minute, timeout) {
-        const selectHandler = await this.xpathHandler(elements.datepickerButtonMinute, 'Нажатие по выбору минуты.', timeout)
+        const selectHandler = await this.xpathHandler(elements.datepickerButtonMinute,
+            'Нажатие по выбору минуты.',
+            timeout)
         if(selectHandler.error) {
             return selectHandler
         }
@@ -236,38 +265,49 @@ class Datepicker extends BasePage {
             return xpandClose
         }
 
-        const minuteSelected = await this.xpathElement(elements.datepickerMinute(minute), `Отображние выбранной минуты "${minute}" в календаре.`)
+        const minuteSelected = await this.xpathElement(elements.datepickerMinute(minute),
+            `Отображние выбранной минуты "${minute}" в календаре.`,
+            timeout)
+
         if(minuteSelected.error) {
             return minuteSelected
         }
 
         return {
             error: false,
-            description: `Выбрана минута "${minute}"`
+            description: `Выбрана минута "${minute}"`,
         }
     }
 
+    //Выбор дня в календаре
     async daySelect(day, timeout) {
-        const dayHandler = await this.xpathHandler(elements.datepickerSelectDay(day), `Нажатие по дню "${day}".`, timeout)
+        const dayHandler = await this.xpathHandler(elements.datepickerSelectDay(day),
+            `Нажатие по дню "${day}".`,
+            timeout)
         if(dayHandler.error) {
             return dayHandler
         }
 
         await this.loading(1000)
 
-        const daySelected = await this.xpathElement(elements.datepickerDay(day), `Отображение выбранного дня "${day}".`, timeout)
+        const daySelected = await this.xpathElement(elements.datepickerDay(day),
+            `Отображение выбранного дня "${day}".`,
+            timeout)
         if(daySelected.error) {
             return daySelected
         }
 
         return {
             error: false,
-            description: `Выбран день ${day}.`
+            description: `Выбран день ${day}.`,
         }
     }
 
+    //Нажатие кнопки Применить
     async applyHandler(timeout) {
-        return await this.xpathHandler(elements.datepickerApply, 'Нажатие кнопки применить в календаре', timeout)
+        return await this.xpathHandler(elements.datepickerApply,
+            'Нажатие кнопки применить в календаре',
+            timeout)
     }
 
 }

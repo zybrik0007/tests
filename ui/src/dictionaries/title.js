@@ -19,5 +19,5 @@ module.exports = {
     /*Конфигурация*/
     roomsTitle: title + 'Конфигурация',
     deviceTitle: title + 'Конфигурация',
-    licenseTitle: title + 'Лицензии'
+    licenseTitle: title + 'Лицензии',
 }

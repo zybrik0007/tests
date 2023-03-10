@@ -2,7 +2,9 @@ const BasePage = require('../../../base-page/base-page')
 const {visitorTitle} = require('../../../../dictionaries/title')
 const {visitorAddUrl, visitorEditUrl} = require('../../../../dictionaries/url')
 
+//Страница изменения в разделе "Бюро пропусков", подраздел "Посетители"
 class VisitorChangePage extends BasePage {
+
     constructor() {
         super();
     }

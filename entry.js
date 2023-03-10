@@ -1,5 +1,5 @@
 module.exports = {
-    browser: 'firefox',
+    browser: 'chrome',
     headless: true,
     width: 1920,
     height: 1080,
@@ -14,6 +14,6 @@ module.exports = {
     device_name_1: 'Контроллер замка CL05.2',
     device_ip_1: '10.0.77.28',
     device_name_2: 'Контроллер CL15',
-    device_ip_2: '10.1.221.41'
+    device_ip_2: '10.1.221.41',
 }
 

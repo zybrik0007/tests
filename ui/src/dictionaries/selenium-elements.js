@@ -1,7 +1,7 @@
 module.exports = {
 
-    /*Персонал*/
-    /**Графики работы**/
+    //Персонал
+    //Графики работы
     perSchedule: (name, work, nowork) => {
         let tree = `//div/*[normalize-space(.)="${name}"]/parent::*`
         tree += work ? '/div[@class="pwTreeNode__column"][1]//pw-icon/div[contains(@class, "Icon--check_box_on")]/ancestor-or-self::div[@class="pwTreeNode__column"]/parent::*'
@@ -15,7 +15,7 @@ module.exports = {
     perScheduleCheckbox: (name, num) => `//div/*[normalize-space(.)="${name}"]/parent::*/div[@class="pwTreeNode__column"][${num}]//pw-icon/div[contains(@class, "Icon--check_box_on")]`,
     perScheduleCheckbox: (name, num) => `//div/*[normalize-space(.)="${name}"]/parent::*/div[@class="pwTreeNode__column"][${num}]//pw-icon/div[contains(@class, "Icon--check_box_off")]`,
 
-    /**Подразделения**/
+    //Подразделения
     perDivisionTree: (arr) => {
         let tree = ''
         const decorate = (event) => `/pw-tree-row/div/pw-tree-node/div/div/div[normalize-space(.)="${event}"]`
@@ -25,8 +25,8 @@ module.exports = {
         return tree
     },
 
-    /*Бюро пропусков*/
-    /**Шаблоны доступа - изменение**/
+    //Бюро пропусков
+    //Шаблоны доступа - изменение
     pasAccessTemplateChangeRoom: (event) => `//pw-tree-node/div/div/div/div/div[@class="pwTreeNode--node_el-name" and normalize-space(.)="${event}"]`,
     pasAccessTemplateChangeRoomParams: (name, type, criterion, access, commission, protection, verif, antipass) => {
         const head = '//pw-tree-node/div/div/div[contains(@class, "pwTreeNode--node-type-room")]'
@@ -56,12 +56,12 @@ module.exports = {
     pasSchedulesModalSelectSchedule: (event) => `//div/div[@class="block-desc" and normalize-space(.)="${event}"]/parent::*`,
     pasSchedulesModalSelectScheduleActive: (event) => `//div[contains(@class, "selected-block")]/div[@class="block-desc" and normalize-space(.)="${event}"]/parent::*`,
 
-    /*Администрирование*/
+    //Администрирование
     admSelectDeviceModalCell: (device, ip) => `//*[normalize-space(.)="${device} ${ip}"]/div`,
     admSearchDeviceModalCEll: (device, ip) => `//span/span[normalize-space(.)="${device}"]/parent::*/span[normalize-space(.)="(${ip})"]/parent::*`,
     admSearchDeviceModalCEllActive: (device, ip) => `//span[contains(@class, "active")]/span[normalize-space(.)="${device}"]/parent::*/span[normalize-space(.)="(${ip})"]/parent::*`,
 
-    /**Конфигурация**/
+    //Конфигурация
     admConfRoomTreeRoot: '//pw-tree-row/div/pw-tree-node/div/div/div[normalize-space(.)="Неконтролируемая территория"]',
     admConfRoomTree: (arr) => {
         let tree = '//pw-tree-row/div/pw-tree-node/div/div/div[normalize-space(.)="Неконтролируемая территория"]'
@@ -89,20 +89,20 @@ module.exports = {
         return `//div[normalize-space(.)="${name}"]/parent::*/div/div/div[normalize-space(.)="(${ip})"]`
     },
 
-    /**Лицензии**/
+    //Лицензии
     licenseDisabled: (title, name) => `//div[@class="block-license"]//h4[normalize-space(.)='${title}']/parent::*/parent::*//div[normalize-space(.)='${name}']`,
     licenseActive: (title, name) => `//div[@class="block-license block-license-warning"]//h4[normalize-space(.)='${title}']/parent::*/parent::*//div[normalize-space(.)='${name}']`,
     licenseInfo: (title, name, text) => `//div[@class="block-license block-license-warning"]//h4[normalize-space(.)='${title}']/parent::*/parent::*//div[normalize-space(.)='${name}']/parent::*//*[contains(normalize-space(), "${text}")]`,
     licenseSwitch: (title, name) => `//div[contains(@class, "block-license")]//h4[normalize-space(.)='${title}']/parent::*/parent::*//div[normalize-space(.)='${name}']/parent::*//pw-icon[@name='power_settings_new']`,
     licenseMore: (title, name) => `//div[contains(@class, "block-license")]//h4[normalize-space(.)='${title}']/parent::*/parent::*//div[normalize-space(.)='${name}']/parent::*//span[normalize-space(.)='Подробно']`,
 
-    /*Авторизация*/
+    //Авторизация
     authLoginInput: '//pw-input[@id="login"]/label/input',
     authPasswordInput: '//pw-input[@id="password"]/label/input',
     authPasswordRepeatInput: '//pw-input[@id="password2"]/label/input',
     formStatus: '//pw-form-status/div/span',
 
-    /*Навигация*/
+    //Навигация
     section: (event) => `//pw-icon/div[contains(@class, "${event}")]`,
     sectionActive: (event) => `//pw-icon[contains(@class, "active")]/div[contains(@class, "${event}")]`,
     subsection: (event) => `//a[contains(@class, "navigation-item") and @href="${event}"]`,
@@ -110,62 +110,61 @@ module.exports = {
     tab: (event) => `//div[@class="tab"]/div[normalize-space(.)="${event}"]`,
     tabActive: (event) => `//div[@class="tab"]/div[contains(@class, "active") and normalize-space(.)="${event}"]`,
 
-    /*input*/
+    //input
     input: (title, placeholder) =>`//*[normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]`,
     inputIcon: (title, placeholder, icon) => `//*[normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
-    /*select*/
+    //select
     select: (title, value) => `//pw-field/*[normalize-space(.)="${title}"]/parent::*//span[normalize-space(.)="${value}"]`,
     selectIcon: (title, value, icon) => `//pw-field/*[normalize-space(.)="${title}"]/parent::*//span[normalize-space(.)="${value}"]/parent::*/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
 
-    /*select-multi*/
+    //select-multi
     selectMulti: (event) => `//*[normalize-space(.)="${event}"]/parent::*/pw-select`,
     selectMultiIcon: (title, icon) => `//*[normalize-space(.)="${title}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
     selectMultiVal: (title, num) => `//*[normalize-space(.)="${title}"]/parent::*//pw-select-item-select[${num}]/div/div[1]`,
     selectMultiValDelete: (title, num) => `//*[normalize-space(.)="${title}"]/parent::*//pw-select-item-select[${num}]/div/div[2]`,
 
-    /*select-input*/
+    //select-input
     selectInput: (title, placeholder) => `//*[normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]`,
     selectInputIcon: (title, placeholder, icon) => `//*[normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]//parent::*//parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
-    /*select-xpand*/
+    //select-xpand
     selectXpand: '//pw-select-expand',
     selectXpandItem: (event) => `//pw-select-expand//*[normalize-space(.)="${event}"]`,
 
-    /*button*/
+    //button
     button: (event) => `//pw-button//span[normalize-space(.)="${event}"]/parent::*/parent::*`,
     buttonActive: (event) => `//pw-button[not(contains(@class, "disabled"))]//span[normalize-space(.)="${event}"]/parent::*/parent::*`,
     buttonDisabled: (event) => `//pw-button[contains(@class, "disabled")]//span[normalize-space(.)="${event}"]/parent::*/parent::*`,
 
-    /*button-icon-before*/
+    //button-icon-before
     buttonIconBefore: (event) => `//pw-button[@addbefore="${event}"]`,
     buttonIconBeforeActive: (event) => `//pw-button[@addbefore="${event}" and not(contains(@class, "disabled"))]`,
     buttonIconBeforeDisabled: (event) => `//pw-button[@addbefore="${event}" and contains(@class, "disabled")]`,
 
-
-    /*button-icon-after*/
+    //button-icon-after
     buttonIconAfter: (event) => `//pw-button[@addafter="${event}"]`,
     buttonIconAfterActive: (event) => `//pw-button[@addafter="${event}" and not(contains(@class, "disabled"))]`,
     buttonIconAfterDisabled: (event) => `//pw-button[@addafter="${event}" and contains(@class, "disabled")]`,
 
-    /*checkbox*/
+    //checkbox
     checkbox: (event) => `//pw-checkbox//*[normalize-space(.)="${event}"]//pw-icon`,
     checkboxChecked: (event) => `//pw-checkbox//*[normalize-space(.)="${event}"]//pw-icon/div[contains(@class, "Icon--check_box_on")]`,
     checkboxUnchecked: (event) => `//pw-checkbox//*[normalize-space(.)="${event}"]//pw-icon/div[contains(@class, "Icon--check_box_off")]`,
 
-    /*pop-up-error*/
+    //pop-up-error
     popUpError: (event) => `//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]/div[normalize-space(.)='${event}']`,
     popUpErrorStr: '//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]/div',
 
-    /*pop-up-success*/
+    //pop-up-success
     popUpSuccess: (event) => `//div[contains(@class, "pwToast--wrapper-type-success")]/div[@class="pwToast--wrapper--after"]/div[text()="${event}"]`,
     popUpSuccessStr: '//div[contains(@class, "pwToast--wrapper-type-success")]/div[@class="pwToast--wrapper--after"]/div',
 
-    /*loader*/
+    //loader
     loader: (event) => `//pw-loading[@size="${event}"]`,
 
-    /*table*/
+    //table
     tableStr: '//*[contains(@class, "datatable-row-wrapper")]',
     tableStrNum: (event) => `//*[contains(@class, "datatable-row-wrapper")][${event}]`,
     tableStrNumActive: (event) => `//*[contains(@class, "datatable-row-wrapper")][${event}]/div[contains(@class, 'active')]`,
@@ -174,26 +173,23 @@ module.exports = {
     tableCellText: (str, cell) => `//*[contains(@class, "datatable-row-wrapper")][${str}]//*[contains(@class, "datatable-body-cell")][${cell}]//*[contains(@class, "col-content")]/*`,
     tableCellIcon: (str, cell, icon) => `//*[contains(@class, "datatable-row-wrapper")][${str}]//*[contains(@class, "datatable-body-cell")][${cell}]//*[contains(@class, "col-content")]/pw-icon/div[contains(@class, "${icon}")]`,
 
-
-
-    /*header*/
+    //header
     headerProfile: '//app-header//app-user-bar',
     headerUserName: '//app-header//*[@class="profile_view__name"]',
     headerMenu: '//app-header//*[@class="profile_menu"]',
     headerMenuItem: (event) => `//app-header//*[@class="profile_menu_item" and normalize-space(.)="${event}"]`,
 
-    /*modal*/
+    //modal
     modalId: (event) =>  `//pw-modal[@id="${event}"]`,
     modalTitle: (event) => `//*[contains(@class, 'pw-modal-title') and normalize-space(.)="${event}"]`,
     modalButClose: (event) => `//pw-modal[@id="${event}"]//pw-icon[@parsevalue="navigation_close"]`,
 
-    /*modal-confirm*/
+    //modal-confirm
     modalConfirm: `//pw-modal[@class='modal-confirm']`,
     modalConfirmTitle: (event) => `//pw-modal[@class="modal-confirm"]//div[normalize-space(.)='${event}']`,
     modalConfirmBody: (event) => `//pw-modal[@class="modal-confirm"]//div[normalize-space(.)='${event}']`,
 
-
-    /*Общие (general)*/
+    //Общие (general)
     genTree: (name, inside) => {
         let first =  '//pw-tree-row[@class="pwTree--first"]/div/'
         const node = 'pw-tree-node/div/'
@@ -206,9 +202,7 @@ module.exports = {
     },
     genGroupCellItemName: (event) => ` //div[@class="pwGroupCell--item-name" and text=${event}]`,
 
-
-
-    /*datepicker*/
+    //datepicker
     datepicker: '//pw-datepicker[contains(@style, "block")]',
     datepickerButtonMonth: `//pw-datepicker[contains(@style, "block")]/div/div/div/pw-select[1]`,
     datepickerMonth: (event) => `//pw-datepicker[contains(@style, "block")]/div/div/div/pw-select[1]/div/div/div/span[normalize-space(.)="${event}"]`,
@@ -223,7 +217,10 @@ module.exports = {
     datepickerDay: (event) => `//div[contains(@class, "pwCalendar-days-day--selected")]/div[normalize-space(.)="${event}"]`,
     datepickerApply: `//pw-datepicker[contains(@style, "block")]/div/div/div/div/pw-button`,
 
-    /*simple-cell*/
+    //simple-cell
     simpleCell: (event) => `//*[contains(@class, "pwSimpleCell") and normalize-space(.)="${event}"]`,
     simpleCellActive: (event) => `//*[contains(@class, "pwSimpleCell--active") and normalize-space(.)="${event}"]`,
+
+    //empty-row
+    emptyRow: '//*[@class="empty-row"]'
 }

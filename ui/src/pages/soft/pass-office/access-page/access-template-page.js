@@ -2,11 +2,14 @@ const BasePage = require('../../../base-page/base-page')
 const {accessTemplatesTitle} = require('../../../../dictionaries/title')
 const {accessTemplatesUrl} = require('../../../../dictionaries/url')
 
+//Страница разделе "Бюро пропусков", подраздел "Шабалоны доступа", вкладка "Шаблоны доступа"
 class AccessTemplatePage extends BasePage {
+
     constructor() {
         super();
     }
 
+    //Отображение страницы
     async init(timeout) {
         const title =  await this.titleCompare(accessTemplatesTitle, timeout)
         if(title.error) {
@@ -18,7 +21,10 @@ class AccessTemplatePage extends BasePage {
             return url
         }
 
-        return {error: false, description: `Заглавие валидно. Url валиден.`}
+        return {
+            error: false,
+            description: `Заглавие валидно. Url валиден.`,
+        }
     }
 }
 

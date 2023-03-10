@@ -3,11 +3,14 @@ const elements = require('../../../../dictionaries/selenium-elements')
 const {staffTitle} = require('../../../../dictionaries/title')
 const {staffAddUrl, staffEditUrl} = require('../../../../dictionaries/url')
 
+//Страница изменения разделе "Персонал", подраздел "Сотрудники"
 class StaffChangePage extends BasePage {
+
     constructor() {
         super();
     }
 
+    //Отображение страницы добавления
     async initAdd(timeout) {
         const elementTitle = await this.titleCompare(staffTitle, timeout)
         if (elementTitle.error) {
@@ -21,10 +24,11 @@ class StaffChangePage extends BasePage {
 
         return {
             error: false,
-            description: 'Заглавие валидно. Url валиден.'
+            description: 'Заглавие валидно. Url валиден.',
         }
     }
 
+    //Отображение страницы редактирования
     async initEdit(id, timeout) {
         const elementTitle =  await this.titleCompare(staffTitle, timeout)
         if(elementTitle.error) {
@@ -36,7 +40,10 @@ class StaffChangePage extends BasePage {
             return elementUrl
         }
 
-        return {error: false, description: `Заглавие валидно. Url валиден.`}
+        return {
+            error: false,
+            description: `Заглавие валидно. Url валиден.`,
+        }
     }
 }
 

@@ -4,7 +4,7 @@ const el = require('../elements')
 const entry = require('../../../entry')
 const url = require('../dictionaries/url')
 
-/*Авторизация*/
+//Авторизация
 const auth = async (login, password) => {
     const open = await page.base.open(url.authUrl)
     console.log(open.description)
@@ -27,7 +27,7 @@ const auth = async (login, password) => {
     expect(address.error).to.equal(false)
 }
 
-/*Отсутствие анимаций*/
+//Отсутствие анимаций
 const animation = async () => {
     const noError = await el.error.errorNoList(entry.max)
     console.log(noError.description)
@@ -42,7 +42,7 @@ const animation = async () => {
     expect(noLoader.error).to.equal(false)
 }
 
-/*Выход*/
+//Выход
 const exit = async () => {
     await animation()
 
@@ -67,20 +67,20 @@ const exit = async () => {
     expect(address.error).to.equal(false)
 }
 
-/*Проверка на утверждение*/
+//Проверка на утверждение
 const simple = async (func, array, context = false) => {
     const data = await func.bind(context)(...array);
     console.log(data.description)
     expect(data.error).to.equal(false)
 }
 
-/*Проверка на отрицание*/
+//Проверка на отрицание
 const simpleFalse = async(func, array, context = false) => {
     const data = await func.bind(context)(...array);
     expect(data.error).to.equal(true)
 }
 
-/*Проверка на положительный текст*/
+//Проверка на положительный текст
 const simpleText = async (func, array, text, context = false) => {
     const data = await func.bind(context)(...array)
     console.log(data.description)
@@ -96,5 +96,5 @@ module.exports = {
     exit,
     simple,
     simpleFalse,
-    simpleText
+    simpleText,
 }

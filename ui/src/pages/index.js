@@ -19,11 +19,11 @@ const VisitorChangePage = require('./soft/pass-office/visitor-page/visitor-chang
 
 
 module.exports = {
-    /*base*/
+    //base
     base: new Base(),
     auth: new Auth(),
 
-    /*Персонал*/
+    //Персонал
     staffActive: new StaffPresentPage(),
     staffChange: new StaffPageChange(),
     schedule: new SchedulePage(),
@@ -31,14 +31,14 @@ module.exports = {
     division: new DivisionPage(),
     position: new PositionPage(),
 
-    /*Бюро пропусков*/
+    //Бюро пропусков
     visitorOrdered: new VisitorOrderedPage(),
     visitorCurrent: new VisitorCurrentPage(),
     visitorChange: new VisitorChangePage(),
     accessTemplate: new AccessTemplate(),
     accessTemplateChange: new AccessTemplateChange(),
 
-    /*Администрирование*/
+    //Администрирование
     room: new Rooms(),
     device: new Devices(),
     license: new License(),

@@ -27,5 +27,5 @@ module.exports = {
     /*Администрирование*/
     roomUrl: address + 'administration/premisesconfiguration/rooms',
     deviceUrl: address + 'administration/premisesconfiguration/controllers',
-    licenseUrl: address + 'administration/license'
+    licenseUrl: address + 'administration/license',
 }

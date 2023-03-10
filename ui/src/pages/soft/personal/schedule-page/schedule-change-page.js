@@ -3,11 +3,14 @@ const elements = require('../../../../dictionaries/selenium-elements')
 const {schedulesTitle} = require('../../../../dictionaries/title')
 const {schedulesAddUrl, schedulesEditUrl} = require('../../../../dictionaries/url')
 
+//Страница изменения в разделе "Персонал", подраздел "Графики работы"
 class ScheduleChangePage extends BasePage {
+
     constructor() {
         super();
     }
 
+    //Отображение страницы добавления
     async initAdd(timeout) {
         const elementTitle = await this.titleCompare(schedulesTitle, timeout)
         if (elementTitle.error) {
@@ -21,24 +24,29 @@ class ScheduleChangePage extends BasePage {
 
         return {
             error: false,
-            description: 'Заглавие валидно. Url валиден.'
+            description: 'Заглавие валидно. Url валиден.',
         }
     }
 
     async room(name, work, nowWork, timeout) {
         return await this.xpathElement(elements.perSchedule(name, work, nowWork),
-            `Отображение регистрируещего помещения ${name} с настройкой ${work ? "Учет рабочего времени" : ""} ${work ? "и Учет рабочего времени." : "."}`,
+            `Отображение регистрируещего помещения ${name} с настройкой ${work ? "Учет рабочего времени" : ""}
+             ${work ? "и Учет рабочего времени." : "."}`,
             timeout)
     }
 
     /*Нажатие по Учет рабочего времени*/
     async checkboxWorkHandler(name, timeout) {
-        return await this.xpathHandler(elements.perScheduleCheckbox(name, 1), `Нажатие по сheckbox "Учет рабочего времени" для "${name}"`, timeout)
+        return await this.xpathHandler(elements.perScheduleCheckbox(name, 1),
+            `Нажатие по сheckbox "Учет рабочего времени" для "${name}"`,
+            timeout)
     }
 
     /*Нажатие по Учет нерабочего времени*/
     async checkboxNoWorkHandler(name, timeout) {
-        return await this.xpathHandler(elements.perScheduleCheckbox(name, 2), `Нажатие по сheckbox "Учет нерабочего времени" для "${name}"`, timeout)
+        return await this.xpathHandler(elements.perScheduleCheckbox(name, 2),
+            `Нажатие по сheckbox "Учет нерабочего времени" для "${name}"`,
+            timeout)
     }
 }
 

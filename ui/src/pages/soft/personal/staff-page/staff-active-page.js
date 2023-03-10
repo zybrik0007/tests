@@ -3,11 +3,14 @@ const elements = require('../../../../dictionaries/selenium-elements')
 const {staffTitle} = require('../../../../dictionaries/title')
 const {staffPresentUrl} = require('../../../../dictionaries/url')
 
+//Страница разделе "Персонал", подраздел "Сотрудники", вкладка "Действующие"
 class StaffActivePage extends BasePage {
+
     constructor() {
         super();
     }
 
+    //Отображение страницы
     async init(timeout) {
         const elementTitle = await this.titleCompare(staffTitle, timeout)
         if (elementTitle.error) {
@@ -21,7 +24,7 @@ class StaffActivePage extends BasePage {
 
         return {
             error: false,
-            description: 'Заглавие валидно. Url валиден.'
+            description: 'Заглавие валидно. Url валиден.',
         }
     }
 }
