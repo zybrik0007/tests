@@ -36,11 +36,18 @@ module.exports = {
     barcode_add: '',
     barcode_delete: '',
     filter: '',
-    menu: '',
+    menu: {
+        name: 'navigation_menu',
+        description: 'Меню',
+    },
     telegram: '',
     email: '',
     device_list: {
         name: 'unsorted_list_add',
         description: 'Установить устройства',
+    },
+    refresh: {
+        name: 'unsorted_refresh_outline',
+        description: 'Обновить',
     },
 }

@@ -35,6 +35,20 @@ class Header extends BasePage {
             timeout)
     }
 
+    //Получение значения текста в заглавии
+    async getText(timeout) {
+        return await this.xpathGetText(elements.headerText,
+            'Получение значения текста в заглавии.',
+            timeout)
+    }
+
+    async userGetText(timeout) {
+        return await this.xpathGetText(elements.headerProfile,
+            'Получение значения имени пользотваеля в заглавии.',
+            timeout)
+    }
+
+
 
 }
 

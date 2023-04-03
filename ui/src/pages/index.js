@@ -14,6 +14,8 @@ const StaffPageChange = require('./soft/personal/staff-page/staff-change-page')
 const VisitorCurrentPage = require('./soft/pass-office/visitor-page/visitor-current-page')
 const VisitorOrderedPage = require('./soft/pass-office/visitor-page/visitor-ordered-page')
 const VisitorChangePage = require('./soft/pass-office/visitor-page/visitor-change-page')
+const ManagerMonitoringPage = require('./manager-page/manager-monitoring-page')
+const ManagerLogPage = require('./manager-page/manager-log-page')
 
 
 
@@ -22,6 +24,10 @@ module.exports = {
     //base
     base: new Base(),
     auth: new Auth(),
+
+    //Менеджер
+    manMonitoring: new ManagerMonitoringPage(),
+    manLog: new ManagerLogPage(),
 
     //Персонал
     staffActive: new StaffPresentPage(),

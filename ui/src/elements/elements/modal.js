@@ -38,7 +38,7 @@ class Modal extends BasePage {
     //Отсутствие модального окна
     async initClose(timeout) {
         const modalCssDisplayNone = await this.xpathCssDisplayNone(elements.modalId(this.id),
-            `Отсутствие модального окна "${this.title ? this.title : 'c id ' + this.id}"`,
+            `Отсутствие модального окна "${this.title ? this.title : 'c id ' + this.id}".`,
             timeout)
 
         if(modalCssDisplayNone.error) {
@@ -47,14 +47,52 @@ class Modal extends BasePage {
 
         return {
             error: false,
-            description:`Модальное окно "${this.title ? this.title : 'c id ' + this.id}" не отображается`,
+            description:`Модальное окно "${this.title ? this.title : 'c id ' + this.id}" не отображается.`,
         }
     }
 
     //Нажатие кнопки закрыть
     async closeHandler(timeout) {
         return await this.xpathHandler(elements.modalButClose(this.id),
-            `Нажатие кнопки закрытия модального окна "${this.title ? this.title : 'c id ' + this.id}"`,
+            `Нажатие кнопки закрытия модального окна "${this.title ? this.title : 'c id ' + this.id}".`,
+            timeout)
+    }
+
+    //Отображение кнопки закрытия
+    async close(timeout) {
+        return await this.xpathElement(elements.modalButClose(this.id),
+            `Отображение кнопки закрытия в модальном окне "${this.title ? this.title : 'c id ' + this.id}".`,
+            timeout)
+    }
+
+    //Нажатие кнопки в модальном окне
+    async buttonHandler(text, timeout) {
+
+        const active = await this.buttonActive(text, timeout)
+
+        if(active.error) {
+            return {
+                error: true,
+                description: `Ошибка. Кнопка "${text}" неактивна, нажатие невозможно.`,
+            }
+        }
+
+        return await this.xpathHandler(elements.modalButton(this.id, text),
+            `Нажатие кнопки "${text}" в модальном окне "${this.title ? this.title : 'c id ' + this.id}".`,
+            timeout)
+    }
+
+    //Отображение активной кнопки
+    async buttonActive(text, timeout) {
+        return await this.xpathElement(elements.modalButtonActive(this.id, text),
+            `Отображение активной кнопки "${text}" в модальном окне "${this.title ? this.title : 'c id ' + this.id}".`,
+            timeout)
+    }
+
+    //Отображение не активной кнопки
+    async buttonDisabled(text, timeout) {
+        return await this.xpathElement(elements.modalButtonDisabled(this.id, text),
+            `Нажатие нкнопки "${text}" в модальном окне "${this.title ? this.title : 'c id ' + this.id}".`,
             timeout)
     }
 

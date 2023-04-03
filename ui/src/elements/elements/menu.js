@@ -6,24 +6,35 @@ class Menu extends BasePage{
         super();
     }
 
-    async menu() {
-
+    async menu(timeout) {
+        return await this.xpathElement(elements.menuNavigation,
+            'Отображение меню.',
+            timeout)
     }
 
-    async closed() {
-
+    async closed(timeout) {
+        return await this.xpathNoElement(elements.menuNavigation,
+            'Отсутствие меню.',
+            timeout)
     }
 
-    async itemActive() {
-
+    async itemActive(text, timeout) {
+        return await this.xpathElement(elements.menuNavigationItemActive(text),
+            `Отображение активного параметра "${text}" в меню.`,
+            timeout)
     }
 
-    async itemDisabled() {
-
+    async itemDisabled(text, timeout) {
+        console.log(elements.menuNavigationItemDisabled(text))
+        return await this.xpathElement(elements.menuNavigationItemDisabled(text),
+            `Отображение заблокированного параметра "${text}" в меню.`,
+            timeout)
     }
 
-    async itemHandler() {
-
+    async handler(text, timeout) {
+        return await this.xpathHandler(elements.menuNavigationItem(text),
+            `Нажатие по параметру "${text}" в меню.`,
+            timeout)
     }
 }
 

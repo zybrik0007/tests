@@ -23,7 +23,12 @@
   },
   "dependencies": {
     "chromedriver": "^110.0.0",
+    "form-data": "^4.0.0",
+    "fs": "0.0.1-security",
     "geckodriver": "^3.2.0",
-    "selenium-webdriver": "^4.8.1"
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "selenium-webdriver": "^4.8.1",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz"
   }
 }

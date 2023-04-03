@@ -1,10 +1,10 @@
 const {address} = require('../../../entry')
 
 module.exports = {
-    /*auth*/
+    //auth
     authUrl: address,
 
-    /*Персонал*/
+    //Персонал
     staffAddUrl: address + 'personal/staff/new',
     staffEditUrl: address + 'personal/staff/',
     staffPresentUrl: address + 'personal/staff/activate',
@@ -15,7 +15,7 @@ module.exports = {
     divisionsUrl: address + 'personal/divisions',
     positionsUrl: address + 'personal/positions',
 
-    /*Бюро пропусков*/
+    //Бюро пропусков
     visitorAddUrl: address + 'passoffice/visitors/new',
     visitorEditUrl: address + 'passoffice/visitors/',
     visitorOrderedUrl: address + 'passoffice/visitors/ordered',
@@ -24,7 +24,7 @@ module.exports = {
     accessAddTemplateUrl: address + 'passoffice/access/template/new',
     accessEditTemplateUrl: address + 'passoffice/access/template/edit/',
 
-    /*Администрирование*/
+    //Администрирование
     roomUrl: address + 'administration/premisesconfiguration/rooms',
     deviceUrl: address + 'administration/premisesconfiguration/controllers',
     licenseUrl: address + 'administration/license',

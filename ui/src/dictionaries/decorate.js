@@ -3,6 +3,7 @@ const page = require('../pages')
 const el = require('../elements')
 const entry = require('../../../entry')
 const url = require('../dictionaries/url')
+const api = require('../handlers/other/api')
 
 //Авторизация
 const auth = async (login, password) => {
@@ -67,6 +68,13 @@ const exit = async () => {
     expect(address.error).to.equal(false)
 }
 
+//Откат базы данных
+const rebase = async () => {
+    const post = await api.rebase()
+    console.log(post.description)
+    expect(post.error).to.equal(false)
+}
+
 //Проверка на утверждение
 const simple = async (func, array, context = false) => {
     const data = await func.bind(context)(...array);
@@ -88,13 +96,17 @@ const simpleText = async (func, array, text, context = false) => {
     expect(data.text.trim()).to.equal(text)
 }
 
-
+const exportFile = (arr, arrData) => {
+    expect(arr).to.deep.equal(arrData)
+}
 
 module.exports = {
     auth,
     animation,
     exit,
+    rebase,
     simple,
     simpleFalse,
     simpleText,
+    exportFile,
 }

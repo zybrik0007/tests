@@ -72,6 +72,18 @@ class Input extends BasePage {
             timeout)
     }
 
+    async handler(title, placeholder, timeout) {
+        return await this.xpathHandler(element.input(title, placeholder),
+            `Нажатие input ${title ? title : placeholder}.`,
+            timeout)
+    }
+
+    async backSpace(title, placeholder, timeout) {
+        return await this.backSpaceFullHandler(element.input(title, placeholder),
+            `Удаление значения input ${title ? title : placeholder} через Backspace.`,
+            timeout)
+    }
+
 }
 
 module.exports = Input

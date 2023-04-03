@@ -19,12 +19,17 @@ const Loader = require('./elements/loader')
 const Header = require('./elements/header')
 const FormStatus = require('./elements/form-status')
 const RowEmpty = require('./elements/row-empty')
+const Menu = require('./elements/menu')
+const Footer = require('./elements/footer')
+const File = require('./elements/file')
+const PrintTable = require('./modals/print-table')
 
 const Modal = require('./elements/modal')
 const ModalConfirm = require('./elements/modal-confirm')
 const DeviceSearch = require('./modals/search-device')
 const DeviceSelect = require('./modals/device-select')
 const ScheduleSelect = require('./modals/schedule-select')
+const ImportDate = require('./modals/import-data')
 
 module.exports = {
     section: new Section(),
@@ -48,8 +53,9 @@ module.exports = {
     header: new Header(),
     formStatus: new FormStatus(),
     rowEmpty: new RowEmpty(),
-
-
+    footer: new Footer(),
+    menu: new Menu(),
+    file: new File(),
 
     modal: {
         //Персонал
@@ -68,32 +74,64 @@ module.exports = {
         roomEdit: new Modal('room-modal', 'Редактировать помещение'),
         deviceSearch: new DeviceSearch('search-device', 'Поиск устройств'),
         deviceSelect: new DeviceSelect('device-select', 'Список устройств'),
+
+        //Импорт
+        importData: new ImportDate('import-data', 'Импорт'),
+
+        //Экспорт
+        exportData: new Modal('export-data', 'Экспортировать данные'),
+
+        //Печать таблицы
+        printTable: new PrintTable('print-table', ''),
     },
 
     modalConfirm: {
         //Персонал
         //Сотрудники
-        staffBlock: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите заблокировать данного сотрудника?'),
-        staffUnBlock: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите разблокировать данного сотрудника?'),
-        staffDeleteCard: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите удалить карту у данного сотрудника?'),
+        staffBlock: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите заблокировать данного сотрудника?'),
+
+        staffUnBlock: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите разблокировать данного сотрудника?'),
+
+        staffDeleteCard: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите удалить карту у данного сотрудника?'),
+
+        //Должности
+        positionDelete: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите удалить данную должность?'),
 
         //Бюро пропусков
         //Посетители
-        visitorBlock: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите заблокировать данного посетителя?'),
-        visitorUnBlock: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите разблокировать данного посетителя?'),
+        visitorBlock: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите заблокировать данного посетителя?'),
+
+        visitorUnBlock: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите разблокировать данного посетителя?'),
+
         /*Подразделения*/
-        divisionDelete: new ModalConfirm('Удаление подразделения', 'Вы действительно хотите удалить подразделение?'),
+        divisionDelete: new ModalConfirm('Удаление подразделения',
+            'Вы действительно хотите удалить подразделение?'),
 
         //Администрирование
         //Конфигурация
-        roomDelete: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите удалить данное помещение?'),
-        deviceActivate: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите включить данное устройство?'),
-        deviceDeactivate: new ModalConfirm('Подтвердите действие','Вы действительно хотите отключить данное устройство?'),
-        deviceDelete: new ModalConfirm('Подтвердите действие', 'Вы действительно хотите удалить этот контроллер?'),
+        roomDelete: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите удалить данное помещение?'),
+
+        deviceActivate: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите включить данное устройство?'),
+
+        deviceDeactivate: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите отключить данное устройство?'),
+
+        deviceDelete: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите удалить этот контроллер?'),
+
         //Лицензии
         licenseStandardDeactivate: new ModalConfirm('Подтвердите действие',
             'При отключении модуля "Стандартный пакет" количество действующих карт будет ограничено 100 картами сотрудников. ' +
             'Ранее введенные карты посетителей и карты сотрудников больше 100 (в порядке добавления) будут заблокированы. ' +
             'Также будут отключены остальные модули, кроме "Базовый пакет".')
-    }
+    },
+
 }

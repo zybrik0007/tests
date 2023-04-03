@@ -16,6 +16,13 @@ class Select extends BasePage {
             timeout)
     }
 
+    //Отсуствие select
+    async noSelect(title, value, timeout) {
+        return await this.xpathNoElement(element.select(title, value),
+            `Отсутствие select ${title ? title : value}`,
+            timeout)
+    }
+
     //Получение выбранного значения в select
     async getText(title, value, timeout) {
         return await this.xpathGetText(element.select(title, value),

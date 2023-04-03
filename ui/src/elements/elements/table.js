@@ -51,17 +51,19 @@ class Table extends BasePage {
             timeout)
     }
 
+    //Отображенеи количества строк
+    async size(num, timeout) {
+        return await this.xpathList(elements.tableStr,
+            `В таблице отображается ${num} строк`,
+            num,
+            timeout)
+    }
+
     //Получение текста из ячейки по столбцу, номеру строки и номеру колонки
     async cellGetText(head, str, cell, timeout) {
-        const headText = await this.xpathGetText(elements.tableHeadText(cell),
-            `Заглавие ${head} c номером ${cell}.`,
-            timeout)
-
-        if(headText.text !== head) {
-            return {
-                error: true,
-                description: `Ошибка. Значение заглавия ${head}  не равно ${headText} c номером ${cell}.`,
-            }
+        const headText = await this.headElement(head, cell)
+        if (headText.error) {
+            return headText
         }
 
         return await this.xpathGetText(elements.tableCellText(str, cell),
@@ -103,6 +105,88 @@ class Table extends BasePage {
             timeout)
     }
 
+    //Получение значения текста заглавия
+    async headGetText(cell, timeout) {
+        return await this.xpathGetText(elements.tableHeadText(cell),
+            `Получение значения заглавия c номером по счету ${cell}.`,
+            timeout)
+    }
+
+    //Столбец сортирован по возрастанию
+    async headSortAsc(head, cell, timeout) {
+        const headText = await this.headElement(head, cell)
+        if (headText.error) {
+            return headText
+        }
+
+        return await this.xpathElement(elements.tableHeadSort(cell, 'sort-asc', 'Icon--chevron_up_outline'),
+            `Столбец ${head} отсортирован по возрастанию.`,
+            timeout)
+    }
+
+    //Столбец сортирован по убыванию
+    async headSortDesc(head, cell, timeout) {
+        const headText = await this.headElement(head, cell)
+        if (headText.error) {
+            return headText
+        }
+
+        return await this.xpathElement(elements.tableHeadSort(cell, 'sort-desc', 'Icon--chevron_down_outline'),
+            `Столбец ${head} отсортирован по возрастанию.`,
+            timeout)
+    }
+
+    //Столбец не отсортирован
+   async headNoSort(head, cell, timeout) {
+       const headText = await this.headElement(head, cell)
+       if(headText.error) {
+           return headText
+       }
+
+       return await this.xpathElement(elements.tableHeadNoSort(cell, 'sort-asc', sort-desc),
+           `Столбец ${head} не отсортирован.`,
+           timeout)
+   }
+
+   //Нажатие по загалвию столбца
+   async headHandler(head, cell, timeout) {
+       const headText = await this.headElement(head, cell)
+       if(headText.error) {
+           return headText
+       }
+
+       return await this.xpathHandler(elements.tableHeadText(cell),
+           `Нажатие по заглавию столбца ${head}`,
+           timeout)
+
+   }
+
+   //Проверка заглавия столбца
+   async headElement(head, cell, timeout) {
+       const headText = await this.xpathGetText(elements.tableHeadText(cell),
+           `Заглавие ${head} c номером ${cell}.`,
+           timeout)
+
+       if(headText.text !== head) {
+           return {
+               error: true,
+               description: `Ошибка. Значение заглавия ${head} не равно ${headText.text} c номером ${cell}.`,
+           }
+       }
+
+       return {
+           error: false,
+           description: `Значение заглавия ${head} равно ${headText} c номером ${cell}.`
+       }
+
+   }
+
+   //Нажтие Ctrl + по строке в таблице по номеру
+    async controlStrHandler(event, timeout) {
+        return await this.xpathControlHandler(elements.tableStrNum(event),
+            `Нажатие "Control" и номер ${event}  строки.`,
+            timeout)
+    }
 }
 
 module.exports = Table
