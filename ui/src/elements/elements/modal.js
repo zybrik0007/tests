@@ -96,6 +96,29 @@ class Modal extends BasePage {
             timeout)
     }
 
+    // Ввод значения в input
+    async inputSendKeys(title, placeholder, value, timeout) {
+        return await this.xpathSendKeys(elements.modalId(this.id) +elements.input(title, placeholder),
+            `Ввод значения ${value} в input ${title ? title : placeholder}.`,
+            value,
+            timeout)
+    }
+
+    // Получение значение input
+    async inputGetValue(title, placeholder, timeout) {
+        return await this.xpathGetAttribute(elements.modalId(this.id) + elements.input(title, placeholder),
+            `Получение значения input ${title ? title : placeholder}`,
+            'value',
+            timeout)
+    }
+
+    // Удаление значения input
+    async inputBackSpace(title, placeholder, timeout) {
+        return await this.backSpaceFullHandler(elements.modalId(this.id) + elements.input(title, placeholder),
+            `Удаление значения input ${title ? title : placeholder} через Backspace.`,
+            timeout)
+    }
+
 }
 
-module.exports = Modal
+module.exports = Modal;

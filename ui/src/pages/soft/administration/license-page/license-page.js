@@ -30,6 +30,7 @@ class LicensePage extends BasePage {
 
     //Статус лицензии не активироан
     async disabled(license, timeout) {
+        await this.loading(1000);
         return await this.xpathElement(elements.licenseDisabled(license.title, license.name),
             `Лицензия ${license.title} ${license.name} не активна.`,
             timeout)
@@ -37,6 +38,7 @@ class LicensePage extends BasePage {
 
     //Статус лицензии активироан
     async active(license, timeout) {
+        await this.loading(1000);
         return await this.xpathElement(elements.licenseActive(license.title, license.name),
             `Лицензия ${license.title} ${license.name} активна.`,
             timeout)
@@ -44,6 +46,7 @@ class LicensePage extends BasePage {
 
     //Иформация по лицензии
     async info(license, text, timeout) {
+        await this.loading(1000);
         return await this.xpathElement(elements.licenseInfo(license.title, license.name, text),
             `Отображение ${text} у лензии ${license.title} ${license.name}.`,
             timeout)
@@ -51,6 +54,7 @@ class LicensePage extends BasePage {
 
     //Нажатие кнопки включение/выключения лицензии
     async switch(license, timeout) {
+        await this.loading(1000);
         return await this.xpathHandler(elements.licenseSwitch(license.title, license.name),
             `Нажатие переключателя у лицензии ${license.title} ${license.name}.`,
             timeout)
@@ -58,6 +62,7 @@ class LicensePage extends BasePage {
 
     //Нажатие "Подробнее"
     async more(license, timeout) {
+        await this.loading(1000);
         return await this.xpathHandler(elements.licenseMore(license.title, license.name),
             `Нажатие ссылки "Подробно" у лицензии ${license.title} ${license.name}.`,
             timeout)

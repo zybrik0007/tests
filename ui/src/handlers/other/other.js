@@ -21,9 +21,9 @@ const footer = (nameHead, nameCell, str, cell, bef, aft) => {
 
     describe('Проверка первичного отображения', () => {
 
-        bef()
+        bef();
 
-        aft()
+        aft();
 
         it('Отображение "20" в настройке количества записей', async () => dec.simpleText(el.footer.selectGetText,
             [entry.max],
@@ -1200,9 +1200,54 @@ const footer = (nameHead, nameCell, str, cell, bef, aft) => {
         })
 
     })
-}
+};
+
+
+// Проверка сортировки столлбца
+const sorter = (nameHead, cell, array) => {
+    describe('Проверка сортировки по возрастанию', () => {
+        it('Нажатие по заглавию столбца', async () => await dec.simple(el.table.headHandler,
+            [nameHead, cell, entry.max],
+            el.table));
+
+        it('Столбец отсортирован по возрастанию', async () => await dec.simple(el.table.headSortAsc,
+            [nameHead, cell, entry.max],
+            el.table));
+
+        it('Отсуствиие анимаций', async () => await dec.animation());
+
+        it('Проверка строк', async () => {
+            const promises = array.map((item, index ) => dec.simpleText(el.table.cellGetText,
+                [nameHead, index + 1, cell, entry.max],
+                item,
+                el.table));
+            await Promise.all(promises);
+        });
+    });
+
+    describe('Сортировка по убываниию', () => {
+        it('Нажатие по заглавию столбца', async () => await dec.simple(el.table.headHandler,
+            [nameHead, cell, entry.max],
+            el.table));
+
+        it('Столбец отсортирован по убыванию', async () => await dec.simple(el.table.headSortDesc,
+            [nameHead, cell, entry.max],
+            el.table));
+
+        it('Отсуствиие анимаций', async () => await dec.animation());
+
+        it('Проверка строк', async () => {
+            const promises = array.reverse().map((item, index ) => dec.simpleText(el.table.cellGetText,
+                [nameHead, index + 1, cell, entry.max],
+                item,
+                el.table));
+            await Promise.all(promises);
+        });
+    });
+};
 
 module.exports = {
     rebase,
     footer,
+    sorter,
 }

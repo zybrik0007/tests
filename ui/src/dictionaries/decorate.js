@@ -45,19 +45,36 @@ const animation = async () => {
 
 //Выход
 const exit = async () => {
-    await animation()
+    const noLoader = await el.loader.loaderLargeNoElement(entry.max)
+    console.log(noLoader.description)
+    expect(noLoader.error).to.equal(false)
 
     const profileHandler = await el.header.profileHandler(entry.max)
-    console.log(profileHandler.description)
-    expect(profileHandler.error).to.equal(false)
+    if(profileHandler.error) {
+        await animation()
+        const profileHandler = await el.header.profileHandler(entry.max)
+        console.log(profileHandler.description)
+        expect(profileHandler.error).to.equal(false)
+    } else {
+        console.log(profileHandler.description)
+        expect(profileHandler.error).to.equal(false)
+    }
+
 
     const menu = await el.header.menu(entry.max)
     console.log(menu.description)
     expect(menu.error).to.equal(false)
 
     const exitHandler = await el.header.exitHandler(entry.max)
-    console.log(exitHandler.description)
-    expect(exitHandler.error).to.equal(false)
+    if(exitHandler.error) {
+        await animation()
+        const exitHandler = await el.header.exitHandler(entry.max)
+        console.log(exitHandler.description)
+        expect(exitHandler.error).to.equal(false)
+    } else {
+        console.log(exitHandler.description)
+        expect(exitHandler.error).to.equal(false)
+    }
 
     const open = await page.base.open(url.authUrl)
     console.log(open.description)
@@ -66,6 +83,18 @@ const exit = async () => {
     const address = await page.base.urlCompare(url.authUrl, entry.max)
     console.log(address.description)
     expect(address.error).to.equal(false)
+
+    const clearLS = await page.base.clearLocalStorage()
+    console.log(clearLS.description)
+    expect(clearLS.error).to.equal(false)
+
+    const setLocalStorageToastPosition = await page.base.setLocalStorage('toast_position', 'br')
+    console.log(setLocalStorageToastPosition.description)
+    expect(setLocalStorageToastPosition.error).to.equal(false)
+
+    const setLocalStorageSidebar = await page.base.setLocalStorage('sidebar', 0)
+    console.log(setLocalStorageSidebar.description)
+    expect(setLocalStorageSidebar.error).to.equal(false)
 }
 
 //Откат базы данных
@@ -73,6 +102,7 @@ const rebase = async () => {
     const post = await api.rebase()
     console.log(post.description)
     expect(post.error).to.equal(false)
+    await page.base.loading(5000)
 }
 
 //Проверка на утверждение
@@ -96,6 +126,22 @@ const simpleText = async (func, array, text, context = false) => {
     expect(data.text.trim()).to.equal(text)
 }
 
+//Проверка на положительный без удаления отступов текст
+const simpleTextNoSpace = async (func, array, text, context = false) => {
+    const data = await func.bind(context)(...array)
+    console.log(data.description)
+    expect(data.error).to.equal(false)
+    expect(data.text).to.equal(text)
+}
+
+//Проверка на отрицательный текст
+const simpleNotText = async (func, array, text, context = false) => {
+    const data = await func.bind(context)(...array)
+    console.log(data.description)
+    expect(data.error).to.equal(false)
+    expect(data.text.trim()).to.not.equal(text)
+}
+
 const exportFile = (arr, arrData) => {
     expect(arr).to.deep.equal(arrData)
 }
@@ -109,4 +155,6 @@ module.exports = {
     simpleFalse,
     simpleText,
     exportFile,
+    simpleNotText,
+    simpleTextNoSpace,
 }

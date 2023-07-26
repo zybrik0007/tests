@@ -14,8 +14,9 @@ const StaffPageChange = require('./soft/personal/staff-page/staff-change-page')
 const VisitorCurrentPage = require('./soft/pass-office/visitor-page/visitor-current-page')
 const VisitorOrderedPage = require('./soft/pass-office/visitor-page/visitor-ordered-page')
 const VisitorChangePage = require('./soft/pass-office/visitor-page/visitor-change-page')
-const ManagerMonitoringPage = require('./manager-page/manager-monitoring-page')
-const ManagerLogPage = require('./manager-page/manager-log-page')
+const AccessTemplateScheduleChangePage = require('./soft/pass-office/access-page/access-template-schedule-change-page')
+const AccessTemplateSchedulePage = require('./soft/pass-office/access-page/access-template-schedule-page')
+const AdditionalData = require('./soft/personal/additional-data-page/additional-data-page')
 
 
 
@@ -25,10 +26,6 @@ module.exports = {
     base: new Base(),
     auth: new Auth(),
 
-    //Менеджер
-    manMonitoring: new ManagerMonitoringPage(),
-    manLog: new ManagerLogPage(),
-
     //Персонал
     staffActive: new StaffPresentPage(),
     staffChange: new StaffPageChange(),
@@ -36,6 +33,7 @@ module.exports = {
     schedulePageChange: new SchedulePageChange(),
     division: new DivisionPage(),
     position: new PositionPage(),
+    additionalData: new AdditionalData(),
 
     //Бюро пропусков
     visitorOrdered: new VisitorOrderedPage(),
@@ -43,6 +41,9 @@ module.exports = {
     visitorChange: new VisitorChangePage(),
     accessTemplate: new AccessTemplate(),
     accessTemplateChange: new AccessTemplateChange(),
+    accessTemplateSchedulePage: new AccessTemplateSchedulePage(),
+    accessTemplateScheduleChangePage: new AccessTemplateScheduleChangePage(),
+
 
     //Администрирование
     room: new Rooms(),

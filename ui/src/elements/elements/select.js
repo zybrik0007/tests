@@ -1,6 +1,6 @@
 const BasePage = require('../../pages/base-page/base-page')
 const element = require('../../dictionaries/selenium-elements')
-const xpand = new (require('./select-xpand'))
+const xpand = new (require('./select-xpand'));
 
 //Select с заглавие и значением
 class Select extends BasePage {
@@ -25,6 +25,7 @@ class Select extends BasePage {
 
     //Получение выбранного значения в select
     async getText(title, value, timeout) {
+        console.log(element.select(title, value))
         return await this.xpathGetText(element.select(title, value),
             `Получение значения select  ${title ? title : value}`,
             timeout)
@@ -70,9 +71,23 @@ class Select extends BasePage {
     }
 
     //Нажатие по иконки outline в select
-    async iconOutline(title, timeout) {
+    async iconOutline(title, value, timeout) {
         return await this.xpathHandler(element.selectIcon(title, value, 'Icon--article_outline'),
-            `Нажатие по иконке outline в select ${title ? title : value}`,
+            `Нажатие по иконке menu в select ${title ? title : value}`,
+            timeout)
+    }
+
+    //Нажатие иконки menu
+    async iconMenu(title, placeholder, timeout) {
+        return await this.xpathHandler(element.selectIcon(title, placeholder, 'Icon--menu'),
+            `Нажатие по иконке outline в select ${title ? title : placeholder}`,
+            timeout)
+    }
+
+    //Нажатие по иконки clear в select
+    async iconClear(title, value, timeout) {
+        return await this.xpathHandler(element.selectIcon(title, value, 'Icon--clear'),
+            `Нажатие по иконке clear в select ${title ? title : value}`,
             timeout)
     }
 }

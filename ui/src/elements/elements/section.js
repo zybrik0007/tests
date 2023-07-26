@@ -9,13 +9,15 @@ class Section extends BasePage {
 
     //Отображение раздела
     async section(section, timeout) {
+        await this.loading(1000);
         return await this.xpathElement(elements.section(section.classed),
-            `Оображение раздела "${section.description}"`,
+            `Отображение раздела "${section.description}"`,
             timeout)
     }
 
     //Раздел активен
     async active(section, timeout) {
+        await this.loading(500);
         return await this.xpathElement(elements.sectionActive(section.classed),
             `Раздел "${section.description} активен"`,
             timeout)
@@ -23,6 +25,7 @@ class Section extends BasePage {
 
     //Нажатие кнопки раздела
     async handler(section, timeout) {
+        await this.loading(1000);
         return await this.xpathHandler(elements.section(section.classed),
             `Нажатие по разделу "${section.description}"`,
             timeout)
@@ -30,6 +33,7 @@ class Section extends BasePage {
 
     //Отсутствие раздела
     async noElement(section, timeout) {
+        await this.loading(1000);
         return await this.xpathNoElement(elements.section(section.classed),
             `Отсутствие раздела "${section.description}"`,
             timeout)

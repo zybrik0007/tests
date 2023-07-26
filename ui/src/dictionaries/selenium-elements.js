@@ -21,13 +21,19 @@ module.exports = {
 
     //Подразделения
     perDivisionTree: (arr) => {
-        let tree = ''
-        const decorate = (event) => `/pw-tree-row/div/pw-tree-node/div/div/div[normalize-space(.)="${event}"]`
+        let tree = '';
+        const decorate = (event) => `/pw-tree-row/div/pw-tree-node/div/div/div[normalize-space(.)="${event}"]`;
         arr.forEach((division, index) => {
-            tree += index === 0 ? `/${decorate(division)}` : `/parent::*/parent::*/parent::*/parent::*${decorate(division)}`
-        })
-        return tree
+            tree += index === 0 ? `/${decorate(division)}` :
+                `/parent::*/parent::*/parent::*/parent::*${decorate(division)}`;
+        });
+        return tree;
     },
+    perDivisionSelected: (event) => `//pw-tree-row/div/pw-tree-node/div/div/div[normalize-space(.)="${event}" 
+    and contains(@class, "pwTreeNode--node-select")]`,
+    perDivisionList: '//div[@class="pwTreeNode--node_el-name"]',
+    perDivisionIcon: (name, icon) => `//pw-tree-row/div/pw-tree-node/*[normalize-space(.)="${name}"]
+    //div[contains(@class, "${icon}")]`,
 
     //Бюро пропусков
     //Шаблоны доступа - изменение
@@ -68,6 +74,33 @@ module.exports = {
     /parent::*`,
     pasSchedulesModalSelectScheduleActive: (event) => `//div[contains(@class, "selected-block")]
     /div[@class="block-desc" and normalize-space(.)="${event}"]/parent::*`,
+    pasAccessSchedule: (event) => `//div[contains(@class, 'intervals-block')][${event}]/div[@class="timeline"]`,
+    pasAccessScheduleActive: `//div[contains(@class, 'intervals-block') and contains(@class, 'selected-block')]` ,
+    pasAccessScheduleDisabled: (event) => `//div[contains(@class, 'intervals-block') 
+    and not(contains(@class, 'selected-block'))][${event}]/div[@class="timeline"]`,
+    pasAccessScheduleName: (event) => `//div[contains(@class, 'intervals-block')][${event}]/div[@class="block-desc"]`,
+    pasAccessScheduleTitle: (event) => `//div[contains(@class, 'intervals-block')][${event}]/div[@class="block-title"]`,
+    pasAccessScheduleInterval: (schedule, interval) => `//div[contains(@class, 'intervals-block')][${schedule}]
+    /div[@class="timeline"]/div[${interval}]`,
+    pasAccessScheduleIntervalIcon: (schedule, interval) => `//div[contains(@class, 'intervals-block')][${schedule}]
+    /div[@class="timeline"]/div[${interval}]/pw-icon[@parsevalue="unsorted_delete_outline_android"]`,
+    pasAccessScheduleIntervalInput: (schedule, interval, input) => `//div[contains(@class, 'intervals-block')]
+    [${schedule}]/div[@class="timeline"]/div[contains(@class,"interval")][${interval}]/input[${input}]`,
+    passAccessScheduleChangeWeekScroll: (x, y) => `document.querySelector(".intervals-box").scrollBy(${x}, ${y});`,
+    passAccessScheduleChangeSWeekName: (num, str) => `//div[@class="weeks-two-columns"]/div[${num}]
+    //pw-group-cell[${str}]//div[@class="weekItem__text"][1]`,
+    passAccessScheduleChangeSWeekList: (num) =>  `//div[@class="weeks-two-columns"]/div[${num}]//pw-group-cell
+    //div[@class="weekItem__text"][1]`,
+    passAccessScheduleChangeSWeekBut: (num, str) => `//div[@class="weeks-two-columns"]/div[${num}]
+    //pw-group-cell[${str}]//pw-button`,
+    passAccessScheduleChangeSWeekScroll: (x, y) =>
+        `document.querySelector('.weeks-right-box > .list > pw-group').scrollBy(${x}, ${y});`,
+    passAccessScheduleChangeSWeekSelectedScroll: (x, y) =>
+        `document.querySelector('.wide > div > .list > pw-group').scrollBy(${x}, ${y})`,
+
+
+    //div[contains(@class, 'intervals-block')][${schedule}]/div[@class="timeline"]/div[@class="interval"][${interval}]/input[${input}]
+
 
     //Администрирование
     admSelectDeviceModalCell: (device, ip) => `//*[normalize-space(.)="${device} ${ip}"]/div`,
@@ -141,16 +174,20 @@ module.exports = {
     inputIcon: (title, placeholder, icon) => `//*[normalize-space(.)="${title}"]
     //input[@placeholder="${placeholder}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
+    //input-number
+    inputNumber: (title, placeholder, num) =>`//*[${num}][normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]`,
+    inputNumberIcon: (title, placeholder, num, icon) => `//*[${num}][normalize-space(.)="${title}"]
+    //input[@placeholder="${placeholder}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
+
     //select
     select: (title, value) => `//pw-field/*[normalize-space(.)="${title}"]/parent::*
     //span[normalize-space(.)="${value}"]`,
     selectIcon: (title, value, icon) => `//pw-field/*[normalize-space(.)="${title}"]/parent::*
     //span[normalize-space(.)="${value}"]/parent::*/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
-
     //select-multi
     selectMulti: (event) => `//*[normalize-space(.)="${event}"]/parent::*/pw-select`,
-    selectMultiIcon: (title, icon) => `//*[normalize-space(.)="${title}"]/parent::*//pw-icon
+    selectMultiIcon: (title, icon) => `//div[normalize-space(.)="${title}"]/parent::*//pw-icon
     /div[contains(@class, "${icon}")]`,
     selectMultiVal: (title, num) => `//*[normalize-space(.)="${title}"]/parent::*//pw-select-item-select[${num}]
     /div/div[1]`,
@@ -168,7 +205,7 @@ module.exports = {
 
     //button
     button: (event) => `//pw-button//span[normalize-space(.)="${event}"]/parent::*/parent::*`,
-    buttonActive: (event) => `//pw-button[not(contains(@class, "disabled"))]//span[normalize-space(.)="${event}"]
+    buttonActive: (event) => `//pw-button[not(contains(@class, "disabled"))]//span[normalize-space(.)="${event}"]/span
     /parent::*/parent::*`,
     buttonDisabled: (event) => `//pw-button[contains(@class, "disabled")]//span[normalize-space(.)="${event}"]
     /parent::*/parent::*`,
@@ -194,6 +231,8 @@ module.exports = {
     popUpError: (event) => `//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]
     /div[normalize-space(.)='${event}']`,
     popUpErrorStr: '//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]/div',
+    popUpClose: (event) => `//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]
+    /div[normalize-space(.)='${event}']/parent::*/parent::*/div[contains(@class, "pwToast--wrapper--close")]`,
 
     //pop-up-success
     popUpSuccess: (event) => `//div[contains(@class, "pwToast--wrapper-type-success")]
@@ -254,6 +293,8 @@ module.exports = {
     modalButtonActive: (id, text) => `//pw-modal[@id="${id}"]//pw-button[not(contains(@class, "disabled"))]
     //span[normalize-space(.)="${text}"]/parent::*/parent::*`,
 
+    //modal all
+    modalSelectAccessZone: (x, y) => `document.querySelector(".time-zones-wrapper").scrollBy(${x}, ${y});`,
 
     //modal import file
     modalImportInputFile: (event) => `//pw-modal[@id="${event}"]//input[@type="file"]`,
@@ -263,6 +304,12 @@ module.exports = {
     modalPrint: (event) => `/pw-modal[@id="${event}"]`,
     modalPrintHead: (id, head) => `//pw-modal[@id="${id}"]//thead/tr/th[${head}]/p`,
     modalPrintColumn: (id, str, cell) => `//pw-modal[@id="${id}"]//tbody/tr[${str}]/td[${cell}]/p`,
+
+    //modal AdditionalData
+    modalAdditionalDataInput: (title, num) => `//pw-field/*[normalize-space(.)="${title}"]//parent::*
+    /div[@class="pwAdditionalFlex"][${num}]//input`,
+    modalAdditionalDataButton: (title, num) => `//pw-field/*[normalize-space(.)="${title}"]//parent::*
+    /div[@class="pwAdditionalFlex"][${num}]//button`,
 
 
     //modal-confirm
@@ -318,8 +365,16 @@ module.exports = {
     simpleCell: (event) => `//*[contains(@class, "pwSimpleCell") and normalize-space(.)="${event}"]`,
     simpleCellActive: (event) => `//*[contains(@class, "pwSimpleCell--active") and normalize-space(.)="${event}"]`,
 
+    //pw-group-cell
+    pwGroupCell: (event) => `//pw-group-cell//*[contains(text(), "${event}")]`,
+    pwGroupCellChecked: (event) => `//pw-group-cell//*[contains(text(), "${event}")]
+    /parent::*//*[contains(@class, "Icon--check_circle_filled_blue")]`,
+
     //empty-row
     emptyRow: '//*[@class="empty-row"]',
+
+    //pwPlaceholder--text
+    placeholderText: '//*[@class="pwPlaceholder--text"]',
 
     //menu
     menuNavigation: '//pw-action-sheet',

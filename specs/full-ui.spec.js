@@ -4,7 +4,8 @@ const tests = require('../ui/src/handlers/soft')
 describe('Проверка функционала', () => {
 
     describe('Проверка раздела "Персонал."', () => {
-        tests.positionUi.main()
-    })
+        tests.divisionUi.add.addMinParams()
+        tests.additionalDataUi.staff.add.typeText()
 
-})
+    });
+});

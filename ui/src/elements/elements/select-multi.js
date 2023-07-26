@@ -1,5 +1,6 @@
 const BasePage = require('../../pages/base-page/base-page')
 const element = require('../../dictionaries/selenium-elements')
+const xpand = new (require('./select-xpand'));
 
 //Select c множественным выбором
 class SelectMulti extends BasePage {
@@ -50,6 +51,46 @@ class SelectMulti extends BasePage {
             timeout)
     }
 
+    //Нажатие иконки menu
+    async iconMenu(title, placeholder, timeout) {
+        return await this.xpathHandler(element.selectMultiIcon(title, 'Icon--menu'),
+            `Нажатие по иконке menu в select ${title ? title : placeholder}`,
+            timeout)}
+
+    async iconXpandSelected(title, text, timeout) {
+        const iconHandler = await this.xpathHandler(element.selectMultiIcon(title,'Icon--expand_more'),
+            `Нажатие по иконке xpand в select ${title}.`,
+            timeout);
+
+        if(iconHandler.error) {
+            return iconHandler
+        }
+
+        await this.loading(500);
+
+        const xpandOpen = await xpand.xpand(timeout);
+        if(xpandOpen.error) {
+            return xpandOpen
+        }
+
+        const xpandSelect = await xpand.handler(text, timeout);
+        if(xpandSelect.error) {
+            return xpandSelect
+        }
+
+        const xpandClose = await xpand.xpandNoElement(timeout);
+        if(xpandClose.error) {
+            return xpandClose
+        }
+
+        await this.loading(500);
+
+        return {
+            error: false,
+            description: `В "${title}" выбрано значение ${text}`,
+        }
+    }
+
 }
 
-module.exports = SelectMulti
+module.exports = SelectMulti;

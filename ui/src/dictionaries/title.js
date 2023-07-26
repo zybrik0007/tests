@@ -13,6 +13,7 @@ module.exports = {
     schedulesTitle:  title + 'Графики работы',
     divisionsTitle: title + 'Подразделения',
     positionsTitle: title + 'Должности',
+    additionalDataTitle: title + 'Дополнительные данные',
 
 
     //Бюро пропусков

@@ -1,8 +1,9 @@
-const chromeDriver = require('chromedriver')
-const firefoxDriver = require('geckodriver')
+
 const {Builder} = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 const firefox = require('selenium-webdriver/firefox')
+
+
 const {browser, headless, width, height} = require('../entry')
 
 //Обработчик настройки selenium драйвера
@@ -25,6 +26,7 @@ const middleware = () => {
             .setChromeOptions(new chrome.Options()
                 .windowSize({width: width, height: height}))
             .build()
+
     }
 
     //firefox хром с headless

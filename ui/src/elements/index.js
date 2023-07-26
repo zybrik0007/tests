@@ -23,6 +23,7 @@ const Menu = require('./elements/menu')
 const Footer = require('./elements/footer')
 const File = require('./elements/file')
 const PrintTable = require('./modals/print-table')
+const PlaceholderText = require('./elements/placeholder-text')
 
 const Modal = require('./elements/modal')
 const ModalConfirm = require('./elements/modal-confirm')
@@ -30,6 +31,9 @@ const DeviceSearch = require('./modals/search-device')
 const DeviceSelect = require('./modals/device-select')
 const ScheduleSelect = require('./modals/schedule-select')
 const ImportDate = require('./modals/import-data')
+const TimeZoneModalSelect = require('./modals/time-zone-modal-select')
+const AdditionalData = require('./modals/additional-data')
+const Departments = require('./modals/departments')
 
 module.exports = {
     section: new Section(),
@@ -56,18 +60,25 @@ module.exports = {
     footer: new Footer(),
     menu: new Menu(),
     file: new File(),
+    placeText: new PlaceholderText(),
 
     modal: {
         //Персонал
         staffCardAdd: new Modal('card-controls', ''),
-        divisionAdd: new Modal('departments', 'Добавить подразделение'),
-        divisionEdit: new Modal('departments', 'Редактировать подразделение'),
+        divisionAdd: new Departments('departments', 'Добавить подразделение'),
+        divisionEdit: new Departments('departments', 'Редактировать подразделение'),
         positionAdd: new Modal('edit-position', 'Добавление должности'),
         positionEdit: new Modal('edit-position', 'Редактирование должности'),
+        additionalDataAdd: new AdditionalData('additional-data-modal', 'Добавить дополнительное поле'),
+        additionalDataEdit: new AdditionalData('additional-data-modal', 'Редактировать дополнительное поле'),
+
+
 
         //Бюро пропусков
         visitorAddCard:  new Modal('card-controls', ''),
         scheduleSelect: new ScheduleSelect('schedules', ''),
+        timeZoneModalSelect: new TimeZoneModalSelect('timeZonesModalSelect', ''),
+
 
         //Конфигурация
         roomAdd: new Modal('room-modal', 'Добавить помещение'),
@@ -100,6 +111,14 @@ module.exports = {
         //Должности
         positionDelete: new ModalConfirm('Подтвердите действие',
             'Вы действительно хотите удалить данную должность?'),
+
+        //Подразделения
+        divisionDelete: new ModalConfirm('Удаление подразделения',
+            'Вы действительно хотите удалить подразделение?'),
+
+        //Дополнительные данные
+        additionalDataDelete: new ModalConfirm('Подтвердите действие',
+            'Вы действительно хотите удалить данное дополнительное поле?'),
 
         //Бюро пропусков
         //Посетители

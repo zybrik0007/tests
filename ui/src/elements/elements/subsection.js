@@ -10,6 +10,7 @@ class Subsection extends BasePage {
 
     //Отображение подраздела
     async subsection(subsection, timeout) {
+        await this.loading(1000);
         return await this.xpathElement(element.subsection(subsection.url),
             `Отображение подраздела "${subsection.description}".`,
             timeout)
@@ -17,6 +18,7 @@ class Subsection extends BasePage {
 
     //Отображение активного подраздела
     async active(subsection, timeout) {
+        await this.loading(1000);
         return await this.xpathElement(element.subsectionActive(subsection.url),
             `Подраздел "${subsection.description}" активен.`,
             timeout)
@@ -24,6 +26,7 @@ class Subsection extends BasePage {
 
     //Нажатие кнопки подраздела
     async handler(subsection, timeout) {
+        await this.loading(1000);
         return  await this.xpathHandler(element.subsection(subsection.url),
             `Нажатие подраздела "${subsection.description}".`,
             timeout)
@@ -31,6 +34,7 @@ class Subsection extends BasePage {
 
     //Отсутствие подраздела
     async noElement(subsection, timeout) {
+        await this.loading(1000);
         return await this.xpathNoElement(element.subsection(subsection.url),
             `Отсутствие подраздела "${subsection.description}".`,
             timeout)
@@ -38,6 +42,7 @@ class Subsection extends BasePage {
 
     //Получение значения текста в заглавии навигации
     async headerGetText(timeout) {
+        await this.loading(1000);
         return await this.xpathGetText(element.subsectionHeader(),
             'Получение значения заглавия в навигации подразделов.',
             timeout)

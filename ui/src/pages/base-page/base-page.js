@@ -1,6 +1,7 @@
 const {By, until, Key} = require('selenium-webdriver')
 var driver = require('../../../webdriver-middleware')
 
+
 //Базовая страница
 class BasePage {
 
@@ -32,6 +33,13 @@ class BasePage {
     //Совпадение url
     async urlCompare(event, timeout) {
         return await driver.wait(until.urlIs(event), timeout)
+            .then(() => {return {error: false, description: `Открыта страница с адресом ${event}`}})
+            .catch(() => {return {error: true, description: `Не открыта страница с адресом ${event}`}})
+    }
+
+    //Частично совпадение url
+    async urlContains(event, timeout) {
+        return await driver.wait(until.urlContains(event), timeout)
             .then(() => {return {error: false, description: `Открыта страница с адресом ${event}`}})
             .catch(() => {return {error: true, description: `Не открыта страница с адресом ${event}`}})
     }
@@ -108,6 +116,35 @@ class BasePage {
             .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
     }
 
+    // Двойное нажатие по элементу
+    async xpathDbHandler(event, description, timeout) {
+        const elementLocated = await this.xpathLocated(event, description, timeout)
+        if(elementLocated.error) {
+            return elementLocated
+        }
+
+        const elementDisplayed = await this.xpathDisplayed(event, description, timeout)
+        if(elementDisplayed.error) {
+            return elementDisplayed
+        }
+
+        const elementEnabled = await this.xpathEnabled(event, description, timeout)
+        if(elementEnabled.error) {
+            return elementEnabled
+        }
+
+/*        const element = By.xpath(event)
+        return await driver.wait(until.elementLocated(element), timeout).doubleClick()
+            .then(() => {return {error: false, description}})
+            .catch(() => {return {error: true, description: `Ошибка. ${description}`}})*/
+
+
+        const element = await driver.findElement(By.xpath(event))
+        return await driver.actions().doubleClick(element).perform()
+            .then(() => {return{error: false, description}})
+            .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
+    }
+
     //Получение текста из элемента
     async xpathGetText(event, description, timeout) {
         const elementLocated = await this.xpathLocated(event, description, timeout)
@@ -176,7 +213,9 @@ class BasePage {
         const element = By.xpath(event)
         return await driver.wait(until.elementLocated(element), timeout).sendKeys(text)
             .then(() => {return {error: false, description}})
-            .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
+            .catch((err) => {
+                console.log(err)
+                return {error: true, description: `Ошибка. ${description}`}})
     }
 
     //Удаление данных в input
@@ -262,8 +301,8 @@ class BasePage {
                     description,
                 }
             }
-            await this.loading(1000)
-            timer -= 1000
+            await this.loading(1000);
+            timer -= 1000;
         }
 
         return {
@@ -301,6 +340,25 @@ class BasePage {
             })
     }
 
+    //Запись в Local Storage
+    async setLocalStorage(key, value) {
+        const set = await driver.executeScript(`return window.localStorage.setItem('${key}', '${value}');`)
+            .then(() => {
+                return {
+                    error: false,
+                    description: `Добавление в Local Storage ключ ${key} со значением ${value}.`,
+                }
+            })
+            .catch(() => {
+                return {
+                    error: true,
+                    description: `Ошибка. Добавление в Local Storage ключ ${key} со значением ${value}.`,
+                }
+            })
+        await this.refresh()
+        return set
+    }
+
     //Получение значения куки
     async getCookie(event) {
         return await driver.manage().getCookie(event)
@@ -326,7 +384,7 @@ class BasePage {
         }
 
         while(true) {
-            const xpathGetAttribute = await this.xpathGetAttribute(event, description, 'value', timeout)
+            const xpathGetAttribute = await this.xpathGetAttribute(event, description, 'value', timeout);
             if(xpathGetAttribute.error) {
                 return xpathGetAttribute
             }
@@ -338,12 +396,19 @@ class BasePage {
                 }
             }
 
-            const array = xpathGetAttribute.text.split('').map(() => Key.BACK_SPACE)
-            const element = driver.findElement(By.xpath(event))
+            const array = xpathGetAttribute.text.split('').map(() => Key.BACK_SPACE);
+            const element = driver.findElement(By.xpath(event));
             await driver.actions().click(element).sendKeys(Key.chord(...array)).perform()
                 .then(() => {return{error: false, description}})
                 .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
         }
+    }
+    
+    //Нажатеи Enter
+    async enter() {
+        return driver.actions().sendKeys(Key.ENTER).perform()
+            .then(() => {return{error: false, description: 'Нажатие Enter.'}})
+            .catch(() => {return {error: true, description: 'Ошибка. Нажатие Enter.'}})
     }
 
     //Нажатие Control + элемент
@@ -358,6 +423,34 @@ class BasePage {
             .then(() => {return{error: false, description}})
             .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
     }
+
+    //Нажатие левой кнопки мышли и вправо (работает только в Firefox)
+    async xpathClickMouseSlideRight(event, description, x, y, duration, timeout) {
+        const xpathElement = await this.xpathElement(event, description, timeout)
+        if(xpathElement.error) {
+            return xpathElement
+        }
+
+        const element = await driver.findElement(By.xpath(event))
+        return await driver.actions()
+            .move({origin: element, x: 0, y: 0, duration})
+            .press()
+            .move({origin: element, x, y, duration})
+            .release()
+            .perform()
+            .then(() => {return{error: false, description}})
+            .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
+    }
+
+    async script(event, description) {
+        return await driver.executeScript(event)
+            .then(() => {return {error: false, description}})
+            .catch(() => {return {error: false, description: `Ошибка. ${description}`}})
+
+
+    }
+
+
 }
 
 module.exports = BasePage

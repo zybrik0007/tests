@@ -14,6 +14,7 @@ module.exports = {
     schedulesEditUrl: address + 'personal/schedules/edit/',
     divisionsUrl: address + 'personal/divisions',
     positionsUrl: address + 'personal/positions',
+    additionalDataUrl: address + 'personal/additionaldata',
 
     //Бюро пропусков
     visitorAddUrl: address + 'passoffice/visitors/new',
@@ -23,6 +24,9 @@ module.exports = {
     accessTemplatesUrl: address + 'passoffice/access/accesstemplates',
     accessAddTemplateUrl: address + 'passoffice/access/template/new',
     accessEditTemplateUrl: address + 'passoffice/access/template/edit/',
+    accessScheduleUrl: address + 'passoffice/access/accessschedules',
+    accessAddScheduleUrl: address + 'passoffice/access/schedule/new',
+    accessEditScheduleUrl: address + 'passoffice/access/schedule/edit/',
 
     //Администрирование
     roomUrl: address + 'administration/premisesconfiguration/rooms',

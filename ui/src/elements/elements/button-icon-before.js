@@ -2,7 +2,7 @@ const BasePage = require('../../pages/base-page/base-page')
 const element = require('../../dictionaries/selenium-elements')
 
 //Кпнока по по иконке
-class ButtonIconBefore extends BasePage{
+class ButtonIconBefore extends BasePage {
     constructor() {
         super();
     }

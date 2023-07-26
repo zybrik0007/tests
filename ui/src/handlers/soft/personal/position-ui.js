@@ -11,19 +11,58 @@ const imp = require('../../../upload-files')
 const oth = require('../../other/other')
 const api = require('../../other/api')
 
-const bef = () =>  before('Вход и открытие подраздела "Должности"', async () => {
+const bef = () => before('Вход и открытие подраздела "Должности"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword)
     await dec.simple(el.section.handler, [sec.per, entry.max], el.section)
     await dec.simple(el.subsection.handler, [sub.per.position, entry.max], el.subsection)
     await dec.simple(page.position.init, [entry.max], page.position)
 })
-const aft = () =>  after('Выход', async () => await dec.exit())
+const aft = () => after('Выход', async () => await dec.exit())
+
+// api - Добавление должности
+const addPosition = (name, description) => it('Добавление должности', async () => {
+    const cook = await page.base.getCookie('token');
+    const obj = {
+        "name": name,
+        "comment": description
+    }
+
+    await dec.simple(api.putPosition,
+        [[obj], cook.text],
+        api.putPosition);
+});
+
+// api - Добавление должности
+const addPosition = (name, description) => it('Добавление должности', async () => {
+    const cook = await page.base.getCookie('token');
+    const obj = {
+        "name": name,
+        "comment": description
+    }
+
+    await dec.simple(api.putPosition,
+        [[obj], cook.text],
+        api.putPosition);
+});
+
+// api - Удаление должности
+const deletePosition = () => describe('Удаление тестовых данных', () => {
+    bef();
+    aft();
+    it('Добавление должностей', async () => {
+        const cook = await page.base.getCookie('token');
+        const get = await api.getPosition(cook.text);
+        const filter = get.text.map(item => item['id']);
+        await dec.simple(api.putPosition,
+            [filter, cook.text],
+            api.putPosition);
+    });
+});
 
 //Отображение первичное
 const display = () => describe('Первичное отображение.', () => {
 
-    describe('Выполнение тестов', () => {
-
+    describe('Общие проверки', () => {
         bef()
 
         aft()
@@ -119,6 +158,65 @@ const display = () => describe('Первичное отображение.', () 
         it('Отображение "Импорт из XLS, XLSX" - активна', async () => await dec.simple(el.menu.itemActive,
             ['Импорт из XLS, XLSX', entry.max],
             el.menu))
+    });
+
+    describe('Проверка формы добавления должности', () => {
+
+        bef()
+
+        aft()
+
+        it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+            [but.add, entry.max],
+            el.butIcBefore))
+
+        it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
+            [entry.max],
+            el.modal.positionAdd))
+
+        it('Отображение поля ввода "Название"', async () => await dec.simple(el.input.input,
+            ['Название', '', entry.max],
+            el.input))
+
+        it('Отображение поля ввода "Описание"', async () => await dec.simple(el.input.input,
+            ['Описание', '', entry.max],
+            el.input))
+
+        it('Отображение кнопки закрытия', async () => await dec.simple(el.modal.positionAdd.close,
+            [entry.max],
+            el.modal.positionAdd))
+
+        it('Отображение кнопки "Отмена" - активна', async () => await dec.simple(el.modal.positionAdd.buttonActive,
+            ['Отмена', entry.max],
+            el.modal.positionAdd))
+
+        it('Отображение кнопки "Сохранить" - не активна', async () => await dec.simple(el.modal.positionAdd.buttonDisabled,
+            ['Сохранить', entry.max],
+            el.modal.positionAdd))
+
+        it('Нажатие кнопки "Отмена"', async () => await dec.simple(el.modal.positionAdd.buttonHandler,
+            ['Отмена', entry.max],
+            el.modal.positionAdd))
+
+        it('Отсутствие модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.initClose,
+            [entry.max],
+            el.modal.positionAdd))
+
+        it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+            [but.add, entry.max],
+            el.butIcBefore))
+
+        it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
+            [entry.max],
+            el.modal.positionAdd))
+
+        it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionAdd.closeHandler,
+            [entry.max],
+            el.modal.positionAdd))
+
+        it('Отсутствие модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.initClose,
+            [entry.max],
+            el.modal.positionAdd))
 
     })
 
@@ -143,9 +241,26 @@ const add = () => describe('Проверка добавления.', () => {
         }
     }
 
-    describe('Выполнение тестов.', () => {
+    // Добавление. Добавление должности с минимальным набором параметров.
+    const addMinParams = () => describe('Должности. Добавление. Добавление должности с минимальным набором параметров.',
+        () => {
 
-        describe('Проверка формы добавления должности', () => {
+        const params = {
+            name: 'SeleniumPositionMinName',
+        }
+
+        describe('Проверка таблицы', () => {
+
+                bef()
+
+                aft()
+
+                it('Отображение в таблице 0 строк', async () => await dec.simple(el.table.size,
+                    [0, entry.max],
+                    el.table))
+            })
+
+        describe('Добавление', () => {
 
             bef()
 
@@ -159,33 +274,69 @@ const add = () => describe('Проверка добавления.', () => {
                 [entry.max],
                 el.modal.positionAdd))
 
-            it('Отображение поля ввода "Название"', async () => await dec.simple(el.input.input,
-                ['Название', '', entry.max],
+            it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
+                ['Название', '', params.name, entry.max],
                 el.input))
 
-            it('Отображение поля ввода "Описание"', async () => await dec.simple(el.input.input,
-                ['Описание', '', entry.max],
-                el.input))
-
-            it('Отображение кнопки закрытия', async () => await dec.simple(el.modal.positionAdd.close,
-                [entry.max],
-                el.modal.positionAdd))
-
-            it('Отображение кнопки "Отмена" - активна', async () => await dec.simple(el.modal.positionAdd.buttonActive,
-                ['Отмена', entry.max],
-                el.modal.positionAdd))
-
-            it('Отображение кнопки "Сохранить" - не активна', async () => await dec.simple(el.modal.positionAdd.buttonDisabled,
+            it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionAdd.buttonHandler,
                 ['Сохранить', entry.max],
                 el.modal.positionAdd))
 
-            it('Нажатие кнопки "Отмена"', async () => await dec.simple(el.modal.positionAdd.buttonHandler,
-                ['Отмена', entry.max],
-                el.modal.positionAdd))
+            it('Отображение сообщения "Должность успешно создана"', async () => await dec.simple(el.success.success,
+                ['Должность успешно создана', entry.max],
+                el.success))
 
-            it('Отсутствие модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.initClose,
-                [entry.max],
-                el.modal.positionAdd))
+        })
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name,
+                el.table))
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                '',
+                el.table))
+
+        })
+
+        deletePosition();
+    })
+
+    // Добавление должности с максимальным набором параметров.
+    const addMaxParams = describe('Должности. Добавление. Добавление должности с максимальным набором параметров.', () => {
+
+        const params = {
+            name: 'SeleniumPositionMaxName',
+            description: 'SeleniumPositionMaxDescription',
+        }
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 0 строк', async () => await dec.simple(el.table.size,
+                [0, entry.max],
+                el.table))
+        })
+
+        describe('Добавление', () => {
+
+            bef()
+
+            aft()
 
             it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.add, entry.max],
@@ -195,161 +346,226 @@ const add = () => describe('Проверка добавления.', () => {
                 [entry.max],
                 el.modal.positionAdd))
 
-            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionAdd.closeHandler,
-                [entry.max],
+            it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
+                ['Название', '', params.name, entry.max],
+                el.input))
+
+            it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
+                ['Описание', '', params.description, entry.max],
+                el.input))
+
+            it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionAdd.buttonHandler,
+                ['Сохранить', entry.max],
                 el.modal.positionAdd))
 
-            it('Отсутствие модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.initClose,
-                [entry.max],
-                el.modal.positionAdd))
-
+            it('Отображение сообщения "Должность успешно создана"', async () => await dec.simple(el.success.success,
+                ['Должность успешно создана', entry.max],
+                el.success))
         })
 
-        describe('Добавление должности с минимальным набором параметров', () => {
+        describe('Проверка таблицы', () => {
 
             bef()
 
             aft()
 
-            describe('Добавление', () => {
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name,
+                el.table))
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                params.description,
+                el.table))
+
+            })
+
+        deletePosition();
+
+    });
+
+    // Попытка добавление должности без ввода всех параметров.
+    const addNoParams = describe('Должности. Добавление. Попытка добавление должности без ввода всех параметров.',
+        () => {
+            describe('Проверка таблицы', () => {
+
+                bef()
+
+                aft()
+
+                it('Отображение в таблице 0 строк', async () => await dec.simple(el.table.size,
+                    [0, entry.max],
+                    el.table))
+            })
+
+            describe('Попытка добавления', () => {
+
+                bef()
+
+                aft()
 
                 it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore))
 
-                it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
+                it('Отображение модального окна "Добавление должности"',
+                    async () => await dec.simple(el.modal.positionAdd.init,
+                        [entry.min],
+                        el.modal.positionAdd))
+
+                it('Попытка нажатие кнопки "Сохранить"',
+                    async () => await dec.simpleFalse(el.modal.positionAdd.buttonHandler,
+                        ['Сохранить', entry.min],
+                        el.modal.positionAdd))
+
+                it('Попытка ожидания исчезнования модального окна',
+                    async () => await dec.simpleFalse(el.modal.positionAdd.initClose,
+                        [entry.min],
+                        el.modal.positionAdd))
+
+                it('Отображение модального окна "Добавление должности"',
+                    async () => await dec.simple(el.modal.positionAdd.init,
+                        [entry.min],
+                        el.modal.positionAdd))
+
+                it('Закрытие модального окна', async () => await dec.simple(el.modal.positionAdd.closeHandler,
                     [entry.max],
                     el.modal.positionAdd))
 
-                it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
-                    ['Название', '', params.min.name, entry.max],
-                    el.input))
-
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionAdd.buttonHandler,
-                    ['Сохранить', entry.max],
-                    el.modal.positionAdd))
-
-                it('Отображение сообщения "Должность успешно создана"', async () => await dec.simple(el.success.success,
-                    ['Должность успешно создана', entry.max],
-                    el.success))
-
+                deletePosition();
             })
 
             describe('Проверка таблицы', () => {
 
-                describe('Проверка первой строки', () => {
+                bef()
 
-                    it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Должности', 1, 1, entry.max],
-                        params.min.name,
-                        el.table))
+                aft()
 
-                    it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Описание', 1, 2, entry.max],
-                        '',
-                        el.table))
-
-                })
-
+                it('Отображение в таблице 0 строк', async () => await dec.simple(el.table.size,
+                    [0, entry.max],
+                    el.table))
             })
 
-        })
+            deletePosition();
 
-        describe('Добавление должности с максимальным набором параметров', () => {
+    })
 
-            bef()
+    // Добавление. Попытка добавление должности без ввода "Названия".
+    const addNoName = describe('Должности. Добавление. Попытка добавление должности без ввода "Названия".',
+        () => {
 
-            aft()
+            const params = {
+                description: 'addNoName'
+            }
+            describe('Проверка таблицы', () => {
 
-            describe('Добавление', () => {
+                bef()
+
+                aft()
+
+                it('Отображение в таблице 0 строк', async () => await dec.simple(el.table.size,
+                    [0, entry.max],
+                    el.table))
+            })
+
+            describe('Попытка добавления', () => {
+
+                bef()
+
+                aft()
 
                 it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore))
 
-                it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
-                    [entry.max],
-                    el.modal.positionAdd))
-
-                it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
-                    ['Название', '', params.max.name, entry.max],
-                    el.input))
+                it('Отображение модального окна "Добавление должности"',
+                    async () => await dec.simple(el.modal.positionAdd.init,
+                        [entry.min],
+                        el.modal.positionAdd))
 
                 it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
-                    ['Описание', '', params.max.description, entry.max],
+                    ['Описание', '', params.description, entry.max],
                     el.input))
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionAdd.buttonHandler,
-                    ['Сохранить', entry.max],
-                    el.modal.positionAdd))
+                it('Попытка нажатие кнопки "Сохранить"',
+                    async () => await dec.simpleFalse(el.modal.positionAdd.buttonHandler,
+                        ['Сохранить', entry.min],
+                        el.modal.positionAdd))
 
-                it('Отображение сообщения "Должность успешно создана"', async () => await dec.simple(el.success.success,
-                    ['Должность успешно создана', entry.max],
-                    el.success))
+                it('Ожидание исчезнования модального окна',
+                    async () => await dec.simpleFalse(el.modal.positionAdd.initClose,
+                        [entry.min],
+                        el.modal.positionAdd))
+
+                it('Отображение модального окна "Добавление должности"',
+                    async () => await dec.simple(el.modal.positionAdd.init,
+                        [entry.min],
+                        el.modal.positionAdd))
+
+                it('Закрытие модального окна', async () => await dec.simple(el.modal.positionAdd.closeHandler,
+                    [entry.max],
+                    el.modal.positionAdd))
 
                 it('Отображение в таблице 2 строки', async () => await dec.simple(el.table.size,
                     [2, entry.max],
                     el.table))
-
-            })
+            });
 
             describe('Проверка таблицы', () => {
 
-                describe('Проверка первой строки', () => {
+                bef()
 
-                    it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Должности', 1, 1, entry.max],
-                        params.max.name,
-                        el.table))
+                aft()
 
-                    it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Описание', 1, 2, entry.max],
-                        params.max.description,
-                        el.table))
-
-                })
+                it('Отображение в таблице 0 строк', async () => await dec.simple(el.table.size,
+                    [0, entry.max],
+                    el.table))
 
             })
 
-        })
+            deletePosition();
+        });
 
-        describe('Попытка добавление должности без ввода всех параметров', () => {
+    // Попытка добавления дублирющий должности.
+    const addDuplicate = describe('Должности. Добавление. Попытка добавления дублирющий должности.', () => {
+
+        const params = {
+            name: 'addDuplicateName',
+            error: 'Должность с таким названием уже существует'
+        }
+
+        describe('API - добавление', () => {
+            addPosition(params.name)
+        });
+
+        describe('Проверка таблицы', () => {
 
             bef()
 
             aft()
 
-            it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.add, entry.max],
-                el.butIcBefore))
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
 
-            it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
-                [entry.min],
-                el.modal.positionAdd))
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name,
+                el.table))
 
-            it('Попытка нажатие кнопки "Сохранить"', async () => await dec.simpleFalse(el.modal.positionAdd.buttonHandler,
-                ['Сохранить', entry.min],
-                el.modal.positionAdd))
-
-            it('Попытка ожидания исчезнования модального окна', async () => await dec.simpleFalse(el.modal.positionAdd.initClose,
-                [entry.min],
-                el.modal.positionAdd))
-
-            it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
-                [entry.min],
-                el.modal.positionAdd))
-
-            it('Закрытие модального окна', async () => await dec.simple(el.modal.positionAdd.closeHandler,
-                [entry.max],
-                el.modal.positionAdd))
-
-            it('Отображение в таблице 2 строки', async () => await dec.simple(el.table.size,
-                [2, entry.max],
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                '',
                 el.table))
 
         })
 
-        describe('Попытка добавление должности без ввода "Названия"', () => {
+        describe('Попытка добавления', () => {
 
             bef()
 
@@ -359,49 +575,10 @@ const add = () => describe('Проверка добавления.', () => {
                 [but.add, entry.max],
                 el.butIcBefore))
 
-            it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
-                [entry.min],
-                el.modal.positionAdd))
-
-            it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
-                ['Описание', '', params.noName.description, entry.max],
-                el.input))
-
-            it('Попытка нажатие кнопки "Сохранить"', async () => await dec.simpleFalse(el.modal.positionAdd.buttonHandler,
-                ['Сохранить', entry.min],
-                el.modal.positionAdd))
-
-            it('Ожидание исчезнования модального окна', async () => await dec.simpleFalse(el.modal.positionAdd.initClose,
-                [entry.min],
-                el.modal.positionAdd))
-
-            it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
-                [entry.min],
-                el.modal.positionAdd))
-
-            it('Закрытие модального окна', async () => await dec.simple(el.modal.positionAdd.closeHandler,
-                [entry.max],
-                el.modal.positionAdd))
-
-            it('Отображение в таблице 2 строки', async () => await dec.simple(el.table.size,
-                [2, entry.max],
-                el.table))
-
-        })
-
-        describe('Попытка добавления дублирющий должности', () => {
-
-            bef()
-
-            aft()
-
-            it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.add, entry.max],
-                el.butIcBefore))
-
-            it('Отображение модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.init,
-                [entry.min],
-                el.modal.positionAdd))
+            it('Отображение модального окна "Добавление должности"',
+                async () => await dec.simple(el.modal.positionAdd.init,
+                    [entry.min],
+                    el.modal.positionAdd))
 
             it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
                 ['Название', '', params.duplicate.name, entry.max],
@@ -411,198 +588,109 @@ const add = () => describe('Проверка добавления.', () => {
                 ['Сохранить', entry.min],
                 el.modal.positionAdd))
 
-
-            it('Отображение ошибки', async () => await dec.simple(el.error.error,
-                ['Должность с таким названием уже существует', entry.max],
-                el.error))
+            it('Отображение ошибки "Должность с таким названием уже существует"',
+                async () => await dec.simple(el.error.error,
+                    [params.error, entry.max],
+                    el.error))
 
             it('Закрытие модального окна', async () => await dec.simple(el.modal.positionAdd.closeHandler,
                 [entry.max],
                 el.modal.positionAdd))
 
-            it('Отображение в таблице 2 строки', async () => await dec.simple(el.table.size,
-                [2, entry.max],
+            it('Отсутствие модального окна "Добавление должности"',
+                async () => await dec.simple(el.modal.positionAdd.init,
+                    [entry.min],
+                    el.modal.positionAdd))
+
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name,
+                el.table))
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                '',
                 el.table))
 
         })
 
-    })
+        deletePosition()
+    });
 
-    oth.rebase()
+    // Проверки добавления.
+    const add = () => describe('Должности. Проверки добавления.', () => {
+        addMinParams();
+        addMaxParams();
+        addNoParams();
+        addNoName();
+        addDuplicate();
+    });
+
+    return {
+        addMinParams,
+        addMaxParams,
+        addNoParams,
+        addNoName,
+        addDuplicate,
+        add,
+    }
 })
 
 //Проверка редактирования
 const edit = () => describe('Проверка редактирование.', () => {
 
-    const params = {
-        one: {
-            name: 'SeleniumPositionEditName1',
-            comment: ''
-        },
-        two: {
-            name: 'SeleniumPositionEditName2',
-            comment: 'SeleniumPositionEditDescription2'
-        },
-        three: {
-            name: 'SeleniumPositionEditName3',
-            comment: 'SeleniumPositionEditDescription3'
-        },
-        four: {
-            name: 'SeleniumPositionEditName4',
-            comment: ''
-        },
-        fourAdd: 'SeleniumPositionEditDescription4',
-        five: {
-            name: 'SeleniumPositionEditName5',
-            comment: 'SeleniumPositionEditDescription5'
-        },
-        six: {
-            name: 'SeleniumPositionEditName6',
-            comment: 'SeleniumPositionEditDescription6'
-        },
-        sixUpdate: {
-            name: 'SeleniumPositionEditNameUpdate6',
-            comment: 'SeleniumPositionEditDescriptionUpdate6'
-        },
-        seven: {
-            name: 'SeleniumPositionEditName7',
-            comment: 'SeleniumPositionEditDescription7'
-        },
-        eight: {
-            name: 'SeleniumPositionEditName8',
-            comment: 'SeleniumPositionEditDescription8'
-        },
-        eightDuplicate: {
-            name: 'SeleniumPositionEditNameDuplicate8',
-            comment: 'SeleniumPositionEditDescriptionDuplicate8'
-        },
-        eightUpdate: {
-            name: 'SeleniumPositionEditName8',
-            comment: 'SeleniumPositionEditDescriptionUpdate8'
-        },
-        nine: {
-            name: 'SeleniumPositionEditName9',
-            comment: 'SeleniumPositionEditDescription9'
-        },
-        nineDuplicate: {
-            name: 'SeleniumPositionEditNameDuplicate9',
-            comment: 'SeleniumPositionEditDescriptionDuplicate9'
-        },
-        nineUpdate: {
-            name: 'SeleniumPositionEditNameUpdate9',
-            comment: 'SeleniumPositionEditDescription9'
-        },
-    }
+    // Удаление необязательных параметров с максимальным количеством параметров.
+    const editMaxParams = describe('Должности. Редактирование. ' +
+        'Удаление необязательных параметров с максимальным количеством параметров.', () => {
 
-    const array = [params.one, params.two, params.three, params.four, params.five, params.six, params.seven,
-        params.eight, params.eightDuplicate, params.nine, params.nineDuplicate]
+        const params = {
+            name: 'editMaxParamsName',
+            description: 'editMaxParamsDescription'
+        }
 
-    describe('Предварительные действия.', () => {
+        describe('API - добавление', () => {
+            addPosition(params.name, params.description)
+        });
 
-        bef()
-
-        aft()
-
-        it('Добавление должностей api методом', async () => {
-            const cook = await page.base.getCookie('token')
-            await dec.simple(api.putArrayPosition,
-                [array, cook.text],
-                api.putManyPosition)
-        })
-
-    })
-
-    describe('Выполнение тестов.', () => {
-        describe('Проверка формы редактирования с минимально заполненными параметрами.', () => {
+        describe('Проверка таблицы', () => {
 
             bef()
 
             aft()
 
-            it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                ['', 'Поиск...', params.one.name,  entry.max],
-                el.input))
-
-            it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                [entry.max],
-                el.table))
-
-            it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
                 [1, entry.max],
                 el.table))
 
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore))
-
-            it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                [entry.max],
-                el.modal.positionEdit))
-
-            it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                ['Название', '', entry.max],
-                params.one.name,
-                el.input))
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.one.comment,
-                el.input))
-
-            it('Отображение кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.close,
-                [entry.max],
-                el.modal.positionEdit))
-
-            it('Отображение кнопки "Сохранить" - активна', async () => await dec.simple(el.modal.positionEdit.buttonActive,
-                ['Сохранить', entry.max],
-                el.modal.positionEdit))
-
-            it('Отображение кнопки "Отмена" - активна', async () => await dec.simple(el.modal.positionEdit.buttonActive,
-                ['Отмена', entry.max],
-                el.modal.positionEdit))
-
-            it('Нажатие кнопки "Отмена"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
-                ['Отмена', entry.max],
-                el.modal.positionEdit))
-
-            it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                [entry.max],
-                el.modal.positionEdit))
-
-            it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
                 ['Должности', 1, 1, entry.max],
-                params.one.name,
+                params.name,
                 el.table))
 
-            it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
                 ['Описание', 1, 2, entry.max],
-                params.one.comment,
+                params.description,
                 el.table))
-
-            it('Удаление "Поиск..."', async () => await dec.simple(el.input.iconClear,
-                ['', 'Поиск...',  entry.max],
-                el.input))
-
-            it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                [array.length, entry.max],
-                el.table))
-
         })
 
-        describe('Проверка формы редактирования с максимально заполненными параметрами.', () => {
+        describe('Редактирование', () => {
             bef()
 
             aft()
 
-            it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                ['', 'Поиск...', params.two.name,  entry.max],
-                el.input))
-
-            it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                [entry.max],
-                el.table))
-
-            it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
+            it('Нажатие в таблице строка 1', async () => await dec.simple(el.table.strHandler,
                 [1, entry.max],
                 el.table))
 
@@ -614,88 +702,8 @@ const edit = () => describe('Проверка редактирование.', ()
                 [entry.max],
                 el.modal.positionEdit))
 
-            it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                ['Название', '', entry.max],
-                params.two.name,
-                el.input))
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
+            it('Удаление "Описание"', async () => await dec.simple(el.input.backSpace,
                 ['Описание', '', entry.max],
-                params.two.comment,
-                el.input))
-
-            it('Отображение кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.close,
-                [entry.max],
-                el.modal.positionEdit))
-
-            it('Отображение кнопки "Сохранить" - активна', async () => await dec.simple(el.modal.positionEdit.buttonActive,
-                ['Сохранить', entry.max],
-                el.modal.positionEdit))
-
-            it('Отображение кнопки "Отмена" - активна', async () => await dec.simple(el.modal.positionEdit.buttonActive,
-                ['Отмена', entry.max],
-                el.modal.positionEdit))
-
-            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                [entry.max],
-                el.modal.positionEdit))
-
-            it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                [entry.max],
-                el.modal.positionEdit))
-
-            it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Должности', 1, 1, entry.max],
-                params.two.name,
-                el.table))
-
-            it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 2, entry.max],
-                params.two.comment,
-                el.table))
-
-            it('Удаление "Поиск..."', async () => await dec.simple(el.input.iconClear,
-                ['', 'Поиск...',  entry.max],
-                el.input))
-
-            it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                [array.length, entry.max],
-                el.table))
-        })
-
-        describe('Сохранение должности с максимально заполненными параметрами без изменений.', () => {
-            bef()
-
-            aft()
-
-            it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                ['', 'Поиск...', params.three.name,  entry.max],
-                el.input))
-
-            it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                [entry.max],
-                el.table))
-
-            it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table))
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore))
-
-            it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                [entry.max],
-                el.modal.positionEdit))
-
-            it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                ['Название', '', entry.max],
-                params.three.name,
-                el.input))
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.three.comment,
                 el.input))
 
             it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
@@ -710,1047 +718,391 @@ const edit = () => describe('Проверка редактирование.', ()
                 [entry.max],
                 el.modal.positionEdit))
 
-            it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
                 ['Должности', 1, 1, entry.max],
-                params.three.name,
+                params.name,
                 el.table))
 
-            it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
                 ['Описание', 1, 2, entry.max],
-                params.three.comment,
+                '',
                 el.table))
 
-            it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                [],
-                page.base))
-
-            it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                [],
-                page.base))
-            it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                [array.length, entry.max],
-                el.table))
         })
 
-        describe('Добавление в должность с минимально заполненными параметрами все необязательные параметры.', () => {
+        deletePosition();
 
-            describe('Редактирование', () => {
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.four.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.four.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.four.comment,
-                    el.input))
-
-                it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
-                    ['Описание', '', params.fourAdd, entry.max],
-                    el.input))
-
-
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
-                    ['Сохранить', entry.max],
-                    el.modal.positionEdit))
-
-                it('Отображение сообщения "Должность успешно изменена"', async () => await dec.simple(el.success.success,
-                    ['Должность успешно изменена', entry.max],
-                    el.success))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-            describe('Проверка изменений', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.four.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Должности', 1, 1, entry.max],
-                    params.four.name,
-                    el.table))
-
-                it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 2, entry.max],
-                    params.fourAdd,
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.four.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.fourAdd,
-                    el.input))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-        })
-
-        describe('Удаление у должности с максимально заполненными параметрами все необязательные параметры.', () => {
-
-            describe('Редактирование', () => {
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.five.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.five.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.five.comment,
-                    el.input))
-
-                it('Удаление "Описание"', async () => {
-                    await page.base.loading(5000)
-                    await dec.simple(el.input.backSpace,
-                        ['Описание', '', entry.max],
-                        el.input)
-                    await page.base.loading(5000)
-                    await dec.simple(el.input.backSpace,
-                        ['Описание', '', entry.max],
-                        el.input)
-                })
-
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
-                    ['Сохранить', entry.max],
-                    el.modal.positionEdit))
-
-                it('Отображение сообщения "Должность успешно изменена"', async () => await dec.simple(el.success.success,
-                    ['Должность успешно изменена', entry.max],
-                    el.success))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-            describe('Проверка изменений', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.five.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Должности', 1, 1, entry.max],
-                    params.five.name,
-                    el.table))
-
-                it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 2, entry.max],
-                    '',
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.five.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    '',
-                    el.input))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-        })
-
-        describe('Редактирование у должности с максимально заполненными параметрами все параметры.', () => {
-
-            describe('Редактирование', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.six.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.six.name,
-                    el.input))
-
-                it('Удаление "Название"', async () => await dec.simple(el.input.clear,
-                    ['Название', '', entry.max],
-                    el.input))
-
-                it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
-                    ['Название', '', params.sixUpdate.name, entry.max],
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.six.comment,
-                    el.input))
-
-                it('Удаление "Описание"', async () => await dec.simple(el.input.clear,
-                    ['Описание', '', entry.max],
-                    el.input))
-
-                it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
-                    ['Описание', '', params.sixUpdate.comment, entry.max],
-                    el.input))
-
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
-                    ['Сохранить', entry.max],
-                    el.modal.positionEdit))
-
-                it('Отображение сообщения "Должность успешно изменена"', async () => await dec.simple(el.success.success,
-                    ['Должность успешно изменена', entry.max],
-                    el.success))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-            describe('Проверка изменений', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.sixUpdate.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Должности', 1, 1, entry.max],
-                    params.sixUpdate.name,
-                    el.table))
-
-                it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 2, entry.max],
-                    params.sixUpdate.comment,
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.sixUpdate.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.sixUpdate.comment,
-                    el.input))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-        })
-
-        describe('Удаление у должности с максимально заполнненным параметрами все параметры.', () => {
-
-            describe('Попытка редактирования', () => {
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.seven.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.seven.name,
-                    el.input))
-
-                it('Удаление "Название"', async () => await dec.simple(el.input.backSpace,
-                    ['Название', '', entry.max],
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.seven.comment,
-                    el.input))
-
-                it('Удаление "Описание"', async () => await dec.simple(el.input.backSpace,
-                    ['Описание', '', entry.max],
-                    el.input))
-
-                it('Кнопки "Сохранить" не активна', async () => await dec.simple(el.modal.positionEdit.buttonDisabled,
-                    ['Сохранить', entry.max],
-                    el.modal.positionEdit))
-
-                it('Попытка нажать кнопку "Сохранить"',
-                    async () => await dec.simpleFalse(el.modal.positionEdit.buttonHandler,
-                    ['Сохранить', entry.min],
-                    el.modal.positionEdit))
-
-                it('Попытка ожидание отсутствия сообщения "Должность успешно изменена"',
-                    async () => await dec.simpleFalse(el.success.success,
-                    ['Должность успешно изменена', entry.min],
-                    el.success))
-
-                it('Ожидание закрытия модального окна "Редактирование должности"',
-                    async () => await dec.simpleFalse(el.modal.positionEdit.initClose,
-                    [entry.min],
-                    el.modal.positionEdit))
-
-                it('Отображение модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-            describe('Проверка изменений', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.seven.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Должности', 1, 1, entry.max],
-                    params.seven.name,
-                    el.table))
-
-                it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 2, entry.max],
-                    params.seven.comment,
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.seven.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.seven.comment,
-                    el.input))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-        })
-
-        describe('Удаление параметр "Название" у должности с максимально заполненными параметрами.', () => {
-
-            describe('Попытка редактирования', () => {
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.seven.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.seven.name,
-                    el.input))
-
-                it('Удаление "Название"', async () => await dec.simple(el.input.backSpace,
-                    ['Название', '', entry.max],
-                    el.input))
-
-                it('Кнопки "Сохранить" не активна', async () => await dec.simple(el.modal.positionEdit.buttonDisabled,
-                    ['Сохранить', entry.max],
-                    el.modal.positionEdit))
-
-                it('Попытка нажать кнопку "Сохранить"',
-                    async () => await dec.simpleFalse(el.modal.positionEdit.buttonHandler,
-                    ['Сохранить', entry.min],
-                    el.modal.positionEdit))
-
-                it('Ожидание отсутствия сообщения "Должность успешно изменена"',
-                    async () => await dec.simpleFalse(el.success.success,
-                    ['Должность успешно изменена', entry.min],
-                    el.success))
-
-                it('Ожидание закрытия модального окна "Редактирование должности"',
-                    async () => await dec.simpleFalse(el.modal.positionEdit.initClose,
-                    [entry.min],
-                    el.modal.positionEdit))
-
-                it('Отображение модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-            describe('Проверка изменений', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.seven.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Должности', 1, 1, entry.max],
-                    params.seven.name,
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.seven.name,
-                    el.input))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"',
-                    async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-        })
-
-        describe('Редактирование обязательных параметров с дублированием этих параметров у другой должности.', () => {
-
-            describe('Попытка редактирования', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.eightDuplicate.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.eightDuplicate.name,
-                    el.input))
-
-                it('Удаление "Название"', async () => await dec.simple(el.input.clear,
-                    ['Название', '', entry.max],
-                    el.input))
-
-                it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
-                    ['Название', '', params.eightUpdate.name, entry.max],
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.eightDuplicate.comment,
-                    el.input))
-
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
-                    ['Сохранить', entry.max],
-                    el.modal.positionEdit))
-
-                it('Отображение ошибки', async () => await dec.simple(el.error.error,
-                    ['Должность с таким названием уже существует', entry.max],
-                    el.success))
-
-                it('Ожидание закрытия модального окна "Редактирование должности"', async () => await dec.simpleFalse(el.modal.positionEdit.initClose,
-                    [entry.min],
-                    el.modal.positionEdit))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-            describe('Проверка изменений', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.eightDuplicate.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Должности', 1, 1, entry.max],
-                    params.eightDuplicate.name,
-                    el.table))
-
-                it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 2, entry.max],
-                    params.eightDuplicate.comment,
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.eightDuplicate.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.eightDuplicate.comment,
-                    el.input))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-        })
-
-        describe('Редактирование необязательных параметров с дублированием этих параметров у другой должности.', () => {
-
-            describe('Редактирования', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.nineDuplicate.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.nineDuplicate.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.nineDuplicate.comment,
-                    el.input))
-
-                it('Удаление "Описание"', async () => await dec.simple(el.input.clear,
-                    ['Описание', '', entry.max],
-                    el.input))
-
-                it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
-                    ['Описание', '', params.nineUpdate.comment, entry.max],
-                    el.input))
-
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
-                    ['Сохранить', entry.max],
-                    el.modal.positionEdit))
-
-                it('Отображение сообщения "Должность успешно изменена"', async () => await dec.simple(el.success.success,
-                    ['Должность успешно изменена', entry.max],
-                    el.success))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-
-            describe('Проверка изменений', () => {
-
-                bef()
-
-                aft()
-
-                it('Ввод в "Поиск..."', async () => await dec.simple(el.input.sendKeys,
-                    ['', 'Поиск...', params.nineDuplicate.name,  entry.max],
-                    el.input))
-
-                it('Отображение одной строки в таблице', async () => await dec.simple(el.table.singleSize,
-                    [entry.max],
-                    el.table))
-
-                it('Проверка столбца "Должности"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Должности', 1, 1, entry.max],
-                    params.nineDuplicate.name,
-                    el.table))
-
-                it('Проверка столбца "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 2, entry.max],
-                    params.nineUpdate.comment,
-                    el.table))
-
-                it('Нажатие по первой строке таблицы', async () => await dec.simple(el.table.strHandler,
-                    [1, entry.max],
-                    el.table))
-
-                it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore))
-
-                it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Проверка "Название"', async () => await dec.simpleText(el.input.getValue,
-                    ['Название', '', entry.max],
-                    params.nineDuplicate.name,
-                    el.input))
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.nineUpdate.comment,
-                    el.input))
-
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.positionEdit.closeHandler,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
-                    [entry.max],
-                    el.modal.positionEdit))
-
-                it('Удаление LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-                    [],
-                    page.base))
-
-                it('Обновленние страницы', async () => await dec.simple(page.base.refresh,
-                    [],
-                    page.base))
-
-                it('Отображение всех строк в таблице', async () => await dec.simple(el.table.size,
-                    [array.length, entry.max],
-                    el.table))
-            })
-        })
     })
 
-    oth.rebase()
+    // Добавление необязательных параметров с минимальным количеством параметров
+    const editMinParams = describe('Должности. Редактирование. ' +
+        'Добавление необязательных параметров с минимальным количеством параметров', () => {
+
+        const params = {
+            name: 'editMinParamsName',
+            description: 'editMinParamsDescription'
+        }
+
+        describe('API - добавление', () => {
+            addPosition(params.name)
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name,
+                el.table))
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                '',
+                el.table))
+
+        })
+
+        describe('Редактирование', () => {
+            bef()
+
+            aft()
+
+            it('Нажатие в таблице строка 1', async () => await dec.simple(el.table.strHandler,
+                [1, entry.max],
+                el.table))
+
+            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.edit, entry.max],
+                el.butIcBefore))
+
+            it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
+                [entry.max],
+                el.modal.positionEdit))
+
+            it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
+                ['Описание', '', params.description, entry.max],
+                el.input))
+
+            it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
+                ['Сохранить', entry.max],
+                el.modal.positionEdit))
+
+            it('Отображение сообщения "Должность успешно изменена"', async () => await dec.simple(el.success.success,
+                ['Должность успешно изменена', entry.max],
+                el.success))
+
+            it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
+                [entry.max],
+                el.modal.positionEdit))
+
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name,
+                el.table))
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                params.description,
+                el.table))
+        })
+
+        deletePosition();
+    })
+
+    // Редактирование всех параметров.
+    const editAllParams = describe('Должности. Редактирование. ' +
+        'Редактирование всех параметров.', () => {
+
+        const params = {
+            name1: 'editAllParamsName1',
+            description1: 'editAllParamsDescription1',
+            name2: 'editAllParamsName2',
+            description2: 'editAllParamsDescription2',
+        }
+
+        describe('API - добавление', () => {
+            addPosition(params.name1, params.description1)
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name1,
+                el.table))
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                params.description1,
+                el.table))
+
+        })
+
+        describe('Редактирование', () => {
+            bef()
+
+            aft()
+
+            it('Нажатие в таблице строка 1', async () => await dec.simple(el.table.strHandler,
+                [1, entry.max],
+                el.table))
+
+            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.edit, entry.max],
+                el.butIcBefore))
+
+            it('Отображение модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.init,
+                [entry.max],
+                el.modal.positionEdit))
+
+            it('Удаление "Название"', async () => await dec.simple(el.input.backSpace,
+                ['Название', '', entry.max],
+                el.input))
+
+            it('Удаление "Описание"', async () => await dec.simple(el.input.backSpace,
+                ['Описание', '', entry.max],
+                el.input))
+
+            it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
+                ['Название', '', params.name2, entry.max],
+                el.input))
+
+            it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
+                ['Описание', '', params.description2, entry.max],
+                el.input))
+
+            it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
+                ['Сохранить', entry.max],
+                el.modal.positionEdit))
+
+            it('Отображение сообщения "Должность успешно изменена"', async () => await dec.simple(el.success.success,
+                ['Должность успешно изменена', entry.max],
+                el.success))
+
+            it('Отсутствие модального окна "Редактирование должности"', async () => await dec.simple(el.modal.positionEdit.initClose,
+                [entry.max],
+                el.modal.positionEdit))
+
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.name2,
+                el.table))
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                params.description2,
+                el.table))
+
+        })
+
+        deletePosition();
+    })
+
+    // Попытка дублирования.
+    const editDuplicate = describe('Должности. Редактирование. Попытка дублирования.', () => {
+
+        const params = {
+            name1: 'editAllParamsName1',
+            description1: 'editAllParamsDescription1',
+            name2: 'editAllParamsName2',
+            description2: 'editAllParamsDescription2',
+            error: 'Должность с таким названием уже существует'
+        }
+
+        describe('API - добавление', () => {
+            addPosition(params.name1, params.description1);
+            addPosition(params.name2, params.description2)
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            describe('Общие проверки', () => {
+                it('Отображение в таблице 2 строки', async () => await dec.simple(el.table.size,
+                    [2, entry.max],
+                    el.table))
+            });
+
+            describe('Проверка таблицы строка 1', () => {
+                it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Должности', 1, 1, entry.max],
+                    params.name2,
+                    el.table))
+
+                it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Описание', 1, 2, entry.max],
+                    params.description2,
+                    el.table))
+            });
+
+            describe('Проверка таблицы строка 2', () => {
+                it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Должности', 2, 1, entry.max],
+                    params.name1,
+                    el.table))
+
+                it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Описание', 2, 2, entry.max],
+                    params.description1,
+                    el.table))
+            });
+
+        })
+
+        describe('Редактирование', () => {
+            bef()
+
+            aft()
+
+            it('Нажатие в таблице строка 1', async () => await dec.simple(el.table.strHandler,
+                [1, entry.max],
+                el.table))
+
+            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.edit, entry.max],
+                el.butIcBefore))
+
+            it('Отображение модального окна "Редактирование должности"',
+                async () => await dec.simple(el.modal.positionEdit.init,
+                    [entry.max],
+                    el.modal.positionEdit))
+
+            it('Удаление "Название"', async () => await dec.simple(el.input.backSpace,
+                ['Название', '', entry.max],
+                el.input))
+
+            it('Удаление "Описание"', async () => await dec.simple(el.input.backSpace,
+                ['Описание', '', entry.max],
+                el.input))
+
+            it('Ввод "Название"', async () => await dec.simple(el.input.sendKeys,
+                ['Название', '', params.name1, entry.max],
+                el.input))
+
+            it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
+                ['Описание', '', params.description1, entry.max],
+                el.input))
+
+            it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.modal.positionEdit.buttonHandler,
+                ['Сохранить', entry.max],
+                el.modal.positionEdit))
+
+            it('Отображение ошибки "Должность с таким названием уже существует"',
+                async () => dec.simple(el.error.error,
+                    [params.error, entry.max],
+                    el.error));
+
+            it('Закрытие модального окна', async () => await dec.simple(el.modal.positionEdit.closeHandler,
+                [entry.max],
+                el.modal.positionEdit))
+
+            it('Отсутствие модального окна "Редактирование должности"',
+                async () => await dec.simple(el.modal.positionEdit.initClose,
+                    [entry.max],
+                    el.modal.positionEdit))
+        });
+
+        describe('Проверка таблицы', () => {
+
+            bef()
+
+            aft()
+
+            describe('Общие проверки', () => {
+                it('Отображение в таблице 2 строки', async () => await dec.simple(el.table.size,
+                    [2, entry.max],
+                    el.table))
+            });
+
+            describe('Проверка таблицы строка 1', () => {
+                it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Должности', 1, 1, entry.max],
+                    params.name2,
+                    el.table))
+
+                it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Описание', 1, 2, entry.max],
+                    params.description2,
+                    el.table))
+            });
+
+            describe('Проверка таблицы строка 2', () => {
+                it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Должности', 2, 1, entry.max],
+                    params.name1,
+                    el.table))
+
+                it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                    ['Описание', 2, 2, entry.max],
+                    params.description1,
+                    el.table))
+            });
+
+        })
+
+        deletePosition();
+    })
+
+    return {
+        editMinParams,
+        editMaxParams,
+        editAllParams,
+        editDuplicate
+    }
 
 })
 
@@ -2047,7 +1399,7 @@ const sort = () => describe('Проверка сортировки столбц�
 
             await dec.simple(api.putArrayPosition,
                 [array, token.text],
-                api.putArrayPosition())
+                api.putArrayPosition)
         })
 
     })
@@ -2152,7 +1504,7 @@ const sort = () => describe('Проверка сортировки столбц�
     })
 
     oth.rebase()
-})
+});
 
 //Проверка фильтра "Поиск..."
 const filterSearch = () => describe('Проверка фильтра "Поиск...".', () =>  {
@@ -4219,7 +3571,6 @@ const print = () => describe('Проверка печати.', () => {
                 params.one.comment,
                 el.modal.printTable))
         })
-
 
         describe('Закрытие печатной формы', () => {
 

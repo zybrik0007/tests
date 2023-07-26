@@ -9,7 +9,6 @@ const sec = require('../ui/src/dictionaries/section')
 const sub = require('../ui/src/dictionaries/subsection')
 const but = require('../ui/src/dictionaries/button-icon')
 const lic = require('../ui/src/dictionaries/license')
-const url = require('../ui/src/dictionaries/url')
 
 /*Авторизация*/
 describe('Первая авторизация', () => {
@@ -257,7 +256,6 @@ describe('Первая авторизация', () => {
 
 })
 
-
 /*Лицензии*/
 describe('Проверка подраздела "Лицензии".Поочередная активация всех лицензий, отображение и отсутствие информации, разделов и подразделов.', () => {
 
@@ -478,7 +476,7 @@ describe('Проверка подраздела "Лицензии".Поочер�
 
         describe('Учёт рабочего времени', () => {
             it('Отображение раздела "Учёт рабочего времени"', async () =>  await dec.simple(el.section.section, [sec.urv, entry.max], el.section))
-            it('Нажатие "БУчёт рабочего времени"', async () =>  await dec.simple(el.section.handler, [sec.urv, entry.max], el.section))
+            it('Нажатие "Учёт рабочего времени"', async () =>  await dec.simple(el.section.handler, [sec.urv, entry.max], el.section))
             it('Раздел "Учёт рабочего времени" активен', async () =>  await dec.simple(el.section.active, [sec.urv, entry.max], el.section))
             it('Отображение "Журнал отработанного времени"', async () => await dec.simple(el.subsection.subsection, [sub.urv.journal, entry.max], el.subsection))
             it('Отображение "Оправдательные документы"', async () => await dec.simple(el.subsection.subsection, [sub.urv.document, entry.max], el.subsection))
@@ -654,15 +652,14 @@ describe('Проверка подраздела "Лицензии".Поочер�
 
         describe('Персонал', () => {
             it('Отображение раздела "Персонал"', async () =>  await dec.simple(el.section.section, [sec.per, entry.max], el.section))
-            it('Нажатие "Прсонал"', async () =>  await dec.simple(el.section.handler, [sec.per, entry.max], el.section))
-            it('Раздел "Персонал" активен', async () =>  await dec.simple(el.section.active, [sec.per, entry.max], el.section))
+            it('Нажатие "Прсонал"', async () => await dec.simple(el.section.handler, [sec.per, entry.max], el.section))
+            it('Раздел "Персонал" активен', async () => await dec.simple(el.section.active, [sec.per, entry.max], el.section))
             it('Отображение "Сотрудники"', async () => await dec.simple(el.subsection.subsection, [sub.per.staff, entry.max], el.subsection))
             it('Отображение "Подразделения"', async () => await dec.simple(el.subsection.subsection, [sub.per.division, entry.max], el.subsection))
             it('Отображение "Должности"', async () => await dec.simple(el.subsection.subsection, [sub.per.position, entry.max], el.subsection))
             it('Отображение "Праздничные дни"', async () => await dec.simple(el.subsection.subsection, [sub.per.holiday, entry.max], el.subsection))
             it('Отображение "Дополнительные данные"', async () => dec.simple(el.subsection.subsection, [sub.per.data, entry.max], el.subsection))
             it('Отображение "Графики работы"', async () => await dec.simple(el.subsection.subsection, [sub.per.schedule, entry.max], el.subsection))
-
         })
 
         describe('Бюро пропусков', () => {
@@ -836,7 +833,10 @@ describe('Проверка подраздела "Лицензии".Поочер�
         })
 
         describe('Документация', () => {
-            it('Отображение раздела "Документация"', async () =>  await dec.simple(el.section.section, [sec.doc, entry.max], el.section))
+            it('Отображение раздела "Документация"', async () => {
+                await dec.simple(page.base.refresh, [], page.base)
+                await dec.simple(el.section.section, [sec.doc, entry.max], el.section)
+            })
             it('Нажатие "Документация"', async () =>  await dec.simple(el.section.handler, [sec.doc, entry.max], el.section))
             it('Раздел "Документация" активен', async () =>  await dec.simple(el.section.active, [sec.doc, entry.max], el.section))
             it('Отображение "SDK"', async () => await dec.simple(el.subsection.subsection, [sub.doc.sdk, entry.max], el.subsection))
@@ -2709,7 +2709,7 @@ describe('Проверка подраздела "Конфигурация" вк�
         it('Нажатие по контроллеру', async () => await dec.simple(page.device.deviceHandler, [params.name, params.ip, true, entry.max], page.device))
         it('Нажатие кнопки "Активировать" контроллер', async () => await dec.simple(el.butIcBefore.handler, [but.lock, entry.max], el.butIcBefore))
         it('Отображение модального окна "Подтвердите действие"', async () => await dec.simple(el.modalConfirm.deviceDeactivate.init, [entry.max], el.modalConfirm.deviceDeactivate))
-        it('Нажатие кнопки "Активировать"', async () => await dec.simple(el.button.handler, ['Деактивировать', entry.max], el.button))
+        it('Нажатие кнопки "Деактивировать"', async () => await dec.simple(el.button.handler, ['Деактивировать', entry.max], el.button))
         it('Отсутствие модального окна "Подтвердите действие"', async () => await dec.simple(el.modalConfirm.deviceDeactivate.initClose, [entry.max], el.modalConfirm.deviceDeactivate))
         it('Отображение выключенного контроллера', async () => await dec.simple(page.device.deviceElement, [params.name, params.ip, false, entry.max], page.device))
     })
@@ -3194,10 +3194,13 @@ describe('Проверка подраздела "Подразделения". Д
         it('Ввод "Телефон"', async () => await dec.simple(el.input.sendKeys, ['Телефон', '', params.phone, entry.max], el.input))
         it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys, ['Описание', '', params.description, entry.max], el.input))
         it('Выбор "Шаблон доступа для сотрудника"', async () => {
-            await dec.simple(el.select.iconXpand, ['Шаблон доступа для сотрудника', '',params.staff, entry.max], el.select)
+            await dec.simple(el.selectMulti.iconXpand, ['Шаблон доступа для сотрудника', entry.max], el.selectMulti)
+            await dec.simple(el.selectXpand.xpand, [entry.max], el.selectXpand)
+            await dec.simple(el.selectXpand.handler, [params.staff, entry.max], el.selectXpand)
+            await dec.simple(el.selectXpand.xpandNoElement, [entry.max], el.selectXpand)
         })
         it('Выбор "Шаблон доступа для посетителя"', async () => {
-            await dec.simple(el.select.iconXpand, ['Шаблон доступа для посетителя', '',params.visitor, entry.max], el.select)
+            await dec.simple(el.select.iconXpand, ['Шаблон доступа для посетителя', '', params.visitor, entry.max], el.select)
         })
         it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler, ['Сохранить', entry.max], el.button))
         it('Отсутствие модального окна "Добавить подразделение"', async () => await dec.simple(el.modal.divisionAdd.initClose, [entry.max], el.modal.divisionAdd))
@@ -3294,7 +3297,7 @@ describe('Проверка подраздела "Сотрудники" вкла�
         lastName: 'SeleniumSmokeStaffLastName',
         name: 'SeleniumSmokeStaffName',
         middleName: 'SeleniumSmokeStaffMiddleName',
-        reportCard: 'staffSeleniumSmokeReportCard',
+        reportCard: 'staffSeleniumSmokeReportCard10',
         employmentDate: {
             date: '2020-01-01',
             year: '2020',
@@ -3465,8 +3468,8 @@ describe('Проверка подраздела "Сотрудники" вкла�
         it('Отображение модального окна "Подтвердите действие"', async () => await dec.simple(el.modalConfirm.staffDeleteCard.init, [entry.max], el.modalConfirm.staffDeleteCard))
         it('Нажатие кнопки "Удалить"', async () => await dec.simple(el.button.handler, ['Удалить', entry.max], el.button))
         it('Отсутствие модального окна "Подтвердите действие"', async () => await dec.simple(el.modalConfirm.staffDeleteCard.initClose, [entry.max], el.modalConfirm.staffDeleteCard))
-        it('Отображение сообщения "Основная карта у сотрудника успешно изъята"', async () => {
-            await dec.simple(el.success.success, ['Основная карта у сотрудника успешно изъята', entry.max], el.success)
+        it('Отображение сообщения "Операция успешно завершена"', async () => {
+            await dec.simple(el.success.success, ['Операция успешно завершена', entry.max], el.success)
         })
     })
 
@@ -3779,4 +3782,3 @@ describe('Поверка пораздела "Посетители" вкладк�
 describe('Закрытие браузера', () => {
     it('Закрытие', async () => await page.base.closeDriver())
 })
-
