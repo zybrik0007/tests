@@ -15,7 +15,7 @@ module.exports = {
     bd: 'selenium_3-2023-04-27-13-17-38_postgres.sql',
     download: '/home/qwe/Загрузки/',
     failedExport: 'unimported.xlsx',
-    max: 10000,
+    max: 30000,
     min: 2000,
     upload: 500000,
     buttonTime: 3000,

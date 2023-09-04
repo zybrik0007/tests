@@ -723,11 +723,6 @@ const deletePosition = async (array, token) => {
     };
 };
 
-
-
-
-
-
 // Откат базы данных
 const rebase = async () => {
     const base64encodedData = Buffer.from(entry.managerLogin + ':' + entry.managerPassword).toString('base64');

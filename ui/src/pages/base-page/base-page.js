@@ -11,6 +11,7 @@ class BasePage {
 
     //Открытие страницы по url
     async open(event) {
+        console.log('driver.get(event)', await driver.get(event))
         return await driver.get(event)
             .then(() => {return {error: false, description: ''}})
             .catch(() => {return {error: true, description: `Не открыто приложение с адресом ${event}`}})

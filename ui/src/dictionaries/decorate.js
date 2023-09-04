@@ -7,9 +7,18 @@ const api = require('../handlers/other/api')
 
 //Авторизация
 const auth = async (login, password) => {
+    console.log('login, password: ', login, password)
     const open = await page.base.open(url.authUrl)
     console.log(open.description)
     expect(open.error).to.equal(false)
+
+    const setLocalStorageToastPosition = await page.base.setLocalStorage('toast_position', 'br')
+    console.log(setLocalStorageToastPosition.description)
+    expect(setLocalStorageToastPosition.error).to.equal(false)
+
+    const setLocalStorageSidebar = await page.base.setLocalStorage('sidebar', 0)
+    console.log(setLocalStorageSidebar.description)
+    expect(setLocalStorageSidebar.error).to.equal(false)
 
     const log = await el.input.sendKeys('Логин', '', login, entry.max)
     console.log(log.description)
@@ -59,7 +68,6 @@ const exit = async () => {
         console.log(profileHandler.description)
         expect(profileHandler.error).to.equal(false)
     }
-
 
     const menu = await el.header.menu(entry.max)
     console.log(menu.description)

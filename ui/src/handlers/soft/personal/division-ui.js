@@ -2075,10 +2075,6 @@ const add = () => {
     const addNoName = () => describe('Подразделение. Добавление. Попытка добавления без "Подразделение»".',
         () => {
 
-            const params = {
-                error: 'Отсутствует обязательное поле name'
-            };
-
             describe('Проверка списка подразделений', () => {
 
                 bef();
@@ -2107,14 +2103,13 @@ const add = () => {
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
+                it('Кнопки "Сохранить" - не активна', async () => await dec.simple(el.button.disabled,
                     ["Сохранить", entry.max],
                     el.button));
 
-                it('Отображение ошибки "Отсутствует обязательное поле name"',
-                    async () => await dec.simple(el.error.error,
-                        [params.error, entry.max],
-                        el.error));
+                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handlerNoActive,
+                    ["Сохранить", entry.max],
+                    el.button));
 
                 it('Модального окно "Добавить подразделение" не закрыто',
                     async () => await  dec.simpleFalse(el.modal.divisionAdd.initClose,
@@ -5973,8 +5968,7 @@ const edit = () => {
 
         const params = {
             name: 'editNoName',
-            error: 'В поле name должно быть минимум 1 символов' +
-                'Поле name содержит недопустимые символы'
+            error: 'Поле "Подразделение" не может быть пустым'
         };
 
         describe('API - добавление', () => {
@@ -11167,5 +11161,18 @@ module.exports = {
         minCSV: exportFile('min',  'Минимальное количество данных', 'CSV').csv,
         maxCSV: exportFile('max',  'Максимальное количество данных', 'CSV').csv,
     },
-   filterSearch,
+    filterSearch,
+    main: () => {
+        add().add();
+        edit().edit();
+        remove().remove();
+        serviceDivision().serviceDivision();
+        print().print();
+        printTree().printTree();
+        filterSearch();
+        exportFile('min',  'Минимальное количество данных', 'XLSX').xlsx.main();
+        exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx.main();
+        exportFile('min',  'Минимальное количество данных', 'CSV').csv.main();
+        exportFile('max',  'Максимальное количество данных', 'CSV').csv.main();
+    }
 }

@@ -4,7 +4,8 @@
   "description": "selenium ui tests",
   "main": "entry.js",
   "scripts": {
-    "smoke": "mocha --timeout=30000 --reporter list specs/smoke.spec.js"
+    "smoke": "mocha --timeout=30000 --reporter list specs/smoke.spec.js",
+    "full-ui": "mocha --timeout=30000 --reporter list mocha-teamcity-reporter specs/full-ui.spec.js"
   },
   "keywords": [
     "js",
@@ -27,6 +28,7 @@
     "fs": "0.0.1-security",
     "geckodriver": "^3.2.0",
     "lodash": "^4.17.21",
+    "mocha-teamcity-reporter": "^4.2.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "selenium-webdriver": "^4.8.1",

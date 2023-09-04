@@ -1948,7 +1948,7 @@ const add = (type) => {
                 [but.add, entry.max],
                 el.butIcBefore));
 
-            it('Отображене модального окна "Добавить дополнительное поле"',
+            it('Отображение модального окна "Добавить дополнительное поле"',
                 async () => await dec.simple(el.modal.additionalDataAdd.init,
                     [entry.max],
                     el.modal.additionalDataAdd));

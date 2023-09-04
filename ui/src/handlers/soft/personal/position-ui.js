@@ -19,7 +19,7 @@ const bef = () => before('Вход и открытие подраздела "Д�
 })
 const aft = () => after('Выход', async () => await dec.exit())
 
-// api - Добавление должности
+/*// api - Добавление должности
 const addPosition = (name, description) => it('Добавление должности', async () => {
     const cook = await page.base.getCookie('token');
     const obj = {
@@ -30,7 +30,7 @@ const addPosition = (name, description) => it('Добавление должно
     await dec.simple(api.putPosition,
         [[obj], cook.text],
         api.putPosition);
-});
+});*/
 
 // api - Добавление должности
 const addPosition = (name, description) => it('Добавление должности', async () => {

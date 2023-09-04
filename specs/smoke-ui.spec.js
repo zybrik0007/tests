@@ -9,6 +9,7 @@ const sec = require('../ui/src/dictionaries/section')
 const sub = require('../ui/src/dictionaries/subsection')
 const but = require('../ui/src/dictionaries/button-icon')
 const lic = require('../ui/src/dictionaries/license')
+const url = require('../ui/src/dictionaries/url')
 
 /*Авторизация*/
 describe('Первая авторизация', () => {
@@ -2518,7 +2519,6 @@ describe('Проверка подраздела "Лицензии". "Интег�
 
 })
 
-
 /*Смоук*/
 describe('Проверка подраздела "Конфигурация" вкладка "Помещения". Добавление, редактирования, удаление.', () => {
 
@@ -2729,7 +2729,7 @@ describe('Проверка подраздела "Конфигурация" вк�
 describe('Проверка подраздела "Конфигурация" вкладка "Устройства". Поиск по IP несуществующего контроллера.', () => {
 
     const params = {
-        ip: '0.0.0.0'
+        ip: '100.100.100.100'
     }
 
     before('Вход и открытие подраздела "Конфигурация" - вкладка "Устройства', async () => {
@@ -2743,13 +2743,33 @@ describe('Проверка подраздела "Конфигурация" вк�
     after('Выход', async () => await dec.exit())
 
     describe('Добавление устройства через IP поиск', () => {
-        it('Нажатие кнопки "Поиск"', async () => await dec.simple(el.butIcBefore.handler, [but.search, entry.max], el.butIcBefore))
-        it('Отображение модального окна "Поиск устройств"', async () => await dec.simple(el.modal.deviceSearch.init, [entry.max], el.modal.deviceSearch))
-        it('Ввод "IP адрес"', async () => await dec.simple(el.input.sendKeys, ['IP адрес', 'Поиск конкретного устройства по IP адресу', params.ip, entry.max], el.input))
-        it('Нажатие кнопки "Найти устройство по IP"', async () => await dec.simple(el.button.handler, [`Найти устройство по IP: ${params.ip}`, entry.max], el.button))
-        it('Отображение ошибки "Не удалось найти устройство"', async () => await dec.simple(el.error.error, ['Не удалось найти устройство', entry.max], el.error))
-        it('Нажатие кнопки закрыть', async () => await dec.simple(el.modal.deviceSearch.closeHandler, [entry.max], el.modal.deviceSearch))
-        it('Отсутствие модального окна "Поиск устройств"', async () => await dec.simple(el.modal.deviceSearch.initClose, [entry.max], el.modal.deviceSearch))
+        it('Нажатие кнопки "Поиск"', async () => await dec.simple(el.butIcBefore.handler,
+            [but.search, entry.max],
+            el.butIcBefore));
+
+        it('Отображение модального окна "Поиск устройств"', async () => await dec.simple(el.modal.deviceSearch.init,
+            [entry.max],
+            el.modal.deviceSearch));
+
+        it('Ввод "IP адрес"', async () => await dec.simple(el.input.sendKeys,
+            ['IP адрес', 'Поиск конкретного устройства по IP адресу', params.ip, entry.max],
+            el.input));
+
+        it('Нажатие кнопки "Найти устройство по IP"', async () => await dec.simple(el.button.handler,
+            [`Найти устройство по IP: ${params.ip}`, entry.max],
+            el.button));
+
+        it('Отображение ошибки "Не удалось найти устройство"', async () => await dec.simple(el.error.error,
+            ['Не удалось найти устройство', entry.max],
+            el.error));
+
+        it('Нажатие кнопки закрыть', async () => await dec.simple(el.modal.deviceSearch.closeHandler,
+            [entry.max],
+            el.modal.deviceSearch));
+
+        it('Отсутствие модального окна "Поиск устройств"', async () => await dec.simple(el.modal.deviceSearch.initClose,
+            [entry.max],
+            el.modal.deviceSearch));
     })
 
 })
@@ -3491,7 +3511,11 @@ describe('Проверка подраздела "Сотрудники" вкла�
         })
         it('Нажатие иконки на "Идентификатор"', async () => await dec.simple(el.input.iconCard, ['Идентификатор', '', entry.max], el.input))
         it('Отображение модального окна "Выдать карту"', async () => await dec.simple(el.modal.staffCardAdd.init, [entry.max], el.modal.staffCardAdd))
-        it('Ввод "Идентификатор карты"', async () => await dec.simple(el.input.sendKeys, ['Идентификатор карты', '', params.card, entry.max], el.input))
+
+        it('Ввод "Идентификатор карты"', async () => await dec.simple(el.input.sendKeys,
+            ['Идентификатор карты', '', params.card, entry.max],
+            el.input));
+
         it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler, ['Сохранить', entry.max], el.button))
         it('Отсутствие модального окна "Выдать карту"', async () => await dec.simple(el.modal.staffCardAdd.initClose, [entry.max], el.modal.staffCardAdd))
         it('Отсутствие сообщение', async () => await dec.simple(el.success.successNoList, [entry.max], el.success))
@@ -3777,7 +3801,6 @@ describe('Поверка пораздела "Посетители" вкладк�
     })
 
 })
-
 
 describe('Закрытие браузера', () => {
     it('Закрытие', async () => await page.base.closeDriver())
