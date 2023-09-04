@@ -5,7 +5,7 @@
   "main": "entry.js",
   "scripts": {
     "smoke": "mocha --timeout=30000 --reporter list specs/smoke.spec.js",
-    "full-ui": "mocha --timeout=30000 --reporter list specs/full-ui.spec.js"
+    "full-ui": "mocha --timeout=30000 --reporter list specs/full-ui.spec.js mocha-teamcity-reporter"
   },
   "keywords": [
     "js",
