@@ -1,6 +1,6 @@
 module.exports = {
     browser: 'chrome',
-    headless: false,
+    headless: true,
     width: 1920,
     height: 1080,
     address: 'http://localhost/',
