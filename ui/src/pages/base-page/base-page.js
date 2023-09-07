@@ -11,7 +11,6 @@ class BasePage {
 
     //Открытие страницы по url
     async open(event) {
-        console.log('driver.get(event)', await driver.get(event))
         return await driver.get(event)
             .then(() => {return {error: false, description: ''}})
             .catch(() => {return {error: true, description: `Не открыто приложение с адресом ${event}`}})
@@ -214,8 +213,7 @@ class BasePage {
         const element = By.xpath(event)
         return await driver.wait(until.elementLocated(element), timeout).sendKeys(text)
             .then(() => {return {error: false, description}})
-            .catch((err) => {
-                console.log(err)
+            .catch(() => {
                 return {error: true, description: `Ошибка. ${description}`}})
     }
 
