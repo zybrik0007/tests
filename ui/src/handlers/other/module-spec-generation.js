@@ -18,7 +18,7 @@ function generationJSON(obj) {
         const itemSplit = item.split('.');
         const itemSplice = itemSplit.splice(0, itemSplit.length - 2);
         const itemJoin = itemSplice.join('.');
-        objectJSON[itemJoin] = `mocha --timeout=30000 --reporter mocha-teamcity-reporter ${obj.pathSpec}${item}`
+        objectJSON[itemJoin] = `mocha --timeout=30000 --reporter mocha-teamcity-reporter ${obj.pathPackage}${item}`
     });
 
     fs.writeFileSync(obj.pathJson, JSON.stringify(objectJSON, null, 2));

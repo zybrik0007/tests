@@ -118,7 +118,8 @@ generationSpec(arrayDivision, '../../../../../specs/ui/modules/personal/division
 
 generationJSON({
     pathSpec: '../../../../../specs/ui/modules/personal/division/',
-    pathJson: '../json-specs/json/division-ui-json.json'
+    pathJson: '../json-specs/json/division-ui-json.json',
+    pathPackage: 'specs/ui/modules/personal/division/'
 });
 
 integrateJSON('../module-specs/json-specs/json/division-ui-json.json');
