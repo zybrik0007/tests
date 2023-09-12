@@ -1,13 +1,13 @@
 const {describe, it, before, after} = require('mocha');
 
-const entry = require('../../../../../entry');
-const page = require('../../../pages');
-const el = require('../../../elements');
-const dec = require('../../../dictionaries/decorate');
-const sec = require('../../../dictionaries/section');
-const sub = require('../../../dictionaries/subsection');
-const but = require('../../../dictionaries/button-icon');
-const api = require('../../other/api');
+const entry = require('../../../../../../entry');
+const page = require('../../../../pages');
+const el = require('../../../../elements');
+const dec = require('../../../../dictionaries/decorate');
+const sec = require('../../../../dictionaries/section');
+const sub = require('../../../../dictionaries/subsection');
+const but = require('../../../../dictionaries/button-icon');
+const api = require('../../../other/api');
 
 const bef = () => before('Вход и открытие подраздела "Подразделения"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
@@ -6764,8 +6764,6 @@ const remove = () => {
         deleteVisitorFailed();
     });
 
-
-
     return {
         deleteLevelOne,
         deleteLevelTwo,
@@ -7397,31 +7395,6 @@ const print = () => {
         print,
     }
 
-    /*params.array.forEach((item1, index1) => {
-        item1.forEach((item2, index2) => {
-            describe(`Проверка строки ${flag}`, () => {
-                it('Поле "Наименование"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Наименование', flag, '1', entry.max],
-                    item2.name,
-                    el.modal.printTable));
-
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', flag, '2', entry.max],
-                    item2.phone,
-                    el.modal.printTable));
-
-                it('Поле "Описание"', async () => {
-                    await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['Описание', flag, '3', entry.max],
-                        item2.description,
-                        el.modal.printTable);
-                    flag += 1;
-                });
-
-            });
-
-        });
-    });*/
 };
 
 //Тесты печати дерева

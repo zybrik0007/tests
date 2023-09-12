@@ -1,13 +1,13 @@
 const {describe, it, before, after} = require('mocha');
 
-const entry = require('../../../../../entry');
-const page = require('../../../pages');
-const el = require('../../../elements');
-const dec = require('../../../dictionaries/decorate');
-const sec = require('../../../dictionaries/section');
-const sub = require('../../../dictionaries/subsection');
-const but = require('../../../dictionaries/button-icon');
-const api = require('../../other/api');
+const entry = require('../../../../../../entry');
+const page = require('../../../../pages');
+const el = require('../../../../elements');
+const dec = require('../../../../dictionaries/decorate');
+const sec = require('../../../../dictionaries/section');
+const sub = require('../../../../dictionaries/subsection');
+const but = require('../../../../dictionaries/button-icon');
+const api = require('../../../other/api');
 
 const bef = () => before('Вход и открытие подраздела "Шаблоны доступа" вкладка "Временные критерии доступа"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);

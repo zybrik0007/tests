@@ -1,15 +1,15 @@
 const {describe, it, before, after} = require('mocha')
 
-const entry = require('../../../../../entry')
-const page = require('../../../pages')
-const el = require('../../../elements')
-const dec = require('../../../dictionaries/decorate')
-const sec = require('../../../dictionaries/section')
-const sub = require('../../../dictionaries/subsection')
-const but = require('../../../dictionaries/button-icon')
-const imp = require('../../../upload-files')
-const oth = require('../../other/other')
-const api = require('../../other/api')
+const entry = require('../../../../../../entry')
+const page = require('../../../../pages')
+const el = require('../../../../elements')
+const dec = require('../../../../dictionaries/decorate')
+const sec = require('../../../../dictionaries/section')
+const sub = require('../../../../dictionaries/subsection')
+const but = require('../../../../dictionaries/button-icon')
+const imp = require('../../../../upload-files')
+const oth = require('../../../other/other')
+const api = require('../../../other/api')
 
 const bef = () => before('Вход и открытие подраздела "Должности"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword)
@@ -314,7 +314,7 @@ const add = () => describe('Проверка добавления.', () => {
     })
 
     // Добавление должности с максимальным набором параметров.
-    const addMaxParams = describe('Должности. Добавление. Добавление должности с максимальным набором параметров.', () => {
+    const addMaxParams = () => describe('Должности. Добавление. Добавление должности с максимальным набором параметров.', () => {
 
         const params = {
             name: 'SeleniumPositionMaxName',
@@ -390,7 +390,7 @@ const add = () => describe('Проверка добавления.', () => {
     });
 
     // Попытка добавление должности без ввода всех параметров.
-    const addNoParams = describe('Должности. Добавление. Попытка добавление должности без ввода всех параметров.',
+    const addNoParams = () => describe('Должности. Добавление. Попытка добавление должности без ввода всех параметров.',
         () => {
             describe('Проверка таблицы', () => {
 
@@ -456,7 +456,7 @@ const add = () => describe('Проверка добавления.', () => {
     })
 
     // Добавление. Попытка добавление должности без ввода "Названия".
-    const addNoName = describe('Должности. Добавление. Попытка добавление должности без ввода "Названия".',
+    const addNoName = () => describe('Должности. Добавление. Попытка добавление должности без ввода "Названия".',
         () => {
 
             const params = {
@@ -532,7 +532,7 @@ const add = () => describe('Проверка добавления.', () => {
         });
 
     // Попытка добавления дублирющий должности.
-    const addDuplicate = describe('Должности. Добавление. Попытка добавления дублирющий должности.', () => {
+    const addDuplicate = () => describe('Должности. Добавление. Попытка добавления дублирющий должности.', () => {
 
         const params = {
             name: 'addDuplicateName',
@@ -630,7 +630,7 @@ const add = () => describe('Проверка добавления.', () => {
     });
 
     // Проверки добавления.
-    const add = () => describe('Должности. Проверки добавления.', () => {
+    const main = () => describe('Должности. Проверки добавления.', () => {
         addMinParams();
         addMaxParams();
         addNoParams();
@@ -644,7 +644,7 @@ const add = () => describe('Проверка добавления.', () => {
         addNoParams,
         addNoName,
         addDuplicate,
-        add,
+        main,
     }
 })
 
@@ -1675,8 +1675,8 @@ const filterSearch = () => describe('Проверка фильтра "Поиск
 const exportFiles = () => describe('Проверка экспорта.', () => {
 
     const params = {
-        xlsx: 'position.xlsx',
-        csv: 'position.csv',
+        xlsx: 'division.xlsx',
+        csv: 'division.csv',
         header: 'header',
         fileName: 'SeleniumTestFile',
         one: {
