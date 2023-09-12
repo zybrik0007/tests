@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.add.addMinParams()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addMinParams()

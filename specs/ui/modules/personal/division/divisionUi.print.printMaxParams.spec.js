@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.print.printMaxParams()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.print.printMaxParams()

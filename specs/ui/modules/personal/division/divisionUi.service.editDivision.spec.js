@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.service.editDivision()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.service.editDivision()

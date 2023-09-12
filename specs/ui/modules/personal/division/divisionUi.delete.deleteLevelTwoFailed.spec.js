@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteVisitorFailed()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteVisitorFailed()

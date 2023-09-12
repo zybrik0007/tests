@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.add.addDuplicateTwoLevel()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addDuplicateTwoLevel()

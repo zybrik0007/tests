@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.service.deleteDivision()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.service.deleteDivision()

@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.edit.editMaxParams()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editMaxParams()

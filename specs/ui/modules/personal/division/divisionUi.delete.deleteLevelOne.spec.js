@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteLevelOne()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteLevelOne()

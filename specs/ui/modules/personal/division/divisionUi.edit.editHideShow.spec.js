@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.edit.editHideShow()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editHideShow()

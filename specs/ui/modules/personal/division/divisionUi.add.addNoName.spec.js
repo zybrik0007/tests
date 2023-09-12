@@ -1,1 +1,1 @@
-require('../../../../../ui/src/handlers/soft').divisionUi.add.addNoName()
+require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addNoName()

@@ -4,111 +4,111 @@ const {generationSpec, removeSpecs, generationJSON, integrateJSON} = require('..
 const arrayDivision = [
     {
         name: 'divisionUi.add.addMinParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.add.addMinParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addMinParams()`
     },
     {
         name: 'divisionUi.add.addMaxParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.add.addMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addMaxParams()`
     },
     {
         name: 'divisionUi.add.addFormsMaxParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.add.addFormsMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addFormsMaxParams()`
     },
     {
         name: 'divisionUi.add.addIncludeProgression.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.add.addIncludeProgression()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addIncludeProgression()`
     },
     {
         name: 'divisionUi.add.addDuplicateOneLevel.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.add.addDuplicateOneLevel()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addDuplicateOneLevel()`
     },
     {
         name: 'divisionUi.add.addDuplicateTwoLevel.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.add.addDuplicateTwoLevel()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addDuplicateTwoLevel()`
     },
     {
         name: 'divisionUi.add.addNoName.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.add.addNoName()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.add.addNoName()`
     },
     {
         name: 'divisionUi.edit.editMinParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.edit.editMinParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editMinParams()`
     },
     {
         name: 'divisionUi.edit.editMaxParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.edit.editMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editMaxParams()`
     },
     {
         name: 'divisionUi.edit.editAllParamsMaxParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.edit.editAllParamsMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editAllParamsMaxParams()`
     },
     {
         name: 'divisionUi.edit.editAllParamsFormsMaxParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.edit.editAllParamsFormsMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editAllParamsFormsMaxParams()`
     },
     {
         name: 'divisionUi.edit.editHideShow.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.edit.editHideShow()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editHideShow()`
     },
     {
         name: 'divisionUi.edit.editDuplicateOneLevel.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.edit.editDuplicateOneLevel()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editDuplicateOneLevel()`
     },
     {
         name: 'divisionUi.edit.editDuplicateTwoLevel.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.edit.editDuplicateTwoLevel()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.edit.editDuplicateTwoLevel()`
     },
     {
         name: 'divisionUi.delete.deleteLevelOne.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteLevelOne()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteLevelOne()`
     },
     {
         name: 'divisionUi.delete.deleteLevelOneFailed.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteLevelTwo()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteLevelTwo()`
     },
     {
         name: 'divisionUi.delete.deleteLevelTwo.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteLevelOneFailed()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteLevelOneFailed()`
     },
     {
         name: 'divisionUi.delete.deleteLevelTwoFailed.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteLevelTwoFailed()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteLevelTwoFailed()`
     },
     {
         name: 'divisionUi.delete.deleteLevelTwoFailed.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteStaffFailed()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteStaffFailed()`
     },
     {
         name: 'divisionUi.delete.deleteLevelTwoFailed.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.delete.deleteVisitorFailed()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.delete.deleteVisitorFailed()`
     },
     {
         name: 'divisionUi.service.addDivision.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.service.addDivision()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.service.addDivision()`
     },
     {
         name: 'divisionUi.service.editDivision.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.service.editDivision()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.service.editDivision()`
     },
     {
         name: 'divisionUi.service.deleteDivision.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.service.deleteDivision()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.service.deleteDivision()`
     },
     {
         name: 'divisionUi.print.printMinParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.print.printMinParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.print.printMinParams()`
     },
     {
         name: 'divisionUi.print.printMaxParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.print.printMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.print.printMaxParams()`
     },
     {
         name: 'divisionUi.printTree.printTreeMinParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.printTree.printTreeMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.printTree.printTreeMaxParams()`
     },
     {
         name: 'divisionUi.printTree.printTreeMinParams.spec.js',
-        script: `require('../../../../../ui/src/handlers/soft').divisionUi.printTree.printTreeMaxParams()`
+        script: `require('../../../../../ui/src/handlers/module-specs').divisionUi.printTree.printTreeMaxParams()`
     },
 ];
 
