@@ -6,7 +6,7 @@
   "scripts": {
     "smoke": "mocha --timeout=30000 --reporter list specs/smoke.spec.js",
     "full-ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/full-ui.spec.js",
-    "divisionUi.add.addDuplicateOneLevel": "mocha --timeout=30000 specs/ui/modules/personal/division/divisionUi.add.addDuplicateOneLevel.spec.js --reporter mocha-teamcity-reporter --reporter-options topLevelSuite=top-level-suite-name",
+    "divisionUi.add.addDuplicateOneLevel": "mocha --timeout=30000 specs/ui/modules/personal/division/divisionUi.add.addDuplicateOneLevel.spec.js",
     "divisionUi.add.addDuplicateTwoLevel": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.add.addDuplicateTwoLevel.spec.js",
     "divisionUi.add.addFormsMaxParams": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.add.addFormsMaxParams.spec.js",
     "divisionUi.add.addIncludeProgression": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.add.addIncludeProgression.spec.js",
