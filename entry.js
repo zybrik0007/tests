@@ -1,6 +1,6 @@
 module.exports = {
     browser: 'chrome',
-    headless: true,
+    headless: false,
     width: 1920,
     height: 1080,
     address: 'http://localhost/',
@@ -16,7 +16,7 @@ module.exports = {
     download: '/home/qwe/Загрузки/',
     failedExport: 'unimported.xlsx',
     max: 30000,
-    min: 2000,
+    min: 5000,
     upload: 500000,
     buttonTime: 3000,
     device_name_1: 'Контроллер замка CL05.2',
