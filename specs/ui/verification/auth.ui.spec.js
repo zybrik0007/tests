@@ -8,6 +8,7 @@ const dec = require('../../../ui/src/dictionaries/decorate');
 const url = require('../../../ui/src/dictionaries/url');
 
 console.log(process.env)
+console.log('entry: ', entry);
 
 /*Авторизация*/
 
