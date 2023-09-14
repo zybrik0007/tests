@@ -7,13 +7,10 @@ const el = require('../../../ui/src/elements');
 const dec = require('../../../ui/src/dictionaries/decorate');
 const url = require('../../../ui/src/dictionaries/url');
 
-console.log(process.env)
-console.log('entry: ', entry);
-
 /*Авторизация*/
-
+console.log = function() {};
 describe('Первая авторизация', () => {
-
+    
     const params = {
         validLogin: entry.customLogin,
         validPassword: entry.customPassword,
