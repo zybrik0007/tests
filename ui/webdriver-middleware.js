@@ -12,7 +12,6 @@ const middleware = () => {
     if(browser === 'chrome' && headless) {
         return new Builder()
             .forBrowser('chrome')
-            .usingServer('http://localhost:4444/wd/hub')
             .setChromeOptions(new chrome.Options()
                 .addArguments('--headless=new')
                 .windowSize({width: width, height: height}))
