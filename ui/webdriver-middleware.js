@@ -13,6 +13,7 @@ const middleware = () => {
         return new Builder()
             .forBrowser('chrome')
             .setChromeOptions(new chrome.Options()
+                .usingServer('http://localhost:4444/wd/hub')
                 .addArguments('--headless=new')
                 .windowSize({width: width, height: height}))
             .build()
