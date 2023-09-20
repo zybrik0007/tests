@@ -5,7 +5,7 @@
   "main": "entry.js",
   "scripts": {
     "auth.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/auth.ui.spec.js",
-    "smoke.ui": "mocha --timeout=30000 specs/ui/verification/smoke.ui.spec.js",
+    "smoke.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/smoke.ui.spec.js",
     "full.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/full-ui.spec.js",
     "divisionUi.add.addDuplicateOneLevel": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.add.addDuplicateOneLevel.spec.js",
     "divisionUi.add.addDuplicateTwoLevel": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.add.addDuplicateTwoLevel.spec.js",
