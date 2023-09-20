@@ -98,7 +98,7 @@ class Modal extends BasePage {
 
     // Ввод значения в input
     async inputSendKeys(title, placeholder, value, timeout) {
-        return await this.xpathSendKeys(elements.modalId(this.id) +elements.input(title, placeholder),
+        return await this.xpathSendKeys(elements.modalId(this.id) + elements.input(title, placeholder),
             `Ввод значения ${value} в input ${title ? title : placeholder}.`,
             value,
             timeout)

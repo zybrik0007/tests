@@ -67,8 +67,8 @@ module.exports = {
         staffCardAdd: new Modal('card-controls', ''),
         divisionAdd: new Departments('departments', 'Добавить подразделение'),
         divisionEdit: new Departments('departments', 'Редактировать подразделение'),
-        positionAdd: new Modal('edit-division', 'Добавление должности'),
-        positionEdit: new Modal('edit-division', 'Редактирование должности'),
+        positionAdd: new Modal('edit-position', 'Добавление должности'),
+        positionEdit: new Modal('edit-position', 'Редактирование должности'),
         additionalDataAdd: new AdditionalData('additional-data-modal', 'Добавить дополнительное поле'),
         additionalDataEdit: new AdditionalData('additional-data-modal', 'Редактировать дополнительное поле'),
 

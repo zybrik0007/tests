@@ -1,8 +1,11 @@
-const path = require('path')
 const {generationSpec, removeSpecs, generationJSON, integrateJSON} = require('../../other/module-spec-generation');
 const pathFile = 'console.log = function () {};\nrequire(\'../../../../../ui/src/handlers/module-specs\')'
 
 const arrayDivision = [
+    {
+        name: 'divisionUi.display.spec.js',
+        script: `${pathFile}.divisionUi.display()`
+    },
     {
         name: 'divisionUi.add.addMinParams.spec.js',
         script: `${pathFile}.divisionUi.add.addMinParams()`
@@ -56,6 +59,10 @@ const arrayDivision = [
         script: `${pathFile}.divisionUi.edit.editDuplicateOneLevel()`
     },
     {
+        name: 'divisionUi.edit.editNoName.spec.js',
+        script: `${pathFile}.divisionUi.edit.editNoName()`
+    },
+    {
         name: 'divisionUi.edit.editDuplicateTwoLevel.spec.js',
         script: `${pathFile}.divisionUi.edit.editDuplicateTwoLevel()`
     },
@@ -64,11 +71,11 @@ const arrayDivision = [
         script: `${pathFile}.divisionUi.delete.deleteLevelOne()`
     },
     {
-        name: 'divisionUi.delete.deleteLevelOneFailed.spec.js',
+        name: 'divisionUi.delete.deleteLevelTwo.spec.js',
         script: `${pathFile}.divisionUi.delete.deleteLevelTwo()`
     },
     {
-        name: 'divisionUi.delete.deleteLevelTwo.spec.js',
+        name: 'divisionUi.delete.deleteLevelOneFailed.spec.js',
         script: `${pathFile}.divisionUi.delete.deleteLevelOneFailed()`
     },
     {
@@ -76,11 +83,11 @@ const arrayDivision = [
         script: `${pathFile}.divisionUi.delete.deleteLevelTwoFailed()`
     },
     {
-        name: 'divisionUi.delete.deleteLevelTwoFailed.spec.js',
+        name: 'divisionUi.delete.deleteStaffFailed.spec.js',
         script: `${pathFile}.divisionUi.delete.deleteStaffFailed()`
     },
     {
-        name: 'divisionUi.delete.deleteLevelTwoFailed.spec.js',
+        name: 'divisionUi.delete.deleteVisitorFailed.spec.js',
         script: `${pathFile}.divisionUi.delete.deleteVisitorFailed()`
     },
     {
@@ -108,8 +115,76 @@ const arrayDivision = [
         script: `${pathFile}.divisionUi.printTree.printTreeMaxParams()`
     },
     {
-        name: 'divisionUi.printTree.printTreeMinParams.spec.js',
+        name: 'divisionUi.printTree.printTreeMaxParams.spec.js',
         script: `${pathFile}.divisionUi.printTree.printTreeMaxParams()`
+    },
+
+    {
+        name: 'divisionUi.export.minXLSX.systemNameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minXLSX.systemNameNoHead()`
+    },
+    {
+        name: 'divisionUi.export.minXLSX.systemNameAddHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minXLSX.systemNameAddHead()`
+    },
+    {
+        name: 'divisionUi.export.minXLSX.systemNameItHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minXLSX.systemNameItHead()`
+    },
+    {
+        name: 'divisionUi.export.minXLSX.nameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minXLSX.nameNoHead()`
+    },
+    {
+        name: 'divisionUi.export.minXLSX.nameAddHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minXLSX.nameAddHead()`
+    },
+    {
+        name: 'divisionUi.export.minXLSX.nameItHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minXLSX.nameItHead()`
+    },
+
+    {
+        name: 'divisionUi.export.maxXLSX.systemNameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxXLSX.systemNameNoHead()`
+    },
+    {
+        name: 'divisionUi.export.maxXLSX.systemNameAddHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxXLSX.systemNameAddHead()`
+    },
+    {
+        name: 'divisionUi.export.maxXLSX.systemNameItHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxXLSX.systemNameItHead()`
+    },
+    {
+        name: 'divisionUi.export.maxXLSX.nameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxXLSX.nameNoHead()`
+    },
+    {
+        name: 'divisionUi.export.maxXLSX.nameAddHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxXLSX.nameAddHead()`
+    },
+    {
+        name: 'divisionUi.export.maxXLSX.nameItHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxXLSX.nameItHead()`
+    },
+
+    {
+        name: 'divisionUi.export.minCSV.systemNameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minCSV.systemNameNoHead()`
+    },
+    {
+        name: 'divisionUi.export.minCSV.nameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.minCSV.nameNoHead()`
+    },
+
+    {
+        name: 'divisionUi.export.maxCSV.systemNameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxCSV.systemNameNoHead()`
+    },
+    {
+        name: 'divisionUi.export.maxCSV.nameNoHead.spec.js',
+        script: `${pathFile}.divisionUi.export.maxCSV.nameNoHead()`
     },
 ];
 
