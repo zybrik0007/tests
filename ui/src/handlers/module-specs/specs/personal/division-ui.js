@@ -8,6 +8,8 @@ const sec = require('../../../../dictionaries/section');
 const sub = require('../../../../dictionaries/subsection');
 const but = require('../../../../dictionaries/button-icon');
 const api = require('../../../other/api');
+const imp = require('../../../../upload-files');
+const deleteData = require('../../../other/deleteData');
 
 const bef = () => before('Вход и открытие подраздела "Подразделения"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
@@ -93,52 +95,11 @@ const deleteParams = () => describe('Удаление тестовых данн�
     aft();
     bef();
 
-    it('Удаление шаблонов доступа', async () => {
-        const cook = await page.base.getCookie('token');
-        const get = await api.getAccessTemplate(cook.text);
-        const filter = get.text.map(item => item['id']);
-        await dec.simple(api.deleteAccessTemplate,
-            [filter, cook.text],
-            api.deleteAccessTemplate);
-    });
-
-    it('Удаление графиков работы', async () => {
-        const cook = await page.base.getCookie('token');
-        const get = await api.getSchedule(cook.text);
-        const filter = get.text.map(item => item['id']);
-        await dec.simple(api.deleteSchedule,
-            [filter, cook.text],
-            api.deleteSchedule);
-    });
-
-    it('Удаление сотрудников', async () => {
-        const cook = await page.base.getCookie('token');
-        const get = await api.getStaff(cook.text);
-        const filter = get.text.map(item => item['id']);
-        await dec.simple(api.deleteStaff,
-            [filter, cook.text],
-            api.deleteStaff);
-    });
-
-    it('Удаление посетителей', async () => {
-        const cook = await page.base.getCookie('token');
-        const get = await api.getVisitor(cook.text);
-        const filter = get.text.map(item => item['id']);
-        await dec.simple(api.deleteVisitor,
-            [filter, cook.text],
-            api.deleteStaff);
-    });
-
-    it('Удаление подразделений', async () => {
-        const cook = await page.base.getCookie('token');
-        const get = await api.getDivision(cook.text);
-        const filter = get.text.map(item => item['id']).reverse();
-        for(const id of filter) {
-            await dec.simple(api.deleteDivision,
-                [[id], cook.text],
-                api.deleteDivision);
-        }
-    });
+    deleteData.deleteAccess();
+    deleteData.deleteSchedule();
+    deleteData.deleteStaff();
+    deleteData.deleteVisitor();
+    deleteData.deleteDivision();
 
 });
 
@@ -8076,7 +8037,7 @@ const exportFile = (agr, str, format) => {
         Заголовок — Не добавлять заголовок. ${str}.`, () => {
 
         const params = {
-            name: format === 'XLSX' ? 'division.xlsx' : 'division.csv',
+            name: format === 'XLSX' ? 'import.division.min.success.xlsx' : 'division.csv',
             file1: [
                 {
                     'Отчет "Подразделения"': 'Подразделение',
@@ -10871,22 +10832,1455 @@ const exportFile = (agr, str, format) => {
 //Тесты импорта
 const importFile = () => {
 
-    // Импорт с минимальным количеством параметров.
+    // Импорт xlsx с минимальным количеством параметров.
+    const importXLSXMinParams = () => describe('Подразделение. Импорт. Импорт с минимальным количеством параметров ' +
+        'из xlsx файла. ', () => {
 
-    // Импорт с максимальным количеством параметров.
+        const params = {
+            name1: 'importMinParamsName1',
+            name2: 'importMinParamsName2',
+            message: 'Импорт завершен 0 записей из 2 не было импортировано',
+        };
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [[ "Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSXMinSuccess, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
+                ['Телефон', '', entry.max],
+                el.select));
+
+            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
+                ['Описание', '', entry.max],
+                el.select));
+
+            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
+                ['Сопровождающий', '', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для сотрудника', '', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для посетителя', '', entry.max],
+                el.select));
+
+            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
+                ['График работы', '', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки "Готово"', async () => await dec.simple(el.button.handler,
+                ['Готово', entry.max],
+                el.button));
+        });
+
+        describe('Проверка отображения в разделе', () => {
+            bef();
+            aft();
+
+            describe('Общие проверки', () => {
+
+                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                    [3, entry.max],
+                    page.division));
+            });
+
+            describe('Проверка подразделения 1 уровня', () => {
+
+                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                    [[params.name1], entry.max],
+                    page.division));
+
+                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                    [[params.name1], entry.max],
+                    page.division));
+
+                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                    [params.name1, entry.max],
+                    page.division));
+
+                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
+                    ['Телефон', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
+                    ['Описание', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
+                    ['Сопровождающий', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для сотрудника', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для посетителя', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
+                    ['График работы', '', entry.max],
+                    '',
+                    el.input));
+            });
+
+            describe('Проверка подразделения 2 уровня', () => {
+
+                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                    [[params.name1, params.name2], entry.max],
+                    page.division));
+
+                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                    [[params.name1, params.name2], entry.max],
+                    page.division));
+
+                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                    [params.name2, entry.max],
+                    page.division));
+
+                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
+                    ['Телефон', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
+                    ['Описание', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
+                    ['Сопровождающий', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для сотрудника', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для посетителя', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
+                    ['График работы', '', entry.max],
+                    '',
+                    el.input));
+            });
+        });
+
+        deleteParams();
+    });
+
+    // Импорт xls с минимальным количеством параметров.
+    const importXLSMinParams = () => describe('Подразделение. Импорт. Импорт с минимальным количеством параметров ' +
+        'из xls файла. ', () => {
+
+        const params = {
+            name1: 'importMinParamsName1',
+            name2: 'importMinParamsName2',
+            message: 'Импорт завершен 0 записей из 2 не было импортировано',
+        };
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [[ "Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSMinSuccess, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
+                ['Телефон', '', entry.max],
+                el.select));
+
+            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
+                ['Описание', '', entry.max],
+                el.select));
+
+            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
+                ['Сопровождающий', '', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для сотрудника', '', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для посетителя', '', entry.max],
+                el.select));
+
+            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
+                ['График работы', '', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки "Готово"', async () => await dec.simple(el.button.handler,
+                ['Готово', entry.max],
+                el.button));
+        });
+
+        describe('Проверка отображения в разделе', () => {
+            bef();
+            aft();
+
+            describe('Общие проверки', () => {
+
+                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                    [3, entry.max],
+                    page.division));
+            });
+
+            describe('Проверка подразделения 1 уровня', () => {
+
+                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                    [[params.name1], entry.max],
+                    page.division));
+
+                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                    [[params.name1], entry.max],
+                    page.division));
+
+                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                    [params.name1, entry.max],
+                    page.division));
+
+                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
+                    ['Телефон', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
+                    ['Описание', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
+                    ['Сопровождающий', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для сотрудника', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для посетителя', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
+                    ['График работы', '', entry.max],
+                    '',
+                    el.input));
+            });
+
+            describe('Проверка подразделения 2 уровня', () => {
+
+                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                    [[params.name1, params.name2], entry.max],
+                    page.division));
+
+                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                    [[params.name1, params.name2], entry.max],
+                    page.division));
+
+                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                    [params.name2, entry.max],
+                    page.division));
+
+                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
+                    ['Телефон', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
+                    ['Описание', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
+                    ['Сопровождающий', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для сотрудника', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для посетителя', '', entry.max],
+                    '',
+                    el.input));
+
+                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
+                    ['График работы', '', entry.max],
+                    '',
+                    el.input));
+            });
+        });
+
+        deleteParams();
+    });
+
+    // Импорт xlsx с максимальным количеством параметров.
+    const importXLSXMaxParams = () => describe('Подразделение. Импорт. Импорт с максимальным количеством параметров ' +
+    'из xlsx файла.', () => {
+        const params = {
+            division1: {
+                name: 'importXLSXMaxParamsName1',
+                phone: 'importXLSXMaxParamsPhone1',
+                description: 'importXLSXMaxParamsDescription1',
+                fio: {
+                    lastName: 'staff',
+                    firstName: '1',
+                    middleName: '' ,
+                    divisionId: 1,
+                    date: '2001-01-01'
+                },
+                template1: 'template11',
+                template2: 'template12',
+                template3: 'template13',
+                schedule: 'schedule1',
+            },
+            division2: {
+                name: 'importXLSXMaxParamsName2',
+                phone: 'importXLSXMaxParamsPhone2',
+                description: 'importXLSXMaxParamsDescription2',
+                fio: {
+                    lastName: 'staff',
+                    firstName: '2',
+                    middleName: '' ,
+                    divisionId: 1,
+                    date: '2001-01-01'
+                },
+                template1: 'template21',
+                template2: 'template22',
+                template3: 'template23',
+                schedule: 'schedule2',
+            },
+            message: 'Импорт завершен 0 записей из 2 не было импортировано',
+        };
+
+        describe('API - добавление', () => {
+            bef();
+            aft();
+            addAccessTemplate(params.division1.template1, '');
+            addAccessTemplate(params.division1.template2, '');
+            addAccessTemplate(params.division1.template3, '');
+            addAccessTemplate(params.division2.template1, '');
+            addAccessTemplate(params.division2.template2, '');
+            addAccessTemplate(params.division2.template3, '');
+            addSchedule(params.division1.schedule);
+            addSchedule(params.division2.schedule);
+            addStaff(...Object.values(params.division1.fio));
+            addStaff(...Object.values(params.division2.fio));
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [[ "Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSXMaxSuccess, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
+                ['Телефон', '', entry.max],
+                el.select));
+
+            it('Выбор "Телефон"', async () => await dec.simple(el.select.iconXpand,
+                ['Телефон', '', 'Телефон', entry.max],
+                el.select));
+
+            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
+                ['Описание', '', entry.max],
+                el.select));
+
+            it('Выбор "Описание"', async () => await dec.simple(el.select.iconXpand,
+                ['Описание', '', 'Описание', entry.max],
+                el.select));
+
+            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
+                ['Сопровождающий', '', entry.max],
+                el.select));
+
+            it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
+                ['Сопровождающий', '', 'Сопровождающий', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для сотрудника', '', entry.max],
+                el.select));
+
+            it('Выбор "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.iconXpand,
+                ['Шаблон доступа для сотрудника', '', 'Шаблон доступа для сотрудников', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для посетителя', '', entry.max],
+                el.select));
+
+            it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
+                ['Шаблон доступа для посетителя', '', 'Шаблон доступа для посетителей', entry.max],
+                el.select));
+
+            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
+                ['График работы', '', entry.max],
+                el.select));
+
+            it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
+                ['График работы', '', 'График работы', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки "Готово"', async () => await dec.simple(el.button.handler,
+                ['Готово', entry.max],
+                el.button));
+        });
+
+        describe('Проверка отображения в разделе', () => {
+            bef();
+            aft();
+
+            describe('Общие проверки', () => {
+
+                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                    [3, entry.max],
+                    page.division));
+
+            });
+
+            describe('Проверка подразделения 1 уровня', () => {
+
+                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                    [[params.division1.name], entry.max],
+                    page.division));
+
+                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                    [[params.division1.name], entry.max],
+                    page.division));
+
+                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                    [params.division1.name, entry.max],
+                    page.division));
+
+                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
+                    ['Телефон', '', entry.max],
+                    params.division1.phone,
+                    el.input));
+
+                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
+                    ['Описание', '', entry.max],
+                    params.division1.description,
+                    el.input));
+
+                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
+                    ['Сопровождающий', '', entry.max],
+                    `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                    el.input));
+
+                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для сотрудника', '', entry.max],
+                    `${params.division1.template1}, ${params.division1.template2}`,
+                    el.input));
+
+                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для посетителя', '', entry.max],
+                    `${params.division1.template3}`,
+                    el.input));
+
+                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
+                    ['График работы', '', entry.max],
+                    `${params.division1.schedule}`,
+                    el.input));
+            });
+
+            describe('Проверка подразделения 2 уровня', () => {
+
+                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                    [[params.division1.name, params.division2.name], entry.max],
+                    page.division));
+
+                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                    [[params.division1.name, params.division2.name], entry.max],
+                    page.division));
+
+                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                    [params.division2.name, entry.max],
+                    page.division));
+
+                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
+                    ['Телефон', '', entry.max],
+                    params.division2.phone,
+                    el.input));
+
+                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
+                    ['Описание', '', entry.max],
+                    params.division2.description,
+                    el.input));
+
+                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
+                    ['Сопровождающий', '', entry.max],
+                    `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                    el.input));
+
+                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для сотрудника', '', entry.max],
+                    `${params.division2.template1}, ${params.division2.template2}`,
+                    el.input));
+
+                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
+                    ['Шаблон доступа для посетителя', '', entry.max],
+                    `${params.division2.template3}`,
+                    el.input));
+
+                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
+                    ['График работы', '', entry.max],
+                    `${params.division2.schedule}`,
+                    el.input));
+            });
+        });
+
+        deleteParams();
+
+    });
 
     // Импорт с отсутствием "Подразделения" и максимальным количетсвом параметров
+    const importXLSXMaxParamsNoName = () => describe('Подразделение. Импорт. Импорт с отсутствием "Подразделения" и ' +
+        'максимальным количеством параметров из xlsx файла и экспортом файла с ошибками.', () => {
+        const params = {
+            division1: {
+                fio: {
+                    lastName: 'staff',
+                    firstName: '1',
+                    middleName: '' ,
+                    divisionId: 1,
+                    date: '2001-01-01'
+                },
+                template1: 'template11',
+                template2: 'template12',
+                template3: 'template13',
+                schedule: 'schedule1',
+            },
+            division2: {
+                fio: {
+                    lastName: 'staff',
+                    firstName: '2',
+                    middleName: '' ,
+                    divisionId: 1,
+                    date: '2001-01-01'
+                },
+                template1: 'template21',
+                template2: 'template22',
+                template3: 'template23',
+                schedule: 'schedule2',
+            },
+            message: 'Импорт завершен 2 записей из 2 не было импортировано',
+            file: [
+                {
+                    'Отчет "Не импортированные данные"': 'Подразделение',
+                    __EMPTY: 'Телефон',
+                    __EMPTY_1: 'Описание',
+                    __EMPTY_2: 'Шаблон доступа для сотрудников',
+                    __EMPTY_3: 'Шаблон доступа для посетителей',
+                    __EMPTY_4: 'График работы',
+                    __EMPTY_5: 'Сопровождающий',
+                    __EMPTY_6: 'Ошибка'
+                },
+                {
+                    'Отчет "Не импортированные данные"': '',
+                    __EMPTY: 'importXLSXMaxParamsPhone1',
+                    __EMPTY_1: 'importXLSXMaxParamsDescription1',
+                    __EMPTY_2: 'template11;template12',
+                    __EMPTY_3: 'template13',
+                    __EMPTY_4: 'schedule1',
+                    __EMPTY_5: 'staff 1',
+                    __EMPTY_6: 'Отсутствует обязательное поле Подразделение'
+                },
+                {
+                    'Отчет "Не импортированные данные"': 'importXLSXMaxParamsName1/importXLSXMaxParamsName2',
+                    __EMPTY: 'importXLSXMaxParamsPhone2',
+                    __EMPTY_1: 'importXLSXMaxParamsDescription2',
+                    __EMPTY_2: 'template21;template22;',
+                    __EMPTY_3: 'template23',
+                    __EMPTY_4: 'schedule2',
+                    __EMPTY_5: 'staff 2',
+                    __EMPTY_6: 'Цепочка отделов не валидна или отдел существует'
+                }
+            ]
+        };
+
+        describe('API - добавление', () => {
+            bef();
+            aft();
+            addAccessTemplate(params.division1.template1, '');
+            addAccessTemplate(params.division1.template2, '');
+            addAccessTemplate(params.division1.template3, '');
+            addAccessTemplate(params.division2.template1, '');
+            addAccessTemplate(params.division2.template2, '');
+            addAccessTemplate(params.division2.template3, '');
+            addSchedule(params.division1.schedule);
+            addSchedule(params.division2.schedule);
+            addStaff(...Object.values(params.division1.fio));
+            addStaff(...Object.values(params.division2.fio));
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [[ "Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSXMaxNoNameFailed, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
+                ['Телефон', '', entry.max],
+                el.select));
+
+            it('Выбор "Телефон"', async () => await dec.simple(el.select.iconXpand,
+                ['Телефон', '', 'Телефон', entry.max],
+                el.select));
+
+            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
+                ['Описание', '', entry.max],
+                el.select));
+
+            it('Выбор "Описание"', async () => await dec.simple(el.select.iconXpand,
+                ['Описание', '', 'Описание', entry.max],
+                el.select));
+
+            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
+                ['Сопровождающий', '', entry.max],
+                el.select));
+
+            it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
+                ['Сопровождающий', '', 'Сопровождающий', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для сотрудника', '', entry.max],
+                el.select));
+
+            it('Выбор "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.iconXpand,
+                ['Шаблон доступа для сотрудника', '', 'Шаблон доступа для сотрудников', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для посетителя', '', entry.max],
+                el.select));
+
+            it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
+                ['Шаблон доступа для посетителя', '', 'Шаблон доступа для посетителей', entry.max],
+                el.select));
+
+            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
+                ['График работы', '', entry.max],
+                el.select));
+
+            it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
+                ['График работы', '', 'График работы', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки "Экспорт остатка в файл"', async () => await dec.simple(el.button.handler,
+                ['Экспорт остатка в файл', entry.max],
+                el.button))
+
+            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+                [entry.upload],
+                el.modal.importData))
+        });
+
+        describe('Проверка файла', () => {
+
+            it('Отображение файла в директории', async () => await dec.simple(el.file.display,
+                [entry.failedExport, entry.upload],
+                el.file))
+
+            it('Проверка строк файла', async () => {
+                const jsonFile = await el.file.readNum(entry.failedExport)
+                dec.exportFile(params.file, jsonFile)
+            })
+
+            it('Удаление файла', async () => await dec.simple(el.file.delete,
+                [entry.failedExport, entry.upload],
+                el.file))
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [[ "Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+        deleteParams();
+
+    });
 
     // Импорт с максимальным количеством параметров, отсутствующих в системе
+    const importXLSXMaxParamsNoParams = () => describe('Подразделение. Импорт. Импорт с отсутствием "Подразделения" и '+
+        'максимальным количетсвом параметров, отсутствующих в системе из xlsx файла.',
+        () => {
+        const params = {
+            message: 'Импорт завершен 2 записей из 2 не было импортировано',
+        };
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [[ "Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSXMaxNoParamsFailed, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
+                ['Телефон', '', entry.max],
+                el.select));
+
+            it('Выбор "Телефон"', async () => await dec.simple(el.select.iconXpand,
+                ['Телефон', '', 'Телефон', entry.max],
+                el.select));
+
+            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
+                ['Описание', '', entry.max],
+                el.select));
+
+            it('Выбор "Описание"', async () => await dec.simple(el.select.iconXpand,
+                ['Описание', '', 'Описание', entry.max],
+                el.select));
+
+            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
+                ['Сопровождающий', '', entry.max],
+                el.select));
+
+            it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
+                ['Сопровождающий', '', 'Сопровождающий', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для сотрудника', '', entry.max],
+                el.select));
+
+            it('Выбор "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.iconXpand,
+                ['Шаблон доступа для сотрудника', '', 'Шаблон доступа для сотрудников', entry.max],
+                el.select));
+
+            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
+                ['Шаблон доступа для посетителя', '', entry.max],
+                el.select));
+
+            it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
+                ['Шаблон доступа для посетителя', '', 'Шаблон доступа для посетителей', entry.max],
+                el.select));
+
+            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
+                ['График работы', '', entry.max],
+                el.select));
+
+            it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
+                ['График работы', '', 'График работы', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+                [entry.max],
+                el.modal.importData));
+
+            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+                [entry.max],
+                el.modal.importData));
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [[ "Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+    });
 
     // Импорт 5 подразделений 1 уровня с вложенннными подразделениямми прогрессией до 5 с минимальным количеством
     // параметров
+    const importProgression = () => describe('Подразделение. Импорт. Импорт с дублированием подразделения ' +
+        '1 уровня к подразделению 1 уровня из xlsx файла.', () => {
+        const params = {
+            array: [...Array(5).keys()].map(item1 => {
+                return [...Array(item1 + 1).keys()].map(item2 => {
+                    return 'division' + (item1 + 1) +  (item2 + 1)
+                });
+            }),
+            message: 'Импорт завершен 0 записей из 15 не было импортировано',
+        };
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                [1, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [["Администраторы системы"], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSXProgressionSuccess, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+                [entry.max],
+                el.modal.importData));
+
+            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+                [entry.max],
+                el.modal.importData));
+        });
+
+        describe('Проверка отображения в разделе', () => {
+            bef();
+            aft();
+
+            describe('Общие проверки', () => {
+
+                it('Отображние 16 подраздлениий', async () => await dec.simple(page.division.size,
+                    [16, entry.max],
+                    page.division));
+
+                params.array.forEach((item1) => {
+                    let arr =[];
+                    item1.forEach((item2, index2) => {
+                        it(`Отображенние подразделения ${index2 + 1} уровня - ${item2}`, async () => {
+                            arr.push(item2);
+                            await dec.simple(page.division.division,
+                                [arr, entry.max],
+                                page.division)
+                        });
+                    });
+                });
+
+            });
+
+
+        });
+
+        deleteParams();
+
+    });
 
     // Импорт с дублированием подразделения 1 уровня к подразделению 1 уровню
+    const importDuplicateOneLevel = () => describe('Подразделение. Импорт. Импорт с дублированием подразделения ' +
+        '1 уровня к подразделению 1 уровня из xlsx файла.', () => {
+        const params = {
+            division1: {
+                name: 'importDuplicateOneLevelName1',
+            },
+            division2: {
+                name: 'importDuplicateOneLevelName2',
+            },
+            message: 'Импорт завершен 1 записей из 1 не было импортировано',
+        };
+
+        describe('API - добавление', () => {
+            bef();
+            aft();
+
+            describe('Добавление подразделения 1 уровня', () => {
+                const obj = {
+                    parent_id: 0,
+                    name: params.division1.name,
+                };
+                addDivision(obj);
+            });
+            describe('Добавление подразделения 2 уровня', () => {
+                it('Добавление подразделения', async () => {
+                    const cook = await page.base.getCookie('token');
+                    const get = await api.getDivision(cook.text);
+                    const obj = {
+                        parent_id: get.text[0]['id'],
+                        name: params.division2.name
+                    };
+                    await dec.simple(api.putDivision,
+                        [[obj], cook.text],
+                        api.putDivision);
+                });
+            });
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+                [3, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [["Администраторы системы"], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name, params.division2.name], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSXDupOneFailed, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+                [entry.max],
+                el.modal.importData));
+
+            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+                [entry.max],
+                el.modal.importData));
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+                [3, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [["Администраторы системы"], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name, params.division2.name], entry.max],
+                page.division));
+
+        });
+
+        deleteParams();
+
+    });
 
     // Импорт с дублированием подразделения 1 уровня к подразделению 2 уровню
+    const importDuplicateTwoLevel = () => describe('Подразделение. Импорт. Импорт с дублированием подразделения ' +
+        '1 уровня к подразделению 2 уровня из xlsx файла.', () => {
+        const params = {
+            division1: {
+                name: 'importDuplicateTwoLevelName1',
+            },
+            division2: {
+                name: 'importDuplicateTwoLevelName2',
+            },
+            message: 'Импорт завершен 1 записей из 1 не было импортировано',
+        };
 
-    // Импорт с дублированием подразделения 2 уровня к подразделению 1 уровню
+        describe('API - добавление', () => {
+            bef();
+            aft();
+
+            describe('Добавление подразделения 1 уровня', () => {
+                const obj = {
+                    parent_id: 0,
+                    name: params.division1.name,
+                };
+                addDivision(obj);
+            });
+            describe('Добавление подразделения 2 уровня', () => {
+                it('Добавление подразделения', async () => {
+                    const cook = await page.base.getCookie('token');
+                    const get = await api.getDivision(cook.text);
+                    const obj = {
+                        parent_id: get.text[0]['id'],
+                        name: params.division2.name
+                    };
+                    await dec.simple(api.putDivision,
+                        [[obj], cook.text],
+                        api.putDivision);
+                });
+            });
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+                [3, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [["Администраторы системы"], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name, params.division2.name], entry.max],
+                page.division));
+
+        });
+
+        describe('Импорт', () => {
+
+            bef();
+
+            aft();
+
+            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.menu, entry.max],
+                el.butIcBefore));
+
+            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                [entry.max],
+                el.menu));
+
+            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Импорт из XLS, XLSX', entry.max],
+                el.menu));
+
+            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+                [entry.max],
+                el.modal.importData));
+
+            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+                [imp.division.importXLSXDupTwoFailed, entry.upload],
+                el.modal.importData));
+
+            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
+                ['Подразделение', '', entry.upload],
+                el.select));
+
+            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
+                ['Подразделение', '', 'Подразделение', entry.max],
+                el.select));
+
+            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                ['Далее', entry.max],
+                el.button));
+
+            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+                [entry.upload],
+                params.message,
+                el.modal.importData));
+
+            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+                [entry.max],
+                el.modal.importData));
+
+            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+                [entry.max],
+                el.modal.importData));
+        });
+
+        describe('Проверка списка подразделений', () => {
+
+            bef();
+            aft();
+
+            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+                [3, entry.max],
+                page.division));
+
+            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+                [["Администраторы системы"], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name], entry.max],
+                page.division));
+
+            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+                [[params.division1.name, params.division2.name], entry.max],
+                page.division));
+
+        });
+
+        deleteParams();
+
+    });
+
+    return {
+        importXLSXMinParams,
+        importXLSMinParams,
+        importXLSXMaxParams,
+        importXLSXMaxParamsNoName,
+        importXLSXMaxParamsNoParams,
+        importDuplicateOneLevel,
+        importDuplicateTwoLevel,
+        importProgression,
+    }
 
 };
 
@@ -11134,6 +12528,7 @@ module.exports = {
         minCSV: exportFile('min',  'Минимальное количество данных', 'CSV').csv,
         maxCSV: exportFile('max',  'Максимальное количество данных', 'CSV').csv,
     },
+    import: importFile(),
     filterSearch,
     main: () => {
         add().add();
@@ -11147,5 +12542,6 @@ module.exports = {
         exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx.main();
         exportFile('min',  'Минимальное количество данных', 'CSV').csv.main();
         exportFile('max',  'Максимальное количество данных', 'CSV').csv.main();
-    }
+    },
+
 }

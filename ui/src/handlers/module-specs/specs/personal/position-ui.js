@@ -1675,7 +1675,7 @@ const filterSearch = () => describe('Проверка фильтра "Поиск
 const exportFiles = () => describe('Проверка экспорта.', () => {
 
     const params = {
-        xlsx: 'division.xlsx',
+        xlsx: 'import.division.min.success.xlsx',
         csv: 'division.csv',
         header: 'header',
         fileName: 'SeleniumTestFile',
@@ -2716,57 +2716,56 @@ const importFiles = () => describe('Проверка импорта.', () => {
 
                         it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
                             [but.menu, entry.max],
-                            el.butIcBefore))
+                            el.butIcBefore));
 
                         it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
                             [entry.max],
-                            el.menu))
+                            el.menu));
 
                         it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
                             ['Импорт из XLS, XLSX', entry.max],
-                            el.menu))
+                            el.menu));
 
                         it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
                             [entry.max],
-                            el.modal.importData))
+                            el.modal.importData));
 
                         it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
                             [imp.position.importXLSXFailed, entry.upload],
-                            el.modal.importData))
+                            el.modal.importData));
 
                         it('Отображение "Должность"', async () => await dec.simple(el.select.select,
                             ['Должность', '', entry.max],
-                            el.select))
+                            el.select));
 
                         it('Выбор "Должность"', async () => await dec.simple(el.select.iconXpand,
                             ['Должность', '', 'Должность', entry.max],
-                            el.select))
+                            el.select));
 
                         it('Отображение "Описание"', async () => await dec.simple(el.select.select,
                             ['Описание', '', entry.max],
-                            el.select))
+                            el.select));
 
                         it('Выбор "Описание"', async () => await dec.simple(el.select.iconXpand,
                             ['Описание', '', 'Описание', entry.max],
-                            el.select))
+                            el.select));
 
                         it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
                             ['Далее', entry.max],
-                            el.button))
+                            el.button));
 
                         it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                             [entry.upload],
                             params.message,
-                            el.modal.importData)
-                        )
+                            el.modal.importData));
 
-                        it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
+                        it('Нажатие кнопки "Экспорт остатка в файл"', async () => await dec.simple(el.button.handler,
                             ['Экспорт остатка в файл', entry.max],
                             el.button))
-
+;
                         it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
                             [entry.upload],
-                            el.modal.importData))
+                            el.modal.importData));
                     })
 
                     describe('Проверка файла', () => {

@@ -186,6 +186,43 @@ const arrayDivision = [
         name: 'divisionUi.export.maxCSV.nameNoHead.spec.js',
         script: `${pathFile}.divisionUi.export.maxCSV.nameNoHead()`
     },
+
+    {
+        name: 'divisionUi.import.importXLSXMinParams.spec.js',
+        script: `${pathFile}.divisionUi.import.importXLSXMinParam()`
+    },
+    {
+        name: 'divisionUi.import.importXLSMinParams.spec.js',
+        script: `${pathFile}.divisionUi.import.importXLSMinParams()`
+    },
+    {
+        name: 'divisionUi.import.importXLSXMaxParams.spec.js',
+        script: `${pathFile}.divisionUi.importXLSXMaxParams()`
+    },
+    {
+        name: 'divisionUi.import.importXLSXMaxParamsNoName.spec.js',
+        script: `${pathFile}.divisionUi.import.importXLSXMaxParamsNoName()`
+    },
+    {
+        name: 'divisionUi.import.importXLSXMaxParamsNoParams.spec.js',
+        script: `${pathFile}.divisionUi.import.importXLSXMaxParamsNoParams()`
+    },
+    {
+        name: 'divisionUi.import.importProgression.spec.js',
+        script: `${pathFile}.divisionUi.import.importProgression()`
+    },
+    {
+        name: 'divisionUi.import.importDuplicateOneLevel.spec.js',
+        script: `${pathFile}.divisionUi.import.importDuplicateOneLevel()`
+    },
+    {
+        name: 'divisionUi.import.importDuplicateTwoLevel.spec.js',
+        script: `${pathFile}.divisionUi.import.importDuplicateTwoLevel()`
+    },
+    {
+        name: 'divisionUi.import.filterSearch.spec.js',
+        script: `${pathFile}.divisionUi.filterSearch()`
+    },
 ];
 
 removeSpecs('../../../../../specs/ui/modules/personal/division/');
