@@ -45,7 +45,6 @@
     "divisionUi.export.minXLSX.systemNameAddHead": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.export.minXLSX.systemNameAddHead.spec.js",
     "divisionUi.export.minXLSX.systemNameItHead": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.export.minXLSX.systemNameItHead.spec.js",
     "divisionUi.export.minXLSX.systemNameNoHead": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.export.minXLSX.systemNameNoHead.spec.js",
-    "divisionUi.import.filterSearch": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.import.filterSearch.spec.js",
     "divisionUi.import.importDuplicateOneLevel": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.import.importDuplicateOneLevel.spec.js",
     "divisionUi.import.importDuplicateTwoLevel": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.import.importDuplicateTwoLevel.spec.js",
     "divisionUi.import.importProgression": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.import.importProgression.spec.js",
@@ -60,7 +59,8 @@
     "divisionUi.printTree.printTreeMinParams": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.printTree.printTreeMinParams.spec.js",
     "divisionUi.service.addDivision": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.service.addDivision.spec.js",
     "divisionUi.service.deleteDivision": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.service.deleteDivision.spec.js",
-    "divisionUi.service.editDivision": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.service.editDivision.spec.js"
+    "divisionUi.service.editDivision": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.service.editDivision.spec.js",
+    "divisionUi.filterSearch": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division/divisionUi.filterSearch.spec.js"
   },
   "keywords": [
     "js",

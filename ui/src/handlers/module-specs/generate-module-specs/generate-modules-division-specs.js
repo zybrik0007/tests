@@ -220,7 +220,7 @@ const arrayDivision = [
         script: `${pathFile}.divisionUi.import.importDuplicateTwoLevel()`
     },
     {
-        name: 'divisionUi.import.filterSearch.spec.js',
+        name: 'divisionUi.filterSearch.spec.js',
         script: `${pathFile}.divisionUi.filterSearch()`
     },
 ];
