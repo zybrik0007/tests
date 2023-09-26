@@ -2,4 +2,8 @@ const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/d
 
 console.log('process: ', process);
 console.log('process.env: ', process.env);
-console.log('process.env.b001divisionUi.display: ', process.env.b001divisionUi.display);
+
+JSON.parse(process.env.b001divisionUiDisplay) ? tests.display() : '';
+JSON.parse(process.env.b002divisionUiAddAddMinParams) ? tests.add.addMinParams() : '';
+JSON.parse(process.env.b003divisionUiAddAddMaxParams) ? tests.add.addMaxParams() : '';
+JSON.parse(process.env.b004divisionUiAddAddFormsMaxParams) ? tests.add.addFormsMaxParams() : '';
