@@ -12526,13 +12526,13 @@ const filterSearch = () => describe('Проверка фильтра "Поиск
 });
 
 module.exports = {
-    //display,
-    //add: add(),
-    //edit: edit(),
-    //delete: remove(),
-    //service: serviceDivision(),
-    //print: print(),
-    //printTree: printTree(),
+    display,
+    add: add(),
+    edit: edit(),
+    delete: remove(),
+    service: serviceDivision(),
+    print: print(),
+    printTree: printTree(),
     export: {
         minXLSX: exportFile('min',  'Минимальное количество данных', 'XLSX').xlsx,
         maxXLSX: exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx,
