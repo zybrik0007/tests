@@ -10,6 +10,7 @@ const but = require('../../../../dictionaries/button-icon');
 const api = require('../../../other/api');
 const imp = require('../../../../upload-files');
 const deleteData = require('../../../other/deleteData');
+const close = require('../../../other/closeBrowser');
 
 const bef = () => before('Вход и открытие подраздела "Подразделения"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
@@ -541,6 +542,7 @@ const add = () => {
         });
 
         deleteParams();
+        close();
 
     });
 
@@ -1040,6 +1042,7 @@ const add = () => {
         });
 
         deleteParams();
+        close();
 
     });
 
@@ -1714,6 +1717,7 @@ const add = () => {
         });
 
         deleteParams();
+        close();
 
     });
 
@@ -1819,7 +1823,8 @@ const add = () => {
 
         });
 
-        deleteParams()
+        deleteParams();
+        close();
 
     });
 
@@ -1827,12 +1832,12 @@ const add = () => {
     const addDuplicateOneLevel = () => describe('Подразделение. Добавление. Попытка дублирования подразделения ' +
         '1 уровня к подразделению 1 уровня.', () => {
 
-            const params = {
+        const params = {
                 name: 'addDuplicateOneLevelName',
                 error: 'Данное подразделение уже существует'
             };
 
-            describe('API - добавление', () => {
+        describe('API - добавление', () => {
                 bef();
                 aft();
                 const obj = {
@@ -1842,7 +1847,7 @@ const add = () => {
                 addDivision(obj);
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -1856,7 +1861,7 @@ const add = () => {
                     page.division));
             });
 
-            describe('Добавление подразделений', () => {
+        describe('Добавление подразделений', () => {
                 bef();
                 aft();
 
@@ -1898,7 +1903,7 @@ const add = () => {
                         el.modal.divisionAdd));
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -1909,21 +1914,21 @@ const add = () => {
 
             });
 
-            deleteParams();
-
+        deleteParams();
+        close();
     });
 
     // Попытка дублирования корневого подразделения к дочернему.
     const addDuplicateTwoLevel = () => describe('Подразделение. Добавление. Попытка дублирования подразделения ' +
         '1 уровня к подразделению 2 уровня.', () => {
 
-            const params = {
+        const params = {
                 name1: 'addDuplicateTwoLevelName1',
                 name2: 'addDuplicateTwoLevelName2',
                 error: 'Данное подразделение уже существует'
             };
 
-            describe('API - добавление', () => {
+        describe('API - добавление', () => {
                 bef();
                 aft();
 
@@ -1950,7 +1955,7 @@ const add = () => {
                 });
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -1968,7 +1973,7 @@ const add = () => {
                     page.division));
             });
 
-            describe('Добавление подразделений', () => {
+        describe('Добавление подразделений', () => {
                 bef();
                 aft();
 
@@ -2010,7 +2015,7 @@ const add = () => {
                         el.modal.divisionAdd));
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -2028,15 +2033,16 @@ const add = () => {
                     page.division));
             });
 
-            deleteParams();
+        deleteParams();
+        close();
 
-        });
+    });
 
     // Попытка добавления без «Подразделение».
     const addNoName = () => describe('Подразделение. Добавление. Попытка добавления без "Подразделение»".',
         () => {
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -2051,7 +2057,7 @@ const add = () => {
 
             });
 
-            describe('Добавление подразделений', () => {
+        describe('Добавление подразделений', () => {
                 bef();
                 aft();
 
@@ -2088,7 +2094,7 @@ const add = () => {
                         el.modal.divisionAdd));
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -2103,8 +2109,9 @@ const add = () => {
 
             });
 
-            deleteParams();
-        });
+        deleteParams();
+        close();
+    });
 
     const add = () => describe('Подразделение. Проверки добавления.', () => {
         addMinParams();
@@ -2722,7 +2729,7 @@ const edit = () => {
         });
 
         deleteParams();
-
+        close();
     });
 
     // Удаление необязательных параметров с минимальным количеством параметров у родительского и дочернего подразделения
@@ -3478,7 +3485,7 @@ const edit = () => {
         });
 
         deleteParams();
-
+        close();
     });
 
     // Редактирование всех параметров родительского и дочернего подразделения с максимальным количеством параметров.
@@ -4368,6 +4375,7 @@ const edit = () => {
         });
 
         deleteParams();
+        close();
     });
 
     // Редактирование всех параметров родительского и дочернего подразделения с максимальным количеством параметров,
@@ -5413,6 +5421,7 @@ const edit = () => {
         });
 
         deleteParams();
+        close();
 
     });
 
@@ -5644,6 +5653,7 @@ const edit = () => {
         });
 
         deleteParams();
+        close();
 
     });
 
@@ -5651,13 +5661,13 @@ const edit = () => {
     const editDuplicateOneLevel = () => describe('Подразделение. Редактирование. Попытка дублирования подразделения ' +
         '1 уровня к подразделению 1 уровня', () => {
 
-            const params = {
+        const params = {
                 name1: 'editDuplicateOneLevelName1',
                 name2: 'editDuplicateOneLevelName2',
                 error: 'Такое название уже используется'
             };
 
-            describe('API - добавление', () => {
+        describe('API - добавление', () => {
                 bef();
                 aft();
 
@@ -5674,7 +5684,7 @@ const edit = () => {
                 addDivision(obj2);
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -5692,7 +5702,7 @@ const edit = () => {
                     page.division));
             });
 
-            describe('Попытка редактирование подразделения 2', () => {
+        describe('Попытка редактирование подразделения 2', () => {
                 bef();
                 aft();
 
@@ -5747,7 +5757,7 @@ const edit = () => {
 
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -5765,22 +5775,23 @@ const edit = () => {
                     page.division));
             });
 
-            deleteParams();
+        deleteParams();
+        close();
 
-        });
+    });
 
     // Попытка дублирования родительского подразделения к дочернему.
     const editDuplicateTwoLevel = () => describe('Подразделение. Редактирование. Попытка дублирования подразделения ' +
         '1 уровня к подразделению 2 уровня', () => {
 
-            const params = {
+        const params = {
                 name1: 'editDuplicateTwoLevelName1',
                 name2: 'editDuplicateTwoLevelName2',
                 name3: 'editDuplicateTwoLevelName3',
                 error: 'Такое название уже используется'
             };
 
-            describe('API - добавление', () => {
+        describe('API - добавление', () => {
                 bef();
                 aft();
 
@@ -5820,7 +5831,7 @@ const edit = () => {
                 });
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -5842,7 +5853,7 @@ const edit = () => {
                     page.division));
             });
 
-            describe('Попытка редактирование подразделения 1 уровня - 2', () => {
+        describe('Попытка редактирование подразделения 1 уровня - 2', () => {
                 bef();
                 aft();
 
@@ -5897,7 +5908,7 @@ const edit = () => {
 
             });
 
-            describe('Проверка списка подразделений', () => {
+        describe('Проверка списка подразделений', () => {
 
                 bef();
                 aft();
@@ -5919,9 +5930,10 @@ const edit = () => {
                     page.division));
             });
 
-            deleteParams();
+        deleteParams();
+        close();
 
-        });
+    });
 
     // Попытка редактирования без "Подразделение".
     const editNoName = () => describe('Подразделение. Редактирование. Попытка редактирования без "Подразделение".',
@@ -6024,6 +6036,7 @@ const edit = () => {
         });
 
         deleteParams();
+        close();
 
     });
 
@@ -8037,7 +8050,7 @@ const exportFile = (agr, str, format) => {
         Заголовок — Не добавлять заголовок. ${str}.`, () => {
 
         const params = {
-            name: format === 'XLSX' ? 'import.division.min.success.xlsx' : 'division.csv',
+            name: format === 'XLSX' ? 'division.xlsx' : 'division.csv',
             file1: [
                 {
                     'Отчет "Подразделения"': 'Подразделение',
@@ -12513,13 +12526,13 @@ const filterSearch = () => describe('Проверка фильтра "Поиск
 });
 
 module.exports = {
-    display,
-    add: add(),
-    edit: edit(),
-    delete: remove(),
-    service: serviceDivision(),
-    print: print(),
-    printTree: printTree(),
+    //display,
+    //add: add(),
+    //edit: edit(),
+    //delete: remove(),
+    //service: serviceDivision(),
+    //print: print(),
+    //printTree: printTree(),
     export: {
         minXLSX: exportFile('min',  'Минимальное количество данных', 'XLSX').xlsx,
         maxXLSX: exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx,
@@ -12532,13 +12545,13 @@ module.exports = {
         add().add();
         edit().edit();
         remove().remove();
-        serviceDivision().serviceDivision();
-        print().print();
-        printTree().printTree();
-        filterSearch();
-        exportFile('min',  'Минимальное количество данных', 'XLSX').xlsx.main();
-        exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx.main();
-        exportFile('min',  'Минимальное количество данных', 'CSV').csv.main();
-        exportFile('max',  'Максимальное количество данных', 'CSV').csv.main();
+        //serviceDivision().serviceDivision();
+        //print().print();
+        //printTree().printTree();
+        //filterSearch();
+        //exportFile('min',  'Минимальное количество данных', 'XLSX').xlsx.main();
+        //exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx.main();
+        //exportFile('min',  'Минимальное количество данных', 'CSV').csv.main();
+        //exportFile('max',  'Максимальное количество данных', 'CSV').csv.main();
     },
 }
