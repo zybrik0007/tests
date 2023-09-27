@@ -1,6 +1,8 @@
 const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/division-ui');
 const closeBrowser = require('../../../../ui/src/handlers/other/closeBrowser');
 
+console.log('process.env: ', process.env);
+
 console.log = () => function () {};
 
 // Отображение
