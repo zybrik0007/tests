@@ -11,25 +11,25 @@ const api = require('../../../other/api');
 const imp = require('../../../../upload-files');
 const deleteData = require('../../../other/deleteData');
 
-const bef = () => before('Ð’Ñ…Ð¾Ð´ Ð¸ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»Ð° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"', async () => {
+const bef = () => before('Âõîä è îòêðûòèå ïîäðàçäåëà "Ïîäðàçäåëåíèÿ"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.per, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.per.division, entry.max], el.subsection);
     await dec.simple(page.division.init, [entry.max], page.division);
 });
 
-const aft = () => after('Ð’Ñ‹Ñ…Ð¾Ð´', async () => await dec.exit());
+const aft = () => after('Âûõîä', async () => await dec.exit());
 
-//api Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ
-const addDivision = (obj) => it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+//api äîáàâëåíèå ïîäðàçäåëåíèÿ
+const addDivision = (obj) => it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
     const cook = await page.base.getCookie('token');
     await dec.simple(api.putDivision,
         [[obj], cook.text],
         api.putDivision);
 });
 
-// api Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑˆÐ°Ð±Ð»Ð¾Ð½Ð° Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°
-const addAccessTemplate = (name, description) => it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑˆÐ°Ð±Ð»Ð¾Ð½Ð° Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°', async () => {
+// api äîáàâëåíèå øàáëîíà äîñòóïà
+const addAccessTemplate = (name, description) => it('Äîáàâëåíèå øàáëîíà äîñòóïà', async () => {
     const cook = await page.base.getCookie('token');
     const obj ={
         name: name,
@@ -61,8 +61,8 @@ const addAccessTemplate = (name, description) => it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑˆÐ°Ð±
         api.putAccessTemplate);
 });
 
-// api Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°
-const addStaff = (lastName, firstName, middleName, divisionId, date) => it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', async () => {
+// api äîáàâëåíèå ñîòðóäíèêà
+const addStaff = (lastName, firstName, middleName, divisionId, date) => it('Äîáàâëåíèå ñîòðóäíèêà', async () => {
     const cook = await page.base.getCookie('token');
     const obj = {
         "last_name": lastName,
@@ -76,8 +76,8 @@ const addStaff = (lastName, firstName, middleName, divisionId, date) => it('Ð”Ð¾
         api.putStaff);
 });
 
-// api Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð³Ñ€Ð°Ñ„Ð¸ÐºÐ° Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹
-const addSchedule = (name, description) => it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð³Ñ€Ð°Ñ„Ð¸ÐºÐ° Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', async () => {
+// api äîáàâëåíèå ãðàôèêà ðàáîòû
+const addSchedule = (name, description) => it('Äîáàâëåíèå ãðàôèêà ðàáîòû', async () => {
     const cook = await page.base.getCookie('token');
     const obj = {
         "name": name,
@@ -89,8 +89,8 @@ const addSchedule = (name, description) => it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð³Ñ€Ð°Ñ„Ð¸Ðº
         api.putSchedule);
 });
 
-// api ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ‚ÐµÑÑ‚Ð¾Ð²Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ…
-const deleteParams = () => describe('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ‚ÐµÑÑ‚Ð¾Ð²Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ…', () => {
+// api óäàëåíèå òåñòîâûõ äàííûõ
+const deleteParams = () => describe('Óäàëåíèå òåñòîâûõ äàííûõ', () => {
 
     aft();
     bef();
@@ -103,436 +103,436 @@ const deleteParams = () => describe('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ‚ÐµÑÑ‚Ð¾Ð²Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ
 
 });
 
-//ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€Ð²Ð¸Ñ‡Ð½Ð¾Ðµ
-const display = () => describe(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ".`, () => {
+//Îòîáðàæåíèå ïåðâè÷íîå
+const display = () => describe(`Îòîáðàæåíèå ñòðàíèöû "Ïîäðàçäåëåíèÿ".`, () => {
 
     bef();
     aft();
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "title", "url"', async () => await dec.simple(page.division.init,
+    it('Îòîáðàæåíèå "title", "url"', async () => await dec.simple(page.division.init,
         [entry.max],
         page.division));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ€Ð°Ð·Ð´ÐµÐ»Ð° "ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð»" - Ð°ÐºÑ‚Ð¸Ð²ÐµÐ½', async () => await dec.simple(el.section.active,
+    it('Îòîáðàæåíèå ðàçäåëà "Ïåðñîíàë" - àêòèâåí', async () => await dec.simple(el.section.active,
         [sec.per, entry.max],
         el.section));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»Ð° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ" - Ð°ÐºÑ‚Ð¸Ð²ÐµÐ½', async () => await dec.simple(el.subsection.active,
+    it('Îòîáðàæåíèå ïîäðàçäåëà "Ïîäðàçäåëåíèÿ" - àêòèâåí', async () => await dec.simple(el.subsection.active,
         [sub.per.division, entry.max],
         el.section));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð»" Ð² Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸Ð¸', async () => await dec.simpleText(el.subsection.headerGetText,
+    it('Îòîáðàæåíèå "Ïåðñîíàë" â çàãëàâèå íàâèãàöèè', async () => await dec.simpleText(el.subsection.headerGetText,
         [entry.max],
-        'ÐŸÐ•Ð Ð¡ÐžÐÐÐ›',
+        'ÏÅÐÑÎÍÀË',
         el.subsection));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ" Ð² Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ðµ', async () => await dec.simpleText(el.header.getText,
+    it('Îòîáðàæåíèå "Ïîäðàçäåëåíèÿ" â çàãëàâèå', async () => await dec.simpleText(el.header.getText,
         [entry.max],
-        'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ',
+        'Ïîäðàçäåëåíèÿ',
         el.header));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¸Ð¼Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð² Ð·Ð°Ð³Ð»Ð°Ð²Ð¸Ð¸', async () => await dec.simpleText(el.header.userGetText,
+    it('Îòîáðàæåíèå èìÿ ïîëüçîâàòåëÿ â çàãëàâèè', async () => await dec.simpleText(el.header.userGetText,
         [entry.max],
         entry.user,
         el.header));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ" - Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.butIcBefore.active,
+    it('Îòîáðàæåíèå êíîïêè "Äîáàâèòü" - àêòèâíà', async () => await dec.simple(el.butIcBefore.active,
         [but.add, entry.max],
         el.butIcBefore));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ" - Ð½Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.butIcBefore.disabled,
+    it('Îòîáðàæåíèå êíîïêè "Ðåäàêòèðîâàòü" - íå àêòèâíà', async () => await dec.simple(el.butIcBefore.disabled,
         [but.edit, entry.max],
         el.butIcBefore));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ" - Ð½Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.butIcBefore.disabled,
+    it('Îòîáðàæåíèå êíîïêè "Óäàëèòü" - íå àêòèâíà', async () => await dec.simple(el.butIcBefore.disabled,
         [but.delete, entry.max],
         el.butIcBefore));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ" - Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.butIcBefore.active,
+    it('Îòîáðàæåíèå êíîïêè "Ìåíþ" - àêòèâíà', async () => await dec.simple(el.butIcBefore.active,
         [but.menu, entry.max],
         el.butIcBefore));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° "ÐŸÐ¾Ð¸ÑÐº..."', async () => await dec.simple(el.input.input,
-        ['', 'ÐŸÐ¾Ð¸ÑÐº...', entry.max],
+    it('Îòîáðàæåíèå ôèëüòðà "Ïîèñê..."', async () => await dec.simple(el.input.input,
+        ['', 'Ïîèñê...', entry.max],
         el.input));
 
-    it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+    it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
         [but.menu, entry.max],
         el.butIcBefore));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+    it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
         [entry.max],
         el.menu));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹" - Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.menu.itemActive,
-        ['ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹', entry.max],
+    it('Îòîáðàæåíèå "Ïå÷àòü òàáëèöû" - àêòèâíà', async () => await dec.simple(el.menu.itemActive,
+        ['Ïå÷àòü òàáëèöû', entry.max],
         el.menu));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°" - Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.menu.itemActive,
-        ['ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°', entry.max],
+    it('Îòîáðàæåíèå "Ïå÷àòü äåðåâà" - àêòèâíà', async () => await dec.simple(el.menu.itemActive,
+        ['Ïå÷àòü äåðåâà', entry.max],
         el.menu));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚" - Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.menu.itemActive,
-        ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', entry.max],
+    it('Îòîáðàæåíèå "Ýêñïîðò" - àêòèâíà', async () => await dec.simple(el.menu.itemActive,
+        ['Ýêñïîðò', entry.max],
         el.menu));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX" - Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.menu.itemActive,
-        ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+    it('Îòîáðàæåíèå "Èìïîðò èç XLS, XLSX" - àêòèâíà', async () => await dec.simple(el.menu.itemActive,
+        ['Èìïîðò èç XLS, XLSX', entry.max],
         el.menu));
 
-    it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-        [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+    it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+        [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
         page.division));
 });
 
-// Ð¢ÐµÑÑ‚Ñ‹ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ
+// Òåñòû äîáàâëåíèÿ
 const add = () => {
 
-    // Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const addMinParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ '+
-        '2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².', () => {
+    // Äîáàâëåíèå ðîäèòåëüñêîãî è äî÷åðíåãî ïîäðàçäåëåíèÿ ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const addMinParams = () => describe('Ïîäðàçäåëåíèå. Äîáàâëåíèå. Äîáàâëåíèå ïîäðàçäëåíèÿ 1 óðîâíÿ è ïîäðàçäåëåíèÿ '+
+        '2 óðîâíÿ ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.', () => {
 
         const params = {
             name1: 'addMinParamsName1',
             name2: 'addMinParamsName2',
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Äîáàâëåíèå ïîäðàçäåëåíèé', () => {
             bef();
             aft();
 
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.name1, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.name1, entry.max],
                     el.input));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
             });
 
-            describe('Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 1 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 1 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.name2, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.name2, entry.max],
                     el.input));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.name1,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleFalse(el.selectMulti.getText,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleFalse(el.selectMulti.getText,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.select.getText,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.name2,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleFalse(el.selectMulti.getText,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleFalse(el.selectMulti.getText,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.select.getText,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°', async () => await dec.simple(el.modal.divisionEdit.closeHandler,
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà', async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                     [entry.max],
                     el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -544,9 +544,9 @@ const add = () => {
 
     });
 
-    // Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const addMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ' +
-        '2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².', () => {
+    // Äîáàâëåíèå ðîäèòåëüñêîãî è äî÷åðíåãî ïîäðàçäåëåíèÿ ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const addMaxParams = () => describe('Ïîäðàçäåëåíèå. Äîáàâëåíèå. Äîáàâëåíèå ïîäðàçäåëåíèå 1 óðîâíÿ è ïîäðàçäåëåíèå ' +
+        '2 óðîâíÿ ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.', () => {
 
         const params = {
             division1: {
@@ -583,7 +583,7 @@ const add = () => {
             },
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -598,439 +598,439 @@ const add = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Äîáàâëåíèå ïîäðàçäåëåíèé', () => {
             bef();
             aft();
 
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.division1.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.division1.name, entry.max],
                     el.input));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.input.sendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.division1.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.input.sendKeys,
+                    ['Òåëåôîí', '', params.division1.phone, entry.max],
                     el.input));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.division1.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Îïèñàíèå', '', params.division1.description, entry.max],
                     el.input));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '',
+                it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ñîïðîâîæäàþùèé', '',
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 1 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division1.template1, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division1.template1, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 2 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division1.template2, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division1.template2, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', params.division1.template3, entry.max],
+                it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', params.division1.template3, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', params.division1.schedule, entry.max],
+                it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ãðàôèê ðàáîòû', '', params.division1.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
             });
 
-            describe('Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 1 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 1 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.division2.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.division2.name, entry.max],
                     el.input));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.division2.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['Òåëåôîí', '', params.division2.phone, entry.max],
                     el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.division2.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['Îïèñàíèå', '', params.division2.description, entry.max],
                     el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå çíà÷åíèå 2 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await  dec.simple(el.selectMulti.delete,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.max],
                         el.selectMulti));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå çíà÷åíèå 1 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await  dec.simple(el.selectMulti.delete,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 1 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division2.template1, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division2.template1, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 2 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division2.template2, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division2.template2, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division1.template3,
+                it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division1.template3,
                         params.division2.template3, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division1.schedule, params.division2.schedule, entry.max],
+                it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ãðàôèê ðàáîòû', params.division1.schedule, params.division2.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division1.template3, entry.max],
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division1.template3, entry.max],
                     params.division1.template3,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -1043,11 +1043,11 @@ const add = () => {
 
     });
 
-    // Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð², Ñ‡ÐµÑ€ÐµÐ· Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð²Ñ‹Ð±Ð¾Ñ€Ð°:
-    // Â«Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹Â», Â«Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°Â», Â«Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÑÂ», Â«Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹Â».
-    const addFormsMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ ' +
-        'Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð², Ñ‡ÐµÑ€ÐµÐ· Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð²Ñ‹Ð±Ð¾Ñ€Ð°: Â«Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹Â», ' +
-        'Â«Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°Â», Â«Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÑÂ», Â«Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹Â».', () => {
+    // Äîáàâëåíèå ðîäèòåëüñêîãî è äî÷åðíåãî ïîäðàçäåëåíèÿ ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ, ÷åðåç ôîðìû âûáîðà:
+    // «Ñîïðîâîæäàþùèé», «Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà», «Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ», «Ãðàôèê ðàáîòû».
+    const addFormsMaxParams = () => describe('Ïîäðàçäåëåíèå. Äîáàâëåíèå. Äîáàâëåíèå ðîäèòåëüñêîãî è äî÷åðíåãî ' +
+        'ïîäðàçäåëåíèÿ ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ, ÷åðåç ôîðìû âûáîðà: «Ñîïðîâîæäàþùèé», ' +
+        '«Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà», «Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ», «Ãðàôèê ðàáîòû».', () => {
 
         const params = {
             division1: {
@@ -1084,7 +1084,7 @@ const add = () => {
             },
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -1099,612 +1099,612 @@ const add = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Äîáàâëåíèå ïîäðàçäåëåíèé', () => {
             bef();
             aft();
 
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.division1.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.division1.name, entry.max],
                     el.input));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.input.sendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.division1.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.input.sendKeys,
+                    ['Òåëåôîí', '', params.division1.phone, entry.max],
                     el.input));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.division1.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Îïèñàíèå', '', params.division1.description, entry.max],
                     el.input));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconMenu,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconMenu,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ñîïðîâîæäàþùèé"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°',
+                it('Âûáîð ñîòðóäíèêà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division1.fio.lastName} ${params.division1.fio.firstName}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await  dec.simple(el.select.select,
-                    ["Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹",
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await  dec.simple(el.select.select,
+                    ["Ñîïðîâîæäàþùèé",
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 1',
+                it('Âûáîð øàáëîí äîñòóïà 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division1.template1}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 2',
+                it('Âûáîð øàáëîí äîñòóïà 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division1.template2}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°',
+                it('Âûáîð øàáëîí äîñòóïà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division1.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await  dec.simple(el.select.select,
-                    ["Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ", params.division1.template3, entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await  dec.simple(el.select.select,
+                    ["Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ", params.division1.template3, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                        ['Ãðàôèê ðàáîòû', '', entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°',
+                it('Âûáîð øàáëîí äîñòóïà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division1.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await  dec.simple(el.select.select,
-                    ["Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹", params.division1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await  dec.simple(el.select.select,
+                    ["Ãðàôèê ðàáîòû", params.division1.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
             });
 
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 1 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 1 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.division2.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.division2.name, entry.max],
                     el.input));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.division2.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['Òåëåôîí', '', params.division2.phone, entry.max],
                     el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.division2.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['Îïèñàíèå', '', params.division2.description, entry.max],
                     el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconMenu,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconMenu,
+                    ['Ñîïðîâîæäàþùèé',
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ñîïðîâîæäàþùèé"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°',
+                it('Âûáîð ñîòðóäíèêà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division2.fio.lastName} ${params.division2.fio.firstName}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.selectMulti.iconClear,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.selectMulti.iconClear,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                     el.selectMulti));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 1',
+                it('Âûáîð øàáëîí äîñòóïà 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division2.template1}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 2',
+                it('Âûáîð øàáëîí äîñòóïà 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division2.template2}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division1.template3, entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°',
+                it('Âûáîð øàáëîí äîñòóïà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division2.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division1.schedule, entry.max],
+                        ['Ãðàôèê ðàáîòû', params.division1.schedule, entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°',
+                it('Âûáîð øàáëîí äîñòóïà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division2.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -1717,9 +1717,9 @@ const add = () => {
 
     });
 
-    // Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ 5 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¼Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾ 5.
-    const addIncludeProgression =() => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ 5 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ' +
-        'Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ ' + 'Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾ 5.', () => {
+    // Äîáàâëåíèå 5 ïîäðàçäåëåíèé 1 óðîâíÿ ñ âëîæåííííûìè ïîäðàçäåëåíèÿììè ïðîãðåññèåé äî 5.
+    const addIncludeProgression =() => describe('Ïîäðàçäåëåíèå. Äîáàâëåíèå. Äîáàâëåíèå 5 ïîäðàçäåëåíèé 1 óðîâíÿ ' +
+        'ñ âëîæåííûìè ïîäðàçäåëåíèÿìè ' + 'ïðîãðåññèåé äî 5.', () => {
 
         const params = {
             array: [...Array(5).keys()].map(item1 => {
@@ -1729,57 +1729,57 @@ const add = () => {
             }),
         };
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Äîáàâëåíèå ïîäðàçäåëåíèé', () => {
             bef();
             aft();
 
             params.array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    describe(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2}`, () => {
+                    describe(`Äîáàâëåíèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2}`, () => {
 
                         if(index2 > 0) {
-                            it(`ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ ${index2} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item1[index2 - 1]}`,
+                            it(`Íàæàòèå ïî ïîäðàçäåëåíèþ ${index2} óðîâíÿ - ${item1[index2 - 1]}`,
                                 async () => await dec.simple(page.division.handler,
                                     [arr, entry.max],
                                     page.division));
 
-                            it(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ${index2} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item1[index2 - 1]} Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½`,
+                            it(`Ïîäðàçäåëåíèå ${index2} óðîâíÿ - ${item1[index2 - 1]} âûäåëåí`,
                                 async () => await dec.simple(page.division.selected,
                                     [item1[index2 - 1], entry.max],
                                     page.division));
                         }
 
-                        it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                        it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                             [but.add, entry.max],
                             el.butIcBefore));
 
-                        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                        it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                             async () => await  dec.simple(el.modal.divisionAdd.init,
                                 [entry.max],
                                 el.modal.divisionAdd));
 
-                        it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => {
+                        it('Ââîä "Ïîäðàçäåëåíèå"', async () => {
                             await dec.simple(el.input.sendKeys,
-                                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', item2, entry.max],
+                                ['Ïîäðàçäåëåíèå', '', item2, entry.max],
                                 el.input)
                         });
 
-                        it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                            ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                        it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                            ["Ñîõðàíèòü", entry.max],
                             el.button));
 
-                        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!"',
+                        it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!"',
                             async () => await dec.simple(el.success.success,
-                                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾!', entry.max],
+                                ['Ïîäðàçäåëåíèå óñïåøíî äîáàâëåíî!', entry.max],
                                 el.success));
 
-                        it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                        it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                             async () => await  dec.simple(el.modal.divisionAdd.initClose,
                                 [entry.max],
                                 el.modal.divisionAdd));
 
-                        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+                        it('Îòîáðàæåííèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async () => {
                             arr.push(item2);
                             await dec.simple(page.division.division,
                                 [arr, entry.max],
@@ -1792,20 +1792,20 @@ const add = () => {
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 16 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 16 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [16, entry.max],
                     page.division));
 
                 params.array.forEach((item1) => {
                     let arr =[];
                     item1.forEach((item2, index2) => {
-                        it(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2}`, async () => {
+                        it(`Îòîáðàæåííèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2}`, async () => {
                             arr.push(item2);
                             await dec.simple(page.division.division,
                                 [arr, entry.max],
@@ -1822,16 +1822,16 @@ const add = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ ÐºÐ¾Ñ€Ð½ÐµÐ²Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ðº Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð¼Ñƒ.
-    const addDuplicateOneLevel = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ' +
-        '1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ.', () => {
+    // Ïîïûòêà äóáëèðîâàíèÿ êîðíåâîãî ïîäðàçäåëåíèÿ ê ðîäèòåëüñêîìó.
+    const addDuplicateOneLevel = () => describe('Ïîäðàçäåëåíèå. Äîáàâëåíèå. Ïîïûòêà äóáëèðîâàíèÿ ïîäðàçäåëåíèÿ ' +
+        '1 óðîâíÿ ê ïîäðàçäåëåíèþ 1 óðîâíÿ.', () => {
 
         const params = {
                 name: 'addDuplicateOneLevelName',
-                error: 'Ð”Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚'
+                error: 'Äàííîå ïîäðàçäåëåíèå óæå ñóùåñòâóåò'
             };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
                 bef();
                 aft();
                 const obj = {
@@ -1841,68 +1841,68 @@ const add = () => {
                 addDivision(obj);
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [2, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name], entry.max],
                     page.division));
             });
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Äîáàâëåíèå ïîäðàçäåëåíèé', () => {
                 bef();
                 aft();
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.name, entry.max],
                     el.input));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "Ð”Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚"',
+                it('Îòîáðàæåíèå îøèáêè "Äàííîå ïîäðàçäåëåíèå óæå ñóùåñòâóåò"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð¾ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ" Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾',
+                it('Ìîäàëüíîãî îêíî "Äîáàâèòü ïîäðàçäåëåíèå" íå çàêðûòî',
                     async () => await  dec.simpleFalse(el.modal.divisionAdd.initClose,
                         [entry.min],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionAdd.closeHandler,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [2, entry.max],
                     page.division));
 
@@ -1911,21 +1911,21 @@ const add = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ ÐºÐ¾Ñ€Ð½ÐµÐ²Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ðº Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ¼Ñƒ.
-    const addDuplicateTwoLevel = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ' +
-        '1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ.', () => {
+    // Ïîïûòêà äóáëèðîâàíèÿ êîðíåâîãî ïîäðàçäåëåíèÿ ê äî÷åðíåìó.
+    const addDuplicateTwoLevel = () => describe('Ïîäðàçäåëåíèå. Äîáàâëåíèå. Ïîïûòêà äóáëèðîâàíèÿ ïîäðàçäåëåíèÿ ' +
+        '1 óðîâíÿ ê ïîäðàçäåëåíèþ 2 óðîâíÿ.', () => {
 
         const params = {
                 name1: 'addDuplicateTwoLevelName1',
                 name2: 'addDuplicateTwoLevelName2',
-                error: 'Ð”Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚'
+                error: 'Äàííîå ïîäðàçäåëåíèå óæå ñóùåñòâóåò'
             };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
                 bef();
                 aft();
 
-                describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+                describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                     const obj = {
                         parent_id: 0,
                         name: params.name1,
@@ -1933,8 +1933,8 @@ const add = () => {
                     addDivision(obj);
                 });
 
-                describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                    it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+                describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                    it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                         const cook = await page.base.getCookie('token');
                         const get = await api.getDivision(cook.text);
                         const obj = {
@@ -1948,80 +1948,80 @@ const add = () => {
                 });
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
             });
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Äîáàâëåíèå ïîäðàçäåëåíèé', () => {
                 bef();
                 aft();
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.name2, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.name2, entry.max],
                     el.input));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "Ð”Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚"',
+                it('Îòîáðàæåíèå îøèáêè "Äàííîå ïîäðàçäåëåíèå óæå ñóùåñòâóåò"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð¾ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ" Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾',
+                it('Ìîäàëüíîãî îêíî "Äîáàâèòü ïîäðàçäåëåíèå" íå çàêðûòî',
                     async () => await  dec.simpleFalse(el.modal.divisionAdd.initClose,
                         [entry.min],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionAdd.closeHandler,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name2], entry.max],
                     page.division));
             });
@@ -2029,73 +2029,73 @@ const add = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð±ÐµÐ· Â«ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÐµÂ».
-    const addNoName = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð±ÐµÐ· "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÐµÂ»".',
+    // Ïîïûòêà äîáàâëåíèÿ áåç «Ïîäðàçäåëåíèå».
+    const addNoName = () => describe('Ïîäðàçäåëåíèå. Äîáàâëåíèå. Ïîïûòêà äîáàâëåíèÿ áåç "Ïîäðàçäåëåíèå»".',
         () => {
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [1, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                    [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+                it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                    [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                     page.division));
 
             });
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Äîáàâëåíèå ïîäðàçäåëåíèé', () => {
                 bef();
                 aft();
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐšÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ" - Ð½Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°', async () => await dec.simple(el.button.disabled,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Êíîïêè "Ñîõðàíèòü" - íå àêòèâíà', async () => await dec.simple(el.button.disabled,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handlerNoActive,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handlerNoActive,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð¾ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ" Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾',
+                it('Ìîäàëüíîãî îêíî "Äîáàâèòü ïîäðàçäåëåíèå" íå çàêðûòî',
                     async () => await  dec.simpleFalse(el.modal.divisionAdd.initClose,
                         [entry.min],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionAdd.closeHandler,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [1, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                    [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+                it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                    [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                     page.division));
 
             });
@@ -2103,7 +2103,7 @@ const add = () => {
         deleteParams();
     });
 
-    const add = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ.', () => {
+    const add = () => describe('Ïîäðàçäåëåíèå. Ïðîâåðêè äîáàâëåíèÿ.', () => {
         addMinParams();
         addMaxParams();
         addFormsMaxParams();
@@ -2125,13 +2125,13 @@ const add = () => {
     }
 };
 
-// Ð¢ÐµÑÑ‚Ñ‹ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ
+// Òåñòû ðåäàêòèðîâàíèÿ
 const edit = () => {
 
-    // Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½ÐµÐ¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð² Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ðµ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ
-    // Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const editMinParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½ÐµÐ¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² ' +
-        'Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð² Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»Ð½Ð¸Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    // Äîáàâëåíèå íåîáÿçàòåëüíûõ ïàðàìåòðîâ ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ â ðîäèòåëüñêîå è äî÷åðíåå ïîäðàçäåëåíèå
+    // ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const editMinParams = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Äîáàâëåíèå íåîáÿçàòåëüíûõ ïàðàìåòðîâ ' +
+        'ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ â ïîäðàçäåëåíèå 1 óðîâíÿ è ïîäðàçäåëíèå 2 óðîâíÿ', () => {
 
         const params = {
             division1: {
@@ -2168,7 +2168,7 @@ const edit = () => {
             },
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -2181,15 +2181,15 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.division1.name,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -2203,513 +2203,513 @@ const edit = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
         });
 
-        describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèé', () => {
             bef();
             aft();
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 1 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 1 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.division1.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Òåëåôîí', '', params.division1.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.division1.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Îïèñàíèå', '', params.division1.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '',
+                it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ñîïðîâîæäàþùèé', '',
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 1 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division1.template1, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division1.template1, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 2 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division1.template2, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division1.template2, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', params.division1.template3, entry.max],
+                it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', params.division1.template3, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', params.division1.schedule, entry.max],
+                it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ãðàôèê ðàáîòû', '', params.division1.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 2 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 2 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.division2.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Òåëåôîí', '', params.division2.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.division2.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Îïèñàíèå', '', params.division2.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '',
+                it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ñîïðîâîæäàþùèé', '',
                         `${params.division2.fio.lastName} ${params.division2.fio.firstName}`, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 1 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division2.template1, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division2.template1, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 2 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.division2.template2, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.division2.template2, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', params.division2.template3, entry.max],
+                it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', params.division2.template3, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', params.division2.schedule, entry.max],
+                it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ãðàôèê ðàáîòû', '', params.division2.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -2721,10 +2721,10 @@ const edit = () => {
         deleteParams();
     });
 
-    // Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð½ÐµÐ¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ñƒ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ
-    // Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const editMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð½ÐµÐ¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² ' +
-        'Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð² Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»Ð½Ð¸Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    // Óäàëåíèå íåîáÿçàòåëüíûõ ïàðàìåòðîâ ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ ó ðîäèòåëüñêîãî è äî÷åðíåãî ïîäðàçäåëåíèÿ
+    // ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const editMaxParams = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Óäàëåíèå íåîáÿçàòåëüíûõ ïàðàìåòðîâ ' +
+        'ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ â ïîäðàçäåëåíèå 1 óðîâíÿ è ïîäðàçäåëíèå 2 óðîâíÿ', () => {
 
         const params = {
             division1: {
@@ -2761,7 +2761,7 @@ const edit = () => {
             },
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -2774,7 +2774,7 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 1 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -2796,7 +2796,7 @@ const edit = () => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 2 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -2821,266 +2821,266 @@ const edit = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -3089,382 +3089,382 @@ const edit = () => {
 
         });
 
-        describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèé', () => {
             bef();
             aft();
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 1 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 1 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Óäàëåíèå "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Òåëåôîí', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Îïèñàíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Óäàëåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconClear,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division1.template3, entry.max],
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconClear,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division1.template3, entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division1.schedule, entry.max],
+                it('Óäàëåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconClear,
+                    ['Ãðàôèê ðàáîòû', params.division1.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 2 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 2 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Óäàëåíèå "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Òåëåôîí', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Îïèñàíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Óäàëåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconClear,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division2.template3, entry.max],
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconClear,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division2.template3, entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division2.schedule, entry.max],
+                it('Óäàëåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconClear,
+                    ['Ãðàôèê ðàáîòû', params.division2.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleFalse(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  '', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  '', entry.max],
                         '',
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleFalse(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  '', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  '', entry.max],
                         '',
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -3476,9 +3476,9 @@ const edit = () => {
         deleteParams();
     });
 
-    // Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð²ÑÐµÑ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const editAllParamsMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð²ÑÐµÑ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² ' +
-        'Ð¿ÐµÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ,c Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+    // Ðåäàêòèðîâàíèå âñåõ ïàðàìåòðîâ ðîäèòåëüñêîãî è äî÷åðíåãî ïîäðàçäåëåíèÿ ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const editAllParamsMaxParams = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Ðåäàêòèðîâàíèå âñåõ ïàðàìåòðîâ ' +
+        'ïåîäðàçäåëåíèå 1 óðîâíÿ è ïîäðàçäåëåíè 2 óðîâíÿ,c ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ', () => {
 
         const params = {
             division1: {
@@ -3547,7 +3547,7 @@ const edit = () => {
             },
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -3560,7 +3560,7 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 1 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -3582,7 +3582,7 @@ const edit = () => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 2 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -3618,266 +3618,266 @@ const edit = () => {
             addStaff(...Object.values(params.divisionUpdate2.fio));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -3886,206 +3886,206 @@ const edit = () => {
 
         });
 
-        describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèé', () => {
             bef();
             aft();
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 1 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 1 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.divisionUpdate1.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.divisionUpdate1.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Óäàëåíèå "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Òåëåôîí', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.divisionUpdate1.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Òåëåôîí', '', params.divisionUpdate1.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Îïèñàíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.divisionUpdate1.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Îïèñàíèå', '', params.divisionUpdate1.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Óäàëåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconClear,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '',
+                it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ñîïðîâîæäàþùèé', '',
                         `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 1 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.divisionUpdate1.template1, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.divisionUpdate1.template1, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 2 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.divisionUpdate1.template2, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.divisionUpdate1.template2, entry.max],
                         el.selectMulti));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division1.template3, entry.max],
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconClear,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division1.template3, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', params.divisionUpdate1.template3, entry.max],
+                it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', params.divisionUpdate1.template3, entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division1.schedule, entry.max],
+                it('Óäàëåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconClear,
+                    ['Ãðàôèê ðàáîòû', params.division1.schedule, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', params.divisionUpdate1.schedule, entry.max],
+                it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ãðàôèê ðàáîòû', '', params.divisionUpdate1.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 2 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 2 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.divisionUpdate2.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.divisionUpdate2.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Óäàëåíèå "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Òåëåôîí', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.divisionUpdate2.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Òåëåôîí', '', params.divisionUpdate2.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Îïèñàíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.divisionUpdate2.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Îïèñàíèå', '', params.divisionUpdate2.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Óäàëåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconClear,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '',
+                it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ñîïðîâîæäàþùèé', '',
                         `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 1 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.divisionUpdate2.template1, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.divisionUpdate2.template1, entry.max],
                         el.selectMulti));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 Ð² "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Âûáîð çíà÷åíèå 2 â "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', params.divisionUpdate2.template2, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', params.divisionUpdate2.template2, entry.max],
                         el.selectMulti));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division2.template3, entry.max],
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconClear,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division2.template3, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', params.divisionUpdate2.template3, entry.max],
+                it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', params.divisionUpdate2.template3, entry.max],
                     el.select));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division2.schedule, entry.max],
+                it('Óäàëåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconClear,
+                    ['Ãðàôèê ðàáîòû', params.division2.schedule, entry.max],
                     el.select));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', params.divisionUpdate2.schedule, entry.max],
+                it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                    ['Ãðàôèê ðàáîòû', '', params.divisionUpdate2.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -4093,267 +4093,267 @@ const edit = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.divisionUpdate1.template1}, ${params.divisionUpdate1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.divisionUpdate1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.divisionUpdate1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.divisionUpdate2.template1}, ${params.divisionUpdate2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.divisionUpdate2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.divisionUpdate2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.divisionUpdate1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹',
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé',
                         `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.divisionUpdate1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.divisionUpdate1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.divisionUpdate1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.divisionUpdate1.template3, entry.max],
                         params.divisionUpdate1.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.divisionUpdate1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.divisionUpdate1.schedule, entry.max],
                     params.divisionUpdate1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.divisionUpdate2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.divisionUpdate2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.divisionUpdate2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.divisionUpdate2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.divisionUpdate2.template3, entry.max],
                         params.divisionUpdate2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.divisionUpdate2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.divisionUpdate2.schedule, entry.max],
                     params.divisionUpdate2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -4365,12 +4365,12 @@ const edit = () => {
         deleteParams();
     });
 
-    // Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð²ÑÐµÑ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¸ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²,
-    // Ñ‡ÐµÑ€ÐµÐ· Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð²Ñ‹Ð±Ð¾Ñ€Ð°: Â«Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹Â», Â«Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°Â», Â«Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÑÂ»,
-    // Â«Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹Â».
-    const editAllParamsFormsMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð²ÑÐµÑ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² '+
-        'Ð¿ÐµÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ, c Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð², Ñ‡ÐµÑ€ÐµÐ· Ñ„Ð¾Ñ€Ð¼Ñ‹ Ð²Ñ‹Ð±Ð¾Ñ€Ð°: ' +
-        '"Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹", "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°", "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ", "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹".', () => {
+    // Ðåäàêòèðîâàíèå âñåõ ïàðàìåòðîâ ðîäèòåëüñêîãî è äî÷åðíåãî ïîäðàçäåëåíèÿ ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ,
+    // ÷åðåç ôîðìû âûáîðà: «Ñîïðîâîæäàþùèé», «Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà», «Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ»,
+    // «Ãðàôèê ðàáîòû».
+    const editAllParamsFormsMaxParams = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Ðåäàêòèðîâàíèå âñåõ ïàðàìåòðîâ '+
+        'ïåîäðàçäåëåíèå 1 óðîâíÿ è ïîäðàçäåëåíè 2 óðîâíÿ, c ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ, ÷åðåç ôîðìû âûáîðà: ' +
+        '"Ñîïðîâîæäàþùèé", "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà", "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ", "Ãðàôèê ðàáîòû".', () => {
 
         const params = {
             division1: {
@@ -4439,7 +4439,7 @@ const edit = () => {
             },
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -4452,7 +4452,7 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 1 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -4474,7 +4474,7 @@ const edit = () => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 2 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -4510,266 +4510,266 @@ const edit = () => {
             addStaff(...Object.values(params.divisionUpdate2.fio));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.division2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.division2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -4778,627 +4778,627 @@ const edit = () => {
 
         });
 
-        describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 1 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 1 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.divisionUpdate1.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.divisionUpdate1.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Óäàëåíèå "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Òåëåôîí', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.divisionUpdate1.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Òåëåôîí', '', params.divisionUpdate1.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Îïèñàíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.divisionUpdate1.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Îïèñàíèå', '', params.divisionUpdate1.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Óäàëåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconClear,
+                    ['Ñîïðîâîæäàþùèé', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconMenu,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconMenu,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ñîïðîâîæäàþùèé"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°',
+                it('Âûáîð ñîòðóäíèêà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                             entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 1',
+                it('Âûáîð øàáëîí äîñòóïà 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.template1, entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 2',
+                it('Âûáîð øàáëîí äîñòóïà 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.template2, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division1.template3, entry.max],
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconClear,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division1.template3, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°',
+                it('Âûáîð øàáëîí äîñòóïà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division1.schedule, entry.max],
+                it('Óäàëåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconClear,
+                    ['Ãðàôèê ðàáîòû', params.division1.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                        ['Ãðàôèê ðàáîòû', '', entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Âûáîð "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
 
-            describe('Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 2 óðîâíÿ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 2 óðîâíÿ âûäåëåí', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.divisionUpdate2.name, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.divisionUpdate2.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Óäàëåíèå "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Òåëåôîí', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', params.divisionUpdate2.phone, entry.max],
+                it('Ââîä "Òåëåôîí"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Òåëåôîí', '', params.divisionUpdate2.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Îïèñàíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', params.divisionUpdate2.description, entry.max],
+                it('Ââîä "Îïèñàíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Îïèñàíèå', '', params.divisionUpdate2.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('Óäàëåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconClear,
+                    ['Ñîïðîâîæäàþùèé', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconMenu,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconMenu,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ñîïðîâîæäàþùèé"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°',
+                it('Âûáîð ñîòðóäíèêà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                             entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', entry.max],
                         el.selectMulti));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 1',
+                it('Âûáîð øàáëîí äîñòóïà 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.template1, entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° 2',
+                it('Âûáîð øàáëîí äîñòóïà 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.template2, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', params.division2.template3, entry.max],
+                it('Óäàëåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconClear,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', params.division2.template3, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ ÑˆÐ°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°',
+                it('Âûáîð øàáëîí äîñòóïà',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconClear,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', params.division2.schedule, entry.max],
+                it('Óäàëåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconClear,
+                    ['Ãðàôèê ðàáîòû', params.division2.schedule, entry.max],
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð¼ÐµÐ½ÑŽ Ð² Ð²Ñ‹Ð±Ð¾Ñ€Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Íàæàòèå êíîïêè ìåíþ â âûáîðå "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                        ['Ãðàôèê ðàáîòû', '', entry.max],
                         el.select));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"',
+                it('Âûáîð "Ãðàôèê ðàáîòû"',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ['ÐŸÑ€Ð¸Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ', entry.max],
+                it('Íàæàòèå êíîïêè "Ïðèìåíèòü"', async () => await dec.simple(el.button.handler,
+                    ['Ïðèìåíèòü', entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!"',
+                it('Îòîáðàæåíèå ñîîáùåíèÿ "Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!"',
                     async () => await dec.simple(el.success.success,
-                        ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ñ‚Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾!', entry.max],
+                        ['Ïîäðàçäåëåíèå óñïåøíî îòðåäàêòèðîâàíî!', entry.max],
                         el.success));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.divisionUpdate1.template1}, ${params.divisionUpdate1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.divisionUpdate1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.divisionUpdate1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.divisionUpdate2.template1}, ${params.divisionUpdate2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.divisionUpdate2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.divisionUpdate2.schedule}`,
                     el.input));
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²', () => {
+        describe('Ïðîâåðêà ïàðàìåòðîâ', () => {
 
             bef();
             aft();
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.divisionUpdate1.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate1.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹',
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé',
                         `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.divisionUpdate1.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.divisionUpdate1.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.divisionUpdate1.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.divisionUpdate1.template3, entry.max],
                         params.divisionUpdate1.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.divisionUpdate1.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.divisionUpdate1.schedule, entry.max],
                     params.divisionUpdate1.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Ïîäðàçäåëåíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     params.divisionUpdate2.name,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.divisionUpdate2.description,
                     el.modal.divisionEdit));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.select.getText,
+                    ['Ñîïðîâîæäàþùèé', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.select));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 1 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 1 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 1, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 1, entry.min],
                         params.divisionUpdate2.template1,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ 2 "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"',
+                it('Ïðîâåðêà çíà÷åíèå 2 "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', 2, entry.min],
+                        ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', 2, entry.min],
                         params.divisionUpdate2.template2,
                         el.selectMulti));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"',
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ',  params.divisionUpdate2.template3, entry.max],
+                        ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ',  params.divisionUpdate2.template3, entry.max],
                         params.divisionUpdate2.template3,
                         el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.select.getText,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',  params.divisionUpdate2.schedule, entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.select.getText,
+                    ['Ãðàôèê ðàáîòû',  params.divisionUpdate2.schedule, entry.max],
                     params.divisionUpdate2.schedule,
                     el.select));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -5410,9 +5410,9 @@ const edit = () => {
         deleteParams();
     });
 
-    // Ð¡ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ - Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ Ñ 3 Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒÑŽ.
-    const editHideShow = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. Ð¡ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ / Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ ' +
-        'Ñ 3 Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒÑŽ', () => {
+    // Ñêðûòèå - îòêðûòèå ïîäðàçäåëåíèé ñ 3 âëîæåííîñòüþ.
+    const editHideShow = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Ñêðûòèå / îòêðûòèå ïîäðàçäåëåíèé ' +
+        'ñ 3 âëîæåííîñòüþ', () => {
 
         const params = {
             name1: 'editHideShowName1',
@@ -5420,11 +5420,11 @@ const edit = () => {
             name3: 'editHideShowName3'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 1 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const obj = {
                     "parent_id": 0,
@@ -5435,7 +5435,7 @@ const edit = () => {
                     api.putDivision);
             });
 
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 2 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getDivision = await api.getDivision(cook.text);
 
@@ -5448,7 +5448,7 @@ const edit = () => {
                     api.putDivision);
             });
 
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 3 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getDivision = await api.getDivision(cook.text);
 
@@ -5463,175 +5463,175 @@ const edit = () => {
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 4 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 4 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [4, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 3 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2, params.name3], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2, params.name3], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
             });
         });
 
-        describe('Ð¡ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ / Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+        describe('Ñêðûòèå / îòêðûòèå ïîäðàçäåëåíèÿ 3 óðîâíÿ', () => {
 
             bef();
             aft();
 
-            describe('Ð¡ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ñêðûòèå ïîäðàçäåëåíèÿ 3 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¸ÐºÐ¾Ð½ÐºÐ¸ ÑÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñƒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Íàæàòèå ïî èêîíêè ñêðûòèÿ ó ïîäðàçäåëåíèÿ 2 óðîâíÿ',
                     async () => await dec.simple(page.division.minus,
                         [params.name2, entry.max],
                         page.division));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Îòñóòñòâèå ïîäðàçäåëåíèÿ 3 óðîâíÿ',
                     async () => await dec.simple(page.division.noElement,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð½Ð°Ð¶Ð°Ñ‚Ð¸Ñ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Ïîïûòêà íàæàòèÿ ïî ïîäðàçäåëåíèþ 3 óðîâíÿ',
                     async () => await dec.simpleFalse(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.min],
                         page.division));
             });
 
-            describe('ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Îòêðûòèå ïîäðàçäåëåíèÿ 3 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¸ÐºÐ¾Ð½ÐºÐ¸ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñƒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Íàæàòèå ïî èêîíêè îòêðûòèÿ ó ïîäðàçäåëåíèÿ 2 óðîâíÿ',
                     async () => await dec.simple(page.division.plus,
                         [params.name2, entry.max],
                         page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 3 óðîâíÿ',
                     async () => await dec.simple(page.division.division,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 3 óðîâíÿ',
                     async () => await dec.simple(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
             });
         });
 
-        describe('Ð¡ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ / Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+        describe('Ñêðûòèå / îòêðûòèå ïîäðàçäåëåíèé 2 óðîâíÿ è 3 óðîâíÿ', () => {
 
             bef();
             aft();
 
-            describe('Ð¡ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ñêðûòèå ïîäðàçäåëåíèÿ 2 óðîâíÿ è 3 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¸ÐºÐ¾Ð½ÐºÐ¸ ÑÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñƒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Íàæàòèå ïî èêîíêè ñêðûòèÿ ó ïîäðàçäåëåíèÿ 1 óðîâíÿ',
                     async () => await dec.simple(page.division.minus,
                         [params.name1, entry.max],
                         page.division));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Îòñóòñòâèå ïîäðàçäåëåíèÿ 2 óðîâíÿ',
                     async () => await dec.simple(page.division.noElement,
                         [[params.name1, params.name2], entry.max],
                         page.division));
 
-                it('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð½Ð°Ð¶Ð°Ñ‚Ð¸Ñ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Ïîïûòêà íàæàòèÿ ïî ïîäðàçäåëåíèþ 2 óðîâíÿ',
                     async () => await dec.simpleFalse(page.division.handler,
                         [[params.name1, params.name2], entry.min],
                         page.division));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Îòñóòñòâèå ïîäðàçäåëåíèÿ 3 óðîâíÿ',
                     async () => await dec.simple(page.division.noElement,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð½Ð°Ð¶Ð°Ñ‚Ð¸Ñ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Ïîïûòêà íàæàòèÿ ïî ïîäðàçäåëåíèþ 3 óðîâíÿ',
                     async () => await dec.simpleFalse(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.min],
                         page.division));
             });
 
-            describe('ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Îòêðûòèå ïîäðàçäåëåíèÿ 2 óðîâíÿ è 3 óðîâíÿ', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¸ÐºÐ¾Ð½ÐºÐ¸ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñƒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Íàæàòèå ïî èêîíêè îòêðûòèÿ ó ïîäðàçäåëåíèÿ 1 óðîâíÿ',
                     async () => await dec.simple(page.division.plus,
                         [params.name1, entry.max],
                         page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 2 óðîâíÿ',
                     async () => await dec.simple(page.division.division,
                         [[params.name1, params.name2], entry.max],
                         page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 2 óðîâíÿ',
                     async () => await dec.simple(page.division.handler,
                         [[params.name1, params.name2], entry.max],
                         page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 2 óðîâíÿ âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 3 óðîâíÿ',
                     async () => await dec.simple(page.division.division,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ',
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ 2 óðîâíÿ',
                     async () => await dec.simple(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå 3 óðîâíÿ âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
             });
@@ -5640,17 +5640,17 @@ const edit = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾  Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ðº ÐºÐ¾Ñ€Ð½ÐµÐ²Ð¾Ð¼Ñƒ.
-    const editDuplicateOneLevel = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ' +
-        '1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    // Ïîïûòêà äóáëèðîâàíèÿ ðîäèòåëüñêîãî  ïîäðàçäåëåíèÿ ê êîðíåâîìó.
+    const editDuplicateOneLevel = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Ïîïûòêà äóáëèðîâàíèÿ ïîäðàçäåëåíèÿ ' +
+        '1 óðîâíÿ ê ïîäðàçäåëåíèþ 1 óðîâíÿ', () => {
 
         const params = {
                 name1: 'editDuplicateOneLevelName1',
                 name2: 'editDuplicateOneLevelName2',
-                error: 'Ð¢Ð°ÐºÐ¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÑƒÐ¶Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ'
+                error: 'Òàêîå íàçâàíèå óæå èñïîëüçóåòñÿ'
             };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
                 bef();
                 aft();
 
@@ -5667,93 +5667,93 @@ const edit = () => {
                 addDivision(obj2);
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2', async ()=> await dec.simple(page.division.division,
                     [[params.name2], entry.max],
                     page.division));
             });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2', () => {
+        describe('Ïîïûòêà ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 2', () => {
                 bef();
                 aft();
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.name1, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.name1, entry.max],
                     el.modal.divisionEdit));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "Ð¢Ð°ÐºÐ¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÑƒÐ¶Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ"',
+                it('Îòîáðàæåíèå îøèáêè "Òàêîå íàçâàíèå óæå èñïîëüçóåòñÿ"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð¾ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ" Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾',
+                it('Ìîäàëüíîãî îêíî "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå" íå çàêðûòî',
                     async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
                         [entry.min],
                         el.modal.divisionEdit));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2', async ()=> await dec.simple(page.division.division,
                     [[params.name2], entry.max],
                     page.division));
             });
@@ -5761,22 +5761,22 @@ const edit = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ðº Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ¼Ñƒ.
-    const editDuplicateTwoLevel = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ' +
-        '1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    // Ïîïûòêà äóáëèðîâàíèÿ ðîäèòåëüñêîãî ïîäðàçäåëåíèÿ ê äî÷åðíåìó.
+    const editDuplicateTwoLevel = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Ïîïûòêà äóáëèðîâàíèÿ ïîäðàçäåëåíèÿ ' +
+        '1 óðîâíÿ ê ïîäðàçäåëåíèþ 2 óðîâíÿ', () => {
 
         const params = {
                 name1: 'editDuplicateTwoLevelName1',
                 name2: 'editDuplicateTwoLevelName2',
                 name3: 'editDuplicateTwoLevelName3',
-                error: 'Ð¢Ð°ÐºÐ¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÑƒÐ¶Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ'
+                error: 'Òàêîå íàçâàíèå óæå èñïîëüçóåòñÿ'
             };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
                 bef();
                 aft();
 
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 1', async () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíè 1 óðîâíÿ - 1', async () => {
                     const cook = await page.base.getCookie('token');
 
                     const obj = {
@@ -5787,7 +5787,7 @@ const edit = () => {
                         [[obj], cook.text],
                         api.putDivision);
                 });
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ - 1', async () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíè 2 óðîâíÿ - 1', async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
 
@@ -5799,7 +5799,7 @@ const edit = () => {
                         [[obj], cook.text],
                         api.putDivision);
                 });
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 2', async () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíè 1 óðîâíÿ - 2', async () => {
                     const cook = await page.base.getCookie('token');
 
                     const obj = {
@@ -5812,101 +5812,101 @@ const edit = () => {
                 });
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 4 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 4 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [4, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 1', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ - 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 2', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 2', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name3], entry.max],
                     page.division));
             });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 2', () => {
+        describe('Ïîïûòêà ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ - 2', () => {
                 bef();
                 aft();
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name3], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+                it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+                it('Óäàëåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['Ïîäðàçäåëåíèå', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.name2, entry.max],
+                it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['Ïîäðàçäåëåíèå', '', params.name2, entry.max],
                     el.modal.divisionEdit));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                    ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+                it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                    ["Ñîõðàíèòü", entry.max],
                     el.button));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "Ð¢Ð°ÐºÐ¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÑƒÐ¶Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ"',
+                it('Îòîáðàæåíèå îøèáêè "Òàêîå íàçâàíèå óæå èñïîëüçóåòñÿ"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð¾ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ" Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾',
+                it('Ìîäàëüíîãî îêíî "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå" íå çàêðûòî',
                     async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
                         [entry.min],
                         el.modal.divisionEdit));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+                it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+                it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
                 bef();
                 aft();
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 4 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 4 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [4, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 1', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ - 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 2', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - 2', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name3], entry.max],
                     page.division));
             });
@@ -5914,16 +5914,16 @@ const edit = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð±ÐµÐ· "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ".
-    const editNoName = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð±ÐµÐ· "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ".',
+    // Ïîïûòêà ðåäàêòèðîâàíèÿ áåç "Ïîäðàçäåëåíèå".
+    const editNoName = () => describe('Ïîäðàçäåëåíèå. Ðåäàêòèðîâàíèå. Ïîïûòêà ðåäàêòèðîâàíèÿ áåç "Ïîäðàçäåëåíèå".',
         () => {
 
         const params = {
             name: 'editNoName',
-            error: 'ÐŸÐ¾Ð»Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ" Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¿ÑƒÑÑ‚Ñ‹Ð¼'
+            error: 'Ïîëå "Ïîäðàçäåëåíèå" íå ìîæåò áûòü ïóñòûì'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
@@ -5935,81 +5935,81 @@ const edit = () => {
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ', () => {
+        describe('Ïîïûòêà ðåäàêòèðîâàíèå', () => {
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.edit, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå"',
                 async () => await  dec.simple(el.modal.divisionEdit.init,
                     [entry.max],
                     el.modal.divisionEdit));
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.max],
+            it('Óäàëåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                ['Ïîäðàçäåëåíèå', '', entry.max],
                 el.modal.divisionEdit));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ["Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ", entry.max],
+            it('Íàæàòèå êíîïêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                ["Ñîõðàíèòü", entry.max],
                 el.button));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸',
+            it('Îòîáðàæåíèå îøèáêè',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð¾ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ" Ð½Ðµ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¾',
+            it('Ìîäàëüíîãî îêíî "Ðåäàêòèðîâàòü ïîäðàçäåëåíèå" íå çàêðûòî',
                 async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
                     [entry.min],
                     el.modal.divisionEdit));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð°',
+            it('Íàæàòèå êíîïêè çàêðûòèÿ ìîäàëüíîãî îêíà',
                 async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                     [entry.max],
                     el.modal.divisionEdit));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                 async () => await  dec.simple(el.modal.divisionEdit.initClose,
                     [entry.max],
                     el.modal.divisionEdit));
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
@@ -6017,7 +6017,7 @@ const edit = () => {
         deleteParams();
     });
 
-    const edit = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð²Ð¾Ð°Ð½Ð¸Ñ.', () => {
+    const edit = () => describe('Ïîäðàçäåëåíèå. Ïðîâåðêè ðåäàêòèðâîàíèÿ.', () => {
         editMinParams();
         editMaxParams();
         editAllParamsMaxParams();
@@ -6041,17 +6041,17 @@ const edit = () => {
     }
 };
 
-// Ð¢ÐµÑÑ‚Ñ‹ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ
+// Òåñòû óäàëåíèÿ
 const remove = () => {
 
-    // Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ ÐºÐ¾Ñ€Ð½ÐµÐ²Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ.
-    const deleteLevelOne = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    // Óäàëåíèå êîðíåâîãî ïîäðàçäåëåíèÿ.
+    const deleteLevelOne = () => describe('Ïîäðàçäåëåíèå. Óäàëåíèå. Óäàëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
         const params = {
             name: 'removeLevelOneName'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             const obj = {
@@ -6061,68 +6061,68 @@ const remove = () => {
             addDivision(obj);
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', () => {
+        describe('Óäàëåíèå ïîäðàçäåëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.button.handler,
+                ['Óäàëèòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð±Ñ‹Ð»Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾"',
+            it('Îòîáðàæåíèå ñîîáùåíèÿ "Âûáðàííîå ïîäðàçäåëåíèå áûëî óäàëåíî"',
                 async () => await dec.simple(el.success.success,
-                    ['Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð±Ñ‹Ð»Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾', entry.max],
+                    ['Âûáðàííîå ïîäðàçäåëåíèå áûëî óäàëåíî', entry.max],
                     el.success));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.noElement,
+            it('Îòñóòñòâèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.noElement,
                 [[params.name], entry.max],
                 page.division));
         });
@@ -6131,26 +6131,26 @@ const remove = () => {
 
     });
 
-    // Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐ³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ.
-    const deleteLevelTwo = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    // Óäàëåíèå äî÷åðíåãî ïîäðàçäåëåíèÿ.
+    const deleteLevelTwo = () => describe('Ïîäðàçäåëåíèå. Óäàëåíèå. Óäàëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
         const params = {
             name1: 'deleteLevelTwo1',
             name2: 'deleteLevelTwo2'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6164,74 +6164,74 @@ const remove = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
 
-        describe('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', () => {
+        describe('Óäàëåíèå ïîäðàçäåëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name2, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.button.handler,
+                ['Óäàëèòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð±Ñ‹Ð»Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾"',
+            it('Îòîáðàæåíèå ñîîáùåíèÿ "Âûáðàííîå ïîäðàçäåëåíèå áûëî óäàëåíî"',
                 async () => await dec.simple(el.success.success,
-                    ['Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð±Ñ‹Ð»Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾', entry.max],
+                    ['Âûáðàííîå ïîäðàçäåëåíèå áûëî óäàëåíî', entry.max],
                     el.success));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.noElement,
+            it('Îòñóòñòâèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.noElement,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
@@ -6240,28 +6240,28 @@ const remove = () => {
 
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ðµ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ñ… 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹.
-    const deleteLevelOneFailed = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ' +
-        'Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° 2 Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ñ… Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹.', () => {
+    // Ïîïûòêà óäàëèòü ðîäèòåëüñêîå 1 óðîâíÿ èç ñïèñêà âëîæåííûõ 2 ïîäðàçäåëåíèé.
+    const deleteLevelOneFailed = () => describe('Ïîäðàçäåëåíèå. Óäàëåíèå. Ïîïûòêà óäàëåíèÿ ïîäðàçäåëåíèÿ 1 óðîâíÿ ' +
+        'èç ñïèñêà 2 âëîæåííûõ ïîäðàçäåëåíèé.', () => {
 
         const params = {
             name1: 'deleteLevelOneFailed1',
             name2: 'deleteLevelOneFailed2',
-            error: 'ÐÐµÐ»ÑŒÐ·Ñ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰ÐµÐµ Ð´Ð¾Ñ‡ÐµÑ€Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ'
+            error: 'Íåëüçÿ óäàëèòü ïîäðàçäåëåíèå, ñîäåðæàùåå äî÷åðíèå ïîäðàçäåëåíèÿ'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6275,74 +6275,74 @@ const remove = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ', () => {
+        describe('Ïîïûòêà óäàëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name1, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.button.handler,
+                ['Óäàëèòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "ÐÐµÐ»ÑŒÐ·Ñ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰ÐµÐµ Ð´Ð¾Ñ‡ÐµÑ€Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå îøèáêè "Íåëüçÿ óäàëèòü ïîäðàçäåëåíèå, ñîäåðæàùåå äî÷åðíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
@@ -6350,29 +6350,29 @@ const remove = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒÑÐºÐ¾Ðµ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ñ… 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹.
-    const deleteLevelTwoFailed = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ ' +
-        'Ð¸Ð· ÑÐ¿Ð¸ÑÐºÐ° 3 Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ñ… Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹.', () => {
+    // Ïîïûòêà óäàëèòü ðîäèòåëüñêîå 2 óðîâíÿ èç ñïèñêà âëîæåííûõ 3 ïîäðàçäåëåíèé.
+    const deleteLevelTwoFailed = () => describe('Ïîäðàçäåëåíèå. Óäàëåíèå. Ïîïûòêà óäàëåíèÿ ïîäðàçäåëåíèÿ 2 óðîâíÿ ' +
+        'èç ñïèñêà 3 âëîæåííûõ ïîäðàçäåëåíèé.', () => {
 
         const params = {
             name1: 'deleteLevelTwoFailed1',
             name2: 'deleteLevelTwoFailed2',
             name3: 'deleteLevelTwoFailed3',
-            error: 'ÐÐµÐ»ÑŒÐ·Ñ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰ÐµÐµ Ð´Ð¾Ñ‡ÐµÑ€Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ'
+            error: 'Íåëüçÿ óäàëèòü ïîäðàçäåëåíèå, ñîäåðæàùåå äî÷åðíèå ïîäðàçäåëåíèÿ'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6384,8 +6384,8 @@ const remove = () => {
                         api.putDivision);
                 });
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 3 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6399,82 +6399,82 @@ const remove = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 4 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 4 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [4, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 3 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2, params.name3], entry.max],
                 page.division));
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ', () => {
+        describe('Ïîïûòêà óäàëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name2, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.button.handler,
+                ['Óäàëèòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "ÐÐµÐ»ÑŒÐ·Ñ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰ÐµÐµ Ð´Ð¾Ñ‡ÐµÑ€Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå îøèáêè "Íåëüçÿ óäàëèòü ïîäðàçäåëåíèå, ñîäåðæàùåå äî÷åðíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 4 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 4 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [4, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 3 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2, params.name3], entry.max],
                 page.division));
         });
@@ -6482,9 +6482,9 @@ const remove = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ðµ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÑƒ.
-    const deleteStaffFailed = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ðµ ' +
-        'ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÑƒ.', () => {
+    // Ïîïûòêà óäàëåíèÿ ïîäðàçäåëåíèÿ äîáàâëåííîå ñîòðóäíèêó.
+    const deleteStaffFailed = () => describe('Ïîäðàçäåëåíèå. Óäàëåíèå. Ïîïûòêà óäàëåíèÿ ïîäðàçäåëåíèÿ äîáàâëåííîå ' +
+        'ñîòðóäíèêó.', () => {
 
         const params = {
             name: 'deleteStaffFailed1',
@@ -6495,10 +6495,10 @@ const remove = () => {
                 divisionId: '',
                 date: '2001-01-01'
             },
-            error: 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾'
+            error: 'Ïîäðàçäåëåíèå èñïîëüçóåòñÿ è íå ìîæåò áûòü óäàëåíî'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
@@ -6508,7 +6508,7 @@ const remove = () => {
             };
             addDivision(obj);
 
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', async () => {
+            it('Äîáàâëåíèå ñîòðóäíèêà', async () => {
                 const cook = await page.base.getCookie('token');
                 const get = await api.getDivision(cook.text);
 
@@ -6526,66 +6526,66 @@ const remove = () => {
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ', () => {
+        describe('Ïîïûòêà óäàëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.button.handler,
+                ['Óäàëèòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾"',
+            it('Îòîáðàæåíèå îøèáêè "Ïîäðàçäåëåíèå èñïîëüçóåòñÿ è íå ìîæåò áûòü óäàëåíî"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
@@ -6595,9 +6595,9 @@ const remove = () => {
 
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ðµ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÑŽ.
-    const deleteVisitorFailed = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ. ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ðµ ' +
-        'Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÑŽ.', () => {
+    // Ïîïûòêà óäàëåíèÿ ïîäðàçäåëåíèÿ äîáàâëåííîå ïîñåòèòåëþ.
+    const deleteVisitorFailed = () => describe('Ïîäðàçäåëåíèå. Óäàëåíèå. Ïîïûòêà óäàëåíèÿ ïîäðàçäåëåíèÿ äîáàâëåííîå ' +
+        'ïîñåòèòåëþ.', () => {
 
         const params = {
             name: 'deleteVisitorFailed1',
@@ -6607,10 +6607,10 @@ const remove = () => {
                 middleName: '' ,
                 divisionId: '',
             },
-            error: 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾'
+            error: 'Ïîäðàçäåëåíèå èñïîëüçóåòñÿ è íå ìîæåò áûòü óäàëåíî'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
@@ -6620,7 +6620,7 @@ const remove = () => {
             };
             addDivision(obj);
 
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', async () => {
+            it('Äîáàâëåíèå ïîñåòèòåëÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const get = await api.getDivision(cook.text);
 
@@ -6637,66 +6637,66 @@ const remove = () => {
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ', () => {
+        describe('Ïîïûòêà óäàëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîêè "Óäàëèòü"', async () => await dec.simple(el.button.handler,
+                ['Óäàëèòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¾"',
+            it('Îòîáðàæåíèå îøèáêè "Ïîäðàçäåëåíèå èñïîëüçóåòñÿ è íå ìîæåò áûòü óäàëåíî"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Óäàëåíèå ïîäðàçäåëåíèÿ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
@@ -6706,7 +6706,7 @@ const remove = () => {
 
     });
 
-    const remove = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ.', () => {
+    const remove = () => describe('Ïîäðàçäåëåíèå. Ïðîâåðêè óäàëåíèÿ.', () => {
         deleteLevelOne();
         deleteLevelTwo();
         deleteLevelOneFailed();
@@ -6726,84 +6726,84 @@ const remove = () => {
     }
 };
 
-//Ð¢ÐµÑÑ‚Ñ‹ Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÑÐ¸Ð¼ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÐµÐ¼ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"
+//Òåñòû ñ ïîëüçîâàòåëüñèì ïîäðàçäåëåíèåì "Àäìèíèñòðàòîðû ñèñòåìû"
 const serviceDivision = () => {
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ
-    const addDivision = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹". ' +
-        'ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÐµÐµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', () => {
+    // Ïîïûòêà äîáàâèòü äî÷åðíåå ïîäðàçäåëåíèå
+    const addDivision = () => describe('Ïîäðàçäåëåíèå "Àäìèíèñòðàòîðû ñèñòåìû". ' +
+        'Ïîïûòêà äîáàâèòü äî÷åðíåå ïîäðàçäåëåíèå', () => {
 
         const params = {
-            name1: 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+            name1: 'Àäìèíèñòðàòîðû ñèñòåìû',
             name2: 'addDivision',
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ', () => {
+        describe('Ïîïûòêà äîáàâëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name1, entry.max],
                 page.division));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîêè "Äîáàâèòü"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.add, entry.min],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                 async () => await dec.simple(el.modal.divisionAdd.init,
                     [entry.max],
                     el.modal.divisionAdd));
 
-            it('Ð’Ð²Ð¾Ð´ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', params.name2, entry.max],
+            it('Ââîä "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.input.sendKeys,
+                ['Ïîäðàçäåëåíèå', '', params.name2, entry.max],
                 el.input));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾ÐºÐ¸ "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîêè "Ñîõðàíèòü"', async () => await dec.simple(el.button.handler,
+                ['Ñîõðàíèòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Äîáàâèòü ïîäðàçäåëåíèå"',
                 async () => await dec.simple(el.modal.divisionAdd.initClose,
                     [entry.max],
                     el.modal.divisionAdd));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 2 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚ÑÑƒÑÑ‚Ð²Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.noElement,
+            it('Îòñóñòâèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.noElement,
                 [[params.name1, params.name2], entry.min],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                 [[params.name2], entry.max],
                 page.division));
         });
@@ -6811,132 +6811,132 @@ const serviceDivision = () => {
         deleteParams();
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ
-    const editDivision = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹". ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ', () => {
+    // Ïîïûòêà ðåäàêòèðîâàíèÿ
+    const editDivision = () => describe('Ïîäðàçäåëåíèå "Àäìèíèñòðàòîðû ñèñòåìû". Ïîïûòêà ðåäàêòèðîâàíèÿ', () => {
 
         const params = {
-            name: 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹'
+            name: 'Àäìèíèñòðàòîðû ñèñòåìû'
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ', () => {
+        describe('Ïîïûòêà ðåäàêòèðîâàíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('ÐšÐ½Ð¾Ð¿ÐºÐ° "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ" - Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð°', async () => await dec.simple(el.butIcBefore.disabled,
+            it('Êíîïêà "Ðåäàêòèðîâàòü" - çàáëîêèðîâàíà', async () => await dec.simple(el.butIcBefore.disabled,
                 [but.edit, entry.max],
                 el.butIcBefore));
 
-            it('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð½Ð°Ð¶Ð°Ñ‚Ð¸Ñ ÐºÐ½Ð¾ÐºÐ¸ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simpleFalse(el.butIcBefore.handler,
+            it('Ïîïûòêà íàæàòèÿ êíîêè "Ðåäàêòèðîâàòü"', async () => await dec.simpleFalse(el.butIcBefore.handler,
                 [but.edit, entry.min],
                 el.butIcBefore));
 
-            it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð¾ÐºÐ½Ð¾ "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ" Ð½Ðµ Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶Ð°ÐµÑ‚ÑÑ',
+            it('Ìîäàëüíîå îêíî "Ðåäàêòèðîâàíèå ïîäðàçäåëåíèÿ" íå îòîáðàæàåòñÿ',
                 async () => await dec.simpleFalse(el.modal.divisionEdit.init,
                     [entry.min],
                     el.modal.divisionEdit));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
     });
 
-    // ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ
-    const deleteDivision = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹". ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ', () => {
+    // Ïîïûòêà ðåäàêòèðîâàíèÿ
+    const deleteDivision = () => describe('Ïîäðàçäåëåíèå "Àäìèíèñòðàòîðû ñèñòåìû". Ïîïûòêà óäàëåíèÿ', () => {
 
         const params = {
-            name: 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹'
+            name: 'Àäìèíèñòðàòîðû ñèñòåìû'
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ', () => {
+        describe('Ïîïûòêà óäàëåíèÿ', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+            it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+            it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('ÐšÐ½Ð¾Ð¿ÐºÐ° "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ" - Ð·Ð°Ð±Ð»Ð¾ÐºÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð°', async () => await dec.simple(el.butIcBefore.disabled,
+            it('Êíîïêà "Óäàëèòü" - çàáëîêèðîâàíà', async () => await dec.simple(el.butIcBefore.disabled,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð½Ð°Ð¶Ð°Ñ‚Ð¸Ñ ÐºÐ½Ð¾ÐºÐ¸ "Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ"', async () => await dec.simpleFalse(el.butIcBefore.handler,
+            it('Ïîïûòêà íàæàòèÿ êíîêè "Óäàëèòü"', async () => await dec.simpleFalse(el.butIcBefore.handler,
                 [but.delete, entry.min],
                 el.butIcBefore));
 
-            it('ÐœÐ¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð¾ÐºÐ½Ð¾ "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ" Ð½Ðµ Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶Ð°ÐµÑ‚ÑÑ',
+            it('Ìîäàëüíîå îêíî "Óäàëåíèå ïîäðàçäåëåíèÿ" íå îòîáðàæàåòñÿ',
                 async () => await dec.simpleFalse(el.modalConfirm.divisionDelete.init,
                     [entry.min],
                     el.modalConfirm.divisionDelete));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæåíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
     });
 
-    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"
-    const serviceDivision = () => describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹".', () => {
+    // Ïðîâåðêè ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"
+    const serviceDivision = () => describe('Ïðîâåðêè ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû".', () => {
         addDivision();
         editDivision();
         deleteDivision();
@@ -6950,30 +6950,30 @@ const serviceDivision = () => {
     }
 };
 
-//Ð¢ÐµÑÑ‚Ñ‹ Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹
+//Òåñòû ïå÷àòè òàáëèöû
 const print = () => {
 
-    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ Ñ Ð´Ð²ÑƒÐ¼Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ 1 Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const printMinParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÐµÑ‡Ð°Ñ‚ÑŒ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ Ñ Ð´Ð²ÑƒÐ¼Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ ' +
-        '1 Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².', () => {
+    // Ïðîâåðêà ïå÷àòè ñ äâóìÿ ïîäðàçäåëåíèÿìè 1 è 2 óðîâíÿ ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const printMinParams = () => describe('Ïîäðàçäåëåíèå. Ïå÷àòü. Ïðîâåðêà ïå÷àòè ñ äâóìÿ ïîäðàçäåëåíèÿìè ' +
+        '1 è 2 óðîâíÿ ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.', () => {
 
         const params = {
             name1: 'printMinParamsName1',
             name2: 'printMinParamsName2'
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6987,162 +6987,162 @@ const print = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
             });
 
         });
 
-        describe('ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹', () => {
+        describe('Ïå÷àòü òàáëèöû', () => {
 
             bef();
             aft();
 
-            describe('ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('Îòêðûòèå ïå÷àòíîé ôîðìû', () => {
+                it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore))
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+                it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu))
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹"', async () => await dec.simple(el.menu.handler,
-                    ['ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹', entry.max],
+                it('Íàæàòèå ïàðàìåòðà "Ïå÷àòü òàáëèöû"', async () => await dec.simple(el.menu.handler,
+                    ['Ïå÷àòü òàáëèöû', entry.max],
                     el.menu))
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.init,
+                it('Îòîáðàæåíèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable))
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 1', () => {
+            describe('Ïðîâåðêà ñòðîêè 1', () => {
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ', '1', '1', entry.max],
+                it('Ïîëå "Íàèìåíîâàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Íàèìåíîâàíèå', '1', '1', entry.max],
                     params.name1,
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '1', '2', entry.max],
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', '1', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '1', '3', entry.max],
+                it('Ïîëå "Îïèñàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Îïèñàíèå', '1', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 2', () => {
+            describe('Ïðîâåðêà ñòðîêè 2', () => {
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ', '2', '1', entry.max],
+                it('Ïîëå "Íàèìåíîâàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Íàèìåíîâàíèå', '2', '1', entry.max],
                     params.name2,
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '2', '2', entry.max],
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', '2', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '2', '3', entry.max],
-                    '',
-                    el.modal.printTable));
-            });
-
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 3', () => {
-
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ', '3', '1', entry.max],
-                    'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
-                    el.modal.printTable));
-
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '3', '2', entry.max],
-                    '',
-                    el.modal.printTable));
-
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '3', '3', entry.max],
+                it('Ïîëå "Îïèñàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Îïèñàíèå', '2', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
+            describe('Ïðîâåðêà ñòðîêè 3', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('Ïîëå "Íàèìåíîâàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Íàèìåíîâàíèå', '3', '1', entry.max],
+                    'Àäìèíèñòðàòîðû ñèñòåìû',
+                    el.modal.printTable));
+
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', '3', '2', entry.max],
+                    '',
+                    el.modal.printTable));
+
+                it('Ïîëå "Îïèñàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Îïèñàíèå', '3', '3', entry.max],
+                    '',
+                    el.modal.printTable));
+            });
+
+            describe('Çàêðûòèå ïå÷àòíîé ôîðìû', () => {
+
+                it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.initClose,
+                it('Îòñóòñòâèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7152,9 +7152,9 @@ const print = () => {
         deleteParams();
     });
 
-    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ 5 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾, 5 Ñ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½" Ð¸ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"
-    const printMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÐµÑ‡Ð°Ñ‚ÑŒ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ 5 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ' +
-        'Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾ 5 Ñ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½" Ð¸ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', () => {
+    // Ïðîâåðêà ïå÷àòè 5 ïîäðàçäåëåíèé 1 óðîâíÿ ñ âëîæåííííûìè ïîäðàçäåëåíèÿìè ïðîãðåññèåé äî, 5 ñ çàïîëíåííûìè ïàðàìåòðàìè "Òåëåôîí" è "Îïèñàíèå"
+    const printMaxParams = () => describe('Ïîäðàçäåëåíèå. Ïå÷àòü. Ïðîâåðêà ïå÷àòè 5 ïîäðàçäåëåíèé 1 óðîâíÿ ' +
+        'ñ âëîæåííûìè ïîäðàçäåëåíèÿìè ïðîãðåññèåé äî 5 ñ çàïîëíåííûìè ïàðàìåòðàìè "Òåëåôîí" è "Îïèñàíèå"', () => {
 
         const params = {
             array: [...Array(5).keys()].map(item1 => {
@@ -7168,17 +7168,17 @@ const print = () => {
             }),
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
             params.array.forEach((item1) => {
                 item1.forEach((item2, index2) => {
 
-                    describe(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2.name}`, () => {
+                    describe(`Äîáàâëåíèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2.name}`, () => {
 
                         if(index2 === 0) {
-                            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+                            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                                 const obj = {
                                     parent_id: 0,
                                     name: item2.name,
@@ -7190,8 +7190,8 @@ const print = () => {
                         }
 
                         if(index2 > 0) {
-                            describe(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ`, () => {
-                                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+                            describe(`Äîáàâëåíèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ`, () => {
+                                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                                     const cook = await page.base.getCookie('token');
                                     const get = await api.getDivision(cook.text);
                                     const obj = {
@@ -7213,39 +7213,39 @@ const print = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 16 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 16 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                 [16, entry.max],
                 page.division));
 
             params.array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    it(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2.name}`, async () => {
+                    it(`Îòîáðàæåííèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2.name}`, async () => {
                         arr.push(item2.name);
                         await dec.simple(page.division.division,
                             [arr, entry.max],
                             page.division)
                     });
-                    it(`ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ -  ${item2.name}`,
+                    it(`Íàæàòèå ïî ïîäðàçäåëåíèþ ${index2 + 1} óðîâíÿ -  ${item2.name}`,
                         async () => await dec.simple(page.division.handler,
                             [arr, entry.max],
                             page.division));
-                    it(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ -  ${item2.name} Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾`,
+                    it(`Ïîäðàçäåëåíèå ${index2 + 1} óðîâíÿ -  ${item2.name} âûäåëåíî`,
                         async () => await dec.simple(page.division.selected,
                             [item2.name, entry.max],
                             page.division));
-                    it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"`,
+                    it(`Ïðîâåðêà "Òåëåôîí"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                            ['Òåëåôîí', '', entry.max],
                             item2.phone,
                             el.input));
-                    it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"`,
+                    it(`Ïðîâåðêà "Îïèñàíèå"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                            ['Îïèñàíèå', '', entry.max],
                             item2.description,
                             el.input));
                 });
@@ -7253,44 +7253,44 @@ const print = () => {
 
         });
 
-        describe('ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹', () => {
+        describe('Ïå÷àòü òàáëèöû', () => {
 
             bef();
             aft();
 
-            describe('ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('Îòêðûòèå ïå÷àòíîé ôîðìû', () => {
+                it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore))
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+                it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu))
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹"', async () => await dec.simple(el.menu.handler,
-                    ['ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñ‹', entry.max],
+                it('Íàæàòèå ïàðàìåòðà "Ïå÷àòü òàáëèöû"', async () => await dec.simple(el.menu.handler,
+                    ['Ïå÷àòü òàáëèöû', entry.max],
                     el.menu))
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.init,
+                it('Îòîáðàæåíèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable))
             });
 
             params.array.flat().forEach((item, index) => {
-                describe(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ ${index + 1}`, () => {
-                    it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ', index + 1, '1', entry.max],
+                describe(`Ïðîâåðêà ñòðîêè ${index + 1}`, () => {
+                    it('Ïîëå "Íàèìåíîâàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                        ['Íàèìåíîâàíèå', index + 1, '1', entry.max],
                         item.name,
                         el.modal.printTable));
 
-                    it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', index + 1, '2', entry.max],
+                    it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                        ['Òåëåôîí', index + 1, '2', entry.max],
                         item.phone,
                         el.modal.printTable));
 
-                    it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => {
+                    it('Ïîëå "Îïèñàíèå"', async () => {
                         await dec.simpleText(el.modal.printTable.cellGetText,
-                            ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', index + 1, '3', entry.max],
+                            ['Îïèñàíèå', index + 1, '3', entry.max],
                             item.description,
                             el.modal.printTable);
                     });
@@ -7298,33 +7298,33 @@ const print = () => {
                 });
             });
 
-            describe(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 16`, () => {
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ', 16, '1', entry.max],
-                    'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+            describe(`Ïðîâåðêà ñòðîêè 16`, () => {
+                it('Ïîëå "Íàèìåíîâàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Íàèìåíîâàíèå', 16, '1', entry.max],
+                    'Àäìèíèñòðàòîðû ñèñòåìû',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', 16, '2', entry.max],
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', 16, '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => {
+                it('Ïîëå "Îïèñàíèå"', async () => {
                     await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', 16, '3', entry.max],
+                        ['Îïèñàíèå', 16, '3', entry.max],
                         '',
                         el.modal.printTable);
                 });
 
             });
 
-            describe('Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
+            describe('Çàêðûòèå ïå÷àòíîé ôîðìû', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.initClose,
+                it('Îòñóòñòâèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7334,8 +7334,8 @@ const print = () => {
         deleteParams();
     });
 
-    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð¿ÐµÑ‡Ð°Ñ‚Ð¸
-    const print = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÐµÑ‡Ð°Ñ‚ÑŒ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð¿ÐµÑ‡Ð°Ñ‚Ð¸.', () => {
+    // Ïðîâåðêè ïå÷àòè
+    const print = () => describe('Ïîäðàçäåëåíèå. Ïå÷àòü. Ïðîâåðêè ïå÷àòè.', () => {
         printMinParams();
         printMaxParams();
     });
@@ -7348,29 +7348,29 @@ const print = () => {
 
 };
 
-//Ð¢ÐµÑÑ‚Ñ‹ Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ Ð´ÐµÑ€ÐµÐ²Ð°
+//Òåñòû ïå÷àòè äåðåâà
 const printTree = () => {
 
-    const printTreeMinParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ Ñ Ð´Ð²ÑƒÐ¼Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ ' +
-        '1 Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².', () => {
+    const printTreeMinParams = () => describe('Ïîäðàçäåëåíèå. Ïå÷àòü äåðåâà. Ïðîâåðêà ïå÷àòè ñ äâóìÿ ïîäðàçäåëåíèÿìè ' +
+        '1 è 2 óðîâíÿ ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.', () => {
         const params = {
             name1: 'printTreeMinParamsName1',
             name2: 'printTreeMinParamsName2',
             space: '    ',
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -7384,161 +7384,161 @@ const printTree = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæåíèå 3 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 1 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async ()=> await dec.simple(page.division.division,
+                it('Îòîáðàæåíèå äîáàâëåííîãî ïîäðàçäåëåíèÿ 2 óðîâíÿ', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
             });
 
         });
 
-        describe('ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°', () => {
+        describe('Ïå÷àòü äåðåâà', () => {
 
             bef();
             aft();
 
-            describe('ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('Îòêðûòèå ïå÷àòíîé ôîðìû', () => {
+                it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+                it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°"', async () => await dec.simple(el.menu.handler,
-                    ['ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°', entry.max],
+                it('Íàæàòèå ïàðàìåòðà "Ïå÷àòü äåðåâà"', async () => await dec.simple(el.menu.handler,
+                    ['Ïå÷àòü äåðåâà', entry.max],
                     el.menu));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.init,
+                it('Îòîáðàæåíèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 1', () => {
+            describe('Ïðîâåðêà ñòðîêè 1', () => {
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ', '1', '1', entry.max],
+                it('Ïîëå "Íàçâàíèå"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['Íàçâàíèå', '1', '1', entry.max],
                     `${params.name1}`,
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '1', '2', entry.max],
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', '1', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '1', '3', entry.max],
+                it('Ïîëå "Îïèñàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Îïèñàíèå', '1', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 2', () => {
+            describe('Ïðîâåðêà ñòðîêè 2', () => {
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ', '2', '1', entry.max],
+                it('Ïîëå "Íàçâàíèå"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['Íàçâàíèå', '2', '1', entry.max],
                     params.space + params.name2,
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '2', '2', entry.max],
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', '2', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '2', '3', entry.max],
-                    '',
-                    el.modal.printTable));
-            });
-
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 3', () => {
-
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ', '3', '1', entry.max],
-                    'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
-                    el.modal.printTable));
-
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '3', '2', entry.max],
-                    '',
-                    el.modal.printTable));
-
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '3', '3', entry.max],
+                it('Ïîëå "Îïèñàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Îïèñàíèå', '2', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
+            describe('Ïðîâåðêà ñòðîêè 3', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('Ïîëå "Íàçâàíèå"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['Íàçâàíèå', '3', '1', entry.max],
+                    'Àäìèíèñòðàòîðû ñèñòåìû',
+                    el.modal.printTable));
+
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', '3', '2', entry.max],
+                    '',
+                    el.modal.printTable));
+
+                it('Ïîëå "Îïèñàíèå"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Îïèñàíèå', '3', '3', entry.max],
+                    '',
+                    el.modal.printTable));
+            });
+
+            describe('Çàêðûòèå ïå÷àòíîé ôîðìû', () => {
+
+                it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.initClose,
+                it('Îòñóòñòâèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7549,9 +7549,9 @@ const printTree = () => {
 
     });
 
-    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ 5 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾, 5 Ñ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½" Ð¸ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"
-    const printTreeMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿ÐµÑ‡Ð°Ñ‚Ð¸ 5 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ ' +
-        '1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾ 5 Ñ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½" Ð¸ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"',
+    // Ïðîâåðêà ïå÷àòè 5 ïîäðàçäåëåíèé 1 óðîâíÿ ñ âëîæåííííûìè ïîäðàçäåëåíèÿìè ïðîãðåññèåé äî, 5 ñ çàïîëíåííûìè ïàðàìåòðàìè "Òåëåôîí" è "Îïèñàíèå"
+    const printTreeMaxParams = () => describe('Ïîäðàçäåëåíèå. Ïå÷àòü äåðåâà. Ïðîâåðêà ïå÷àòè 5 ïîäðàçäåëåíèé ' +
+        '1 óðîâíÿ ñ âëîæåííííûìè ïîäðàçäåëåíèÿìè ïðîãðåññèåé äî 5 ñ çàïîëíåííûìè ïàðàìåòðàìè "Òåëåôîí" è "Îïèñàíèå"',
         () => {
 
         const params = {
@@ -7568,17 +7568,17 @@ const printTree = () => {
             flag: 1
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
             params.array.forEach((item1) => {
                 item1.forEach((item2, index2) => {
 
-                    describe(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2.name}`, () => {
+                    describe(`Äîáàâëåíèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2.name}`, () => {
 
                         if(index2 === 0) {
-                            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+                            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                                 const obj = {
                                     parent_id: 0,
                                     name: item2.name,
@@ -7590,8 +7590,8 @@ const printTree = () => {
                         }
 
                         if(index2 > 0) {
-                            describe(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ`, () => {
-                                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+                            describe(`Äîáàâëåíèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ`, () => {
+                                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                                     const cook = await page.base.getCookie('token');
                                     const get = await api.getDivision(cook.text);
                                     const obj = {
@@ -7613,39 +7613,39 @@ const printTree = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 16 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 16 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                 [16, entry.max],
                 page.division));
 
             params.array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    it(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2.name}`, async () => {
+                    it(`Îòîáðàæåííèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2.name}`, async () => {
                         arr.push(item2.name);
                         await dec.simple(page.division.division,
                             [arr, entry.max],
                             page.division)
                     });
-                    it(`ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ -  ${item2.name}`,
+                    it(`Íàæàòèå ïî ïîäðàçäåëåíèþ ${index2 + 1} óðîâíÿ -  ${item2.name}`,
                         async () => await dec.simple(page.division.handler,
                             [arr, entry.max],
                             page.division));
-                    it(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ -  ${item2.name} Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾`,
+                    it(`Ïîäðàçäåëåíèå ${index2 + 1} óðîâíÿ -  ${item2.name} âûäåëåíî`,
                         async () => await dec.simple(page.division.selected,
                             [item2.name, entry.max],
                             page.division));
-                    it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"`,
+                    it(`Ïðîâåðêà "Òåëåôîí"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                            ['Òåëåôîí', '', entry.max],
                             item2.phone,
                             el.input));
-                    it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"`,
+                    it(`Ïðîâåðêà "Îïèñàíèå"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                            ['Îïèñàíèå', '', entry.max],
                             item2.description,
                             el.input));
                 });
@@ -7653,48 +7653,48 @@ const printTree = () => {
 
         });
 
-        describe('ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°', () => {
+        describe('Ïå÷àòü äåðåâà', () => {
 
             bef();
             aft();
 
-            describe('ÐžÑ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('Îòêðûòèå ïå÷àòíîé ôîðìû', () => {
+                it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore))
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+                it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu))
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°"', async () => await dec.simple(el.menu.handler,
-                    ['ÐŸÐµÑ‡Ð°Ñ‚ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°', entry.max],
+                it('Íàæàòèå ïàðàìåòðà "Ïå÷àòü äåðåâà"', async () => await dec.simple(el.menu.handler,
+                    ['Ïå÷àòü äåðåâà', entry.max],
                     el.menu));
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.init,
+                it('Îòîáðàæåíèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable));
             });
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº', () => {
+            describe('Ïðîâåðêà ñòðîê', () => {
                 params.array.forEach((item1) => {
                     item1.forEach((item2, index2) => {
                         const str = params.array.flat().indexOf(item2);
-                        describe(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ ${str + 1}`, () => {
-                            it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ"', async () => {
+                        describe(`Ïðîâåðêà ñòðîêè ${str + 1}`, () => {
+                            it('Ïîëå "Íàçâàíèå"', async () => {
                                 await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                                    ['ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ', params.flag, '1', entry.max],
+                                    ['Íàçâàíèå', params.flag, '1', entry.max],
                                     [...Array(index2).keys()].map(() => params.space).join('') + item2.name,
                                     el.modal.printTable)
                             });
 
-                            it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', params.flag, '2', entry.max],
+                            it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                                ['Òåëåôîí', params.flag, '2', entry.max],
                                 item2.phone,
                                 el.modal.printTable));
 
-                            it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => {
+                            it('Ïîëå "Îïèñàíèå"', async () => {
                                 await dec.simpleText(el.modal.printTable.cellGetText,
-                                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', params.flag, '3', entry.max],
+                                    ['Îïèñàíèå', params.flag, '3', entry.max],
                                     item2.description,
                                     el.modal.printTable);
                                 params.flag += 1;
@@ -7708,33 +7708,33 @@ const printTree = () => {
 
 
 
-            describe(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÐ¸ 16`, () => {
-                it('ÐŸÐ¾Ð»Ðµ "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ', 16, '1', entry.max],
-                    'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+            describe(`Ïðîâåðêà ñòðîêè 16`, () => {
+                it('Ïîëå "Íàçâàíèå"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['Íàçâàíèå', 16, '1', entry.max],
+                    'Àäìèíèñòðàòîðû ñèñòåìû',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', 16, '2', entry.max],
+                it('Ïîëå "Òåëåôîí"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['Òåëåôîí', 16, '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('ÐŸÐ¾Ð»Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => {
+                it('Ïîëå "Îïèñàíèå"', async () => {
                     await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', 16, '3', entry.max],
+                        ['Îïèñàíèå', 16, '3', entry.max],
                         '',
                         el.modal.printTable);
                 });
 
             });
 
-            describe('Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', () => {
+            describe('Çàêðûòèå ïå÷àòíîé ôîðìû', () => {
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð½Ð¾Ð¹ Ñ„Ð¾Ñ€Ð¼Ñ‹', async () => await dec.simple(el.modal.printTable.initClose,
+                it('Îòñóòñòâèå ïå÷àòíîé ôîðìû', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7757,10 +7757,10 @@ const printTree = () => {
 
 };
 
-//Ð¢ÐµÑÑ‚Ñ‹ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°
+//Òåñòû ýêñïîðòà
 const exportFile = (agr, str, format) => {
 
-    const apiMax = () => describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+    const apiMax = () => describe('API - äîáàâëåíèå', () => {
         const params = {
             division1: 'apiMaxdivision1',
             division2: [...Array(2).keys()].map(item => 'apiMaxDivision2' + (item + 1)),
@@ -7783,7 +7783,7 @@ const exportFile = (agr, str, format) => {
             phone: 'apiMaxPhone'
         };
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('Äîáàâëåíèå', () => {
             bef();
             aft();
 
@@ -7792,7 +7792,7 @@ const exportFile = (agr, str, format) => {
             addSchedule(params.schedule);
             addStaff(...Object.values(params.fio));
 
-            it(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - ${params.division1}`, async () => {
+            it(`Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ - ${params.division1}`, async () => {
                 const cook = await page.base.getCookie('token');
                 const obj = {
                     "parent_id": 0,
@@ -7804,7 +7804,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division2.forEach((item, index) => {
-                it(`Ð”Ð¾Ð±Ð°Ð²Ð»Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item}`, async () => {
+                it(`Äîáàâëíèå ïîäðàçäåëåíèÿ ${index + 1} óðîâíÿ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     console.log('id: ', getDivision.text[getDivision.text.length - 1]);
@@ -7823,7 +7823,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division3.forEach((item, index) => {
-                it(`Ð”Ð¾Ð±Ð°Ð²Ð»Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item}`, async () => {
+                it(`Äîáàâëíèå ïîäðàçäåëåíèÿ ${index + 1} óðîâíÿ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     console.log('id: ', getDivision.text[getDivision.text.length - 1]);
@@ -7843,7 +7843,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division4.forEach((item, index) => {
-                it(`Ð”Ð¾Ð±Ð°Ð²Ð»Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item}`, async () => {
+                it(`Äîáàâëíèå ïîäðàçäåëåíèÿ ${index + 1} óðîâíÿ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     const getTemplate = await api.getAccessTemplate(cook.text);
@@ -7865,7 +7865,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division5.forEach((item, index) => {
-                it(`Ð”Ð¾Ð±Ð°Ð²Ð»Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item}`, async () => {
+                it(`Äîáàâëíèå ïîäðàçäåëåíèÿ ${index + 1} óðîâíÿ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     const getTemplate = await api.getAccessTemplate(cook.text);
@@ -7886,7 +7886,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division6.forEach((item, index) => {
-                it(`Ð”Ð¾Ð±Ð°Ð²Ð»Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item}`, async () => {
+                it(`Äîáàâëíèå ïîäðàçäåëåíèÿ ${index + 1} óðîâíÿ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     const getTemplate = await api.getAccessTemplate(cook.text);
@@ -7908,7 +7908,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division7.forEach((item, index) => {
-                it(`Ð”Ð¾Ð±Ð°Ð²Ð»Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item}`, async () => {
+                it(`Äîáàâëíèå ïîäðàçäåëåíèÿ ${index + 1} óðîâíÿ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getStaff = await api.getStaff(cook.text);
                     const getDivision = await api.getDivision(cook.text);
@@ -7932,15 +7932,15 @@ const exportFile = (agr, str, format) => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 29 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 29 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                 [29, entry.max],
                 page.division));
 
-            it(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - ${params.division1}`, async () => {
+            it(`Îòîáðàæåííèå ïîäðàçäåëåíèÿ 1 óðîâíÿ - ${params.division1}`, async () => {
                 await dec.simple(page.division.division,
                     [[params.division1], entry.max],
                     page.division)
@@ -7956,7 +7956,7 @@ const exportFile = (agr, str, format) => {
             array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    it(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2}`, async () => {
+                    it(`Îòîáðàæåííèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2}`, async () => {
                         arr.push(item2);
                         await dec.simple(page.division.division,
                             [arr, entry.max],
@@ -7969,17 +7969,17 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    const apiMin = () => describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+    const apiMin = () => describe('API - äîáàâëåíèå', () => {
         const params = {
             division1: 'apiMinDivision1',
             division2:  'apiMinDivision2',
         };
 
-        describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('Äîáàâëåíèå', () => {
             bef();
             aft();
 
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 1 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const obj = {
                     "parent_id": 0,
@@ -7989,7 +7989,7 @@ const exportFile = (agr, str, format) => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => {
+            it('Äîáàâëåíèå ïîäðàçäåëåíè 2 óðîâíÿ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getDivision = await api.getDivision(cook.text);
 
@@ -8003,43 +8003,43 @@ const exportFile = (agr, str, format) => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 1', async () => await dec.simple(page.division.division,
                 [[params.division1], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 2', async () => await dec.simple(page.division.division,
                 [[params.division2], entry.max],
                 page.division));
         });
 
     });
 
-    // Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ¸ÑÑ‚ÐµÐ¼Ð½Ð¾Ðµ Ð¸Ð¼Ñ. Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº.
-    const systemNameNoHead = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. ${format}. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ¸ÑÑ‚ÐµÐ¼Ð½Ð¾Ðµ Ð¸Ð¼Ñ. 
-        Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº. ${str}.`, () => {
+    // Èìÿ âûõîäíîãî ôàéëà — ñèñòåìíîå èìÿ. Çàãîëîâîê — Íå äîáàâëÿòü çàãîëîâîê.
+    const systemNameNoHead = () => describe(`Ïîäðàçäåëåíèå. Ýêñïîðò. ${format}. Èìÿ âûõîäíîãî ôàéëà — ñèñòåìíîå èìÿ. 
+        Çàãîëîâîê — Íå äîáàâëÿòü çàãîëîâîê. ${str}.`, () => {
 
         const params = {
             name: format === 'XLSX' ? 'division.xlsx' : 'division.csv',
             file1: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxdivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8048,7 +8048,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8057,7 +8057,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21/apiMaxDivision22',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8066,7 +8066,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8075,7 +8075,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8084,7 +8084,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8093,7 +8093,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8102,7 +8102,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8111,7 +8111,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8120,7 +8120,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8129,7 +8129,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8138,7 +8138,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8147,7 +8147,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8156,7 +8156,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8165,7 +8165,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8174,7 +8174,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8183,7 +8183,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8192,7 +8192,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8201,7 +8201,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8210,7 +8210,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8219,7 +8219,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8228,7 +8228,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8237,7 +8237,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8246,7 +8246,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8255,7 +8255,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8264,7 +8264,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8273,7 +8273,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8282,7 +8282,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8291,7 +8291,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8302,16 +8302,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8320,7 +8320,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1/apiMinDivision2',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8329,7 +8329,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8340,273 +8340,273 @@ const exportFile = (agr, str, format) => {
             ],
             file3: [
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxdivision1"
+                    "Ïîäðàçäåëåíèå": "apiMaxdivision1"
                 },
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision21",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision21",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision21/apiMaxDivision22",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision21/apiMaxDivision22",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision31",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision31",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision31/apiMaxDivision32",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision31/apiMaxDivision32",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41/apiMaxDivision42",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41/apiMaxDivision42",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1",
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1",
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"
+                    "Ïîäðàçäåëåíèå": "Àäìèíèñòðàòîðû ñèñòåìû"
                 }
             ],
             file4: [
-                { 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ': 'apiMinDivision1' },
-                { 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ': 'apiMinDivision1/apiMinDivision2' },
-                { 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹' }
+                { 'Ïîäðàçäåëåíèå': 'apiMinDivision1' },
+                { 'Ïîäðàçäåëåíèå': 'apiMinDivision1/apiMinDivision2' },
+                { 'Ïîäðàçäåëåíèå': 'Àäìèíèñòðàòîðû ñèñòåìû' }
             ]
         };
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', () => {
+        describe('Ýêñïîðò', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.menu.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Ýêñïîðò"', async () => await dec.simple(el.menu.handler,
+                ['Ýêñïîðò', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"', async () => await dec.simple(el.modal.exportData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
             switch (format) {
                 case 'XLSX':
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+                    it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                        ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', entry.max],
+                    it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                        ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Íå äîáàâëÿòü çàãîëîâîê', entry.max],
                         el.select));
                     break;
                 case 'CSV':
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'CSV', entry.max],
+                    it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                        ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'CSV', entry.max],
                         el.select));
                     break;
                 default:
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+                    it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                        ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', entry.max],
+                    it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                        ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Íå äîáàâëÿòü çàãîëîâîê', entry.max],
                         el.select));
                     break;
             }
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîïêè "Ýêñïîðòèðîâàòü"', async () => await dec.simple(el.button.handler,
+                ['Ýêñïîðòèðîâàòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð°Ð¹Ð»Ð° ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', () => {
+        describe('Ïðîâåðêà ôàéëà ýêñïîðòà', () => {
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.display,
+            it('Îòîáðàæåíèå ôàéëà', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
             switch (format) {
                 case 'XLSX':
-                    it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+                    it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         const file = agr === 'min' ? params.file2 : params.file1;
                         await dec.exportFile(file, jsonFile);
                     });
                     break;
                 case 'CSV':
-                    it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+                    it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         const file = agr === 'min' ? params.file4 : params.file3;
                         await dec.exportFile(file, jsonFile);
                     });
                     break;
                 default:
-                    it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+                    it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         const file = agr === 'min' ? params.file2 : params.file1;
                         await dec.exportFile(file, jsonFile);
@@ -8615,7 +8615,7 @@ const exportFile = (agr, str, format) => {
 
             }
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.delete,
+            it('Óäàëåíèå ôàéëà', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -8624,24 +8624,24 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ¸ÑÑ‚ÐµÐ¼Ð½Ð¾Ðµ Ð¸Ð¼Ñ. Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ.
-    const systemNameAddHead = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. ${format}. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ¸ÑÑ‚ÐµÐ¼Ð½Ð¾Ðµ Ð¸Ð¼Ñ. '
-        'Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ. ${str}.`, () => {
+    // Èìÿ âûõîäíîãî ôàéëà — ñèñòåìíîå èìÿ. Çàãîëîâîê — Äîáàâèòü çàãîëîâîê ê ôàéëó.
+    const systemNameAddHead = () => describe(`Ïîäðàçäåëåíèå. Ýêñïîðò. ${format}. Èìÿ âûõîäíîãî ôàéëà — ñèñòåìíîå èìÿ. '
+        'Çàãîëîâîê — Äîáàâèòü çàãîëîâîê ê ôàéëó. ${str}.`, () => {
 
         const params = {
             name: 'division.xlsx',
             file1: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxdivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8650,7 +8650,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8659,7 +8659,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21/apiMaxDivision22',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8668,7 +8668,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8677,7 +8677,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8686,7 +8686,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8695,7 +8695,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8704,7 +8704,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8713,7 +8713,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8722,7 +8722,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8731,7 +8731,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8740,7 +8740,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8749,7 +8749,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8758,7 +8758,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8767,7 +8767,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8776,7 +8776,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8785,7 +8785,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8794,7 +8794,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8803,7 +8803,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8812,7 +8812,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8821,7 +8821,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8830,7 +8830,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8839,7 +8839,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8848,7 +8848,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8857,7 +8857,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8866,7 +8866,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8875,7 +8875,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8884,7 +8884,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8893,7 +8893,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8904,16 +8904,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8922,7 +8922,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1/apiMinDivision2',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8931,7 +8931,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8944,59 +8944,59 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', () => {
+        describe('Ýêñïîðò', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.menu.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Ýêñïîðò"', async () => await dec.simple(el.menu.handler,
+                ['Ýêñïîðò', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"', async () => await dec.simple(el.modal.exportData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+            it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', entry.max],
+            it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîïêè "Ýêñïîðòèðîâàòü"', async () => await dec.simple(el.button.handler,
+                ['Ýêñïîðòèðîâàòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð°Ð¹Ð»Ð° ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', () => {
+        describe('Ïðîâåðêà ôàéëà ýêñïîðòà', () => {
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.display,
+            it('Îòîáðàæåíèå ôàéëà', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+            it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.delete,
+            it('Óäàëåíèå ôàéëà', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -9005,22 +9005,22 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ¸ÑÑ‚ÐµÐ¼Ð½Ð¾Ðµ Ð¸Ð¼Ñ. Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº.
-    const systemNameItHead = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. ${format}. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ¸ÑÑ‚ÐµÐ¼Ð½Ð¾Ðµ Ð¸Ð¼Ñ. 
-        Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº. ${str}.`, () => {
+    // Èìÿ âûõîäíîãî ôàéëà — ñèñòåìíîå èìÿ. Çàãîëîâîê — Äîáàâèòü ñâîé çàãîëîâîê.
+    const systemNameItHead = () => describe(`Ïîäðàçäåëåíèå. Ýêñïîðò. ${format}. Èìÿ âûõîäíîãî ôàéëà — ñèñòåìíîå èìÿ. 
+        Çàãîëîâîê — Äîáàâèòü ñâîé çàãîëîâîê. ${str}.`, () => {
 
         const params = {
             name: 'division.xlsx',
             head: 'systemNameItHead',
             file1: [
                 {
-                    systemNameItHead: 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    systemNameItHead: 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
                     systemNameItHead: 'apiMaxdivision1',
@@ -9275,7 +9275,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    systemNameItHead: 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    systemNameItHead: 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9286,13 +9286,13 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    systemNameItHead: 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    systemNameItHead: 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
                     systemNameItHead: 'apiMinDivision1',
@@ -9313,7 +9313,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    systemNameItHead: 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    systemNameItHead: 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9326,63 +9326,63 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', () => {
+        describe('Ýêñïîðò', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.menu.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Ýêñïîðò"', async () => await dec.simple(el.menu.handler,
+                ['Ýêñïîðò', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"', async () => await dec.simple(el.modal.exportData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+            it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', entry.max],
+            it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Äîáàâèòü ñâîé çàãîëîâîê', entry.max],
                 el.select));
 
-            it('Ð’Ð²Ð¾Ð´ "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                ['ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ', '', params.head, entry.max],
+            it('Ââîä "Íàèìåíîâàíèå"', async () => await dec.simple(el.input.sendKeys,
+                ['Íàèìåíîâàíèå', '', params.head, entry.max],
                 el.input));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîïêè "Ýêñïîðòèðîâàòü"', async () => await dec.simple(el.button.handler,
+                ['Ýêñïîðòèðîâàòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð°Ð¹Ð»Ð° ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', () => {
+        describe('Ïðîâåðêà ôàéëà ýêñïîðòà', () => {
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.display,
+            it('Îòîáðàæåíèå ôàéëà', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+            it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.delete,
+            it('Óäàëåíèå ôàéëà', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -9391,24 +9391,24 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ²Ð¾Ðµ Ð¸Ð¼Ñ. Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº.
-    const nameNoHead = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. ${format}. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ²Ð¾Ðµ Ð¸Ð¼Ñ. 
-        Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº. ${str}.`, () => {
+    // Èìÿ âûõîäíîãî ôàéëà — ñâîå èìÿ. Çàãîëîâîê — Íå äîáàâëÿòü çàãîëîâîê.
+    const nameNoHead = () => describe(`Ïîäðàçäåëåíèå. Ýêñïîðò. ${format}. Èìÿ âûõîäíîãî ôàéëà — ñâîå èìÿ. 
+        Çàãîëîâîê — Íå äîáàâëÿòü çàãîëîâîê. ${str}.`, () => {
 
         const params = {
             name: format === 'XLSX' ? 'nameNoHead.xlsx' : 'nameNoHead.csv',
             file1: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxdivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9417,7 +9417,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9426,7 +9426,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21/apiMaxDivision22',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9435,7 +9435,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9444,7 +9444,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9453,7 +9453,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9462,7 +9462,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9471,7 +9471,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9480,7 +9480,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9489,7 +9489,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9498,7 +9498,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9507,7 +9507,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9516,7 +9516,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9525,7 +9525,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9534,7 +9534,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9543,7 +9543,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9552,7 +9552,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9561,7 +9561,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9570,7 +9570,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9579,7 +9579,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9588,7 +9588,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9597,7 +9597,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9606,7 +9606,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9615,7 +9615,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9624,7 +9624,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9633,7 +9633,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9642,7 +9642,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9651,7 +9651,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9660,7 +9660,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9671,16 +9671,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9689,7 +9689,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1/apiMinDivision2',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9698,7 +9698,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9709,257 +9709,257 @@ const exportFile = (agr, str, format) => {
             ],
             file3: [
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxdivision1"
+                    "Ïîäðàçäåëåíèå": "apiMaxdivision1"
                 },
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision21",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision21",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision21/apiMaxDivision22",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision21/apiMaxDivision22",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision31",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision31",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision31/apiMaxDivision32",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision31/apiMaxDivision32",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41/apiMaxDivision42",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41/apiMaxDivision42",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
+                    "Òåëåôîí": "apiMaxPhone"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1",
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1",
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹": "apiMaxSchedule",
-                    "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ": "apiMaxDescription",
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
-                    "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹": "staff 1 ",
-                    "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½": "apiMaxPhone",
-                    "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹": "apiMaxTemplate1"
+                    "Ãðàôèê ðàáîòû": "apiMaxSchedule",
+                    "Îïèñàíèå": "apiMaxDescription",
+                    "Ïîäðàçäåëåíèå": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
+                    "Ñîïðîâîæäàþùèé": "staff 1 ",
+                    "Òåëåôîí": "apiMaxPhone",
+                    "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé": "apiMaxTemplate1"
                 },
                 {
-                    "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ": "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"
+                    "Ïîäðàçäåëåíèå": "Àäìèíèñòðàòîðû ñèñòåìû"
                 }
             ],
             file4: [
-                { 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ': 'apiMinDivision1' },
-                { 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ': 'apiMinDivision1/apiMinDivision2' },
-                { 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹' }
+                { 'Ïîäðàçäåëåíèå': 'apiMinDivision1' },
+                { 'Ïîäðàçäåëåíèå': 'apiMinDivision1/apiMinDivision2' },
+                { 'Ïîäðàçäåëåíèå': 'Àäìèíèñòðàòîðû ñèñòåìû' }
             ],
             fileName: 'nameNoHead'
         };
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', () => {
+        describe('Ýêñïîðò', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.menu.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Ýêñïîðò"', async () => await dec.simple(el.menu.handler,
+                ['Ýêñïîðò', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"', async () => await dec.simple(el.modal.exportData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
             switch (format) {
                 case 'XLSX':
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+                    it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                        ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Ð’Ð²Ð¾Ð´ "Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°"', async () => await dec.simple(el.input.sendKeys,
-                        ['Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', 'ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ÑÑ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¾Ð¹', params.fileName, entry.max],
+                    it('Ââîä "Èìÿ âûõîäíîãî ôàéëà"', async () => await dec.simple(el.input.sendKeys,
+                        ['Èìÿ âûõîäíîãî ôàéëà', 'Îïðåäåëÿåòñÿ ñèñòåìîé', params.fileName, entry.max],
                         el.input));
 
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', entry.max],
+                    it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                        ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Íå äîáàâëÿòü çàãîëîâîê', entry.max],
                         el.select));
                     break;
                 case 'CSV':
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'CSV', entry.max],
+                    it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                        ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'CSV', entry.max],
                         el.select));
 
-                    it('Ð’Ð²Ð¾Ð´ "Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°"', async () => await dec.simple(el.input.sendKeys,
-                        ['Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', 'ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ÑÑ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¾Ð¹', params.fileName, entry.max],
+                    it('Ââîä "Èìÿ âûõîäíîãî ôàéëà"', async () => await dec.simple(el.input.sendKeys,
+                        ['Èìÿ âûõîäíîãî ôàéëà', 'Îïðåäåëÿåòñÿ ñèñòåìîé', params.fileName, entry.max],
                         el.input));
                     break;
                 default:
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+                    it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                        ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Ð’Ð²Ð¾Ð´ "Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°"', async () => await dec.simple(el.input.sendKeys,
-                        ['Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', 'ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ÑÑ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¾Ð¹', params.fileName, entry.max],
+                    it('Ââîä "Èìÿ âûõîäíîãî ôàéëà"', async () => await dec.simple(el.input.sendKeys,
+                        ['Èìÿ âûõîäíîãî ôàéëà', 'Îïðåäåëÿåòñÿ ñèñòåìîé', params.fileName, entry.max],
                         el.input));
 
-                    it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                        ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'ÐÐµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', entry.max],
+                    it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                        ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Íå äîáàâëÿòü çàãîëîâîê', entry.max],
                         el.select));
                     break;
             }
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîïêè "Ýêñïîðòèðîâàòü"', async () => await dec.simple(el.button.handler,
+                ['Ýêñïîðòèðîâàòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
@@ -9967,15 +9967,15 @@ const exportFile = (agr, str, format) => {
 
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð°Ð¹Ð»Ð° ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', () => {
+        describe('Ïðîâåðêà ôàéëà ýêñïîðòà', () => {
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.display,
+            it('Îòîáðàæåíèå ôàéëà', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
             switch (format) {
                 case 'XLSX':
-                    it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+                    it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         console.log('jsonFile', jsonFile)
                         const file = agr === 'min' ? params.file2 : params.file1;
@@ -9983,7 +9983,7 @@ const exportFile = (agr, str, format) => {
                     });
                     break;
                 case 'CSV':
-                    it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+                    it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         console.log('jsonFile', jsonFile)
                         const file = agr === 'min' ? params.file4 : params.file3;
@@ -9991,7 +9991,7 @@ const exportFile = (agr, str, format) => {
                     });
                     break;
                 default:
-                    it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+                    it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         console.log('jsonFile', jsonFile)
                         const file = agr === 'min' ? params.file2 : params.file1;
@@ -10000,7 +10000,7 @@ const exportFile = (agr, str, format) => {
                     break;
             }
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.delete,
+            it('Óäàëåíèå ôàéëà', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -10009,24 +10009,24 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ²Ð¾Ðµ Ð¸Ð¼Ñ.Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ.
-    const nameAddHead = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. ${format}. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ²Ð¾Ðµ Ð¸Ð¼Ñ. 
-        Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ. ${str}.`, () => {
+    // Ýêñïîðò. Èìÿ âûõîäíîãî ôàéëà — ñâîå èìÿ.Çàãîëîâîê — Äîáàâèòü çàãîëîâîê ê ôàéëó.
+    const nameAddHead = () => describe(`Ïîäðàçäåëåíèå. Ýêñïîðò. ${format}. Èìÿ âûõîäíîãî ôàéëà — ñâîå èìÿ. 
+        Çàãîëîâîê — Äîáàâèòü çàãîëîâîê ê ôàéëó. ${str}.`, () => {
 
         const params = {
             name: 'nameAddHead.xlsx',
             file1: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxdivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10035,7 +10035,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10044,7 +10044,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision21/apiMaxDivision22',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10053,7 +10053,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10062,7 +10062,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10071,7 +10071,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10080,7 +10080,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10089,7 +10089,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10098,7 +10098,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10107,7 +10107,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10116,7 +10116,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10125,7 +10125,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10134,7 +10134,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10143,7 +10143,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10152,7 +10152,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10161,7 +10161,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10170,7 +10170,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10179,7 +10179,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10188,7 +10188,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10197,7 +10197,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10206,7 +10206,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10215,7 +10215,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10224,7 +10224,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10233,7 +10233,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10242,7 +10242,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10251,7 +10251,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10260,7 +10260,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10269,7 +10269,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10278,7 +10278,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10289,16 +10289,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10307,7 +10307,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'apiMinDivision1/apiMinDivision2',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10316,7 +10316,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"': 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    'Îò÷åò "Ïîäðàçäåëåíèÿ"': 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10330,63 +10330,63 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', () => {
+        describe('Ýêñïîðò', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.menu.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Ýêñïîðò"', async () => await dec.simple(el.menu.handler,
+                ['Ýêñïîðò', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"', async () => await dec.simple(el.modal.exportData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+            it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Ð’Ð²Ð¾Ð´ "Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°"', async () => await dec.simple(el.input.sendKeys,
-                ['Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', 'ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ÑÑ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¾Ð¹', params.fileName, entry.max],
+            it('Ââîä "Èìÿ âûõîäíîãî ôàéëà"', async () => await dec.simple(el.input.sendKeys,
+                ['Èìÿ âûõîäíîãî ôàéëà', 'Îïðåäåëÿåòñÿ ñèñòåìîé', params.fileName, entry.max],
                 el.input));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', entry.max],
+            it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîïêè "Ýêñïîðòèðîâàòü"', async () => await dec.simple(el.button.handler,
+                ['Ýêñïîðòèðîâàòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð°Ð¹Ð»Ð° ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', () => {
+        describe('Ïðîâåðêà ôàéëà ýêñïîðòà', () => {
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.display,
+            it('Îòîáðàæåíèå ôàéëà', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+            it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.delete,
+            it('Óäàëåíèå ôàéëà', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -10395,22 +10395,22 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ²Ð¾Ðµ Ð¸Ð¼Ñ.Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ.
-    const nameItHead = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚. ${format}. Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð° â€” ÑÐ²Ð¾Ðµ Ð¸Ð¼Ñ. 
-        Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº â€” Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº. ${str}.`, () => {
+    // Ýêñïîðò. Èìÿ âûõîäíîãî ôàéëà — ñâîå èìÿ.Çàãîëîâîê — Äîáàâèòü çàãîëîâîê ê ôàéëó.
+    const nameItHead = () => describe(`Ïîäðàçäåëåíèå. Ýêñïîðò. ${format}. Èìÿ âûõîäíîãî ôàéëà — ñâîå èìÿ. 
+        Çàãîëîâîê — Äîáàâèòü ñâîé çàãîëîâîê. ${str}.`, () => {
 
         const params = {
             name: 'nameItHead.xlsx',
             head: 'systemNameItHead',
             file1: [
                 {
-                    systemNameItHead: 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    systemNameItHead: 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
                     systemNameItHead: 'apiMaxdivision1',
@@ -10665,7 +10665,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    systemNameItHead: 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    systemNameItHead: 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10676,13 +10676,13 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    systemNameItHead: 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹'
+                    systemNameItHead: 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé'
                 },
                 {
                     systemNameItHead: 'apiMinDivision1',
@@ -10703,7 +10703,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    systemNameItHead: 'ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹',
+                    systemNameItHead: 'Àäìèíèñòðàòîðû ñèñòåìû',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10717,67 +10717,67 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', () => {
+        describe('Ýêñïîðò', () => {
 
             bef();
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.menu.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Ýêñïîðò"', async () => await dec.simple(el.menu.handler,
+                ['Ýêñïîðò', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"', async () => await dec.simple(el.modal.exportData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ Ñ„Ð°Ð¹Ð»Ð° Ð´Ð»Ñ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', 'XLSX', 'XLSX', entry.max],
+            it('Âûáîð "Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà"', async () => await dec.simple(el.select.iconXpand,
+                ['Âûáåðèòå òèï ôàéëà äëÿ ýêñïîðòà', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Ð’Ð²Ð¾Ð´ "Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°"', async () => await dec.simple(el.input.sendKeys,
-                ['Ð˜Ð¼Ñ Ð²Ñ‹Ñ…Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', 'ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÑÐµÑ‚ÑÑ ÑÐ¸ÑÑ‚ÐµÐ¼Ð¾Ð¹', params.fileName, entry.max],
+            it('Ââîä "Èìÿ âûõîäíîãî ôàéëà"', async () => await dec.simple(el.input.sendKeys,
+                ['Èìÿ âûõîäíîãî ôàéëà', 'Îïðåäåëÿåòñÿ ñèñòåìîé', params.fileName, entry.max],
                 el.input));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð—Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº Ðº Ñ„Ð°Ð¹Ð»Ñƒ', 'Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²Ð¾Ðº', entry.max],
+            it('Âûáîð "Çàãîëîâîê"', async () => await dec.simple(el.select.iconXpand,
+                ['Çàãîëîâîê', 'Äîáàâèòü çàãîëîâîê ê ôàéëó', 'Äîáàâèòü ñâîé çàãîëîâîê', entry.max],
                 el.select));
 
-            it('Ð’Ð²Ð¾Ð´ "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ"', async () => await dec.simple(el.input.sendKeys,
-                ['ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ', '', params.head, entry.max],
+            it('Ââîä "Íàèìåíîâàíèå"', async () => await dec.simple(el.input.sendKeys,
+                ['Íàèìåíîâàíèå', '', params.head, entry.max],
                 el.input));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ"', async () => await dec.simple(el.button.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', entry.max],
+            it('Íàæàòèå êíîïêè "Ýêñïîðòèðîâàòü"', async () => await dec.simple(el.button.handler,
+                ['Ýêñïîðòèðîâàòü', entry.max],
                 el.button));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ"',
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Ýêñïîðòèðîâàòü äàííûå"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð°Ð¹Ð»Ð° ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð°', () => {
+        describe('Ïðîâåðêà ôàéëà ýêñïîðòà', () => {
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.display,
+            it('Îòîáðàæåíèå ôàéëà', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+            it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.delete,
+            it('Óäàëåíèå ôàéëà', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -10786,7 +10786,7 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    const mainXLSX = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð° - ${format}. ${str}.`, () => {
+    const mainXLSX = () => describe(`Ïîäðàçäåëåíèå. Ïðîâåðêè ýêñïîðòà - ${format}. ${str}.`, () => {
         systemNameNoHead();
         systemNameAddHead();
         systemNameItHead();
@@ -10795,7 +10795,7 @@ const exportFile = (agr, str, format) => {
         nameItHead();
     });
 
-    const mainCSV = () => describe(`ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ¸ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð° - ${format}. ${str}.`, () => {
+    const mainCSV = () => describe(`Ïîäðàçäåëåíèå. Ïðîâåðêè ýêñïîðòà - ${format}. ${str}.`, () => {
         systemNameNoHead();
         nameNoHead();
     });
@@ -10819,203 +10819,203 @@ const exportFile = (agr, str, format) => {
 
 };
 
-//Ð¢ÐµÑÑ‚Ñ‹ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð°
+//Òåñòû èìïîðòà
 const importFile = () => {
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ xlsx Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const importXLSXMinParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² ' +
-        'Ð¸Ð· xlsx Ñ„Ð°Ð¹Ð»Ð°. ', () => {
+    // Èìïîðò xlsx ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const importXLSXMinParams = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ ' +
+        'èç xlsx ôàéëà. ', () => {
 
         const params = {
             name1: 'importMinParamsName1',
             name2: 'importMinParamsName2',
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 0 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 2 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 0 çàïèñåé èç 2 íå áûëî èìïîðòèðîâàíî',
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMinSuccess, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.select,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+            it('Îòîáðàæåíèå "Òåëåôîí"', async () => await dec.simple(el.select.select,
+                ['Òåëåôîí', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+            it('Îòîáðàæåíèå "Îïèñàíèå"', async () => await dec.simple(el.select.select,
+                ['Îïèñàíèå', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.select,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+            it('Îòîáðàæåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.select,
+                ['Ñîïðîâîæäàþùèé', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.select,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+            it('Îòîáðàæåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.select,
+                ['Ãðàôèê ðàáîòû', '', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð“Ð¾Ñ‚Ð¾Ð²Ð¾"', async () => await dec.simple(el.button.handler,
-                ['Ð“Ð¾Ñ‚Ð¾Ð²Ð¾', entry.max],
+            it('Íàæàòèå êíîïêè "Ãîòîâî"', async () => await dec.simple(el.button.handler,
+                ['Ãîòîâî', entry.max],
                 el.button));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
@@ -11024,200 +11024,200 @@ const importFile = () => {
         deleteParams();
     });
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ xls Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const importXLSMinParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² ' +
-        'Ð¸Ð· xls Ñ„Ð°Ð¹Ð»Ð°. ', () => {
+    // Èìïîðò xls ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const importXLSMinParams = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò ñ ìèíèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ ' +
+        'èç xls ôàéëà. ', () => {
 
         const params = {
             name1: 'importMinParamsName1',
             name2: 'importMinParamsName2',
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 0 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 2 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 0 çàïèñåé èç 2 íå áûëî èìïîðòèðîâàíî',
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSMinSuccess, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.select,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+            it('Îòîáðàæåíèå "Òåëåôîí"', async () => await dec.simple(el.select.select,
+                ['Òåëåôîí', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+            it('Îòîáðàæåíèå "Îïèñàíèå"', async () => await dec.simple(el.select.select,
+                ['Îïèñàíèå', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.select,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+            it('Îòîáðàæåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.select,
+                ['Ñîïðîâîæäàþùèé', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.select,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+            it('Îòîáðàæåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.select,
+                ['Ãðàôèê ðàáîòû', '', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð“Ð¾Ñ‚Ð¾Ð²Ð¾"', async () => await dec.simple(el.button.handler,
-                ['Ð“Ð¾Ñ‚Ð¾Ð²Ð¾', entry.max],
+            it('Íàæàòèå êíîïêè "Ãîòîâî"', async () => await dec.simple(el.button.handler,
+                ['Ãîòîâî', entry.max],
                 el.button));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     '',
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     '',
                     el.input));
             });
@@ -11226,9 +11226,9 @@ const importFile = () => {
         deleteParams();
     });
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ xlsx Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð².
-    const importXLSXMaxParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² ' +
-    'Ð¸Ð· xlsx Ñ„Ð°Ð¹Ð»Ð°.', () => {
+    // Èìïîðò xlsx ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ.
+    const importXLSXMaxParams = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ ' +
+    'èç xlsx ôàéëà.', () => {
         const params = {
             division1: {
                 name: 'importXLSXMaxParamsName1',
@@ -11262,10 +11262,10 @@ const importFile = () => {
                 template3: 'template23',
                 schedule: 'schedule2',
             },
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 0 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 2 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 0 çàïèñåé èç 2 íå áûëî èìïîðòèðîâàíî',
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -11280,215 +11280,215 @@ const importFile = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMaxSuccess, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.select,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+            it('Îòîáðàæåíèå "Òåëåôîí"', async () => await dec.simple(el.select.select,
+                ['Òåëåôîí', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', entry.max],
+            it('Âûáîð "Òåëåôîí"', async () => await dec.simple(el.select.iconXpand,
+                ['Òåëåôîí', '', 'Òåëåôîí', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+            it('Îòîáðàæåíèå "Îïèñàíèå"', async () => await dec.simple(el.select.select,
+                ['Îïèñàíèå', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Îïèñàíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Îïèñàíèå', '', 'Îïèñàíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.select,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+            it('Îòîáðàæåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.select,
+                ['Ñîïðîâîæäàþùèé', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', entry.max],
+            it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                ['Ñîïðîâîæäàþùèé', '', 'Ñîïðîâîæäàþùèé', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²', entry.max],
+            it('Âûáîð "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.iconXpand,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹', entry.max],
+            it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.select,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+            it('Îòîáðàæåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.select,
+                ['Ãðàôèê ðàáîòû', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', entry.max],
+            it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                ['Ãðàôèê ðàáîòû', '', 'Ãðàôèê ðàáîòû', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð“Ð¾Ñ‚Ð¾Ð²Ð¾"', async () => await dec.simple(el.button.handler,
-                ['Ð“Ð¾Ñ‚Ð¾Ð²Ð¾', entry.max],
+            it('Íàæàòèå êíîïêè "Ãîòîâî"', async () => await dec.simple(el.button.handler,
+                ['Ãîòîâî', entry.max],
                 el.button));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 3 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Ïðîâåðêà ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.division,
+                it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð¾ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ', async () => await dec.simple(page.division.handler,
+                it('Íàæàòèå ïî ïîäðàçäåëåíèþ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð´ÐµÐ»ÐµÐ½Ð¾', async () => await dec.simple(page.division.selected,
+                it('Ïîäðàçäåëåíèå âûäåëåíî', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+                it('Ïðîâåðêà "Òåëåôîí"', async () => await dec.simpleText(el.input.getValue,
+                    ['Òåëåôîí', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simpleText(el.input.getValue,
-                    ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+                it('Ïðîâåðêà "Îïèñàíèå"', async () => await dec.simpleText(el.input.getValue,
+                    ['Îïèñàíèå', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+                it('Ïðîâåðêà "Ñîïðîâîæäàþùèé"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ñîïðîâîæäàþùèé', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+                it('Ïðîâåðêà "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simpleText(el.input.getValue,
+                    ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simpleText(el.input.getValue,
-                    ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+                it('Ïðîâåðêà "Ãðàôèê ðàáîòû"', async () => await dec.simpleText(el.input.getValue,
+                    ['Ãðàôèê ðàáîòû', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
@@ -11498,9 +11498,9 @@ const importFile = () => {
 
     });
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸ÐµÐ¼ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ" Ð¸ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑ‚ÑÐ²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
-    const importXLSXMaxParamsNoName = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸ÐµÐ¼ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ" Ð¸ ' +
-        'Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð¸Ð· xlsx Ñ„Ð°Ð¹Ð»Ð° Ð¸ ÑÐºÑÐ¿Ð¾Ñ€Ñ‚Ð¾Ð¼ Ñ„Ð°Ð¹Ð»Ð° Ñ Ð¾ÑˆÐ¸Ð±ÐºÐ°Ð¼Ð¸.', () => {
+    // Èìïîðò ñ îòñóòñòâèåì "Ïîäðàçäåëåíèÿ" è ìàêñèìàëüíûì êîëè÷åòñâîì ïàðàìåòðîâ
+    const importXLSXMaxParamsNoName = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò ñ îòñóòñòâèåì "Ïîäðàçäåëåíèÿ" è ' +
+        'ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ èç xlsx ôàéëà è ýêñïîðòîì ôàéëà ñ îøèáêàìè.', () => {
         const params = {
             division1: {
                 fio: {
@@ -11528,42 +11528,42 @@ const importFile = () => {
                 template3: 'template23',
                 schedule: 'schedule2',
             },
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 2 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 2 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 2 çàïèñåé èç 2 íå áûëî èìïîðòèðîâàíî',
             file: [
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐÐµ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ"': 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ',
-                    __EMPTY: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½',
-                    __EMPTY_1: 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ',
-                    __EMPTY_2: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²',
-                    __EMPTY_3: 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹',
-                    __EMPTY_4: 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹',
-                    __EMPTY_5: 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹',
-                    __EMPTY_6: 'ÐžÑˆÐ¸Ð±ÐºÐ°'
+                    'Îò÷åò "Íå èìïîðòèðîâàííûå äàííûå"': 'Ïîäðàçäåëåíèå',
+                    __EMPTY: 'Òåëåôîí',
+                    __EMPTY_1: 'Îïèñàíèå',
+                    __EMPTY_2: 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ',
+                    __EMPTY_3: 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé',
+                    __EMPTY_4: 'Ãðàôèê ðàáîòû',
+                    __EMPTY_5: 'Ñîïðîâîæäàþùèé',
+                    __EMPTY_6: 'Îøèáêà'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐÐµ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ"': '',
+                    'Îò÷åò "Íå èìïîðòèðîâàííûå äàííûå"': '',
                     __EMPTY: 'importXLSXMaxParamsPhone1',
                     __EMPTY_1: 'importXLSXMaxParamsDescription1',
                     __EMPTY_2: 'template11;template12',
                     __EMPTY_3: 'template13',
                     __EMPTY_4: 'schedule1',
                     __EMPTY_5: 'staff 1',
-                    __EMPTY_6: 'ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ð¿Ð¾Ð»Ðµ ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ'
+                    __EMPTY_6: 'Îòñóòñòâóåò îáÿçàòåëüíîå ïîëå Ïîäðàçäåëåíèå'
                 },
                 {
-                    'ÐžÑ‚Ñ‡ÐµÑ‚ "ÐÐµ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ"': 'importXLSXMaxParamsName1/importXLSXMaxParamsName2',
+                    'Îò÷åò "Íå èìïîðòèðîâàííûå äàííûå"': 'importXLSXMaxParamsName1/importXLSXMaxParamsName2',
                     __EMPTY: 'importXLSXMaxParamsPhone2',
                     __EMPTY_1: 'importXLSXMaxParamsDescription2',
                     __EMPTY_2: 'template21;template22;',
                     __EMPTY_3: 'template23',
                     __EMPTY_4: 'schedule2',
                     __EMPTY_5: 'staff 2',
-                    __EMPTY_6: 'Ð¦ÐµÐ¿Ð¾Ñ‡ÐºÐ° Ð¾Ñ‚Ð´ÐµÐ»Ð¾Ð² Ð½Ðµ Ð²Ð°Ð»Ð¸Ð´Ð½Ð° Ð¸Ð»Ð¸ Ð¾Ñ‚Ð´ÐµÐ» ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚'
+                    __EMPTY_6: 'Öåïî÷êà îòäåëîâ íå âàëèäíà èëè îòäåë ñóùåñòâóåò'
                 }
             ]
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -11578,148 +11578,148 @@ const importFile = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMaxNoNameFailed, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.select,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+            it('Îòîáðàæåíèå "Òåëåôîí"', async () => await dec.simple(el.select.select,
+                ['Òåëåôîí', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', entry.max],
+            it('Âûáîð "Òåëåôîí"', async () => await dec.simple(el.select.iconXpand,
+                ['Òåëåôîí', '', 'Òåëåôîí', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+            it('Îòîáðàæåíèå "Îïèñàíèå"', async () => await dec.simple(el.select.select,
+                ['Îïèñàíèå', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Îïèñàíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Îïèñàíèå', '', 'Îïèñàíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.select,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+            it('Îòîáðàæåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.select,
+                ['Ñîïðîâîæäàþùèé', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', entry.max],
+            it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                ['Ñîïðîâîæäàþùèé', '', 'Ñîïðîâîæäàþùèé', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²', entry.max],
+            it('Âûáîð "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.iconXpand,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹', entry.max],
+            it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.select,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+            it('Îòîáðàæåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.select,
+                ['Ãðàôèê ðàáîòû', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', entry.max],
+            it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                ['Ãðàôèê ðàáîòû', '', 'Ãðàôèê ðàáîòû', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ° Ð² Ñ„Ð°Ð¹Ð»"', async () => await dec.simple(el.button.handler,
-                ['Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ° Ð² Ñ„Ð°Ð¹Ð»', entry.max],
+            it('Íàæàòèå êíîïêè "Ýêñïîðò îñòàòêà â ôàéë"', async () => await dec.simple(el.button.handler,
+                ['Ýêñïîðò îñòàòêà â ôàéë', entry.max],
                 el.button))
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.initClose,
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.upload],
                 el.modal.importData))
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð°Ð¹Ð»Ð°', () => {
+        describe('Ïðîâåðêà ôàéëà', () => {
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð° Ð² Ð´Ð¸Ñ€ÐµÐºÑ‚Ð¾Ñ€Ð¸Ð¸', async () => await dec.simple(el.file.display,
+            it('Îòîáðàæåíèå ôàéëà â äèðåêòîðèè', async () => await dec.simple(el.file.display,
                 [entry.failedExport, entry.upload],
                 el.file))
 
-            it('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÑ‚Ñ€Ð¾Ðº Ñ„Ð°Ð¹Ð»Ð°', async () => {
+            it('Ïðîâåðêà ñòðîê ôàéëà', async () => {
                 const jsonFile = await el.file.readNum(entry.failedExport)
                 dec.exportFile(params.file, jsonFile)
             })
 
-            it('Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.file.delete,
+            it('Óäàëåíèå ôàéëà', async () => await dec.simple(el.file.delete,
                 [entry.failedExport, entry.upload],
                 el.file))
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
@@ -11728,240 +11728,240 @@ const importFile = () => {
 
     });
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð², Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‰Ð¸Ñ… Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ðµ
-    const importXLSXMaxParamsNoParams = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ'+
-        'Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð², Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÑŽÑ‰Ð¸Ñ… Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ðµ Ð¸Ð· xlsx Ñ„Ð°Ð¹Ð»Ð°.',
+    // Èìïîðò ñ ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ, îòñóòñòâóþùèõ â ñèñòåìå
+    const importXLSXMaxParamsNoParams = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò ñ'+
+        'ìàêñèìàëüíûì êîëè÷åñòâîì ïàðàìåòðîâ, îòñóòñòâóþùèõ â ñèñòåìå èç xlsx ôàéëà.',
         () => {
         const params = {
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 2 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 2 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 2 çàïèñåé èç 2 íå áûëî èìïîðòèðîâàíî',
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [["ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [["Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMaxNoParamsFailed, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.select,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', entry.max],
+            it('Îòîáðàæåíèå "Òåëåôîí"', async () => await dec.simple(el.select.select,
+                ['Òåëåôîí', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', '', 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½', entry.max],
+            it('Âûáîð "Òåëåôîí"', async () => await dec.simple(el.select.iconXpand,
+                ['Òåëåôîí', '', 'Òåëåôîí', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', entry.max],
+            it('Îòîáðàæåíèå "Îïèñàíèå"', async () => await dec.simple(el.select.select,
+                ['Îïèñàíèå', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', '', 'ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Îïèñàíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Îïèñàíèå', '', 'Îïèñàíèå', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.select,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', entry.max],
+            it('Îòîáðàæåíèå "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.select,
+                ['Ñîïðîâîæäàþùèé', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', '', 'Ð¡Ð¾Ð¿Ñ€Ð¾Ð²Ð¾Ð¶Ð´Ð°ÑŽÑ‰Ð¸Ð¹', entry.max],
+            it('Âûáîð "Ñîïðîâîæäàþùèé"', async () => await dec.simple(el.select.iconXpand,
+                ['Ñîïðîâîæäàþùèé', '', 'Ñîïðîâîæäàþùèé', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°', '', 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²', entry.max],
+            it('Âûáîð "Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà"', async () => await dec.simple(el.select.iconXpand,
+                ['Øàáëîí äîñòóïà äëÿ ñîòðóäíèêà', '', 'Øàáëîí äîñòóïà äëÿ ñîòðóäíèêîâ', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.select,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', entry.max],
+            it('Îòîáðàæåíèå "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.select,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»Ñ', '', 'Ð¨Ð°Ð±Ð»Ð¾Ð½ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð¿Ð¾ÑÐµÑ‚Ð¸Ñ‚ÐµÐ»ÐµÐ¹', entry.max],
+            it('Âûáîð "Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ"', async () => await dec.simple(el.select.iconXpand,
+                ['Øàáëîí äîñòóïà äëÿ ïîñåòèòåëÿ', '', 'Øàáëîí äîñòóïà äëÿ ïîñåòèòåëåé', entry.max],
                 el.select));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.select,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', entry.max],
+            it('Îòîáðàæåíèå "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.select,
+                ['Ãðàôèê ðàáîòû', '', entry.max],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹"', async () => await dec.simple(el.select.iconXpand,
-                ['Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', '', 'Ð“Ñ€Ð°Ñ„Ð¸Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹', entry.max],
+            it('Âûáîð "Ãðàôèê ðàáîòû"', async () => await dec.simple(el.select.iconXpand,
+                ['Ãðàôèê ðàáîòû', '', 'Ãðàôèê ðàáîòû', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.initClose,
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [[ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [[ "Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
     });
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ 5 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ð½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¼Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾ 5 Ñ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾Ð¼
-    // Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
-    const importProgression = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚  Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ ' +
-        'Ñ Ð²Ð»Ð¾Ð¶ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑÐ¼Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑÐ¸ÐµÐ¹ Ð´Ð¾ 5.', () => {
+    // Èìïîðò 5 ïîäðàçäåëåíèé 1 óðîâíÿ ñ âëîæåííííûìè ïîäðàçäåëåíèÿììè ïðîãðåññèåé äî 5 ñ ìèíèìàëüíûì êîëè÷åñòâîì
+    // ïàðàìåòðîâ
+    const importProgression = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò  ïîäðàçäåëåíèé 1 óðîâíÿ ' +
+        'ñ âëîæåííûìè ïîäðàçäåëåíèÿìè ïðîãðåññèåé äî 5.', () => {
         const params = {
             array: [...Array(5).keys()].map(item1 => {
                 return [...Array(item1 + 1).keys()].map(item2 => {
                     return 'division' + (item1 + 1) +  (item2 + 1)
                 });
             }),
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 0 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 15 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 0 çàïèñåé èç 15 íå áûëî èìïîðòèðîâàíî',
         };
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 1 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [["ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [["Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXProgressionSuccess, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.initClose,
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð² Ñ€Ð°Ð·Ð´ÐµÐ»Ðµ', () => {
+        describe('Ïðîâåðêà îòîáðàæåíèÿ â ðàçäåëå', () => {
             bef();
             aft();
 
-            describe('ÐžÐ±Ñ‰Ð¸Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸', () => {
+            describe('Îáùèå ïðîâåðêè', () => {
 
-                it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 16 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ð¸Ð¹', async () => await dec.simple(page.division.size,
+                it('Îòîáðàæíèå 16 ïîäðàçäëåíèèé', async () => await dec.simple(page.division.size,
                     [16, entry.max],
                     page.division));
 
                 params.array.forEach((item1) => {
                     let arr =[];
                     item1.forEach((item2, index2) => {
-                        it(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2}`, async () => {
+                        it(`Îòîáðàæåííèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2}`, async () => {
                             arr.push(item2);
                             await dec.simple(page.division.division,
                                 [arr, entry.max],
@@ -11978,9 +11978,9 @@ const importFile = () => {
 
     });
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸ÐµÐ¼ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½ÑŽ
-    const importDuplicateOneLevel = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸ÐµÐ¼ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ' +
-        '1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸Ð· xlsx Ñ„Ð°Ð¹Ð»Ð°.', () => {
+    // Èìïîðò ñ äóáëèðîâàíèåì ïîäðàçäåëåíèÿ 1 óðîâíÿ ê ïîäðàçäåëåíèþ 1 óðîâíþ
+    const importDuplicateOneLevel = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò ñ äóáëèðîâàíèåì ïîäðàçäåëåíèÿ ' +
+        '1 óðîâíÿ ê ïîäðàçäåëåíèþ 1 óðîâíÿ èç xlsx ôàéëà.', () => {
         const params = {
             division1: {
                 name: 'importDuplicateOneLevelName1',
@@ -11988,22 +11988,22 @@ const importFile = () => {
             division2: {
                 name: 'importDuplicateOneLevelName2',
             },
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 1 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 1 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 1 çàïèñåé èç 1 íå áûëî èìïîðòèðîâàíî',
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.division1.name,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12017,99 +12017,99 @@ const importFile = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 3 ïîäðàçäëåíèÿ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [["ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [["Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXDupOneFailed, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.initClose,
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 3 ïîäðàçäëåíèÿ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [["ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [["Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
@@ -12119,9 +12119,9 @@ const importFile = () => {
 
     });
 
-    // Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸ÐµÐ¼ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½ÑŽ
-    const importDuplicateTwoLevel = () => describe('ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚. Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ñ Ð´ÑƒÐ±Ð»Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸ÐµÐ¼ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ' +
-        '1 ÑƒÑ€Ð¾Ð²Ð½Ñ Ðº Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸ÑŽ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ Ð¸Ð· xlsx Ñ„Ð°Ð¹Ð»Ð°.', () => {
+    // Èìïîðò ñ äóáëèðîâàíèåì ïîäðàçäåëåíèÿ 1 óðîâíÿ ê ïîäðàçäåëåíèþ 2 óðîâíþ
+    const importDuplicateTwoLevel = () => describe('Ïîäðàçäåëåíèå. Èìïîðò. Èìïîðò ñ äóáëèðîâàíèåì ïîäðàçäåëåíèÿ ' +
+        '1 óðîâíÿ ê ïîäðàçäåëåíèþ 2 óðîâíÿ èç xlsx ôàéëà.', () => {
         const params = {
             division1: {
                 name: 'importDuplicateTwoLevelName1',
@@ -12129,22 +12129,22 @@ const importFile = () => {
             division2: {
                 name: 'importDuplicateTwoLevelName2',
             },
-            message: 'Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ 1 Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð¸Ð· 1 Ð½Ðµ Ð±Ñ‹Ð»Ð¾ Ð¸Ð¼Ð¿Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¾',
+            message: 'Èìïîðò çàâåðøåí 1 çàïèñåé èç 1 íå áûëî èìïîðòèðîâàíî',
         };
 
-        describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+        describe('API - äîáàâëåíèå', () => {
             bef();
             aft();
 
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.division1.name,
                 };
                 addDivision(obj);
             });
-            describe('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe('Äîáàâëåíèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12158,99 +12158,99 @@ const importFile = () => {
             });
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 3 ïîäðàçäëåíèÿ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [["ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [["Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
         });
 
-        describe('Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚', () => {
+        describe('Èìïîðò', () => {
 
             bef();
 
             aft();
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.butIcBefore.handler,
+            it('Íàæàòèå êíîïêè "Ìåíþ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐœÐµÐ½ÑŽ"', async () => await dec.simple(el.menu.menu,
+            it('Îòîáðàæåíèå "Ìåíþ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚ Ð¸Ð· XLS, XLSX', entry.max],
+            it('Íàæàòèå ïàðàìåòðà "Èìïîðò èç XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['Èìïîðò èç XLS, XLSX', entry.max],
                 el.menu));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.init,
+            it('Îòîáðàæåíèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Âûáîð òåñòîâîãî ôàéëà', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXDupTwoFailed, entry.upload],
                 el.modal.importData));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.select,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', entry.upload],
+            it('Îòîáðàæåíèå "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.select,
+                ['Ïîäðàçäåëåíèå', '', entry.upload],
                 el.select));
 
-            it('Ð’Ñ‹Ð±Ð¾Ñ€ "ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ"', async () => await dec.simple(el.select.iconXpand,
-                ['ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', '', 'ÐŸÐ¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', entry.max],
+            it('Âûáîð "Ïîäðàçäåëåíèå"', async () => await dec.simple(el.select.iconXpand,
+                ['Ïîäðàçäåëåíèå', '', 'Ïîäðàçäåëåíèå', entry.max],
                 el.select));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ "Ð”Ð°Ð»ÐµÐµ"', async () => await dec.simple(el.button.handler,
-                ['Ð”Ð°Ð»ÐµÐµ', entry.max],
+            it('Íàæàòèå êíîïêè "Äàëåå"', async () => await dec.simple(el.button.handler,
+                ['Äàëåå', entry.max],
                 el.button));
 
-            it('Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ñ„Ð°Ð¹Ð»Ð¾Ð²', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('Ñîîáùåíèå î çàãðóçêå ôàéëîâ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('ÐÐ°Ð¶Ð°Ñ‚Ð¸Ðµ ÐºÐ½Ð¾Ð¿ÐºÐ¸ Ð·Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ñ', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('Íàæàòèå êíîïêè çàêðûòèÿ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð¼Ð¾Ð´Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¾ÐºÐ½Ð° "Ð˜Ð¼Ð¿Ð¾Ñ€Ñ‚"', async () => await dec.simple(el.modal.importData.initClose,
+            it('Îòñóòñòâèå ìîäàëüíîãî îêíà "Èìïîðò"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¿Ð¸ÑÐºÐ° Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', () => {
+        describe('Ïðîâåðêà ñïèñêà ïîäðàçäåëåíèé', () => {
 
             bef();
             aft();
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶Ð½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ñ', async () => await dec.simple(page.division.size,
+            it('Îòîáðàæíèå 3 ïîäðàçäëåíèÿ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ "ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"', async ()=> await dec.simple(page.division.division,
-                [["ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñ‹ ÑÐ¸ÑÑ‚ÐµÐ¼Ñ‹"], entry.max],
+            it('Îòîáðàæåíèå ïîäðàçäåëåíèÿ "Àäìèíèñòðàòîðû ñèñòåìû"', async ()=> await dec.simple(page.division.division,
+                [["Àäìèíèñòðàòîðû ñèñòåìû"], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 1 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', async () => await dec.simple(page.division.division,
+            it('Îòîáðàæåííèå ïîäðàçäåëåíèÿ 2 óðîâíÿ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
@@ -12273,21 +12273,21 @@ const importFile = () => {
 
 };
 
-//Ð¢ÐµÑÑ‚Ñ‹ Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° "ÐŸÐ¾Ð¸ÑÐº..."
-const filterSearch = () => describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° "ÐŸÐ¾Ð¸ÑÐº..."', () => {
+//Òåñòû ôèëüòðà "Ïîèñê..."
+const filterSearch = () => describe('Ïðîâåðêà ôèëüòðà "Ïîèñê..."', () => {
 
     const params = {
         array1: [...Array(3).keys()].map(item => 'division' + (item + 1)),
         array2: [...Array(3).keys()].map(item => 'test' + (item + 1))
     }
 
-    describe('API - Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ', () => {
+    describe('API - äîáàâëåíèå', () => {
         bef();
         aft();
 
         params.array1.forEach((item1, index1) => {
-            describe(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index1 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item1}`, () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe(`Äîáàâëåíèå ïîäðàçäåëåíèÿ ${index1 + 1} óðîâíÿ - ${item1}`, () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12302,8 +12302,8 @@ const filterSearch = () => describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° "ÐŸÐ¾Ð¸ÑÐº
         });
 
         params.array2.forEach((item2, index2) => {
-            describe(`Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2}`, () => {
-                it('Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ', async () => {
+            describe(`Äîáàâëåíèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2}`, () => {
+                it('Äîáàâëåíèå ïîäðàçäåëåíèÿ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12319,19 +12319,19 @@ const filterSearch = () => describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° "ÐŸÐ¾Ð¸ÑÐº
 
     });
 
-    describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ', () => {
+    describe('Ïðîâåðêà îòîáðàæåíèÿ', () => {
 
         bef();
         aft();
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 7 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 7 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
         [params.array1, params.array2].forEach((item1) => {
             const arr = [];
             item1.forEach((item2, index2) => {
-                it(`ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð½Ð¸Ðµ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ ${index2 + 1} ÑƒÑ€Ð¾Ð²Ð½Ñ - ${item2}`, async () => {
+                it(`Îòîáðàæåííèå ïîäðàçäåëåíèÿ ${index2 + 1} óðîâíÿ - ${item2}`, async () => {
                     arr.push(item2);
                     await dec.simple(page.division.division,
                         [arr, entry.max],
@@ -12342,154 +12342,154 @@ const filterSearch = () => describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° "ÐŸÐ¾Ð¸ÑÐº
 
     });
 
-    describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° Ð´Ð»Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    describe('Ïðîâåðêà ôèëüòðà äëÿ ïîäðàçäåëåíèÿ 1 óðîâíÿ', () => {
 
         bef();
         aft();
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 7 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 7 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it(`Ð’Ð²Ð¾Ð´ Ð² "ÐŸÐ¾Ð¸ÑÐº..." - "${params.array1[0]}"`, async () => await dec.simple(el.input.sendKeys,
-            ['', 'ÐŸÐ¾Ð¸ÑÐº...', params.array1[0], entry.max],
+        it(`Ââîä â "Ïîèñê..." - "${params.array1[0]}"`, async () => await dec.simple(el.input.sendKeys,
+            ['', 'Ïîèñê...', params.array1[0], entry.max],
             el.input));
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 1 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 1 ïîäðàçäåëåíèå', async () => await dec.simple(page.division.size,
             [1, entry.max],
             page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[0]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 1 óðîâíÿ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
     });
 
-    describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° Ð´Ð»Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    describe('Ïðîâåðêà ôèëüòðà äëÿ ïîäðàçäåëåíèÿ 2 óðîâíÿ', () => {
 
         bef();
         aft();
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 7 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 7 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it(`Ð’Ð²Ð¾Ð´ Ð² "ÐŸÐ¾Ð¸ÑÐº..." - "${params.array1[1]}"`, async () => await dec.simple(el.input.sendKeys,
-            ['', 'ÐŸÐ¾Ð¸ÑÐº...', params.array1[1], entry.max],
+        it(`Ââîä â "Ïîèñê..." - "${params.array1[1]}"`, async () => await dec.simple(el.input.sendKeys,
+            ['', 'Ïîèñê...', params.array1[1], entry.max],
             el.input));
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 2 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 2 ïîäðàçäåëåíèå', async () => await dec.simple(page.division.size,
             [2, entry.max],
             page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[0]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 1 óðîâíÿ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[1]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 2 óðîâíÿ - "${params.array1[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1]], entry.max],
                 page.division));
 
     });
 
-    describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° Ð´Ð»Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ', () => {
+    describe('Ïðîâåðêà ôèëüòðà äëÿ ïîäðàçäåëåíèÿ 3 óðîâíÿ', () => {
 
         bef();
         aft();
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 7 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 7 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it(`Ð’Ð²Ð¾Ð´ Ð² "ÐŸÐ¾Ð¸ÑÐº..." - "${params.array1[2]}"`, async () => await dec.simple(el.input.sendKeys,
-            ['', 'ÐŸÐ¾Ð¸ÑÐº...', params.array1[2], entry.max],
+        it(`Ââîä â "Ïîèñê..." - "${params.array1[2]}"`, async () => await dec.simple(el.input.sendKeys,
+            ['', 'Ïîèñê...', params.array1[2], entry.max],
             el.input));
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 3 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 3 ïîäðàçäåëåíèå', async () => await dec.simple(page.division.size,
             [3, entry.max],
             page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[0]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 1 óðîâíÿ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[1]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 2 óðîâíÿ - "${params.array1[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[2]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 3 óðîâíÿ - "${params.array1[2]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1],  params.array1[2]], entry.max],
                 page.division));
 
     });
 
-    describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° Ð±ÐµÐ· ÑÐ¾Ð²Ð¿Ð°Ð´ÐµÐ½Ð¸Ð¹', () => {
+    describe('Ïðîâåðêà ôèëüòðà áåç ñîâïàäåíèé', () => {
 
         bef();
         aft();
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 7 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 7 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it('Ð’Ð²Ð¾Ð´ Ð² "ÐŸÐ¾Ð¸ÑÐº..." - "Hello World"', async () => await dec.simple(el.input.sendKeys,
-            ['', 'ÐŸÐ¾Ð¸ÑÐº...', 'Hello World', entry.max],
+        it('Ââîä â "Ïîèñê..." - "Hello World"', async () => await dec.simple(el.input.sendKeys,
+            ['', 'Ïîèñê...', 'Hello World', entry.max],
             el.input));
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 0 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 0 ïîäðàçäåëåíèé', async () => await dec.simple(page.division.size,
             [0, entry.max],
             page.division));
 
     });
 
-    describe('ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð° Ñ Ñ‡Ð°ÑÑ‚Ð¸Ñ‡Ð½Ñ‹Ð¼ ÑÐ¾Ð²Ð¿Ð°Ð´ÐµÐ½Ð¸ÐµÐ¼', () => {
+    describe('Ïðîâåðêà ôèëüòðà ñ ÷àñòè÷íûì ñîâïàäåíèåì', () => {
 
         bef();
         aft();
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 7 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´Ð»ÐµÐ½Ð¸Ðµ', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 7 ïîäðàçäëåíèå', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it('Ð’Ð²Ð¾Ð´ Ð² "ÐŸÐ¾Ð¸ÑÐº..." - "3"', async () => await dec.simple(el.input.sendKeys,
-            ['', 'ÐŸÐ¾Ð¸ÑÐº...', '3', entry.max],
+        it('Ââîä â "Ïîèñê..." - "3"', async () => await dec.simple(el.input.sendKeys,
+            ['', 'Ïîèñê...', '3', entry.max],
             el.input));
 
-        it('ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ 6 Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ð¹', async () => await dec.simple(page.division.size,
+        it('Îòîáðàæåíèå 6 ïîäðàçäåëåíèé', async () => await dec.simple(page.division.size,
             [6, entry.max],
             page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[0]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 1 óðîâíÿ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[1]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 2 óðîâíÿ - "${params.array1[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array1[2]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 3 óðîâíÿ - "${params.array1[2]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1],  params.array1[2]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 1 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array2[0]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 1 óðîâíÿ - "${params.array2[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array2[0]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 2 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array2[1]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 2 óðîâíÿ - "${params.array2[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array2[0], params.array2[1]], entry.max],
                 page.division));
 
-        it(`ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ 3 ÑƒÑ€Ð¾Ð²Ð½Ñ - "${params.array2[2]}"`,
+        it(`Ïðîâåðêà îòîáðàæåíèÿ ïîäðàçäåëåíèÿ 3 óðîâíÿ - "${params.array2[2]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array2[0], params.array2[1],  params.array2[2]], entry.max],
                 page.division));
@@ -12511,10 +12511,10 @@ module.exports = {
     print: print(),
     printTree: printTree(),
     export: {
-        minXLSX: exportFile('min',  'ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'XLSX').xlsx,
-        maxXLSX: exportFile('max', 'ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'XLSX').xlsx,
-        minCSV: exportFile('min',  'ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'CSV').csv,
-        maxCSV: exportFile('max',  'ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'CSV').csv,
+        minXLSX: exportFile('min',  'Ìèíèìàëüíîå êîëè÷åñòâî äàííûõ', 'XLSX').xlsx,
+        maxXLSX: exportFile('max', 'Ìàêñèìàëüíîå êîëè÷åñòâî äàííûõ', 'XLSX').xlsx,
+        minCSV: exportFile('min',  'Ìèíèìàëüíîå êîëè÷åñòâî äàííûõ', 'CSV').csv,
+        maxCSV: exportFile('max',  'Ìàêñèìàëüíîå êîëè÷åñòâî äàííûõ', 'CSV').csv,
     },
     import: importFile(),
     filterSearch,
@@ -12526,9 +12526,9 @@ module.exports = {
         //print().print();
         //printTree().printTree();
         //filterSearch();
-        //exportFile('min',  'ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'XLSX').xlsx.main();
-        //exportFile('max', 'ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'XLSX').xlsx.main();
-        //exportFile('min',  'ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'CSV').csv.main();
-        //exportFile('max',  'ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð´Ð°Ð½Ð½Ñ‹Ñ…', 'CSV').csv.main();
+        //exportFile('min',  'Ìèíèìàëüíîå êîëè÷åñòâî äàííûõ', 'XLSX').xlsx.main();
+        //exportFile('max', 'Ìàêñèìàëüíîå êîëè÷åñòâî äàííûõ', 'XLSX').xlsx.main();
+        //exportFile('min',  'Ìèíèìàëüíîå êîëè÷åñòâî äàííûõ', 'CSV').csv.main();
+        //exportFile('max',  'Ìàêñèìàëüíîå êîëè÷åñòâî äàííûõ', 'CSV').csv.main();
     },
 }
