@@ -6,7 +6,7 @@ console.log('process.env: ', process.env);
 console.log = () => function () {};
 
 // Отображение
-JSON.parse(process.env.b001divisionUiDisplay) ? tests.display() : console.log();
+//JSON.parse(process.env.b001divisionUiDisplay) ? tests.display() : console.log();
 
 // Добавление
 JSON.parse(process.env.b002divisionUiAddAddMinParams) ? tests.add.addMinParams() : '';
