@@ -1,9 +1,10 @@
 const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/division-ui');
+const closeBrowser = require('../../../../ui/src/handlers/other/closeBrowser');
 
 console.log = () => function () {};
 
 // Отображение
-JSON.parse(process.env.b001divisionUiDisplay) ? tests.display() : '';
+JSON.parse(process.env.b001divisionUiDisplay) ? tests.display() : console.log();
 
 // Добавление
 JSON.parse(process.env.b002divisionUiAddAddMinParams) ? tests.add.addMinParams() : '';
@@ -75,6 +76,9 @@ JSON.parse(process.env.b053divisionUiImportImportDuplicateTwoLevel) ? tests.impo
 
 //Фильтр Поиск
 JSON.parse(process.env.b054divisionUiFilterSearch) ? tests.filterSearch(): '';
+
+closeBrowser();
+
 
 
 
