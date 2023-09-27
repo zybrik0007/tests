@@ -10,7 +10,6 @@ const but = require('../../../../dictionaries/button-icon');
 const api = require('../../../other/api');
 const imp = require('../../../../upload-files');
 const deleteData = require('../../../other/deleteData');
-const close = require('../../../other/closeBrowser');
 
 const bef = () => before('Вход и открытие подраздела "Подразделения"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
@@ -2720,7 +2719,6 @@ const edit = () => {
         });
 
         deleteParams();
-        close();
     });
 
     // Удаление необязательных параметров с минимальным количеством параметров у родительского и дочернего подразделения
@@ -3476,7 +3474,6 @@ const edit = () => {
         });
 
         deleteParams();
-        close();
     });
 
     // Редактирование всех параметров родительского и дочернего подразделения с максимальным количеством параметров.
@@ -4366,7 +4363,6 @@ const edit = () => {
         });
 
         deleteParams();
-        close();
     });
 
     // Редактирование всех параметров родительского и дочернего подразделения с максимальным количеством параметров,
@@ -5412,8 +5408,6 @@ const edit = () => {
         });
 
         deleteParams();
-        close();
-
     });
 
     // Скрытие - открытие подразделений с 3 вложенностью.
@@ -5644,8 +5638,6 @@ const edit = () => {
         });
 
         deleteParams();
-        close();
-
     });
 
     // Попытка дублирования родительского  подразделения к корневому.
@@ -5767,8 +5759,6 @@ const edit = () => {
             });
 
         deleteParams();
-        close();
-
     });
 
     // Попытка дублирования родительского подразделения к дочернему.
@@ -5922,8 +5912,6 @@ const edit = () => {
             });
 
         deleteParams();
-        close();
-
     });
 
     // Попытка редактирования без "Подразделение".
@@ -6027,8 +6015,6 @@ const edit = () => {
         });
 
         deleteParams();
-        close();
-
     });
 
     const edit = () => describe('Подразделение. Проверки редактирвоания.', () => {
