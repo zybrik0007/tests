@@ -11,25 +11,25 @@ const api = require('../../../other/api');
 const imp = require('../../../../upload-files');
 const deleteData = require('../../../other/deleteData');
 
-const bef = () => before('Вход и открытие подраздела "Подразделения"', async () => {
+const bef = () => before('Р’С…РѕРґ Рё РѕС‚РєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»Р° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.per, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.per.division, entry.max], el.subsection);
     await dec.simple(page.division.init, [entry.max], page.division);
 });
 
-const aft = () => after('Выход', async () => await dec.exit());
+const aft = () => after('Р’С‹С…РѕРґ', async () => await dec.exit());
 
-//api добавление подразделения
-const addDivision = (obj) => it('Добавление подразделения', async () => {
+//api РґРѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ
+const addDivision = (obj) => it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
     const cook = await page.base.getCookie('token');
     await dec.simple(api.putDivision,
         [[obj], cook.text],
         api.putDivision);
 });
 
-// api добавление шаблона доступа
-const addAccessTemplate = (name, description) => it('Добавление шаблона доступа', async () => {
+// api РґРѕР±Р°РІР»РµРЅРёРµ С€Р°Р±Р»РѕРЅР° РґРѕСЃС‚СѓРїР°
+const addAccessTemplate = (name, description) => it('Р”РѕР±Р°РІР»РµРЅРёРµ С€Р°Р±Р»РѕРЅР° РґРѕСЃС‚СѓРїР°', async () => {
     const cook = await page.base.getCookie('token');
     const obj ={
         name: name,
@@ -61,8 +61,8 @@ const addAccessTemplate = (name, description) => it('Добавление шаблона доступа'
         api.putAccessTemplate);
 });
 
-// api добавление сотрудника
-const addStaff = (lastName, firstName, middleName, divisionId, date) => it('Добавление сотрудника', async () => {
+// api РґРѕР±Р°РІР»РµРЅРёРµ СЃРѕС‚СЂСѓРґРЅРёРєР°
+const addStaff = (lastName, firstName, middleName, divisionId, date) => it('Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕС‚СЂСѓРґРЅРёРєР°', async () => {
     const cook = await page.base.getCookie('token');
     const obj = {
         "last_name": lastName,
@@ -76,8 +76,8 @@ const addStaff = (lastName, firstName, middleName, divisionId, date) => it('Доба
         api.putStaff);
 });
 
-// api добавление графика работы
-const addSchedule = (name, description) => it('Добавление графика работы', async () => {
+// api РґРѕР±Р°РІР»РµРЅРёРµ РіСЂР°С„РёРєР° СЂР°Р±РѕС‚С‹
+const addSchedule = (name, description) => it('Р”РѕР±Р°РІР»РµРЅРёРµ РіСЂР°С„РёРєР° СЂР°Р±РѕС‚С‹', async () => {
     const cook = await page.base.getCookie('token');
     const obj = {
         "name": name,
@@ -89,8 +89,8 @@ const addSchedule = (name, description) => it('Добавление графика работы', async
         api.putSchedule);
 });
 
-// api удаление тестовых данных
-const deleteParams = () => describe('Удаление тестовых данных', () => {
+// api СѓРґР°Р»РµРЅРёРµ С‚РµСЃС‚РѕРІС‹С… РґР°РЅРЅС‹С…
+const deleteParams = () => describe('РЈРґР°Р»РµРЅРёРµ С‚РµСЃС‚РѕРІС‹С… РґР°РЅРЅС‹С…', () => {
 
     aft();
     bef();
@@ -103,436 +103,436 @@ const deleteParams = () => describe('Удаление тестовых данных', () => {
 
 });
 
-//Отображение первичное
-const display = () => describe(`Отображение страницы "Подразделения".`, () => {
+//РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРµСЂРІРёС‡РЅРѕРµ
+const display = () => describe(`РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃС‚СЂР°РЅРёС†С‹ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ".`, () => {
 
     bef();
     aft();
 
-    it('Отображение "title", "url"', async () => await dec.simple(page.division.init,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "title", "url"', async () => await dec.simple(page.division.init,
         [entry.max],
         page.division));
 
-    it('Отображение раздела "Персонал" - активен', async () => await dec.simple(el.section.active,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЂР°Р·РґРµР»Р° "РџРµСЂСЃРѕРЅР°Р»" - Р°РєС‚РёРІРµРЅ', async () => await dec.simple(el.section.active,
         [sec.per, entry.max],
         el.section));
 
-    it('Отображение подраздела "Подразделения" - активен', async () => await dec.simple(el.subsection.active,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»Р° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ" - Р°РєС‚РёРІРµРЅ', async () => await dec.simple(el.subsection.active,
         [sub.per.division, entry.max],
         el.section));
 
-    it('Отображение "Персонал" в заглавие навигации', async () => await dec.simpleText(el.subsection.headerGetText,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРµСЂСЃРѕРЅР°Р»" РІ Р·Р°РіР»Р°РІРёРµ РЅР°РІРёРіР°С†РёРё', async () => await dec.simpleText(el.subsection.headerGetText,
         [entry.max],
-        'ПЕРСОНАЛ',
+        'РџР•Р РЎРћРќРђР›',
         el.subsection));
 
-    it('Отображение "Подразделения" в заглавие', async () => await dec.simpleText(el.header.getText,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ" РІ Р·Р°РіР»Р°РІРёРµ', async () => await dec.simpleText(el.header.getText,
         [entry.max],
-        'Подразделения',
+        'РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ',
         el.header));
 
-    it('Отображение имя пользователя в заглавии', async () => await dec.simpleText(el.header.userGetText,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ Р·Р°РіР»Р°РІРёРё', async () => await dec.simpleText(el.header.userGetText,
         [entry.max],
         entry.user,
         el.header));
 
-    it('Отображение кнопки "Добавить" - активна', async () => await dec.simple(el.butIcBefore.active,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РєРЅРѕРїРєРё "Р”РѕР±Р°РІРёС‚СЊ" - Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.butIcBefore.active,
         [but.add, entry.max],
         el.butIcBefore));
 
-    it('Отображение кнопки "Редактировать" - не активна', async () => await dec.simple(el.butIcBefore.disabled,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РєРЅРѕРїРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ" - РЅРµ Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.butIcBefore.disabled,
         [but.edit, entry.max],
         el.butIcBefore));
 
-    it('Отображение кнопки "Удалить" - не активна', async () => await dec.simple(el.butIcBefore.disabled,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РєРЅРѕРїРєРё "РЈРґР°Р»РёС‚СЊ" - РЅРµ Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.butIcBefore.disabled,
         [but.delete, entry.max],
         el.butIcBefore));
 
-    it('Отображение кнопки "Меню" - активна', async () => await dec.simple(el.butIcBefore.active,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ" - Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.butIcBefore.active,
         [but.menu, entry.max],
         el.butIcBefore));
 
-    it('Отображение фильтра "Поиск..."', async () => await dec.simple(el.input.input,
-        ['', 'Поиск...', entry.max],
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„РёР»СЊС‚СЂР° "РџРѕРёСЃРє..."', async () => await dec.simple(el.input.input,
+        ['', 'РџРѕРёСЃРє...', entry.max],
         el.input));
 
-    it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+    it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
         [but.menu, entry.max],
         el.butIcBefore));
 
-    it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
         [entry.max],
         el.menu));
 
-    it('Отображение "Печать таблицы" - активна', async () => await dec.simple(el.menu.itemActive,
-        ['Печать таблицы', entry.max],
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹" - Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.menu.itemActive,
+        ['РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹', entry.max],
         el.menu));
 
-    it('Отображение "Печать дерева" - активна', async () => await dec.simple(el.menu.itemActive,
-        ['Печать дерева', entry.max],
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°" - Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.menu.itemActive,
+        ['РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°', entry.max],
         el.menu));
 
-    it('Отображение "Экспорт" - активна', async () => await dec.simple(el.menu.itemActive,
-        ['Экспорт', entry.max],
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "Р­РєСЃРїРѕСЂС‚" - Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.menu.itemActive,
+        ['Р­РєСЃРїРѕСЂС‚', entry.max],
         el.menu));
 
-    it('Отображение "Импорт из XLS, XLSX" - активна', async () => await dec.simple(el.menu.itemActive,
-        ['Импорт из XLS, XLSX', entry.max],
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РРјРїРѕСЂС‚ РёР· XLS, XLSX" - Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.menu.itemActive,
+        ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
         el.menu));
 
-    it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-        [[ "Администраторы системы"], entry.max],
+    it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+        [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
         page.division));
 });
 
-// Тесты добавления
+// РўРµСЃС‚С‹ РґРѕР±Р°РІР»РµРЅРёСЏ
 const add = () => {
 
-    // Добавление родительского и дочернего подразделения с минимальным количеством параметров.
-    const addMinParams = () => describe('Подразделение. Добавление. Добавление подраздления 1 уровня и подразделения '+
-        '2 уровня с минимальным количеством параметров.', () => {
+    // Р”РѕР±Р°РІР»РµРЅРёРµ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ Рё РґРѕС‡РµСЂРЅРµРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const addMinParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ Рё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ '+
+        '2 СѓСЂРѕРІРЅСЏ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.', () => {
 
         const params = {
             name1: 'addMinParamsName1',
             name2: 'addMinParamsName2',
         };
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Добавление подразделений', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
             bef();
             aft();
 
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.name1, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.name1, entry.max],
                     el.input));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно добавлено!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно добавлено!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отображенние добавленного подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
             });
 
-            describe('добавление подразделения 2 уровня', () => {
+            describe('РґРѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.name2, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.name2, entry.max],
                     el.input));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно добавлено!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно добавлено!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отображенние добавленного подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.input.getValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.name1,
                     el.input));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleFalse(el.selectMulti.getText,
-                    ['Шаблон доступа для сотрудника', 1, entry.min],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleFalse(el.selectMulti.getText,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.select.getText,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.select.getText,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.input.getValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.name2,
                     el.input));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleFalse(el.selectMulti.getText,
-                    ['Шаблон доступа для сотрудника', 1, entry.min],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleFalse(el.selectMulti.getText,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.select.getText,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.select.getText,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
 
-                it('Нажатие кнопки закрытия модального окна', async () => await dec.simple(el.modal.divisionEdit.closeHandler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°', async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                     [entry.max],
                     el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -544,9 +544,9 @@ const add = () => {
 
     });
 
-    // Добавление родительского и дочернего подразделения с максимальным количеством параметров.
-    const addMaxParams = () => describe('Подразделение. Добавление. Добавление подразделение 1 уровня и подразделение ' +
-        '2 уровня с максимальным количеством параметров.', () => {
+    // Р”РѕР±Р°РІР»РµРЅРёРµ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ Рё РґРѕС‡РµСЂРЅРµРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const addMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ Рё РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ ' +
+        '2 СѓСЂРѕРІРЅСЏ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.', () => {
 
         const params = {
             division1: {
@@ -583,7 +583,7 @@ const add = () => {
             },
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -598,439 +598,439 @@ const add = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Добавление подразделений', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
             bef();
             aft();
 
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.division1.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.division1.name, entry.max],
                     el.input));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.input.sendKeys,
-                    ['Телефон', '', params.division1.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.division1.phone, entry.max],
                     el.input));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
-                    ['Описание', '', params.division1.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.division1.description, entry.max],
                     el.input));
 
-                it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                    ['Сопровождающий', '',
+                it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '',
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Выбор значение 1 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 1 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division1.template1, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division1.template1, entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 2 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 2 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division1.template2, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division1.template2, entry.max],
                         el.selectMulti));
 
-                it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                    ['Шаблон доступа для посетителя', '', params.division1.template3, entry.max],
+                it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', params.division1.template3, entry.max],
                     el.select));
 
-                it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                    ['График работы', '', params.division1.schedule, entry.max],
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', params.division1.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно добавлено!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно добавлено!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отображенние добавленного подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
             });
 
-            describe('добавление подразделения 2 уровня', () => {
+            describe('РґРѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.division2.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.division2.name, entry.max],
                     el.input));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['Телефон', '', params.division2.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.division2.phone, entry.max],
                     el.modal.divisionAdd));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['Описание', '', params.division2.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.division2.description, entry.max],
                     el.modal.divisionAdd));
 
-                it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Удаление значение 2 в "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ Р·РЅР°С‡РµРЅРёРµ 2 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await  dec.simple(el.selectMulti.delete,
-                        ['Шаблон доступа для сотрудника', 2, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.max],
                         el.selectMulti));
 
-                it('Удаление значение 1 в "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ Р·РЅР°С‡РµРЅРёРµ 1 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await  dec.simple(el.selectMulti.delete,
-                        ['Шаблон доступа для сотрудника', 1, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 1 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 1 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division2.template1, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division2.template1, entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 2 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 2 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division2.template2, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division2.template2, entry.max],
                         el.selectMulti));
 
-                it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                    ['Шаблон доступа для посетителя', params.division1.template3,
+                it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division1.template3,
                         params.division2.template3, entry.max],
                     el.select));
 
-                it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                    ['График работы', params.division1.schedule, params.division2.schedule, entry.max],
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division1.schedule, params.division2.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно добавлено!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно добавлено!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отображенние добавленного подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                    ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division1.template3, entry.max],
                     params.division1.template3,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -1043,11 +1043,11 @@ const add = () => {
 
     });
 
-    // Добавление родительского и дочернего подразделения с максимальным количеством параметров, через формы выбора:
-    // «Сопровождающий», «Шаблон доступа для сотрудника», «Шаблон доступа для посетителя», «График работы».
-    const addFormsMaxParams = () => describe('Подразделение. Добавление. Добавление родительского и дочернего ' +
-        'подразделения с максимальным количеством параметров, через формы выбора: «Сопровождающий», ' +
-        '«Шаблон доступа для сотрудника», «Шаблон доступа для посетителя», «График работы».', () => {
+    // Р”РѕР±Р°РІР»РµРЅРёРµ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ Рё РґРѕС‡РµСЂРЅРµРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ, С‡РµСЂРµР· С„РѕСЂРјС‹ РІС‹Р±РѕСЂР°:
+    // В«РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№В», В«РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°В», В«РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏВ», В«Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹В».
+    const addFormsMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ Рё РґРѕС‡РµСЂРЅРµРіРѕ ' +
+        'РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ, С‡РµСЂРµР· С„РѕСЂРјС‹ РІС‹Р±РѕСЂР°: В«РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№В», ' +
+        'В«РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°В», В«РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏВ», В«Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹В».', () => {
 
         const params = {
             division1: {
@@ -1084,7 +1084,7 @@ const add = () => {
             },
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -1099,612 +1099,612 @@ const add = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Добавление подразделений', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
             bef();
             aft();
 
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.division1.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.division1.name, entry.max],
                     el.input));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.input.sendKeys,
-                    ['Телефон', '', params.division1.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.division1.phone, entry.max],
                     el.input));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.input.sendKeys,
-                    ['Описание', '', params.division1.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.division1.description, entry.max],
                     el.input));
 
-                it('Нажатие кнопки меню в выборе "Сопровождающий"', async () => await dec.simple(el.select.iconMenu,
-                    ['Сопровождающий', '', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconMenu,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     el.select));
 
-                it('Отображение модального окна "Сопровождающий"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор сотрудника',
+                it('Р’С‹Р±РѕСЂ СЃРѕС‚СЂСѓРґРЅРёРєР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division1.fio.lastName} ${params.division1.fio.firstName}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Проверка "Сопровождающий"', async () => await  dec.simple(el.select.select,
-                    ["Сопровождающий",
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await  dec.simple(el.select.select,
+                    ["РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№",
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для сотрудника"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Отображение модального окна "Шаблон доступа для сотрудника"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 1',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division1.template1}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 2',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division1.template2}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для посетителя"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Шаблон доступа для посетителя', '', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                         el.select));
 
-                it('Отображение модального окна "Шаблон доступа для посетителя"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division1.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await  dec.simple(el.select.select,
-                    ["Шаблон доступа для посетителя", params.division1.template3, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await  dec.simple(el.select.select,
+                    ["РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ", params.division1.template3, entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "График работы"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['График работы', '', entry.max],
+                        ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                         el.select));
 
-                it('Отображение модального окна "График работы"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division1.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Проверка "График работы"', async () => await  dec.simple(el.select.select,
-                    ["График работы", params.division1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await  dec.simple(el.select.select,
+                    ["Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹", params.division1.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно добавлено!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно добавлено!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отображенние добавленного подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
             });
 
-            describe('Добавление подразделения 2 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.division2.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.division2.name, entry.max],
                     el.input));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['Телефон', '', params.division2.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.division2.phone, entry.max],
                     el.modal.divisionAdd));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
-                    ['Описание', '', params.division2.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionAdd.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.division2.description, entry.max],
                     el.modal.divisionAdd));
 
-                it('Нажатие кнопки меню в выборе "Сопровождающий"', async () => await dec.simple(el.select.iconMenu,
-                    ['Сопровождающий',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconMenu,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№',
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Отображение модального окна "Сопровождающий"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор сотрудника',
+                it('Р’С‹Р±РѕСЂ СЃРѕС‚СЂСѓРґРЅРёРєР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division2.fio.lastName} ${params.division2.fio.firstName}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Удаление "Шаблон доступа для сотрудника"', async () => await dec.simple(el.selectMulti.iconClear,
-                    ['Шаблон доступа для сотрудника', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.selectMulti.iconClear,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                     el.selectMulti));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для сотрудника"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Отображение модального окна "Шаблон доступа для сотрудника"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 1',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division2.template1}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 2',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.division2.template2}`, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для посетителя"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Шаблон доступа для посетителя', params.division1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division1.template3, entry.max],
                         el.select));
 
-                it('Отображение модального окна "Шаблон доступа для посетителя"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division2.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки меню в выборе "График работы"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['График работы', params.division1.schedule, entry.max],
+                        ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division1.schedule, entry.max],
                         el.select));
 
-                it('Отображение модального окна "График работы"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.division2.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно добавлено!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно добавлено!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отображенние добавленного подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -1717,9 +1717,9 @@ const add = () => {
 
     });
 
-    // Добавление 5 подразделений 1 уровня с вложенннными подразделениямми прогрессией до 5.
-    const addIncludeProgression =() => describe('Подразделение. Добавление. Добавление 5 подразделений 1 уровня ' +
-        'с вложенными подразделениями ' + 'прогрессией до 5.', () => {
+    // Р”РѕР±Р°РІР»РµРЅРёРµ 5 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 1 СѓСЂРѕРІРЅСЏ СЃ РІР»РѕР¶РµРЅРЅРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРјРё РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ 5.
+    const addIncludeProgression =() => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ 5 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 1 СѓСЂРѕРІРЅСЏ ' +
+        'СЃ РІР»РѕР¶РµРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё ' + 'РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ 5.', () => {
 
         const params = {
             array: [...Array(5).keys()].map(item1 => {
@@ -1729,57 +1729,57 @@ const add = () => {
             }),
         };
 
-        describe('Добавление подразделений', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
             bef();
             aft();
 
             params.array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    describe(`Добавление подразделения ${index2 + 1} уровня - ${item2}`, () => {
+                    describe(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2}`, () => {
 
                         if(index2 > 0) {
-                            it(`Нажатие по подразделению ${index2} уровня - ${item1[index2 - 1]}`,
+                            it(`РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ ${index2} СѓСЂРѕРІРЅСЏ - ${item1[index2 - 1]}`,
                                 async () => await dec.simple(page.division.handler,
                                     [arr, entry.max],
                                     page.division));
 
-                            it(`Подразделение ${index2} уровня - ${item1[index2 - 1]} выделен`,
+                            it(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ ${index2} СѓСЂРѕРІРЅСЏ - ${item1[index2 - 1]} РІС‹РґРµР»РµРЅ`,
                                 async () => await dec.simple(page.division.selected,
                                     [item1[index2 - 1], entry.max],
                                     page.division));
                         }
 
-                        it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                        it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                             [but.add, entry.max],
                             el.butIcBefore));
 
-                        it('Отображение модального окна "Добавить подразделение"',
+                        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                             async () => await  dec.simple(el.modal.divisionAdd.init,
                                 [entry.max],
                                 el.modal.divisionAdd));
 
-                        it('Ввод "Подразделение"', async () => {
+                        it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => {
                             await dec.simple(el.input.sendKeys,
-                                ['Подразделение', '', item2, entry.max],
+                                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', item2, entry.max],
                                 el.input)
                         });
 
-                        it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                            ["Сохранить", entry.max],
+                        it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                            ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                             el.button));
 
-                        it('Отображение сообщения "Подразделение успешно добавлено!"',
+                        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!"',
                             async () => await dec.simple(el.success.success,
-                                ['Подразделение успешно добавлено!', entry.max],
+                                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ!', entry.max],
                                 el.success));
 
-                        it('Отсутствие модального окна "Добавить подразделение"',
+                        it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                             async () => await  dec.simple(el.modal.divisionAdd.initClose,
                                 [entry.max],
                                 el.modal.divisionAdd));
 
-                        it('Отображенние добавленного подразделения', async () => {
+                        it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                             arr.push(item2);
                             await dec.simple(page.division.division,
                                 [arr, entry.max],
@@ -1792,20 +1792,20 @@ const add = () => {
 
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 16 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 16 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [16, entry.max],
                     page.division));
 
                 params.array.forEach((item1) => {
                     let arr =[];
                     item1.forEach((item2, index2) => {
-                        it(`Отображенние подразделения ${index2 + 1} уровня - ${item2}`, async () => {
+                        it(`РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2}`, async () => {
                             arr.push(item2);
                             await dec.simple(page.division.division,
                                 [arr, entry.max],
@@ -1822,16 +1822,16 @@ const add = () => {
         deleteParams();
     });
 
-    // Попытка дублирования корневого подразделения к родительскому.
-    const addDuplicateOneLevel = () => describe('Подразделение. Добавление. Попытка дублирования подразделения ' +
-        '1 уровня к подразделению 1 уровня.', () => {
+    // РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ РєРѕСЂРЅРµРІРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ Рє СЂРѕРґРёС‚РµР»СЊСЃРєРѕРјСѓ.
+    const addDuplicateOneLevel = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ. РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ' +
+        '1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ.', () => {
 
         const params = {
                 name: 'addDuplicateOneLevelName',
-                error: 'Данное подразделение уже существует'
+                error: 'Р”Р°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚'
             };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
                 bef();
                 aft();
                 const obj = {
@@ -1841,68 +1841,68 @@ const add = () => {
                 addDivision(obj);
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [2, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name], entry.max],
                     page.division));
             });
 
-        describe('Добавление подразделений', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
                 bef();
                 aft();
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.name, entry.max],
                     el.input));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение ошибки "Данное подразделение уже существует"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "Р”Р°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('Модального окно "Добавить подразделение" не закрыто',
+                it('РњРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅРѕ "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ" РЅРµ Р·Р°РєСЂС‹С‚Рѕ',
                     async () => await  dec.simpleFalse(el.modal.divisionAdd.initClose,
                         [entry.min],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionAdd.closeHandler,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [2, entry.max],
                     page.division));
 
@@ -1911,21 +1911,21 @@ const add = () => {
         deleteParams();
     });
 
-    // Попытка дублирования корневого подразделения к дочернему.
-    const addDuplicateTwoLevel = () => describe('Подразделение. Добавление. Попытка дублирования подразделения ' +
-        '1 уровня к подразделению 2 уровня.', () => {
+    // РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ РєРѕСЂРЅРµРІРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ Рє РґРѕС‡РµСЂРЅРµРјСѓ.
+    const addDuplicateTwoLevel = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ. РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ' +
+        '1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ.', () => {
 
         const params = {
                 name1: 'addDuplicateTwoLevelName1',
                 name2: 'addDuplicateTwoLevelName2',
-                error: 'Данное подразделение уже существует'
+                error: 'Р”Р°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚'
             };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
                 bef();
                 aft();
 
-                describe('Добавление подразделения 1 уровня', () => {
+                describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                     const obj = {
                         parent_id: 0,
                         name: params.name1,
@@ -1933,8 +1933,8 @@ const add = () => {
                     addDivision(obj);
                 });
 
-                describe('Добавление подразделения 2 уровня', () => {
-                    it('Добавление подразделения', async () => {
+                describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                    it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                         const cook = await page.base.getCookie('token');
                         const get = await api.getDivision(cook.text);
                         const obj = {
@@ -1948,80 +1948,80 @@ const add = () => {
                 });
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
             });
 
-        describe('Добавление подразделений', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
                 bef();
                 aft();
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                    ['Подразделение', '', params.name2, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.name2, entry.max],
                     el.input));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение ошибки "Данное подразделение уже существует"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "Р”Р°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('Модального окно "Добавить подразделение" не закрыто',
+                it('РњРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅРѕ "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ" РЅРµ Р·Р°РєСЂС‹С‚Рѕ',
                     async () => await  dec.simpleFalse(el.modal.divisionAdd.initClose,
                         [entry.min],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionAdd.closeHandler,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name2], entry.max],
                     page.division));
             });
@@ -2029,73 +2029,73 @@ const add = () => {
         deleteParams();
     });
 
-    // Попытка добавления без «Подразделение».
-    const addNoName = () => describe('Подразделение. Добавление. Попытка добавления без "Подразделение»".',
+    // РџРѕРїС‹С‚РєР° РґРѕР±Р°РІР»РµРЅРёСЏ Р±РµР· В«РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµВ».
+    const addNoName = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ. РџРѕРїС‹С‚РєР° РґРѕР±Р°РІР»РµРЅРёСЏ Р±РµР· "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµВ»".',
         () => {
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [1, entry.max],
                     page.division));
 
-                it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                    [[ "Администраторы системы"], entry.max],
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                    [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                     page.division));
 
             });
 
-        describe('Добавление подразделений', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
                 bef();
                 aft();
 
-                it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Добавить подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.init,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Кнопки "Сохранить" - не активна', async () => await dec.simple(el.button.disabled,
-                    ["Сохранить", entry.max],
+                it('РљРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ" - РЅРµ Р°РєС‚РёРІРЅР°', async () => await dec.simple(el.button.disabled,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handlerNoActive,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handlerNoActive,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Модального окно "Добавить подразделение" не закрыто',
+                it('РњРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅРѕ "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ" РЅРµ Р·Р°РєСЂС‹С‚Рѕ',
                     async () => await  dec.simpleFalse(el.modal.divisionAdd.initClose,
                         [entry.min],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionAdd.closeHandler,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [1, entry.max],
                     page.division));
 
-                it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                    [[ "Администраторы системы"], entry.max],
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                    [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                     page.division));
 
             });
@@ -2103,7 +2103,7 @@ const add = () => {
         deleteParams();
     });
 
-    const add = () => describe('Подразделение. Проверки добавления.', () => {
+    const add = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџСЂРѕРІРµСЂРєРё РґРѕР±Р°РІР»РµРЅРёСЏ.', () => {
         addMinParams();
         addMaxParams();
         addFormsMaxParams();
@@ -2125,13 +2125,13 @@ const add = () => {
     }
 };
 
-// Тесты редактирования
+// РўРµСЃС‚С‹ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
 const edit = () => {
 
-    // Добавление необязательных параметров с минимальным количеством параметров в родительское и дочернее подразделение
-    // с минимальным количеством параметров.
-    const editMinParams = () => describe('Подразделение. Редактирование. Добавление необязательных параметров ' +
-        'с минимальным количеством параметров в подразделение 1 уровня и подразделние 2 уровня', () => {
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ РІ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ Рё РґРѕС‡РµСЂРЅРµРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ
+    // СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const editMinParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. Р”РѕР±Р°РІР»РµРЅРёРµ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ ' +
+        'СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ РІ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ Рё РїРѕРґСЂР°Р·РґРµР»РЅРёРµ 2 СѓСЂРѕРІРЅСЏ', () => {
 
         const params = {
             division1: {
@@ -2168,7 +2168,7 @@ const edit = () => {
             },
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -2181,15 +2181,15 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.division1.name,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -2203,513 +2203,513 @@ const edit = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
         });
 
-        describe('Редактирование подразделений', () => {
+        describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
             bef();
             aft();
 
-            describe('Редактирование подразделения 1 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Телефон', '', params.division1.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.division1.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Описание', '', params.division1.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.division1.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                    ['Сопровождающий', '',
+                it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '',
                         `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Выбор значение 1 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 1 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division1.template1, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division1.template1, entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 2 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 2 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division1.template2, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division1.template2, entry.max],
                         el.selectMulti));
 
-                it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                    ['Шаблон доступа для посетителя', '', params.division1.template3, entry.max],
+                it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', params.division1.template3, entry.max],
                     el.select));
 
-                it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                    ['График работы', '', params.division1.schedule, entry.max],
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', params.division1.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Редактирование подразделения 2 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 2 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение 2 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 2 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Телефон', '', params.division2.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.division2.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Описание', '', params.division2.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.division2.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                    ['Сопровождающий', '',
+                it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '',
                         `${params.division2.fio.lastName} ${params.division2.fio.firstName}`, entry.max],
                     el.select));
 
-                it('Выбор значение 1 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 1 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division2.template1, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division2.template1, entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 2 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 2 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.division2.template2, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.division2.template2, entry.max],
                         el.selectMulti));
 
-                it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                        ['Шаблон доступа для посетителя', '', params.division2.template3, entry.max],
+                it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', params.division2.template3, entry.max],
                     el.select));
 
-                it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                    ['График работы', '', params.division2.schedule, entry.max],
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', params.division2.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -2721,10 +2721,10 @@ const edit = () => {
         deleteParams();
     });
 
-    // Удаление необязательных параметров с минимальным количеством параметров у родительского и дочернего подразделения
-    // с максимальным количеством параметров.
-    const editMaxParams = () => describe('Подразделение. Редактирование. Удаление необязательных параметров ' +
-        'с максимальным количеством параметров в подразделение 1 уровня и подразделние 2 уровня', () => {
+    // РЈРґР°Р»РµРЅРёРµ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ Сѓ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ Рё РґРѕС‡РµСЂРЅРµРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ
+    // СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const editMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. РЈРґР°Р»РµРЅРёРµ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ ' +
+        'СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ РІ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ Рё РїРѕРґСЂР°Р·РґРµР»РЅРёРµ 2 СѓСЂРѕРІРЅСЏ', () => {
 
         const params = {
             division1: {
@@ -2761,7 +2761,7 @@ const edit = () => {
             },
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -2774,7 +2774,7 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            it('Добавление подразделени 1 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 1 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -2796,7 +2796,7 @@ const edit = () => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Добавление подразделени 2 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -2821,266 +2821,266 @@ const edit = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -3089,382 +3089,382 @@ const edit = () => {
 
         });
 
-        describe('Редактирование подразделений', () => {
+        describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
             bef();
             aft();
 
-            describe('Редактирование подразделения 1 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Телефон', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Описание', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Сопровождающий"', async () => await dec.simple(el.select.iconClear,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РЈРґР°Р»РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconClear,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Удаление "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Удаление "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconClear,
-                    ['Шаблон доступа для посетителя', params.division1.template3, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconClear,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division1.template3, entry.max],
                     el.select));
 
-                it('Удаление "График работы"', async () => await dec.simple(el.select.iconClear,
-                    ['График работы', params.division1.schedule, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconClear,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division1.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
 
-            describe('Редактирование подразделения 2 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 2 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение 2 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 2 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Телефон', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Описание', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Сопровождающий"', async () => await dec.simple(el.select.iconClear,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РЈРґР°Р»РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconClear,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Удаление "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Удаление "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconClear,
-                    ['Шаблон доступа для посетителя', params.division2.template3, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconClear,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division2.template3, entry.max],
                     el.select));
 
-                it('Удаление "График работы"', async () => await dec.simple(el.select.iconClear,
-                    ['График работы', params.division2.schedule, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconClear,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division2.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.select));
 
-                it('Проверка "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleFalse(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  '', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  '', entry.max],
                         '',
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.select));
 
-                it('Проверка "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleFalse(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  '', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  '', entry.max],
                         '',
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -3476,9 +3476,9 @@ const edit = () => {
         deleteParams();
     });
 
-    // Редактирование всех параметров родительского и дочернего подразделения с максимальным количеством параметров.
-    const editAllParamsMaxParams = () => describe('Подразделение. Редактирование. Редактирование всех параметров ' +
-        'пеодразделение 1 уровня и подразделени 2 уровня,c максимальным количеством параметров', () => {
+    // Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РІСЃРµС… РїР°СЂР°РјРµС‚СЂРѕРІ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ Рё РґРѕС‡РµСЂРЅРµРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const editAllParamsMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РІСЃРµС… РїР°СЂР°РјРµС‚СЂРѕРІ ' +
+        'РїРµРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ Рё РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ,c РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
         const params = {
             division1: {
@@ -3547,7 +3547,7 @@ const edit = () => {
             },
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -3560,7 +3560,7 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            it('Добавление подразделени 1 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 1 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -3582,7 +3582,7 @@ const edit = () => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Добавление подразделени 2 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -3618,266 +3618,266 @@ const edit = () => {
             addStaff(...Object.values(params.divisionUpdate2.fio));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -3886,206 +3886,206 @@ const edit = () => {
 
         });
 
-        describe('Редактирование подразделений', () => {
+        describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
             bef();
             aft();
 
-            describe('Редактирование подразделения 1 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Подразделение', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Подразделение', '', params.divisionUpdate1.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.divisionUpdate1.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Телефон', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Телефон', '', params.divisionUpdate1.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.divisionUpdate1.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Описание', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Описание', '', params.divisionUpdate1.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.divisionUpdate1.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Сопровождающий"', async () => await dec.simple(el.select.iconClear,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РЈРґР°Р»РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconClear,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                    ['Сопровождающий', '',
+                it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '',
                         `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Удаление "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 1 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 1 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.divisionUpdate1.template1, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.divisionUpdate1.template1, entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 2 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 2 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.divisionUpdate1.template2, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.divisionUpdate1.template2, entry.max],
                         el.selectMulti));
 
-                it('Удаление "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconClear,
-                    ['Шаблон доступа для посетителя', params.division1.template3, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconClear,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division1.template3, entry.max],
                     el.select));
 
-                it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                    ['Шаблон доступа для посетителя', '', params.divisionUpdate1.template3, entry.max],
+                it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', params.divisionUpdate1.template3, entry.max],
                     el.select));
 
-                it('Удаление "График работы"', async () => await dec.simple(el.select.iconClear,
-                    ['График работы', params.division1.schedule, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconClear,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division1.schedule, entry.max],
                     el.select));
 
-                it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                    ['График работы', '', params.divisionUpdate1.schedule, entry.max],
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', params.divisionUpdate1.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Редактирование подразделения 2 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 2 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение 2 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 2 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Подразделение', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Подразделение', '', params.divisionUpdate2.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.divisionUpdate2.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Телефон', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Телефон', '', params.divisionUpdate2.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.divisionUpdate2.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Описание', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Описание', '', params.divisionUpdate2.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.divisionUpdate2.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Сопровождающий"', async () => await dec.simple(el.select.iconClear,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РЈРґР°Р»РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconClear,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                    ['Сопровождающий', '',
+                it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '',
                         `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Удаление "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 1 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 1 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.divisionUpdate2.template1, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.divisionUpdate2.template1, entry.max],
                         el.selectMulti));
 
-                it('Выбор значение 2 в "Шаблон доступа для сотрудника"',
+                it('Р’С‹Р±РѕСЂ Р·РЅР°С‡РµРЅРёРµ 2 РІ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconXpandSelected,
-                        ['Шаблон доступа для сотрудника', params.divisionUpdate2.template2, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', params.divisionUpdate2.template2, entry.max],
                         el.selectMulti));
 
-                it('Удаление "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconClear,
-                    ['Шаблон доступа для посетителя', params.division2.template3, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconClear,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division2.template3, entry.max],
                     el.select));
 
-                it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                    ['Шаблон доступа для посетителя', '', params.divisionUpdate2.template3, entry.max],
+                it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', params.divisionUpdate2.template3, entry.max],
                     el.select));
 
-                it('Удаление "График работы"', async () => await dec.simple(el.select.iconClear,
-                    ['График работы', params.division2.schedule, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconClear,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division2.schedule, entry.max],
                     el.select));
 
-                it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                    ['График работы', '', params.divisionUpdate2.schedule, entry.max],
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', params.divisionUpdate2.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -4093,267 +4093,267 @@ const edit = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.divisionUpdate1.template1}, ${params.divisionUpdate1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.divisionUpdate1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.divisionUpdate1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.divisionUpdate2.template1}, ${params.divisionUpdate2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.divisionUpdate2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.divisionUpdate2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.divisionUpdate1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий',
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№',
                         `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.divisionUpdate1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.divisionUpdate1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.divisionUpdate1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.divisionUpdate1.template3, entry.max],
                         params.divisionUpdate1.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.divisionUpdate1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.divisionUpdate1.schedule, entry.max],
                     params.divisionUpdate1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.divisionUpdate2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.divisionUpdate2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.divisionUpdate2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.divisionUpdate2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.divisionUpdate2.template3, entry.max],
                         params.divisionUpdate2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.divisionUpdate2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.divisionUpdate2.schedule, entry.max],
                     params.divisionUpdate2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -4365,12 +4365,12 @@ const edit = () => {
         deleteParams();
     });
 
-    // Редактирование всех параметров родительского и дочернего подразделения с максимальным количеством параметров,
-    // через формы выбора: «Сопровождающий», «Шаблон доступа для сотрудника», «Шаблон доступа для посетителя»,
-    // «График работы».
-    const editAllParamsFormsMaxParams = () => describe('Подразделение. Редактирование. Редактирование всех параметров '+
-        'пеодразделение 1 уровня и подразделени 2 уровня, c максимальным количеством параметров, через формы выбора: ' +
-        '"Сопровождающий", "Шаблон доступа для сотрудника", "Шаблон доступа для посетителя", "График работы".', () => {
+    // Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РІСЃРµС… РїР°СЂР°РјРµС‚СЂРѕРІ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ Рё РґРѕС‡РµСЂРЅРµРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ,
+    // С‡РµСЂРµР· С„РѕСЂРјС‹ РІС‹Р±РѕСЂР°: В«РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№В», В«РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°В», В«РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏВ»,
+    // В«Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹В».
+    const editAllParamsFormsMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РІСЃРµС… РїР°СЂР°РјРµС‚СЂРѕРІ '+
+        'РїРµРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ Рё РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ, c РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ, С‡РµСЂРµР· С„РѕСЂРјС‹ РІС‹Р±РѕСЂР°: ' +
+        '"РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№", "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°", "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ", "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹".', () => {
 
         const params = {
             division1: {
@@ -4439,7 +4439,7 @@ const edit = () => {
             },
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -4452,7 +4452,7 @@ const edit = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-            it('Добавление подразделени 1 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 1 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -4474,7 +4474,7 @@ const edit = () => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Добавление подразделени 2 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getStaff = await api.getStaff(cook.text);
                 const getTemplate = await api.getAccessTemplate(cook.text);
@@ -4510,266 +4510,266 @@ const edit = () => {
             addStaff(...Object.values(params.divisionUpdate2.fio));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division1.template3, entry.max],
                         params.division1.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division1.schedule, entry.max],
                     params.division1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.division2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.division2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.division2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.division2.template3, entry.max],
                         params.division2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.division2.schedule, entry.max],
                     params.division2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -4778,627 +4778,627 @@ const edit = () => {
 
         });
 
-        describe('Редактирование подразделений', () => {
+        describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            describe('Редактирование подразделения 1 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 1 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Подразделение', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Подразделение', '', params.divisionUpdate1.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.divisionUpdate1.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Телефон', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Телефон', '', params.divisionUpdate1.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.divisionUpdate1.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Описание', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Описание', '', params.divisionUpdate1.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.divisionUpdate1.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Сопровождающий"', async () => await dec.simple(el.select.iconClear,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
+                it('РЈРґР°Р»РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconClear,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "Сопровождающий"', async () => await dec.simple(el.select.iconMenu,
-                    ['Сопровождающий', '', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconMenu,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     el.select));
 
-                it('Отображение модального окна "Сопровождающий"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор сотрудника',
+                it('Р’С‹Р±РѕСЂ СЃРѕС‚СЂСѓРґРЅРёРєР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                             entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для сотрудника"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Отображение модального окна "Шаблон доступа для сотрудника"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 1',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.template1, entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 2',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.template2, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconClear,
-                    ['Шаблон доступа для посетителя', params.division1.template3, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconClear,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division1.template3, entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для посетителя"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Шаблон доступа для посетителя', '', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                         el.select));
 
-                it('Отображение модального окна "Шаблон доступа для посетителя"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "График работы"', async () => await dec.simple(el.select.iconClear,
-                    ['График работы', params.division1.schedule, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconClear,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division1.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "График работы"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['График работы', '', entry.max],
+                        ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                         el.select));
 
-                it('Отображение модального окна "График работы"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор "График работы"',
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate1.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
 
-            describe('Редактирование подразделения 2 уровня', () => {
+            describe('Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по подразделению 2 уровня', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение 2 уровня выделен', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 2 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Подразделение', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Подразделение', '', params.divisionUpdate2.name, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.divisionUpdate2.name, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Телефон', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Телефон"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Телефон', '', params.divisionUpdate2.phone, entry.max],
+                it('Р’РІРѕРґ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РўРµР»РµС„РѕРЅ', '', params.divisionUpdate2.phone, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Описание', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Описание"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Описание', '', params.divisionUpdate2.description, entry.max],
+                it('Р’РІРѕРґ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РћРїРёСЃР°РЅРёРµ', '', params.divisionUpdate2.description, entry.max],
                     el.modal.divisionEdit));
 
-                it('Удаление "Сопровождающий"', async () => await dec.simple(el.select.iconClear,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
+                it('РЈРґР°Р»РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconClear,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                         entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "Сопровождающий"', async () => await dec.simple(el.select.iconMenu,
-                    ['Сопровождающий', '', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconMenu,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     el.select));
 
-                it('Отображение модального окна "Сопровождающий"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"',
                     async () => await dec.simple(el.modal.divisionAdd.initStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор сотрудника',
+                it('Р’С‹Р±РѕСЂ СЃРѕС‚СЂСѓРґРЅРёРєР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [`${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                             entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Шаблон доступа для сотрудника"',
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconClear,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для сотрудника"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.selectMulti.iconMenu,
-                        ['Шаблон доступа для сотрудника', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', entry.max],
                         el.selectMulti));
 
-                it('Отображение модального окна "Шаблон доступа для сотрудника"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateStaff,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 1',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 1',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.template1, entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа 2',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° 2',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.template2, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconClear,
-                    ['Шаблон доступа для посетителя', params.division2.template3, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconClear,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', params.division2.template3, entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "Шаблон доступа для посетителя"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['Шаблон доступа для посетителя', '', entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                         el.select));
 
-                it('Отображение модального окна "Шаблон доступа для посетителя"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simple(el.modal.divisionAdd.initTemplateUser,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор шаблон доступа',
+                it('Р’С‹Р±РѕСЂ С€Р°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР°',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.template3, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "График работы"', async () => await dec.simple(el.select.iconClear,
-                    ['График работы', params.division2.schedule, entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconClear,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', params.division2.schedule, entry.max],
                     el.select));
 
-                it('Нажатие кнопки меню в выборе "График работы"',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё РјРµРЅСЋ РІ РІС‹Р±РѕСЂРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.select.iconMenu,
-                        ['График работы', '', entry.max],
+                        ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                         el.select));
 
-                it('Отображение модального окна "График работы"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.modal.divisionAdd.initSchedule,
                         [entry.max],
                         el.modal.divisionAdd));
 
-                it('Выбор "График работы"',
+                it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"',
                     async () => await dec.simple(el.modal.divisionAdd.cellHandler,
                         [params.divisionUpdate2.schedule, entry.max],
                         el.modal.divisionAdd));
 
-                it('Нажатие кнопки "Применить"', async () => await dec.simple(el.button.handler,
-                    ['Применить', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РџСЂРёРјРµРЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ['РџСЂРёРјРµРЅРёС‚СЊ', entry.max],
                     el.button));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение сообщения "Подразделение успешно отредактировано!"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!"',
                     async () => await dec.simple(el.success.success,
-                        ['Подразделение успешно отредактировано!', entry.max],
+                        ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ!', entry.max],
                         el.success));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.divisionUpdate1.template1}, ${params.divisionUpdate1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.divisionUpdate1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.divisionUpdate1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.divisionUpdate2.template1}, ${params.divisionUpdate2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.divisionUpdate2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.divisionUpdate2.schedule}`,
                     el.input));
             });
         });
 
-        describe('Проверка параметров', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РїР°СЂР°РјРµС‚СЂРѕРІ', () => {
 
             bef();
             aft();
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate1.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.divisionUpdate1.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate1.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate1.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий',
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№',
                         `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate1.fio.lastName} ${params.divisionUpdate1.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.divisionUpdate1.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.divisionUpdate1.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.divisionUpdate1.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.divisionUpdate1.template3, entry.max],
                         params.divisionUpdate1.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.divisionUpdate1.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.divisionUpdate1.schedule, entry.max],
                     params.divisionUpdate1.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.divisionUpdate1.name, params.divisionUpdate2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.divisionUpdate2.name, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     params.divisionUpdate2.name,
                     el.modal.divisionEdit));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.divisionUpdate2.phone,
                     el.modal.divisionEdit));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.divisionUpdate2.description,
                     el.modal.divisionEdit));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.select.getText,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                         entry.max],
                     `${params.divisionUpdate2.fio.lastName} ${params.divisionUpdate2.fio.firstName}`,
                     el.select));
 
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 1 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 1, entry.min],
                         params.divisionUpdate2.template1,
                         el.selectMulti));
 
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
+                it('РџСЂРѕРІРµСЂРєР° Р·РЅР°С‡РµРЅРёРµ 2 "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"',
                     async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', 2, entry.min],
                         params.divisionUpdate2.template2,
                         el.selectMulti));
 
-                it('Проверка "Шаблон доступа для посетителя"',
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"',
                     async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.divisionUpdate2.template3, entry.max],
+                        ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ',  params.divisionUpdate2.template3, entry.max],
                         params.divisionUpdate2.template3,
                         el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.divisionUpdate2.schedule, entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.select.getText,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',  params.divisionUpdate2.schedule, entry.max],
                     params.divisionUpdate2.schedule,
                     el.select));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Редактировать подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
@@ -5410,9 +5410,9 @@ const edit = () => {
         deleteParams();
     });
 
-    // Скрытие - открытие подразделений с 3 вложенностью.
-    const editHideShow = () => describe('Подразделение. Редактирование. Скрытие / открытие подразделений ' +
-        'с 3 вложенностью', () => {
+    // РЎРєСЂС‹С‚РёРµ - РѕС‚РєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ СЃ 3 РІР»РѕР¶РµРЅРЅРѕСЃС‚СЊСЋ.
+    const editHideShow = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. РЎРєСЂС‹С‚РёРµ / РѕС‚РєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ ' +
+        'СЃ 3 РІР»РѕР¶РµРЅРЅРѕСЃС‚СЊСЋ', () => {
 
         const params = {
             name1: 'editHideShowName1',
@@ -5420,11 +5420,11 @@ const edit = () => {
             name3: 'editHideShowName3'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
-            it('Добавление подразделени 1 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 1 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const obj = {
                     "parent_id": 0,
@@ -5435,7 +5435,7 @@ const edit = () => {
                     api.putDivision);
             });
 
-            it('Добавление подразделени 2 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getDivision = await api.getDivision(cook.text);
 
@@ -5448,7 +5448,7 @@ const edit = () => {
                     api.putDivision);
             });
 
-            it('Добавление подразделени 3 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 3 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getDivision = await api.getDivision(cook.text);
 
@@ -5463,175 +5463,175 @@ const edit = () => {
 
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 4 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 4 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [4, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 3 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2, params.name3], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2, params.name3], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
             });
         });
 
-        describe('Скрытие / открытие подразделения 3 уровня', () => {
+        describe('РЎРєСЂС‹С‚РёРµ / РѕС‚РєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', () => {
 
             bef();
             aft();
 
-            describe('Скрытие подразделения 3 уровня', () => {
+            describe('РЎРєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по иконки скрытия у подразделения 2 уровня',
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РёРєРѕРЅРєРё СЃРєСЂС‹С‚РёСЏ Сѓ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.minus,
                         [params.name2, entry.max],
                         page.division));
 
-                it('Отсутствие подразделения 3 уровня',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.noElement,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('Попытка нажатия по подразделению 3 уровня',
+                it('РџРѕРїС‹С‚РєР° РЅР°Р¶Р°С‚РёСЏ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 3 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simpleFalse(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.min],
                         page.division));
             });
 
-            describe('Открытие подразделения 3 уровня', () => {
+            describe('РћС‚РєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по иконки открытия у подразделения 2 уровня',
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РёРєРѕРЅРєРё РѕС‚РєСЂС‹С‚РёСЏ Сѓ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.plus,
                         [params.name2, entry.max],
                         page.division));
 
-                it('Отображения подразделения 3 уровня',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.division,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('Нажатие по подразделению 3 уровня',
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 3 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
             });
         });
 
-        describe('Скрытие / открытие подразделений 2 уровня и 3 уровня', () => {
+        describe('РЎРєСЂС‹С‚РёРµ / РѕС‚РєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 2 СѓСЂРѕРІРЅСЏ Рё 3 СѓСЂРѕРІРЅСЏ', () => {
 
             bef();
             aft();
 
-            describe('Скрытие подразделения 2 уровня и 3 уровня', () => {
+            describe('РЎРєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ Рё 3 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по иконки скрытия у подразделения 1 уровня',
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РёРєРѕРЅРєРё СЃРєСЂС‹С‚РёСЏ Сѓ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.minus,
                         [params.name1, entry.max],
                         page.division));
 
-                it('Отсутствие подразделения 2 уровня',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.noElement,
                         [[params.name1, params.name2], entry.max],
                         page.division));
 
-                it('Попытка нажатия по подразделению 2 уровня',
+                it('РџРѕРїС‹С‚РєР° РЅР°Р¶Р°С‚РёСЏ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simpleFalse(page.division.handler,
                         [[params.name1, params.name2], entry.min],
                         page.division));
 
-                it('Отсутствие подразделения 3 уровня',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.noElement,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('Попытка нажатия по подразделению 3 уровня',
+                it('РџРѕРїС‹С‚РєР° РЅР°Р¶Р°С‚РёСЏ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 3 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simpleFalse(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.min],
                         page.division));
             });
 
-            describe('Открытие подразделения 2 уровня и 3 уровня', () => {
+            describe('РћС‚РєСЂС‹С‚РёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ Рё 3 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Нажатие по иконки открытия у подразделения 1 уровня',
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РёРєРѕРЅРєРё РѕС‚РєСЂС‹С‚РёСЏ Сѓ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.plus,
                         [params.name1, entry.max],
                         page.division));
 
-                it('Отображения подразделения 2 уровня',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.division,
                         [[params.name1, params.name2], entry.max],
                         page.division));
 
-                it('Нажатие по подразделению 2 уровня',
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.handler,
                         [[params.name1, params.name2], entry.max],
                         page.division));
 
-                it('Подразделение 2 уровня выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 2 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Отображения подразделения 3 уровня',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.division,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('Нажатие по подразделению 2 уровня',
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ',
                     async () => await dec.simple(page.division.handler,
                         [[params.name1, params.name2, params.name3], entry.max],
                         page.division));
 
-                it('Подразделение 3 уровня выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ 3 СѓСЂРѕРІРЅСЏ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
             });
@@ -5640,17 +5640,17 @@ const edit = () => {
         deleteParams();
     });
 
-    // Попытка дублирования родительского  подразделения к корневому.
-    const editDuplicateOneLevel = () => describe('Подразделение. Редактирование. Попытка дублирования подразделения ' +
-        '1 уровня к подразделению 1 уровня', () => {
+    // РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ  РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ Рє РєРѕСЂРЅРµРІРѕРјСѓ.
+    const editDuplicateOneLevel = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ' +
+        '1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ', () => {
 
         const params = {
                 name1: 'editDuplicateOneLevelName1',
                 name2: 'editDuplicateOneLevelName2',
-                error: 'Такое название уже используется'
+                error: 'РўР°РєРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ'
             };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
                 bef();
                 aft();
 
@@ -5667,93 +5667,93 @@ const edit = () => {
                 addDivision(obj2);
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2', async ()=> await dec.simple(page.division.division,
                     [[params.name2], entry.max],
                     page.division));
             });
 
-        describe('Попытка редактирование подразделения 2', () => {
+        describe('РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2', () => {
                 bef();
                 aft();
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Подразделение', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Подразделение', '', params.name1, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.name1, entry.max],
                     el.modal.divisionEdit));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение ошибки "Такое название уже используется"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "РўР°РєРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('Модального окно "Редактировать подразделение" не закрыто',
+                it('РњРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅРѕ "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ" РЅРµ Р·Р°РєСЂС‹С‚Рѕ',
                     async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
                         [entry.min],
                         el.modal.divisionEdit));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2', async ()=> await dec.simple(page.division.division,
                     [[params.name2], entry.max],
                     page.division));
             });
@@ -5761,22 +5761,22 @@ const edit = () => {
         deleteParams();
     });
 
-    // Попытка дублирования родительского подразделения к дочернему.
-    const editDuplicateTwoLevel = () => describe('Подразделение. Редактирование. Попытка дублирования подразделения ' +
-        '1 уровня к подразделению 2 уровня', () => {
+    // РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ Рє РґРѕС‡РµСЂРЅРµРјСѓ.
+    const editDuplicateTwoLevel = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. РџРѕРїС‹С‚РєР° РґСѓР±Р»РёСЂРѕРІР°РЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ' +
+        '1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ', () => {
 
         const params = {
                 name1: 'editDuplicateTwoLevelName1',
                 name2: 'editDuplicateTwoLevelName2',
                 name3: 'editDuplicateTwoLevelName3',
-                error: 'Такое название уже используется'
+                error: 'РўР°РєРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ'
             };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
                 bef();
                 aft();
 
-                it('Добавление подразделени 1 уровня - 1', async () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 1 СѓСЂРѕРІРЅСЏ - 1', async () => {
                     const cook = await page.base.getCookie('token');
 
                     const obj = {
@@ -5787,7 +5787,7 @@ const edit = () => {
                         [[obj], cook.text],
                         api.putDivision);
                 });
-                it('Добавление подразделени 2 уровня - 1', async () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ - 1', async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
 
@@ -5799,7 +5799,7 @@ const edit = () => {
                         [[obj], cook.text],
                         api.putDivision);
                 });
-                it('Добавление подразделени 1 уровня - 2', async () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 1 СѓСЂРѕРІРЅСЏ - 2', async () => {
                     const cook = await page.base.getCookie('token');
 
                     const obj = {
@@ -5812,101 +5812,101 @@ const edit = () => {
                 });
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 4 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [4, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 1', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name3], entry.max],
                     page.division));
             });
 
-        describe('Попытка редактирование подразделения 1 уровня - 2', () => {
+        describe('РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - 2', () => {
                 bef();
                 aft();
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name3], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name3, entry.max],
                     page.division));
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.edit, entry.max],
                     el.butIcBefore));
 
-                it('Отображение модального окна "Редактировать подразделение"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.init,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Подразделение', '', entry.max],
+                it('РЈРґР°Р»РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Подразделение', '', params.name2, entry.max],
+                it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                    ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.name2, entry.max],
                     el.modal.divisionEdit));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                    ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                     el.button));
 
-                it('Отображение ошибки "Такое название уже используется"',
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "РўР°РєРѕРµ РЅР°Р·РІР°РЅРёРµ СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ"',
                     async () => await dec.simple(el.error.error,
                         [params.error, entry.max],
                         el.error));
 
-                it('Модального окно "Редактировать подразделение" не закрыто',
+                it('РњРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅРѕ "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ" РЅРµ Р·Р°РєСЂС‹С‚Рѕ',
                     async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
                         [entry.min],
                         el.modal.divisionEdit));
 
-                it('Нажатие кнопки закрытия модального окна',
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                     async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                         [entry.max],
                         el.modal.divisionEdit));
 
-                it('Отсутствие модального окна "Добавить подразделение"',
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                     async () => await  dec.simple(el.modal.divisionEdit.initClose,
                         [entry.max],
                         el.modal.divisionEdit));
 
             });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
                 bef();
                 aft();
 
-                it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 4 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [4, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 1', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - 1', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - 2', async ()=> await dec.simple(page.division.division,
                     [[params.name3], entry.max],
                     page.division));
             });
@@ -5914,16 +5914,16 @@ const edit = () => {
         deleteParams();
     });
 
-    // Попытка редактирования без "Подразделение".
-    const editNoName = () => describe('Подразделение. Редактирование. Попытка редактирования без "Подразделение".',
+    // РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ Р±РµР· "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ".
+    const editNoName = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ. РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ Р±РµР· "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ".',
         () => {
 
         const params = {
             name: 'editNoName',
-            error: 'Поле "Подразделение" не может быть пустым'
+            error: 'РџРѕР»Рµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ" РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
@@ -5935,81 +5935,81 @@ const edit = () => {
 
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('Попытка редактирование', () => {
+        describe('РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ', () => {
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.edit, entry.max],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Редактировать подразделение"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                 async () => await  dec.simple(el.modal.divisionEdit.init,
                     [entry.max],
                     el.modal.divisionEdit));
 
-            it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                ['Подразделение', '', entry.max],
+            it('РЈРґР°Р»РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.max],
                 el.modal.divisionEdit));
 
-            it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                ["Сохранить", entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ["РЎРѕС…СЂР°РЅРёС‚СЊ", entry.max],
                 el.button));
 
-            it('Отображение ошибки',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('Модального окно "Редактировать подразделение" не закрыто',
+            it('РњРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅРѕ "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ" РЅРµ Р·Р°РєСЂС‹С‚Рѕ',
                 async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
                     [entry.min],
                     el.modal.divisionEdit));
 
-            it('Нажатие кнопки закрытия модального окна',
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°',
                 async () => await dec.simple(el.modal.divisionEdit.closeHandler,
                     [entry.max],
                     el.modal.divisionEdit));
 
-            it('Отсутствие модального окна "Добавить подразделение"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                 async () => await  dec.simple(el.modal.divisionEdit.initClose,
                     [entry.max],
                     el.modal.divisionEdit));
 
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
@@ -6017,7 +6017,7 @@ const edit = () => {
         deleteParams();
     });
 
-    const edit = () => describe('Подразделение. Проверки редактирвоания.', () => {
+    const edit = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџСЂРѕРІРµСЂРєРё СЂРµРґР°РєС‚РёСЂРІРѕР°РЅРёСЏ.', () => {
         editMinParams();
         editMaxParams();
         editAllParamsMaxParams();
@@ -6041,17 +6041,17 @@ const edit = () => {
     }
 };
 
-// Тесты удаления
+// РўРµСЃС‚С‹ СѓРґР°Р»РµРЅРёСЏ
 const remove = () => {
 
-    // Удаление корневого подразделения.
-    const deleteLevelOne = () => describe('Подразделение. Удаление. Удаление подразделения 1 уровня', () => {
+    // РЈРґР°Р»РµРЅРёРµ РєРѕСЂРЅРµРІРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ.
+    const deleteLevelOne = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
         const params = {
             name: 'removeLevelOneName'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             const obj = {
@@ -6061,68 +6061,68 @@ const remove = () => {
             addDivision(obj);
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('Удаление подразделения', () => {
+        describe('РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Удаление подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.button.handler,
-                ['Удалить', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['РЈРґР°Р»РёС‚СЊ', entry.max],
                 el.button));
 
-            it('Отображение сообщения "Выбранное подразделение было удалено"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "Р’С‹Р±СЂР°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ Р±С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ"',
                 async () => await dec.simple(el.success.success,
-                    ['Выбранное подразделение было удалено', entry.max],
+                    ['Р’С‹Р±СЂР°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ Р±С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ', entry.max],
                     el.success));
 
-            it('Отсутствие модального окна "Удаление подразделения"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отсутствие добавленного подразделения', async ()=> await dec.simple(page.division.noElement,
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.noElement,
                 [[params.name], entry.max],
                 page.division));
         });
@@ -6131,26 +6131,26 @@ const remove = () => {
 
     });
 
-    // Удаление дочернего подразделения.
-    const deleteLevelTwo = () => describe('Подразделение. Удаление. Удаление подразделения 2 уровня', () => {
+    // РЈРґР°Р»РµРЅРёРµ РґРѕС‡РµСЂРЅРµРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ.
+    const deleteLevelTwo = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
         const params = {
             name1: 'deleteLevelTwo1',
             name2: 'deleteLevelTwo2'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6164,74 +6164,74 @@ const remove = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
 
-        describe('Удаление подразделения', () => {
+        describe('РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name2, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Удаление подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.button.handler,
-                ['Удалить', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['РЈРґР°Р»РёС‚СЊ', entry.max],
                 el.button));
 
-            it('Отображение сообщения "Выбранное подразделение было удалено"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ "Р’С‹Р±СЂР°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ Р±С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ"',
                 async () => await dec.simple(el.success.success,
-                    ['Выбранное подразделение было удалено', entry.max],
+                    ['Р’С‹Р±СЂР°РЅРЅРѕРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ Р±С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ', entry.max],
                     el.success));
 
-            it('Отсутствие модального окна "Удаление подразделения"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Отсутствие добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.noElement,
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.noElement,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
@@ -6240,28 +6240,28 @@ const remove = () => {
 
     });
 
-    // Попытка удалить родительское 1 уровня из списка вложенных 2 подразделений.
-    const deleteLevelOneFailed = () => describe('Подразделение. Удаление. Попытка удаления подразделения 1 уровня ' +
-        'из списка 2 вложенных подразделений.', () => {
+    // РџРѕРїС‹С‚РєР° СѓРґР°Р»РёС‚СЊ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ 1 СѓСЂРѕРІРЅСЏ РёР· СЃРїРёСЃРєР° РІР»РѕР¶РµРЅРЅС‹С… 2 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№.
+    const deleteLevelOneFailed = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ. РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ ' +
+        'РёР· СЃРїРёСЃРєР° 2 РІР»РѕР¶РµРЅРЅС‹С… РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№.', () => {
 
         const params = {
             name1: 'deleteLevelOneFailed1',
             name2: 'deleteLevelOneFailed2',
-            error: 'Нельзя удалить подразделение, содержащее дочерние подразделения'
+            error: 'РќРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ, СЃРѕРґРµСЂР¶Р°С‰РµРµ РґРѕС‡РµСЂРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6275,74 +6275,74 @@ const remove = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
 
-        describe('Попытка удаления', () => {
+        describe('РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name1, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Удаление подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.button.handler,
-                ['Удалить', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['РЈРґР°Р»РёС‚СЊ', entry.max],
                 el.button));
 
-            it('Отображение ошибки "Нельзя удалить подразделение, содержащее дочерние подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "РќРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ, СЃРѕРґРµСЂР¶Р°С‰РµРµ РґРѕС‡РµСЂРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('Отсутствие модального окна "Удаление подразделения"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
         });
@@ -6350,29 +6350,29 @@ const remove = () => {
         deleteParams();
     });
 
-    // Попытка удалить родительское 2 уровня из списка вложенных 3 подразделений.
-    const deleteLevelTwoFailed = () => describe('Подразделение. Удаление. Попытка удаления подразделения 2 уровня ' +
-        'из списка 3 вложенных подразделений.', () => {
+    // РџРѕРїС‹С‚РєР° СѓРґР°Р»РёС‚СЊ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ 2 СѓСЂРѕРІРЅСЏ РёР· СЃРїРёСЃРєР° РІР»РѕР¶РµРЅРЅС‹С… 3 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№.
+    const deleteLevelTwoFailed = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ. РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ ' +
+        'РёР· СЃРїРёСЃРєР° 3 РІР»РѕР¶РµРЅРЅС‹С… РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№.', () => {
 
         const params = {
             name1: 'deleteLevelTwoFailed1',
             name2: 'deleteLevelTwoFailed2',
             name3: 'deleteLevelTwoFailed3',
-            error: 'Нельзя удалить подразделение, содержащее дочерние подразделения'
+            error: 'РќРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ, СЃРѕРґРµСЂР¶Р°С‰РµРµ РґРѕС‡РµСЂРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6384,8 +6384,8 @@ const remove = () => {
                         api.putDivision);
                 });
             });
-            describe('Добавление подразделения 3 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6399,82 +6399,82 @@ const remove = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 4 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [4, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 3 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2, params.name3], entry.max],
                 page.division));
         });
 
-        describe('Попытка удаления', () => {
+        describe('РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name2, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Удаление подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.button.handler,
-                ['Удалить', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['РЈРґР°Р»РёС‚СЊ', entry.max],
                 el.button));
 
-            it('Отображение ошибки "Нельзя удалить подразделение, содержащее дочерние подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "РќРµР»СЊР·СЏ СѓРґР°Р»РёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ, СЃРѕРґРµСЂР¶Р°С‰РµРµ РґРѕС‡РµСЂРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('Отсутствие модального окна "Удаление подразделения"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 4 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [4, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2], entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения 3 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name1, params.name2, params.name3], entry.max],
                 page.division));
         });
@@ -6482,9 +6482,9 @@ const remove = () => {
         deleteParams();
     });
 
-    // Попытка удаления подразделения добавленное сотруднику.
-    const deleteStaffFailed = () => describe('Подразделение. Удаление. Попытка удаления подразделения добавленное ' +
-        'сотруднику.', () => {
+    // РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ РґРѕР±Р°РІР»РµРЅРЅРѕРµ СЃРѕС‚СЂСѓРґРЅРёРєСѓ.
+    const deleteStaffFailed = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ. РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ РґРѕР±Р°РІР»РµРЅРЅРѕРµ ' +
+        'СЃРѕС‚СЂСѓРґРЅРёРєСѓ.', () => {
 
         const params = {
             name: 'deleteStaffFailed1',
@@ -6495,10 +6495,10 @@ const remove = () => {
                 divisionId: '',
                 date: '2001-01-01'
             },
-            error: 'Подразделение используется и не может быть удалено'
+            error: 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СѓРґР°Р»РµРЅРѕ'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
@@ -6508,7 +6508,7 @@ const remove = () => {
             };
             addDivision(obj);
 
-            it('Добавление сотрудника', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ СЃРѕС‚СЂСѓРґРЅРёРєР°', async () => {
                 const cook = await page.base.getCookie('token');
                 const get = await api.getDivision(cook.text);
 
@@ -6526,66 +6526,66 @@ const remove = () => {
 
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
         });
 
-        describe('Попытка удаления', () => {
+        describe('РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Удаление подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.button.handler,
-                ['Удалить', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['РЈРґР°Р»РёС‚СЊ', entry.max],
                 el.button));
 
-            it('Отображение ошибки "Подразделение используется и не может быть удалено"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СѓРґР°Р»РµРЅРѕ"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('Отсутствие модального окна "Удаление подразделения"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
@@ -6595,9 +6595,9 @@ const remove = () => {
 
     });
 
-    // Попытка удаления подразделения добавленное посетителю.
-    const deleteVisitorFailed = () => describe('Подразделение. Удаление. Попытка удаления подразделения добавленное ' +
-        'посетителю.', () => {
+    // РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ РґРѕР±Р°РІР»РµРЅРЅРѕРµ РїРѕСЃРµС‚РёС‚РµР»СЋ.
+    const deleteVisitorFailed = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РЈРґР°Р»РµРЅРёРµ. РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ РґРѕР±Р°РІР»РµРЅРЅРѕРµ ' +
+        'РїРѕСЃРµС‚РёС‚РµР»СЋ.', () => {
 
         const params = {
             name: 'deleteVisitorFailed1',
@@ -6607,10 +6607,10 @@ const remove = () => {
                 middleName: '' ,
                 divisionId: '',
             },
-            error: 'Подразделение используется и не может быть удалено'
+            error: 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СѓРґР°Р»РµРЅРѕ'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
@@ -6620,7 +6620,7 @@ const remove = () => {
             };
             addDivision(obj);
 
-            it('Добавление посетителя', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕСЃРµС‚РёС‚РµР»СЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const get = await api.getDivision(cook.text);
 
@@ -6637,66 +6637,66 @@ const remove = () => {
 
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
         });
 
-        describe('Попытка удаления', () => {
+        describe('РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Удаление подразделения"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.init,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
 
-            it('Нажатие кноки "Удалить"', async () => await dec.simple(el.button.handler,
-                ['Удалить', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['РЈРґР°Р»РёС‚СЊ', entry.max],
                 el.button));
 
-            it('Отображение ошибки "Подразделение используется и не может быть удалено"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕС€РёР±РєРё "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СѓРґР°Р»РµРЅРѕ"',
                 async () => await dec.simple(el.error.error,
                     [params.error, entry.max],
                     el.error));
 
-            it('Отсутствие модального окна "Удаление подразделения"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"',
                 async () => await dec.simple(el.modalConfirm.divisionDelete.initClose,
                     [entry.max],
                     el.modalConfirm.divisionDelete));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
 
@@ -6706,7 +6706,7 @@ const remove = () => {
 
     });
 
-    const remove = () => describe('Подразделение. Проверки удаления.', () => {
+    const remove = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџСЂРѕРІРµСЂРєРё СѓРґР°Р»РµРЅРёСЏ.', () => {
         deleteLevelOne();
         deleteLevelTwo();
         deleteLevelOneFailed();
@@ -6726,84 +6726,84 @@ const remove = () => {
     }
 };
 
-//Тесты с пользовательсим подразделением "Администраторы системы"
+//РўРµСЃС‚С‹ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРёРј РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµРј "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"
 const serviceDivision = () => {
 
-    // Попытка добавить дочернее подразделение
-    const addDivision = () => describe('Подразделение "Администраторы системы". ' +
-        'Попытка добавить дочернее подразделение', () => {
+    // РџРѕРїС‹С‚РєР° РґРѕР±Р°РІРёС‚СЊ РґРѕС‡РµСЂРЅРµРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ
+    const addDivision = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹". ' +
+        'РџРѕРїС‹С‚РєР° РґРѕР±Р°РІРёС‚СЊ РґРѕС‡РµСЂРЅРµРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', () => {
 
         const params = {
-            name1: 'Администраторы системы',
+            name1: 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
             name2: 'addDivision',
         };
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
         });
 
-        describe('Попытка добавления', () => {
+        describe('РџРѕРїС‹С‚РєР° РґРѕР±Р°РІР»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name1, entry.max],
                 page.division));
 
-            it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "Р”РѕР±Р°РІРёС‚СЊ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.add, entry.min],
                 el.butIcBefore));
 
-            it('Отображение модального окна "Добавить подразделение"',
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                 async () => await dec.simple(el.modal.divisionAdd.init,
                     [entry.max],
                     el.modal.divisionAdd));
 
-            it('Ввод "Подразделение"', async () => await dec.simple(el.input.sendKeys,
-                ['Подразделение', '', params.name2, entry.max],
+            it('Р’РІРѕРґ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', params.name2, entry.max],
                 el.input));
 
-            it('Нажатие кноки "Сохранить"', async () => await dec.simple(el.button.handler,
-                ['Сохранить', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРєРё "РЎРѕС…СЂР°РЅРёС‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['РЎРѕС…СЂР°РЅРёС‚СЊ', entry.max],
                 el.button));
 
-            it('Отсутствие модального окна "Добавить подразделение"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р”РѕР±Р°РІРёС‚СЊ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"',
                 async () => await dec.simple(el.modal.divisionAdd.initClose,
                     [entry.max],
                     el.modal.divisionAdd));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
                 [[params.name1], entry.max],
                 page.division));
 
-            it('Отсуствие подразделения 2 уровня', async ()=> await dec.simple(page.division.noElement,
+            it('РћС‚СЃСѓСЃС‚РІРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.noElement,
                 [[params.name1, params.name2], entry.min],
                 page.division));
 
-            it('Отображение подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                 [[params.name2], entry.max],
                 page.division));
         });
@@ -6811,132 +6811,132 @@ const serviceDivision = () => {
         deleteParams();
     });
 
-    // Попытка редактирования
-    const editDivision = () => describe('Подразделение "Администраторы системы". Попытка редактирования', () => {
+    // РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+    const editDivision = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹". РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ', () => {
 
         const params = {
-            name: 'Администраторы системы'
+            name: 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹'
         };
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('Попытка редактирования', () => {
+        describe('РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('Кнопка "Редактировать" - заблокирована', async () => await dec.simple(el.butIcBefore.disabled,
+            it('РљРЅРѕРїРєР° "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ" - Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅР°', async () => await dec.simple(el.butIcBefore.disabled,
                 [but.edit, entry.max],
                 el.butIcBefore));
 
-            it('Попытка нажатия кноки "Редактировать"', async () => await dec.simpleFalse(el.butIcBefore.handler,
+            it('РџРѕРїС‹С‚РєР° РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРєРё "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simpleFalse(el.butIcBefore.handler,
                 [but.edit, entry.min],
                 el.butIcBefore));
 
-            it('Модальное окно "Редактирование подразделения" не отображается',
+            it('РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ" РЅРµ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ',
                 async () => await dec.simpleFalse(el.modal.divisionEdit.init,
                     [entry.min],
                     el.modal.divisionEdit));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
     });
 
-    // Попытка редактирования
-    const deleteDivision = () => describe('Подразделение "Администраторы системы". Попытка удаления', () => {
+    // РџРѕРїС‹С‚РєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+    const deleteDivision = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹". РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ', () => {
 
         const params = {
-            name: 'Администраторы системы'
+            name: 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹'
         };
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
-        describe('Попытка удаления', () => {
+        describe('РџРѕРїС‹С‚РєР° СѓРґР°Р»РµРЅРёСЏ', () => {
 
             bef();
             aft();
 
-            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+            it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                 [[params.name], entry.max],
                 page.division));
 
-            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+            it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                 [params.name, entry.max],
                 page.division));
 
-            it('Кнопка "Удалить" - заблокирована', async () => await dec.simple(el.butIcBefore.disabled,
+            it('РљРЅРѕРїРєР° "РЈРґР°Р»РёС‚СЊ" - Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅР°', async () => await dec.simple(el.butIcBefore.disabled,
                 [but.delete, entry.max],
                 el.butIcBefore));
 
-            it('Попытка нажатия кноки "Удалить"', async () => await dec.simpleFalse(el.butIcBefore.handler,
+            it('РџРѕРїС‹С‚РєР° РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРєРё "РЈРґР°Р»РёС‚СЊ"', async () => await dec.simpleFalse(el.butIcBefore.handler,
                 [but.delete, entry.min],
                 el.butIcBefore));
 
-            it('Модальное окно "Удаление подразделения" не отображается',
+            it('РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ "РЈРґР°Р»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ" РЅРµ РѕС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ',
                 async () => await dec.simpleFalse(el.modalConfirm.divisionDelete.init,
                     [entry.min],
                     el.modalConfirm.divisionDelete));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
                 [[params.name], entry.max],
                 page.division));
         });
 
     });
 
-    // Проверки подразделения "Администраторы системы"
-    const serviceDivision = () => describe('Проверки подразделения "Администраторы системы".', () => {
+    // РџСЂРѕРІРµСЂРєРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"
+    const serviceDivision = () => describe('РџСЂРѕРІРµСЂРєРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹".', () => {
         addDivision();
         editDivision();
         deleteDivision();
@@ -6950,30 +6950,30 @@ const serviceDivision = () => {
     }
 };
 
-//Тесты печати таблицы
+//РўРµСЃС‚С‹ РїРµС‡Р°С‚Рё С‚Р°Р±Р»РёС†С‹
 const print = () => {
 
-    // Проверка печати с двумя подразделениями 1 и 2 уровня с минимальным количеством параметров.
-    const printMinParams = () => describe('Подразделение. Печать. Проверка печати с двумя подразделениями ' +
-        '1 и 2 уровня с минимальным количеством параметров.', () => {
+    // РџСЂРѕРІРµСЂРєР° РїРµС‡Р°С‚Рё СЃ РґРІСѓРјСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё 1 Рё 2 СѓСЂРѕРІРЅСЏ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const printMinParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџРµС‡Р°С‚СЊ. РџСЂРѕРІРµСЂРєР° РїРµС‡Р°С‚Рё СЃ РґРІСѓРјСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё ' +
+        '1 Рё 2 СѓСЂРѕРІРЅСЏ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.', () => {
 
         const params = {
             name1: 'printMinParamsName1',
             name2: 'printMinParamsName2'
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -6987,162 +6987,162 @@ const print = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
             });
 
         });
 
-        describe('Печать таблицы', () => {
+        describe('РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹', () => {
 
             bef();
             aft();
 
-            describe('Открытие печатной формы', () => {
-                it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('РћС‚РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore))
 
-                it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu))
 
-                it('Нажатие параметра "Печать таблицы"', async () => await dec.simple(el.menu.handler,
-                    ['Печать таблицы', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹"', async () => await dec.simple(el.menu.handler,
+                    ['РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹', entry.max],
                     el.menu))
 
-                it('Отображение печатной формы', async () => await dec.simple(el.modal.printTable.init,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable))
             });
 
-            describe('Проверка строки 1', () => {
+            describe('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 1', () => {
 
-                it('Поле "Наименование"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Наименование', '1', '1', entry.max],
+                it('РџРѕР»Рµ "РќР°РёРјРµРЅРѕРІР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РќР°РёРјРµРЅРѕРІР°РЅРёРµ', '1', '1', entry.max],
                     params.name1,
                     el.modal.printTable));
 
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', '1', '2', entry.max],
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', '1', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('Поле "Описание"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Описание', '1', '3', entry.max],
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РћРїРёСЃР°РЅРёРµ', '1', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('Проверка строки 2', () => {
+            describe('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 2', () => {
 
-                it('Поле "Наименование"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Наименование', '2', '1', entry.max],
+                it('РџРѕР»Рµ "РќР°РёРјРµРЅРѕРІР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РќР°РёРјРµРЅРѕРІР°РЅРёРµ', '2', '1', entry.max],
                     params.name2,
                     el.modal.printTable));
 
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', '2', '2', entry.max],
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', '2', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('Поле "Описание"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Описание', '2', '3', entry.max],
-                    '',
-                    el.modal.printTable));
-            });
-
-            describe('Проверка строки 3', () => {
-
-                it('Поле "Наименование"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Наименование', '3', '1', entry.max],
-                    'Администраторы системы',
-                    el.modal.printTable));
-
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', '3', '2', entry.max],
-                    '',
-                    el.modal.printTable));
-
-                it('Поле "Описание"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Описание', '3', '3', entry.max],
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РћРїРёСЃР°РЅРёРµ', '2', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('Закрытие печатной формы', () => {
+            describe('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 3', () => {
 
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('РџРѕР»Рµ "РќР°РёРјРµРЅРѕРІР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РќР°РёРјРµРЅРѕРІР°РЅРёРµ', '3', '1', entry.max],
+                    'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
+                    el.modal.printTable));
+
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', '3', '2', entry.max],
+                    '',
+                    el.modal.printTable));
+
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РћРїРёСЃР°РЅРёРµ', '3', '3', entry.max],
+                    '',
+                    el.modal.printTable));
+            });
+
+            describe('Р—Р°РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
+
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('Отсутствие печатной формы', async () => await dec.simple(el.modal.printTable.initClose,
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7152,9 +7152,9 @@ const print = () => {
         deleteParams();
     });
 
-    // Проверка печати 5 подразделений 1 уровня с вложенннными подразделениями прогрессией до, 5 с заполненными параметрами "Телефон" и "Описание"
-    const printMaxParams = () => describe('Подразделение. Печать. Проверка печати 5 подразделений 1 уровня ' +
-        'с вложенными подразделениями прогрессией до 5 с заполненными параметрами "Телефон" и "Описание"', () => {
+    // РџСЂРѕРІРµСЂРєР° РїРµС‡Р°С‚Рё 5 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 1 СѓСЂРѕРІРЅСЏ СЃ РІР»РѕР¶РµРЅРЅРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ, 5 СЃ Р·Р°РїРѕР»РЅРµРЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё "РўРµР»РµС„РѕРЅ" Рё "РћРїРёСЃР°РЅРёРµ"
+    const printMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџРµС‡Р°С‚СЊ. РџСЂРѕРІРµСЂРєР° РїРµС‡Р°С‚Рё 5 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 1 СѓСЂРѕРІРЅСЏ ' +
+        'СЃ РІР»РѕР¶РµРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ 5 СЃ Р·Р°РїРѕР»РЅРµРЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё "РўРµР»РµС„РѕРЅ" Рё "РћРїРёСЃР°РЅРёРµ"', () => {
 
         const params = {
             array: [...Array(5).keys()].map(item1 => {
@@ -7168,17 +7168,17 @@ const print = () => {
             }),
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
             params.array.forEach((item1) => {
                 item1.forEach((item2, index2) => {
 
-                    describe(`Добавление подразделения ${index2 + 1} уровня - ${item2.name}`, () => {
+                    describe(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2.name}`, () => {
 
                         if(index2 === 0) {
-                            describe('Добавление подразделения 1 уровня', () => {
+                            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                                 const obj = {
                                     parent_id: 0,
                                     name: item2.name,
@@ -7190,8 +7190,8 @@ const print = () => {
                         }
 
                         if(index2 > 0) {
-                            describe(`Добавление подразделения ${index2 + 1} уровня`, () => {
-                                it('Добавление подразделения', async () => {
+                            describe(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ`, () => {
+                                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                                     const cook = await page.base.getCookie('token');
                                     const get = await api.getDivision(cook.text);
                                     const obj = {
@@ -7213,39 +7213,39 @@ const print = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображние 16 подраздлениий', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 16 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                 [16, entry.max],
                 page.division));
 
             params.array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    it(`Отображенние подразделения ${index2 + 1} уровня - ${item2.name}`, async () => {
+                    it(`РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2.name}`, async () => {
                         arr.push(item2.name);
                         await dec.simple(page.division.division,
                             [arr, entry.max],
                             page.division)
                     });
-                    it(`Нажатие по подразделению ${index2 + 1} уровня -  ${item2.name}`,
+                    it(`РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ ${index2 + 1} СѓСЂРѕРІРЅСЏ -  ${item2.name}`,
                         async () => await dec.simple(page.division.handler,
                             [arr, entry.max],
                             page.division));
-                    it(`Подразделение ${index2 + 1} уровня -  ${item2.name} выделено`,
+                    it(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ ${index2 + 1} СѓСЂРѕРІРЅСЏ -  ${item2.name} РІС‹РґРµР»РµРЅРѕ`,
                         async () => await dec.simple(page.division.selected,
                             [item2.name, entry.max],
                             page.division));
-                    it(`Проверка "Телефон"`,
+                    it(`РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['Телефон', '', entry.max],
+                            ['РўРµР»РµС„РѕРЅ', '', entry.max],
                             item2.phone,
                             el.input));
-                    it(`Проверка "Описание"`,
+                    it(`РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['Описание', '', entry.max],
+                            ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                             item2.description,
                             el.input));
                 });
@@ -7253,44 +7253,44 @@ const print = () => {
 
         });
 
-        describe('Печать таблицы', () => {
+        describe('РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹', () => {
 
             bef();
             aft();
 
-            describe('Открытие печатной формы', () => {
-                it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('РћС‚РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore))
 
-                it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu))
 
-                it('Нажатие параметра "Печать таблицы"', async () => await dec.simple(el.menu.handler,
-                    ['Печать таблицы', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹"', async () => await dec.simple(el.menu.handler,
+                    ['РџРµС‡Р°С‚СЊ С‚Р°Р±Р»РёС†С‹', entry.max],
                     el.menu))
 
-                it('Отображение печатной формы', async () => await dec.simple(el.modal.printTable.init,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable))
             });
 
             params.array.flat().forEach((item, index) => {
-                describe(`Проверка строки ${index + 1}`, () => {
-                    it('Поле "Наименование"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['Наименование', index + 1, '1', entry.max],
+                describe(`РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё ${index + 1}`, () => {
+                    it('РџРѕР»Рµ "РќР°РёРјРµРЅРѕРІР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                        ['РќР°РёРјРµРЅРѕРІР°РЅРёРµ', index + 1, '1', entry.max],
                         item.name,
                         el.modal.printTable));
 
-                    it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['Телефон', index + 1, '2', entry.max],
+                    it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                        ['РўРµР»РµС„РѕРЅ', index + 1, '2', entry.max],
                         item.phone,
                         el.modal.printTable));
 
-                    it('Поле "Описание"', async () => {
+                    it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => {
                         await dec.simpleText(el.modal.printTable.cellGetText,
-                            ['Описание', index + 1, '3', entry.max],
+                            ['РћРїРёСЃР°РЅРёРµ', index + 1, '3', entry.max],
                             item.description,
                             el.modal.printTable);
                     });
@@ -7298,33 +7298,33 @@ const print = () => {
                 });
             });
 
-            describe(`Проверка строки 16`, () => {
-                it('Поле "Наименование"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Наименование', 16, '1', entry.max],
-                    'Администраторы системы',
+            describe(`РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 16`, () => {
+                it('РџРѕР»Рµ "РќР°РёРјРµРЅРѕРІР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РќР°РёРјРµРЅРѕРІР°РЅРёРµ', 16, '1', entry.max],
+                    'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     el.modal.printTable));
 
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', 16, '2', entry.max],
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', 16, '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('Поле "Описание"', async () => {
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => {
                     await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['Описание', 16, '3', entry.max],
+                        ['РћРїРёСЃР°РЅРёРµ', 16, '3', entry.max],
                         '',
                         el.modal.printTable);
                 });
 
             });
 
-            describe('Закрытие печатной формы', () => {
+            describe('Р—Р°РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
 
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('Отсутствие печатной формы', async () => await dec.simple(el.modal.printTable.initClose,
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7334,8 +7334,8 @@ const print = () => {
         deleteParams();
     });
 
-    // Проверки печати
-    const print = () => describe('Подразделение. Печать. Проверки печати.', () => {
+    // РџСЂРѕРІРµСЂРєРё РїРµС‡Р°С‚Рё
+    const print = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџРµС‡Р°С‚СЊ. РџСЂРѕРІРµСЂРєРё РїРµС‡Р°С‚Рё.', () => {
         printMinParams();
         printMaxParams();
     });
@@ -7348,29 +7348,29 @@ const print = () => {
 
 };
 
-//Тесты печати дерева
+//РўРµСЃС‚С‹ РїРµС‡Р°С‚Рё РґРµСЂРµРІР°
 const printTree = () => {
 
-    const printTreeMinParams = () => describe('Подразделение. Печать дерева. Проверка печати с двумя подразделениями ' +
-        '1 и 2 уровня с минимальным количеством параметров.', () => {
+    const printTreeMinParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°. РџСЂРѕРІРµСЂРєР° РїРµС‡Р°С‚Рё СЃ РґРІСѓРјСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё ' +
+        '1 Рё 2 СѓСЂРѕРІРЅСЏ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.', () => {
         const params = {
             name1: 'printTreeMinParamsName1',
             name2: 'printTreeMinParamsName2',
             space: '    ',
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.name1,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -7384,161 +7384,161 @@ const printTree = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async ()=> await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
             });
 
         });
 
-        describe('Печать дерева', () => {
+        describe('РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°', () => {
 
             bef();
             aft();
 
-            describe('Открытие печатной формы', () => {
-                it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('РћС‚РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore));
 
-                it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu));
 
-                it('Нажатие параметра "Печать дерева"', async () => await dec.simple(el.menu.handler,
-                    ['Печать дерева', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°"', async () => await dec.simple(el.menu.handler,
+                    ['РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°', entry.max],
                     el.menu));
 
-                it('Отображение печатной формы', async () => await dec.simple(el.modal.printTable.init,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable));
             });
 
-            describe('Проверка строки 1', () => {
+            describe('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 1', () => {
 
-                it('Поле "Название"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['Название', '1', '1', entry.max],
+                it('РџРѕР»Рµ "РќР°Р·РІР°РЅРёРµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['РќР°Р·РІР°РЅРёРµ', '1', '1', entry.max],
                     `${params.name1}`,
                     el.modal.printTable));
 
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', '1', '2', entry.max],
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', '1', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('Поле "Описание"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Описание', '1', '3', entry.max],
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РћРїРёСЃР°РЅРёРµ', '1', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('Проверка строки 2', () => {
+            describe('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 2', () => {
 
-                it('Поле "Название"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['Название', '2', '1', entry.max],
+                it('РџРѕР»Рµ "РќР°Р·РІР°РЅРёРµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['РќР°Р·РІР°РЅРёРµ', '2', '1', entry.max],
                     params.space + params.name2,
                     el.modal.printTable));
 
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', '2', '2', entry.max],
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', '2', '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('Поле "Описание"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Описание', '2', '3', entry.max],
-                    '',
-                    el.modal.printTable));
-            });
-
-            describe('Проверка строки 3', () => {
-
-                it('Поле "Название"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['Название', '3', '1', entry.max],
-                    'Администраторы системы',
-                    el.modal.printTable));
-
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', '3', '2', entry.max],
-                    '',
-                    el.modal.printTable));
-
-                it('Поле "Описание"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Описание', '3', '3', entry.max],
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РћРїРёСЃР°РЅРёРµ', '2', '3', entry.max],
                     '',
                     el.modal.printTable));
             });
 
-            describe('Закрытие печатной формы', () => {
+            describe('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 3', () => {
 
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('РџРѕР»Рµ "РќР°Р·РІР°РЅРёРµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['РќР°Р·РІР°РЅРёРµ', '3', '1', entry.max],
+                    'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
+                    el.modal.printTable));
+
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', '3', '2', entry.max],
+                    '',
+                    el.modal.printTable));
+
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РћРїРёСЃР°РЅРёРµ', '3', '3', entry.max],
+                    '',
+                    el.modal.printTable));
+            });
+
+            describe('Р—Р°РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
+
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('Отсутствие печатной формы', async () => await dec.simple(el.modal.printTable.initClose,
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7549,9 +7549,9 @@ const printTree = () => {
 
     });
 
-    // Проверка печати 5 подразделений 1 уровня с вложенннными подразделениями прогрессией до, 5 с заполненными параметрами "Телефон" и "Описание"
-    const printTreeMaxParams = () => describe('Подразделение. Печать дерева. Проверка печати 5 подразделений ' +
-        '1 уровня с вложенннными подразделениями прогрессией до 5 с заполненными параметрами "Телефон" и "Описание"',
+    // РџСЂРѕРІРµСЂРєР° РїРµС‡Р°С‚Рё 5 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 1 СѓСЂРѕРІРЅСЏ СЃ РІР»РѕР¶РµРЅРЅРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ, 5 СЃ Р·Р°РїРѕР»РЅРµРЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё "РўРµР»РµС„РѕРЅ" Рё "РћРїРёСЃР°РЅРёРµ"
+    const printTreeMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°. РџСЂРѕРІРµСЂРєР° РїРµС‡Р°С‚Рё 5 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ ' +
+        '1 СѓСЂРѕРІРЅСЏ СЃ РІР»РѕР¶РµРЅРЅРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ 5 СЃ Р·Р°РїРѕР»РЅРµРЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё "РўРµР»РµС„РѕРЅ" Рё "РћРїРёСЃР°РЅРёРµ"',
         () => {
 
         const params = {
@@ -7568,17 +7568,17 @@ const printTree = () => {
             flag: 1
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
             params.array.forEach((item1) => {
                 item1.forEach((item2, index2) => {
 
-                    describe(`Добавление подразделения ${index2 + 1} уровня - ${item2.name}`, () => {
+                    describe(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2.name}`, () => {
 
                         if(index2 === 0) {
-                            describe('Добавление подразделения 1 уровня', () => {
+                            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                                 const obj = {
                                     parent_id: 0,
                                     name: item2.name,
@@ -7590,8 +7590,8 @@ const printTree = () => {
                         }
 
                         if(index2 > 0) {
-                            describe(`Добавление подразделения ${index2 + 1} уровня`, () => {
-                                it('Добавление подразделения', async () => {
+                            describe(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ`, () => {
+                                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                                     const cook = await page.base.getCookie('token');
                                     const get = await api.getDivision(cook.text);
                                     const obj = {
@@ -7613,39 +7613,39 @@ const printTree = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображние 16 подраздлениий', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 16 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                 [16, entry.max],
                 page.division));
 
             params.array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    it(`Отображенние подразделения ${index2 + 1} уровня - ${item2.name}`, async () => {
+                    it(`РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2.name}`, async () => {
                         arr.push(item2.name);
                         await dec.simple(page.division.division,
                             [arr, entry.max],
                             page.division)
                     });
-                    it(`Нажатие по подразделению ${index2 + 1} уровня -  ${item2.name}`,
+                    it(`РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ ${index2 + 1} СѓСЂРѕРІРЅСЏ -  ${item2.name}`,
                         async () => await dec.simple(page.division.handler,
                             [arr, entry.max],
                             page.division));
-                    it(`Подразделение ${index2 + 1} уровня -  ${item2.name} выделено`,
+                    it(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ ${index2 + 1} СѓСЂРѕРІРЅСЏ -  ${item2.name} РІС‹РґРµР»РµРЅРѕ`,
                         async () => await dec.simple(page.division.selected,
                             [item2.name, entry.max],
                             page.division));
-                    it(`Проверка "Телефон"`,
+                    it(`РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['Телефон', '', entry.max],
+                            ['РўРµР»РµС„РѕРЅ', '', entry.max],
                             item2.phone,
                             el.input));
-                    it(`Проверка "Описание"`,
+                    it(`РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"`,
                         async () => await dec.simpleText(el.input.getValue,
-                            ['Описание', '', entry.max],
+                            ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                             item2.description,
                             el.input));
                 });
@@ -7653,48 +7653,48 @@ const printTree = () => {
 
         });
 
-        describe('Печать дерева', () => {
+        describe('РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°', () => {
 
             bef();
             aft();
 
-            describe('Открытие печатной формы', () => {
-                it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            describe('РћС‚РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.menu, entry.max],
                     el.butIcBefore))
 
-                it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                     [entry.max],
                     el.menu))
 
-                it('Нажатие параметра "Печать дерева"', async () => await dec.simple(el.menu.handler,
-                    ['Печать дерева', entry.max],
+                it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°"', async () => await dec.simple(el.menu.handler,
+                    ['РџРµС‡Р°С‚СЊ РґРµСЂРµРІР°', entry.max],
                     el.menu));
 
-                it('Отображение печатной формы', async () => await dec.simple(el.modal.printTable.init,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.init,
                     [entry.max],
                     el.modal.printTable));
             });
-            describe('Проверка строк', () => {
+            describe('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє', () => {
                 params.array.forEach((item1) => {
                     item1.forEach((item2, index2) => {
                         const str = params.array.flat().indexOf(item2);
-                        describe(`Проверка строки ${str + 1}`, () => {
-                            it('Поле "Название"', async () => {
+                        describe(`РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё ${str + 1}`, () => {
+                            it('РџРѕР»Рµ "РќР°Р·РІР°РЅРёРµ"', async () => {
                                 await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                                    ['Название', params.flag, '1', entry.max],
+                                    ['РќР°Р·РІР°РЅРёРµ', params.flag, '1', entry.max],
                                     [...Array(index2).keys()].map(() => params.space).join('') + item2.name,
                                     el.modal.printTable)
                             });
 
-                            it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                                ['Телефон', params.flag, '2', entry.max],
+                            it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                                ['РўРµР»РµС„РѕРЅ', params.flag, '2', entry.max],
                                 item2.phone,
                                 el.modal.printTable));
 
-                            it('Поле "Описание"', async () => {
+                            it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => {
                                 await dec.simpleText(el.modal.printTable.cellGetText,
-                                    ['Описание', params.flag, '3', entry.max],
+                                    ['РћРїРёСЃР°РЅРёРµ', params.flag, '3', entry.max],
                                     item2.description,
                                     el.modal.printTable);
                                 params.flag += 1;
@@ -7708,33 +7708,33 @@ const printTree = () => {
 
 
 
-            describe(`Проверка строки 16`, () => {
-                it('Поле "Название"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
-                    ['Название', 16, '1', entry.max],
-                    'Администраторы системы',
+            describe(`РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё 16`, () => {
+                it('РџРѕР»Рµ "РќР°Р·РІР°РЅРёРµ"', async () => await dec.simpleTextNoSpace(el.modal.printTable.cellGetText,
+                    ['РќР°Р·РІР°РЅРёРµ', 16, '1', entry.max],
+                    'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     el.modal.printTable));
 
-                it('Поле "Телефон"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
-                    ['Телефон', 16, '2', entry.max],
+                it('РџРѕР»Рµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.modal.printTable.cellGetText,
+                    ['РўРµР»РµС„РѕРЅ', 16, '2', entry.max],
                     '',
                     el.modal.printTable));
 
-                it('Поле "Описание"', async () => {
+                it('РџРѕР»Рµ "РћРїРёСЃР°РЅРёРµ"', async () => {
                     await dec.simpleText(el.modal.printTable.cellGetText,
-                        ['Описание', 16, '3', entry.max],
+                        ['РћРїРёСЃР°РЅРёРµ', 16, '3', entry.max],
                         '',
                         el.modal.printTable);
                 });
 
             });
 
-            describe('Закрытие печатной формы', () => {
+            describe('Р—Р°РєСЂС‹С‚РёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', () => {
 
-                it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.printTable.closeHandler,
+                it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.printTable.closeHandler,
                     [entry.max],
                     el.modal.printTable));
 
-                it('Отсутствие печатной формы', async () => await dec.simple(el.modal.printTable.initClose,
+                it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РїРµС‡Р°С‚РЅРѕР№ С„РѕСЂРјС‹', async () => await dec.simple(el.modal.printTable.initClose,
                     [entry.max],
                     el.modal.printTable))
             });
@@ -7757,10 +7757,10 @@ const printTree = () => {
 
 };
 
-//Тесты экспорта
+//РўРµСЃС‚С‹ СЌРєСЃРїРѕСЂС‚Р°
 const exportFile = (agr, str, format) => {
 
-    const apiMax = () => describe('API - добавление', () => {
+    const apiMax = () => describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
         const params = {
             division1: 'apiMaxdivision1',
             division2: [...Array(2).keys()].map(item => 'apiMaxDivision2' + (item + 1)),
@@ -7783,7 +7783,7 @@ const exportFile = (agr, str, format) => {
             phone: 'apiMaxPhone'
         };
 
-        describe('Добавление', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
@@ -7792,7 +7792,7 @@ const exportFile = (agr, str, format) => {
             addSchedule(params.schedule);
             addStaff(...Object.values(params.fio));
 
-            it(`Добавление подразделения 1 уровня - ${params.division1}`, async () => {
+            it(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - ${params.division1}`, async () => {
                 const cook = await page.base.getCookie('token');
                 const obj = {
                     "parent_id": 0,
@@ -7804,7 +7804,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division2.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                it(`Р”РѕР±Р°РІР»РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index + 1} СѓСЂРѕРІРЅСЏ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     console.log('id: ', getDivision.text[getDivision.text.length - 1]);
@@ -7823,7 +7823,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division3.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                it(`Р”РѕР±Р°РІР»РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index + 1} СѓСЂРѕРІРЅСЏ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     console.log('id: ', getDivision.text[getDivision.text.length - 1]);
@@ -7843,7 +7843,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division4.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                it(`Р”РѕР±Р°РІР»РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index + 1} СѓСЂРѕРІРЅСЏ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     const getTemplate = await api.getAccessTemplate(cook.text);
@@ -7865,7 +7865,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division5.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                it(`Р”РѕР±Р°РІР»РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index + 1} СѓСЂРѕРІРЅСЏ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     const getTemplate = await api.getAccessTemplate(cook.text);
@@ -7886,7 +7886,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division6.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                it(`Р”РѕР±Р°РІР»РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index + 1} СѓСЂРѕРІРЅСЏ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getDivision = await api.getDivision(cook.text);
                     const getTemplate = await api.getAccessTemplate(cook.text);
@@ -7908,7 +7908,7 @@ const exportFile = (agr, str, format) => {
             });
 
             params.division7.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                it(`Р”РѕР±Р°РІР»РЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index + 1} СѓСЂРѕРІРЅСЏ - ${item}`, async () => {
                     const cook = await page.base.getCookie('token');
                     const getStaff = await api.getStaff(cook.text);
                     const getDivision = await api.getDivision(cook.text);
@@ -7932,15 +7932,15 @@ const exportFile = (agr, str, format) => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображние 29 подраздлениий', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 29 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                 [29, entry.max],
                 page.division));
 
-            it(`Отображенние подразделения 1 уровня - ${params.division1}`, async () => {
+            it(`РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - ${params.division1}`, async () => {
                 await dec.simple(page.division.division,
                     [[params.division1], entry.max],
                     page.division)
@@ -7956,7 +7956,7 @@ const exportFile = (agr, str, format) => {
             array.forEach((item1) => {
                 let arr =[];
                 item1.forEach((item2, index2) => {
-                    it(`Отображенние подразделения ${index2 + 1} уровня - ${item2}`, async () => {
+                    it(`РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2}`, async () => {
                         arr.push(item2);
                         await dec.simple(page.division.division,
                             [arr, entry.max],
@@ -7969,17 +7969,17 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    const apiMin = () => describe('API - добавление', () => {
+    const apiMin = () => describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
         const params = {
             division1: 'apiMinDivision1',
             division2:  'apiMinDivision2',
         };
 
-        describe('Добавление', () => {
+        describe('Р”РѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
-            it('Добавление подразделени 1 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 1 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const obj = {
                     "parent_id": 0,
@@ -7989,7 +7989,7 @@ const exportFile = (agr, str, format) => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-            it('Добавление подразделени 2 уровня', async () => {
+            it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРё 2 СѓСЂРѕРІРЅСЏ', async () => {
                 const cook = await page.base.getCookie('token');
                 const getDivision = await api.getDivision(cook.text);
 
@@ -8003,43 +8003,43 @@ const exportFile = (agr, str, format) => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображенние подразделения 1', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1', async () => await dec.simple(page.division.division,
                 [[params.division1], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 2', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2', async () => await dec.simple(page.division.division,
                 [[params.division2], entry.max],
                 page.division));
         });
 
     });
 
-    // Имя выходного файла — системное имя. Заголовок — Не добавлять заголовок.
-    const systemNameNoHead = () => describe(`Подразделение. Экспорт. ${format}. Имя выходного файла — системное имя. 
-        Заголовок — Не добавлять заголовок. ${str}.`, () => {
+    // РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРёСЃС‚РµРјРЅРѕРµ РёРјСЏ. Р—Р°РіРѕР»РѕРІРѕРє вЂ” РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє.
+    const systemNameNoHead = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р­РєСЃРїРѕСЂС‚. ${format}. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРёСЃС‚РµРјРЅРѕРµ РёРјСЏ. 
+        Р—Р°РіРѕР»РѕРІРѕРє вЂ” РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє. ${str}.`, () => {
 
         const params = {
             name: format === 'XLSX' ? 'division.xlsx' : 'division.csv',
             file1: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxdivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8048,7 +8048,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8057,7 +8057,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21/apiMaxDivision22',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8066,7 +8066,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8075,7 +8075,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8084,7 +8084,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8093,7 +8093,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8102,7 +8102,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8111,7 +8111,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8120,7 +8120,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8129,7 +8129,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8138,7 +8138,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8147,7 +8147,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8156,7 +8156,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8165,7 +8165,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8174,7 +8174,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8183,7 +8183,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8192,7 +8192,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8201,7 +8201,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8210,7 +8210,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8219,7 +8219,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8228,7 +8228,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8237,7 +8237,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8246,7 +8246,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8255,7 +8255,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8264,7 +8264,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8273,7 +8273,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8282,7 +8282,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8291,7 +8291,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8302,16 +8302,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8320,7 +8320,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1/apiMinDivision2',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8329,7 +8329,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8340,273 +8340,273 @@ const exportFile = (agr, str, format) => {
             ],
             file3: [
                 {
-                    "Подразделение": "apiMaxdivision1"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxdivision1"
                 },
                 {
-                    "Подразделение": "apiMaxDivision21",
-                    "Телефон": "apiMaxPhone"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision21",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Подразделение": "apiMaxDivision21/apiMaxDivision22",
-                    "Телефон": "apiMaxPhone"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision21/apiMaxDivision22",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision31",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision31",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision31/apiMaxDivision32",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision31/apiMaxDivision32",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41/apiMaxDivision42",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41/apiMaxDivision42",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1",
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1",
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Подразделение": "Администраторы системы"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"
                 }
             ],
             file4: [
-                { 'Подразделение': 'apiMinDivision1' },
-                { 'Подразделение': 'apiMinDivision1/apiMinDivision2' },
-                { 'Подразделение': 'Администраторы системы' }
+                { 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ': 'apiMinDivision1' },
+                { 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ': 'apiMinDivision1/apiMinDivision2' },
+                { 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹' }
             ]
         };
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Экспорт', () => {
+        describe('Р­РєСЃРїРѕСЂС‚', () => {
 
             bef();
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Экспорт"', async () => await dec.simple(el.menu.handler,
-                ['Экспорт', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "Р­РєСЃРїРѕСЂС‚"', async () => await dec.simple(el.menu.handler,
+                ['Р­РєСЃРїРѕСЂС‚', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Экспортировать данные"', async () => await dec.simple(el.modal.exportData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
             switch (format) {
                 case 'XLSX':
-                    it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                        ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                        ['Заголовок', 'Добавить заголовок к файлу', 'Не добавлять заголовок', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє', entry.max],
                         el.select));
                     break;
                 case 'CSV':
-                    it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                        ['Выберите тип файла для экспорта', 'XLSX', 'CSV', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'CSV', entry.max],
                         el.select));
                     break;
                 default:
-                    it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                        ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                        ['Заголовок', 'Добавить заголовок к файлу', 'Не добавлять заголовок', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє', entry.max],
                         el.select));
                     break;
             }
 
-            it('Нажатие кнопки "Экспортировать"', async () => await dec.simple(el.button.handler,
-                ['Экспортировать', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ', entry.max],
                 el.button));
 
-            it('Отсутствие модального окна "Экспортировать данные"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
 
         });
 
-        describe('Проверка файла экспорта', () => {
+        describe('РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° СЌРєСЃРїРѕСЂС‚Р°', () => {
 
-            it('Отображение файла', async () => await dec.simple(el.file.display,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
             switch (format) {
                 case 'XLSX':
-                    it('Проверка строк файла', async () => {
+                    it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         const file = agr === 'min' ? params.file2 : params.file1;
                         await dec.exportFile(file, jsonFile);
                     });
                     break;
                 case 'CSV':
-                    it('Проверка строк файла', async () => {
+                    it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         const file = agr === 'min' ? params.file4 : params.file3;
                         await dec.exportFile(file, jsonFile);
                     });
                     break;
                 default:
-                    it('Проверка строк файла', async () => {
+                    it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         const file = agr === 'min' ? params.file2 : params.file1;
                         await dec.exportFile(file, jsonFile);
@@ -8615,7 +8615,7 @@ const exportFile = (agr, str, format) => {
 
             }
 
-            it('Удаление файла', async () => await dec.simple(el.file.delete,
+            it('РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -8624,24 +8624,24 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Имя выходного файла — системное имя. Заголовок — Добавить заголовок к файлу.
-    const systemNameAddHead = () => describe(`Подразделение. Экспорт. ${format}. Имя выходного файла — системное имя. '
-        'Заголовок — Добавить заголовок к файлу. ${str}.`, () => {
+    // РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРёСЃС‚РµРјРЅРѕРµ РёРјСЏ. Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ.
+    const systemNameAddHead = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р­РєСЃРїРѕСЂС‚. ${format}. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРёСЃС‚РµРјРЅРѕРµ РёРјСЏ. '
+        'Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ. ${str}.`, () => {
 
         const params = {
             name: 'division.xlsx',
             file1: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxdivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8650,7 +8650,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8659,7 +8659,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21/apiMaxDivision22',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8668,7 +8668,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8677,7 +8677,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8686,7 +8686,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8695,7 +8695,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8704,7 +8704,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8713,7 +8713,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8722,7 +8722,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8731,7 +8731,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8740,7 +8740,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8749,7 +8749,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8758,7 +8758,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8767,7 +8767,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8776,7 +8776,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8785,7 +8785,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8794,7 +8794,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8803,7 +8803,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8812,7 +8812,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8821,7 +8821,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8830,7 +8830,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8839,7 +8839,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8848,7 +8848,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8857,7 +8857,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8866,7 +8866,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8875,7 +8875,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8884,7 +8884,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -8893,7 +8893,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8904,16 +8904,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8922,7 +8922,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1/apiMinDivision2',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8931,7 +8931,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -8944,59 +8944,59 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Экспорт', () => {
+        describe('Р­РєСЃРїРѕСЂС‚', () => {
 
             bef();
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Экспорт"', async () => await dec.simple(el.menu.handler,
-                ['Экспорт', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "Р­РєСЃРїРѕСЂС‚"', async () => await dec.simple(el.menu.handler,
+                ['Р­РєСЃРїРѕСЂС‚', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Экспортировать данные"', async () => await dec.simple(el.modal.exportData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                ['Заголовок', 'Добавить заголовок к файлу', 'Добавить заголовок к файлу', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Экспортировать"', async () => await dec.simple(el.button.handler,
-                ['Экспортировать', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ', entry.max],
                 el.button));
 
-            it('Отсутствие модального окна "Экспортировать данные"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('Проверка файла экспорта', () => {
+        describe('РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° СЌРєСЃРїРѕСЂС‚Р°', () => {
 
-            it('Отображение файла', async () => await dec.simple(el.file.display,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('Проверка строк файла', async () => {
+            it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Удаление файла', async () => await dec.simple(el.file.delete,
+            it('РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -9005,22 +9005,22 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Имя выходного файла — системное имя. Заголовок — Добавить свой заголовок.
-    const systemNameItHead = () => describe(`Подразделение. Экспорт. ${format}. Имя выходного файла — системное имя. 
-        Заголовок — Добавить свой заголовок. ${str}.`, () => {
+    // РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРёСЃС‚РµРјРЅРѕРµ РёРјСЏ. Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ СЃРІРѕР№ Р·Р°РіРѕР»РѕРІРѕРє.
+    const systemNameItHead = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р­РєСЃРїРѕСЂС‚. ${format}. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРёСЃС‚РµРјРЅРѕРµ РёРјСЏ. 
+        Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ СЃРІРѕР№ Р·Р°РіРѕР»РѕРІРѕРє. ${str}.`, () => {
 
         const params = {
             name: 'division.xlsx',
             head: 'systemNameItHead',
             file1: [
                 {
-                    systemNameItHead: 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    systemNameItHead: 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
                     systemNameItHead: 'apiMaxdivision1',
@@ -9275,7 +9275,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    systemNameItHead: 'Администраторы системы',
+                    systemNameItHead: 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9286,13 +9286,13 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    systemNameItHead: 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    systemNameItHead: 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
                     systemNameItHead: 'apiMinDivision1',
@@ -9313,7 +9313,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    systemNameItHead: 'Администраторы системы',
+                    systemNameItHead: 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9326,63 +9326,63 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Экспорт', () => {
+        describe('Р­РєСЃРїРѕСЂС‚', () => {
 
             bef();
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Экспорт"', async () => await dec.simple(el.menu.handler,
-                ['Экспорт', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "Р­РєСЃРїРѕСЂС‚"', async () => await dec.simple(el.menu.handler,
+                ['Р­РєСЃРїРѕСЂС‚', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Экспортировать данные"', async () => await dec.simple(el.modal.exportData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                ['Заголовок', 'Добавить заголовок к файлу', 'Добавить свой заголовок', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'Р”РѕР±Р°РІРёС‚СЊ СЃРІРѕР№ Р·Р°РіРѕР»РѕРІРѕРє', entry.max],
                 el.select));
 
-            it('Ввод "Наименование"', async () => await dec.simple(el.input.sendKeys,
-                ['Наименование', '', params.head, entry.max],
+            it('Р’РІРѕРґ "РќР°РёРјРµРЅРѕРІР°РЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                ['РќР°РёРјРµРЅРѕРІР°РЅРёРµ', '', params.head, entry.max],
                 el.input));
 
-            it('Нажатие кнопки "Экспортировать"', async () => await dec.simple(el.button.handler,
-                ['Экспортировать', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ', entry.max],
                 el.button));
 
-            it('Отсутствие модального окна "Экспортировать данные"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('Проверка файла экспорта', () => {
+        describe('РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° СЌРєСЃРїРѕСЂС‚Р°', () => {
 
-            it('Отображение файла', async () => await dec.simple(el.file.display,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('Проверка строк файла', async () => {
+            it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Удаление файла', async () => await dec.simple(el.file.delete,
+            it('РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -9391,24 +9391,24 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Имя выходного файла — свое имя. Заголовок — Не добавлять заголовок.
-    const nameNoHead = () => describe(`Подразделение. Экспорт. ${format}. Имя выходного файла — свое имя. 
-        Заголовок — Не добавлять заголовок. ${str}.`, () => {
+    // РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРІРѕРµ РёРјСЏ. Р—Р°РіРѕР»РѕРІРѕРє вЂ” РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє.
+    const nameNoHead = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р­РєСЃРїРѕСЂС‚. ${format}. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРІРѕРµ РёРјСЏ. 
+        Р—Р°РіРѕР»РѕРІРѕРє вЂ” РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє. ${str}.`, () => {
 
         const params = {
             name: format === 'XLSX' ? 'nameNoHead.xlsx' : 'nameNoHead.csv',
             file1: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxdivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9417,7 +9417,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9426,7 +9426,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21/apiMaxDivision22',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9435,7 +9435,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9444,7 +9444,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9453,7 +9453,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9462,7 +9462,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9471,7 +9471,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9480,7 +9480,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9489,7 +9489,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9498,7 +9498,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9507,7 +9507,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9516,7 +9516,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9525,7 +9525,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9534,7 +9534,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9543,7 +9543,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9552,7 +9552,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9561,7 +9561,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9570,7 +9570,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9579,7 +9579,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9588,7 +9588,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9597,7 +9597,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9606,7 +9606,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9615,7 +9615,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9624,7 +9624,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9633,7 +9633,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9642,7 +9642,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9651,7 +9651,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -9660,7 +9660,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9671,16 +9671,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9689,7 +9689,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1/apiMinDivision2',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9698,7 +9698,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -9709,257 +9709,257 @@ const exportFile = (agr, str, format) => {
             ],
             file3: [
                 {
-                    "Подразделение": "apiMaxdivision1"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxdivision1"
                 },
                 {
-                    "Подразделение": "apiMaxDivision21",
-                    "Телефон": "apiMaxPhone"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision21",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Подразделение": "apiMaxDivision21/apiMaxDivision22",
-                    "Телефон": "apiMaxPhone"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision21/apiMaxDivision22",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision31",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision31",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision31/apiMaxDivision32",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision31/apiMaxDivision32",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision31/apiMaxDivision32/apiMaxDivision33",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41/apiMaxDivision42",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41/apiMaxDivision42",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
-                    "Телефон": "apiMaxPhone"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1",
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1",
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "График работы": "apiMaxSchedule",
-                    "Описание": "apiMaxDescription",
-                    "Подразделение": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
-                    "Сопровождающий": "staff 1 ",
-                    "Телефон": "apiMaxPhone",
-                    "Шаблон доступа для посетителей": "apiMaxTemplate1"
+                    "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹": "apiMaxSchedule",
+                    "РћРїРёСЃР°РЅРёРµ": "apiMaxDescription",
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77",
+                    "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№": "staff 1 ",
+                    "РўРµР»РµС„РѕРЅ": "apiMaxPhone",
+                    "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№": "apiMaxTemplate1"
                 },
                 {
-                    "Подразделение": "Администраторы системы"
+                    "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ": "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"
                 }
             ],
             file4: [
-                { 'Подразделение': 'apiMinDivision1' },
-                { 'Подразделение': 'apiMinDivision1/apiMinDivision2' },
-                { 'Подразделение': 'Администраторы системы' }
+                { 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ': 'apiMinDivision1' },
+                { 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ': 'apiMinDivision1/apiMinDivision2' },
+                { 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹' }
             ],
             fileName: 'nameNoHead'
         };
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Экспорт', () => {
+        describe('Р­РєСЃРїРѕСЂС‚', () => {
 
             bef();
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Экспорт"', async () => await dec.simple(el.menu.handler,
-                ['Экспорт', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "Р­РєСЃРїРѕСЂС‚"', async () => await dec.simple(el.menu.handler,
+                ['Р­РєСЃРїРѕСЂС‚', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Экспортировать данные"', async () => await dec.simple(el.modal.exportData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
             switch (format) {
                 case 'XLSX':
-                    it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                        ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Ввод "Имя выходного файла"', async () => await dec.simple(el.input.sendKeys,
-                        ['Имя выходного файла', 'Определяется системой', params.fileName, entry.max],
+                    it('Р’РІРѕРґ "РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°"', async () => await dec.simple(el.input.sendKeys,
+                        ['РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°', 'РћРїСЂРµРґРµР»СЏРµС‚СЃСЏ СЃРёСЃС‚РµРјРѕР№', params.fileName, entry.max],
                         el.input));
 
-                    it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                        ['Заголовок', 'Добавить заголовок к файлу', 'Не добавлять заголовок', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє', entry.max],
                         el.select));
                     break;
                 case 'CSV':
-                    it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                        ['Выберите тип файла для экспорта', 'XLSX', 'CSV', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'CSV', entry.max],
                         el.select));
 
-                    it('Ввод "Имя выходного файла"', async () => await dec.simple(el.input.sendKeys,
-                        ['Имя выходного файла', 'Определяется системой', params.fileName, entry.max],
+                    it('Р’РІРѕРґ "РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°"', async () => await dec.simple(el.input.sendKeys,
+                        ['РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°', 'РћРїСЂРµРґРµР»СЏРµС‚СЃСЏ СЃРёСЃС‚РµРјРѕР№', params.fileName, entry.max],
                         el.input));
                     break;
                 default:
-                    it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                        ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                         el.select));
 
-                    it('Ввод "Имя выходного файла"', async () => await dec.simple(el.input.sendKeys,
-                        ['Имя выходного файла', 'Определяется системой', params.fileName, entry.max],
+                    it('Р’РІРѕРґ "РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°"', async () => await dec.simple(el.input.sendKeys,
+                        ['РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°', 'РћРїСЂРµРґРµР»СЏРµС‚СЃСЏ СЃРёСЃС‚РµРјРѕР№', params.fileName, entry.max],
                         el.input));
 
-                    it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                        ['Заголовок', 'Добавить заголовок к файлу', 'Не добавлять заголовок', entry.max],
+                    it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                        ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'РќРµ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє', entry.max],
                         el.select));
                     break;
             }
 
-            it('Нажатие кнопки "Экспортировать"', async () => await dec.simple(el.button.handler,
-                ['Экспортировать', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ', entry.max],
                 el.button));
 
-            it('Отсутствие модального окна "Экспортировать данные"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
@@ -9967,15 +9967,15 @@ const exportFile = (agr, str, format) => {
 
         });
 
-        describe('Проверка файла экспорта', () => {
+        describe('РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° СЌРєСЃРїРѕСЂС‚Р°', () => {
 
-            it('Отображение файла', async () => await dec.simple(el.file.display,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
             switch (format) {
                 case 'XLSX':
-                    it('Проверка строк файла', async () => {
+                    it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         console.log('jsonFile', jsonFile)
                         const file = agr === 'min' ? params.file2 : params.file1;
@@ -9983,7 +9983,7 @@ const exportFile = (agr, str, format) => {
                     });
                     break;
                 case 'CSV':
-                    it('Проверка строк файла', async () => {
+                    it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         console.log('jsonFile', jsonFile)
                         const file = agr === 'min' ? params.file4 : params.file3;
@@ -9991,7 +9991,7 @@ const exportFile = (agr, str, format) => {
                     });
                     break;
                 default:
-                    it('Проверка строк файла', async () => {
+                    it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                         const jsonFile = await el.file.readNum(params.name);
                         console.log('jsonFile', jsonFile)
                         const file = agr === 'min' ? params.file2 : params.file1;
@@ -10000,7 +10000,7 @@ const exportFile = (agr, str, format) => {
                     break;
             }
 
-            it('Удаление файла', async () => await dec.simple(el.file.delete,
+            it('РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -10009,24 +10009,24 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Экспорт. Имя выходного файла — свое имя.Заголовок — Добавить заголовок к файлу.
-    const nameAddHead = () => describe(`Подразделение. Экспорт. ${format}. Имя выходного файла — свое имя. 
-        Заголовок — Добавить заголовок к файлу. ${str}.`, () => {
+    // Р­РєСЃРїРѕСЂС‚. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРІРѕРµ РёРјСЏ.Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ.
+    const nameAddHead = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р­РєСЃРїРѕСЂС‚. ${format}. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРІРѕРµ РёРјСЏ. 
+        Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ. ${str}.`, () => {
 
         const params = {
             name: 'nameAddHead.xlsx',
             file1: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxdivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxdivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10035,7 +10035,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10044,7 +10044,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision21/apiMaxDivision22',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision21/apiMaxDivision22',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10053,7 +10053,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10062,7 +10062,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10071,7 +10071,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision31/apiMaxDivision32/apiMaxDivision33',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10080,7 +10080,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10089,7 +10089,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10098,7 +10098,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10107,7 +10107,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision41/apiMaxDivision42/apiMaxDivision43/apiMaxDivision44',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10116,7 +10116,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10125,7 +10125,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10134,7 +10134,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10143,7 +10143,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10152,7 +10152,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision51/apiMaxDivision52/apiMaxDivision53/apiMaxDivision54/apiMaxDivision55',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10161,7 +10161,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10170,7 +10170,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10179,7 +10179,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10188,7 +10188,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10197,7 +10197,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10206,7 +10206,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision61/apiMaxDivision62/apiMaxDivision63/apiMaxDivision64/apiMaxDivision65/apiMaxDivision66',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10215,7 +10215,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10224,7 +10224,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10233,7 +10233,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10242,7 +10242,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10251,7 +10251,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10260,7 +10260,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10269,7 +10269,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMaxDivision71/apiMaxDivision72/apiMaxDivision73/apiMaxDivision74/apiMaxDivision75/apiMaxDivision76/apiMaxDivision77',
                     __EMPTY: 'apiMaxPhone',
                     __EMPTY_1: 'apiMaxDescription',
                     __EMPTY_2: '',
@@ -10278,7 +10278,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10289,16 +10289,16 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    'Отчет "Подразделения"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10307,7 +10307,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'apiMinDivision1/apiMinDivision2',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'apiMinDivision1/apiMinDivision2',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10316,7 +10316,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    'Отчет "Подразделения"': 'Администраторы системы',
+                    'РћС‚С‡РµС‚ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ"': 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10330,63 +10330,63 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Экспорт', () => {
+        describe('Р­РєСЃРїРѕСЂС‚', () => {
 
             bef();
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Экспорт"', async () => await dec.simple(el.menu.handler,
-                ['Экспорт', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "Р­РєСЃРїРѕСЂС‚"', async () => await dec.simple(el.menu.handler,
+                ['Р­РєСЃРїРѕСЂС‚', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Экспортировать данные"', async () => await dec.simple(el.modal.exportData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Ввод "Имя выходного файла"', async () => await dec.simple(el.input.sendKeys,
-                ['Имя выходного файла', 'Определяется системой', params.fileName, entry.max],
+            it('Р’РІРѕРґ "РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°"', async () => await dec.simple(el.input.sendKeys,
+                ['РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°', 'РћРїСЂРµРґРµР»СЏРµС‚СЃСЏ СЃРёСЃС‚РµРјРѕР№', params.fileName, entry.max],
                 el.input));
 
-            it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                ['Заголовок', 'Добавить заголовок к файлу', 'Добавить заголовок к файлу', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Экспортировать"', async () => await dec.simple(el.button.handler,
-                ['Экспортировать', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ', entry.max],
                 el.button));
 
-            it('Отсутствие модального окна "Экспортировать данные"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('Проверка файла экспорта', () => {
+        describe('РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° СЌРєСЃРїРѕСЂС‚Р°', () => {
 
-            it('Отображение файла', async () => await dec.simple(el.file.display,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('Проверка строк файла', async () => {
+            it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Удаление файла', async () => await dec.simple(el.file.delete,
+            it('РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -10395,22 +10395,22 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    // Экспорт. Имя выходного файла — свое имя.Заголовок — Добавить заголовок к файлу.
-    const nameItHead = () => describe(`Подразделение. Экспорт. ${format}. Имя выходного файла — свое имя. 
-        Заголовок — Добавить свой заголовок. ${str}.`, () => {
+    // Р­РєСЃРїРѕСЂС‚. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРІРѕРµ РёРјСЏ.Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ.
+    const nameItHead = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. Р­РєСЃРїРѕСЂС‚. ${format}. РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° вЂ” СЃРІРѕРµ РёРјСЏ. 
+        Р—Р°РіРѕР»РѕРІРѕРє вЂ” Р”РѕР±Р°РІРёС‚СЊ СЃРІРѕР№ Р·Р°РіРѕР»РѕРІРѕРє. ${str}.`, () => {
 
         const params = {
             name: 'nameItHead.xlsx',
             head: 'systemNameItHead',
             file1: [
                 {
-                    systemNameItHead: 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    systemNameItHead: 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
                     systemNameItHead: 'apiMaxdivision1',
@@ -10665,7 +10665,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: 'staff 1 '
                 },
                 {
-                    systemNameItHead: 'Администраторы системы',
+                    systemNameItHead: 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10676,13 +10676,13 @@ const exportFile = (agr, str, format) => {
             ],
             file2: [
                 {
-                    systemNameItHead: 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий'
+                    systemNameItHead: 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№'
                 },
                 {
                     systemNameItHead: 'apiMinDivision1',
@@ -10703,7 +10703,7 @@ const exportFile = (agr, str, format) => {
                     __EMPTY_5: ''
                 },
                 {
-                    systemNameItHead: 'Администраторы системы',
+                    systemNameItHead: 'РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹',
                     __EMPTY: '',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -10717,67 +10717,67 @@ const exportFile = (agr, str, format) => {
 
         agr === 'min' ? apiMin() : apiMax();
 
-        describe('Экспорт', () => {
+        describe('Р­РєСЃРїРѕСЂС‚', () => {
 
             bef();
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Экспорт"', async () => await dec.simple(el.menu.handler,
-                ['Экспорт', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "Р­РєСЃРїРѕСЂС‚"', async () => await dec.simple(el.menu.handler,
+                ['Р­РєСЃРїРѕСЂС‚', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Экспортировать данные"', async () => await dec.simple(el.modal.exportData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"', async () => await dec.simple(el.modal.exportData.init,
                 [entry.max],
                 el.modal.exportData));
 
-            it('Выбор "Выберите тип файла для экспорта"', async () => await dec.simple(el.select.iconXpand,
-                ['Выберите тип файла для экспорта', 'XLSX', 'XLSX', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"', async () => await dec.simple(el.select.iconXpand,
+                ['Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї С„Р°Р№Р»Р° РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°', 'XLSX', 'XLSX', entry.max],
                 el.select));
 
-            it('Ввод "Имя выходного файла"', async () => await dec.simple(el.input.sendKeys,
-                ['Имя выходного файла', 'Определяется системой', params.fileName, entry.max],
+            it('Р’РІРѕРґ "РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°"', async () => await dec.simple(el.input.sendKeys,
+                ['РРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°', 'РћРїСЂРµРґРµР»СЏРµС‚СЃСЏ СЃРёСЃС‚РµРјРѕР№', params.fileName, entry.max],
                 el.input));
 
-            it('Выбор "Заголовок"', async () => await dec.simple(el.select.iconXpand,
-                ['Заголовок', 'Добавить заголовок к файлу', 'Добавить свой заголовок', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р—Р°РіРѕР»РѕРІРѕРє"', async () => await dec.simple(el.select.iconXpand,
+                ['Р—Р°РіРѕР»РѕРІРѕРє', 'Р”РѕР±Р°РІРёС‚СЊ Р·Р°РіРѕР»РѕРІРѕРє Рє С„Р°Р№Р»Сѓ', 'Р”РѕР±Р°РІРёС‚СЊ СЃРІРѕР№ Р·Р°РіРѕР»РѕРІРѕРє', entry.max],
                 el.select));
 
-            it('Ввод "Наименование"', async () => await dec.simple(el.input.sendKeys,
-                ['Наименование', '', params.head, entry.max],
+            it('Р’РІРѕРґ "РќР°РёРјРµРЅРѕРІР°РЅРёРµ"', async () => await dec.simple(el.input.sendKeys,
+                ['РќР°РёРјРµРЅРѕРІР°РЅРёРµ', '', params.head, entry.max],
                 el.input));
 
-            it('Нажатие кнопки "Экспортировать"', async () => await dec.simple(el.button.handler,
-                ['Экспортировать', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ"', async () => await dec.simple(el.button.handler,
+                ['Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ', entry.max],
                 el.button));
 
-            it('Отсутствие модального окна "Экспортировать данные"',
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "Р­РєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ"',
                 async () => await dec.simple(el.modal.exportData.initClose,
                     [entry.max],
                     el.modal.exportData));
         });
 
-        describe('Проверка файла экспорта', () => {
+        describe('РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р° СЌРєСЃРїРѕСЂС‚Р°', () => {
 
-            it('Отображение файла', async () => await dec.simple(el.file.display,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.display,
                 [params.name, entry.upload],
                 el.file));
 
-            it('Проверка строк файла', async () => {
+            it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                 const jsonFile = await el.file.readNum(params.name);
                 console.log('jsonFile', jsonFile)
                 const file = agr === 'min' ? params.file2 : params.file1;
                 await dec.exportFile(file, jsonFile);
             })
 
-            it('Удаление файла', async () => await dec.simple(el.file.delete,
+            it('РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.delete,
                 [params.name, entry.upload],
                 el.file));
         });
@@ -10786,7 +10786,7 @@ const exportFile = (agr, str, format) => {
 
     });
 
-    const mainXLSX = () => describe(`Подразделение. Проверки экспорта - ${format}. ${str}.`, () => {
+    const mainXLSX = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџСЂРѕРІРµСЂРєРё СЌРєСЃРїРѕСЂС‚Р° - ${format}. ${str}.`, () => {
         systemNameNoHead();
         systemNameAddHead();
         systemNameItHead();
@@ -10795,7 +10795,7 @@ const exportFile = (agr, str, format) => {
         nameItHead();
     });
 
-    const mainCSV = () => describe(`Подразделение. Проверки экспорта - ${format}. ${str}.`, () => {
+    const mainCSV = () => describe(`РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РџСЂРѕРІРµСЂРєРё СЌРєСЃРїРѕСЂС‚Р° - ${format}. ${str}.`, () => {
         systemNameNoHead();
         nameNoHead();
     });
@@ -10819,203 +10819,203 @@ const exportFile = (agr, str, format) => {
 
 };
 
-//Тесты импорта
+//РўРµСЃС‚С‹ РёРјРїРѕСЂС‚Р°
 const importFile = () => {
 
-    // Импорт xlsx с минимальным количеством параметров.
-    const importXLSXMinParams = () => describe('Подразделение. Импорт. Импорт с минимальным количеством параметров ' +
-        'из xlsx файла. ', () => {
+    // РРјРїРѕСЂС‚ xlsx СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const importXLSXMinParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ ' +
+        'РёР· xlsx С„Р°Р№Р»Р°. ', () => {
 
         const params = {
             name1: 'importMinParamsName1',
             name2: 'importMinParamsName2',
-            message: 'Импорт завершен 0 записей из 2 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 0 Р·Р°РїРёСЃРµР№ РёР· 2 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
         };
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMinSuccess, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
-                ['Телефон', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.select,
+                ['РўРµР»РµС„РѕРЅ', '', entry.max],
                 el.select));
 
-            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
-                ['Описание', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                 el.select));
 
-            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
-                ['Сопровождающий', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.select,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для сотрудника', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для посетителя', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                 el.select));
 
-            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
-                ['График работы', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.select,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки "Готово"', async () => await dec.simple(el.button.handler,
-                ['Готово', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р“РѕС‚РѕРІРѕ"', async () => await dec.simple(el.button.handler,
+                ['Р“РѕС‚РѕРІРѕ', entry.max],
                 el.button));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
@@ -11024,200 +11024,200 @@ const importFile = () => {
         deleteParams();
     });
 
-    // Импорт xls с минимальным количеством параметров.
-    const importXLSMinParams = () => describe('Подразделение. Импорт. Импорт с минимальным количеством параметров ' +
-        'из xls файла. ', () => {
+    // РРјРїРѕСЂС‚ xls СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const importXLSMinParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ ' +
+        'РёР· xls С„Р°Р№Р»Р°. ', () => {
 
         const params = {
             name1: 'importMinParamsName1',
             name2: 'importMinParamsName2',
-            message: 'Импорт завершен 0 записей из 2 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 0 Р·Р°РїРёСЃРµР№ РёР· 2 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
         };
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSMinSuccess, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
-                ['Телефон', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.select,
+                ['РўРµР»РµС„РѕРЅ', '', entry.max],
                 el.select));
 
-            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
-                ['Описание', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                 el.select));
 
-            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
-                ['Сопровождающий', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.select,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для сотрудника', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для посетителя', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                 el.select));
 
-            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
-                ['График работы', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.select,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки "Готово"', async () => await dec.simple(el.button.handler,
-                ['Готово', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р“РѕС‚РѕРІРѕ"', async () => await dec.simple(el.button.handler,
+                ['Р“РѕС‚РѕРІРѕ', entry.max],
                 el.button));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name1, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.name1, params.name2], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.name2, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     '',
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     '',
                     el.input));
             });
@@ -11226,9 +11226,9 @@ const importFile = () => {
         deleteParams();
     });
 
-    // Импорт xlsx с максимальным количеством параметров.
-    const importXLSXMaxParams = () => describe('Подразделение. Импорт. Импорт с максимальным количеством параметров ' +
-    'из xlsx файла.', () => {
+    // РРјРїРѕСЂС‚ xlsx СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ.
+    const importXLSXMaxParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ ' +
+    'РёР· xlsx С„Р°Р№Р»Р°.', () => {
         const params = {
             division1: {
                 name: 'importXLSXMaxParamsName1',
@@ -11262,10 +11262,10 @@ const importFile = () => {
                 template3: 'template23',
                 schedule: 'schedule2',
             },
-            message: 'Импорт завершен 0 записей из 2 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 0 Р·Р°РїРёСЃРµР№ РёР· 2 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -11280,215 +11280,215 @@ const importFile = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMaxSuccess, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
-                ['Телефон', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.select,
+                ['РўРµР»РµС„РѕРЅ', '', entry.max],
                 el.select));
 
-            it('Выбор "Телефон"', async () => await dec.simple(el.select.iconXpand,
-                ['Телефон', '', 'Телефон', entry.max],
+            it('Р’С‹Р±РѕСЂ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.iconXpand,
+                ['РўРµР»РµС„РѕРЅ', '', 'РўРµР»РµС„РѕРЅ', entry.max],
                 el.select));
 
-            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
-                ['Описание', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                 el.select));
 
-            it('Выбор "Описание"', async () => await dec.simple(el.select.iconXpand,
-                ['Описание', '', 'Описание', entry.max],
+            it('Р’С‹Р±РѕСЂ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РћРїРёСЃР°РЅРёРµ', '', 'РћРїРёСЃР°РЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
-                ['Сопровождающий', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.select,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                 el.select));
 
-            it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                ['Сопровождающий', '', 'Сопровождающий', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для сотрудника', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                 el.select));
 
-            it('Выбор "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.iconXpand,
-                ['Шаблон доступа для сотрудника', '', 'Шаблон доступа для сотрудников', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.iconXpand,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для посетителя', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                 el.select));
 
-            it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                ['Шаблон доступа для посетителя', '', 'Шаблон доступа для посетителей', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№', entry.max],
                 el.select));
 
-            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
-                ['График работы', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.select,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                 el.select));
 
-            it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                ['График работы', '', 'График работы', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки "Готово"', async () => await dec.simple(el.button.handler,
-                ['Готово', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р“РѕС‚РѕРІРѕ"', async () => await dec.simple(el.button.handler,
+                ['Р“РѕС‚РѕРІРѕ', entry.max],
                 el.button));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [3, entry.max],
                     page.division));
 
             });
 
-            describe('Проверка подразделения 1 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division1.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division1.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division1.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division1.template1}, ${params.division1.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division1.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division1.schedule}`,
                     el.input));
             });
 
-            describe('Проверка подразделения 2 уровня', () => {
+            describe('РџСЂРѕРІРµСЂРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
+                it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => await dec.simple(page.division.division,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                it('РќР°Р¶Р°С‚РёРµ РїРѕ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ', async () => await dec.simple(page.division.handler,
                     [[params.division1.name, params.division2.name], entry.max],
                     page.division));
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                it('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ РІС‹РґРµР»РµРЅРѕ', async () => await dec.simple(page.division.selected,
                     [params.division2.name, entry.max],
                     page.division));
 
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РўРµР»РµС„РѕРЅ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РўРµР»РµС„РѕРЅ', '', entry.max],
                     params.division2.phone,
                     el.input));
 
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                     params.division2.description,
                     el.input));
 
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                     `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                     `${params.division2.template1}, ${params.division2.template2}`,
                     el.input));
 
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simpleText(el.input.getValue,
+                    ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                     `${params.division2.template3}`,
                     el.input));
 
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
+                it('РџСЂРѕРІРµСЂРєР° "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simpleText(el.input.getValue,
+                    ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                     `${params.division2.schedule}`,
                     el.input));
             });
@@ -11498,9 +11498,9 @@ const importFile = () => {
 
     });
 
-    // Импорт с отсутствием "Подразделения" и максимальным количетсвом параметров
-    const importXLSXMaxParamsNoName = () => describe('Подразделение. Импорт. Импорт с отсутствием "Подразделения" и ' +
-        'максимальным количеством параметров из xlsx файла и экспортом файла с ошибками.', () => {
+    // РРјРїРѕСЂС‚ СЃ РѕС‚СЃСѓС‚СЃС‚РІРёРµРј "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ" Рё РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµС‚СЃРІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ
+    const importXLSXMaxParamsNoName = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚ СЃ РѕС‚СЃСѓС‚СЃС‚РІРёРµРј "РџРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ" Рё ' +
+        'РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ РёР· xlsx С„Р°Р№Р»Р° Рё СЌРєСЃРїРѕСЂС‚РѕРј С„Р°Р№Р»Р° СЃ РѕС€РёР±РєР°РјРё.', () => {
         const params = {
             division1: {
                 fio: {
@@ -11528,42 +11528,42 @@ const importFile = () => {
                 template3: 'template23',
                 schedule: 'schedule2',
             },
-            message: 'Импорт завершен 2 записей из 2 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 2 Р·Р°РїРёСЃРµР№ РёР· 2 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
             file: [
                 {
-                    'Отчет "Не импортированные данные"': 'Подразделение',
-                    __EMPTY: 'Телефон',
-                    __EMPTY_1: 'Описание',
-                    __EMPTY_2: 'Шаблон доступа для сотрудников',
-                    __EMPTY_3: 'Шаблон доступа для посетителей',
-                    __EMPTY_4: 'График работы',
-                    __EMPTY_5: 'Сопровождающий',
-                    __EMPTY_6: 'Ошибка'
+                    'РћС‚С‡РµС‚ "РќРµ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ"': 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ',
+                    __EMPTY: 'РўРµР»РµС„РѕРЅ',
+                    __EMPTY_1: 'РћРїРёСЃР°РЅРёРµ',
+                    __EMPTY_2: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ',
+                    __EMPTY_3: 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№',
+                    __EMPTY_4: 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹',
+                    __EMPTY_5: 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№',
+                    __EMPTY_6: 'РћС€РёР±РєР°'
                 },
                 {
-                    'Отчет "Не импортированные данные"': '',
+                    'РћС‚С‡РµС‚ "РќРµ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ"': '',
                     __EMPTY: 'importXLSXMaxParamsPhone1',
                     __EMPTY_1: 'importXLSXMaxParamsDescription1',
                     __EMPTY_2: 'template11;template12',
                     __EMPTY_3: 'template13',
                     __EMPTY_4: 'schedule1',
                     __EMPTY_5: 'staff 1',
-                    __EMPTY_6: 'Отсутствует обязательное поле Подразделение'
+                    __EMPTY_6: 'РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ'
                 },
                 {
-                    'Отчет "Не импортированные данные"': 'importXLSXMaxParamsName1/importXLSXMaxParamsName2',
+                    'РћС‚С‡РµС‚ "РќРµ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ"': 'importXLSXMaxParamsName1/importXLSXMaxParamsName2',
                     __EMPTY: 'importXLSXMaxParamsPhone2',
                     __EMPTY_1: 'importXLSXMaxParamsDescription2',
                     __EMPTY_2: 'template21;template22;',
                     __EMPTY_3: 'template23',
                     __EMPTY_4: 'schedule2',
                     __EMPTY_5: 'staff 2',
-                    __EMPTY_6: 'Цепочка отделов не валидна или отдел существует'
+                    __EMPTY_6: 'Р¦РµРїРѕС‡РєР° РѕС‚РґРµР»РѕРІ РЅРµ РІР°Р»РёРґРЅР° РёР»Рё РѕС‚РґРµР» СЃСѓС‰РµСЃС‚РІСѓРµС‚'
                 }
             ]
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
             addAccessTemplate(params.division1.template1, '');
@@ -11578,148 +11578,148 @@ const importFile = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMaxNoNameFailed, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
-                ['Телефон', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.select,
+                ['РўРµР»РµС„РѕРЅ', '', entry.max],
                 el.select));
 
-            it('Выбор "Телефон"', async () => await dec.simple(el.select.iconXpand,
-                ['Телефон', '', 'Телефон', entry.max],
+            it('Р’С‹Р±РѕСЂ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.iconXpand,
+                ['РўРµР»РµС„РѕРЅ', '', 'РўРµР»РµС„РѕРЅ', entry.max],
                 el.select));
 
-            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
-                ['Описание', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                 el.select));
 
-            it('Выбор "Описание"', async () => await dec.simple(el.select.iconXpand,
-                ['Описание', '', 'Описание', entry.max],
+            it('Р’С‹Р±РѕСЂ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РћРїРёСЃР°РЅРёРµ', '', 'РћРїРёСЃР°РЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
-                ['Сопровождающий', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.select,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                 el.select));
 
-            it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                ['Сопровождающий', '', 'Сопровождающий', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для сотрудника', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                 el.select));
 
-            it('Выбор "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.iconXpand,
-                ['Шаблон доступа для сотрудника', '', 'Шаблон доступа для сотрудников', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.iconXpand,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для посетителя', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                 el.select));
 
-            it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                ['Шаблон доступа для посетителя', '', 'Шаблон доступа для посетителей', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№', entry.max],
                 el.select));
 
-            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
-                ['График работы', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.select,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                 el.select));
 
-            it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                ['График работы', '', 'График работы', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки "Экспорт остатка в файл"', async () => await dec.simple(el.button.handler,
-                ['Экспорт остатка в файл', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р­РєСЃРїРѕСЂС‚ РѕСЃС‚Р°С‚РєР° РІ С„Р°Р№Р»"', async () => await dec.simple(el.button.handler,
+                ['Р­РєСЃРїРѕСЂС‚ РѕСЃС‚Р°С‚РєР° РІ С„Р°Р№Р»', entry.max],
                 el.button))
 
-            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.upload],
                 el.modal.importData))
         });
 
-        describe('Проверка файла', () => {
+        describe('РџСЂРѕРІРµСЂРєР° С„Р°Р№Р»Р°', () => {
 
-            it('Отображение файла в директории', async () => await dec.simple(el.file.display,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ С„Р°Р№Р»Р° РІ РґРёСЂРµРєС‚РѕСЂРёРё', async () => await dec.simple(el.file.display,
                 [entry.failedExport, entry.upload],
                 el.file))
 
-            it('Проверка строк файла', async () => {
+            it('РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє С„Р°Р№Р»Р°', async () => {
                 const jsonFile = await el.file.readNum(entry.failedExport)
                 dec.exportFile(params.file, jsonFile)
             })
 
-            it('Удаление файла', async () => await dec.simple(el.file.delete,
+            it('РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»Р°', async () => await dec.simple(el.file.delete,
                 [entry.failedExport, entry.upload],
                 el.file))
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
@@ -11728,240 +11728,240 @@ const importFile = () => {
 
     });
 
-    // Импорт с максимальным количеством параметров, отсутствующих в системе
-    const importXLSXMaxParamsNoParams = () => describe('Подразделение. Импорт. Импорт с'+
-        'максимальным количеством параметров, отсутствующих в системе из xlsx файла.',
+    // РРјРїРѕСЂС‚ СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ, РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёС… РІ СЃРёСЃС‚РµРјРµ
+    const importXLSXMaxParamsNoParams = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚ СЃ'+
+        'РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ, РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёС… РІ СЃРёСЃС‚РµРјРµ РёР· xlsx С„Р°Р№Р»Р°.',
         () => {
         const params = {
-            message: 'Импорт завершен 2 записей из 2 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 2 Р·Р°РїРёСЃРµР№ РёР· 2 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
         };
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [["РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXMaxNoParamsFailed, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Телефон"', async () => await dec.simple(el.select.select,
-                ['Телефон', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.select,
+                ['РўРµР»РµС„РѕРЅ', '', entry.max],
                 el.select));
 
-            it('Выбор "Телефон"', async () => await dec.simple(el.select.iconXpand,
-                ['Телефон', '', 'Телефон', entry.max],
+            it('Р’С‹Р±РѕСЂ "РўРµР»РµС„РѕРЅ"', async () => await dec.simple(el.select.iconXpand,
+                ['РўРµР»РµС„РѕРЅ', '', 'РўРµР»РµС„РѕРЅ', entry.max],
                 el.select));
 
-            it('Отображение "Описание"', async () => await dec.simple(el.select.select,
-                ['Описание', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РћРїРёСЃР°РЅРёРµ', '', entry.max],
                 el.select));
 
-            it('Выбор "Описание"', async () => await dec.simple(el.select.iconXpand,
-                ['Описание', '', 'Описание', entry.max],
+            it('Р’С‹Р±РѕСЂ "РћРїРёСЃР°РЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РћРїРёСЃР°РЅРёРµ', '', 'РћРїРёСЃР°РЅРёРµ', entry.max],
                 el.select));
 
-            it('Отображение "Сопровождающий"', async () => await dec.simple(el.select.select,
-                ['Сопровождающий', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.select,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', entry.max],
                 el.select));
 
-            it('Выбор "Сопровождающий"', async () => await dec.simple(el.select.iconXpand,
-                ['Сопровождающий', '', 'Сопровождающий', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№"', async () => await dec.simple(el.select.iconXpand,
+                ['РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', '', 'РЎРѕРїСЂРѕРІРѕР¶РґР°СЋС‰РёР№', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для сотрудника', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', entry.max],
                 el.select));
 
-            it('Выбор "Шаблон доступа для сотрудника"', async () => await dec.simple(el.select.iconXpand,
-                ['Шаблон доступа для сотрудника', '', 'Шаблон доступа для сотрудников', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°"', async () => await dec.simple(el.select.iconXpand,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєР°', '', 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ', entry.max],
                 el.select));
 
-            it('Отображение "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.select,
-                ['Шаблон доступа для посетителя', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.select,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', entry.max],
                 el.select));
 
-            it('Выбор "Шаблон доступа для посетителя"', async () => await dec.simple(el.select.iconXpand,
-                ['Шаблон доступа для посетителя', '', 'Шаблон доступа для посетителей', entry.max],
+            it('Р’С‹Р±РѕСЂ "РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ"', async () => await dec.simple(el.select.iconXpand,
+                ['РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»СЏ', '', 'РЁР°Р±Р»РѕРЅ РґРѕСЃС‚СѓРїР° РґР»СЏ РїРѕСЃРµС‚РёС‚РµР»РµР№', entry.max],
                 el.select));
 
-            it('Отображение "График работы"', async () => await dec.simple(el.select.select,
-                ['График работы', '', entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.select,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', entry.max],
                 el.select));
 
-            it('Выбор "График работы"', async () => await dec.simple(el.select.iconXpand,
-                ['График работы', '', 'График работы', entry.max],
+            it('Р’С‹Р±РѕСЂ "Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹"', async () => await dec.simple(el.select.iconXpand,
+                ['Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', '', 'Р“СЂР°С„РёРє СЂР°Р±РѕС‚С‹', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [[ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
     });
 
-    // Импорт 5 подразделений 1 уровня с вложенннными подразделениямми прогрессией до 5 с минимальным количеством
-    // параметров
-    const importProgression = () => describe('Подразделение. Импорт. Импорт  подразделений 1 уровня ' +
-        'с вложенными подразделениями прогрессией до 5.', () => {
+    // РРјРїРѕСЂС‚ 5 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 1 СѓСЂРѕРІРЅСЏ СЃ РІР»РѕР¶РµРЅРЅРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРјРё РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ 5 СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј
+    // РїР°СЂР°РјРµС‚СЂРѕРІ
+    const importProgression = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚  РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№ 1 СѓСЂРѕРІРЅСЏ ' +
+        'СЃ РІР»РѕР¶РµРЅРЅС‹РјРё РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏРјРё РїСЂРѕРіСЂРµСЃСЃРёРµР№ РґРѕ 5.', () => {
         const params = {
             array: [...Array(5).keys()].map(item1 => {
                 return [...Array(item1 + 1).keys()].map(item2 => {
                     return 'division' + (item1 + 1) +  (item2 + 1)
                 });
             }),
-            message: 'Импорт завершен 0 записей из 15 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 0 Р·Р°РїРёСЃРµР№ РёР· 15 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
         };
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 1 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
                 [1, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [["РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXProgressionSuccess, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('Проверка отображения в разделе', () => {
+        describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ СЂР°Р·РґРµР»Рµ', () => {
             bef();
             aft();
 
-            describe('Общие проверки', () => {
+            describe('РћР±С‰РёРµ РїСЂРѕРІРµСЂРєРё', () => {
 
-                it('Отображние 16 подраздлениий', async () => await dec.simple(page.division.size,
+                it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 16 РїРѕРґСЂР°Р·РґР»РµРЅРёРёР№', async () => await dec.simple(page.division.size,
                     [16, entry.max],
                     page.division));
 
                 params.array.forEach((item1) => {
                     let arr =[];
                     item1.forEach((item2, index2) => {
-                        it(`Отображенние подразделения ${index2 + 1} уровня - ${item2}`, async () => {
+                        it(`РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2}`, async () => {
                             arr.push(item2);
                             await dec.simple(page.division.division,
                                 [arr, entry.max],
@@ -11978,9 +11978,9 @@ const importFile = () => {
 
     });
 
-    // Импорт с дублированием подразделения 1 уровня к подразделению 1 уровню
-    const importDuplicateOneLevel = () => describe('Подразделение. Импорт. Импорт с дублированием подразделения ' +
-        '1 уровня к подразделению 1 уровня из xlsx файла.', () => {
+    // РРјРїРѕСЂС‚ СЃ РґСѓР±Р»РёСЂРѕРІР°РЅРёРµРј РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЋ
+    const importDuplicateOneLevel = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚ СЃ РґСѓР±Р»РёСЂРѕРІР°РЅРёРµРј РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ' +
+        '1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 1 СѓСЂРѕРІРЅСЏ РёР· xlsx С„Р°Р№Р»Р°.', () => {
         const params = {
             division1: {
                 name: 'importDuplicateOneLevelName1',
@@ -11988,22 +11988,22 @@ const importFile = () => {
             division2: {
                 name: 'importDuplicateOneLevelName2',
             },
-            message: 'Импорт завершен 1 записей из 1 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 1 Р·Р°РїРёСЃРµР№ РёР· 1 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.division1.name,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12017,99 +12017,99 @@ const importFile = () => {
             });
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёСЏ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [["РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXDupOneFailed, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёСЏ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [["РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
@@ -12119,9 +12119,9 @@ const importFile = () => {
 
     });
 
-    // Импорт с дублированием подразделения 1 уровня к подразделению 2 уровню
-    const importDuplicateTwoLevel = () => describe('Подразделение. Импорт. Импорт с дублированием подразделения ' +
-        '1 уровня к подразделению 2 уровня из xlsx файла.', () => {
+    // РРјРїРѕСЂС‚ СЃ РґСѓР±Р»РёСЂРѕРІР°РЅРёРµРј РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЋ
+    const importDuplicateTwoLevel = () => describe('РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ. РРјРїРѕСЂС‚. РРјРїРѕСЂС‚ СЃ РґСѓР±Р»РёСЂРѕРІР°РЅРёРµРј РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ' +
+        '1 СѓСЂРѕРІРЅСЏ Рє РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЋ 2 СѓСЂРѕРІРЅСЏ РёР· xlsx С„Р°Р№Р»Р°.', () => {
         const params = {
             division1: {
                 name: 'importDuplicateTwoLevelName1',
@@ -12129,22 +12129,22 @@ const importFile = () => {
             division2: {
                 name: 'importDuplicateTwoLevelName2',
             },
-            message: 'Импорт завершен 1 записей из 1 не было импортировано',
+            message: 'РРјРїРѕСЂС‚ Р·Р°РІРµСЂС€РµРЅ 1 Р·Р°РїРёСЃРµР№ РёР· 1 РЅРµ Р±С‹Р»Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ',
         };
 
-        describe('API - добавление', () => {
+        describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
             bef();
             aft();
 
-            describe('Добавление подразделения 1 уровня', () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
                 const obj = {
                     parent_id: 0,
                     name: params.division1.name,
                 };
                 addDivision(obj);
             });
-            describe('Добавление подразделения 2 уровня', () => {
-                it('Добавление подразделения', async () => {
+            describe('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12158,99 +12158,99 @@ const importFile = () => {
             });
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёСЏ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [["РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
         });
 
-        describe('Импорт', () => {
+        describe('РРјРїРѕСЂС‚', () => {
 
             bef();
 
             aft();
 
-            it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "РњРµРЅСЋ"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.menu, entry.max],
                 el.butIcBefore));
 
-            it('Отображение "Меню"', async () => await dec.simple(el.menu.menu,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РњРµРЅСЋ"', async () => await dec.simple(el.menu.menu,
                 [entry.max],
                 el.menu));
 
-            it('Нажатие параметра "Импорт из XLS, XLSX"', async () => await dec.simple(el.menu.handler,
-                ['Импорт из XLS, XLSX', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РїР°СЂР°РјРµС‚СЂР° "РРјРїРѕСЂС‚ РёР· XLS, XLSX"', async () => await dec.simple(el.menu.handler,
+                ['РРјРїРѕСЂС‚ РёР· XLS, XLSX', entry.max],
                 el.menu));
 
-            it('Отображение модального окна "Импорт"', async () => await dec.simple(el.modal.importData.init,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.init,
                 [entry.max],
                 el.modal.importData));
 
-            it('Выбор тестового файла', async () => await dec.simple(el.modal.importData.sendKeys,
+            it('Р’С‹Р±РѕСЂ С‚РµСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°', async () => await dec.simple(el.modal.importData.sendKeys,
                 [imp.division.importXLSXDupTwoFailed, entry.upload],
                 el.modal.importData));
 
-            it('Отображение "Подразделение"', async () => await dec.simple(el.select.select,
-                ['Подразделение', '', entry.upload],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.select,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', entry.upload],
                 el.select));
 
-            it('Выбор "Подразделение"', async () => await dec.simple(el.select.iconXpand,
-                ['Подразделение', '', 'Подразделение', entry.max],
+            it('Р’С‹Р±РѕСЂ "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ"', async () => await dec.simple(el.select.iconXpand,
+                ['РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', '', 'РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', entry.max],
                 el.select));
 
-            it('Нажатие кнопки "Далее"', async () => await dec.simple(el.button.handler,
-                ['Далее', entry.max],
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё "Р”Р°Р»РµРµ"', async () => await dec.simple(el.button.handler,
+                ['Р”Р°Р»РµРµ', entry.max],
                 el.button));
 
-            it('Сообщение о загрузке файлов', async () => await dec.simpleText(el.modal.importData.bodyGetText,
+            it('РЎРѕРѕР±С‰РµРЅРёРµ Рѕ Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»РѕРІ', async () => await dec.simpleText(el.modal.importData.bodyGetText,
                 [entry.upload],
                 params.message,
                 el.modal.importData));
 
-            it('Нажатие кнопки закрытия', async () => await dec.simple(el.modal.importData.closeHandler,
+            it('РќР°Р¶Р°С‚РёРµ РєРЅРѕРїРєРё Р·Р°РєСЂС‹С‚РёСЏ', async () => await dec.simple(el.modal.importData.closeHandler,
                 [entry.max],
                 el.modal.importData));
 
-            it('Отсутствие модального окна "Импорт"', async () => await dec.simple(el.modal.importData.initClose,
+            it('РћС‚СЃСѓС‚СЃС‚РІРёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° "РРјРїРѕСЂС‚"', async () => await dec.simple(el.modal.importData.initClose,
                 [entry.max],
                 el.modal.importData));
         });
 
-        describe('Проверка списка подразделений', () => {
+        describe('РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', () => {
 
             bef();
             aft();
 
-            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+            it('РћС‚РѕР±СЂР°Р¶РЅРёРµ 3 РїРѕРґСЂР°Р·РґР»РµРЅРёСЏ', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ "РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"', async ()=> await dec.simple(page.division.division,
+                [["РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРёСЃС‚РµРјС‹"], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name], entry.max],
                 page.division));
 
-            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
+            it('РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', async () => await dec.simple(page.division.division,
                 [[params.division1.name, params.division2.name], entry.max],
                 page.division));
 
@@ -12273,21 +12273,21 @@ const importFile = () => {
 
 };
 
-//Тесты фильтра "Поиск..."
-const filterSearch = () => describe('Проверка фильтра "Поиск..."', () => {
+//РўРµСЃС‚С‹ С„РёР»СЊС‚СЂР° "РџРѕРёСЃРє..."
+const filterSearch = () => describe('РџСЂРѕРІРµСЂРєР° С„РёР»СЊС‚СЂР° "РџРѕРёСЃРє..."', () => {
 
     const params = {
         array1: [...Array(3).keys()].map(item => 'division' + (item + 1)),
         array2: [...Array(3).keys()].map(item => 'test' + (item + 1))
     }
 
-    describe('API - добавление', () => {
+    describe('API - РґРѕР±Р°РІР»РµРЅРёРµ', () => {
         bef();
         aft();
 
         params.array1.forEach((item1, index1) => {
-            describe(`Добавление подразделения ${index1 + 1} уровня - ${item1}`, () => {
-                it('Добавление подразделения', async () => {
+            describe(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index1 + 1} СѓСЂРѕРІРЅСЏ - ${item1}`, () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12302,8 +12302,8 @@ const filterSearch = () => describe('Проверка фильтра "Поиск..."', () => {
         });
 
         params.array2.forEach((item2, index2) => {
-            describe(`Добавление подразделения ${index2 + 1} уровня - ${item2}`, () => {
-                it('Добавление подразделения', async () => {
+            describe(`Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2}`, () => {
+                it('Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ', async () => {
                     const cook = await page.base.getCookie('token');
                     const get = await api.getDivision(cook.text);
                     const obj = {
@@ -12319,19 +12319,19 @@ const filterSearch = () => describe('Проверка фильтра "Поиск..."', () => {
 
     });
 
-    describe('Проверка отображения', () => {
+    describe('РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ', () => {
 
         bef();
         aft();
 
-        it('Отображение 7 подраздление', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 7 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
         [params.array1, params.array2].forEach((item1) => {
             const arr = [];
             item1.forEach((item2, index2) => {
-                it(`Отображенние подразделения ${index2 + 1} уровня - ${item2}`, async () => {
+                it(`РћС‚РѕР±СЂР°Р¶РµРЅРЅРёРµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ ${index2 + 1} СѓСЂРѕРІРЅСЏ - ${item2}`, async () => {
                     arr.push(item2);
                     await dec.simple(page.division.division,
                         [arr, entry.max],
@@ -12342,154 +12342,154 @@ const filterSearch = () => describe('Проверка фильтра "Поиск..."', () => {
 
     });
 
-    describe('Проверка фильтра для подразделения 1 уровня', () => {
+    describe('РџСЂРѕРІРµСЂРєР° С„РёР»СЊС‚СЂР° РґР»СЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ', () => {
 
         bef();
         aft();
 
-        it('Отображение 7 подраздление', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 7 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it(`Ввод в "Поиск..." - "${params.array1[0]}"`, async () => await dec.simple(el.input.sendKeys,
-            ['', 'Поиск...', params.array1[0], entry.max],
+        it(`Р’РІРѕРґ РІ "РџРѕРёСЃРє..." - "${params.array1[0]}"`, async () => await dec.simple(el.input.sendKeys,
+            ['', 'РџРѕРёСЃРє...', params.array1[0], entry.max],
             el.input));
 
-        it('Отображение 1 подразделение', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 1 РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [1, entry.max],
             page.division));
 
-        it(`Проверка отображения подразделения 1 уровня - "${params.array1[0]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
     });
 
-    describe('Проверка фильтра для подразделения 2 уровня', () => {
+    describe('РџСЂРѕРІРµСЂРєР° С„РёР»СЊС‚СЂР° РґР»СЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ', () => {
 
         bef();
         aft();
 
-        it('Отображение 7 подраздление', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 7 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it(`Ввод в "Поиск..." - "${params.array1[1]}"`, async () => await dec.simple(el.input.sendKeys,
-            ['', 'Поиск...', params.array1[1], entry.max],
+        it(`Р’РІРѕРґ РІ "РџРѕРёСЃРє..." - "${params.array1[1]}"`, async () => await dec.simple(el.input.sendKeys,
+            ['', 'РџРѕРёСЃРє...', params.array1[1], entry.max],
             el.input));
 
-        it('Отображение 2 подразделение', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 2 РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [2, entry.max],
             page.division));
 
-        it(`Проверка отображения подразделения 1 уровня - "${params.array1[0]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 2 уровня - "${params.array1[1]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ - "${params.array1[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1]], entry.max],
                 page.division));
 
     });
 
-    describe('Проверка фильтра для подразделения 3 уровня', () => {
+    describe('РџСЂРѕРІРµСЂРєР° С„РёР»СЊС‚СЂР° РґР»СЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ', () => {
 
         bef();
         aft();
 
-        it('Отображение 7 подраздление', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 7 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it(`Ввод в "Поиск..." - "${params.array1[2]}"`, async () => await dec.simple(el.input.sendKeys,
-            ['', 'Поиск...', params.array1[2], entry.max],
+        it(`Р’РІРѕРґ РІ "РџРѕРёСЃРє..." - "${params.array1[2]}"`, async () => await dec.simple(el.input.sendKeys,
+            ['', 'РџРѕРёСЃРє...', params.array1[2], entry.max],
             el.input));
 
-        it('Отображение 3 подразделение', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 3 РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [3, entry.max],
             page.division));
 
-        it(`Проверка отображения подразделения 1 уровня - "${params.array1[0]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 2 уровня - "${params.array1[1]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ - "${params.array1[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 3 уровня - "${params.array1[2]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ - "${params.array1[2]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1],  params.array1[2]], entry.max],
                 page.division));
 
     });
 
-    describe('Проверка фильтра без совпадений', () => {
+    describe('РџСЂРѕРІРµСЂРєР° С„РёР»СЊС‚СЂР° Р±РµР· СЃРѕРІРїР°РґРµРЅРёР№', () => {
 
         bef();
         aft();
 
-        it('Отображение 7 подраздление', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 7 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it('Ввод в "Поиск..." - "Hello World"', async () => await dec.simple(el.input.sendKeys,
-            ['', 'Поиск...', 'Hello World', entry.max],
+        it('Р’РІРѕРґ РІ "РџРѕРёСЃРє..." - "Hello World"', async () => await dec.simple(el.input.sendKeys,
+            ['', 'РџРѕРёСЃРє...', 'Hello World', entry.max],
             el.input));
 
-        it('Отображение 0 подразделений', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 0 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', async () => await dec.simple(page.division.size,
             [0, entry.max],
             page.division));
 
     });
 
-    describe('Проверка фильтра с частичным совпадением', () => {
+    describe('РџСЂРѕРІРµСЂРєР° С„РёР»СЊС‚СЂР° СЃ С‡Р°СЃС‚РёС‡РЅС‹Рј СЃРѕРІРїР°РґРµРЅРёРµРј', () => {
 
         bef();
         aft();
 
-        it('Отображение 7 подраздление', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 7 РїРѕРґСЂР°Р·РґР»РµРЅРёРµ', async () => await dec.simple(page.division.size,
             [7, entry.max],
             page.division));
 
-        it('Ввод в "Поиск..." - "3"', async () => await dec.simple(el.input.sendKeys,
-            ['', 'Поиск...', '3', entry.max],
+        it('Р’РІРѕРґ РІ "РџРѕРёСЃРє..." - "3"', async () => await dec.simple(el.input.sendKeys,
+            ['', 'РџРѕРёСЃРє...', '3', entry.max],
             el.input));
 
-        it('Отображение 6 подразделений', async () => await dec.simple(page.division.size,
+        it('РћС‚РѕР±СЂР°Р¶РµРЅРёРµ 6 РїРѕРґСЂР°Р·РґРµР»РµРЅРёР№', async () => await dec.simple(page.division.size,
             [6, entry.max],
             page.division));
 
-        it(`Проверка отображения подразделения 1 уровня - "${params.array1[0]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - "${params.array1[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 2 уровня - "${params.array1[1]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ - "${params.array1[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 3 уровня - "${params.array1[2]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ - "${params.array1[2]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array1[0], params.array1[1],  params.array1[2]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 1 уровня - "${params.array2[0]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 1 СѓСЂРѕРІРЅСЏ - "${params.array2[0]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array2[0]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 2 уровня - "${params.array2[1]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 2 СѓСЂРѕРІРЅСЏ - "${params.array2[1]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array2[0], params.array2[1]], entry.max],
                 page.division));
 
-        it(`Проверка отображения подразделения 3 уровня - "${params.array2[2]}"`,
+        it(`РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕРґСЂР°Р·РґРµР»РµРЅРёСЏ 3 СѓСЂРѕРІРЅСЏ - "${params.array2[2]}"`,
             async ()=> await dec.simple(page.division.division,
                 [[params.array2[0], params.array2[1],  params.array2[2]], entry.max],
                 page.division));
@@ -12511,10 +12511,10 @@ module.exports = {
     print: print(),
     printTree: printTree(),
     export: {
-        minXLSX: exportFile('min',  'Минимальное количество данных', 'XLSX').xlsx,
-        maxXLSX: exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx,
-        minCSV: exportFile('min',  'Минимальное количество данных', 'CSV').csv,
-        maxCSV: exportFile('max',  'Максимальное количество данных', 'CSV').csv,
+        minXLSX: exportFile('min',  'РњРёРЅРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'XLSX').xlsx,
+        maxXLSX: exportFile('max', 'РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'XLSX').xlsx,
+        minCSV: exportFile('min',  'РњРёРЅРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'CSV').csv,
+        maxCSV: exportFile('max',  'РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'CSV').csv,
     },
     import: importFile(),
     filterSearch,
@@ -12526,9 +12526,9 @@ module.exports = {
         //print().print();
         //printTree().printTree();
         //filterSearch();
-        //exportFile('min',  'Минимальное количество данных', 'XLSX').xlsx.main();
-        //exportFile('max', 'Максимальное количество данных', 'XLSX').xlsx.main();
-        //exportFile('min',  'Минимальное количество данных', 'CSV').csv.main();
-        //exportFile('max',  'Максимальное количество данных', 'CSV').csv.main();
+        //exportFile('min',  'РњРёРЅРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'XLSX').xlsx.main();
+        //exportFile('max', 'РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'XLSX').xlsx.main();
+        //exportFile('min',  'РњРёРЅРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'CSV').csv.main();
+        //exportFile('max',  'РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°РЅРЅС‹С…', 'CSV').csv.main();
     },
 }

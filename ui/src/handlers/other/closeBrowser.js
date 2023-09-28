@@ -1,6 +1,6 @@
 const {describe, it} = require('mocha');
 const page = require('../../pages');
 
-module.exports = () => describe('Çàêðûòèå áðàçóåðà.', () => {
-    it('Çàêðûòèå áðàçóåðà.', async () => await page.base.closeDriver());
+module.exports = () => describe('Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð±Ñ€Ð°Ð·ÑƒÐµÑ€Ð°.', () => {
+    it('Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð±Ñ€Ð°Ð·ÑƒÐµÑ€Ð°.', async () => await page.base.closeDriver());
 });
