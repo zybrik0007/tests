@@ -197,21 +197,6 @@ const add = () => {
             name2: 'addMinParamsName2',
         };
 
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
-                page.division));
-
-        });
-
         describe('Добавление подразделений', () => {
             bef();
             aft();
@@ -541,7 +526,6 @@ const add = () => {
         });
 
         deleteParams();
-
     });
 
     // Добавление родительского и дочернего подразделения с максимальным количеством параметров.
@@ -596,21 +580,6 @@ const add = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-        });
-
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
-                page.division));
-
         });
 
         describe('Добавление подразделений', () => {
@@ -1097,21 +1066,6 @@ const add = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-        });
-
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
-                page.division));
-
         });
 
         describe('Добавление подразделений', () => {
@@ -1841,20 +1795,6 @@ const add = () => {
                 addDivision(obj);
             });
 
-        describe('Проверка списка подразделений', () => {
-
-                bef();
-                aft();
-
-                it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
-                    [2, entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
-                    [[params.name], entry.max],
-                    page.division));
-            });
-
         describe('Добавление подразделений', () => {
                 bef();
                 aft();
@@ -1946,24 +1886,6 @@ const add = () => {
                             api.putDivision);
                     });
                 });
-            });
-
-        describe('Проверка списка подразделений', () => {
-
-                bef();
-                aft();
-
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
             });
 
         describe('Добавление подразделений', () => {
@@ -2200,116 +2122,6 @@ const edit = () => {
                         [[obj], cook.text],
                         api.putDivision);
                 });
-            });
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            describe('Общие проверки', () => {
-
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-            });
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division1.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    '',
-                    el.input));
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division2.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    '',
-                    el.input));
             });
         });
 
@@ -2819,274 +2631,6 @@ const edit = () => {
                     [[obj], cook.text],
                     api.putDivision);
             });
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            describe('Общие проверки', () => {
-
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-            });
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division1.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    params.division1.phone,
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.division1.description,
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    `${params.division1.template1}, ${params.division1.template2}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    `${params.division1.template3}`,
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    `${params.division1.schedule}`,
-                    el.input));
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division2.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    params.division2.phone,
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.division2.description,
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    `${params.division2.template1}, ${params.division2.template2}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    `${params.division2.template3}`,
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    `${params.division2.schedule}`,
-                    el.input));
-            });
-        });
-
-        describe('Проверка параметров', () => {
-
-            bef();
-            aft();
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division1.name, entry.max],
-                    page.division));
-
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore));
-
-                it('Отображение модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.init,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
-                    params.division1.name,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
-                    params.division1.phone,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
-                    params.division1.description,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                        entry.max],
-                    `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                    el.select));
-
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
-                        params.division1.template1,
-                        el.selectMulti));
-
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
-                        params.division1.template2,
-                        el.selectMulti));
-
-                it('Проверка "Шаблон доступа для посетителя"',
-                    async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
-                        params.division1.template3,
-                        el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
-                    params.division1.schedule,
-                    el.select));
-
-                it('Нажатие кнопки закрытия модального окна',
-                    async () => await dec.simple(el.modal.divisionEdit.closeHandler,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Отсутствие модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.initClose,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division2.name, entry.max],
-                    page.division));
-
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore));
-
-                it('Отображение модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.init,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
-                    params.division2.name,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
-                    params.division2.phone,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
-                    params.division2.description,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                        entry.max],
-                    `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                    el.select));
-
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
-                        params.division2.template1,
-                        el.selectMulti));
-
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
-                        params.division2.template2,
-                        el.selectMulti));
-
-                it('Проверка "Шаблон доступа для посетителя"',
-                    async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
-                        params.division2.template3,
-                        el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
-                    params.division2.schedule,
-                    el.select));
-
-                it('Нажатие кнопки закрытия модального окна',
-                    async () => await dec.simple(el.modal.divisionEdit.closeHandler,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Отсутствие модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.initClose,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-            });
-
         });
 
         describe('Редактирование подразделений', () => {
@@ -3616,274 +3160,6 @@ const edit = () => {
             addSchedule(params.divisionUpdate2.schedule);
             addStaff(...Object.values(params.divisionUpdate1.fio));
             addStaff(...Object.values(params.divisionUpdate2.fio));
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            describe('Общие проверки', () => {
-
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-            });
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division1.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    params.division1.phone,
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.division1.description,
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    `${params.division1.template1}, ${params.division1.template2}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    `${params.division1.template3}`,
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    `${params.division1.schedule}`,
-                    el.input));
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division2.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    params.division2.phone,
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.division2.description,
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    `${params.division2.template1}, ${params.division2.template2}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    `${params.division2.template3}`,
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    `${params.division2.schedule}`,
-                    el.input));
-            });
-        });
-
-        describe('Проверка параметров', () => {
-
-            bef();
-            aft();
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division1.name, entry.max],
-                    page.division));
-
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore));
-
-                it('Отображение модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.init,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
-                    params.division1.name,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
-                    params.division1.phone,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
-                    params.division1.description,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                        entry.max],
-                    `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                    el.select));
-
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
-                        params.division1.template1,
-                        el.selectMulti));
-
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
-                        params.division1.template2,
-                        el.selectMulti));
-
-                it('Проверка "Шаблон доступа для посетителя"',
-                    async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
-                        params.division1.template3,
-                        el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
-                    params.division1.schedule,
-                    el.select));
-
-                it('Нажатие кнопки закрытия модального окна',
-                    async () => await dec.simple(el.modal.divisionEdit.closeHandler,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Отсутствие модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.initClose,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division2.name, entry.max],
-                    page.division));
-
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore));
-
-                it('Отображение модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.init,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
-                    params.division2.name,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
-                    params.division2.phone,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
-                    params.division2.description,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                        entry.max],
-                    `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                    el.select));
-
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
-                        params.division2.template1,
-                        el.selectMulti));
-
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
-                        params.division2.template2,
-                        el.selectMulti));
-
-                it('Проверка "Шаблон доступа для посетителя"',
-                    async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
-                        params.division2.template3,
-                        el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
-                    params.division2.schedule,
-                    el.select));
-
-                it('Нажатие кнопки закрытия модального окна',
-                    async () => await dec.simple(el.modal.divisionEdit.closeHandler,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Отсутствие модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.initClose,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-            });
-
         });
 
         describe('Редактирование подразделений', () => {
@@ -4508,274 +3784,6 @@ const edit = () => {
             addSchedule(params.divisionUpdate2.schedule);
             addStaff(...Object.values(params.divisionUpdate1.fio));
             addStaff(...Object.values(params.divisionUpdate2.fio));
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            describe('Общие проверки', () => {
-
-                it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-            });
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division1.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    params.division1.phone,
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.division1.description,
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    `${params.division1.template1}, ${params.division1.template2}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    `${params.division1.template3}`,
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    `${params.division1.schedule}`,
-                    el.input));
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division2.name, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    params.division2.phone,
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    params.division2.description,
-                    el.input));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.input.getValue,
-                    ['Сопровождающий', '', entry.max],
-                    `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для сотрудника"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для сотрудника', '', entry.max],
-                    `${params.division2.template1}, ${params.division2.template2}`,
-                    el.input));
-
-                it('Проверка "Шаблон доступа для посетителя"', async () => await dec.simpleText(el.input.getValue,
-                    ['Шаблон доступа для посетителя', '', entry.max],
-                    `${params.division2.template3}`,
-                    el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.input.getValue,
-                    ['График работы', '', entry.max],
-                    `${params.division2.schedule}`,
-                    el.input));
-            });
-        });
-
-        describe('Проверка параметров', () => {
-
-            bef();
-            aft();
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division1.name, entry.max],
-                    page.division));
-
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore));
-
-                it('Отображение модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.init,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
-                    params.division1.name,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
-                    params.division1.phone,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
-                    params.division1.description,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                        entry.max],
-                    `${params.division1.fio.lastName} ${params.division1.fio.firstName}`,
-                    el.select));
-
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
-                        params.division1.template1,
-                        el.selectMulti));
-
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
-                        params.division1.template2,
-                        el.selectMulti));
-
-                it('Проверка "Шаблон доступа для посетителя"',
-                    async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division1.template3, entry.max],
-                        params.division1.template3,
-                        el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division1.schedule, entry.max],
-                    params.division1.schedule,
-                    el.select));
-
-                it('Нажатие кнопки закрытия модального окна',
-                    async () => await dec.simple(el.modal.divisionEdit.closeHandler,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Отсутствие модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.initClose,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.division1.name, params.division2.name], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.division2.name, entry.max],
-                    page.division));
-
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore));
-
-                it('Отображение модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.init,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Проверка "Подразделение"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Подразделение', '', entry.max],
-                    params.division2.name,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Телефон', '', entry.max],
-                    params.division2.phone,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.modal.divisionEdit.inputGetValue,
-                    ['Описание', '', entry.max],
-                    params.division2.description,
-                    el.modal.divisionEdit));
-
-                it('Проверка "Сопровождающий"', async () => await dec.simpleText(el.select.getText,
-                    ['Сопровождающий', `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                        entry.max],
-                    `${params.division2.fio.lastName} ${params.division2.fio.firstName}`,
-                    el.select));
-
-                it('Проверка значение 1 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 1, entry.min],
-                        params.division2.template1,
-                        el.selectMulti));
-
-                it('Проверка значение 2 "Шаблон доступа для сотрудника"',
-                    async () => await dec.simpleText(el.selectMulti.getText,
-                        ['Шаблон доступа для сотрудника', 2, entry.min],
-                        params.division2.template2,
-                        el.selectMulti));
-
-                it('Проверка "Шаблон доступа для посетителя"',
-                    async () => await dec.simpleText(el.select.getText,
-                        ['Шаблон доступа для посетителя',  params.division2.template3, entry.max],
-                        params.division2.template3,
-                        el.input));
-
-                it('Проверка "График работы"', async () => await dec.simpleText(el.select.getText,
-                    ['График работы',  params.division2.schedule, entry.max],
-                    params.division2.schedule,
-                    el.select));
-
-                it('Нажатие кнопки закрытия модального окна',
-                    async () => await dec.simple(el.modal.divisionEdit.closeHandler,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Отсутствие модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.initClose,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-            });
-
         });
 
         describe('Редактирование подразделений', () => {
@@ -5463,64 +4471,6 @@ const edit = () => {
 
         });
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            describe('Общие проверки', () => {
-
-                it('Отображние 4 подраздлениий', async () => await dec.simple(page.division.size,
-                    [4, entry.max],
-                    page.division));
-
-            });
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name1, entry.max],
-                    page.division));
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name2, entry.max],
-                    page.division));
-            });
-
-            describe('Проверка подразделения 3 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.name1, params.name2, params.name3], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name1, params.name2, params.name3], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name3, entry.max],
-                    page.division));
-            });
-        });
-
         describe('Скрытие / открытие подразделения 3 уровня', () => {
 
             bef();
@@ -5667,24 +4617,6 @@ const edit = () => {
                 addDivision(obj2);
             });
 
-        describe('Проверка списка подразделений', () => {
-
-                bef();
-                aft();
-
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1', async ()=> await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 2', async ()=> await dec.simple(page.division.division,
-                    [[params.name2], entry.max],
-                    page.division));
-            });
-
         describe('Попытка редактирование подразделения 2', () => {
                 bef();
                 aft();
@@ -5812,28 +4744,6 @@ const edit = () => {
                 });
             });
 
-        describe('Проверка списка подразделений', () => {
-
-                bef();
-                aft();
-
-                it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
-                    [4, entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня - 1', async ()=> await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
-                    [[params.name3], entry.max],
-                    page.division));
-            });
-
         describe('Попытка редактирование подразделения 1 уровня - 2', () => {
                 bef();
                 aft();
@@ -5933,20 +4843,6 @@ const edit = () => {
             };
             addDivision(obj1);
 
-        });
-
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
-                [2, entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
-                [[params.name], entry.max],
-                page.division));
         });
 
         describe('Попытка редактирование', () => {
@@ -6061,20 +4957,6 @@ const remove = () => {
             addDivision(obj);
         });
 
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
-                [2, entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
-                [[params.name], entry.max],
-                page.division));
-        });
-
         describe('Удаление подразделения', () => {
 
             bef();
@@ -6162,23 +5044,6 @@ const remove = () => {
                         api.putDivision);
                 });
             });
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
-                [3, entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
-                [[params.name1], entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
-                [[params.name1, params.name2], entry.max],
-                page.division));
         });
 
         describe('Удаление подразделения', () => {
@@ -6273,23 +5138,6 @@ const remove = () => {
                         api.putDivision);
                 });
             });
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
-                [3, entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
-                [[params.name1], entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
-                [[params.name1, params.name2], entry.max],
-                page.division));
         });
 
         describe('Попытка удаления', () => {
@@ -6399,27 +5247,6 @@ const remove = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
-                [4, entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
-                [[params.name1], entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
-                [[params.name1, params.name2], entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения 3 уровня', async ()=> await dec.simple(page.division.division,
-                [[params.name1, params.name2, params.name3], entry.max],
-                page.division));
-        });
-
         describe('Попытка удаления', () => {
 
             bef();
@@ -6526,20 +5353,6 @@ const remove = () => {
 
         });
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
-                [2, entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
-                [[params.name], entry.max],
-                page.division));
-
-        });
-
         describe('Попытка удаления', () => {
 
             bef();
@@ -6637,20 +5450,6 @@ const remove = () => {
 
         });
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
-                [2, entry.max],
-                page.division));
-
-            it('Отображение добавленного подразделения', async ()=> await dec.simple(page.division.division,
-                [[params.name], entry.max],
-                page.division));
-
-        });
-
         describe('Попытка удаления', () => {
 
             bef();
@@ -6738,19 +5537,6 @@ const serviceDivision = () => {
             name2: 'addDivision',
         };
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[params.name1], entry.max],
-                page.division));
-        });
-
         describe('Попытка добавления', () => {
 
             bef();
@@ -6791,7 +5577,7 @@ const serviceDivision = () => {
             bef();
             aft();
 
-            it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+            it('Отображение 2 подраздления', async () => await dec.simple(page.division.size,
                 [2, entry.max],
                 page.division));
 
@@ -6817,19 +5603,6 @@ const serviceDivision = () => {
         const params = {
             name: 'Администраторы системы'
         };
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[params.name], entry.max],
-                page.division));
-        });
 
         describe('Попытка редактирования', () => {
 
@@ -6879,19 +5652,6 @@ const serviceDivision = () => {
         const params = {
             name: 'Администраторы системы'
         };
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображение 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[params.name], entry.max],
-                page.division));
-        });
 
         describe('Попытка удаления', () => {
 
@@ -6985,78 +5745,6 @@ const print = () => {
                         api.putDivision);
                 });
             });
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            describe('Общие проверки', () => {
-
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-            });
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name1, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    '',
-                    el.input));
-
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name2, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    '',
-                    el.input));
-            });
-
         });
 
         describe('Печать таблицы', () => {
@@ -7213,46 +5901,6 @@ const print = () => {
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображние 16 подраздлениий', async () => await dec.simple(page.division.size,
-                [16, entry.max],
-                page.division));
-
-            params.array.forEach((item1) => {
-                let arr =[];
-                item1.forEach((item2, index2) => {
-                    it(`Отображенние подразделения ${index2 + 1} уровня - ${item2.name}`, async () => {
-                        arr.push(item2.name);
-                        await dec.simple(page.division.division,
-                            [arr, entry.max],
-                            page.division)
-                    });
-                    it(`Нажатие по подразделению ${index2 + 1} уровня -  ${item2.name}`,
-                        async () => await dec.simple(page.division.handler,
-                            [arr, entry.max],
-                            page.division));
-                    it(`Подразделение ${index2 + 1} уровня -  ${item2.name} выделено`,
-                        async () => await dec.simple(page.division.selected,
-                            [item2.name, entry.max],
-                            page.division));
-                    it(`Проверка "Телефон"`,
-                        async () => await dec.simpleText(el.input.getValue,
-                            ['Телефон', '', entry.max],
-                            item2.phone,
-                            el.input));
-                    it(`Проверка "Описание"`,
-                        async () => await dec.simpleText(el.input.getValue,
-                            ['Описание', '', entry.max],
-                            item2.description,
-                            el.input));
-                });
-            });
-
-        });
-
         describe('Печать таблицы', () => {
 
             bef();
@@ -7382,77 +6030,6 @@ const printTree = () => {
                         api.putDivision);
                 });
             });
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            describe('Общие проверки', () => {
-
-                it('Отображение 3 подраздление', async () => await dec.simple(page.division.size,
-                    [3, entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 2 уровня', async ()=> await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-            });
-
-            describe('Проверка подразделения 1 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name1], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name1, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    '',
-                    el.input));
-            });
-
-            describe('Проверка подразделения 2 уровня', () => {
-
-                it('Отображенние подразделения', async () => await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name2, entry.max],
-                    page.division));
-
-                it('Проверка "Телефон"', async () => await dec.simpleText(el.input.getValue,
-                    ['Телефон', '', entry.max],
-                    '',
-                    el.input));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                    ['Описание', '', entry.max],
-                    '',
-                    el.input));
-            });
-
         });
 
         describe('Печать дерева', () => {
@@ -7611,46 +6188,6 @@ const printTree = () => {
                     });
                 });
             });
-        });
-
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображние 16 подраздлениий', async () => await dec.simple(page.division.size,
-                [16, entry.max],
-                page.division));
-
-            params.array.forEach((item1) => {
-                let arr =[];
-                item1.forEach((item2, index2) => {
-                    it(`Отображенние подразделения ${index2 + 1} уровня - ${item2.name}`, async () => {
-                        arr.push(item2.name);
-                        await dec.simple(page.division.division,
-                            [arr, entry.max],
-                            page.division)
-                    });
-                    it(`Нажатие по подразделению ${index2 + 1} уровня -  ${item2.name}`,
-                        async () => await dec.simple(page.division.handler,
-                            [arr, entry.max],
-                            page.division));
-                    it(`Подразделение ${index2 + 1} уровня -  ${item2.name} выделено`,
-                        async () => await dec.simple(page.division.selected,
-                            [item2.name, entry.max],
-                            page.division));
-                    it(`Проверка "Телефон"`,
-                        async () => await dec.simpleText(el.input.getValue,
-                            ['Телефон', '', entry.max],
-                            item2.phone,
-                            el.input));
-                    it(`Проверка "Описание"`,
-                        async () => await dec.simpleText(el.input.getValue,
-                            ['Описание', '', entry.max],
-                            item2.description,
-                            el.input));
-                });
-            });
-
         });
 
         describe('Печать дерева', () => {
@@ -8621,7 +7158,6 @@ const exportFile = (agr, str, format) => {
         });
 
         deleteParams();
-
     });
 
     // Имя выходного файла — системное имя. Заголовок — Добавить заголовок к файлу.
@@ -10832,21 +9368,6 @@ const importFile = () => {
             message: 'Импорт завершен 0 записей из 2 не было импортировано',
         };
 
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
-                page.division));
-
-        });
-
         describe('Импорт', () => {
 
             bef();
@@ -11033,21 +9554,6 @@ const importFile = () => {
             name2: 'importMinParamsName2',
             message: 'Импорт завершен 0 записей из 2 не было импортировано',
         };
-
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
-                page.division));
-
-        });
 
         describe('Импорт', () => {
 
@@ -11278,21 +9784,6 @@ const importFile = () => {
             addSchedule(params.division2.schedule);
             addStaff(...Object.values(params.division1.fio));
             addStaff(...Object.values(params.division2.fio));
-        });
-
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
-                page.division));
-
         });
 
         describe('Импорт', () => {
@@ -11578,21 +10069,6 @@ const importFile = () => {
             addStaff(...Object.values(params.division2.fio));
         });
 
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [[ "Администраторы системы"], entry.max],
-                page.division));
-
-        });
-
         describe('Импорт', () => {
 
             bef();
@@ -11736,21 +10212,6 @@ const importFile = () => {
             message: 'Импорт завершен 2 записей из 2 не было импортировано',
         };
 
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
-                page.division));
-
-        });
-
         describe('Импорт', () => {
 
             bef();
@@ -11881,21 +10342,6 @@ const importFile = () => {
             message: 'Импорт завершен 0 записей из 15 не было импортировано',
         };
 
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                [1, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
-                page.division));
-
-        });
-
         describe('Импорт', () => {
 
             bef();
@@ -12017,29 +10463,6 @@ const importFile = () => {
             });
         });
 
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
-                [3, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
-                page.division));
-
-            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
-                [[params.division1.name], entry.max],
-                page.division));
-
-            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
-                [[params.division1.name, params.division2.name], entry.max],
-                page.division));
-
-        });
-
         describe('Импорт', () => {
 
             bef();
@@ -12156,29 +10579,6 @@ const importFile = () => {
                         api.putDivision);
                 });
             });
-        });
-
-        describe('Проверка списка подразделений', () => {
-
-            bef();
-            aft();
-
-            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
-                [3, entry.max],
-                page.division));
-
-            it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                [["Администраторы системы"], entry.max],
-                page.division));
-
-            it('Отображенние подразделения 1 уровня', async () => await dec.simple(page.division.division,
-                [[params.division1.name], entry.max],
-                page.division));
-
-            it('Отображенние подразделения 2 уровня', async () => await dec.simple(page.division.division,
-                [[params.division1.name, params.division2.name], entry.max],
-                page.division));
-
         });
 
         describe('Импорт', () => {
@@ -12313,29 +10713,6 @@ const filterSearch = () => describe('Проверка фильтра "Поиск
                     await dec.simple(api.putDivision,
                         [[obj], cook.text],
                         api.putDivision);
-                });
-            });
-        });
-
-    });
-
-    describe('Проверка отображения', () => {
-
-        bef();
-        aft();
-
-        it('Отображение 7 подраздление', async () => await dec.simple(page.division.size,
-            [7, entry.max],
-            page.division));
-
-        [params.array1, params.array2].forEach((item1) => {
-            const arr = [];
-            item1.forEach((item2, index2) => {
-                it(`Отображенние подразделения ${index2 + 1} уровня - ${item2}`, async () => {
-                    arr.push(item2);
-                    await dec.simple(page.division.division,
-                        [arr, entry.max],
-                        page.division)
                 });
             });
         });

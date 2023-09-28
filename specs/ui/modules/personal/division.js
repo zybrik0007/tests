@@ -7,14 +7,13 @@ console.log = () => function () {};
 JSON.parse(process.env.b001divisionUiDisplay) ? tests.display() : '';
 
 // Добавление
-JSON.parse(process.env.b007divisionUiAddAddDuplicateTwoLevel) ? tests.add.addDuplicateTwoLevel(): '';
 
 JSON.parse(process.env.b002divisionUiAddAddMinParams) ? tests.add.addMinParams() : '';
 JSON.parse(process.env.b003divisionUiAddAddMaxParams) ? tests.add.addMaxParams() : '';
 JSON.parse(process.env.b004divisionUiAddAddFormsMaxParams) ? tests.add.addFormsMaxParams() : '';
 JSON.parse(process.env.b005divisionUiAddAddIncludeProgression) ? tests.add.addIncludeProgression() : '';
 JSON.parse(process.env.b006divisionUiAddAddDuplicateOneLevel) ? tests.add.addDuplicateOneLevel(): '';
-
+JSON.parse(process.env.b007divisionUiAddAddDuplicateTwoLevel) ? tests.add.addDuplicateTwoLevel(): '';
 JSON.parse(process.env.b008divisionUiAddAddNoName) ? tests.add.addNoName(): '';
 
 // Редактирвоание

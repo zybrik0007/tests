@@ -7,7 +7,7 @@
     "auth.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/auth.ui.spec.js",
     "smoke.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/smoke.ui.spec.js",
     "full.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/full-ui.spec.js",
-    "division.ui": "mocha --timeout=60000 --bail --reporter mocha-teamcity-reporter specs/ui/modules/personal/division.js"
+    "division.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division.js"
   },
   "keywords": [
     "js",
