@@ -1955,22 +1955,7 @@ const add = () => {
     const addNoName = () => describe('Подразделение. Добавление. Попытка добавления без "Подразделение»".',
         () => {
 
-        describe('Проверка списка подразделений', () => {
-
-                bef();
-                aft();
-
-                it('Отображние 1 подраздление', async () => await dec.simple(page.division.size,
-                    [1, entry.max],
-                    page.division));
-
-                it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                    [[ "Администраторы системы"], entry.max],
-                    page.division));
-
-            });
-
-        describe('Добавление подразделений', () => {
+        describe('Добавление подразделения', () => {
                 bef();
                 aft();
 
@@ -1987,7 +1972,7 @@ const add = () => {
                     ["Сохранить", entry.max],
                     el.button));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handlerNoActive,
+                it('Нажатие кнопки "Сохранить"', async () => await dec.simpleFalse(el.button.handlerNoActive,
                     ["Сохранить", entry.max],
                     el.button));
 
@@ -2017,7 +2002,7 @@ const add = () => {
                     page.division));
 
                 it('Отображение подразделения "Администраторы системы"', async ()=> await dec.simple(page.division.division,
-                    [[ "Администраторы системы"], entry.max],
+                    [["Администраторы системы"], entry.max],
                     page.division));
 
             });

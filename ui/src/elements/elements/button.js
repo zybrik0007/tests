@@ -47,7 +47,7 @@ class Button extends BasePage{
 
     //Нажатие кнопки без проверки активности
     async handlerNoActive(text, timeout) {
-        return await this.xpathHandler(element.button(text),
+        return await this.xpathHandler(element.buttonDisabled(text),
             `Нажатие по кнопке "${text}".`,
             timeout)
     }

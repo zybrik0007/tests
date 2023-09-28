@@ -13,7 +13,8 @@ const tests = require('../ui/src/handlers/module-specs')
 //tests.divisionUi.main();
 //tests.additionalDataUi.staff.main()
 //tests.additionalDataUi.staff.add.typeSelectDeleteBox()
-tests.additionalDataUi.visitor.main()
+//tests.additionalDataUi.visitor.main()
+tests.divisionUi.add.addNoName();
 
 
 

@@ -113,7 +113,7 @@ class BasePage {
         const element = By.xpath(event)
         return await driver.wait(until.elementLocated(element), timeout).click()
             .then(() => {return {error: false, description}})
-            .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
+            .catch((err) => {return {error: true, description: `Ошибка. ${description}`}});
     }
 
     // Двойное нажатие по элементу
