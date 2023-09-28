@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ui/src/handlers/module-specs/specs/personal/division-ui.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ui/src/handlers/other/closeBrowser.js" charset="windows-1251" />
   </component>
 </project>
