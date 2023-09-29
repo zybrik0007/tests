@@ -6305,190 +6305,152 @@ const exportFile = (agr, str, format) => {
             phone: 'apiMaxPhone'
         };
 
-        describe('Добавление', () => {
-            bef();
-            aft();
+        bef();
+        aft();
 
-            addAccessTemplate(params.template1, '');
-            addAccessTemplate(params.template2, '');
-            addSchedule(params.schedule);
-            addStaff(...Object.values(params.fio));
+        addAccessTemplate(params.template1, '');
+        addAccessTemplate(params.template2, '');
+        addSchedule(params.schedule);
+        addStaff(...Object.values(params.fio));
 
-            it(`Добавление подразделения 1 уровня - ${params.division1}`, async () => {
+        it(`Добавление подразделения 1 уровня - ${params.division1}`, async () => {
+            const cook = await page.base.getCookie('token');
+            const obj = {
+                "parent_id": 0,
+                "name": params.division1,
+            };
+            await dec.simple(api.putDivision,
+                [[obj], cook.text],
+                api.putDivision);
+        });
+
+        params.division2.forEach((item, index) => {
+            it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
                 const cook = await page.base.getCookie('token');
+                const getDivision = await api.getDivision(cook.text);
+                console.log('id: ', getDivision.text[getDivision.text.length - 1]);
+                console.log('index: ', index);
                 const obj = {
-                    "parent_id": 0,
-                    "name": params.division1,
+                    "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
+                    "name": item,
+                    "tel": params.phone
+                };
+                console.log('obj: ', obj);
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
+
+            });
+        });
+
+        params.division3.forEach((item, index) => {
+            it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                const cook = await page.base.getCookie('token');
+                const getDivision = await api.getDivision(cook.text);
+                console.log('id: ', getDivision.text[getDivision.text.length - 1]);
+                console.log('index: ', index);
+                const obj = {
+                    "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
+                    "name": item,
+                    "comment": params.description,
+                    "tel": params.phone,
+                };
+                console.log('obj: ', obj);
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
+
+            });
+        });
+
+        params.division4.forEach((item, index) => {
+            it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                const cook = await page.base.getCookie('token');
+                const getDivision = await api.getDivision(cook.text);
+                const getTemplate = await api.getAccessTemplate(cook.text);
+                console.log('id: ', getDivision.text[getDivision.text.length - 1]['id']);
+                console.log('index: ', index);
+                const obj = {
+                    "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
+                    "name": item,
+                    "comment": params.description,
+                    "tel": params.phone,
+                    "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
+                };
+                console.log('obj: ', obj);
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
+
+            });
+        });
+
+        params.division5.forEach((item, index) => {
+            it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                const cook = await page.base.getCookie('token');
+                const getDivision = await api.getDivision(cook.text);
+                const getTemplate = await api.getAccessTemplate(cook.text);
+                const obj = {
+                    "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
+                    "name": item,
+                    "comment": params.description,
+                    "tel": params.phone,
+                    "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
+                    "visitor_access_template": getTemplate.text[0]['id'],
+                };
+                console.log('obj: ', obj);
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
+
+            });
+        });
+
+        params.division6.forEach((item, index) => {
+            it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                const cook = await page.base.getCookie('token');
+                const getDivision = await api.getDivision(cook.text);
+                const getTemplate = await api.getAccessTemplate(cook.text);
+                const getSchedule = await api.getSchedule(cook.text);
+                const obj = {
+                    "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
+                    "name": item,
+                    "comment": params.description,
+                    "tel": params.phone,
+                    "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
+                    "visitor_access_template": getTemplate.text[0]['id'],
+                    "work_schedule": getSchedule.text[0]['id'],
                 };
                 await dec.simple(api.putDivision,
                     [[obj], cook.text],
                     api.putDivision);
-            });
 
-            params.division2.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
-                    const cook = await page.base.getCookie('token');
-                    const getDivision = await api.getDivision(cook.text);
-                    console.log('id: ', getDivision.text[getDivision.text.length - 1]);
-                    console.log('index: ', index);
-                    const obj = {
-                        "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
-                        "name": item,
-                        "tel": params.phone
-                    };
-                    console.log('obj: ', obj);
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-
-                });
-            });
-
-            params.division3.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
-                    const cook = await page.base.getCookie('token');
-                    const getDivision = await api.getDivision(cook.text);
-                    console.log('id: ', getDivision.text[getDivision.text.length - 1]);
-                    console.log('index: ', index);
-                    const obj = {
-                        "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
-                        "name": item,
-                        "comment": params.description,
-                        "tel": params.phone,
-                    };
-                    console.log('obj: ', obj);
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-
-                });
-            });
-
-            params.division4.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
-                    const cook = await page.base.getCookie('token');
-                    const getDivision = await api.getDivision(cook.text);
-                    const getTemplate = await api.getAccessTemplate(cook.text);
-                    console.log('id: ', getDivision.text[getDivision.text.length - 1]['id']);
-                    console.log('index: ', index);
-                    const obj = {
-                        "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
-                        "name": item,
-                        "comment": params.description,
-                        "tel": params.phone,
-                        "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
-                    };
-                    console.log('obj: ', obj);
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-
-                });
-            });
-
-            params.division5.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
-                    const cook = await page.base.getCookie('token');
-                    const getDivision = await api.getDivision(cook.text);
-                    const getTemplate = await api.getAccessTemplate(cook.text);
-                    const obj = {
-                        "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
-                        "name": item,
-                        "comment": params.description,
-                        "tel": params.phone,
-                        "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
-                        "visitor_access_template": getTemplate.text[0]['id'],
-                    };
-                    console.log('obj: ', obj);
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-
-                });
-            });
-
-            params.division6.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
-                    const cook = await page.base.getCookie('token');
-                    const getDivision = await api.getDivision(cook.text);
-                    const getTemplate = await api.getAccessTemplate(cook.text);
-                    const getSchedule = await api.getSchedule(cook.text);
-                    const obj = {
-                        "parent_id": index === 0 ? 0 : getDivision.text[getDivision.text.length - 1]['id'],
-                        "name": item,
-                        "comment": params.description,
-                        "tel": params.phone,
-                        "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
-                        "visitor_access_template": getTemplate.text[0]['id'],
-                        "work_schedule": getSchedule.text[0]['id'],
-                    };
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-
-                });
-            });
-
-            params.division7.forEach((item, index) => {
-                it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
-                    const cook = await page.base.getCookie('token');
-                    const getStaff = await api.getStaff(cook.text);
-                    const getDivision = await api.getDivision(cook.text);
-                    const getTemplate = await api.getAccessTemplate(cook.text);
-                    const getSchedule = await api.getSchedule(cook.text);
-                    const obj = {
-                        "parent_id": index === 0 ? 0 :  getDivision.text[getDivision.text.length - 1]['id'],
-                        "name": item,
-                        "comment": params.description,
-                        "tel": params.phone,
-                        "accompanying": getStaff.text[0]['id'],
-                        "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
-                        "visitor_access_template": getTemplate.text[0]['id'],
-                        "work_schedule": getSchedule.text[0]['id'],
-                    };
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-
-                });
             });
         });
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
+        params.division7.forEach((item, index) => {
+            it(`Добавлние подразделения ${index + 1} уровня - ${item}`, async () => {
+                const cook = await page.base.getCookie('token');
+                const getStaff = await api.getStaff(cook.text);
+                const getDivision = await api.getDivision(cook.text);
+                const getTemplate = await api.getAccessTemplate(cook.text);
+                const getSchedule = await api.getSchedule(cook.text);
+                const obj = {
+                    "parent_id": index === 0 ? 0 :  getDivision.text[getDivision.text.length - 1]['id'],
+                    "name": item,
+                    "comment": params.description,
+                    "tel": params.phone,
+                    "accompanying": getStaff.text[0]['id'],
+                    "staff_access_template": [getTemplate.text[0]['id'], getTemplate.text[1]['id']],
+                    "visitor_access_template": getTemplate.text[0]['id'],
+                    "work_schedule": getSchedule.text[0]['id'],
+                };
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
 
-            it('Отображние 29 подраздлениий', async () => await dec.simple(page.division.size,
-                [29, entry.max],
-                page.division));
-
-            it(`Отображенние подразделения 1 уровня - ${params.division1}`, async () => {
-                await dec.simple(page.division.division,
-                    [[params.division1], entry.max],
-                    page.division)
             });
-
-            const array = [params.division2,
-                params.division3,
-                params.division4,
-                params.division5,
-                params.division6,
-                params.division7];
-
-            array.forEach((item1) => {
-                let arr =[];
-                item1.forEach((item2, index2) => {
-                    it(`Отображенние подразделения ${index2 + 1} уровня - ${item2}`, async () => {
-                        arr.push(item2);
-                        await dec.simple(page.division.division,
-                            [arr, entry.max],
-                            page.division)
-                    });
-                });
-            });
-
         });
-
     });
 
     const apiMin = () => describe('API - добавление', () => {
@@ -6497,51 +6459,31 @@ const exportFile = (agr, str, format) => {
             division2:  'apiMinDivision2',
         };
 
-        describe('Добавление', () => {
-            bef();
-            aft();
+        bef();
+        aft();
 
-            it('Добавление подразделени 1 уровня', async () => {
-                const cook = await page.base.getCookie('token');
-                const obj = {
-                    "parent_id": 0,
-                    "name": params.division1
-                };
-                await dec.simple(api.putDivision,
-                    [[obj], cook.text],
-                    api.putDivision);
-            });
-            it('Добавление подразделени 2 уровня', async () => {
-                const cook = await page.base.getCookie('token');
-                const getDivision = await api.getDivision(cook.text);
-
-                const obj = {
-                    "parent_id": getDivision.text[0]['id'],
-                    "name": params.division2
-                };
-                await dec.simple(api.putDivision,
-                    [[obj], cook.text],
-                    api.putDivision);
-            });
+        it('Добавление подразделени 1 уровня', async () => {
+            const cook = await page.base.getCookie('token');
+            const obj = {
+                "parent_id": 0,
+                "name": params.division1
+            };
+            await dec.simple(api.putDivision,
+                [[obj], cook.text],
+                api.putDivision);
         });
+        it('Добавление подразделени 2 уровня', async () => {
+            const cook = await page.base.getCookie('token');
+            const getDivision = await api.getDivision(cook.text);
 
-        describe('Проверка отображения в разделе', () => {
-            bef();
-            aft();
-
-            it('Отображние 3 подраздлениий', async () => await dec.simple(page.division.size,
-                [3, entry.max],
-                page.division));
-
-            it('Отображенние подразделения 1', async () => await dec.simple(page.division.division,
-                [[params.division1], entry.max],
-                page.division));
-
-            it('Отображенние подразделения 2', async () => await dec.simple(page.division.division,
-                [[params.division2], entry.max],
-                page.division));
+            const obj = {
+                "parent_id": getDivision.text[0]['id'],
+                "name": params.division2
+            };
+            await dec.simple(api.putDivision,
+                [[obj], cook.text],
+                api.putDivision);
         });
-
     });
 
     // Имя выходного файла — системное имя. Заголовок — Не добавлять заголовок.

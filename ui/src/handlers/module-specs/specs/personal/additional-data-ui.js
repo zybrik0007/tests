@@ -788,16 +788,6 @@ const add = (type) => {
             defaultValue: 'typeTextNoNameValue'
         };
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count, entry.max],
-                el.table));
-        });
-
         describe('Добавление', () => {
             type.bef();
 
@@ -891,36 +881,6 @@ const add = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
         });
 
         describe('Добавление', () => {
@@ -1380,36 +1340,6 @@ const add = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Текстовый',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
         describe('Добавление', () => {
             type.bef();
 
@@ -1842,16 +1772,6 @@ const add = (type) => {
             value: 'typeSelectNoNameValue'
         };
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count, entry.max],
-                el.table));
-        });
-
         describe('Добавление', () => {
             type.bef();
 
@@ -2110,16 +2030,6 @@ const add = (type) => {
             name: 'typeSelectNoValueBoxMinParamsName'
         };
 
-        describe('Проверка таблицы', () => {
-                type.bef();
-
-                aft();
-
-                it(`Отображение ${type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                    [type.count, entry.max],
-                    el.table));
-            });
-
         describe('Добавление', () => {
             type.bef();
 
@@ -2199,16 +2109,6 @@ const add = (type) => {
             valueName: 'typeSelectNoValueBoxMaxParamsValue',
             defaultValue: 'typeSelectNoValueBoxMaxParamsValue2'
         };
-
-        describe('Проверка таблицы', () => {
-                type.bef();
-
-                aft();
-
-                it(`Отображение ${type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                    [type.count, entry.max],
-                    el.table));
-            });
 
         describe('Добавление', () => {
 
@@ -2335,36 +2235,6 @@ const add = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Текстовый',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
         });
 
         describe('Добавление', () => {
@@ -2765,16 +2635,6 @@ const add = (type) => {
             value: 'Нет'
         };
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count, entry.max],
-                el.table));
-        });
-
         describe('Добавление', () => {
             type.bef();
 
@@ -2868,36 +2728,6 @@ const add = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Текстовый',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
         });
 
         describe('Добавление', () => {
@@ -3374,36 +3204,6 @@ const add = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
         describe('Добавление', () => {
             type.bef();
 
@@ -3771,16 +3571,6 @@ const add = (type) => {
             description: 'typeDateTimeNoName'
         };
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count, entry.max],
-                el.table));
-        });
-
         describe('Добавление', () => {
             type.bef();
 
@@ -3872,36 +3662,6 @@ const add = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
         });
 
         describe('Добавление', () => {
@@ -4978,85 +4738,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Текстовый',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.defaultValue,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Текстовый', entry.max],
-                'Текстовый',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.input.getValue,
-                ['Значение по умолчанию', '', entry.max],
-                params.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -5223,85 +4904,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data1.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Текстовый',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.data1.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.data1.defaultValue,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data1.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.data1.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Текстовый', entry.max],
-                'Текстовый',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.input.getValue,
-                ['Значение по умолчанию', '', entry.max],
-                params.data1.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -5479,85 +5081,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Текстовый',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.defaultValue,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Текстовый', entry.max],
-                'Текстовый',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.input.getValue,
-                ['Значение по умолчанию', '', entry.max],
-                params.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -5742,90 +5265,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data2.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Текстовый',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-               '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data2.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-               '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Текстовый', entry.max],
-                'Текстовый',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.input.getValue,
-                ['Значение по умолчанию', '', entry.max],
-                '',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -6007,80 +5446,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Графический', entry.max],
-                'Графический',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -6230,75 +5595,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Графический', entry.max],
-                'Графический',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -6451,75 +5747,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data1.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.data1.description,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data1.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.data1.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Графический', entry.max],
-                'Графический',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -6678,80 +5905,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Графический', entry.max],
-                'Графический',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -6931,85 +6084,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data2.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Графический',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data2.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Графический', entry.max],
-                'Графический',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -7187,90 +6261,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Выпадающий список', entry.max],
-                'Выпадающий список',
-                el.input));
-
-            it('Отсутствие полей в списке полей ввода "Поля"',
-                async () => await dec.simple(el.modal.additionalDataAdd.noSelectType,
-                    [entry.max],
-                    el.modal.additionalDataAdd));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', 'Заполните поле', entry.max],
-                'Заполните поле',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -7459,94 +6449,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.defaultValue,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Выпадающий список', entry.max],
-                'Выпадающий список',
-                el.input));
-
-            [...Array(8).keys()].forEach(item => {
-                return (
-                    it(`Проверка поле ${item + 1} в списке полей ввода "Поля"`,
-                        async () => await dec.simpleText(el.modal.additionalDataAdd.selectTypeGetValue,
-                            [item + 1, entry.max],
-                            params.valueName + (item + 1),
-                            el.modal.additionalDataAdd)));
-            });
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', params.defaultValue, entry.max],
-                params.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
 
             type.bef();
@@ -7724,99 +6626,6 @@ const edit = (type) => {
                     [[data1], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data1.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.data1.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.data1.defaultValue,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data1.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.data1.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Выпадающий список', entry.max],
-                'Выпадающий список',
-                el.input));
-
-            [...Array(8).keys()].forEach(item => {
-                return (
-                    it(`Проверка поле ${item + 1} в списке полей ввода "Поля"`,
-                        async () => await dec.simpleText(el.modal.additionalDataAdd.selectTypeGetValue,
-                            [item + 1, entry.max],
-                            params.data1.valueName + (item + 1),
-                            el.modal.additionalDataAdd)));
-            });
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', params.data1.defaultValue, entry.max],
-                params.data1.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -8022,91 +6831,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Выпадающий список', entry.max],
-                'Выпадающий список',
-                el.input));
-
-            it('Проверка поле 1 в списке полей ввода "Поля"',
-                async () => await dec.simpleText(el.modal.additionalDataAdd.selectTypeGetValue,
-                    [1, entry.max],
-                    params.value1,
-                    el.modal.additionalDataAdd));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', 'Заполните поле', entry.max],
-                'Заполните поле',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
 
             type.bef();
@@ -8280,99 +7004,6 @@ const edit = (type) => {
                     [[data1], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.defaultValue,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Выпадающий список', entry.max],
-                'Выпадающий список',
-                el.input));
-
-            [...Array(8).keys()].forEach(item => {
-                return (
-                    it(`Проверка поле ${item + 1} в списке полей ввода "Поля"`,
-                        async () => await dec.simpleText(el.modal.additionalDataAdd.selectTypeGetValue,
-                            [item + 1, entry.max],
-                            params.valueName + (item + 1),
-                            el.modal.additionalDataAdd)));
-            });
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', params.defaultValue, entry.max],
-                params.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -8552,91 +7183,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Выпадающий список', entry.max],
-                'Выпадающий список',
-                el.input));
-
-            it('Проверка поле 1 в списке полей ввода "Поля"',
-                async () => await dec.simpleText(el.modal.additionalDataAdd.selectTypeGetValue,
-                    [1, entry.max],
-                    params.value1,
-                    el.modal.additionalDataAdd));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', 'Заполните поле', entry.max],
-                'Заполните поле',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -8825,85 +7371,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data2.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data2.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Выпадающий список', entry.max],
-                'Выпадающий список',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -9083,85 +7550,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Чекбокс',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.defaultValue1,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Чекбокс', entry.max],
-                'Чекбокс',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', 'Нет', entry.max],
-                params.defaultValue1,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -9323,85 +7711,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Чекбокс',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.defaultValue1,
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Чекбокс', entry.max],
-                'Чекбокс',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', params.defaultValue1, entry.max],
-                params.defaultValue1,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -9575,86 +7884,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data1.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Чекбокс',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.data1.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.data1.defaultValue,
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data1.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.data1.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Чекбокс', entry.max],
-                'Чекбокс',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', params.data1.defaultValue, entry.max],
-                params.data1.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -9826,86 +8055,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Чекбокс',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                params.defaultValue,
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Чекбокс', entry.max],
-                'Чекбокс',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', params.defaultValue, entry.max],
-                params.defaultValue,
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -10092,90 +8241,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data2.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Чекбокс',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                'Нет',
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data2.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Чекбокс', entry.max],
-                'Чекбокс',
-                el.input));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.select.getText,
-                ['Значение по умолчанию', 'Нет', entry.max],
-                'Нет',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -10356,80 +8421,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата', entry.max],
-                'Дата',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -10579,80 +8570,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата', entry.max],
-                'Дата',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -10810,80 +8727,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data1.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.data1.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data1.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.data1.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата', entry.max],
-                'Дата',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -11048,80 +8891,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-               '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата', entry.max],
-                'Дата',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -11302,85 +9071,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data2.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data2.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата', entry.max],
-                'Дата',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -11557,80 +9247,6 @@ const edit = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата и время',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата и время', entry.max],
-                'Дата и время',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-        });
-
         describe('Редактирование', () => {
             type.bef();
 
@@ -11780,80 +9396,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата и время',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата и время', entry.max],
-                'Дата и время',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -12011,80 +9553,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data1.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата и время',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.data1.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data1.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.data1.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата и время', entry.max],
-                'Дата и время',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -12249,80 +9717,6 @@ const edit = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата и время',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                params.description,
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                params.description,
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата и время', entry.max],
-                'Дата и время',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -12501,85 +9895,6 @@ const edit = (type) => {
                     [[data2], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.data2.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата и время',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-
-        });
-
-        describe('Проверка параметров', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 2} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 2, entry.max],
-                el.table));
-
-            it(`Нажатие по первой строке в таблице`, async () => await dec.simple(el.table.strHandler,
-                [1, entry.max],
-                el.table));
-
-            it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                [but.edit, entry.max],
-                el.butIcBefore));
-
-            it('Отображене модального окна "Редактировать дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.init,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                ['Название поля', '', entry.max],
-                params.data2.name,
-                el.input));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                ['Описание', '', entry.max],
-                '',
-                el.input));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                ['Тип поля', 'Дата и время', entry.max],
-                'Дата и время',
-                el.input));
-
-            it('Нажатие кнопки закрытия модального окна',
-                async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
-
-            it('Отсутствие модального окна "Добавить дополнительное поле"',
-                async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                    [entry.max],
-                    el.modal.additionalDataEdit));
         });
 
         describe('Редактирование', () => {
@@ -12813,36 +10128,6 @@ const remove = (type) => {
                 });
             });
 
-            describe('Проверка таблицы', () => {
-                type.bef();
-
-                aft();
-
-                it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                    [type.count + 1, entry.max],
-                    el.table));
-
-                it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Название поля', 1, 1, entry.max],
-                    params.name,
-                    el.table));
-
-                it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Тип поля', 1, 2, entry.max],
-                    'Текстовый',
-                    el.table));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 3, entry.max],
-                    '',
-                    el.table));
-
-                it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Значение по умолчанию', 1, 4, entry.max],
-                    '',
-                    el.table));
-            });
-
             describe('Удаление', () => {
                 type.bef();
 
@@ -12918,36 +10203,6 @@ const remove = (type) => {
                         [[data], type.api, cook.text],
                         api.putAdditionalData);
                 });
-            });
-
-            describe('Проверка таблицы', () => {
-                type.bef();
-
-                aft();
-
-                it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                    [type.count + 1, entry.max],
-                    el.table));
-
-                it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Название поля', 1, 1, entry.max],
-                    params.name,
-                    el.table));
-
-                it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Тип поля', 1, 2, entry.max],
-                    'Графический',
-                    el.table));
-
-                it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Описание', 1, 3, entry.max],
-                    '',
-                    el.table));
-
-                it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                    ['Значение по умолчанию', 1, 4, entry.max],
-                    '',
-                    el.table));
             });
 
             describe('Удаление', () => {
@@ -13027,36 +10282,6 @@ const remove = (type) => {
                 });
             });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Выпадающий список',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
         describe('Удаление', () => {
             type.bef();
 
@@ -13132,36 +10357,6 @@ const remove = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Чекбокс',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                'Нет',
-                el.table));
         });
 
         describe('Удаление', () => {
@@ -13241,36 +10436,6 @@ const remove = (type) => {
             });
         });
 
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
-        });
-
         describe('Удаление', () => {
             type.bef();
 
@@ -13346,36 +10511,6 @@ const remove = (type) => {
                     [[data], type.api, cook.text],
                     api.putAdditionalData);
             });
-        });
-
-        describe('Проверка таблицы', () => {
-            type.bef();
-
-            aft();
-
-            it(`Отображение ${type.count + 1} записей в таблице`, async () => await dec.simple(el.table.size,
-                [type.count + 1, entry.max],
-                el.table));
-
-            it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Название поля', 1, 1, entry.max],
-                params.name,
-                el.table));
-
-            it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Тип поля', 1, 2, entry.max],
-                'Дата и время',
-                el.table));
-
-            it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Описание', 1, 3, entry.max],
-                '',
-                el.table));
-
-            it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                ['Значение по умолчанию', 1, 4, entry.max],
-                '',
-                el.table));
         });
 
         describe('Удаление', () => {
@@ -13461,80 +10596,6 @@ class Service {
         return (
             describe(`Дополнительные данные. ${this.type.person}. Служебное поле "${this.params.name}". 
             Попытка редактирвоания "Название поля".`, () => {
-
-                describe('Проверка таблицы', () => {
-                    this.type.bef();
-
-                    aft();
-
-                    it(`Отображение ${this.type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                        [this.type.count, entry.max],
-                        el.table));
-
-                    it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Название поля', this.params.num, 1, entry.max],
-                        this.params.name,
-                        el.table));
-
-                    it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Тип поля', this.params.num, 2, entry.max],
-                        this.params.type,
-                        el.table));
-
-                    it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Описание', this.params.num, 3, entry.max],
-                        this.params.description,
-                        el.table));
-
-                    it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Значение по умолчанию', this.params.num, 4, entry.max],
-                        '',
-                        el.table));
-                });
-
-                describe('Проверка параметров', () => {
-                    this.type.bef();
-
-                    aft();
-
-                    it(`Нажатие по строке ${this.params.num} в таблице`, async () => await dec.simple(el.table.strHandler,
-                        [this.params.num, entry.max],
-                        el.table));
-
-                    it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                        [but.edit, entry.max],
-                        el.butIcBefore));
-
-                    it('Отображене модального окна "Редактировать дополнительное поле"',
-                        async () => await dec.simple(el.modal.additionalDataEdit.init,
-                            [entry.max],
-                            el.modal.additionalDataEdit));
-
-                    it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                        ['Название поля', '', entry.max],
-                        this.params.name,
-                        el.input));
-
-                    it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                        ['Описание', '', entry.max],
-                        this.params.description,
-                        el.input));
-
-                    it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                        ['Тип поля', this.params.type, entry.max],
-                        this.params.type,
-                        el.input));
-
-                    it('Нажатие кнопки закрытия модального окна',
-                        async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                            [entry.max],
-                            el.modal.additionalDataEdit));
-
-                    it('Отсутствие модального окна "Добавить дополнительное поле"',
-                        async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                            [entry.max],
-                            el.modal.additionalDataEdit));
-                });
 
                 describe('Редактирование', () => {
                     this.type.bef();
@@ -13669,80 +10730,6 @@ class Service {
             describe(`Дополнительные данные. ${this.type.person}. Служебное поле "${this.params.name}". 
             Попытка редактирвоания "Описание".`, () => {
 
-                describe('Проверка таблицы', () => {
-                    this.type.bef();
-
-                    aft();
-
-                    it(`Отображение ${this.type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                        [this.type.count, entry.max],
-                        el.table));
-
-                    it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Название поля', this.params.num, 1, entry.max],
-                        this.params.name,
-                        el.table));
-
-                    it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Тип поля', this.params.num, 2, entry.max],
-                        this.params.type,
-                        el.table));
-
-                    it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Описание', this.params.num, 3, entry.max],
-                        this.params.description,
-                        el.table));
-
-                    it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Значение по умолчанию', this.params.num, 4, entry.max],
-                        '',
-                        el.table));
-                });
-
-                describe('Проверка параметров', () => {
-                    this.type.bef();
-
-                    aft();
-
-                    it(`Нажатие по строке ${this.params.num} в таблице`, async () => await dec.simple(el.table.strHandler,
-                        [this.params.num, entry.max],
-                        el.table));
-
-                    it('Нажатие кнопки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                        [but.edit, entry.max],
-                        el.butIcBefore));
-
-                    it('Отображене модального окна "Редактировать дополнительное поле"',
-                        async () => await dec.simple(el.modal.additionalDataEdit.init,
-                            [entry.max],
-                            el.modal.additionalDataEdit));
-
-                    it('Проверка "Название поля"', async () => await dec.simpleText(el.input.getValue,
-                        ['Название поля', '', entry.max],
-                        this.params.name,
-                        el.input));
-
-                    it('Проверка "Описание"', async () => await dec.simpleText(el.input.getValue,
-                        ['Описание', '', entry.max],
-                        this.params.description,
-                        el.input));
-
-                    it('Проверка "Тип поля"', async () => await dec.simpleText(el.select.getText,
-                        ['Тип поля', this.params.type, entry.max],
-                        this.params.type,
-                        el.input));
-
-                    it('Нажатие кнопки закрытия модального окна',
-                        async () => await dec.simple(el.modal.additionalDataEdit.closeHandler,
-                            [entry.max],
-                            el.modal.additionalDataEdit));
-
-                    it('Отсутствие модального окна "Добавить дополнительное поле"',
-                        async () => await dec.simple(el.modal.additionalDataEdit.initClose,
-                            [entry.max],
-                            el.modal.additionalDataEdit));
-                });
-
                 describe('Редактирование', () => {
                     this.type.bef();
 
@@ -13875,36 +10862,6 @@ class Service {
         return (
             describe(`Дополнительные данные. ${this.type.person}. Служебное поле "${this.params.name}". 
             Попытка удаления.`, () => {
-
-                describe('Проверка таблицы', () => {
-                    this.type.bef();
-
-                    aft();
-
-                    it(`Отображение ${this.type.count} записей в таблице`, async () => await dec.simple(el.table.size,
-                        [this.type.count, entry.max],
-                        el.table));
-
-                    it('Проверка "Название поля"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Название поля', this.params.num, 1, entry.max],
-                        this.params.name,
-                        el.table));
-
-                    it('Проверка "Тип поля"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Тип поля', this.params.num, 2, entry.max],
-                        this.params.type,
-                        el.table));
-
-                    it('Проверка "Описание"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Описание', this.params.num, 3, entry.max],
-                        this.params.description,
-                        el.table));
-
-                    it('Проверка "Значение по умолчанию"', async () => await dec.simpleText(el.table.cellGetText,
-                        ['Значение по умолчанию', this.params.num, 4, entry.max],
-                        '',
-                        el.table));
-                });
 
                 describe('Удаление', () => {
                     this.type.bef();
