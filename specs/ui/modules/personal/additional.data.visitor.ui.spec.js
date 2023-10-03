@@ -1,4 +1,4 @@
-const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/additional-data-ui').staff;
+const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/additional-data-ui').visitor;
 const closeBrowser = require('../../../../ui/src/handlers/other/closeBrowser');
 
 
@@ -91,21 +91,12 @@ JSON.parse(process.env.b071additionalDataUiServicePhotoDelete) ? tests.service.p
 JSON.parse(process.env.b072additionalDataUiServicePinCodeEditName) ? tests.service.pinCodeEditName() : '';
 JSON.parse(process.env.b073additionalDataUiServicePinCodeEditDescription) ? tests.service.pinCodeEditDescription() : '';
 JSON.parse(process.env.b074additionalDataUiServicePinCodeDelete) ? tests.service.pinCodeDelete() : '';
-JSON.parse(process.env.b075additionalDataUiServiceViberEditName) ? tests.service.viberEditName() : '';
-JSON.parse(process.env.b076additionalDataUiServiceViberEditDescription) ? tests.service.viberEditDescription() : '';
-JSON.parse(process.env.b077additionalDataUiServiceViberDelete) ? tests.service.viberDelete() : '';
-JSON.parse(process.env.b078additionalDataUiServicePhoneEditName) ? tests.service.phoneEditName() : '';
-JSON.parse(process.env.b079additionalDataUiServicePhoneEditDescription) ? tests.service.phoneEditDescription() : '';
-JSON.parse(process.env.b080additionalDataUiServicePhoneDelete) ? tests.service.phoneDelete() : '';
-JSON.parse(process.env.b081additionalDataUiServiceEmailEditName) ? tests.service.emailEditName() : '';
-JSON.parse(process.env.b082additionalDataUiServiceEmailEditDescription) ? tests.service.emailEditDescription() : '';
-JSON.parse(process.env.b083additionalDataUiServiceEmailDelete) ? tests.service.emailDelete() : '';
-JSON.parse(process.env.b084additionalDataUiServiceTelegramEditName) ? tests.service.telegramEditName() : '';
-JSON.parse(process.env.b085additionalDataUiServiceTelegramEditDescription) ? tests.service.telegramEditDescription():'';
-JSON.parse(process.env.b086additionalDataUiServiceTelegramDelete) ? tests.service.telegramDelete() : '';
+JSON.parse(process.env.b075additionalDataUiServiceEmailEditName) ? tests.service.emailEditName() : '';
+JSON.parse(process.env.b076additionalDataUiServiceEmailEditDescription) ? tests.service.emailEditDescription() : '';
+JSON.parse(process.env.b077additionalDataUiServiceEmailDelete) ? tests.service.emailDelete() : '';
 
 // Тесты сортировки по столбцам
-JSON.parse(process.env.b087additionalDataUiSort) ? tests.sort() : '';
+JSON.parse(process.env.b078additionalDataUiSort) ? tests.sort() : '';
 
 closeBrowser();
 

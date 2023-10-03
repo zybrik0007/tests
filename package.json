@@ -8,7 +8,8 @@
     "smoke.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/smoke.ui.spec.js",
     "full.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/full-ui.spec.js",
     "division.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/division.ui.spec.js",
-    "additional.staff.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.staff.ui.spec.js"
+    "additional.staff.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.staff.ui.spec.js",
+    "additional.visitor.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.visitor.ui.spec.js"
   },
   "keywords": [
     "js",
