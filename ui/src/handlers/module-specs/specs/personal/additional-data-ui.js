@@ -1312,7 +1312,7 @@ const add = (type) => {
     });
 
     // Тип поля «Графический». Попытка дублирования.
-    const typeGraficDuplicate = () => describe(`Дополнительные данные.Тип поля "Графический". ${type.person}.
+    const typeGraficDuplicate = () => describe(`Дополнительные данные. Тип поля "Графический". ${type.person}.
     Добавление. Попытка дублирования.`, () => {
 
         const params = {
@@ -1586,7 +1586,7 @@ const add = (type) => {
 
     // Тип поля "Выпадающий список". Максиимальное количество параметров.
     const typeSelectMaxParams = () => describe(`Дополнительные данные. Тип поля: "Выпадающий список". ${type.person}. 
-    Добавление. Максиимальное количество параметров.`, () => {
+    Добавление. Максимальное количество параметров.`, () => {
 
         const params = {
             name: 'typeSelectMaxParamsName',
@@ -2022,7 +2022,7 @@ const add = (type) => {
 
     // Тип поля "Выпадающий список". Попытка создания без заполненного поля с минимальным количеством параметров.
     const typeSelectNoValueBoxMinParams = () => describe(`Дополнительные данные. Тип поля: "Выпадающий список". 
-    ${type.person}. Добавление. Потытка добавленеи без заполненного поля в списке полей ввода "Поля". 
+    ${type.person}. Добавление. Попытка добавления без заполненного поля в списке полей ввода "Поля". 
     Минимальное количество параметров.`,
         () => {
 
@@ -2099,7 +2099,7 @@ const add = (type) => {
 
     // Тип поля "Выпадающий список". Попытка создания без заполненного поля с минимальным количеством параметров.
     const typeSelectNoValueBoxMaxParams = () => describe(`Дополнительные данные. Тип поля: "Выпадающий список". 
-    ${type.person}. Добавление. Потытка добавленеи без заполненного поля в списке полей ввода "Поля". 
+    ${type.person}. Добавление. Попытка добавления без заполненного поля в списке полей ввода "Поля". 
     Максимальное количество параметров.`,
         () => {
 
@@ -2485,7 +2485,7 @@ const add = (type) => {
 
     // Тип поля "Чекбокс". Максиимальное количество параметров.
     const typeCheckboxMaxParams = () => describe(`Дополнительные данные. Тип поля: "Чекбокс". ${type.person}. 
-    Добавление. Максиимальное количество параметров.`, () => {
+    Добавление. Максимальное количество параметров.`, () => {
         const params = {
             name: 'typeCheckboxMaxParamsName',
             description: 'typeCheckboxMaxParamsDescription',
@@ -3429,8 +3429,8 @@ const add = (type) => {
     });
 
     // Тип поля "Дата и время". Максиимальное количество параметров.
-    const typeDateTimeMaxParams = () => describe(`Дополнительные данные. Тип поля: "Дата и время". ${type.person}. Добавление. 
-    Максиимальное количество параметров.`, () => {
+    const typeDateTimeMaxParams = () => describe(`Дополнительные данные. Тип поля: "Дата и время". ${type.person}. 
+    Добавление. Максимальное количество параметров.`, () => {
 
         const params = {
             name: 'typeDateTimeMaxParamsName',
@@ -3564,8 +3564,8 @@ const add = (type) => {
     });
 
     // Тип поля "Дата и время". Попытка добавления без «Название поля».
-    const typeDateTimeNoName = () => describe(`Дополнительные данные. Тип поля: "Дата и время". ${type.person}. Добавление. 
-    Попытка добавления без "Название поля".`, () => {
+    const typeDateTimeNoName = () => describe(`Дополнительные данные. Тип поля: "Дата и время". ${type.person}. 
+    Добавление. Попытка добавления без "Название поля".`, () => {
 
         const params = {
             description: 'typeDateTimeNoName'
@@ -3749,7 +3749,7 @@ const add = (type) => {
 
     // Тип поля «Дата». Проверки редактирования.
     const typeDateTime = () => describe(`Дополнительные данные. Тип поля "Дата и время". ${type.person}. 
-    Проверки добавления.`, () => {
+    Добавление. Проверки добавления.`, () => {
         typeDateTimeMinParams();
         typeDateTimeMaxParams();
         typeDateTimeNoName();
@@ -3758,7 +3758,7 @@ const add = (type) => {
 
     //  Попытки превышения лимита текстовых полей.
     const textLimit = () => describe(`Дополнительные данные. ${type.person}. 
-    Попытки превышения лимита текстовых полей.`, () => {
+    Добавление. Попытки превышения лимита текстовых полей.`, () => {
 
         const params = {
             array: [...Array(15).keys()].map(item => {
@@ -4261,7 +4261,7 @@ const add = (type) => {
 
     // Попытки превышения лимита графических полей.
     const graficLimit = () => describe(`Дополнительные данные. ${type.person}. 
-    Попытки превышения лимита графических полей.`, () => {
+    Добавление. Попытки превышения лимита графических полей.`, () => {
 
         const params = {
             array: [...Array(9).keys()].map(item => {
@@ -5881,7 +5881,7 @@ const edit = (type) => {
 
     // Тип поля «Графический». Попытка редактирования без «Название поля».
     const typeGraficRemoveName = () => describe(`Дополнительные данные. Тип поля: "Графический". ${type.person}. 
-    Редактирование. Попытка редактирования без «Название поля».`, () => {
+    Редактирование. Попытка редактирования без "Название поля".`, () => {
         const params = {
             name: 'typeGraficRemoveNameName',
             description: 'typeGraficRemoveNameDescription',
@@ -6589,7 +6589,7 @@ const edit = (type) => {
 
     // Тип поля «Выпадающий список». Удаление необязательных параметров с максимальным количеством параметров.
     const typeSelectEditAllMaxParams = () => describe(`Дополнительные данные. Тип поля: "Выпадающий список".
-    ${type.person}.Редактирование. Редактирвоание всех параметров с максимальным количеством параметров.`, () => {
+    ${type.person}.Редактирование. Редактирование всех параметров с максимальным количеством параметров.`, () => {
 
         const params = {
             data1: {
@@ -8029,7 +8029,7 @@ const edit = (type) => {
 
     // Тип поля «Чекбокс». Попытка редактирования без "Название поля".
     const typeCheckboxRemoveName = () => describe(`Дополнительные данные. Тип поля: "Чекбокс". ${type.person}. 
-    Редактирование. Попытка редактирования без «Название поля».`, () => {
+    Редактирование. Попытка редактирования без "Название поля".`, () => {
 
         const params = {
             name: 'typeCheckboxRemoveNameName',
@@ -8197,7 +8197,7 @@ const edit = (type) => {
 
     // Тип поля «Чекбокс». Попытка дублиирования
     const typeCheckboxDuplicate = () => describe(`Дополнительные данные. Тип поля: "Выпадающий список".
-    ${type.person}. Редактирование. Попытка дублиирования.`, () => {
+    ${type.person}. Редактирование. Попытка дублирования.`, () => {
 
         const params = {
             data1: {
@@ -8867,7 +8867,7 @@ const edit = (type) => {
 
     // ип поля «Дата». Попытка редактирования без «Название поля».
     const typeDateRemoveName = () => describe(`Дополнительные данные. Тип поля: "Дата". ${type.person}. 
-    Редактирование. Попытка редактирования без «Название поля».`, () => {
+    Редактирование. Попытка редактирования без "Название поля".`, () => {
         const params = {
             name: 'typeDateRemoveNameName',
             description: 'typeDateRemoveNameDescription',
@@ -9693,7 +9693,7 @@ const edit = (type) => {
 
     // ип поля «Дата и время». Попытка редактирования без «Название поля».
     const typeDateTimeRemoveName = () => describe(`Дополнительные данные. Тип поля: "Дата и время". ${type.person}. 
-    Редактирование. Попытка редактирования без «Название поля».`, () => {
+    Редактирование. Попытка редактирования без "Название поля".`, () => {
         const params = {
             name: 'typeDateTimeRemoveNameName',
             description: 'typeDateTimeRemoveNameDescription',
@@ -10076,7 +10076,6 @@ const edit = (type) => {
         typeSelectDuplicate,
         typeSelect,
         typeCheckboxMinParams,
-        typeCheckboxMaxParams,
         typeCheckboxMaxParams,
         typeCheckboxEditAllParams,
         typeCheckboxRemoveName,
@@ -10595,7 +10594,7 @@ class Service {
     editName() {
         return (
             describe(`Дополнительные данные. ${this.type.person}. Служебное поле "${this.params.name}". 
-            Попытка редактирвоания "Название поля".`, () => {
+            Попытка редактирования "Название поля".`, () => {
 
                 describe('Редактирование', () => {
                     this.type.bef();
@@ -10728,7 +10727,7 @@ class Service {
     editDescription() {
         return (
             describe(`Дополнительные данные. ${this.type.person}. Служебное поле "${this.params.name}". 
-            Попытка редактирвоания "Описание".`, () => {
+            Попытка редактирования "Описание".`, () => {
 
                 describe('Редактирование', () => {
                     this.type.bef();
@@ -11235,8 +11234,8 @@ module.exports = {
                 edit(settings.staff).edit();
                 remove(settings.staff).remove();
                 serviceStaff(settings.staff).service();
-                sort(settings.staff)
-            })
+                sort(settings.staff);
+            }),
         };
     })(),
     visitor: (() => {

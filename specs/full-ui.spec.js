@@ -14,7 +14,7 @@ const tests = require('../ui/src/handlers/module-specs')
 //tests.additionalDataUi.staff.main()
 //tests.additionalDataUi.staff.add.typeSelectDeleteBox()
 //tests.additionalDataUi.visitor.main()
-tests.divisionUi.add.addNoName();
+tests.divisionUi.import.importXLSXMaxParams()
 
 
 

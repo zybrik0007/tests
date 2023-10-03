@@ -6488,7 +6488,7 @@ const exportFile = (agr, str, format) => {
 
     // Имя выходного файла — системное имя. Заголовок — Не добавлять заголовок.
     const systemNameNoHead = () => describe(`Подразделение. Экспорт. ${format}. Имя выходного файла — системное имя. 
-        Заголовок — Не добавлять заголовок. ${str}.`, () => {
+    Заголовок — Не добавлять заголовок. ${str}.`, () => {
 
         const params = {
             name: format === 'XLSX' ? 'division.xlsx' : 'division.csv',

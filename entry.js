@@ -3,7 +3,7 @@ module.exports = {
     headless: process.env.a102headless ? JSON.parse(process.env.a102headless) : false,
     width: Number(process.env.a113width) || 1920,
     height: Number(process.env.a114height) || 1080,
-    address: process.env.a101address || 'http://172.17.0.50:8080/',
+    address: process.env.a101address || 'http://localhost/',
     user: process.env.a110user || 'Администратор',
     login: process.env.a111admLogin || 'adm',
     password: process.env.a112admPassword || 'admin1',
