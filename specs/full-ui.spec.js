@@ -1,20 +1,56 @@
 //const {describe} = require('mocha')
-const tests = require('../ui/src/handlers/module-specs')
+const tests = require('../ui/src/handlers/module-specs').positionUi
 
-//tests.divisionUi.import.importXLSXMinParams();
-//tests.divisionUi.import.importXLSMinParams();
-//tests.divisionUi.import.importXLSXMaxParams();
-//tests.divisionUi.import.importXLSXMaxParamsNoName();
-//tests.divisionUi.import.importDuplicateOneLevel();
-//tests.divisionUi.import.importDuplicateTwoLevel();
-//tests.divisionUi.import.importProgression()
-//tests.divisionUi.main();
-//tests.divisionUi.printTree.printTree()
-//tests.divisionUi.main();
-//tests.additionalDataUi.staff.main()
-//tests.additionalDataUi.staff.add.typeSelectDeleteBox()
-//tests.additionalDataUi.visitor.main()
-tests.divisionUi.import.importXLSXMaxParams()
+// Отображение
+//tests.display();
+
+// Добавление
+//tests.add.addMinParams()
+//tests.add.addMaxParams()
+//tests.add.addNoParams()
+//tests.add.addNoName()
+//tests.add.addDuplicate()
+
+// Редактирвоание
+//tests.edit.editMinParams()
+//tests.edit.editMaxParams()
+//tests.edit.editAllParams()
+//tests.edit.editDuplicate()
+
+// Удаление
+tests.delete.deleteOne()
+tests.delete.deleteTwo()
+
+// Печать
+tests.print()
+
+//Экспорт
+tests.export.xlsxNoHeaderSystem()
+tests.export.xlsxHeaderSystem()
+tests.export.xlsxHeaderNameSystem()
+tests.export.xlsxNoHeaderName()
+tests.export.xlsxHeaderName()
+tests.export.xlsxHeaderNameName()
+tests.export.csvSystem()
+tests.export.csvName()
+
+// Импорт
+tests.import.importXLSX()
+tests.import.importXLS()
+tests.import.importXLSXNoNameFile()
+tests.import.importXLSXPartly()
+
+//Фильтр Поиск
+tests.filterSearch()
+
+// Тесты сортировки по столбцам
+tests.sort()
+
+// Тесты проверки отображений записей и перехода по страницам
+tests.footer()
+
+
+
 
 
 

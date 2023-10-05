@@ -7,7 +7,6 @@ console.log = () => function () {};
 JSON.parse(process.env.b001divisionUiDisplay) ? tests.display() : '';
 
 // Добавление
-
 JSON.parse(process.env.b002divisionUiAddAddMinParams) ? tests.add.addMinParams() : '';
 JSON.parse(process.env.b003divisionUiAddAddMaxParams) ? tests.add.addMaxParams() : '';
 JSON.parse(process.env.b004divisionUiAddAddFormsMaxParams) ? tests.add.addFormsMaxParams() : '';

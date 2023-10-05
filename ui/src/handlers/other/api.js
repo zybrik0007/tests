@@ -702,16 +702,12 @@ const getPosition= async (token) => {
 // Удаление должности
 const deletePosition = async (array, token) => {
     const promises = array.map(item => prRequest({
-        method: 'post',
+        method: 'delete',
         url: entry.address + 'api/positions/' + item,
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
             Authorization: `Bearer ${token}`
-        },
-        body: {
-            "is_removed": 1
-        },
-        json: true
+        }
     }));
 
     const deleted = await Promise.all(promises);
@@ -760,7 +756,7 @@ const rebase = async () => {
         })
     };
 
-    return await promise()
+    return await promise();
 
 };
 

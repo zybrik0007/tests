@@ -56,10 +56,22 @@ const deleteVisitor = () => it('Удаление посетителей', async 
         api.deleteStaff);
 });
 
+// Удаление должностей
+const deletePosition= () => it('Удаление должностей', async () => {
+    const cook = await page.base.getCookie('token');
+    const get = await api.getPosition(cook.text);
+    console.log('get', get)
+    const filter = get.text.map(item => item['id']);
+    await dec.simple(api.deletePosition,
+        [filter, cook.text],
+        api.deletePosition);
+});
+
 module.exports = {
     deleteDivision,
     deleteAccess,
     deleteSchedule,
     deleteStaff,
-    deleteVisitor
+    deleteVisitor,
+    deletePosition,
 }
