@@ -54,9 +54,12 @@ const deletePosition = () => describe('Удаление должностей', a
 //Отображение первичное
 const display = () => describe('Отображение страницы "Должности".', () => {
 
+    bef();
+    aft();
+
     describe('Общие проверки', () => {
-        bef()
-        aft()
+        bef();
+        aft();
 
         it('Отображение "title", "url"', async () => await dec.simple(page.position.init,
             [entry.max],
@@ -153,8 +156,8 @@ const display = () => describe('Отображение страницы "Дол�
 
     describe('Проверка формы добавления должности', () => {
 
-        bef()
-        aft()
+        bef();
+        aft();
 
         it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
             [but.add, entry.max],
@@ -225,9 +228,8 @@ const add = () => {
 
         describe('Добавление', () => {
 
-            bef()
-
-            aft()
+            bef();
+            aft();
 
             it('Нажатие кнопки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
                 [but.add, entry.max],
@@ -253,9 +255,8 @@ const add = () => {
 
         describe('Проверка таблицы', () => {
 
-            bef()
-
-            aft()
+            bef();
+            aft();
 
             it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
                 [1, entry.max],

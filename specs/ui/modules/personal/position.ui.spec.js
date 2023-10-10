@@ -4,7 +4,8 @@ const closeBrowser = require('../../../../ui/src/handlers/other/closeBrowser');
 console.log = () => function () {};
 
 // Отображение
-JSON.parse(process.env.b001positionUiDusplay) ? tests.display() : '';
+JSON.parse(process.env.b001positionUiDisplay) ? tests.display() : '';
+
 
 // Добавление
 JSON.parse(process.env.b002positionUiAddMinParams) ? tests.add.addMinParams() : '';
