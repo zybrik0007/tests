@@ -22,6 +22,7 @@ JSON.parse(process.env.b010positionUiEditDuplicate) ? tests.edit.editDuplicate()
 // Удаление
 JSON.parse(process.env.b011positionUiDeleteOne) ? tests.delete.deleteOne() : '';
 JSON.parse(process.env.b012positionUiDeleteTwo) ? tests.delete.deleteTwo() : '';
+JSON.parse(process.env.b012qpositionUiDeleteStaff) ? tests.delete.deleteStaff() : '';
 
 // Печать
 JSON.parse(process.env.b013positionUiPrint) ? tests.print() : '';

@@ -985,38 +985,121 @@ const remove = () => {
     const deleteTwo = () => describe('Должности. Удаление. Удаление две должности.', () => {
 
         const params = {
-            division1: 'SeleniumPositionRemoveName1',
-            division2: 'SeleniumPositionRemoveName2'
+            position1: 'SeleniumPositionRemoveName1',
+            position2: 'SeleniumPositionRemoveName2'
         }
 
         describe('API - добавление', () => {
             bef();
             aft();
-            addPosition(params.division1, '');
-            addPosition(params.division2, '');
+            addPosition(params.position1, '');
+            addPosition(params.position2, '');
         });
 
         describe('Удаление должности', () => {
 
-            bef()
-
-            aft()
+            bef();
+            aft();
 
             it('Отображение 2 строки в таблице', async () => await dec.simple(el.table.size,
                 [2, entry.max],
-                el.table))
+                el.table));
 
             it('Нажатие "Control" и по превой строке',
                 async () => await dec.simple(el.table.controlStrHandler,
                     [1, entry.max],
-                    el.table))
+                    el.table));
 
             it('Нажатие "Control" и по второй строке',
                 async () => await dec.simple(el.table.controlStrHandler,
                     [2, entry.max],
-                    el.table))
+                    el.table));
 
             it('Нажатие кнопки удаления', async () => await dec.simple(el.butIcBefore.handler,
+                [but.delete, entry.max],
+                el.butIcBefore));
+
+            it('Отображение модального окна удаления должности',
+                async () => await dec.simple(el.modalConfirm.positionDelete.init,
+                    [entry.max],
+                    el.modalConfirm.positionDelete));
+
+            it('Нажатие кнопки "Удалить"', async () => await dec.simple(el.modalConfirm.positionDelete.buttonHandler,
+                ['Удалить', entry.max],
+                el.modalConfirm.positionDelete));
+
+            it('Отображение сообщения "Должность удалена"', async () => await dec.simple(el.success.success,
+                ['Должность удалена', entry.max],
+                el.success));
+
+            it('Отсутствие модального окна удаления должности',
+                async () => await dec.simple(el.modalConfirm.positionDelete.initClose,
+                    [entry.max],
+                    el.modalConfirm.positionDelete));
+        });
+
+        describe('Проверка таблицы', () => {
+            bef();
+            aft();
+
+            it('Отображение 0 строк в таблице', async () => await dec.simple(el.table.size,
+                [0, entry.max],
+                el.table));
+        });
+
+        deletePosition();
+    });
+
+    const deleteStaff = () => describe('Должности. Удаление. Удаление должности, добавленной сотруднику.', () => {
+
+        const params = {
+            position: 'SeleniumPositionRemoveName1',
+            error: 'Должность используется и не может быть удалена',
+            fio: {
+                lastName: 'staff',
+                firstName: '1',
+                middleName: '' ,
+                divisionId: '',
+                date: '2001-01-01'
+            },
+        }
+
+        describe('API - добавление', () => {
+            bef();
+            aft();
+            addPosition(params.position);
+            it('Добавление сотрудника', async () => {
+                const cook = await page.base.getCookie('token');
+                const get = await api.getPosition(cook.text);
+                const filter = get.text.filter(item => item.name === params.position)[0]['id'];
+                const obj = {
+                    "last_name": params.fio.lastName,
+                    "first_name": params.fio.firstName,
+                    "middle_name": params.fio.middleName,
+                    "division": 1,
+                    "position": filter,
+                    "hiring_date": params.fio.date,
+                };
+                await dec.simple(api.putStaff,
+                    [[obj], cook.text],
+                    api.putStaff);
+            });
+        });
+
+        describe('Попытка удаление должности', () => {
+
+            bef();
+            aft();
+
+            it('Отображение 1 строки в таблице', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table))
+
+            it('Нажатие по первой строке', async () => await dec.simple(el.table.strHandler,
+                [1, entry.max],
+                el.table))
+
+            it('Нажите кнопки удаления', async () => await dec.simple(el.butIcBefore.handler,
                 [but.delete, entry.max],
                 el.butIcBefore))
 
@@ -1029,9 +1112,9 @@ const remove = () => {
                 ['Удалить', entry.max],
                 el.modalConfirm.positionDelete))
 
-            it('Отображение сообщения "Должность удалена"', async () => await dec.simple(el.success.success,
-                ['Должность удалена', entry.max],
-                el.success))
+            it('Отображение ошибки', async () => await dec.simple(el.error.error,
+                [params.error, entry.max],
+                el.error));
 
             it('Отсутствие модального окна удаления должности',
                 async () => await dec.simple(el.modalConfirm.positionDelete.initClose,
@@ -1040,21 +1123,37 @@ const remove = () => {
         });
 
         describe('Проверка таблицы', () => {
-            bef();
 
+            bef();
             aft();
 
-            it('Отображение 0 строк в таблице', async () => await dec.simple(el.table.size,
-                [0, entry.max],
+            it('Отображение в таблице 1 строка', async () => await dec.simple(el.table.size,
+                [1, entry.max],
+                el.table));
+
+            it('Поле "Должности"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Должности', 1, 1, entry.max],
+                params.position,
+                el.table));
+
+            it('Поле "Описание"', async () => await dec.simpleText(el.table.cellGetText,
+                ['Описание', 1, 2, entry.max],
+                '',
                 el.table));
         });
 
-        deletePosition();
+        describe('Удаление тестовых данных', () => {
+            aft();
+            bef();
+            deleteData.deleteStaff();
+            deleteData.deletePosition();
+        });
     });
 
     return {
         deleteOne,
         deleteTwo,
+        deleteStaff,
     }
 };
 

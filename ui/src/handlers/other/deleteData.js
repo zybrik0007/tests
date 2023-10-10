@@ -67,6 +67,47 @@ const deletePosition= () => it('Удаление должностей', async ()
         api.deletePosition);
 });
 
+// Удаление временных зон
+const deleteTZ = () => it('Удаление временных зон', async () => {
+    const cook = await page.base.getCookie('token');
+    const tz = await api.getAccessSchedules({type: 1}, cook.text);
+    const filterTZ = JSON.parse(tz.text).intervals.filter(item => item.is_const !== 1);
+    await dec.simple(api.deleteAccessSchedule,
+        [filterTZ, cook.text],
+        api.deleteAccessSchedule);
+});
+
+// Удаление недельных графиков
+const deleteW = () =>  it('Удаление недельных графиков', async () => {
+    const cook = await page.base.getCookie('token');
+    const w = await api.getAccessSchedules({type: 2}, cook.text);
+    const filterW = JSON.parse(w.text);
+    await dec.simple(api.deleteAccessSchedule,
+        [filterW, cook.text],
+        api.deleteAccessSchedule);
+});
+
+// Удаление скользящих посуточных графиков
+const deleteSTZ = () => it('Удаление скользящих посуточных графиков', async () => {
+    const cook = await page.base.getCookie('token');
+    const stz = await api.getAccessSchedules({type: 3}, cook.text);
+    const filterSTZ = JSON.parse(stz.text).filter(item => item.is_const !== 1);
+    await dec.simple(api.deleteAccessSchedule,
+        [filterSTZ, cook.text],
+        api.deleteAccessSchedule);
+});
+
+// Удаление скользящих понедельных графиков
+const deleteSW = () => it('Удаление скользящих понедельных графиков', async () => {
+    const cook = await page.base.getCookie('token');
+    const sw = await api.getAccessSchedules({type: 4}, cook.text);
+    const filterSW = JSON.parse(sw.text).filter(item => item.is_const !== 1);
+    await dec.simple(api.deleteAccessSchedule,
+        [filterSW, cook.text],
+        api.deleteAccessSchedule);
+});
+
+
 module.exports = {
     deleteDivision,
     deleteAccess,
@@ -74,4 +115,8 @@ module.exports = {
     deleteStaff,
     deleteVisitor,
     deletePosition,
+    deleteTZ,
+    deleteW,
+    deleteSTZ,
+    deleteSW
 }
