@@ -2,10 +2,9 @@ const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/p
 const closeBrowser = require('../../../../ui/src/handlers/other/closeBrowser');
 
 console.log = () => function () {};
-tests.display()
-// Отображение
-/*JSON.parse(process.env.b001positionUiDisplay) ? tests.display() : '';
 
+// Отображение
+JSON.parse(process.env.b001positionUiDisplay) ? tests.display() : '';
 
 // Добавление
 JSON.parse(process.env.b002positionUiAddMinParams) ? tests.add.addMinParams() : '';
@@ -51,7 +50,7 @@ JSON.parse(process.env.b026positionUiFilterSearch) ? tests.filterSearch() : '';
 JSON.parse(process.env.b027positionUiSort) ? tests.sort() : '';
 
 // Тесты проверки отображений записей и перехода по страницам
-JSON.parse(process.env.b028positionUiFooter) ? tests.footer() : '';*/
+JSON.parse(process.env.b028positionUiFooter) ? tests.footer() : '';
 
 closeBrowser();
 
