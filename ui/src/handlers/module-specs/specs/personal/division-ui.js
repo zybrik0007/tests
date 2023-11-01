@@ -10476,7 +10476,8 @@ const importFile = () => {
 
     // Импорт с дублированием подразделения 1 уровня к подразделению 2 уровню
     const importDuplicateTwoLevel = () => describe('Подразделение. Импорт. Импорт с дублированием подразделения ' +
-        '1 уровня к подразделению 2 уровня из xlsx файла.', () => {
+        '2 уровня к подразделению 2 уровня в одном подразделении из xlsx файла.', () => {
+
         const params = {
             division1: {
                 name: 'importDuplicateTwoLevelName1',
@@ -10490,7 +10491,6 @@ const importFile = () => {
         describe('API - добавление', () => {
             bef();
             aft();
-
             describe('Добавление подразделения 1 уровня', () => {
                 const obj = {
                     parent_id: 0,
@@ -10516,7 +10516,6 @@ const importFile = () => {
         describe('Импорт', () => {
 
             bef();
-
             aft();
 
             it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,
@@ -10570,7 +10569,7 @@ const importFile = () => {
             bef();
             aft();
 
-            it('Отображние 3 подраздления', async () => await dec.simple(page.division.size,
+            it('Отображние 3 подразделения', async () => await dec.simple(page.division.size,
                 [3, entry.max],
                 page.division));
 
