@@ -91,16 +91,13 @@ const addSchedule = (name, description) => it('Добавление график
 
 // api удаление тестовых данных
 const deleteParams = () => describe('Удаление тестовых данных', () => {
-
     aft();
     bef();
-
     deleteData.deleteAccess();
     deleteData.deleteSchedule();
     deleteData.deleteStaff();
     deleteData.deleteVisitor();
     deleteData.deleteDivision();
-
 });
 
 //Отображение первичное
@@ -1842,7 +1839,7 @@ const add = () => {
                 bef();
                 aft();
 
-                it('Отображение 2 подраздление', async () => await dec.simple(page.division.size,
+                it('Отображение 2 подразделения', async () => await dec.simple(page.division.size,
                     [2, entry.max],
                     page.division));
 
@@ -1853,7 +1850,7 @@ const add = () => {
 
     // Попытка дублирования корневого подразделения к дочернему.
     const addDuplicateTwoLevel = () => describe('Подразделение. Добавление. Попытка дублирования подразделения ' +
-        '1 уровня к подразделению 2 уровня.', () => {
+        '2 уровня к подразделению 2 уровня в одном родительском подразделении.', () => {
 
         const params = {
                 name1: 'addDuplicateTwoLevelName1',
@@ -1888,9 +1885,18 @@ const add = () => {
                 });
             });
 
-        describe('Добавление подразделений', () => {
+        describe('Добавление подразделения', () => {
+
                 bef();
                 aft();
+
+            it('Нажатие по подразделению 1 уровня', async () => await dec.simple(page.division.handler,
+                [[params.name1], entry.max],
+                page.division));
+
+            it('Подразделение 1 уровня выделен', async () => await dec.simple(page.division.selected,
+                [params.name1, entry.max],
+                page.division));
 
                 it('Нажатие кноки "Добавить"', async () => await dec.simple(el.butIcBefore.handler,
                     [but.add, entry.max],
@@ -4680,131 +4686,130 @@ const edit = () => {
 
     // Попытка дублирования родительского подразделения к дочернему.
     const editDuplicateTwoLevel = () => describe('Подразделение. Редактирование. Попытка дублирования подразделения ' +
-        '1 уровня к подразделению 2 уровня', () => {
+        '2 уровня к подразделению 2 уровня в одном подразделении.', () => {
 
         const params = {
-                name1: 'editDuplicateTwoLevelName1',
-                name2: 'editDuplicateTwoLevelName2',
-                name3: 'editDuplicateTwoLevelName3',
-                error: 'Такое название уже используется'
-            };
+            name1: 'editDuplicateTwoLevelName1',
+            name2: 'editDuplicateTwoLevelName2',
+            name3: 'editDuplicateTwoLevelName3',
+            error: 'Такое название уже используется'
+        };
 
         describe('API - добавление', () => {
-                bef();
-                aft();
+            bef();
+            aft();
 
-                it('Добавление подразделени 1 уровня - 1', async () => {
-                    const cook = await page.base.getCookie('token');
+            it('Добавление подразделени 1 уровня - 1', async () => {
+                const cook = await page.base.getCookie('token');
 
-                    const obj = {
-                        "parent_id": 0,
-                        "name": params.name1
-                    };
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-                });
-                it('Добавление подразделени 2 уровня - 1', async () => {
-                    const cook = await page.base.getCookie('token');
-                    const getDivision = await api.getDivision(cook.text);
-
-                    const obj = {
-                        "parent_id": getDivision.text[0]['id'],
-                        "name": params.name2
-                    };
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-                });
-                it('Добавление подразделени 1 уровня - 2', async () => {
-                    const cook = await page.base.getCookie('token');
-
-                    const obj = {
-                        "parent_id": 0,
-                        "name": params.name3
-                    };
-                    await dec.simple(api.putDivision,
-                        [[obj], cook.text],
-                        api.putDivision);
-                });
+                const obj = {
+                    "parent_id": 0,
+                    "name": params.name1
+                };
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
             });
+            it('Добавление подразделени 2 уровня - 1', async () => {
+                const cook = await page.base.getCookie('token');
+                const getDivision = await api.getDivision(cook.text);
 
-        describe('Попытка редактирование подразделения 1 уровня - 2', () => {
-                bef();
-                aft();
+                const obj = {
+                    "parent_id": getDivision.text[0]['id'],
+                    "name": params.name2
+                };
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
+            });
+            it('Добавление подразделени 2 уровня - 1', async () => {
+                const cook = await page.base.getCookie('token');
+                const getDivision = await api.getDivision(cook.text);
 
-                it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
-                    [[params.name3], entry.max],
-                    page.division));
+                const obj = {
+                    "parent_id": getDivision.text[0]['id'],
+                    "name": params.name3
+                };
+                await dec.simple(api.putDivision,
+                    [[obj], cook.text],
+                    api.putDivision);
+            });
+        });
 
-                it('Подразделение выделено', async () => await dec.simple(page.division.selected,
-                    [params.name3, entry.max],
-                    page.division));
+        describe('Попытка редактирование подразделения 2 уровня - 2', () => {
+            bef();
+            aft();
 
-                it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
-                    [but.edit, entry.max],
-                    el.butIcBefore));
+            it('Нажатие по подразделению', async () => await dec.simple(page.division.handler,
+                [[params.name1, params.name3], entry.max],
+                page.division));
 
-                it('Отображение модального окна "Редактировать подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.init,
-                        [entry.max],
-                        el.modal.divisionEdit));
+            it('Подразделение выделено', async () => await dec.simple(page.division.selected,
+                [params.name3, entry.max],
+                page.division));
 
-                it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
-                    ['Подразделение', '', entry.max],
+            it('Нажатие кноки "Редактировать"', async () => await dec.simple(el.butIcBefore.handler,
+                [but.edit, entry.max],
+                el.butIcBefore));
+
+            it('Отображение модального окна "Редактировать подразделение"',
+                async () => await  dec.simple(el.modal.divisionEdit.init,
+                    [entry.max],
                     el.modal.divisionEdit));
 
-                it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
-                    ['Подразделение', '', params.name2, entry.max],
+            it('Удаление "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputBackSpace,
+                ['Подразделение', '', entry.max],
+                el.modal.divisionEdit));
+
+            it('Ввод "Подразделение"', async () => await dec.simple(el.modal.divisionEdit.inputSendKeys,
+                ['Подразделение', '', params.name2, entry.max],
+                el.modal.divisionEdit));
+
+            it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
+                ["Сохранить", entry.max],
+                el.button));
+
+            it('Отображение ошибки "Такое название уже используется"',
+                async () => await dec.simple(el.error.error,
+                    [params.error, entry.max],
+                    el.error));
+
+            it('Модального окно "Редактировать подразделение" не закрыто',
+                async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
+                    [entry.min],
                     el.modal.divisionEdit));
 
-                it('Нажатие кнопки "Сохранить"', async () => await dec.simple(el.button.handler,
-                    ["Сохранить", entry.max],
-                    el.button));
+            it('Нажатие кнопки закрытия модального окна',
+                async () => await dec.simple(el.modal.divisionEdit.closeHandler,
+                    [entry.max],
+                    el.modal.divisionEdit));
 
-                it('Отображение ошибки "Такое название уже используется"',
-                    async () => await dec.simple(el.error.error,
-                        [params.error, entry.max],
-                        el.error));
-
-                it('Модального окно "Редактировать подразделение" не закрыто',
-                    async () => await  dec.simpleFalse(el.modal.divisionEdit.initClose,
-                        [entry.min],
-                        el.modal.divisionEdit));
-
-                it('Нажатие кнопки закрытия модального окна',
-                    async () => await dec.simple(el.modal.divisionEdit.closeHandler,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-                it('Отсутствие модального окна "Добавить подразделение"',
-                    async () => await  dec.simple(el.modal.divisionEdit.initClose,
-                        [entry.max],
-                        el.modal.divisionEdit));
-
-            });
+            it('Отсутствие модального окна "Добавить подразделение"',
+                async () => await  dec.simple(el.modal.divisionEdit.initClose,
+                    [entry.max],
+                    el.modal.divisionEdit));
+        });
 
         describe('Проверка списка подразделений', () => {
+            bef();
+            aft();
 
-                bef();
-                aft();
+            it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
+                [4, entry.max],
+                page.division));
 
-                it('Отображение 4 подраздление', async () => await dec.simple(page.division.size,
-                    [4, entry.max],
-                    page.division));
+            it('Отображение добавленного подразделения 1 уровня - 1', async ()=> await dec.simple(page.division.division,
+                [[params.name1], entry.max],
+                page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 1', async ()=> await dec.simple(page.division.division,
-                    [[params.name1], entry.max],
-                    page.division));
+            it('Отображение добавленного подразделения 2 уровня - 1', async ()=> await dec.simple(page.division.division,
+                [[params.name1, params.name2], entry.max],
+                page.division));
 
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
-                    [[params.name1, params.name2], entry.max],
-                    page.division));
-
-                it('Отображение добавленного подразделения 1 уровня - 2', async ()=> await dec.simple(page.division.division,
-                    [[params.name3], entry.max],
-                    page.division));
-            });
+            it('Отображение добавленного подразделения 2 уровня - 2', async ()=> await dec.simple(page.division.division,
+                [[params.name1, params.name3], entry.max],
+                page.division));
+        });
 
         deleteParams();
     });
