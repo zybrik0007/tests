@@ -13,8 +13,6 @@ class PrintTable extends Modal {
             `Печатная таблица. Заглавие ${head} c номером ${cell}.`,
             timeout)
 
-        console.log('headText: ', headText)
-
         if(headText.text !== head) {
             return {
                 error: true,
@@ -22,7 +20,6 @@ class PrintTable extends Modal {
             }
         }
 
-        console.log(elements.modalPrintColumn(this.id, str, cell))
         return await this.xpathGetText(elements.modalPrintColumn(this.id, str, cell),
             `Печатная таблица. Значение столбца ${head}.`,
             timeout)

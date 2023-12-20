@@ -27,6 +27,23 @@ module.exports = {
     accessScheduleUrl: address + 'passoffice/access/accessschedules',
     accessAddScheduleUrl: address + 'passoffice/access/schedule/new',
     accessEditScheduleUrl: address + 'passoffice/access/schedule/edit/',
+    accessEditScheduleHolidayUrl: address + 'passoffice/access/schedule/edit/3',
+
+    //Отчет о проходах
+    premiseAccessAllUrl: address + 'controlaccess/premisesaccess/all',
+    premiseAccessVisitorUrl: address + 'controlaccess/premisesaccess/visitor',
+    premiseAccessStaffUrl: address + 'controlaccess/premisesaccess/staff',
+    verificationJournalUrl: address + 'controlaccess/verificationjournal',
+    whereAboutsAllUrl: address + 'controlaccess/whereabouts/all',
+    whereAboutsStaffUrl: address + 'controlaccess/whereabouts/staff',
+    whereAboutsVisitorUrl: address + 'controlaccess/whereabouts/visitor',
+    premisesAccessReportAllUrl: address + 'controlaccess/premisesaccessreport/all',
+    premisesAccessReportStaffUrl: address + 'controlaccess/premisesaccessreport/staff',
+    premisesAccessReportVisitorUrl: address + 'controlaccess/premisesaccessreport/visitor',
+    identifiersAllUrl: address + 'controlaccess/identifiers/all',
+    identifiersStaffUrl: address + 'controlaccess/identifiers/staff',
+    identifiersVisitorUrl: address + 'controlaccess/identifiers/visitor',
+
 
     //Администрирование
     roomUrl: address + 'administration/premisesconfiguration/rooms',

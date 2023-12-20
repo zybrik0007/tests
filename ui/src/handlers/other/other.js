@@ -168,14 +168,8 @@ const footer = (nameHead, nameCell, str, cell, bef, aft) => {
 
     describe('Проверка настройки количества 20 страниц ', () => {
 
-        before('Вход и открытие подраздела "Должности"', async () => {
-            await dec.auth(entry.customLogin, entry.customPassword)
-            await dec.simple(el.section.handler, [sec.per, entry.max], el.section)
-            await dec.simple(el.subsection.handler, [sub.per.position, entry.max], el.subsection)
-            await dec.simple(page.position.init, [entry.max], page.position)
-        })
-
-        after('Выход', async () => await dec.exit())
+        bef();
+        aft();
 
         describe('Отображения страниц', () => {
 
@@ -241,9 +235,8 @@ const footer = (nameHead, nameCell, str, cell, bef, aft) => {
 
     describe('Проверка перехода по страницам', () => {
 
-        bef()
-
-        aft()
+        bef();
+        aft();
 
         describe('Сортировка тестируемого столбца столбца по возрастанию', () => {
 

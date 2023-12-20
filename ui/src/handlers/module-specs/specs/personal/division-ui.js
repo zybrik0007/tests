@@ -9954,7 +9954,7 @@ const importFile = () => {
             message: 'Импорт завершен 2 записей из 2 не было импортировано',
             file: [
                 {
-                    'Отчет "Не импортированные данные"': 'Подразделение',
+                    'Отчет "Неимпортированные данные"': 'Подразделение',
                     __EMPTY: 'Телефон',
                     __EMPTY_1: 'Описание',
                     __EMPTY_2: 'Шаблон доступа для сотрудников',
@@ -9964,7 +9964,7 @@ const importFile = () => {
                     __EMPTY_6: 'Ошибка'
                 },
                 {
-                    'Отчет "Не импортированные данные"': '',
+                    'Отчет "Неимпортированные данные"': '',
                     __EMPTY: 'importXLSXMaxParamsPhone1',
                     __EMPTY_1: 'importXLSXMaxParamsDescription1',
                     __EMPTY_2: 'template11;template12',
@@ -9974,7 +9974,7 @@ const importFile = () => {
                     __EMPTY_6: 'Отсутствует обязательное поле Подразделение'
                 },
                 {
-                    'Отчет "Не импортированные данные"': 'importXLSXMaxParamsName1/importXLSXMaxParamsName2',
+                    'Отчет "Неимпортированные данные"': 'importXLSXMaxParamsName1/importXLSXMaxParamsName2',
                     __EMPTY: 'importXLSXMaxParamsPhone2',
                     __EMPTY_1: 'importXLSXMaxParamsDescription2',
                     __EMPTY_2: 'template21;template22;',
@@ -10004,7 +10004,6 @@ const importFile = () => {
         describe('Импорт', () => {
 
             bef();
-
             aft();
 
             it('Нажатие кнопки "Меню"', async () => await dec.simple(el.butIcBefore.handler,

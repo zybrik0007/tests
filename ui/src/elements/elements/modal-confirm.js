@@ -97,8 +97,6 @@ class ModalConfirm extends BasePage {
             timeout)
     }
 
-
-
 }
 
 module.exports = ModalConfirm

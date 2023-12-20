@@ -17,16 +17,16 @@ class SelectMulti extends BasePage {
     }
 
     //Получение текста выбранного значения по номеру
-    async getText(title, val, timeout) {
-        return await this.xpathGetText(element.selectMultiVal(title, val),
-            `Получение значения select ${title} под счету ${val}`,
-            timeout)
+    async getText(title, value, timeout) {
+        return await this.xpathGetText(element.selectMultiVal(title, value),
+            `Получение значения select ${title} под счету ${value}`,
+            timeout);
     }
 
     //Удаление выбранного значения по номеру
-    async delete(title, val, timeout) {
-        return await this.xpathHandler(element.selectMultiValDelete(title, val),
-            `Удаление значнеие select ${title} под счету ${val}`,
+    async delete(title, value, timeout) {
+        return await this.xpathHandler(element.selectMultiValDelete(title, value),
+            `Удаление значнеие select ${title} под счету ${value}`,
             timeout)
     }
 
@@ -52,12 +52,12 @@ class SelectMulti extends BasePage {
     }
 
     //Нажатие иконки menu
-    async iconMenu(title, placeholder, timeout) {
+    async iconMenu(title, timeout) {
         return await this.xpathHandler(element.selectMultiIcon(title, 'Icon--menu'),
-            `Нажатие по иконке menu в select ${title ? title : placeholder}`,
+            `Нажатие по иконке menu в select ${title}`,
             timeout)}
 
-    async iconXpandSelected(title, text, timeout) {
+    async iconXpandSelected(title, value, timeout) {
         const iconHandler = await this.xpathHandler(element.selectMultiIcon(title,'Icon--expand_more'),
             `Нажатие по иконке xpand в select ${title}.`,
             timeout);
@@ -73,7 +73,7 @@ class SelectMulti extends BasePage {
             return xpandOpen
         }
 
-        const xpandSelect = await xpand.handler(text, timeout);
+        const xpandSelect = await xpand.handler(value, timeout);
         if(xpandSelect.error) {
             return xpandSelect
         }
@@ -87,7 +87,7 @@ class SelectMulti extends BasePage {
 
         return {
             error: false,
-            description: `В "${title}" выбрано значение ${text}`,
+            description: `В "${title}" выбрано значение ${value}`,
         }
     }
 

@@ -37,7 +37,6 @@ class ButtonIconBefore extends BasePage {
                 description: `Ошибка. Кнопка "${icon.description}" неавктивна, нажатие невозможно.`,
             }
         }
-
         return await this.xpathHandler(element.buttonIconBeforeActive(icon.name),
             `Нажатие по кнопке ${icon.description}`,
             timeout)

@@ -97,6 +97,10 @@ module.exports = {
         `document.querySelector('.weeks-right-box > .list > pw-group').scrollBy(${x}, ${y});`,
     passAccessScheduleChangeSWeekSelectedScroll: (x, y) =>
         `document.querySelector('.wide > div > .list > pw-group').scrollBy(${x}, ${y})`,
+    passAccessScheduleHolidayDate: (event) => `//pw-group-cell[${event}]/div/div/span[1]`,
+    passAccessScheduleHolidayType: (event) => `//pw-group-cell[${event}]/div/div/span[2]`,
+    passAccessScheduleHolidayDelete: (event) => `//pw-group-cell[${event}]//pw-button`,
+    passAccessScheduleHoliday: '//pw-group-cell',
 
 
     //div[contains(@class, 'intervals-block')][${schedule}]/div[@class="timeline"]/div[@class="interval"][${interval}]/input[${input}]
@@ -202,6 +206,8 @@ module.exports = {
     //select-xpand
     selectXpand: '//pw-select-expand',
     selectXpandItem: (event) => `//pw-select-expand//*[normalize-space(.)="${event}"]`,
+    selectScrollTop: (x, y) =>
+        `document.querySelector("pw-select-expand > div > div > ng-scrollbar > div > div > div").scrollBy(${x}, ${y});`,
 
     //button
     button: (event) => `//pw-button//span[normalize-space(.)="${event}"]/parent::*/parent::*`,
@@ -209,6 +215,9 @@ module.exports = {
     /parent::*/parent::*`,
     buttonDisabled: (event) => `//pw-button[contains(@class, "disabled")]//span[normalize-space(.)="${event}"]
     /parent::*/parent::*`,
+
+    //button-icon
+    buttonIcon: (event) => `//pw-button//pw-icon/div[contains(@class, "${event}")]`,
 
     //button-icon-before
     buttonIconBefore: (event) => `//pw-button[@addbefore="${event}"]`,
@@ -293,6 +302,17 @@ module.exports = {
     modalButtonActive: (id, text) => `//pw-modal[@id="${id}"]//pw-button[not(contains(@class, "disabled"))]
     //span[normalize-space(.)="${text}"]/parent::*/parent::*`,
 
+    //dialog
+    dialog: '//pw-dialog',
+    dialogTitle: (event) => `//*[contains(@class, "pwDialog__header-title") and normalize-space(.)="${event}"]`,
+    dialogButClose: `//pw-dialog//pw-icon[@parsevalue="navigation_close"]`,
+    dialogButton: (text) => `//pw-dialog//pw-button//span[normalize-space(.)="${text}"]
+    /parent::*/parent::*`,
+    dialogButtonDisabled: (text) => `//pw-dialog//pw-button[contains(@class, "disabled")]
+    //span[normalize-space(.)="${text}"]/parent::*/parent::*`,
+    dialogButtonActive: (text) => `//pw-dialog//pw-button[not(contains(@class, "disabled"))]
+    //span[normalize-space(.)="${text}"]/parent::*/parent::*`,
+
     //modal all
     modalSelectAccessZone: (x, y) => `document.querySelector(".time-zones-wrapper").scrollBy(${x}, ${y});`,
 
@@ -359,7 +379,7 @@ module.exports = {
     //div[contains(@class, "pwCalendar-days-day")]/div[normalize-space(.)="${event}"]`,
     datepickerDay: (event) => `//div[contains(@class, "pwCalendar-days-day--selected")]
     /div[normalize-space(.)="${event}"]`,
-    datepickerApply: `//pw-datepicker[contains(@style, "block")]/div/div/div/div/pw-button`,
+    datepickerApply: `//pw-datepicker//pw-button[@addbefore="unsorted_check"]`,
 
     //simple-cell
     simpleCell: (event) => `//*[contains(@class, "pwSimpleCell") and normalize-space(.)="${event}"]`,
@@ -383,5 +403,8 @@ module.exports = {
     /*[normalize-space(.)="${event}"]`,
     menuNavigationItemDisabled: (event) => `//pw-action-sheet-item[contains(@class, "disabled")]
     /*[normalize-space(.)="${event}"]`,
+
+    // pwTreeNode
+    pwTreeNode: (event) => `//*[contains(@class, "pwTreeNode--node")]//*[normalize-space(.)="${event}"]`
 
 }

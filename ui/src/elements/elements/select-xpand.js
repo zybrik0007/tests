@@ -10,7 +10,7 @@ class SelectXpand extends BasePage {
 
     //Отображения элемента списка
     async xpand(timeout) {
-        await this.loading(300);
+        await this.loading(1000);
         return await this.xpathElement(elements.selectXpand,
             'Отображения выборки для select',
             timeout);
@@ -21,7 +21,7 @@ class SelectXpand extends BasePage {
         const close = await this.xpathNoElement(elements.selectXpand,
             'Отсутствие отображения выборки для select',
             timeout);
-        await this.loading(300);
+        await this.loading(1000);
         return close;
     }
 
@@ -30,6 +30,13 @@ class SelectXpand extends BasePage {
         return await this.xpathHandler(elements.selectXpandItem(text),
             `Нажатие по значению ${text} в выборке select`,
             timeout);
+    }
+
+    async scrollTop(num) {
+        const scroll = await this.script(elements.passAccessScheduleChangeWeekScroll(0, num),
+            'Скролл в моадальном окне выбора временных зон.');
+        await this.loading(1000);
+        return scroll;
     }
 }
 

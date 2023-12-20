@@ -20,6 +20,13 @@ module.exports = {
     visitorTitle: title + 'Посетители',
     accessTemplatesTitle: title + 'Шаблоны доступа',
 
+    // Контроль доступа
+    premiseAccessTitle: title + 'Отчет о проходах',
+    verificationJournalTitle: title + 'Журнал верификации',
+    whereAboutsTitle: title + 'Местонахождение',
+    premisesAccessReportTitle: title + 'Отчет по доступу в помещения',
+    identifiersTitle: title + 'Выданные идентификаторы',
+
     //Конфигурация
     roomsTitle: title + 'Конфигурация',
     deviceTitle: title + 'Конфигурация',

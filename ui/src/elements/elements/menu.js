@@ -7,6 +7,7 @@ class Menu extends BasePage{
     }
 
     async menu(timeout) {
+        await this.loading(1000);
         return await this.xpathElement(elements.menuNavigation,
             'Отображение меню.',
             timeout)

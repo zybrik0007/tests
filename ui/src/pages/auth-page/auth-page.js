@@ -5,7 +5,6 @@ class AuthPage extends BasePage {
     constructor() {
         super();
     }
-
 }
 
 module.exports = AuthPage

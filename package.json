@@ -6,11 +6,12 @@
   "scripts": {
     "auth.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/auth.ui.spec.js",
     "smoke.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/smoke.ui.spec.js",
+    "license.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/license.ui.spec.js",
     "full.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/full-ui.spec.js",
     "division.ui": "mocha --timeout=60000 -reporter mocha-teamcity-reporter specs/ui/modules/personal/division.ui.spec.js",
     "additional.staff.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.staff.ui.spec.js",
     "additional.visitor.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.visitor.ui.spec.js",
-    "position.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/position.ui.spec.js"
+    "position.ui": "mocha --timeout=60000 specs/ui/modules/personal/position.ui.spec.js"
   },
   "keywords": [
     "js",
@@ -33,6 +34,8 @@
     "fs": "0.0.1-security",
     "lodash": "^4.17.21",
     "mocha-teamcity-reporter": "^4.2.0",
+    "mysql": "^2.18.1",
+    "mysql-async-simple": "^1.0.3",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "selenium-webdriver": "^4.8.1",

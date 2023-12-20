@@ -76,6 +76,7 @@ class File {
     async readNum(file) {
         const readFile = await xlsx.readFile(path.join(entry.download, file))
         const table = readFile.Sheets[readFile.SheetNames[0]];
+        console.log('xlsx.utils.sheet_to_json(table): ', xlsx.utils.sheet_to_json(table))
         return xlsx.utils.sheet_to_json(table);
     }
 

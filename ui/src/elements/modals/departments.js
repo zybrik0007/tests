@@ -119,7 +119,6 @@ class Departments extends Modal {
             timeout)
     }
 
-
 }
 
 module.exports = Departments;

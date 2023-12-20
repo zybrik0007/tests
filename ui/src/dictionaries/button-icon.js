@@ -1,7 +1,7 @@
 module.exports = {
     add: {
         name: 'content_add',
-        description: 'Создать',
+        description: 'Добавить',
     },
     edit: {
         name: 'editor_mode_edit_outline',
@@ -50,4 +50,24 @@ module.exports = {
         name: 'unsorted_refresh_outline',
         description: 'Обновить',
     },
+    action_autorenew: {
+        name: 'action_autorenew',
+        description: 'Обновить данные'
+    },
+    unsorted_sync_outline: {
+        name: 'unsorted_sync_outline',
+        description: 'Обновить данные'
+    },
+    unsorted_delete_outline_android: {
+        name: 'unsorted_delete_outline_android',
+        description: 'Удалить неиспользуемые идентификаторы'
+    },
+    action_done_all: {
+        name: 'action_done_all',
+        description: 'Выделить всё'
+    },
+    action_remove_done: {
+        name: 'action_remove_done',
+        description: 'Убрать выделение у всех'
+    }
 }

@@ -1,39 +1,43 @@
-const Section = require('./elements/section')
-const Subsection = require('./elements/subsection')
-const Tab = require('./elements/tab')
-const Input = require('./elements/input')
-const Select = require('./elements/select')
-const SelectInput = require('./elements/select-input')
-const SelectMulti = require('./elements/select-multi')
-const SelectXpand = require('./elements/select-xpand')
-const Button = require('./elements/button')
-const ButtonIconBefore = require('./elements/button-icon-before')
-const ButtonIconAfter = require('./elements/button-icon-after')
-const PopUpError = require('./elements/pop-up-error')
-const PopUpSuccess = require('./elements/pop-up-success')
-const Datepicker = require('./elements/datepicker')
-const SimpleCell = require('./elements/simple-cell')
-const Table = require('./elements/table')
-const Checkbox = require('./elements/checkbox')
-const Loader = require('./elements/loader')
-const Header = require('./elements/header')
-const FormStatus = require('./elements/form-status')
-const RowEmpty = require('./elements/row-empty')
-const Menu = require('./elements/menu')
-const Footer = require('./elements/footer')
-const File = require('./elements/file')
-const PrintTable = require('./modals/print-table')
-const PlaceholderText = require('./elements/placeholder-text')
+const Section = require('./elements/section');
+const Subsection = require('./elements/subsection');
+const Tab = require('./elements/tab');
+const Input = require('./elements/input');
+const Select = require('./elements/select');
+const SelectInput = require('./elements/select-input');
+const SelectMulti = require('./elements/select-multi');
+const SelectXpand = require('./elements/select-xpand');
+const Button = require('./elements/button');
+const ButtonIconBefore = require('./elements/button-icon-before');
+const ButtonIconAfter = require('./elements/button-icon-after');
+const PopUpError = require('./elements/pop-up-error');
+const PopUpSuccess = require('./elements/pop-up-success');
+const Datepicker = require('./elements/datepicker');
+const SimpleCell = require('./elements/simple-cell');
+const Table = require('./elements/table');
+const Checkbox = require('./elements/checkbox');
+const Loader = require('./elements/loader');
+const Header = require('./elements/header');
+const FormStatus = require('./elements/form-status');
+const RowEmpty = require('./elements/row-empty');
+const Menu = require('./elements/menu');
+const Footer = require('./elements/footer');
+const File = require('./elements/file');
+const PrintTable = require('./modals/print-table');
+const PlaceholderText = require('./elements/placeholder-text');
+const ButtonIcon = require('./elements/button-icon');
+const FilterTreeNode = require('./elements/filter-tree-node');
 
-const Modal = require('./elements/modal')
-const ModalConfirm = require('./elements/modal-confirm')
-const DeviceSearch = require('./modals/search-device')
-const DeviceSelect = require('./modals/device-select')
-const ScheduleSelect = require('./modals/schedule-select')
-const ImportDate = require('./modals/import-data')
-const TimeZoneModalSelect = require('./modals/time-zone-modal-select')
-const AdditionalData = require('./modals/additional-data')
-const Departments = require('./modals/departments')
+const Modal = require('./elements/modal');
+const Dialog = require('./elements/dialog');
+const ModalConfirm = require('./elements/modal-confirm');
+const DeviceSearch = require('./modals/search-device');
+const DeviceSelect = require('./modals/device-select');
+const ScheduleSelect = require('./modals/schedule-select');
+const ImportDate = require('./modals/import-data');
+const TimeZoneModalSelect = require('./modals/time-zone-modal-select');
+const AdditionalData = require('./modals/additional-data');
+const Departments = require('./modals/departments');
+const RemoveIdentifiers = require('./modals/remove-identifiers');
 
 module.exports = {
     section: new Section(),
@@ -61,6 +65,8 @@ module.exports = {
     menu: new Menu(),
     file: new File(),
     placeText: new PlaceholderText(),
+    butIc: new ButtonIcon(),
+    filterTreeNode: new FilterTreeNode(),
 
     modal: {
         //Персонал
@@ -72,12 +78,11 @@ module.exports = {
         additionalDataAdd: new AdditionalData('additional-data-modal', 'Добавить дополнительное поле'),
         additionalDataEdit: new AdditionalData('additional-data-modal', 'Редактировать дополнительное поле'),
 
-
-
         //Бюро пропусков
         visitorAddCard:  new Modal('card-controls', ''),
         scheduleSelect: new ScheduleSelect('schedules', ''),
         timeZoneModalSelect: new TimeZoneModalSelect('timeZonesModalSelect', ''),
+        removeIdentifiers: new RemoveIdentifiers('remove-identifiers', 'Неиспользуемые идентификаторы'),
 
 
         //Конфигурация
@@ -94,6 +99,10 @@ module.exports = {
 
         //Печать таблицы
         printTable: new PrintTable('print-table', ''),
+
+        //Фильтры
+        divisionFilter: new Dialog('Подразделение'),
+        roomsFilter: new Modal('rooms-tree', 'Помещение'),
     },
 
     modalConfirm: {
@@ -128,9 +137,12 @@ module.exports = {
         visitorUnBlock: new ModalConfirm('Подтвердите действие',
             'Вы действительно хотите разблокировать данного посетителя?'),
 
-        /*Подразделения*/
+        // Подразделения
         divisionDelete: new ModalConfirm('Удаление подразделения',
             'Вы действительно хотите удалить подразделение?'),
+
+        accessSchedulesDelete: new ModalConfirm('Удаление шаблона доступа',
+            'Вы действительно хотите удалить этот шаблон доступа?'),
 
         //Администрирование
         //Конфигурация

@@ -35,7 +35,7 @@ class Select extends BasePage {
     async iconXpand(title, value, text, timeout) {
         const iconHandler = await this.xpathHandler(element.selectIcon(title, value, 'Icon--expand_more'),
             `Нажатие по иконке xpand в select ${title ? title : value}`,
-            timeout)
+            timeout);
 
         if(iconHandler.error) {
             return iconHandler
@@ -68,6 +68,13 @@ class Select extends BasePage {
             description: `В "${title ? title: value}" выбрано значение ${text}`,
         }
 
+    }
+
+    //Нажатие по иконки outline в select
+    async iconExpand(title, value, timeout) {
+        return await this.xpathHandler(element.selectIcon(title, value, 'Icon--expand_more'),
+            `Нажатие по иконке menu в select ${title ? title : value}`,
+            timeout)
     }
 
     //Нажатие по иконки outline в select

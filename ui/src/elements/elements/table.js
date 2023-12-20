@@ -84,7 +84,9 @@ class Table extends BasePage {
             }
         }
 
-        return await this.xpathElement(elements.tableCellIcon(str, cell, this.icons.lock), `Отображение иконки "Замок" в строке номер "${str}" и столбце ${cell}`, timeout)
+        return await this.xpathElement(elements.tableCellIcon(str, cell, this.icons.lock),
+            `Отображение иконки "Замок" в строке номер "${str}" и столбце ${cell}`,
+            timeout)
     }
 
     //Отсутствие иконки замка в ячейке по столбцу, номеру строки и номеру колонки
@@ -137,7 +139,7 @@ class Table extends BasePage {
     }
 
     //Столбец не отсортирован
-   async headNoSort(head, cell, timeout) {
+    async headNoSort(head, cell, timeout) {
        const headText = await this.headElement(head, cell)
        if(headText.error) {
            return headText

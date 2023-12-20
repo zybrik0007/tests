@@ -11154,7 +11154,7 @@ const sort = (type) => describe('Дополнительные данные. Пр
                     name: item,
                     comment: item,
                     type_id: 1,
-                    default_value:item
+                    default_value: item
                 }
             });
             const token = await page.base.getCookie('token');

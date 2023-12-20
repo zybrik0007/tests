@@ -6,6 +6,13 @@ module.exports = {
     divisionUi: require('./specs/personal/division-ui'),
 
     //Бюро пропусков
-    scheduleUi: require('./specs/pass-office/access-template-schedule-ui')
+    scheduleUi: require('./specs/pass-office/access-template-schedule-ui'),
+    templateUi: require('./specs/pass-office/access-template-ui'),
 
+   //Контроль доступа
+    premiseAccessUi: require('./specs/control-access/premise-access'),
+    verificationJournalUi: require('./specs/control-access/verification-journal'),
+    whereAboutsUi: require('./specs/control-access/where-abouts'),
+    premisesAccessReportUi: require('./specs/control-access/premises-access-report'),
+    identifiersUi: require('./specs/control-access/identifiers'),
 }

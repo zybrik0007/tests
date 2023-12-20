@@ -1,7 +1,7 @@
-const BasePage = require('../../../base-page/base-page')
-const {accessTemplatesTitle} = require('../../../../dictionaries/title')
-const {accessAddScheduleUrl, accessEditScheduleUrl} = require('../../../../dictionaries/url')
-const elements = require('../../../../dictionaries/selenium-elements')
+const BasePage = require('../../../base-page/base-page');
+const {accessTemplatesTitle} = require('../../../../dictionaries/title');
+const {accessAddScheduleUrl, accessEditScheduleUrl} = require('../../../../dictionaries/url');
+const elements = require('../../../../dictionaries/selenium-elements');
 
 class AccessTemplateScheduleChangePage extends BasePage{
     constructor() {

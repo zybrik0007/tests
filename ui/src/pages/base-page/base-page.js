@@ -367,7 +367,8 @@ class BasePage {
                     text: cook.value
                 }
             })
-            .catch(() => {
+            .catch((e) => {
+                console.log(e)
                 return {
                     error: true,
                     text: '',

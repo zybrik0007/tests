@@ -104,13 +104,18 @@ const deleteAccessSchedule = async (array, token) => {
 
 // Добавление массивом временных критериев доступа - Временные зоны
 const putArrayTimeZone = async (array, token) => {
+    console.log(array)
+    console.log(array[0].items)
     const promises = array.map(item => prRequest(putOptions({
         token,
         api: 'api/accessSchedules/timeZone',
         body: item,
-    })))
+    })));
 
-    const put = await Promise.all(promises)
+    console.log('promises', promises)
+
+    const put = await Promise.all(promises);
+    console.log('put', put)
     const filter = put.filter(item => item.error !== true)
 
     if(array.length !== filter.length) {
@@ -384,7 +389,7 @@ const deleteDivision = async (array, token) => {
     };
 };
 
-// Добавление шаблна доступа
+// Добавление шаблона доступа
 const putAccessTemplate = async (array, token) => {
 
     const promises = array.map(item => prRequest({
@@ -399,6 +404,8 @@ const putAccessTemplate = async (array, token) => {
     }));
 
     const put = await Promise.all(promises);
+
+    console.log(put)
 
     const filter = put.filter(item => item.error !== true);
 
@@ -584,9 +591,9 @@ const deleteSchedule = async (array, token) => {
     };
 };
 
-// Добавлене посетителя
+// Добавление посетителя
 const putVisitor = async (array, token) => {
-
+    console.log(array)
     const promises = array.map(item => prRequest({
         method: 'put',
         url: entry.address +'api/users/visitor',
@@ -599,6 +606,7 @@ const putVisitor = async (array, token) => {
     }));
 
     const put = await Promise.all(promises);
+    console.log('put: ', put)
 
     const filter = put.filter(item => item.error !== true);
 
@@ -719,6 +727,216 @@ const deletePosition = async (array, token) => {
     };
 };
 
+//Добавление помещений
+const putRoom = async (array, token) => {
+    const promises = array.map(item => prRequest({
+        method: 'put',
+        url: entry.address +'api/rooms',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        },
+        body: item,
+        json: true,
+    }));
+
+    const put = await Promise.all(promises);
+
+    const filter = put.filter(item => item.error !== true);
+
+    if(array.length !== filter.length) {
+        return {
+            error: true,
+            description: 'Ошибки при добавлении помещений.'
+        };
+    }
+
+    return {
+        error: false,
+        description: 'Помещения добавлены.'
+    };
+};
+
+//Получение списка помещений
+const getRoom = async (token) => {
+    const get = await Promise.resolve(prRequest(getOptions({
+        token,
+        api: 'api/rooms/list',
+        qs: {}
+    })));
+
+    return {
+        error: false,
+        description: `Получение списка помещений.`,
+        text: JSON.parse(get.text),
+    };
+};
+
+// Удаление помещения
+const deleteRoom = async (array, token) => {
+    const promises = array.map(item => prRequest({
+        method: 'delete',
+        url: entry.address + 'api/rooms/' + item,
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        }
+    }));
+
+    const deleted = await Promise.all(promises);
+
+    return {
+        error: false,
+        description: `Помещения удалены.`,
+        text: deleted,
+    };
+};
+
+//Добавление устройств
+const putDevice = async (array, token) => {
+    const promises = array.map(item => prRequest({
+        method: 'put',
+        url: entry.address +'api/devices',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        },
+        body: [item],
+        json: true,
+    }));
+
+    const put = await Promise.all(promises);
+
+    const filter = put.filter(item => item.error !== true);
+
+    if(array.length !== filter.length) {
+        return {
+            error: true,
+            description: 'Ошибки при добавлении устройств.'
+        };
+    }
+
+    return {
+        error: false,
+        description: 'Устройства добавлены.'
+    };
+};
+
+//Получение списка устройств
+const getDevice = async (token) => {
+    const get = await Promise.resolve(prRequest(getOptions({
+        token,
+        api: 'api/devices',
+        qs: {}
+    })));
+
+    return {
+        error: false,
+        description: `Получение списка устройств.`,
+        text: JSON.parse(get.text),
+    };
+};
+
+// Удаление списка устройств
+const deleteDevice = async (array, token) => {
+    const promises = array.map(item => prRequest({
+        method: 'delete',
+        url: entry.address + 'api/devices/' + item,
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        }
+    }));
+
+    const deleted = await Promise.all(promises);
+
+    return {
+        error: false,
+        description: `Устройства удалены.`,
+        text: deleted,
+    };
+};
+
+// Добавление устройств в помещение
+const addDeviceInRoom = async (array, token) => {
+    const promises = array.map(item => prRequest({
+        method: 'post',
+        url: entry.address + 'api/devices/' + item.deviceId + '/attach',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        },
+        body: {
+            "accessZoneId": item.roomId
+        },
+        json: true
+    }));
+
+    const post = await Promise.all(promises);
+
+    return {
+        error: false,
+        description: `Устройство добавлено в помещение.`,
+        text: post,
+    };
+};
+
+// Удаление устройств в помещение
+const deleteDeviceInRoom = async (array, token) => {
+    const promises = array.map(item => prRequest({
+        method: 'post',
+        url: entry.address + 'api/devices/' + item + '/detach',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        }
+    }));
+
+    const post = await Promise.all(promises);
+
+    return {
+        error: false,
+        description: `Устройство удалено из помещения.`,
+        text: post,
+    };
+};
+
+// Получение списка шаблонов доступа
+const getTemplate = async (token) => {
+    const get = await Promise.resolve(prRequest(getOptions({
+        token,
+        api: 'api/accessTemplates/list',
+        qs: {}
+    })));
+
+    return {
+        error: false,
+        description: `Получение списка шаблонов доступа.`,
+        text: JSON.parse(get.text),
+    };
+};
+
+// Удаление шаблона доступа
+const deleteTemplate = async (array, token) => {
+    const promises = array.map(item => prRequest({
+        method: 'delete',
+        url: entry.address + 'api/accessTemplates/' + item,
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        }
+    }));
+
+    const deleted = await Promise.all(promises);
+    console.log(deleted)
+
+    return {
+        error: false,
+        description: `Шаблоны доступа удалены.`,
+        text: deleted,
+    };
+};
+
 // Откат базы данных
 const rebase = async () => {
     const base64encodedData = Buffer.from(entry.managerLogin + ':' + entry.managerPassword).toString('base64');
@@ -762,6 +980,8 @@ const rebase = async () => {
 
 
 
+
+
 module.exports = {
     putManyPosition,
     putArrayPosition,
@@ -792,5 +1012,15 @@ module.exports = {
     deleteVisitor,
     putPosition,
     getPosition,
-    deletePosition
+    deletePosition,
+    putRoom,
+    getRoom,
+    deleteRoom,
+    putDevice,
+    getDevice,
+    deleteDevice,
+    addDeviceInRoom,
+    deleteDeviceInRoom,
+    getTemplate,
+    deleteTemplate
 };

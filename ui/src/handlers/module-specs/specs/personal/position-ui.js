@@ -207,7 +207,6 @@ const display = () => describe('Отображение страницы "Дол�
         it('Отсутствие модального окна "Добавление должности"', async () => await dec.simple(el.modal.positionAdd.initClose,
             [entry.max],
             el.modal.positionAdd))
-
     });
 });
 
@@ -1356,25 +1355,27 @@ const filterSearch = () => describe('Должности. Проверка фил
         it('Ввод "Поиск..."', async () => await dec.simple(el.input.sendKeys,
             ['', 'Поиск...', params.searchFailed, entry.max],
             el.input))
+
         it('Отсутствие строк в таблице', async () => await dec.simple(el.table.noStr,
             [entry.max],
             el.table))
+
         it('Отображение в таблице "Нет данных для отображения."', async () => await dec.simpleText(el.rowEmpty.getText,
             [entry.max],
             'Нет данных для отображения.',
             el.rowEmpty))
+
         it('Очистка "Поиск..."',  async () => await dec.simple(el.input.iconClear,
             ['', 'Поиск...', entry.max],
             el.input))
+
         it('Отображение всех должностей', async () => {
             await dec.animation()
             await dec.simple(el.table.size,
                 [params.search.length, entry.max],
                 el.table)
         })
-        it('Удаление данных из LocalStorage', async () => await dec.simple(page.base.clearLocalStorage,
-            [],
-            page.base))
+
     })
 
     deletePosition();

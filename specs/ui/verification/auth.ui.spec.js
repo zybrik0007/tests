@@ -643,7 +643,7 @@ describe('Первая авторизация', () => {
             ['Пароль', '', params.validPassword, entry.max],
             el.input));
 
-        it('Нажатие кнопки "Установить пароль и войти"', async () => await dec.simple(el.button.handler,
+        it('Нажатие кнопки "Войти в систему"', async () => await dec.simple(el.button.handler,
             ['Войти в систему', entry.max],
             el.button));
 
@@ -655,4 +655,7 @@ describe('Первая авторизация', () => {
 
     });
 
+});
+describe('Закрытие браузера', () => {
+    it('Закрытие', async () => await page.base.closeDriver());
 });
