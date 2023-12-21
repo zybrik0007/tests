@@ -110,10 +110,23 @@ class BasePage {
             return elementEnabled
         }
 
-        const element = By.xpath(event)
-        return await driver.wait(until.elementLocated(element), timeout).click()
+        /* const element = By.xpath(event)
+         return await driver.wait(until.elementLocated(element), timeout).click()
+             .then(() => {return {error: false, description}})
+             .catch((err) => {
+                 console.log('err: ', err);
+                 return {error: true, description: `Ошибка. ${description}`}
+             });*/
+        const element = await driver.findElement(By.xpath(event));
+        return await driver.actions().click(element).perform()
             .then(() => {return {error: false, description}})
-            .catch((err) => {return {error: true, description: `Ошибка. ${description}`}});
+            .catch((err) => {
+                console.log('err: ', err);
+                return {error: true, description: `Ошибка. ${description}`}
+            });
+
+
+
     }
 
     // Двойное нажатие по элементу

@@ -1,6 +1,7 @@
 const tests = require('../../../ui/src/handlers/module-specs');
 const data = require('../../../ui/src/handlers/module-specs/data');
 const decItApi = require('../../../ui/src/dictionaries/decorate-it-api');
+const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
 
 console.log = () => function () {};
 
@@ -180,7 +181,7 @@ tests.identifiersUi.otherVisitor().deleteIdentifier();
 // Удаление данных
 data.deleteDataControlAccess();
 
-
+closeBrowser();
 
 
 

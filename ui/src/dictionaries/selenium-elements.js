@@ -379,7 +379,7 @@ module.exports = {
     //div[contains(@class, "pwCalendar-days-day")]/div[normalize-space(.)="${event}"]`,
     datepickerDay: (event) => `//div[contains(@class, "pwCalendar-days-day--selected")]
     /div[normalize-space(.)="${event}"]`,
-    datepickerApply: `//pw-datepicker//pw-button[@addbefore="unsorted_check"]`,
+    datepickerApply: `//pw-datepicker//pw-button[@addbefore="unsorted_check"]/button`,
 
     //simple-cell
     simpleCell: (event) => `//*[contains(@class, "pwSimpleCell") and normalize-space(.)="${event}"]`,

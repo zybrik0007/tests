@@ -102,7 +102,6 @@ class Datepicker extends BasePage {
         if(datepicker.error) {
             return datepicker
         }
-        console.log('objStart: ', objStart)
 
         await this.loading(500);
         const dateStartSelect = await this.dateParse(objStart, timeout)
@@ -116,7 +115,7 @@ class Datepicker extends BasePage {
             return dateEndSelect
         }
 
-        await this.loading(500);
+        //await this.loading(500);
         const apply = await this.applyHandler(timeout)
         if(apply.error) {
             return apply
@@ -339,9 +338,13 @@ class Datepicker extends BasePage {
 
     //Нажатие кнопки Применить
     async applyHandler(timeout) {
-        return await this.xpathHandler(elements.datepickerApply,
+        const handler =  await this.xpathHandler(elements.datepickerApply,
             'Нажатие кнопки применить в календаре',
-            timeout)
+            timeout);
+
+        console.log('handler: ', handler);
+
+        return handler;
     }
 
 }
