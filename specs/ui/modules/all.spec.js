@@ -2,7 +2,7 @@ const tests = require('../../../ui/src/handlers/module-specs');
 const data = require('../../../ui/src/handlers/module-specs/data');
 const decItApi = require('../../../ui/src/dictionaries/decorate-it-api');
 
-
+console.log = () => function () {};
 
 //// Раздел Контроль доступа
 
