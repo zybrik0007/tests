@@ -33,11 +33,13 @@ class SelectXpand extends BasePage {
     }
 
     async scrollTop(num) {
-        const scroll = await this.script(elements.passAccessScheduleChangeWeekScroll(0, num),
+        const scroll = await this.script(elements.selectScrollTop(0, num),
             'Скролл в моадальном окне выбора временных зон.');
         await this.loading(1000);
         return scroll;
     }
+
+
 }
 
 module.exports = SelectXpand;
