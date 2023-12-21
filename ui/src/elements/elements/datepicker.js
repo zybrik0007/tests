@@ -342,8 +342,6 @@ class Datepicker extends BasePage {
             'Нажатие кнопки применить в календаре',
             timeout);
 
-        console.log('handler: ', handler);
-
         return handler;
     }
 

@@ -119,9 +119,12 @@ class BasePage {
              });*/
         const element = await driver.findElement(By.xpath(event));
         return await driver.actions().click(element).perform()
-            .then(() => {return {error: false, description}})
+            .then(() => {
+                return {
+                    error: false, description
+                }
+            })
             .catch((err) => {
-                console.log('err: ', err);
                 return {error: true, description: `Ошибка. ${description}`}
             });
 
