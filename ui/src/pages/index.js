@@ -1,39 +1,38 @@
-const Base = require('./base-page/base-page');
-const Auth = require('./auth-page/auth-page');
-const Rooms = require('./soft/administration/configuration-page/configuration-room-page');
-const Devices = require('./soft/administration/configuration-page/configuration-device-page');
-const License = require('./soft/administration/license-page/license-page');
-const AccessTemplate = require('./soft/pass-office/access-page/access-template-page');
-const AccessTemplateChange = require('./soft/pass-office/access-page/access-template-change-page');
-const DivisionPage = require('./soft/personal/division-page/division-page');
-const SchedulePage = require('./soft/personal/schedule-page/schedule-page');
-const SchedulePageChange = require('./soft/personal/schedule-page/schedule-change-page');
-const PositionPage = require('./soft/personal/positions-page/positions-page');
-const StaffPresentPage = require('./soft/personal/staff-page/staff-active-page');
-const StaffPageChange = require('./soft/personal/staff-page/staff-change-page');
-const VisitorCurrentPage = require('./soft/pass-office/visitor-page/visitor-current-page');
-const VisitorOrderedPage = require('./soft/pass-office/visitor-page/visitor-ordered-page');
-const VisitorChangePage = require('./soft/pass-office/visitor-page/visitor-change-page');
-const AccessTemplateScheduleChangePage = require('./soft/pass-office/access-page/access-template-schedule-change-page');
-const AccessTemplateSchedulePage = require('./soft/pass-office/access-page/access-template-schedule-page');
-const AdditionalData = require('./soft/personal/additional-data-page/additional-data-page');
-const AccessTemplateScheduleHoliday = require('./soft/pass-office/access-page/access-template-schedule-holiday-page');
-const PremiseAccessAll = require('./soft/control-access/premise-access-page/premise-access-all-page');
-const PremiseAccessStaff = require('./soft/control-access/premise-access-page/premise-access-staff-page');
-const PremiseAccessVisitor = require('./soft/control-access/premise-access-page/premise-access-visitor-page');
-const VerificationJournal = require('./soft/control-access/verification-journal-page/verification-journal-page');
-const WhereAboutsAll = require('./soft/control-access/where-abouts-page/where-abouts-all-page');
-const WhereAboutsStaff = require('./soft/control-access/where-abouts-page/where-abouts-staff-page');
-const WhereAboutsVisitor = require('./soft/control-access/where-abouts-page/where-abouts-visitor-page');
-const PremisesAccessReportAll = require('./soft/control-access/premises-access-report-page/premises-access-report-all-page');
-const PremisesAccessReportStaff = require('./soft/control-access/premises-access-report-page/premises-access-report-staff-page');
-const PremisesAccessReportVisitor = require('./soft/control-access/premises-access-report-page/premises-access-report-visitor-page');
-const IdentifiersAll = require('./soft/control-access/identifiers-page/identifiers-all-page');
-const IdentifiersStaff = require('./soft/control-access/identifiers-page/identifiers-staff-page');
-const IdentifiersVisitor = require('./soft/control-access/identifiers-page/identifiers-visitor-page');
-
-
-
+const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-page'),
+    Rooms = require('./soft/administration/configuration-page/configuration-room-page'),
+    Devices = require('./soft/administration/configuration-page/configuration-device-page'),
+    License = require('./soft/administration/license-page/license-page'),
+    AccessTemplate = require('./soft/pass-office/access-page/access-template-page'),
+    AccessTemplateChange = require('./soft/pass-office/access-page/access-template-change-page'),
+    DivisionPage = require('./soft/personal/division-page/division-page'),
+    SchedulePage = require('./soft/personal/schedule-page/schedule-page'),
+    SchedulePageChange = require('./soft/personal/schedule-page/schedule-change-page'),
+    PositionPage = require('./soft/personal/positions-page/positions-page'),
+    StaffPresentPage = require('./soft/personal/staff-page/staff-active-page'),
+    StaffPageChange = require('./soft/personal/staff-page/staff-change-page'),
+    StaffDimissed = require('./soft/personal/staff-page/staff-dimissed-page'),
+    VisitorCurrentPage = require('./soft/pass-office/visitor-page/visitor-current-page'),
+    VisitorOrderedPage = require('./soft/pass-office/visitor-page/visitor-ordered-page'),
+    VisitorChangePage = require('./soft/pass-office/visitor-page/visitor-change-page'),
+    StaffPassPage = require('./soft/pass-office/staff-pass-page/staff-pass-page'),
+    StaffPassPageChange = require('./soft/pass-office/staff-pass-page/staff-pass-change-page'),
+    AccessTemplateScheduleChangePage = require('./soft/pass-office/access-page/access-template-schedule-change-page'),
+    AccessTemplateSchedulePage = require('./soft/pass-office/access-page/access-template-schedule-page'),
+    AdditionalData = require('./soft/personal/additional-data-page/additional-data-page'),
+    AccessTemplateScheduleHoliday = require('./soft/pass-office/access-page/access-template-schedule-holiday-page'),
+    PremiseAccessAll = require('./soft/control-access/premise-access-page/premise-access-all-page'),
+    PremiseAccessStaff = require('./soft/control-access/premise-access-page/premise-access-staff-page'),
+    PremiseAccessVisitor = require('./soft/control-access/premise-access-page/premise-access-visitor-page'),
+    VerificationJournal = require('./soft/control-access/verification-journal-page/verification-journal-page'),
+    WhereAboutsAll = require('./soft/control-access/where-abouts-page/where-abouts-all-page'),
+    WhereAboutsStaff = require('./soft/control-access/where-abouts-page/where-abouts-staff-page'),
+    WhereAboutsVisitor = require('./soft/control-access/where-abouts-page/where-abouts-visitor-page'),
+    PremisesAccessReportAll = require('./soft/control-access/premises-access-report-page/premises-access-report-all-page'),
+    PremisesAccessReportStaff = require('./soft/control-access/premises-access-report-page/premises-access-report-staff-page'),
+    PremisesAccessReportVisitor = require('./soft/control-access/premises-access-report-page/premises-access-report-visitor-page'),
+    IdentifiersAll = require('./soft/control-access/identifiers-page/identifiers-all-page'),
+    IdentifiersStaff = require('./soft/control-access/identifiers-page/identifiers-staff-page'),
+    IdentifiersVisitor = require('./soft/control-access/identifiers-page/identifiers-visitor-page');
 
 
 module.exports = {
@@ -44,6 +43,7 @@ module.exports = {
     //Персонал
     staffActive: new StaffPresentPage(),
     staffChange: new StaffPageChange(),
+    staffDimissed: new StaffDimissed(),
     schedule: new SchedulePage(),
     schedulePageChange: new SchedulePageChange(),
     division: new DivisionPage(),
@@ -54,6 +54,8 @@ module.exports = {
     visitorOrdered: new VisitorOrderedPage(),
     visitorCurrent: new VisitorCurrentPage(),
     visitorChange: new VisitorChangePage(),
+    staffPass: new StaffPassPage(),
+    staffPassChange: new StaffPageChange(),
     accessTemplate: new AccessTemplate(),
     accessTemplateChange: new AccessTemplateChange(),
     accessTemplateSchedulePage: new AccessTemplateSchedulePage(),

@@ -273,6 +273,7 @@ const getAdditionalData = async (obj, token) => {
 
 // Удаление "Дополнтельных данных"
 const deleteAdditionalData = async (array, obj, token) => {
+    console.log('array, obj, token', array, obj, token)
     const promises = array.map(item => prRequest({
         method: 'delete',
         url: entry.address + 'api/users/additionalFields/' + item.id,
@@ -282,6 +283,8 @@ const deleteAdditionalData = async (array, obj, token) => {
             Authorization: `Bearer ${token}`
         }
     }));
+
+    console.log('promises', await Promise.all(promises))
 
     await Promise.all(promises);
 

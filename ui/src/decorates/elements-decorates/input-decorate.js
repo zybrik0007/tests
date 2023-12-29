@@ -16,7 +16,7 @@ module.exports = {
                 el.input)),
 
     getValue: ({title, placeholder, value, timeout}) =>
-        it(`Получение значения поля ввода ${title ? title : placeholder}.`,
+        it(`Значения поля ввода ${title ? title : placeholder} равно "${value}".`,
             async () => await dec.simpleText(el.input.getValue,
                 [title, placeholder, timeout],
                 value,

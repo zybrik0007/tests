@@ -1,6 +1,19 @@
 module.exports = {
 
     //Персонал
+    //Сотруднкии
+    perStaffCardAdditionalInput: (number) => `//app-user-card-cards/div/div[2]/div/div[${number}]//input`,
+    perStaffCardAdditionalIcon: (number, icon) => `//app-user-card-cards/div/div[2]/div
+    /div[${number}]//pw-icon/div[contains(@class, "${icon}")]`,
+    perStaffAddCardButton: '//pw-placeholder',
+    perStaffBarcodeImg: '//div[@class="pwBarcode__view"]//img',
+    perStaffCarData: (title, number) => `//app-user-card-cars/div/div[${number}]/div//*[normalize-space(.)="${title}"]
+    /parent::pw-field//input`,
+    perStaffCarButton: (event) => `//div[@class="text-link" and normalize-space(.)="${event}"]`,
+    perStaffCarAddImg: (name, number) => `//app-user-card-cars/div/div[${number}]//span[normalize-space(.)="${name}"]/span`,
+    perStaffCarImg: (event) => `//app-user-card-cars/div/div[${event}]//img`,
+    perStaffPrintCardLast: (event) => `//p[@class="pwPrintCard-mainInfo-desc" and normalize-space(.)="${event}"]`,
+
     //Графики работы
     perSchedule: (name, work, nowork) => {
         let tree = `//div/*[normalize-space(.)="${name}"]/parent::*`
@@ -184,9 +197,9 @@ module.exports = {
     //input[@placeholder="${placeholder}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
     //select
-    select: (title, value) => `//pw-field/*[normalize-space(.)="${title}"]/parent::*
+    select: (title, value) => `//*[normalize-space(.)="${title}"]/parent::*
     //span[normalize-space(.)="${value}"]`,
-    selectIcon: (title, value, icon) => `//pw-field/*[normalize-space(.)="${title}"]/parent::*
+    selectIcon: (title, value, icon) => `//*[normalize-space(.)="${title}"]/parent::*
     //span[normalize-space(.)="${value}"]/parent::*/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
     //select-multi
@@ -292,7 +305,8 @@ module.exports = {
     footerPageArea: '//div[@class="datatable-pager" and attribute::*[contains(local-name(), "hidden")]]',
 
     //modal
-    modalId: (event) =>  `//pw-modal[@id="${event}"]`,
+    modalId: (event) =>  `//pw-modal[@id="${event}" and contains(@style, "block")]`,
+    modalIdNoBlock: (event) => `//pw-modal[@id="${event}"]`,
     modalTitle: (event) => `//*[contains(@class, 'pw-modal-title') and normalize-space(.)="${event}"]`,
     modalButClose: (event) => `//pw-modal[@id="${event}"]//pw-icon[@parsevalue="navigation_close"]`,
     modalButton: (id, text) => `//pw-modal[@id="${id}"]//pw-button//span[normalize-space(.)="${text}"]
@@ -379,7 +393,7 @@ module.exports = {
     //div[contains(@class, "pwCalendar-days-day")]/div[normalize-space(.)="${event}"]`,
     datepickerDay: (event) => `//div[contains(@class, "pwCalendar-days-day--selected")]
     /div[normalize-space(.)="${event}"]`,
-    datepickerApply: `//pw-datepicker//pw-button[@addbefore="unsorted_check"]/button`,
+    datepickerApply: `//pw-datepicker[contains(@style, "block")]//pw-button[@addbefore="unsorted_check"]/button`,
 
     //simple-cell
     simpleCell: (event) => `//*[contains(@class, "pwSimpleCell") and normalize-space(.)="${event}"]`,
@@ -405,6 +419,23 @@ module.exports = {
     /*[normalize-space(.)="${event}"]`,
 
     // pwTreeNode
-    pwTreeNode: (event) => `//*[contains(@class, "pwTreeNode--node")]//*[normalize-space(.)="${event}"]`
+    pwTreeNode: (event) => `//*[contains(@class, "pwTreeNode--node")]//*[normalize-space(.)="${event}"]`,
+
+    // Photography
+    photoAddButton: (event) => `//pw-placeholder//span[normalize-space(.)="${event}"]`,
+    photoStaff: `//*[@class="pwStaffInfo__photo"]//img`,
+
+    //modal-change-photo
+    modalChangePhotoInput: (event) =>  `//pw-modal[@id="${event}" and contains(@style, "block")]//input`,
+    modalChangePhotoImg: (event) =>  `//pw-modal[@id="${event}" and contains(@style, "block")]//img`,
+    modalChangePhotoPlaceholder: (event) => `//pw-modal[@id="${event}" and contains(@style, "block")]
+    //div[@class="pwPlaceholder--text"]`,
+
+    //CardControlsNumber
+    modalCardControlsNumber: `//pw-modal[@id="card-controls" and contains(@style, "block")]`,
+    modalCardControlsNumberInput:(title, placeholder) => `//pw-modal[@id="card-controls" and contains(@style, "block")]
+    //*[normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]`,
+    modalCardControlsNumberButton: (event) => `//pw-modal[@id="card-controls" and contains(@style, "block")]
+    //*[normalize-space(.)="${event}"]/button`
 
 }

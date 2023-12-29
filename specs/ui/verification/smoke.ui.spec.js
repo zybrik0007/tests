@@ -1870,7 +1870,7 @@ describe('Проверка подраздела "Сотрудники" вкла�
             [1, entry.max],
             el.table));
 
-        it('Нажатие кнопки "Вадать карту"', async () => await dec.simple(el.butIcBefore.handler,
+        it('Нажатие кнопки "Выдать карту"', async () => await dec.simple(el.butIcBefore.handler,
             [but.card_add, entry.max],
             el.butIcBefore));
 

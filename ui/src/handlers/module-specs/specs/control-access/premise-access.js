@@ -786,7 +786,6 @@ const other = (user, tab, bef) => {
         }
     });
 
-
     const filterRoom = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. 
     Проверка фильтра по помещению.`, () => {
 
@@ -1768,7 +1767,7 @@ const other = (user, tab, bef) => {
         const params = {
             nameFile: 'accessreport.xlsx',
             jsonAll: [
-                { 'Отчет "Отчет о проходах"': '2023-06-06 - 2023-06-07' },
+                { 'Отчет "Отчет о проходах"': `${data.date2()}`},
                 {
                     'Отчет "Отчет о проходах"': 'Фамилия',
                     __EMPTY: 'Имя',
@@ -1787,13 +1786,30 @@ const other = (user, tab, bef) => {
                     __EMPTY_13: 'Транспортное средство'
                 },
                 {
+                    'Отчет "Отчет о проходах"': 'staff',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: '2',
+                    __EMPTY_3: `${data.eventDate.event1}`,
+                    __EMPTY_4: 'room1',
+                    __EMPTY_5: 'room2',
+                    __EMPTY_6: '2',
+                    __EMPTY_7: 'template2',
+                    __EMPTY_8: 'position2',
+                    __EMPTY_9: 'division2',
+                    __EMPTY_10: '',
+                    __EMPTY_11: '',
+                    __EMPTY_12: '',
+                    __EMPTY_13: ''
+                },
+                {
                     'Отчет "Отчет о проходах"': 'visitor',
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
                     __EMPTY_2: '',
-                    __EMPTY_3: '2023-06-07 09:00:00',
-                    __EMPTY_4: 'Неконтролируемая территория',
-                    __EMPTY_5: 'room1',
+                    __EMPTY_3: `${data.eventDate.event1}`,
+                    __EMPTY_4: 'room1',
+                    __EMPTY_5: 'room2',
                     __EMPTY_6: '5',
                     __EMPTY_7: 'template2',
                     __EMPTY_8: '',
@@ -1808,7 +1824,7 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
                     __EMPTY_2: '2',
-                    __EMPTY_3: '2023-06-06 09:00:00',
+                    __EMPTY_3: `${data.eventDate.event2}`,
                     __EMPTY_4: 'Неконтролируемая территория',
                     __EMPTY_5: 'room1',
                     __EMPTY_6: '2',
@@ -1819,10 +1835,61 @@ const other = (user, tab, bef) => {
                     __EMPTY_11: '',
                     __EMPTY_12: '',
                     __EMPTY_13: ''
+                },
+                {
+                    'Отчет "Отчет о проходах"': 'visitor',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: '',
+                    __EMPTY_3: `${data.eventDate.event2}`,
+                    __EMPTY_4: 'Неконтролируемая территория',
+                    __EMPTY_5: 'room1',
+                    __EMPTY_6: '5',
+                    __EMPTY_7: 'template2',
+                    __EMPTY_8: '',
+                    __EMPTY_9: 'division2',
+                    __EMPTY_10: 'passport',
+                    __EMPTY_11: '2',
+                    __EMPTY_12: '',
+                    __EMPTY_13: ''
+                },
+                {
+                    'Отчет "Отчет о проходах"': 'staff',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: '1',
+                    __EMPTY_3: `${data.eventDate.event3}`,
+                    __EMPTY_4: 'Неконтролируемая территория',
+                    __EMPTY_5: 'room1',
+                    __EMPTY_6: '1',
+                    __EMPTY_7: 'template1',
+                    __EMPTY_8: 'position1',
+                    __EMPTY_9: 'division1',
+                    __EMPTY_10: '',
+                    __EMPTY_11: '',
+                    __EMPTY_12: '',
+                    __EMPTY_13: ''
+                },
+                {
+                    'Отчет "Отчет о проходах"': 'visitor',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: '',
+                    __EMPTY_3: `${data.eventDate.event3}`,
+                    __EMPTY_4: 'Неконтролируемая территория',
+                    __EMPTY_5: 'room1',
+                    __EMPTY_6: '4',
+                    __EMPTY_7: 'template1',
+                    __EMPTY_8: '',
+                    __EMPTY_9: 'division1',
+                    __EMPTY_10: 'passport',
+                    __EMPTY_11: '1',
+                    __EMPTY_12: '',
+                    __EMPTY_13: ''
                 }
             ],
             jsonStaff: [
-                { 'Отчет "Отчет о проходах (Персонал)"': '2023-06-06 - 2023-06-07' },
+                { 'Отчет "Отчет о проходах (Персонал)"': `${data.date2()}`},
                 {
                     'Отчет "Отчет о проходах (Персонал)"': 'Фамилия',
                     __EMPTY: 'Имя',
@@ -1842,7 +1909,21 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
                     __EMPTY_2: '2',
-                    __EMPTY_3: '2023-06-06 09:00:00',
+                    __EMPTY_3: `${data.eventDate.event1}`,
+                    __EMPTY_4: 'room1',
+                    __EMPTY_5: 'room2',
+                    __EMPTY_6: '2',
+                    __EMPTY_7: 'template2',
+                    __EMPTY_8: 'position2',
+                    __EMPTY_9: 'division2',
+                    __EMPTY_10: ''
+                },
+                {
+                    'Отчет "Отчет о проходах (Персонал)"': 'staff',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: '2',
+                    __EMPTY_3: `${data.eventDate.event2}`,
                     __EMPTY_4: 'Неконтролируемая территория',
                     __EMPTY_5: 'room1',
                     __EMPTY_6: '2',
@@ -1850,11 +1931,25 @@ const other = (user, tab, bef) => {
                     __EMPTY_8: 'position2',
                     __EMPTY_9: 'division2',
                     __EMPTY_10: ''
+                },
+                {
+                    'Отчет "Отчет о проходах (Персонал)"': 'staff',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: '1',
+                    __EMPTY_3: `${data.eventDate.event3}`,
+                    __EMPTY_4: 'Неконтролируемая территория',
+                    __EMPTY_5: 'room1',
+                    __EMPTY_6: '1',
+                    __EMPTY_7: 'template1',
+                    __EMPTY_8: 'position1',
+                    __EMPTY_9: 'division1',
+                    __EMPTY_10: ''
                 }
             ],
             jsonVisitor: [
                 {
-                    'Отчет "Отчет о проходах (Посетители)"': '2023-06-06 - 2023-06-07'
+                    'Отчет "Отчет о проходах (Посетители)"': `${data.date2()}`
                 },
                 {
                     'Отчет "Отчет о проходах (Посетители)"': 'Фамилия',
@@ -1875,7 +1970,22 @@ const other = (user, tab, bef) => {
                     'Отчет "Отчет о проходах (Посетители)"': 'visitor',
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
-                    __EMPTY_2: '2023-06-07 09:00:00',
+                    __EMPTY_2: `${data.eventDate.event1}`,
+                    __EMPTY_3: 'room1',
+                    __EMPTY_4: 'room2',
+                    __EMPTY_5: '5',
+                    __EMPTY_6: 'template2',
+                    __EMPTY_7: 'division2',
+                    __EMPTY_8: 'passport',
+                    __EMPTY_9: '2',
+                    __EMPTY_10: '',
+                    __EMPTY_11: ''
+                },
+                {
+                    'Отчет "Отчет о проходах (Посетители)"': 'visitor',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: `${data.eventDate.event2}`,
                     __EMPTY_3: 'Неконтролируемая территория',
                     __EMPTY_4: 'room1',
                     __EMPTY_5: '5',
@@ -1883,6 +1993,21 @@ const other = (user, tab, bef) => {
                     __EMPTY_7: 'division2',
                     __EMPTY_8: 'passport',
                     __EMPTY_9: '2',
+                    __EMPTY_10: '',
+                    __EMPTY_11: ''
+                },
+                {
+                    'Отчет "Отчет о проходах (Посетители)"': 'visitor',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: `${data.eventDate.event3}`,
+                    __EMPTY_3: 'Неконтролируемая территория',
+                    __EMPTY_4: 'room1',
+                    __EMPTY_5: '4',
+                    __EMPTY_6: 'template1',
+                    __EMPTY_7: 'division1',
+                    __EMPTY_8: 'passport',
+                    __EMPTY_9: '1',
                     __EMPTY_10: '',
                     __EMPTY_11: ''
                 }
@@ -1893,49 +2018,6 @@ const other = (user, tab, bef) => {
         aft();
 
         describe('Экспорт', () => {
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 6,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 7,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 6,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 7,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Отображение в календаре и выбранной даты 2023-06-06 – 2023-06-07`,
-                async () => await dec.simpleText(el.input.getValue,
-                    ['', '', entry.max],
-                    '2023-06-06 – 2023-06-07',
-                    el.input));
 
             decorate.el.butIcBefore.handler({
                 icon: but.menu,
@@ -2027,12 +2109,25 @@ const other = (user, tab, bef) => {
             nameFile: 'accessreport.csv',
             jsonAll: [
                 {
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Табельный номер': 2,
+                    'Дата':`${data.eventDate.event1}`,
+                    'Выход из': 'room1',
+                    'Вход в': 'room2',
+                    'Карта №': 2,
+                    'Шаблон доступа': 'template2',
+                    'Должность': 'position2',
+                    'Подразделение': 'division2'
+                },
+                {
                     'Фамилия': 'visitor',
                     'Имя': 'name',
                     'Отчество': 2,
-                    'Дата': '2023-06-07 09:00:00',
-                    'Выход из': 'Неконтролируемая территория',
-                    'Вход в': 'room1',
+                    'Дата': `${data.eventDate.event1}`,
+                    'Выход из': 'room1',
+                    'Вход в': 'room2',
                     'Карта №': 5,
                     'Шаблон доступа': 'template2',
                     'Подразделение': 'division2',
@@ -2044,13 +2139,52 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 2,
                     'Табельный номер': 2,
-                    'Дата': '2023-06-06 09:00:00',
+                    'Дата': `${data.eventDate.event2}`,
                     'Выход из': 'Неконтролируемая территория',
                     'Вход в': 'room1',
                     'Карта №': 2,
                     'Шаблон доступа': 'template2',
                     'Должность': 'position2',
                     'Подразделение': 'division2'
+                },
+                {
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Дата': `${data.eventDate.event2}`,
+                    'Выход из': 'Неконтролируемая территория',
+                    'Вход в': 'room1',
+                    'Карта №': 5,
+                    'Шаблон доступа': 'template2',
+                    'Подразделение': 'division2',
+                    'Подтверждающий документ': 'passport',
+                    'Номер документа': 2
+                },
+                {
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 1,
+                    'Табельный номер': 1,
+                    'Дата': `${data.eventDate.event3}`,
+                    'Выход из': 'Неконтролируемая территория',
+                    'Вход в': 'room1',
+                    'Карта №': 1,
+                    'Шаблон доступа': 'template1',
+                    'Должность': 'position1',
+                    'Подразделение': 'division1'
+                },
+                {
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 1,
+                    'Дата': `${data.eventDate.event3}`,
+                    'Выход из': 'Неконтролируемая территория',
+                    'Вход в': 'room1',
+                    'Карта №': 4,
+                    'Шаблон доступа': 'template1',
+                    'Подразделение': 'division1',
+                    'Подтверждающий документ': 'passport',
+                    'Номер документа': 1
                 }
             ],
             jsonStaff: [
@@ -2059,13 +2193,39 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 2,
                     'Табельный номер': 2,
-                    'Дата': '2023-06-06 09:00:00',
+                    'Дата': `${data.eventDate.event1}`,
+                    'Выход из': 'room1',
+                    'Вход в': 'room2',
+                    'Карта №': 2,
+                    'Шаблон доступа': 'template2',
+                    'Должность': 'position2',
+                    'Подразделение': 'division2'
+                },
+                {
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Табельный номер': 2,
+                    'Дата': `${data.eventDate.event2}`,
                     'Выход из': 'Неконтролируемая территория',
                     'Вход в': 'room1',
                     'Карта №': 2,
                     'Шаблон доступа': 'template2',
                     'Должность': 'position2',
                     'Подразделение': 'division2'
+                },
+                {
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 1,
+                    'Табельный номер': 1,
+                    'Дата': `${data.eventDate.event3}`,
+                    'Выход из': 'Неконтролируемая территория',
+                    'Вход в': 'room1',
+                    'Карта №': 1,
+                    'Шаблон доступа': 'template1',
+                    'Должность': 'position1',
+                    'Подразделение': 'division1'
                 }
             ],
             jsonVisitor: [
@@ -2073,7 +2233,20 @@ const other = (user, tab, bef) => {
                     'Фамилия': 'visitor',
                     'Имя': 'name',
                     'Отчество': 2,
-                    'Дата': '2023-06-07 09:00:00',
+                    'Дата': `${data.eventDate.event1}`,
+                    'Выход из': 'room1',
+                    'Вход в': 'room2',
+                    'Карта №': 5,
+                    'Шаблон доступа': 'template2',
+                    'Подразделение': 'division2',
+                    'Подтверждающий документ': 'passport',
+                    'Номер документа': 2
+                },
+                {
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Дата': `${data.eventDate.event2}`,
                     'Выход из': 'Неконтролируемая территория',
                     'Вход в': 'room1',
                     'Карта №': 5,
@@ -2081,6 +2254,19 @@ const other = (user, tab, bef) => {
                     'Подразделение': 'division2',
                     'Подтверждающий документ': 'passport',
                     'Номер документа': 2
+                },
+                {
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 1,
+                    'Дата': `${data.eventDate.event3}`,
+                    'Выход из': 'Неконтролируемая территория',
+                    'Вход в': 'room1',
+                    'Карта №': 4,
+                    'Шаблон доступа': 'template1',
+                    'Подразделение': 'division1',
+                    'Подтверждающий документ': 'passport',
+                    'Номер документа': 1
                 }
             ],
         }
@@ -2089,49 +2275,6 @@ const other = (user, tab, bef) => {
         aft();
 
         describe('Экспорт', () => {
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 6,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 7,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 6,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 7,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Отображение в календаре и выбранной даты 2023-06-06 – 2023-06-07`,
-                async () => await dec.simpleText(el.input.getValue,
-                    ['', '', entry.max],
-                    '2023-06-06 – 2023-06-07',
-                    el.input));
 
             decorate.el.butIcBefore.handler({
                 icon: but.menu,

@@ -26,6 +26,7 @@ const PrintTable = require('./modals/print-table');
 const PlaceholderText = require('./elements/placeholder-text');
 const ButtonIcon = require('./elements/button-icon');
 const FilterTreeNode = require('./elements/filter-tree-node');
+const Photography = require('./elements/photography');
 
 const Modal = require('./elements/modal');
 const Dialog = require('./elements/dialog');
@@ -38,6 +39,10 @@ const TimeZoneModalSelect = require('./modals/time-zone-modal-select');
 const AdditionalData = require('./modals/additional-data');
 const Departments = require('./modals/departments');
 const RemoveIdentifiers = require('./modals/remove-identifiers');
+const AddPhoto = require('./modals/add-photo');
+const ChangePhoto = require('./modals/photo');
+const CardControlsNumber = require('./modals/card-controls-number');
+const PrintCardStaff = require('./modals/print-card-modal');
 
 module.exports = {
     section: new Section(),
@@ -67,10 +72,16 @@ module.exports = {
     placeText: new PlaceholderText(),
     butIc: new ButtonIcon(),
     filterTreeNode: new FilterTreeNode(),
+    photography: new Photography(),
 
     modal: {
         //Персонал
         staffCardAdd: new Modal('card-controls', ''),
+        addPhoto: new AddPhoto('add-photo', ''),
+        changePhoto: new ChangePhoto('change-photo', ''),
+        cardControlsNumber: new CardControlsNumber(),
+        printCard: new PrintCardStaff('print-card', 'Печать карточки сотрудника'),
+
         divisionAdd: new Departments('departments', 'Добавить подразделение'),
         divisionEdit: new Departments('departments', 'Редактировать подразделение'),
         positionAdd: new Modal('edit-position', 'Добавление должности'),

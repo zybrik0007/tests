@@ -1,162 +1,54 @@
 const tests = require('../ui/src/handlers/module-specs');
 const closeBrowser = require('../ui/src/handlers/other/closeBrowser');
+const data = require('../ui/src/handlers/module-specs/data');
 
-/*tests.scheduleUi.display();
-tests.scheduleUi.add.TZMinParamsMinInterval();
-tests.scheduleUi.add.TZMinParamsMaxInterval();
-tests.scheduleUi.add.TZMaxParamsMaxInterval();
-tests.scheduleUi.add.TZFailedTimeMinInterval();
-tests.scheduleUi.add.TZFailedTimeMaxInterval();
-tests.scheduleUi.add.TZMaxTimeFailed();
-tests.scheduleUi.add.TZMaxIntervalFailed();
-tests.scheduleUi.add.TZNoParams();
-tests.scheduleUi.add.TZNoInterval();
-tests.scheduleUi.add.TZNoName();
-tests.scheduleUi.add.TZDuplicateTZ();
-tests.scheduleUi.add.TZDuplicateWKsWKsTZ();
-tests.scheduleUi.add.WMinParams();
-tests.scheduleUi.add.WMinParamsMinInterval();
-tests.scheduleUi.add.WMaxParams();
-tests.scheduleUi.add.WNoName();
-tests.scheduleUi.add.WDuplicateW();
-tests.scheduleUi.add.WDuplicateTZKsWKsTZ();
-tests.scheduleUi.add.STZMinParams();
-tests.scheduleUi.add.STZMinEditInterval();
-tests.scheduleUi.add.STZMinRemoveInterval();
-tests.scheduleUi.add.STZMaxParams();
-tests.scheduleUi.add.STZNoParams();
-tests.scheduleUi.add.STZNoName();
-tests.scheduleUi.add.STZNoInterval();
-tests.scheduleUi.add.STZFailedInterval();
-tests.scheduleUi.add.STZDuplicateSTZ();
-tests.scheduleUi.add.STZDuplicateTZKsWsWK();
-tests.scheduleUi.add.SWMinParams();
-tests.scheduleUi.add.SWMinParamsDeleteWeek();
-tests.scheduleUi.add.SWMaxParams();
-tests.scheduleUi.add.SWSearch();
-tests.scheduleUi.add.SWNoParams();
-tests.scheduleUi.add.SWNoInterval();
-tests.scheduleUi.add.SWNoName();
-tests.scheduleUi.add.SWFailedInterval();
-tests.scheduleUi.add.SWDuplicateSW();
-tests.scheduleUi.add.SWDuplicateTZWSTZ();
+///data.deleteDataControlAccess();
 
-tests.scheduleUi.edit.TZAddParamsMinParams();
-tests.scheduleUi.edit.TZRemoveParamsMaxParams();
-tests.scheduleUi.edit.TZEditAllMaxParams();
-tests.scheduleUi.edit.TZRemoveAllMaxParams();
-tests.scheduleUi.edit.TZRemoveName();
-tests.scheduleUi.edit.TZRemoveInterval();
-tests.scheduleUi.edit.TZDuplicateTZ();
-tests.scheduleUi.edit.TZDuplicateWSTZSW();
-tests.scheduleUi.edit.WAddParamsMinParams();
-tests.scheduleUi.edit.WRemoveParamsMaxParams();
-tests.scheduleUi.edit.WEditMaxParams();
-tests.scheduleUi.edit.WRemoveName();
-tests.scheduleUi.edit.WDuplicateW();
-tests.scheduleUi.edit.WDuplicateTZSTZSW();
-tests.scheduleUi.edit.STZAddParamsMinParams();
-tests.scheduleUi.edit.STZRemoveParamsMaxParams();
-tests.scheduleUi.edit.STZEditALLParamsMaxParams();
-tests.scheduleUi.edit.STZEditNoName();
-tests.scheduleUi.edit.STZEditNoNInterval();
-tests.scheduleUi.edit.STZDuplicateSTZ();
-tests.scheduleUi.edit.STZDuplicateTZKsWsWK();
-tests.scheduleUi.edit.SWEditMinParams();
-tests.scheduleUi.edit.SWEditMaxParams();
-tests.scheduleUi.edit.SWEditAllParams();
-tests.scheduleUi.edit.SWEditRemoveName();
-tests.scheduleUi.edit.SWEditRemoveInterval();
-tests.scheduleUi.edit.SWDuplicateSW();
-tests.scheduleUi.edit.SWDuplicateTZWSTZ();
+// Котроль доступа: Выданные идентификаторы. Общие проверки без данных
+tests.identifiersUi.otherAll().display();
+tests.identifiersUi.otherStaff().display();
+tests.identifiersUi.otherVisitor().display();
 
+data.addDataControlAccess();
 
-tests.scheduleUi.delete.deleteTZ();
-tests.scheduleUi.delete.deleteW();
-tests.scheduleUi.delete.deleteSTZ();
-tests.scheduleUi.delete.deleteSW();
-tests.scheduleUi.delete.deleteTZinW();
-tests.scheduleUi.delete.deleteTZinSTZ();
-tests.scheduleUi.delete.deleteWinSW();
+// Котроль доступа / Выданные идентификаторы / вкладка Все
+tests.identifiersUi.otherAll().checkData();
+tests.identifiersUi.otherAll().filterDate();
+tests.identifiersUi.otherAll().filterDivision();
+tests.identifiersUi.otherAll().filterDivisionForm();
+tests.identifiersUi.otherAll().filterSearch();
+tests.identifiersUi.otherAll().printTable();
+tests.identifiersUi.otherAll().exportXLSX();
+tests.identifiersUi.otherAll().exportCSV();
 
-tests.scheduleUi.holiday.addIntervalMin();
-tests.scheduleUi.holiday.editMaxParams();
-tests.scheduleUi.holiday.addDuplicate();
-tests.scheduleUi.holiday.deleteHoliday();
+// Котроль доступа / Выданные идентификаторы / вкладка Сотрудники
+tests.identifiersUi.otherStaff().checkData();
+tests.identifiersUi.otherStaff().filterDate();
+tests.identifiersUi.otherStaff().filterDivision();
+tests.identifiersUi.otherStaff().filterDivisionForm();
+tests.identifiersUi.otherStaff().filterSearch();
+tests.identifiersUi.otherStaff().printTable();
+tests.identifiersUi.otherStaff().exportXLSX();
+tests.identifiersUi.otherStaff().exportCSV();
 
-tests.scheduleUi.service.editNameAlways();
-tests.scheduleUi.service.editDescriptionAlways();
-tests.scheduleUi.service.deleteAlways();
-tests.scheduleUi.service.editNameNever();
-tests.scheduleUi.service.editDescriptionNever();
-tests.scheduleUi.service.deleteNever();
+// Котроль доступа / Выданные идентификаторы / вкладка Посетители
+tests.identifiersUi.otherVisitor().checkData();
+tests.identifiersUi.otherVisitor().filterDate();
+tests.identifiersUi.otherVisitor().filterDivision();
+tests.identifiersUi.otherVisitor().filterDivisionForm();
+tests.identifiersUi.otherVisitor().filterSearch();
+tests.identifiersUi.otherVisitor().printTable();
+tests.identifiersUi.otherVisitor().exportXLSX();
+tests.identifiersUi.otherVisitor().exportCSV();
 
-tests.scheduleUi.search();
+// Котроль доступа / Выданные идентификаторы / вкладка Все
+tests.identifiersUi.otherAll().deleteIdentifier();
 
-tests.scheduleUi.footer();
+// Котроль доступа / Выданные идентификаторы / вкладка Сотрудники
+tests.identifiersUi.otherStaff().deleteIdentifier();
 
-tests.scheduleUi.type();*/
+// Котроль доступа / Выданные идентификаторы / вкладка Посетители
+tests.identifiersUi.otherVisitor().deleteIdentifier();
 
-//tests.scheduleUi.add.STZMinEditInterval();
-
-/*tests.scheduleUi.edit.TZAddParamsMinParams();
-tests.scheduleUi.edit.TZRemoveParamsMaxParams();
-tests.scheduleUi.edit.TZEditAllMaxParams();
-tests.scheduleUi.edit.TZRemoveAllMaxParams();
-tests.scheduleUi.edit.TZRemoveName();
-tests.scheduleUi.edit.TZRemoveInterval();
-tests.scheduleUi.edit.TZDuplicateTZ();
-tests.scheduleUi.edit.TZDuplicateWSTZSW();
-tests.scheduleUi.edit.WAddParamsMinParams();
-tests.scheduleUi.edit.WRemoveParamsMaxParams();
-tests.scheduleUi.edit.WEditMaxParams();
-tests.scheduleUi.edit.WRemoveName();
-tests.scheduleUi.edit.WDuplicateW();
-tests.scheduleUi.edit.WDuplicateTZSTZSW();
-tests.scheduleUi.edit.STZAddParamsMinParams();
-tests.scheduleUi.edit.STZRemoveParamsMaxParams();
-tests.scheduleUi.edit.STZEditALLParamsMaxParams();
-tests.scheduleUi.edit.STZEditNoName();
-tests.scheduleUi.edit.STZEditNoNInterval();
-tests.scheduleUi.edit.STZDuplicateSTZ();
-tests.scheduleUi.edit.STZDuplicateTZKsWsWK();
-tests.scheduleUi.edit.SWEditMinParams();
-tests.scheduleUi.edit.SWEditMaxParams();
-tests.scheduleUi.edit.SWEditAllParams();
-tests.scheduleUi.edit.SWEditRemoveName();
-tests.scheduleUi.edit.SWEditRemoveInterval();
-tests.scheduleUi.edit.SWDuplicateSW();
-tests.scheduleUi.edit.SWDuplicateTZWSTZ();*/
-
-//tests.templateUi.addParams();
-
-
-//tests.scheduleUi.add.STZMinEditInterval();
-//tests.scheduleUi.add.SWNoInterval();
-//tests.scheduleUi.add.SWFailedInterval();
-//tests.scheduleUi.edit.SWEditMaxParams();
-//tests.scheduleUi.edit.SWEditRemoveName();
-//tests.divisionUi.import.importXLSXMaxParamsNoName();
-
-//tests.templateUi.add.addMinParams();
-//tests.templateUi.deleteParams();
-
-//tests.premiseAccessUi.addData();
-/*tests.premiseAccessUi.otherAll().printTable();
-tests.premiseAccessUi.otherAll().exportCSV();
-tests.premiseAccessUi.otherStaff().exportCSV();
-tests.premiseAccessUi.otherStaff().printTable();
-tests.premiseAccessUi.otherStaff().exportXLSX();
-tests.premiseAccessUi.otherStaff().exportCSV();
-tests.premiseAccessUi.otherVisitor().printTable();
-tests.premiseAccessUi.otherVisitor().exportXLSX();
-tests.premiseAccessUi.otherVisitor().exportCSV();*/
-//tests.verificationJournalUi.other().exportXLSX();
-//require('../ui/src/handlers/module-specs/data').addDataControlAccess();
-//tests.premiseAccessUi.otherAll().exportXLSX();
-tests.divisionUi.add.addFormsMaxParams();
-//require('../ui/src/handlers/module-specs/data').deleteDataControlAccess();
-
-
-
-closeBrowser();
+// Удаление данных
+data.deleteDataControlAccess();

@@ -362,7 +362,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -370,7 +370,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 1,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
@@ -396,7 +396,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -404,12 +404,12 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 2,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
 
-            describe('Проверка строки 4.', () => {
+            describe('Проверка строки 3.', () => {
                 decorate.el.table.cellGetText({
                     headTitle: 'ФИО',
                     strNumber: 3,
@@ -430,7 +430,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 3,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -438,7 +438,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 3,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
@@ -464,7 +464,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 4,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -472,7 +472,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 4,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
@@ -513,7 +513,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -521,7 +521,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 1,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
@@ -547,7 +547,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -555,7 +555,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 2,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
@@ -596,7 +596,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -604,7 +604,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 1,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
@@ -630,7 +630,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.todayDate(),
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
 
@@ -638,7 +638,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 2,
                     cellNumber: 4,
-                    value: data.endDate,
+                    value: data.eventDate.event4,
                     timeout: entry.max
                 });
             });
@@ -736,7 +736,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.dateCard,
+                    value: data.eventDate.event5,
                     timeout: entry.max
                 });
             });
@@ -762,7 +762,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.dateCard,
+                    value: data.eventDate.event5,
                     timeout: entry.max
                 });
             });
@@ -790,7 +790,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.dateCard,
+                    value: data.eventDate.event5,
                     timeout: entry.max
                 });
             });
@@ -818,7 +818,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.dateCard,
+                    value: data.eventDate.event5,
                     timeout: entry.max
                 });
             });
@@ -1218,44 +1218,6 @@ const other = (user, tab, bef) => {
 
         describe('Открытие печатной формы', () => {
 
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
             decorate.el.butIcBefore.handler({
                 icon: but.menu,
                 timeout: entry.max
@@ -1281,21 +1243,21 @@ const other = (user, tab, bef) => {
                     head: 'ФИО',
                     str: 1,
                     cell: 1,
-                    value: data.fio.staff3,
+                    value: data.fio.staff1,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Идентификатор',
                     str: 1,
                     cell: 2,
-                    value: data.staff.staff3.identifier[0].identifier,
+                    value: data.staff.staff1.identifier[0].identifier,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Дата выдачи',
                     str: 1,
                     cell: 3,
-                    value: data.dateCard,
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1309,14 +1271,14 @@ const other = (user, tab, bef) => {
                     head: 'Куда (подразделение)',
                     str: 1,
                     cell: 5,
-                    value: data.divisions.division3.name,
+                    value: data.divisions.division1.name,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Должность',
                     str: 1,
                     cell: 6,
-                    value: data.positions.position3.name,
+                    value: data.positions.position1.name,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1363,21 +1325,21 @@ const other = (user, tab, bef) => {
                     head: 'ФИО',
                     str: 1,
                     cell: 1,
-                    value: data.fio.staff3,
+                    value: data.fio.staff1,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Идентификатор',
                     str: 1,
                     cell: 2,
-                    value: data.staff.staff3.identifier[0].identifier,
+                    value: data.staff.staff1.identifier[0].identifier,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Дата выдачи',
                     str: 1,
                     cell: 3,
-                    value: data.dateCard,
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1391,14 +1353,14 @@ const other = (user, tab, bef) => {
                     head: 'Куда (подразделение)',
                     str: 1,
                     cell: 5,
-                    value: data.divisions.division3.name,
+                    value: data.divisions.division1.name,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Должность',
                     str: 1,
                     cell: 6,
-                    value: data.positions.position3.name,
+                    value: data.positions.position1.name,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1425,21 +1387,21 @@ const other = (user, tab, bef) => {
                     head: 'ФИО',
                     str: 1,
                     cell: 1,
-                    value: data.fio.visitor3,
+                    value: data.fio.visitor1,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Идентификатор',
                     str: 1,
                     cell: 2,
-                    value: data.visitor.visitor3.identifier[0].identifier,
+                    value: data.visitor.visitor1.identifier[0].identifier,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Дата выдачи',
                     str: 1,
                     cell: 3,
-                    value: data.dateCard,
+                    value: data.eventDate.event1,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1453,7 +1415,7 @@ const other = (user, tab, bef) => {
                     head: 'Куда (подразделение)',
                     str: 1,
                     cell: 5,
-                    value: data.divisions.division3.name,
+                    value: data.divisions.division1.name,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1467,14 +1429,14 @@ const other = (user, tab, bef) => {
                     head: 'Документ',
                     str: 1,
                     cell: 7,
-                    value: data.visitor.visitor3.supporting_document,
+                    value: data.visitor.visitor1.supporting_document,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
                     head: 'Номер документа',
                     str: 1,
                     cell: 8,
-                    value: data.visitor.visitor3.supporting_document_number,
+                    value: data.visitor.visitor1.supporting_document_number,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1511,7 +1473,7 @@ const other = (user, tab, bef) => {
         const params = {
             nameFile: 'extraidsreport.xlsx',
             jsonAll: [
-                { 'Отчет "Выданные идентификаторы"': '2023-12-18 13:37:33' },
+                { 'Отчет "Выданные идентификаторы"': `${data.date2()}` },
                 {
                     'Отчет "Выданные идентификаторы"': 'Фамилия',
                     __EMPTY: 'Имя',
@@ -1530,29 +1492,52 @@ const other = (user, tab, bef) => {
                 {
                     'Отчет "Выданные идентификаторы"': 'staff',
                     __EMPTY: 'name',
-                    __EMPTY_1: '3',
-                    __EMPTY_2: '3',
-                    __EMPTY_3: '2023-06-01 08:00:00',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: '1',
+                    __EMPTY_3: `${data.eventDate.event1}`,
                     __EMPTY_4: '2033-01-01 00:00:00',
-                    __EMPTY_5: 'division3',
-                    __EMPTY_6: 'position3',
+                    __EMPTY_5: 'division1',
+                    __EMPTY_6: 'position1',
+                    __EMPTY_11: 'Администратор  '
+                },
+                {
+                    'Отчет "Выданные идентификаторы"': 'staff',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: '2',
+                    __EMPTY_3: `${data.eventDate.event1}`,
+                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_5: 'division2',
+                    __EMPTY_6: 'position2',
                     __EMPTY_11: 'Администратор  '
                 },
                 {
                     'Отчет "Выданные идентификаторы"': 'visitor',
                     __EMPTY: 'name',
-                    __EMPTY_1: '3',
-                    __EMPTY_2: '6',
-                    __EMPTY_3: '2023-06-01 08:00:00',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: '4',
+                    __EMPTY_3: `${data.eventDate.event1}`,
                     __EMPTY_4: '2033-01-01 00:00:00',
-                    __EMPTY_5: 'division3',
+                    __EMPTY_5: 'division1',
                     __EMPTY_8: 'passport',
-                    __EMPTY_9: '3',
+                    __EMPTY_9: '1',
+                    __EMPTY_11: 'Администратор  '
+                },
+                {
+                    'Отчет "Выданные идентификаторы"': 'visitor',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: '5',
+                    __EMPTY_3: `${data.eventDate.event1}`,
+                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_5: 'division2',
+                    __EMPTY_8: 'passport',
+                    __EMPTY_9: '2',
                     __EMPTY_11: 'Администратор  '
                 }
             ],
             jsonStaff: [
-                { 'Отчет "Выданные идентификаторы"': '2023-12-20 12:42:08' },
+                { 'Отчет "Выданные идентификаторы"': `${data.date2()}` },
                 {
                     'Отчет "Выданные идентификаторы"': 'Фамилия',
                     __EMPTY: 'Имя',
@@ -1568,17 +1553,28 @@ const other = (user, tab, bef) => {
                 {
                     'Отчет "Выданные идентификаторы"': 'staff',
                     __EMPTY: 'name',
-                    __EMPTY_1: '3',
-                    __EMPTY_2: '3',
-                    __EMPTY_3: '2023-06-01 08:00:00',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: '1',
+                    __EMPTY_3: `${data.eventDate.event1}`,
                     __EMPTY_4: '2033-01-01 00:00:00',
-                    __EMPTY_5: 'division3',
-                    __EMPTY_6: 'position3',
+                    __EMPTY_5: 'division1',
+                    __EMPTY_6: 'position1',
+                    __EMPTY_8: 'Администратор  '
+                },
+                {
+                    'Отчет "Выданные идентификаторы"': 'staff',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: '2',
+                    __EMPTY_3: `${data.eventDate.event1}`,
+                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_5: 'division2',
+                    __EMPTY_6: 'position2',
                     __EMPTY_8: 'Администратор  '
                 }
             ],
             jsonVisitor: [
-                { 'Отчет "Выданные идентификаторы"': '2023-12-18 13:39:46' },
+                { 'Отчет "Выданные идентификаторы"': `${data.date2()}` },
                 {
                     'Отчет "Выданные идентификаторы"': 'Фамилия',
                     __EMPTY: 'Имя',
@@ -1596,13 +1592,25 @@ const other = (user, tab, bef) => {
                 {
                     'Отчет "Выданные идентификаторы"': 'visitor',
                     __EMPTY: 'name',
-                    __EMPTY_1: '3',
-                    __EMPTY_2: '6',
-                    __EMPTY_3: '2023-06-01 08:00:00',
+                    __EMPTY_1: '1',
+                    __EMPTY_2: '4',
+                    __EMPTY_3: `${data.eventDate.event1}`,
                     __EMPTY_4: '2033-01-01 00:00:00',
-                    __EMPTY_5: 'division3',
+                    __EMPTY_5: 'division1',
                     __EMPTY_7: 'passport',
-                    __EMPTY_8: '3',
+                    __EMPTY_8: '1',
+                    __EMPTY_10: 'Администратор  '
+                },
+                {
+                    'Отчет "Выданные идентификаторы"': 'visitor',
+                    __EMPTY: 'name',
+                    __EMPTY_1: '2',
+                    __EMPTY_2: '5',
+                    __EMPTY_3: `${data.eventDate.event1}`,
+                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_5: 'division2',
+                    __EMPTY_7: 'passport',
+                    __EMPTY_8: '2',
                     __EMPTY_10: 'Администратор  '
                 }
             ],
@@ -1612,49 +1620,6 @@ const other = (user, tab, bef) => {
         aft();
 
         describe('Экспорт', () => {
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Отображение в календаре и выбранной даты 2023-06-01`,
-                async () => await dec.simpleText(el.input.getValue,
-                    ['', '', entry.max],
-                    '2023-06-01',
-                    el.input));
 
             decorate.el.butIcBefore.handler({
                 icon: but.menu,
@@ -1749,24 +1714,47 @@ const other = (user, tab, bef) => {
                 {
                     'Фамилия': 'staff',
                     'Имя': 'name',
-                    'Отчество': 3,
-                    'Идентификатор': 3,
-                    'Дата выдачи': '2023-06-01 08:00:00',
+                    'Отчество': 1,
+                    'Идентификатор': 1,
+                    'Дата выдачи': data.eventDate.event1,
                     'Действителен до': '2033-01-01 00:00:00',
-                    'Куда (подразделение)': 'division3',
-                    'Должность': 'position3',
+                    'Куда (подразделение)': 'division1',
+                    'Должность': 'position1',
+                    'Оператор': 'Администратор  '
+                },
+                {
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Идентификатор': 2,
+                    'Дата выдачи': data.eventDate.event1,
+                    'Действителен до': '2033-01-01 00:00:00',
+                    'Куда (подразделение)': 'division2',
+                    'Должность': 'position2',
                     'Оператор': 'Администратор  '
                 },
                 {
                     'Фамилия': 'visitor',
                     'Имя': 'name',
-                    'Отчество': 3,
-                    'Идентификатор': 6,
-                    'Дата выдачи': '2023-06-01 08:00:00',
+                    'Отчество': 1,
+                    'Идентификатор': 4,
+                    'Дата выдачи': data.eventDate.event1,
                     'Действителен до': '2033-01-01 00:00:00',
-                    'Куда (подразделение)': 'division3',
+                    'Куда (подразделение)': 'division1',
                     'Документ': 'passport',
-                    'Номер документа': 3,
+                    'Номер документа': 1,
+                    'Оператор': 'Администратор  '
+                },
+                {
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Идентификатор': 5,
+                    'Дата выдачи': data.eventDate.event1,
+                    'Действителен до': '2033-01-01 00:00:00',
+                    'Куда (подразделение)': 'division2',
+                    'Документ': 'passport',
+                    'Номер документа': 2,
                     'Оператор': 'Администратор  '
                 }
             ],
@@ -1774,12 +1762,23 @@ const other = (user, tab, bef) => {
                 {
                     'Фамилия': 'staff',
                     'Имя': 'name',
-                    'Отчество': 3,
-                    'Идентификатор': 3,
-                    'Дата выдачи': '2023-06-01 08:00:00',
+                    'Отчество': 1,
+                    'Идентификатор': 1,
+                    'Дата выдачи': data.eventDate.event1,
                     'Действителен до': '2033-01-01 00:00:00',
-                    'Куда (подразделение)': 'division3',
-                    'Должность': 'position3',
+                    'Куда (подразделение)': 'division1',
+                    'Должность': 'position1',
+                    'Оператор': 'Администратор  '
+                },
+                {
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Идентификатор': 2,
+                    'Дата выдачи': data.eventDate.event1,
+                    'Действителен до': '2033-01-01 00:00:00',
+                    'Куда (подразделение)': 'division2',
+                    'Должность': 'position2',
                     'Оператор': 'Администратор  '
                 }
             ],
@@ -1787,13 +1786,25 @@ const other = (user, tab, bef) => {
                 {
                     'Фамилия': 'visitor',
                     'Имя': 'name',
-                    'Отчество': 3,
-                    'Идентификатор': 6,
-                    'Дата выдачи': '2023-06-01 08:00:00',
+                    'Отчество': 1,
+                    'Идентификатор': 4,
+                    'Дата выдачи': data.eventDate.event1,
                     'Действителен до': '2033-01-01 00:00:00',
-                    'Куда (подразделение)': 'division3',
+                    'Куда (подразделение)': 'division1',
                     'Документ': 'passport',
-                    'Номер документа': 3,
+                    'Номер документа': 1,
+                    'Оператор': 'Администратор  '
+                },
+                {
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Идентификатор': 5,
+                    'Дата выдачи': data.eventDate.event1,
+                    'Действителен до': '2033-01-01 00:00:00',
+                    'Куда (подразделение)': 'division2',
+                    'Документ': 'passport',
+                    'Номер документа': 2,
                     'Оператор': 'Администратор  '
                 }
             ],
@@ -1803,49 +1814,6 @@ const other = (user, tab, bef) => {
         aft();
 
         describe('Экспорт', () => {
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 1,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
-
-            it(`Отображение в календаре и выбранной даты 2023-06-01`,
-                async () => await dec.simpleText(el.input.getValue,
-                    ['', '', entry.max],
-                    '2023-06-01',
-                    el.input));
 
             decorate.el.butIcBefore.handler({
                 icon: but.menu,

@@ -5578,8 +5578,8 @@ const edit = (type) => {
         };
 
         describe('API - добавление', () => {
-            type.bef();
 
+            type.bef();
             aft();
 
             it('Добавление дополнительных данных', async () => {

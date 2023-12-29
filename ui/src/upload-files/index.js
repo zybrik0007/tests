@@ -16,5 +16,9 @@ module.exports = {
         importXLSXDupOneFailed: path.join(__dirname, 'files/division/import.division.duplicate.one.level.failed.xlsx'),
         importXLSXDupTwoFailed: path.join(__dirname, 'files/division/import.division.duplicate.two.level.failed.xlsx'),
         importXLSXProgressionSuccess: path.join(__dirname, 'files/division/import.division.progression.success.xlsx'),
+    },
+    photo: {
+        photo1: path.join(__dirname, 'photo/photo1.jpg'),
+        photo2: path.join(__dirname, 'photo/photo2.jpg')
     }
 }

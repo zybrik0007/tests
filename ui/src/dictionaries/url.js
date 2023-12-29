@@ -21,6 +21,8 @@ module.exports = {
     visitorEditUrl: address + 'passoffice/visitors/',
     visitorOrderedUrl: address + 'passoffice/visitors/ordered',
     visitorCurrentUrl: address + 'passoffice/visitors/current',
+    staffPassUrl: address +  'passoffice/staff',
+    staffPassEditUrl: address +  'passoffice/staff/',
     accessTemplatesUrl: address + 'passoffice/access/accesstemplates',
     accessAddTemplateUrl: address + 'passoffice/access/template/new',
     accessEditTemplateUrl: address + 'passoffice/access/template/edit/',

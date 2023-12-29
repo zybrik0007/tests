@@ -1,6 +1,7 @@
 module.exports = {
 
     //Персонал
+    staffUi: require('./specs/personal/staff-ui'),
     positionUi: require('./specs/personal/position-ui'),
     additionalDataUi: require('./specs/personal/additional-data-ui'),
     divisionUi: require('./specs/personal/division-ui'),

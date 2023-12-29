@@ -693,7 +693,7 @@ const other = () => {
             json: [
                 { 'Отчет "Журнал верификации"': 'Подразделение: Все' },
                 {
-                    'Отчет "Журнал верификации"': '2023-06-06 00:00 - 2023-06-07 23:59'
+                    'Отчет "Журнал верификации"': `${data.dateTimeToday2()}`
                 },
                 {
                     'Отчет "Журнал верификации"': 'Время',
@@ -710,7 +710,21 @@ const other = () => {
                     __EMPTY_10: 'Оператор'
                 },
                 {
-                    'Отчет "Журнал верификации"': '2023-06-07 09:00:00',
+                    'Отчет "Журнал верификации"': `${data.eventDate.event1}`,
+                    __EMPTY: 'Верификация: проход сотрудника',
+                    __EMPTY_1: '',
+                    __EMPTY_2: '',
+                    __EMPTY_3: 'room1',
+                    __EMPTY_4: 'room2',
+                    __EMPTY_5: '5',
+                    __EMPTY_6: 'visitor',
+                    __EMPTY_7: 'name',
+                    __EMPTY_8: '2',
+                    __EMPTY_9: 'division2',
+                    __EMPTY_10: ''
+                },
+                {
+                    'Отчет "Журнал верификации"': `${data.eventDate.event2}`,
                     __EMPTY: 'Верификация: проход сотрудника',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -724,7 +738,35 @@ const other = () => {
                     __EMPTY_10: ''
                 },
                 {
-                    'Отчет "Журнал верификации"': '2023-06-06 09:00:00',
+                    'Отчет "Журнал верификации"': `${data.eventDate.event3}`,
+                    __EMPTY: 'Верификация: проход сотрудника',
+                    __EMPTY_1: '',
+                    __EMPTY_2: '',
+                    __EMPTY_3: 'Неконтролируемая территория',
+                    __EMPTY_4: 'room1',
+                    __EMPTY_5: '4',
+                    __EMPTY_6: 'visitor',
+                    __EMPTY_7: 'name',
+                    __EMPTY_8: '1',
+                    __EMPTY_9: 'division1',
+                    __EMPTY_10: ''
+                },
+                {
+                    'Отчет "Журнал верификации"': `${data.eventDate.event1}`,
+                    __EMPTY: 'Верификация: проход сотрудника',
+                    __EMPTY_1: '',
+                    __EMPTY_2: '',
+                    __EMPTY_3: 'room1',
+                    __EMPTY_4: 'room2',
+                    __EMPTY_5: '2',
+                    __EMPTY_6: 'staff',
+                    __EMPTY_7: 'name',
+                    __EMPTY_8: '2',
+                    __EMPTY_9: 'division2',
+                    __EMPTY_10: ''
+                },
+                {
+                    'Отчет "Журнал верификации"': `${data.eventDate.event2}`,
                     __EMPTY: 'Верификация: проход сотрудника',
                     __EMPTY_1: '',
                     __EMPTY_2: '',
@@ -736,6 +778,20 @@ const other = () => {
                     __EMPTY_8: '2',
                     __EMPTY_9: 'division2',
                     __EMPTY_10: ''
+                },
+                {
+                    'Отчет "Журнал верификации"': `${data.eventDate.event3}`,
+                    __EMPTY: 'Верификация: проход сотрудника',
+                    __EMPTY_1: '',
+                    __EMPTY_2: '',
+                    __EMPTY_3: 'Неконтролируемая территория',
+                    __EMPTY_4: 'room1',
+                    __EMPTY_5: '1',
+                    __EMPTY_6: 'staff',
+                    __EMPTY_7: 'name',
+                    __EMPTY_8: '1',
+                    __EMPTY_9: 'division1',
+                    __EMPTY_10: ''
                 }
             ],
         }
@@ -744,24 +800,6 @@ const other = () => {
         aft();
 
         describe('Экспорт', () => {
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 6,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 7,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
 
             decorate.el.butIcBefore.handler({
                 icon: but.menu,
@@ -837,7 +875,18 @@ const other = () => {
             nameFile: 'verifyjournal.csv',
             json: [
                 {
-                    'Время': '2023-06-07 09:00:00',
+                    'Время': `${data.eventDate.event1}`,
+                    'Событие': 'Верификация: проход сотрудника',
+                    'Выход': 'room1',
+                    'Вход': 'room2',
+                    'Идентификатор': 5,
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Подразделение': 'division2'
+                },
+                {
+                    'Время': `${data.eventDate.event2}`,
                     'Событие': 'Верификация: проход сотрудника',
                     'Выход': 'Неконтролируемая территория',
                     'Вход': 'room1',
@@ -848,7 +897,29 @@ const other = () => {
                     'Подразделение': 'division2'
                 },
                 {
-                    'Время': '2023-06-06 09:00:00',
+                    'Время': `${data.eventDate.event3}`,
+                    'Событие': 'Верификация: проход сотрудника',
+                    'Выход': 'Неконтролируемая территория',
+                    'Вход': 'room1',
+                    'Идентификатор': 4,
+                    'Фамилия': 'visitor',
+                    'Имя': 'name',
+                    'Отчество': 1,
+                    'Подразделение': 'division1'
+                },
+                {
+                    'Время': `${data.eventDate.event1}`,
+                    'Событие': 'Верификация: проход сотрудника',
+                    'Выход': 'room1',
+                    'Вход': 'room2',
+                    'Идентификатор': 2,
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 2,
+                    'Подразделение': 'division2'
+                },
+                {
+                    'Время': `${data.eventDate.event2}`,
                     'Событие': 'Верификация: проход сотрудника',
                     'Выход': 'Неконтролируемая территория',
                     'Вход': 'room1',
@@ -857,6 +928,17 @@ const other = () => {
                     'Имя': 'name',
                     'Отчество': 2,
                     'Подразделение': 'division2'
+                },
+                {
+                    'Время': `${data.eventDate.event3}`,
+                    'Событие': 'Верификация: проход сотрудника',
+                    'Выход': 'Неконтролируемая территория',
+                    'Вход': 'room1',
+                    'Идентификатор': 1,
+                    'Фамилия': 'staff',
+                    'Имя': 'name',
+                    'Отчество': 1,
+                    'Подразделение': 'division1'
                 }
             ],
         }
@@ -865,24 +947,6 @@ const other = () => {
         aft();
 
         describe('Экспорт', () => {
-            it(`Нажатие по фильтру выбора даты.`,
-                async () => await dec.simple(el.input.handler,
-                    ['', '', entry.max],
-                    el.input));
-
-            decorate.el.datepicker.dateRange({
-                objStart: {
-                    day: 6,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                objEnd: {
-                    day: 7,
-                    month: 'Июнь',
-                    year: 2023
-                },
-                timeout: entry.max
-            });
 
             decorate.el.butIcBefore.handler({
                 icon: but.menu,

@@ -1,7 +1,6 @@
 const {By, until, Key} = require('selenium-webdriver')
 var driver = require('../../../webdriver-middleware')
 
-
 //Базовая страница
 class BasePage {
 
@@ -125,11 +124,9 @@ class BasePage {
                 }
             })
             .catch((err) => {
+                console.log('err: ', err);
                 return {error: true, description: `Ошибка. ${description}`}
             });
-
-
-
     }
 
     // Двойное нажатие по элементу

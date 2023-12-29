@@ -6,7 +6,6 @@ const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
 console.log = () => function () {};
 
 //// Раздел Контроль доступа
-
 // Котроль доступа: Отчет о проходах. Общие проверки без данных
 tests.premiseAccessUi.otherAll().display();
 tests.premiseAccessUi.otherStaff().display();

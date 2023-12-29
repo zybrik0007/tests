@@ -12,6 +12,9 @@ class ModalConfirm extends BasePage {
 
     //Отображение модального окна
     async init(timeout) {
+        console.log('this: ', this);
+        console.log('this.xpathElement: ', this.xpathElement);
+
         const modal = await this.xpathElement(elements.modalConfirm,
             `Отображение модального окна "${this.title}"`,
             timeout)

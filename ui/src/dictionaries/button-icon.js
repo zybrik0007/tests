@@ -69,5 +69,9 @@ module.exports = {
     action_remove_done: {
         name: 'action_remove_done',
         description: 'Убрать выделение у всех'
+    },
+    unsorted_replay_outline: {
+        name: 'unsorted_replay_outline',
+        description: 'Сгенерировать новый штрикод'
     }
 }

@@ -1,53 +1,58 @@
 const {it} = require('mocha');
 const el = require('../../elements');
 const dec = require('../../dictionaries/decorate');
-const modalConfirm = require('../../elements/elements/modal-confirm')
+const modalConfirm = require('../../elements/elements/modal-confirm');
 
-class ModalConfirmDecorate extends modalConfirm {
+const ModalConfirmDecorate = (title, body) =>  {
 
-    constructor(title, body) {
-        super(title, body);
-        this.title = title
-        this.body = body
-    }
+    const modal = new modalConfirm(title, body);
 
-    init = (timeout) => it(`Отображение модального окна "${this.title ? this.title : this.body}".`,
-        async () => await dec.simple(super.init,
+    const init = async({timeout}) => it(`Отображение модального окна "${modal.title ? modal.title : modal.body}".`,
+        async () => await dec.simple(modal.init,
             [timeout],
-            super.init));
+            modal));
 
-    initClose = (timeout) => it(`Отсутствие модального окна "${this.title ? this.title : this.body}".`,
-        async () => await dec.simple(super.initClose,
+    const initClose = ({timeout}) => it(`Отсутствие модального окна "${modal.title ? modal.title : modal.body}".`,
+        async () => await dec.simple(modal.initClose,
             [timeout],
-            super.initClose));
+            modal));
 
-    closeHandler = (timeout) => it(`Нажатие кнопки закрытия модального окна "${this.title ? this.title : this.body}".`,
-        async () => await dec.simple(super.closeHandler,
+    const closeHandler = ({timeout}) => it(`Нажатие кнопки закрытия модального окна "${modal.title ? modal.title : modal.body}".`,
+        async () => await dec.simple(modal.closeHandler,
             [timeout],
-            super.closeHandler));
+            modal));
 
-    close = (timeout) => it(`Отображение кнопки закрытия модального окна "${this.title ? this.title : this.body}".`,
-        async () => await dec.simple(super.close,
+    const close = (timeout) => it(`Отображение кнопки закрытия модального окна "${modal.title ? modal.title : modal.body}".`,
+        async () => await dec.simple(modal.close,
             [timeout],
-            super.close));
+            modal));
 
-    buttonHandler = (name, timeout) =>
-        it(`Нажатие кнопки "${name}" в модальном окне "${this.title ? this.title : this.body}".`,
-            async () => await dec.simple(super.buttonHandler,
+    const buttonHandler = (name, timeout) =>
+        it(`Нажатие кнопки "${name}" в модальном окне "${modal.title ? modal.title : modal.body}".`,
+            async () => await dec.simple(modal.buttonHandler,
                 [timeout],
-                super.buttonHandler));
+                modal));
 
-    buttonActive = (name, timeout) =>
-        it(`Кнопка "${name}" активна в модальном окне "${this.title ? this.title : this.body}".`,
-            async () => await dec.simple(super.buttonActive,
+    const buttonActive = (name, timeout) =>
+        it(`Кнопка "${name}" активна в модальном окне "${modal.title ? modal.title : modal.body}".`,
+            async () => await dec.simple(modal.buttonActive,
                 [name, timeout],
-                super.buttonActive));
+                modal));
 
-    buttonDisabled = (name, timeout) =>
-        it(`Кнопка "${name}" не активна в модальном окне "${this.title ? this.title : this.body}".`,
-            async () => await dec.simple(super.buttonActive,
+    const buttonDisabled = (name, timeout) =>
+        it(`Кнопка "${name}" не активна в модальном окне "${modal.title ? modal.title : modal.body}".`,
+            async () => await dec.simple(modal.buttonActive,
                 [name, timeout],
-                super.buttonDisabled));
+                modal));
+
+    return {
+        init,
+        initClose,
+        closeHandler,
+        buttonHandler,
+        buttonActive,
+        buttonDisabled
+    }
 }
 
 module.exports = ModalConfirmDecorate

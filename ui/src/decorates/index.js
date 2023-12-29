@@ -1,5 +1,6 @@
 const ModalConfirmDecorate = require('./elements-decorates/modal-confirm-decorate');
 const ModalDecorate = require('./elements-decorates/modal-decorate');
+const modalPhoto = require('./modal-decorates/photo-modal-decorate')
 
 module.exports = {
     el: {
@@ -30,8 +31,11 @@ module.exports = {
         table: require('./elements-decorates/table-decorate'),
         butIc: require('./elements-decorates/button-icon-decorate'),
         filterTreeNode: require('./elements-decorates/filter-tree-node'),
+        photography: require('./elements-decorates/photography-decorate'),
     },
     page: {
+        staffActive: require('./page-decorates/staff-active-decorate'),
+        staffChange: require('./page-decorates/staff-active-change-decorate'),
         premiseAccessAll: require('./page-decorates/premise-access-all-decorate'),
         premiseAccessStaff: require('./page-decorates/premise-access-staff-decorate'),
         premiseAccessVisitor: require('./page-decorates/premise-access-visitor-decorate'),
@@ -42,65 +46,76 @@ module.exports = {
         removeIdentifiers: require('./modal-decorates/remove-identifiers-decorate'),
         divisionFilter: require('./modal-decorates/division-filter'),
         roomFilter: require('./modal-decorates/room-filter'),
+        changePhoto: modalPhoto('change-photo', ''),
+        addPhoto: modalPhoto('add-photo', ''),
+        cardControlsAdd: require('./modal-decorates/card-controls-add'),
+        cardControlsNumber: require('./modal-decorates/card-conrols-number-decorate'),
+        printCardStaff: require('./modal-decorates/print-card-staff-decorate'),
     },
     modalConfirm: {
         //Персонал
         //Сотрудники
-        staffBlock: new ModalConfirmDecorate('Подтвердите действие',
+        staffReturn: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите закрыть без сохранения?'),
+
+        staffBlock: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите заблокировать данного сотрудника?'),
 
-        staffUnBlock: new ModalConfirmDecorate('Подтвердите действие',
+        staffUnBlock: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите разблокировать данного сотрудника?'),
 
-        staffDeleteCard: new ModalConfirmDecorate('Подтвердите действие',
+        staffDeleteCard: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить карту у данного сотрудника?'),
 
+        staffChangeDeleteBarcode: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить штрихкод?'),
+
         //Должности
-        positionDelete: new ModalConfirmDecorate('Подтвердите действие',
+        positionDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить данную должность?'),
 
         //Подразделения
-        divisionDelete: new ModalConfirmDecorate('Удаление подразделения',
+        divisionDelete: ModalConfirmDecorate('Удаление подразделения',
             'Вы действительно хотите удалить подразделение?'),
 
         //Дополнительные данные
-        additionalDataDelete: new ModalConfirmDecorate('Подтвердите действие',
+        additionalDataDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить данное дополнительное поле?'),
 
         //Бюро пропусков
         //Посетители
-        visitorBlock: new ModalConfirmDecorate('Подтвердите действие',
+        visitorBlock: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите заблокировать данного посетителя?'),
 
-        visitorUnBlock: new ModalConfirmDecorate('Подтвердите действие',
+        visitorUnBlock: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите разблокировать данного посетителя?'),
 
         // Подразделения
-        divisionDelete: new ModalConfirmDecorate('Удаление подразделения',
+        divisionDelete: ModalConfirmDecorate('Удаление подразделения',
             'Вы действительно хотите удалить подразделение?'),
 
-        accessSchedulesDelete: new ModalConfirmDecorate('Удаление шаблона доступа',
+        accessSchedulesDelete: ModalConfirmDecorate('Удаление шаблона доступа',
             'Вы действительно хотите удалить этот шаблон доступа?'),
 
         //Администрирование
         //Конфигурация
-        roomDelete: new ModalConfirmDecorate('Подтвердите действие',
+        roomDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить данное помещение?'),
 
-        deviceActivate: new ModalConfirmDecorate('Подтвердите действие',
+        deviceActivate: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите включить данное устройство?'),
 
-        deviceDeactivate: new ModalConfirmDecorate('Подтвердите действие',
+        deviceDeactivate: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите отключить данное устройство?'),
 
-        deviceDelete: new ModalConfirmDecorate('Подтвердите действие',
+        deviceDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить этот контроллер?'),
 
         //Лицензии
-        licenseStandardDeactivate: new ModalConfirmDecorate('Подтвердите действие',
-            'При отключении модуля "Стандартный пакет" количество действующих карт будет ограничено 100 картами сотрудников. ' +
-            'Ранее введенные карты посетителей и карты сотрудников больше 100 (в порядке добавления) будут заблокированы. ' +
-            'Также будут отключены остальные модули, кроме "Базовый пакет".')
+        licenseStandardDeactivate: ModalConfirmDecorate('Подтвердите действие',
+            'При отключении модуля "Стандартный пакет" количество действующих карт будет ограничено 100 картами '+
+            'сотрудников. Ранее введенные карты посетителей и карты сотрудников больше 100 (в порядке добавления) ' +
+            'будут заблокированы. Также будут отключены остальные модули, кроме "Базовый пакет".')
     },
 }
 

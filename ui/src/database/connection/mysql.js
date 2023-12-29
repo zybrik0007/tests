@@ -9,6 +9,7 @@ const connection = createConnection({
     database: entry.db.database
 });
 const db = makeDb();
+//db.connect(connection);
 
 module.exports = {
 

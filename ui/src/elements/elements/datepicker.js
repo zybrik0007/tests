@@ -237,22 +237,22 @@ class Datepicker extends BasePage {
             return xpand
         }
 
-        await this.loading(1000);
+        await this.loading(500);
         await selectXpand.scrollTop(1000);
 
-        await this.loading(1000);
+        await this.loading(500);
         const hourHandler = await selectXpand.handler(hour, timeout)
         if(hourHandler.error) {
             return hourHandler
         }
 
-        await this.loading(1000);
+        await this.loading(500);
         const xpandClose = await selectXpand.xpandNoElement(timeout)
         if(xpandClose.error) {
             return xpandClose
         }
 
-        await this.loading(1000);
+        await this.loading(500);
         const hourSelected = await this.xpathElement(elements.datepickerHour(hour),
             `Отображние выбраннго часа "${hour}" в календаре`,
             timeout)
@@ -282,7 +282,7 @@ class Datepicker extends BasePage {
             return xpand
         }
 
-        await this.loading(1000);
+        await this.loading(500);
         await selectXpand.scrollTop(1000);
 
         await this.loading(500);
@@ -291,13 +291,13 @@ class Datepicker extends BasePage {
             return minuteHandler
         }
 
-        await this.loading(1000);
+        await this.loading(500);
         const xpandClose = await selectXpand.xpandNoElement(timeout)
         if(xpandClose.error) {
             return xpandClose
         }
 
-        await this.loading(1000);
+        await this.loading(500);
         const minuteSelected = await this.xpathElement(elements.datepickerMinute(minute),
             `Отображние выбранной минуты "${minute}" в календаре.`,
             timeout)

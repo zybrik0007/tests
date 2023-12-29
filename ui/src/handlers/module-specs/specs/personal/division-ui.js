@@ -31,7 +31,7 @@ const addDivision = (obj) => it('Добавление подразделения
 // api добавление шаблона доступа
 const addAccessTemplate = (name, description) => it('Добавление шаблона доступа', async () => {
     const cook = await page.base.getCookie('token');
-    const obj ={
+    const obj = {
         name: name,
         comment: description,
         access: [

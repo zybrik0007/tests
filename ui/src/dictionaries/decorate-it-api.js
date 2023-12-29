@@ -109,6 +109,35 @@ class DecorateItApi {
             api.putPosition);
     });
 
+    addAdditionalData = ({params, qs}) => it(`Добавление дополнительного поля "${params.name}"`, async () => {
+        const cook = await page.base.getCookie('token');
+        await dec.simple(api.putAdditionalData,
+            [[params], {target: qs}, cook.text],
+            api.putAdditionalData);
+    });
+
+    deleteAdditionalData = ({name, qs}) => it(`Удаление дополнительного поля "${name}"`, async () => {
+        const cook = await page.base.getCookie('token');
+        const getData = await api.getAdditionalData({target: qs}, cook.text);
+        const dataParse = JSON.parse(getData.text);
+        console.log('dataParse', dataParse)
+        const dataId = dataParse.rows.filter(item => item.name === name)[0].id;
+        console.log('dataId', dataId)
+        await dec.simple(api.deleteAdditionalData,
+            [[{id: dataId}], {target: qs}, cook.text],
+            api.deleteAdditionalData);
+    });
+
+    deleteSchedule = ({name}) => it(`Удаление графика работы "${name}".`, async () => {
+        const cook = await page.base.getCookie('token');
+        const getSchedule = await api.getSchedule(cook.text);
+        const scheduleId = getSchedule.text.filter(item => item.name === name)[0].id;
+        await dec.simple(api.deleteSchedule,
+            [[scheduleId], cook.text],
+            api.deleteSchedule);
+    });
+
+
 }
 
 module.exports = new DecorateItApi();

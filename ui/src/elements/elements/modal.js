@@ -11,7 +11,6 @@ class Modal extends BasePage {
 
     //Отображение модального окна
     async init(timeout) {
-        await this.loading(2000);
         const modal = await this.xpathElement(elements.modalId(this.id),
             `Отображение Модального окна "${this.title ? this.title : 'c id ' + this.id}"`,
             timeout)
@@ -30,6 +29,7 @@ class Modal extends BasePage {
             }
         }
 
+        await this.loading(1000);
         return {
             error: false,
             description: `Модальное окно "${this.title ? this.title : 'c id ' + this.id}" отображается`,
@@ -38,8 +38,7 @@ class Modal extends BasePage {
 
     //Отсутствие модального окна
     async initClose(timeout) {
-        await this.loading(2000);
-        const modalCssDisplayNone = await this.xpathCssDisplayNone(elements.modalId(this.id),
+        const modalCssDisplayNone = await this.xpathCssDisplayNone(elements.modalIdNoBlock(this.id),
             `Отсутствие модального окна "${this.title ? this.title : 'c id ' + this.id}".`,
             timeout)
 
@@ -47,6 +46,7 @@ class Modal extends BasePage {
             return modalCssDisplayNone
         }
 
+        await this.loading(1000);
         return {
             error: false,
             description:`Модальное окно "${this.title ? this.title : 'c id ' + this.id}" не отображается.`,
