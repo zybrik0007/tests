@@ -332,7 +332,7 @@ const other = (user, tab, bef) => {
             });
 
             decorate.el.rowEmpty.getText({
-                value: 'Нет данных для отображения.',
+                value: 'Нет данных для отображения',
                 timeout: entry.max
             })
         });
@@ -1272,21 +1272,17 @@ const other = (user, tab, bef) => {
                 placeholder: 'Подразделение',
                 timeout: entry.max
             });
-
             decorate.modal.divisionFilter.init({
                 timeout: entry.max
             });
-
             decorate.el.filterTreeNode.handler({
                 name: data.divisions.division1.name,
                 timeout: entry.max
             });
-
             decorate.el.button.handler({
                 name: 'Выбрать',
                 timeout: entry.max
             });
-
             decorate.modal.divisionFilter.initClose({
                 timeout: entry.max
             });

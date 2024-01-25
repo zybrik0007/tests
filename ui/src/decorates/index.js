@@ -32,25 +32,47 @@ module.exports = {
         butIc: require('./elements-decorates/button-icon-decorate'),
         filterTreeNode: require('./elements-decorates/filter-tree-node'),
         photography: require('./elements-decorates/photography-decorate'),
+        groupCell: require('./elements-decorates/group-cell-decorate'),
     },
     page: {
         staffActive: require('./page-decorates/staff-active-decorate'),
-        staffChange: require('./page-decorates/staff-active-change-decorate'),
+        staffChange: require('./page-decorates/staff-change-decorate'),
+        staffDimissed: require('./page-decorates/staff-dimissed-decorate'),
         premiseAccessAll: require('./page-decorates/premise-access-all-decorate'),
         premiseAccessStaff: require('./page-decorates/premise-access-staff-decorate'),
         premiseAccessVisitor: require('./page-decorates/premise-access-visitor-decorate'),
+        staffPass: require('./page-decorates/staff-pass-decorate'),
+        staffPassChange: require('./page-decorates/staff-pass-change-decorate'),
+        visitorOrder: require('./page-decorates/visitor-ordered-decorate'),
+        visitorCurrent: require('./page-decorates/visitor-current-decorate'),
+        visitorArchive: require('./page-decorates/visitor-archive-decorate'),
+        visitorChange: require('./page-decorates/visitor-change-decoratete'),
+        orderpassOrder: require('./page-decorates/orderpass-order-dercorate'),
+        orderpassArchive: require('./page-decorates/orderpass-archive-dercorate'),
+        orderpassChange: require('./page-decorates/orderpass-change-dercorate')
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
-        exportData: require('./elements-decorates/modal-decorate'),
+        exportData: ModalDecorate('export-data', 'Экспортировать данные'),
         removeIdentifiers: require('./modal-decorates/remove-identifiers-decorate'),
         divisionFilter: require('./modal-decorates/division-filter'),
         roomFilter: require('./modal-decorates/room-filter'),
         changePhoto: modalPhoto('change-photo', ''),
         addPhoto: modalPhoto('add-photo', ''),
         cardControlsAdd: require('./modal-decorates/card-controls-add'),
+        cardControls:  ModalDecorate('card-controls', ''),
         cardControlsNumber: require('./modal-decorates/card-conrols-number-decorate'),
         printCardStaff: require('./modal-decorates/print-card-staff-decorate'),
+        printDesignCard: ModalDecorate('print-design-card', 'Печать пропуска'),
+        printBarcode: require('./modal-decorates/print-barcode-decorate'),
+        dimissStaff: ModalDecorate('dismiss-staff-local', ''),
+        planner: ModalDecorate('planner', ''),
+        accessTemplate: ModalDecorate('access-template', 'Шаблоны доступа'),
+        documentSupport: ModalDecorate('supporting-documents', ''),
+        documentStaff: ModalDecorate('stuff-document', ''),
+        barcode: ModalDecorate('barcode', ''),
+        searchCard: ModalDecorate('card-search', ''),
+        importFile: require('./modal-decorates/importFile')
     },
     modalConfirm: {
         //Персонал
@@ -69,6 +91,18 @@ module.exports = {
 
         staffChangeDeleteBarcode: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить штрихкод?'),
+
+        staffDeleteImage: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данную фотографию?'),
+
+        staffDeleteCar: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данное транспортное средство'),
+
+        staffDeleteBarcode: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить штрихкод?'),
+
+        staffDelete:  ModalConfirmDecorate('Подтвердите действие',
+            'Сотрудник будет удален безвозвратно, его восстановление в дальнейшем будет невозможно.'),
 
         //Должности
         positionDelete: ModalConfirmDecorate('Подтвердите действие',

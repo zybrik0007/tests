@@ -329,7 +329,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 })
             });

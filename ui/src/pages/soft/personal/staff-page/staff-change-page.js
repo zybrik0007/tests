@@ -128,6 +128,13 @@ class StaffChangePage extends BasePage {
             timeout);
     }
 
+    // Получение значения даты увольнения
+    async getDimissedValue(timeout) {
+        return await this.xpathGetText(elements.perStaffDimissedValue,
+            'Получение значения даты увольнения',
+            timeout);
+    }
+
 }
 
 module.exports = StaffChangePage

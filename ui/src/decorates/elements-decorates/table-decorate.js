@@ -23,10 +23,16 @@ module.exports = {
             el.table)),
 
     cellGetText: ({headTitle, strNumber, cellNumber, value, timeout}) =>
-        it(`В таблице в строке ${strNumber} в столбце ${cellNumber} - "${headTitle}" отображается ${value}`,
+        it(`В таблице в строке ${strNumber} в столбце ${cellNumber} - "${headTitle}" отображается "${value}".`,
             async () => await dec.simpleText(el.table.cellGetText,
                 [headTitle, strNumber, cellNumber, timeout],
                 value,
+                el.table)),
+
+    cellImg: ({headTitle, strNumber, cellNumber, timeout}) =>
+        it(`В таблице в строке ${strNumber} в столбце ${cellNumber} - "${headTitle}" отображается картинка`,
+            async () => await dec.simple(el.table.cellImg,
+                [headTitle, strNumber, cellNumber, timeout],
                 el.table)),
 
     cellGetIconLock: ({strNumber, cellNumber, timeout}) =>

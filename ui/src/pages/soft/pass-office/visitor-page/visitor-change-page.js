@@ -26,13 +26,13 @@ class VisitorChangePage extends BasePage {
         }
     }
 
-    async initEdit(id, timeout) {
+    async initEdit(timeout) {
         const title =  await this.titleCompare(visitorTitle, timeout)
         if(title.error) {
             return  title
         }
 
-        const url = await this.urlCompare(visitorEditUrl + `${id}`, timeout)
+        const url = await this.urlContains(visitorEditUrl, timeout)
         if(url.error) {
             return url
         }

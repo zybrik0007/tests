@@ -13,6 +13,7 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     StaffDimissed = require('./soft/personal/staff-page/staff-dimissed-page'),
     VisitorCurrentPage = require('./soft/pass-office/visitor-page/visitor-current-page'),
     VisitorOrderedPage = require('./soft/pass-office/visitor-page/visitor-ordered-page'),
+    VisitorArchivedPage = require('./soft/pass-office/visitor-page/visitor-archive-page'),
     VisitorChangePage = require('./soft/pass-office/visitor-page/visitor-change-page'),
     StaffPassPage = require('./soft/pass-office/staff-pass-page/staff-pass-page'),
     StaffPassPageChange = require('./soft/pass-office/staff-pass-page/staff-pass-change-page'),
@@ -32,7 +33,10 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     PremisesAccessReportVisitor = require('./soft/control-access/premises-access-report-page/premises-access-report-visitor-page'),
     IdentifiersAll = require('./soft/control-access/identifiers-page/identifiers-all-page'),
     IdentifiersStaff = require('./soft/control-access/identifiers-page/identifiers-staff-page'),
-    IdentifiersVisitor = require('./soft/control-access/identifiers-page/identifiers-visitor-page');
+    IdentifiersVisitor = require('./soft/control-access/identifiers-page/identifiers-visitor-page'),
+    OrderpassOrder = require('./soft/orderpass/orderpass/orderpass-order-page'),
+    OrderpassArchive = require('./soft/orderpass/orderpass/orderpass-archive-page'),
+    OrderpassChange = require('./soft/orderpass/orderpass/orderpass-change-page');
 
 
 module.exports = {
@@ -53,9 +57,10 @@ module.exports = {
     //Бюро пропусков
     visitorOrdered: new VisitorOrderedPage(),
     visitorCurrent: new VisitorCurrentPage(),
+    visitorArchive: new VisitorArchivedPage(),
     visitorChange: new VisitorChangePage(),
     staffPass: new StaffPassPage(),
-    staffPassChange: new StaffPageChange(),
+    staffPassChange: new StaffPassPageChange(),
     accessTemplate: new AccessTemplate(),
     accessTemplateChange: new AccessTemplateChange(),
     accessTemplateSchedulePage: new AccessTemplateSchedulePage(),
@@ -77,6 +82,11 @@ module.exports = {
     identifiersAll: new IdentifiersAll(),
     identifiersStaff: new IdentifiersStaff(),
     identifiersVisitor: new IdentifiersVisitor(),
+
+    //Заказ пропуска
+    orderpassOrder: new OrderpassOrder(),
+    orderpassArchive: new OrderpassArchive(),
+    orderpassChange: new OrderpassChange(),
 
     //Администрирование
     room: new Rooms(),

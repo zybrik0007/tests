@@ -13,6 +13,7 @@ module.exports = {
     perStaffCarAddImg: (name, number) => `//app-user-card-cars/div/div[${number}]//span[normalize-space(.)="${name}"]/span`,
     perStaffCarImg: (event) => `//app-user-card-cars/div/div[${event}]//img`,
     perStaffPrintCardLast: (event) => `//p[@class="pwPrintCard-mainInfo-desc" and normalize-space(.)="${event}"]`,
+    perStaffDimissedValue: '//div[@class="dismissed__text"]',
 
     //Графики работы
     perSchedule: (name, work, nowork) => {
@@ -266,22 +267,22 @@ module.exports = {
     loader: (event) => `//pw-loading[@size="${event}"]`,
 
     //table
-    tableStr: '//*[contains(@class, "datatable-row-wrapper")]',
-    tableStrNum: (event) => `//*[contains(@class, "datatable-row-wrapper")][${event}]`,
-    tableStrNumActive: (event) => `//*[contains(@class, "datatable-row-wrapper")][${event}]
-    /div[contains(@class, 'active')]`,
-    tableHeadText: (event) => `//*[contains(@class, "datatable-row-center")][1]
-    /*[contains(@class, "datatable-header-cell")][${event}]//span[contains(@class, "datatable-header-cell-label")]`,
-    tableHeadIcon: (cell, icon) => `//*[contains(@class, "datatable-row-center")][1]
-    /*[contains(@class, "datatable-header-cell")][${cell}]//span[contains(@class, "datatable-header-cell-label")]
-    /pw-icon/div[contains(@class, "${icon}")]`,
-    tableCellText: (str, cell) => `//*[contains(@class, "datatable-row-wrapper")][${str}]
-    //*[contains(@class, "datatable-body-cell")][${cell}]//*[contains(@class, "col-content")]/*`,
-    tableCellIcon: (str, cell, icon) => `//*[contains(@class, "datatable-row-wrapper")][${str}]
-    //*[contains(@class, "datatable-body-cell")][${cell}]//*[contains(@class, "col-content")]
-    /pw-icon/div[contains(@class, "${icon}")]`,
-    tableHeadSort: (num, sort, icon) => `//div[@class="datatable-row-center"][1]/div[${num}]
-    [contains(@class, "${sort}")]//pw-icon/div[contains(@class, "${icon}")]`,
+    tableStr: '//pw-table-body/div[2]//pw-table-body-row',
+    tableStrNum: (event) => `//pw-table-body/div[2]//pw-table-body-row[${event}]`,
+    tableStrNumActive: (event) => `//pw-table-body/div[2]//pw-table-body-row[${event}][contains(@class, 
+    "pwTableBody__selected")]`,
+    tableHeadText: (event) => `//pw-table-header//pw-table-header-column[${event}]/div/div[contains(@class, 
+    "pwTableHeaderColumn--name")]`,
+    tableHeadIcon: (cell, icon) => `//pw-table-header//pw-table-header-column[${cell}]/div/div[contains(@class, 
+    "pwTableHeaderColumn--name")]//pw-icon/div[contains(@class, "${icon}")]`,
+    tableCellText: (str, cell) => `//pw-table-body/div[2]//pw-table-body-row[${str}]//pw-table-body-row-column[${cell}]
+    /div/div`,
+    tableCellImg: (str, cell) => `//pw-table-body/div[2]//pw-table-body-row[${str}]//pw-table-body-row-column[${cell}]
+    /div/div//img`,
+    tableCellIcon: (str, cell, icon) => `//pw-table-body/div[2]//pw-table-body-row[${str}]
+    //pw-table-body-row-column[${cell}]/div/div/pw-icon/div[contains(@class, "${icon}")]`,
+    tableHeadSort: (num, icon) => `//pw-table-header//pw-table-header-column[${num}]
+    /div//pw-icon/div[contains(@class, "${icon}")]`,
     tableHeadNoSort: (num, asc, desc) => `//div[@class="datatable-row-center"][1]/
     div[1][not(contains(@class, "${asc}")) and not(contains(@class, "${desc}"))]`,
 
@@ -333,11 +334,13 @@ module.exports = {
     //modal import file
     modalImportInputFile: (event) => `//pw-modal[@id="${event}"]//input[@type="file"]`,
     modalImportBody: (event) => `//pw-modal[@id="${event}"]//app-import/div/div/div`,
+    modalImportScroll: (x, y) => `document.querySelector('.pwImport > div:nth-child(2)').scrollBy(${x}, ${y});`,
 
     //modal print table
     modalPrint: (event) => `/pw-modal[@id="${event}"]`,
     modalPrintHead: (id, head) => `//pw-modal[@id="${id}"]//thead/tr/th[${head}]/p`,
     modalPrintColumn: (id, str, cell) => `//pw-modal[@id="${id}"]//tbody/tr[${str}]/td[${cell}]/p`,
+    modalPrintColumnImg: (id, str, cell) => `//pw-modal[@id="${id}"]//tbody/tr[${str}]/td[${cell}]/div/img`,
 
     //modal AdditionalData
     modalAdditionalDataInput: (title, num) => `//pw-field/*[normalize-space(.)="${title}"]//parent::*
@@ -400,7 +403,7 @@ module.exports = {
     simpleCellActive: (event) => `//*[contains(@class, "pwSimpleCell--active") and normalize-space(.)="${event}"]`,
 
     //pw-group-cell
-    pwGroupCell: (event) => `//pw-group-cell//*[contains(text(), "${event}")]`,
+    pwGroupCell: (event) => `//pw-group-cell//*[contains(text(), "${event}")]/parent::*`,
     pwGroupCellChecked: (event) => `//pw-group-cell//*[contains(text(), "${event}")]
     /parent::*//*[contains(@class, "Icon--check_circle_filled_blue")]`,
 
@@ -424,6 +427,9 @@ module.exports = {
     // Photography
     photoAddButton: (event) => `//pw-placeholder//span[normalize-space(.)="${event}"]`,
     photoStaff: `//*[@class="pwStaffInfo__photo"]//img`,
+    photoAdditional: (num, text) => `//div[@class="pwAdditionalImages"][${num}]//span[normalize-space(.)="${text}"]`,
+    photoAdditionalName: (num) => `//div[@class="pwAdditionalImages"][${num}]//div[@class="pwImageBlock__title"]`,
+    photoAdditionalImage: (num) => `//div[@class="pwAdditionalImages"][${num}]//img`,
 
     //modal-change-photo
     modalChangePhotoInput: (event) =>  `//pw-modal[@id="${event}" and contains(@style, "block")]//input`,
@@ -436,6 +442,9 @@ module.exports = {
     modalCardControlsNumberInput:(title, placeholder) => `//pw-modal[@id="card-controls" and contains(@style, "block")]
     //*[normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]`,
     modalCardControlsNumberButton: (event) => `//pw-modal[@id="card-controls" and contains(@style, "block")]
-    //*[normalize-space(.)="${event}"]/button`
+    //*[normalize-space(.)="${event}"]/button`,
 
+    //printBarcode
+    modalPrintBarcodeName: (number) => `//app-print-user-barcode/div[2]/div[1]/div/span[${number}]`,
+    modalPrintBarcodeValue: (number) => `//app-print-user-barcode/div[2]/div[1]/div/p[${number}]`
 }

@@ -102,7 +102,7 @@ const other = () => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
             });
@@ -1033,7 +1033,7 @@ const other = () => {
             });
 
             decorate.el.rowEmpty.getText({
-                value: 'Нет данных для отображения.',
+                value: 'Нет данных для отображения',
                 timeout: entry.max
             });
 
@@ -1074,6 +1074,7 @@ const other = () => {
                     }],
                     db.addEvent);
 
+                await page.base.loading(5000);
             });
         });
 

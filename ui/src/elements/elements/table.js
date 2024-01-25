@@ -40,7 +40,7 @@ class Table extends BasePage {
     async noStr(timeout) {
         return await this.xpathNoElement(elements.tableStr,
             'Отсутствие строк в таблице',
-            timeout)
+            timeout);
     }
 
     //Отображение в таблице одной строки
@@ -68,6 +68,18 @@ class Table extends BasePage {
 
         return await this.xpathGetText(elements.tableCellText(str, cell),
             `Значение столбца ${head}.`,
+            timeout)
+    }
+
+    //Отображение тега img в ячейке по столбцу, номеру строки и номеру колонки
+    async cellImg(head, str, cell, timeout) {
+        const headText = await this.headElement(head, cell)
+        if (headText.error) {
+            return headText
+        }
+
+        return await this.xpathElement(elements.tableCellImg(str, cell),
+            `Отображение картинки в столбце ${head}.`,
             timeout)
     }
 
@@ -121,7 +133,7 @@ class Table extends BasePage {
             return headText
         }
 
-        return await this.xpathElement(elements.tableHeadSort(cell, 'sort-asc', 'Icon--chevron_up_outline'),
+        return await this.xpathElement(elements.tableHeadSort(cell, 'Icon--chevron_up_outline'),
             `Столбец ${head} отсортирован по возрастанию.`,
             timeout)
     }
@@ -133,7 +145,7 @@ class Table extends BasePage {
             return headText
         }
 
-        return await this.xpathElement(elements.tableHeadSort(cell, 'sort-desc', 'Icon--chevron_down_outline'),
+        return await this.xpathElement(elements.tableHeadSort(cell,'Icon--chevron_down_outline'),
             `Столбец ${head} отсортирован по возрастанию.`,
             timeout)
     }
@@ -145,7 +157,7 @@ class Table extends BasePage {
            return headText
        }
 
-       return await this.xpathElement(elements.tableHeadNoSort(cell, 'sort-asc', sort-desc),
+       return await this.xpathElement(elements.tableHeadSort(cell,'Icon--arrows_up_down'),
            `Столбец ${head} не отсортирован.`,
            timeout)
    }

@@ -3,7 +3,7 @@ const el = require('../../elements');
 const dec = require('../../dictionaries/decorate');
 const modalConfirm = require('../../elements/elements/modal-confirm');
 
-const ModalConfirmDecorate = (title, body) =>  {
+const ModalConfirmDecorate = (title, body) => {
 
     const modal = new modalConfirm(title, body);
 

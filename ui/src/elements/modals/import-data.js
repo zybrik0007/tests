@@ -23,6 +23,12 @@ class ImportData extends Modal {
             timeout)
     }
 
+    async scrollTop(number, timeout) {
+        return await this.script(elements.modalImportScroll(0, number),
+            `Скролл модального окна импорта на ${number}px.`,
+            timeout)
+    }
+
 }
 
 module.exports = ImportData

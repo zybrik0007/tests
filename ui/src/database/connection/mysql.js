@@ -116,5 +116,37 @@ module.exports = {
             }
         }
     },
+
+    deleteAllUser : async () => {
+        try {
+            await db.query(connection,`TRUNCATE TABLE user `);
+            return {
+                error: false,
+                description: 'Пользователи удален.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Пользователи не удален.'
+            }
+        }
+    },
+
+    deleteAlUserAdditionalData: async () => {
+        try {
+            await db.query(connection,`TRUNCATE TABLE user_additional_field_data`);
+            return {
+                error: false,
+                description: 'Удалены связи пользователей и дополнительных данных.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Не удалены связи пользователей и дополнительных данных.'
+            }
+        }
+    },
 }
 

@@ -27,6 +27,7 @@ const PlaceholderText = require('./elements/placeholder-text');
 const ButtonIcon = require('./elements/button-icon');
 const FilterTreeNode = require('./elements/filter-tree-node');
 const Photography = require('./elements/photography');
+const GroupCell = require('./elements/group-cell');
 
 const Modal = require('./elements/modal');
 const Dialog = require('./elements/dialog');
@@ -43,6 +44,8 @@ const AddPhoto = require('./modals/add-photo');
 const ChangePhoto = require('./modals/photo');
 const CardControlsNumber = require('./modals/card-controls-number');
 const PrintCardStaff = require('./modals/print-card-modal');
+const BarcodePrint = require('./modals/barcode-print');
+
 
 module.exports = {
     section: new Section(),
@@ -73,6 +76,7 @@ module.exports = {
     butIc: new ButtonIcon(),
     filterTreeNode: new FilterTreeNode(),
     photography: new Photography(),
+    groupCell: new GroupCell(),
 
     modal: {
         //Персонал
@@ -81,6 +85,7 @@ module.exports = {
         changePhoto: new ChangePhoto('change-photo', ''),
         cardControlsNumber: new CardControlsNumber(),
         printCard: new PrintCardStaff('print-card', 'Печать карточки сотрудника'),
+        barcodePrint: new BarcodePrint('barcode-print', 'Печать штрихкода'),
 
         divisionAdd: new Departments('departments', 'Добавить подразделение'),
         divisionEdit: new Departments('departments', 'Редактировать подразделение'),

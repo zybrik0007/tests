@@ -1,6 +1,10 @@
 const path = require('path')
 
 module.exports = {
+    staff: {
+        importStaff: path.join(__dirname, 'files/staff/import.staff.xlsx.xlsx'),
+        importStaffMin: path.join(__dirname, 'files/staff/import.staff.xlsx.min.xlsx'),
+    },
     position: {
         importXLSXSuccess: path.join(__dirname, 'files/position/import.position.xlsx.success.xlsx'),
         importXLSSuccess: path.join(__dirname, 'files/position/import.position.xls.success.xls'),

@@ -9,11 +9,15 @@ module.exports = {
             el.selectMulti)),
 
     getText: ({title, valueNumber, value, timeout}) =>
-        it(`Получение значения у выпадающего списка ${title} под номером ${valueNumber}.`,
+        it(`Значения у выпадающего списка ${title} значение с номером ${valueNumber} равно "${value}".`,
             async () => await dec.simpleText(el.selectMulti.getText,
                 [title, valueNumber, timeout],
                 value,
                 el.selectMulti)),
+    noData: ({title, valueNumber, timeout}) => it(`Отсутствие значений у выпадающего списка "${title}".`,
+        async () => await dec.simpleFalse(el.selectMulti.getText,
+            [title, valueNumber, timeout],
+            el.selectMulti)),
 
     delete: ({title, valueNumber, timeout}) =>
         it(`Удаление значнение у выпадающего списка ${title} под номером ${valueNumber}.`,

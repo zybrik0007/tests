@@ -314,7 +314,7 @@ const other = (user, tab, bef) => {
             });
 
             decorate.el.rowEmpty.getText({
-                value: 'Нет данных для отображения.',
+                value: 'Нет данных для отображения',
                 timeout: entry.max
             });
         });
@@ -1494,8 +1494,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '1',
                     __EMPTY_2: '1',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division1',
                     __EMPTY_6: 'position1',
                     __EMPTY_11: 'Администратор  '
@@ -1505,8 +1505,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
                     __EMPTY_2: '2',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division2',
                     __EMPTY_6: 'position2',
                     __EMPTY_11: 'Администратор  '
@@ -1516,8 +1516,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '1',
                     __EMPTY_2: '4',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division1',
                     __EMPTY_8: 'passport',
                     __EMPTY_9: '1',
@@ -1528,8 +1528,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
                     __EMPTY_2: '5',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division2',
                     __EMPTY_8: 'passport',
                     __EMPTY_9: '2',
@@ -1555,8 +1555,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '1',
                     __EMPTY_2: '1',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division1',
                     __EMPTY_6: 'position1',
                     __EMPTY_8: 'Администратор  '
@@ -1566,8 +1566,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
                     __EMPTY_2: '2',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division2',
                     __EMPTY_6: 'position2',
                     __EMPTY_8: 'Администратор  '
@@ -1594,8 +1594,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '1',
                     __EMPTY_2: '4',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division1',
                     __EMPTY_7: 'passport',
                     __EMPTY_8: '1',
@@ -1606,8 +1606,8 @@ const other = (user, tab, bef) => {
                     __EMPTY: 'name',
                     __EMPTY_1: '2',
                     __EMPTY_2: '5',
-                    __EMPTY_3: `${data.eventDate.event1}`,
-                    __EMPTY_4: '2033-01-01 00:00:00',
+                    __EMPTY_3: `${data.eventDate.event1.slice(0, -3)}`,
+                    __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division2',
                     __EMPTY_7: 'passport',
                     __EMPTY_8: '2',
@@ -1716,8 +1716,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 1,
                     'Идентификатор': 1,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division1',
                     'Должность': 'position1',
                     'Оператор': 'Администратор  '
@@ -1727,8 +1727,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 2,
                     'Идентификатор': 2,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division2',
                     'Должность': 'position2',
                     'Оператор': 'Администратор  '
@@ -1738,8 +1738,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 1,
                     'Идентификатор': 4,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division1',
                     'Документ': 'passport',
                     'Номер документа': 1,
@@ -1750,8 +1750,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 2,
                     'Идентификатор': 5,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division2',
                     'Документ': 'passport',
                     'Номер документа': 2,
@@ -1764,8 +1764,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 1,
                     'Идентификатор': 1,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division1',
                     'Должность': 'position1',
                     'Оператор': 'Администратор  '
@@ -1775,8 +1775,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 2,
                     'Идентификатор': 2,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division2',
                     'Должность': 'position2',
                     'Оператор': 'Администратор  '
@@ -1788,8 +1788,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 1,
                     'Идентификатор': 4,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division1',
                     'Документ': 'passport',
                     'Номер документа': 1,
@@ -1800,8 +1800,8 @@ const other = (user, tab, bef) => {
                     'Имя': 'name',
                     'Отчество': 2,
                     'Идентификатор': 5,
-                    'Дата выдачи': data.eventDate.event1,
-                    'Действителен до': '2033-01-01 00:00:00',
+                    'Дата выдачи': data.eventDate.event1.slice(0, -3),
+                    'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division2',
                     'Документ': 'passport',
                     'Номер документа': 2,
@@ -1913,7 +1913,7 @@ const other = (user, tab, bef) => {
             });
 
             decorate.el.rowEmpty.getText({
-                value: 'Нет данных для отображения.',
+                value: 'Нет данных для отображения',
                 timeout: entry.max
             });
 
@@ -2119,7 +2119,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
 
@@ -2277,7 +2277,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
 
@@ -2452,7 +2452,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
 

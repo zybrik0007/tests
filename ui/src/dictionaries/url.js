@@ -21,6 +21,7 @@ module.exports = {
     visitorEditUrl: address + 'passoffice/visitors/',
     visitorOrderedUrl: address + 'passoffice/visitors/ordered',
     visitorCurrentUrl: address + 'passoffice/visitors/current',
+    visitorArchiveUrl: address + 'passoffice/visitors/archive',
     staffPassUrl: address +  'passoffice/staff',
     staffPassEditUrl: address +  'passoffice/staff/',
     accessTemplatesUrl: address + 'passoffice/access/accesstemplates',
@@ -46,6 +47,11 @@ module.exports = {
     identifiersStaffUrl: address + 'controlaccess/identifiers/staff',
     identifiersVisitorUrl: address + 'controlaccess/identifiers/visitor',
 
+    //Заказ пропуска
+    orderpassOrder: 'orderpass/index',
+    orderpassArchive: 'orderpass/archive',
+    orderpassChangeAdd: '/orderpass/new',
+    orderpassChangeEdit: '/orderpass/new',
 
     //Администрирование
     roomUrl: address + 'administration/premisesconfiguration/rooms',

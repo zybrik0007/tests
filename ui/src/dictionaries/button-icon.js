@@ -7,6 +7,10 @@ module.exports = {
         name: 'editor_mode_edit_outline',
         description: 'Редактировать',
     },
+    unsorted_view_outline: {
+        name: 'unsorted_view_outline',
+        description: 'Открыть карточку сотрудника'
+    },
     copy: '',
     delete: {
         name: 'content_remove',
@@ -32,9 +36,18 @@ module.exports = {
         name: 'personal_card_delete',
         description: 'Изъять карту',
     },
-    card_search: '',
-    barcode_add: '',
-    barcode_delete: '',
+    card_search: {
+        name: 'personal_card_search',
+        description: 'Найти по номеру карты'
+    },
+    barcode_add: {
+        name: 'personal_barcode',
+        description: 'Выдать штрихкод'
+    },
+    barcode_delete: {
+        name: 'personal_barcode_delete',
+        description: 'Удалить штрихкод'
+    },
     filter: '',
     menu: {
         name: 'navigation_menu',
@@ -73,5 +86,9 @@ module.exports = {
     unsorted_replay_outline: {
         name: 'unsorted_replay_outline',
         description: 'Сгенерировать новый штрикод'
+    },
+    unsorted_user_card_outline: {
+        name: 'unsorted_user_card_outline',
+        description: 'Печать пропуска'
     }
 }

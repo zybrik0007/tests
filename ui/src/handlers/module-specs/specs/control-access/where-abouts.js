@@ -266,7 +266,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 })
             });
@@ -1664,7 +1664,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
 
@@ -1705,6 +1705,7 @@ const other = (user, tab, bef) => {
                         }],
                         db.addEvent);
 
+                    await page.base.loading(5000);
                 });
             });
 
@@ -1787,7 +1788,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
 
@@ -1828,6 +1829,7 @@ const other = (user, tab, bef) => {
                         }],
                         db.addEvent);
 
+                    await page.base.loading(5000);
                 });
             });
 
@@ -1910,7 +1912,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения.',
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
 
@@ -1951,6 +1953,7 @@ const other = (user, tab, bef) => {
                         }],
                         db.addEvent);
 
+                    await page.base.loading(5000);
                 });
             });
 

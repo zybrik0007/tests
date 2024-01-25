@@ -65,4 +65,10 @@ module.exports = {
         async () => await dec.simple(page.staffChange.carImg,
             [number, timeout],
             page.staffChange)),
+
+    getDimissedValue: ({value, timeout}) => it(`В заглавии карточки уволенного сотрудника отображается дата "${value}".`,
+        async () => await dec.simpleText(page.staffChange.getDimissedValue,
+            [timeout],
+            value,
+            page.staffChange)),
 }

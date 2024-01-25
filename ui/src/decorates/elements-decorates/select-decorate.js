@@ -48,6 +48,5 @@ module.exports = {
             async () => await dec.simple(el.select.iconClear,
                 [title, value, timeout],
                 el.select))
-
 }
 

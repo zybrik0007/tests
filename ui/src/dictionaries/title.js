@@ -27,6 +27,9 @@ module.exports = {
     premisesAccessReportTitle: title + 'Отчет по доступу в помещения',
     identifiersTitle: title + 'Выданные идентификаторы',
 
+    //Заказ пропуска
+    orderpassOrderpassTitle: title + 'Заказ пропуска',
+
     //Конфигурация
     roomsTitle: title + 'Конфигурация',
     deviceTitle: title + 'Конфигурация',
