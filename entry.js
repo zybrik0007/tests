@@ -1,6 +1,6 @@
 module.exports = {
     browser: process.env.a100browser || 'chrome',
-    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): false,
+    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): true,
     width: Number(process.env.a113width) || 1920,
     height: Number(process.env.a114height) || 1080,
     address: process.env.a101address || 'http://172.17.0.50:8080/',
@@ -24,11 +24,12 @@ module.exports = {
     device_name_2: 'Контроллер CL15',
     device_ip_2: '10.1.221.41',
     db: {
-        type: 'mysql',
-        host: '172.17.0.50',
-        user: 'admin',
-        password: '123456',
-        database: 'perco_selenium_16'
+        type: process.env.a115database_type || 'mysql',
+        host: process.env.a116database_host || '172.17.0.50',
+        port: process.env.a117database_port || '3306',
+        user: process.env.a118database_user || 'admin',
+        password: process.env.a119database_password || '123456',
+        database: process.env.a120database_name || 'perco_selenium_0502024_1'
     }
 }
 

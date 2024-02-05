@@ -90,5 +90,9 @@ module.exports = {
     unsorted_user_card_outline: {
         name: 'unsorted_user_card_outline',
         description: 'Печать пропуска'
+    },
+    unsorted_reply_outline: {
+        name: 'unsorted_reply_outline',
+        description: 'Восстановление'
     }
 }

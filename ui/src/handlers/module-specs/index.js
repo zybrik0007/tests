@@ -7,6 +7,7 @@ module.exports = {
     divisionUi: require('./specs/personal/division-ui'),
 
     //Бюро пропусков
+    visitorUi: require('./specs/pass-office/visitor-ui'),
     scheduleUi: require('./specs/pass-office/access-template-schedule-ui'),
     templateUi: require('./specs/pass-office/access-template-ui'),
 

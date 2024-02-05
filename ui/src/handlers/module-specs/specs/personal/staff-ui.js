@@ -1068,14 +1068,11 @@ const other = (type, text) => {
                     });
                 });
 
-                describe('Генерация штрикода по кнопке', () => {
+                describe('Проверка штрихкода', () => {
                     it('Проверка отображение картинки штрикода', async () => {
                         const barcode = await page.staffChange.getBarcodeSrc(entry.max);
                         expect(!!barcode.text).to.equal(true);
                     });
-                });
-
-                describe('Ввод штрикода', () => {
                     decorate.el.input.getValue({
                         title: '',
                         placeholder: '',
@@ -4783,8 +4780,8 @@ const other = (type, text) => {
         });
     });
 
-    const editStaffMaxParams = () => describe(text +
-        'Редактирование сотрудника с максимальным количеством параметров.', () => {
+    const editStaffMaxParams = () => describe(text + 'Редактирование сотрудника с максимальным количеством параметров.',
+        () => {
 
         if(type === 'active') {
             describe('Редактирование', () => {
@@ -7808,7 +7805,7 @@ const other = (type, text) => {
         });
     });
 
-    const deleteCardStaffMinParams = () => describe(text + 'Удаление карты по кнопке "Выбать карту".', () => {
+    const deleteCardStaffMinParams = () => describe(text + 'Удаление карты по кнопке "Удалить карту".', () => {
 
         if(type === 'active') {
             describe('Проверка таблицы до удаления карты', () => {
@@ -8320,7 +8317,7 @@ const other = (type, text) => {
                     decorate.modal.barcode.initClose({
                         timeout: entry.max
                     });
-                })
+                });
 
             });
 
@@ -8466,7 +8463,7 @@ const other = (type, text) => {
     const addBarcodeDuplicateStaffMinParams = () => describe('Персонал / Сотрудники - вкладка - Действующие. ' +
         'Попытка добавление сотрудника с дублированием штрихкода', () => {
 
-        describe('Попытка добавдения сотрудника c дублирующим штрихкодом', () => {
+        describe('Попытка добавления сотрудника c дублирующим штрихкодом', () => {
 
             befActive();
             aft();
@@ -9509,7 +9506,7 @@ const other = (type, text) => {
     });
 
     const importMinParamsActive = () => describe('Персонал / Сотрудники - вкладка - Действующие. ' +
-        'Проверка импорта с минимальным количесвтом параметров.', () => {
+        'Проверка импорта с минимальным количеством параметров.', () => {
 
         describe('Импорт', () => {
             befActive();
@@ -9733,7 +9730,7 @@ const other = (type, text) => {
     });
 
     const importMaxParamsActive = () => describe('Персонал / Сотрудники - вкладка - Действующие. ' +
-        'Проверка импорта с максимальным количесвтом параметров.', () => {
+        'Проверка импорта с максимальным количеством параметров.', () => {
 
         describe('Импорт', () => {
             befActive();

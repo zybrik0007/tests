@@ -427,6 +427,7 @@ module.exports = {
     // Photography
     photoAddButton: (event) => `//pw-placeholder//span[normalize-space(.)="${event}"]`,
     photoStaff: `//*[@class="pwStaffInfo__photo"]//img`,
+    photoVisitor: `//*[@class="pwVisitorInfo__photo"]//img`,
     photoAdditional: (num, text) => `//div[@class="pwAdditionalImages"][${num}]//span[normalize-space(.)="${text}"]`,
     photoAdditionalName: (num) => `//div[@class="pwAdditionalImages"][${num}]//div[@class="pwImageBlock__title"]`,
     photoAdditionalImage: (num) => `//div[@class="pwAdditionalImages"][${num}]//img`,
@@ -446,5 +447,9 @@ module.exports = {
 
     //printBarcode
     modalPrintBarcodeName: (number) => `//app-print-user-barcode/div[2]/div[1]/div/span[${number}]`,
-    modalPrintBarcodeValue: (number) => `//app-print-user-barcode/div[2]/div[1]/div/p[${number}]`
+    modalPrintBarcodeValue: (number) => `//app-print-user-barcode/div[2]/div[1]/div/p[${number}]`,
+
+    //printVisitorBarcode
+    modalPrintVisitorBarcodeName: (number) => `//app-print-visitor-barcode/div[2]/div[1]/div/span[${number}]`,
+    modalPrintVisitorBarcodeValue: (number) => `//app-print-visitor-barcode/div[2]/div[1]/div/p[${number}]`,
 }

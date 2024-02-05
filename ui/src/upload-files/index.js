@@ -24,5 +24,8 @@ module.exports = {
     photo: {
         photo1: path.join(__dirname, 'photo/photo1.jpg'),
         photo2: path.join(__dirname, 'photo/photo2.jpg')
+    },
+    visitor: {
+        importVisitor: path.join(__dirname, 'files/visitor/import.visitor.xlsx.xlsx'),
     }
 }

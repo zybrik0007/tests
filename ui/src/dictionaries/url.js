@@ -48,10 +48,10 @@ module.exports = {
     identifiersVisitorUrl: address + 'controlaccess/identifiers/visitor',
 
     //Заказ пропуска
-    orderpassOrder: 'orderpass/index',
-    orderpassArchive: 'orderpass/archive',
-    orderpassChangeAdd: '/orderpass/new',
-    orderpassChangeEdit: '/orderpass/new',
+    orderpassOrder: address + 'orderpass/index',
+    orderpassArchive: address + 'orderpass/archive',
+    orderpassChangeAdd: address + 'orderpass/new',
+    orderpassChangeEdit: address + 'orderpass',
 
     //Администрирование
     roomUrl: address + 'administration/premisesconfiguration/rooms',

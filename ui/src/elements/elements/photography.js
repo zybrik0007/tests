@@ -21,9 +21,24 @@ class Photography extends BasePage {
             timeout);
     }
 
-    // Отсутстви фотографии у сотруднкиа
+
+    // Отображение фотографии у посетителя
+    async imageVisitor(timeout) {
+        return await this.xpathElement(elements.photoVisitor,
+            `Отображение тега img.`,
+            timeout);
+    }
+
+    // Отсутстви фотографии у сотруднка
     async noImageStaff(timeout) {
         return await this.xpathNoElement(elements.photoStaff,
+            `Отсутствие тега img.`,
+            timeout);
+    }
+
+    // Отсутстви фотографии у посетителя
+    async noImageVisitor(timeout) {
+        return await this.xpathNoElement(elements.photoVisitor,
             `Отсутствие тега img.`,
             timeout);
     }

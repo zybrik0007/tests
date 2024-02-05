@@ -2,15 +2,12 @@ const tests = require('../ui/src/handlers/module-specs');
 const closeBrowser = require('../ui/src/handlers/other/closeBrowser');
 const data = require('../ui/src/handlers/module-specs/data');
 
-//data.deleteDataControlAccess();
-data.addDataControlAccess();
 
-
-// Удаление данных
-//data.deleteDataControlAccess();
-tests.identifiersUi.otherAll().deleteIdentifier();
-
-
-//data.deleteDataControlAccess();
+data.addDataVisitor();
+//tests.visitorUi.otherVisitorOrder.addVisitorMaxParams();
+//tests.visitorUi.otherVisitorOrder.archiveVisitorMaxParamsFromOrder();
+//tests.visitorUi.otherVisitorOrder.addBarcodeVisitorMaxParams();
+//tests.visitorUi.otherVisitorOrder.addBarcodeDuplicateVisitor();
+data.deleteDataVisitor();
 
 closeBrowser();

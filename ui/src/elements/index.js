@@ -45,6 +45,7 @@ const ChangePhoto = require('./modals/photo');
 const CardControlsNumber = require('./modals/card-controls-number');
 const PrintCardStaff = require('./modals/print-card-modal');
 const BarcodePrint = require('./modals/barcode-print');
+const BarcodeVisitorPrint = require('./modals/barcode-visitor-print');
 
 
 module.exports = {
@@ -96,6 +97,7 @@ module.exports = {
 
         //Бюро пропусков
         visitorAddCard:  new Modal('card-controls', ''),
+        barcodeVisitorPrint: new BarcodeVisitorPrint('visitor-barcode', 'Печать штрихкода'),
         scheduleSelect: new ScheduleSelect('schedules', ''),
         timeZoneModalSelect: new TimeZoneModalSelect('timeZonesModalSelect', ''),
         removeIdentifiers: new RemoveIdentifiers('remove-identifiers', 'Неиспользуемые идентификаторы'),

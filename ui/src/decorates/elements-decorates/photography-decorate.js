@@ -40,4 +40,14 @@ module.exports = {
             [number, timeout],
             value,
             el.photography)),
+
+    imageVisitor: ({timeout}) => it(`Отображение тега img в карточки посетителя.`,
+        async () => await dec.simple(el.photography.imageVisitor,
+            [timeout],
+            el.photography)),
+
+    noImageVisitor: ({timeout}) => it(`Отсутствие тега img в карточки посетителя.`,
+        async () => await dec.simple(el.photography.noImageVisitor,
+            [timeout],
+            el.photography)),
 }

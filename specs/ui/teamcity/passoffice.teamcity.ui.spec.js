@@ -1,6 +1,6 @@
-const tests = require('../../ui/src/handlers/module-specs');
-const closeBrowser = require('../../ui/src/handlers/other/closeBrowser');
-const data = require('../../ui/src/handlers/module-specs/data');
+const tests = require('../../../ui/src/handlers/module-specs');
+const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
+const data = require('../../../ui/src/handlers/module-specs/data');
 console.log = () => function () {};
 
 // Бюро пропусков / Посетители

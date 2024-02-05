@@ -27,6 +27,16 @@ module.exports = {
         async() => await dec.simple(el.modal.importData.scrollTop,
             [number, timout],
             el.modal.importData)),
+
+    iconXpand: ({title, value, text, timeout}) => it(`Нажатие по иконки xpand у выпадающего списка ${title} - ${value}
+     и выбор значения "${text}" в списке.`,
+        async() => await dec.simple(el.modal.importData.iconXpand,
+            [title, value, text, timeout],
+            el.modal.importData)),
+
+
+
+
 }
 
 

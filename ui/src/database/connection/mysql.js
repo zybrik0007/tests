@@ -4,6 +4,7 @@ const {makeDb} = require('mysql-async-simple');
 const entry = require('../../../../entry');
 const connection = createConnection({
     host: entry.db.host,
+    port: entry.db.port,
     user: entry.db.user,
     password: entry.db.password,
     database: entry.db.database
@@ -148,5 +149,44 @@ module.exports = {
             }
         }
     },
+
+    updateUserCrateDate: async ({id, create_date}) => {
+        try {
+            await db.query(connection,
+                `UPDATE user SET 
+                create_date="${create_date}"
+                WHERE id="${id}"`);
+            return {
+                error: false,
+                description: 'Строка в таблице user изменена.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Строка в таблице user не изменена.'
+            }
+        }
+    },
+
+    updateUserEndDate: async ({id, end_date}) => {
+        try {
+            await db.query(connection,
+                `UPDATE user_visitor SET 
+                archive_datetime="${end_date}"
+                WHERE user_id="${id}"`);
+            return {
+                error: false,
+                description: 'Строка в таблице user_visitor изменена.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Строка в таблице user_visitor не изменена.'
+            }
+        }
+    },
+
 }
 

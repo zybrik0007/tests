@@ -46,7 +46,7 @@ module.exports = {
         visitorOrder: require('./page-decorates/visitor-ordered-decorate'),
         visitorCurrent: require('./page-decorates/visitor-current-decorate'),
         visitorArchive: require('./page-decorates/visitor-archive-decorate'),
-        visitorChange: require('./page-decorates/visitor-change-decoratete'),
+        visitorChange: require('./page-decorates/visitor-change-decorate'),
         orderpassOrder: require('./page-decorates/orderpass-order-dercorate'),
         orderpassArchive: require('./page-decorates/orderpass-archive-dercorate'),
         orderpassChange: require('./page-decorates/orderpass-change-dercorate')
@@ -72,7 +72,8 @@ module.exports = {
         documentStaff: ModalDecorate('stuff-document', ''),
         barcode: ModalDecorate('barcode', ''),
         searchCard: ModalDecorate('card-search', ''),
-        importFile: require('./modal-decorates/importFile')
+        importFile: require('./modal-decorates/importFile'),
+        printVisitorBarcode: require('./modal-decorates/print-barcode-visitor-decorate'),
     },
     modalConfirm: {
         //Персонал
@@ -123,6 +124,12 @@ module.exports = {
 
         visitorUnBlock: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите разблокировать данного посетителя?'),
+
+        visitorArchive: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите перенести заказанный пропуск в архив?'),
+
+        visitorDelete: ModalConfirmDecorate('Подтвердите действие',
+            'Посетитель будет удален безвозвратно, его восстановление в дальнейшем будет невозможно.'),
 
         // Подразделения
         divisionDelete: ModalConfirmDecorate('Удаление подразделения',
