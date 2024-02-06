@@ -4,7 +4,7 @@ const data = require('../../ui/src/handlers/module-specs/data');
 console.log = () => function () {};
 
 // Персонал / Сотрудники - вкладки: Действующие, Уволенные
-data.addDataStaff();
+//data.addDataStaff();
 tests.staffUi.other.addStaffMinParams();
 tests.staffUi.other.addStaffTabelDuplicateMinParams();
 tests.staffUi.other.addCardStaffMinParams();

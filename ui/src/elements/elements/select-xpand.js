@@ -39,7 +39,6 @@ class SelectXpand extends BasePage {
         return scroll;
     }
 
-
 }
 
 module.exports = SelectXpand;

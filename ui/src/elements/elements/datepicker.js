@@ -24,15 +24,15 @@ class Datepicker extends BasePage {
     }
 
     //Выбор дня, месяца, года, часа, минуты
-    async dateParse({day, month, year, hour, minute}, timeout) {
+    async dateParse({day, month, year, hour, minute, scrollMonth, scrollYear, scrollHour, scrollMinute}, timeout) {
         await this.loading(500);
-        const yearSelect = await this.yearSelect(year, timeout)
+        const yearSelect = await this.yearSelect({year, scrollYear, timeout})
         if(yearSelect.error) {
             return yearSelect
         }
 
         await this.loading(500);
-        const monthSelect = await this.monthSelect(month, timeout)
+        const monthSelect = await this.monthSelect({month, scrollMonth, timeout})
         if(monthSelect.error) {
             return monthSelect
         }
@@ -45,7 +45,7 @@ class Datepicker extends BasePage {
 
         await this.loading(500);
         if(hour) {
-            const hourSelect = await this.hourSelect(hour, timeout)
+            const hourSelect = await this.hourSelect({hour, scrollHour, timeout})
             if(hourSelect.error) {
                 return hourSelect
             }
@@ -53,7 +53,7 @@ class Datepicker extends BasePage {
 
         await this.loading(500);
         if(minute) {
-            const minuteSelect = await this.minuteSelect(minute, timeout)
+            const minuteSelect = await this.minuteSelect({minute, scrollMinute, timeout})
             if(minuteSelect.error) {
                 return minuteSelect
             }
@@ -135,7 +135,7 @@ class Datepicker extends BasePage {
     }
 
     //Выбор года в календаре
-    async yearSelect(year, timeout) {
+    async yearSelect({year, scrollYear, timeout}) {
         await this.loading(500);
         const selectHandler = await this.xpathHandler(elements.datepickerButtonYear,
             'Нажатие по выбору года',
@@ -150,7 +150,14 @@ class Datepicker extends BasePage {
             return xpand
         }
 
-        //await this.loading(1000);
+        await this.loading(500);
+
+        if(scrollYear) {
+            const xpandScroll = await selectXpand.scrollTop(scrollYear);
+            if(xpandScroll.error) {
+                return xpandScroll
+            }
+        }
 
         await this.loading(500);
         const yearHandler = await selectXpand.handler(year, timeout)
@@ -180,7 +187,7 @@ class Datepicker extends BasePage {
     }
 
     //Выбор месяца в календаре
-    async monthSelect(month, timeout) {
+    async monthSelect({month, scrollMonth, timeout}) {
         await this.loading(500);
         const selectHandler = await this.xpathHandler(elements.datepickerButtonMonth,
             'Нажатие по выбору месяца',
@@ -193,6 +200,13 @@ class Datepicker extends BasePage {
         const xpand = await selectXpand.xpand(timeout)
         if(xpand.error) {
             return xpand
+        }
+
+        if(scrollMonth) {
+            const xpandScroll = await selectXpand.scrollTop(scrollMonth);
+            if(xpandScroll.error) {
+                return xpandScroll
+            }
         }
 
         await this.loading(500);
@@ -222,7 +236,7 @@ class Datepicker extends BasePage {
     }
 
     //Выбор часа в календаре
-    async hourSelect(hour, timeout) {
+    async hourSelect({hour, scrollHour, timeout}) {
         await this.loading(500);
         const selectHandler = await this.xpathHandler(elements.datepickerButtonHour,
             'Нажатие по выбору часа',
@@ -238,7 +252,12 @@ class Datepicker extends BasePage {
         }
 
         await this.loading(500);
-        await selectXpand.scrollTop(1000);
+        if(scrollHour) {
+            const xpandScroll = await selectXpand.scrollTop(scrollHour);
+            if(xpandScroll.error) {
+                return xpandScroll
+            }
+        }
 
         await this.loading(500);
         const hourHandler = await selectXpand.handler(hour, timeout)
@@ -267,7 +286,7 @@ class Datepicker extends BasePage {
     }
 
     //Выбор минуты в календаре
-    async minuteSelect(minute, timeout) {
+    async minuteSelect({minute, scrollMinute, timeout}) {
         await this.loading(500);
         const selectHandler = await this.xpathHandler(elements.datepickerButtonMinute,
             'Нажатие по выбору минуты.',
@@ -283,7 +302,12 @@ class Datepicker extends BasePage {
         }
 
         await this.loading(500);
-        await selectXpand.scrollTop(1000);
+        if(scrollMinute) {
+            const xpandScroll = await selectXpand.scrollTop(scrollMinute);
+            if(xpandScroll.error) {
+                return xpandScroll
+            }
+        }
 
         await this.loading(500);
         const minuteHandler = await selectXpand.handler(minute, timeout)

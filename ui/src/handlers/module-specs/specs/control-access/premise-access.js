@@ -650,11 +650,13 @@ const other = (user, tab, bef) => {
                 objStart: {
                     day: 6,
                     month: 'Июнь',
+                    scrollYear: -500,
                     year: 2023
                 },
                 objEnd: {
                     day: 7,
                     month: 'Июнь',
+                    scrollYear: -500,
                     year: 2023
                 },
                 timeout: entry.max
@@ -669,11 +671,13 @@ const other = (user, tab, bef) => {
                 objStart: {
                     day: 6,
                     month: 'Июнь',
+                    scrollYear: -500,
                     year: 2023
                 },
                 objEnd: {
                     day: 7,
                     month: 'Июнь',
+                    scrollYear: -500,
                     year: 2023
                 },
                 timeout: entry.max

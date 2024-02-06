@@ -12,39 +12,43 @@ module.exports = {
             [timeout],
             el.datepicker)),
 
-    dateParse: ({day, month, year, hour, minute, timeout}) => it(`Выбор дня, месяца, года, часа, минуты.`,
-        async () => await dec.simple(el.datepicker.dateParse,
-            [{day, month, year, hour, minute}, timeout],
-            el.datepicker)),
+    dateParse: ({day, month, year, hour, minute, scrollMonth, scrollYear, scrollHour, scrollMinute, timeout}) =>
+        it(`Выбор дня, месяца, года, часа, минуты.`,
+            async () => await dec.simple(el.datepicker.dateParse,
+                [{day, month, year, hour, minute, scrollMonth, scrollYear, scrollHour, scrollMinute}, timeout],
+                el.datepicker)),
 
-    date: ({day, month, year, hour, minute, timeout}) => it(`Выбор даты.`,
-        async () => await dec.simple(el.datepicker.date,
-            [{day, month, year, hour, minute}, timeout],
-            el.datepicker)),
+    date: ({day, month, year, hour, minute, scrollMonth, scrollYear, scrollHour, scrollMinute, timeout}) =>
+        it(`Выбор даты.`,
+            async () => await dec.simple(el.datepicker.date,
+                [{day, month, year, hour, minute, scrollMonth, scrollYear, scrollHour, scrollMinute}, timeout],
+                el.datepicker)),
 
-    dateRange: ({objStart={day, month, year, hour, minute},
-                    objEnd={day, month, year, hour, minute}, timeout}) => it(`Выбор даты с двойным календарем.`,
+    dateRange: ({
+                    objStart={day, month, year, hour, minute, scrollMonth, scrollYear, scrollHour, scrollMinute},
+                    objEnd={day, month, year, hour, minute, scrollMonth, scrollYear, scrollHour, scrollMinute},
+                    timeout}) => it(`Выбор даты с двойным календарем.`,
         async () => await dec.simple(el.datepicker.dateRange,
                 [objStart, objEnd, timeout],
                 el.datepicker)),
 
-    yearSelect: ({year,timeout}) => it(`Выбор года в календаре.`, async () => await dec.simple(el.datepicker.yearSelect,
-        [year, timeout],
+    yearSelect: ({year, yearScroll, timeout}) => it(`Выбор года в календаре.`, async () => await dec.simple(el.datepicker.yearSelect,
+        [{year, yearScroll, timeout}],
         el.datepicker)),
 
-    monthSelect: ({month,timeout}) => it(`Выбор месяца в календаре.`,
+    monthSelect: ({month, monthScroll, timeout}) => it(`Выбор месяца в календаре.`,
         async () => await dec.simple(el.datepicker.monthSelect,
-            [month, timeout],
+            [{month, monthScroll, timeout}],
             el.datepicker)),
 
-    hourSelect: ({hour,timeout}) => it(`Выбор часа в календаре.`,
+    hourSelect: ({hour, hourScroll, timeout}) => it(`Выбор часа в календаре.`,
         async () => await dec.simple(el.datepicker.hourSelect,
-            [hour, timeout],
+            [{hour, hourScroll, timeout}],
             el.datepicker)),
 
-    minuteSelect: ({minute,timeout}) => it(`Выбор минуты в календаре.`,
+    minuteSelect: ({minute, scrollMinute, timeout}) => it(`Выбор минуты в календаре.`,
         async () => await dec.simple(el.datepicker.minuteSelect,
-            [minute, timeout],
+            [{minute, scrollMinute, timeout}],
             el.datepicker)),
 
     daySelect: ({day,timeout}) => it(`Выбор дня в календаре.`,

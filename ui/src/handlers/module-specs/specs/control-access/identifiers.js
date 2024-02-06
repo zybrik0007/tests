@@ -680,6 +680,7 @@ const other = (user, tab, bef) => {
                 day: 1,
                 month: 'Июнь',
                 year: 2023,
+                scrollYear: -500,
                 timeout: entry.max
             });
 
@@ -692,6 +693,7 @@ const other = (user, tab, bef) => {
                 day: 1,
                 month: 'Июнь',
                 year: 2023,
+                scrollYear: -500,
                 timeout: entry.max
             });
         });
@@ -1927,6 +1929,7 @@ const other = (user, tab, bef) => {
                 day: 7,
                 month: 'Июнь',
                 year: 2023,
+                scrollYear: -500,
                 timeout: entry.max
             });
         });
@@ -2133,6 +2136,7 @@ const other = (user, tab, bef) => {
                     day: 7,
                     month: 'Июнь',
                     year: 2023,
+                    scrollYear: -500,
                     timeout: entry.max
                 });
 
@@ -2291,6 +2295,7 @@ const other = (user, tab, bef) => {
                     day: 7,
                     month: 'Июнь',
                     year: 2023,
+                    scrollYear: -500,
                     timeout: entry.max
                 });
 
@@ -2466,6 +2471,7 @@ const other = (user, tab, bef) => {
                     day: 7,
                     month: 'Июнь',
                     year: 2023,
+                    scrollYear: -500,
                     timeout: entry.max
                 });
 
