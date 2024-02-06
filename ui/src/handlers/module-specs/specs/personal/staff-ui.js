@@ -7083,6 +7083,7 @@ const other = (type, text) => {
                         day: data.staff.staff3.dateAfter.day,
                         month: data.staff.staff3.dateAfter.month,
                         year: data.staff.staff3.dateAfter.year,
+                        scrollYear: -500,
                         timeout: entry.max
                     });
                 });
