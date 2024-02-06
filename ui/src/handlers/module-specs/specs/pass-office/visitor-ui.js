@@ -5992,6 +5992,7 @@ const other = (type, text) => {
                             day: data.visitor2.dateAfter.day,
                             month: data.visitor2.dateAfter.month,
                             year: data.visitor2.dateAfter.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
 

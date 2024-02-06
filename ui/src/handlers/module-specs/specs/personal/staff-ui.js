@@ -112,7 +112,7 @@ const other = (type, text) => {
                         day: data.staff.staff1.dateBirthday.day,
                         month: data.staff.staff1.dateBirthday.month,
                         year: data.staff.staff1.dateBirthday.year,
-                        scroll: -500,
+                        scrollYear: -500,
                         timeout: entry.max
                     });
                 });
@@ -134,7 +134,7 @@ const other = (type, text) => {
                         day: data.staff.staff1.date.day,
                         month: data.staff.staff1.date.month,
                         year: data.staff.staff1.date.year,
-                        scroll: -500,
+                        scrollYear: -500,
                         timeout: entry.max
                     });
 
@@ -283,6 +283,7 @@ const other = (type, text) => {
                         day: data.staff.staff1.data5.day,
                         month: data.staff.staff1.data5.month,
                         year: data.staff.staff1.data5.year,
+                        scrollYear: -500,
                         timeout: entry.max
                     });
 
@@ -2125,6 +2126,7 @@ const other = (type, text) => {
                 day: data.staff.staff1.dateIn.day,
                 month: data.staff.staff1.dateIn.month,
                 year: data.staff.staff1.dateIn.year,
+                scrollYear: -500,
                 timeout: entry.max
             });
             decorate.el.button.handler({
@@ -3166,6 +3168,7 @@ const other = (type, text) => {
                             day: data.staff.staff2.dateBirthday.day,
                             month: data.staff.staff2.dateBirthday.month,
                             year: data.staff.staff2.dateBirthday.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                     });
@@ -3192,6 +3195,7 @@ const other = (type, text) => {
                             day: data.staff.staff2.date.day,
                             month: data.staff.staff2.date.month,
                             year: data.staff.staff2.date.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
 
@@ -3377,6 +3381,7 @@ const other = (type, text) => {
                             day: data.staff.staff2.data5.day,
                             month: data.staff.staff2.data5.month,
                             year: data.staff.staff2.data5.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
 
@@ -3635,6 +3640,7 @@ const other = (type, text) => {
                             day: data.staff.staff2.passport.dateIn.day,
                             month: data.staff.staff2.passport.dateIn.month,
                             year: data.staff.staff2.passport.dateIn.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                         decorate.el.input.iconCalendar({
@@ -3646,6 +3652,7 @@ const other = (type, text) => {
                             day: data.staff.staff2.passport.dateOut.day,
                             month: data.staff.staff2.passport.dateOut.month,
                             year: data.staff.staff2.passport.dateOut.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                         decorate.el.input.sendKeys({
@@ -4882,6 +4889,7 @@ const other = (type, text) => {
                             day: data.staff.staff1.dateBirthday.day,
                             month: data.staff.staff1.dateBirthday.month,
                             year: data.staff.staff1.dateBirthday.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                     });
@@ -4908,6 +4916,7 @@ const other = (type, text) => {
                             day: data.staff.staff1.date.day,
                             month: data.staff.staff1.date.month,
                             year: data.staff.staff1.date.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
 
@@ -5104,6 +5113,7 @@ const other = (type, text) => {
                             day: data.staff.staff1.data5.day,
                             month: data.staff.staff1.data5.month,
                             year: data.staff.staff1.data5.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
 
@@ -5330,6 +5340,7 @@ const other = (type, text) => {
                             day: data.staff.staff2.passport.dateIn.day,
                             month: data.staff.staff2.passport.dateIn.month,
                             year: data.staff.staff2.passport.dateIn.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                         decorate.el.input.iconCalendar({
@@ -5341,6 +5352,7 @@ const other = (type, text) => {
                             day: data.staff.staff2.passport.dateOut.day,
                             month: data.staff.staff2.passport.dateOut.month,
                             year: data.staff.staff2.passport.dateOut.year,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                         decorate.el.button.handler({
@@ -6921,6 +6933,7 @@ const other = (type, text) => {
                     day: data.date.day,
                     month: data.date.month,
                     year: data.date.year,
+                    scrollYear: -500,
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -7042,6 +7055,7 @@ const other = (type, text) => {
                         day: data.staff.staff3.date.day,
                         month: data.staff.staff3.date.month,
                         year: data.staff.staff3.date.year,
+                        scrollYear: -500,
                         timeout: entry.max
                     });
 
@@ -8767,6 +8781,7 @@ const other = (type, text) => {
                 day: data.date.day,
                 month: data.date.month,
                 year: data.date.year,
+                scrollYear: -500,
                 timeout: entry.max
             });
             decorate.el.button.handler({
