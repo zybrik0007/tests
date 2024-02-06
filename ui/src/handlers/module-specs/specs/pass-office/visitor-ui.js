@@ -223,7 +223,7 @@ const other = (type, text) => {
                             day: data.visitor1.dateAfter.day,
                             month: data.visitor1.dateAfter.month,
                             year: data.visitor1.dateAfter.year,
-                            scrollYear: 500,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                     });
@@ -942,7 +942,7 @@ const other = (type, text) => {
                             day: data.visitor1.dateAfter.day,
                             month: data.visitor1.dateAfter.month,
                             year: data.visitor1.dateAfter.year,
-                            scrollYear: 500,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                     });
@@ -1622,7 +1622,7 @@ const other = (type, text) => {
                             day: data.visitor1.dateAfter.day,
                             month: data.visitor1.dateAfter.month,
                             year: data.visitor1.dateAfter.year,
-                            scrollYear: 500,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
                     });
@@ -3914,7 +3914,7 @@ const other = (type, text) => {
                             year: data.visitor1.dateAfter.year,
                             hour: '23',
                             minute: '59',
-                            scrollYear: 500,
+                            scrollYear: -500,
                             scrollHour: 1000,
                             scrollMinute: 1000,
                             timeout: entry.max
@@ -4310,7 +4310,7 @@ const other = (type, text) => {
                             year: data.visitor1.dateAfter.year,
                             hour: '23',
                             minute: '59',
-                            scrollYear: 500,
+                            scrollYear: -500,
                             scrollHour: 1000,
                             scrollMinute: 1000,
                             timeout: entry.max
@@ -4675,7 +4675,7 @@ const other = (type, text) => {
                             year: data.visitor1.dateAfter.year,
                             hour: '23',
                             minute: '59',
-                            scrollYear: 500,
+                            scrollYear: -500,
                             scrollHour: 1000,
                             scrollMinute: 1000,
                             timeout: entry.max
@@ -5236,7 +5236,7 @@ const other = (type, text) => {
                             day: data.visitor2.dateAfter.day,
                             month: data.visitor2.dateAfter.month,
                             year: data.visitor2.dateAfter.year,
-                            scrollYear: 500,
+                            scrollYear: -500,
                             timeout: entry.max
                         });
 
