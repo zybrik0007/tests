@@ -34,7 +34,7 @@ class ScheduleChangePage extends BasePage {
             return elementTitle
         }
 
-        const elementUrl = await this.urlCompare(schedulesAddUrl, timeout)
+        const elementUrl = await this.urlCompare(schedulesEditUrl, timeout)
         if(elementUrl.error) {
             return elementUrl
         }

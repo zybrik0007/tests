@@ -49,7 +49,9 @@ module.exports = {
         visitorChange: require('./page-decorates/visitor-change-decorate'),
         orderpassOrder: require('./page-decorates/orderpass-order-dercorate'),
         orderpassArchive: require('./page-decorates/orderpass-archive-dercorate'),
-        orderpassChange: require('./page-decorates/orderpass-change-dercorate')
+        orderpassChange: require('./page-decorates/orderpass-change-dercorate'),
+        schedule: require('./page-decorates/schedule-decorate'),
+        scheduleChange: require('./page-decorates/schedule-change-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
