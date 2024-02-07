@@ -28,6 +28,23 @@ class ScheduleChangePage extends BasePage {
         }
     }
 
+    async initEdit(timeout) {
+        const elementTitle = await this.titleCompare(schedulesTitle, timeout)
+        if (elementTitle.error) {
+            return elementTitle
+        }
+
+        const elementUrl = await this.urlCompare(schedulesAddUrl, timeout)
+        if(elementUrl.error) {
+            return elementUrl
+        }
+
+        return {
+            error: false,
+            description: 'Заглавие валидно. Url валиден.',
+        }
+    }
+
     async room(name, work, nowWork, timeout) {
         return await this.xpathElement(elements.perSchedule(name, work, nowWork),
             `Отображение регистрируещего помещения ${name} с настройкой ${work ? "Учет рабочего времени" : ""}

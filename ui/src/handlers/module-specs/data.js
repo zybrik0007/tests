@@ -1965,7 +1965,264 @@ const deleteDataStaff = () => describe('Удаление данных для т�
     });
 });
 
-const addDataSchedule = () => describe('Добавление данных для тестирования подраздела Сотрудники / Графики работы',
+const dataSchedule = {
+    rooms: {
+        room1: 'room1',
+        room2: 'room2',
+        room3: 'room3'
+    },
+    devices: {
+        device1: {
+            name: 'Контроллер замка CL05',
+            ip: '10.10.5.10',
+            obj: {
+                "device_type": 16,
+                "ip_addr": "10.10.5.10",
+                "mac_addr": "02:42:2f:97:86:32"
+            }
+        },
+        device2: {
+            name: 'Контроллер CL15',
+            ip: '10.10.5.2',
+            obj: {
+                "device_type": 902,
+                "ip_addr": "10.10.5.2",
+                "mac_addr": "02:42:2f:97:86:40"
+            }
+        },
+        device3: {
+            name: 'ЛИКОН 2',
+            ip: '10.10.5.9',
+            obj: {
+                "device_type": 65,
+                "ip_addr": "10.10.5.9",
+                "mac_addr": "02:42:2f:97:86:33"
+            }
+        }
+    },
+    weekly1: {
+        name: 'weeklyName1',
+        description: 'weeklyDescription1',
+        intervals: {
+            day1: {
+                name: 'Понедельник',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day2: {
+                name: 'Вторник',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day3: {
+                name: 'Среда',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day4: {
+                name: 'Четверг',
+                time: 'Рабочее время 00ч 00м',
+            },
+            day5: {
+                name: 'Пятница',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+            day6: {
+                name: 'Суббота',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+            day7: {
+                name: 'Воскресенье',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+        },
+        setting: {
+            holiday: false,
+            firstEntranceAndLastExit: false,
+            arrival: {
+                hour: '00',
+                minute: '00'
+            },
+            less: {
+                hour: '00',
+                minute: '00'
+            },
+            early: {
+                hour: '00',
+                minute: '00'
+            },
+            overtime: {
+                hour: '00',
+                minute: '00'
+            },
+        }
+    },
+    weekly2: {
+        name: 'weeklyName2',
+        description: 'weeklyDescription2',
+        intervals: {
+            day1: {
+                name: 'Понедельник',
+                time: 'Рабочее время 00ч 00м',
+            },
+            day2: {
+                name: 'Вторник',
+                time: 'Рабочее время 00ч 00м',
+            },
+            day3: {
+                name: 'Среда',
+                time: 'Рабочее время 12ч 00м',
+                interval1: {
+                    begin: '08:00',
+                    end: '20:00'
+                },
+            },
+            day4: {
+                name: 'Четверг',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day5: {
+                name: 'Пятница',
+                time: 'Рабочее время 18ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '05:00'
+                },
+                interval2: {
+                    begin: '08:00',
+                    end: '17:00'
+                },
+                interval3: {
+                    begin: '19:00',
+                    end: '23:59'
+                },
+            },
+            day6: {
+                name: 'Суббота',
+                time: 'Рабочее время 18ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '05:00'
+                },
+                interval2: {
+                    begin: '08:00',
+                    end: '17:00'
+                },
+                interval3: {
+                    begin: '19:00',
+                    end: '23:59'
+                },
+            },
+            day7: {
+                name: 'Воскресенье',
+                time: 'Рабочее время 18ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '05:00'
+                },
+                interval2: {
+                    begin: '08:00',
+                    end: '17:00'
+                },
+                interval3: {
+                    begin: '19:00',
+                    end: '23:59'
+                },
+            },
+        },
+        setting: {
+            holiday: true,
+            firstEntranceAndLastExit: true,
+            arrival: {
+                hour: '23',
+                minute: '59'
+            },
+            less: {
+                hour: '23',
+                minute: '59'
+            },
+            early: {
+                hour: '23',
+                minute: '59'
+            },
+            overtime: {
+                hour: '23',
+                minute: '59'
+            },
+        }
+    },
+    shift1: {},
+    shift2: {},
+    attendance1: {},
+    attendance2: {},
+    violation1: {},
+    violation2: {},
+    balance1: {},
+    balance2: {},
+}
+
+const addDataSchedule = () => describe('Добавление данных для тестирования подраздела Персонал / Графики работы',
     () => {
     const params = {...dataSchedule}
 
@@ -2008,7 +2265,7 @@ const addDataSchedule = () => describe('Добавление данных для
     });
 });
 
-const deleteDataSchedule = () => describe('Удаление данных для тестирования подразделов Сотрудники / Графики работы',
+const deleteDataSchedule = () => describe('Удаление данных для тестирования подразделов Персонал / Графики работы',
     () => {
     const params = {...dataSchedule}
 
@@ -2681,266 +2938,6 @@ const deleteDataVisitor = () => describe('Удаление данных для �
         });
 
     });
-
-const dataSchedule = {
-    rooms: {
-        room1: 'room1',
-        room2: 'room2',
-        room3: 'room3'
-    },
-    devices: {
-        device1: {
-            name: 'Контроллер замка CL05',
-            ip: '10.10.5.10',
-            obj: {
-                "device_type": 16,
-                "ip_addr": "10.10.5.10",
-                "mac_addr": "02:42:2f:97:86:32"
-            }
-        },
-        device2: {
-            name: 'Контроллер CL15',
-            ip: '10.10.5.2',
-            obj: {
-                "device_type": 902,
-                "ip_addr": "10.10.5.2",
-                "mac_addr": "02:42:2f:97:86:40"
-            }
-        },
-        device3: {
-            name: 'ЛИКОН 2',
-            ip: '10.10.5.9',
-            obj: {
-                "device_type": 65,
-                "ip_addr": "10.10.5.9",
-                "mac_addr": "02:42:2f:97:86:33"
-            }
-        }
-    },
-    weekly1: {
-        name: 'weeklyName1',
-        description: 'weeklyDescription1',
-        intervals: {
-            day1: {
-                name: 'Понедельник',
-                time: 'Рабочее время 23ч 59м',
-                interval1: {
-                    begin: '00:00',
-                    end: '23:59'
-                },
-            },
-            day2: {
-                name: 'Вторник',
-                time: 'Рабочее время 23ч 59м',
-                interval1: {
-                    begin: '00:00',
-                    end: '23:59'
-                },
-            },
-            day3: {
-                name: 'Среда',
-                time: 'Рабочее время 23ч 59м',
-                interval1: {
-                    begin: '00:00',
-                    end: '23:59'
-                },
-            },
-            day4: {
-                name: 'Четверг',
-                time: 'Рабочее время 00ч 00м',
-            },
-            day5: {
-                name: 'Пятница',
-                time: 'Рабочее время 08ч 00м',
-                interval1: {
-                    begin: '09:00',
-                    end: '11:00'
-                },
-                interval2: {
-                    begin: '12:00',
-                    end: '14:00'
-                },
-                interval3: {
-                    begin: '15:00',
-                    end: '17:00'
-                },
-                interval4: {
-                    begin: '18:00',
-                    end: '20:00'
-                },
-            },
-            day6: {
-                name: 'Суббота',
-                time: 'Рабочее время 08ч 00м',
-                interval1: {
-                    begin: '09:00',
-                    end: '11:00'
-                },
-                interval2: {
-                    begin: '12:00',
-                    end: '14:00'
-                },
-                interval3: {
-                    begin: '15:00',
-                    end: '17:00'
-                },
-                interval4: {
-                    begin: '18:00',
-                    end: '20:00'
-                },
-            },
-            day7: {
-                name: 'Воскресенье',
-                time: 'Рабочее время 08ч 00м',
-                interval1: {
-                    begin: '09:00',
-                    end: '11:00'
-                },
-                interval2: {
-                    begin: '12:00',
-                    end: '14:00'
-                },
-                interval3: {
-                    begin: '15:00',
-                    end: '17:00'
-                },
-                interval4: {
-                    begin: '18:00',
-                    end: '20:00'
-                },
-            },
-        },
-        setting: {
-            holiday: false,
-            firstEntranceAndLastExit: false,
-            arrival: {
-                hour: '00',
-                minute: '00'
-            },
-            less: {
-                hour: '00',
-                minute: '00'
-            },
-            early: {
-                hour: '00',
-                minute: '00'
-            },
-            overtime: {
-                hour: '00',
-                minute: '00'
-            },
-        }
-    },
-    weekly2: {
-        name: 'weeklyName2',
-        description: 'weeklyDescription2',
-        intervals: {
-            day1: {
-                name: 'Понедельник',
-                time: 'Рабочее время 00ч 00м',
-            },
-            day2: {
-                name: 'Вторник',
-                time: 'Рабочее время 00ч 00м',
-            },
-            day3: {
-                name: 'Среда',
-                time: 'Рабочее время 12ч 00м',
-                interval1: {
-                    begin: '08:00',
-                    end: '20:00'
-                },
-            },
-            day4: {
-                name: 'Четверг',
-                time: 'Рабочее время 23ч 59м',
-                interval1: {
-                    begin: '00:00',
-                    end: '23:59'
-                },
-            },
-            day5: {
-                name: 'Пятница',
-                time: 'Рабочее время 18ч 59м',
-                interval1: {
-                    begin: '00:00',
-                    end: '05:00'
-                },
-                interval2: {
-                    begin: '08:00',
-                    end: '17:00'
-                },
-                interval3: {
-                    begin: '19:00',
-                    end: '23:59'
-                },
-            },
-            day6: {
-                name: 'Суббота',
-                time: 'Рабочее время 18ч 59м',
-                interval1: {
-                    begin: '00:00',
-                    end: '05:00'
-                },
-                interval2: {
-                    begin: '08:00',
-                    end: '17:00'
-                },
-                interval3: {
-                    begin: '19:00',
-                    end: '23:59'
-                },
-            },
-            day7: {
-                name: 'Воскресенье',
-                time: 'Рабочее время 18ч 59м',
-                interval1: {
-                    begin: '00:00',
-                    end: '05:00'
-                },
-                interval2: {
-                    begin: '08:00',
-                    end: '17:00'
-                },
-                interval3: {
-                    begin: '19:00',
-                    end: '23:59'
-                },
-            },
-        },
-        setting: {
-            holiday: true,
-            firstEntranceAndLastExit: true,
-            arrival: {
-                hour: '23',
-                minute: '59'
-            },
-            less: {
-                hour: '23',
-                minute: '59'
-            },
-            early: {
-                hour: '23',
-                minute: '59'
-            },
-            overtime: {
-                hour: '23',
-                minute: '59'
-            },
-        }
-    },
-    shift1: {},
-    shift2: {},
-    attendance1: {},
-    attendance2: {},
-    violation1: {},
-    violation2: {},
-    balance1: {},
-    balance2: {},
-
-
-}
-
 
 module.exports =  {
     dataControlAccess,

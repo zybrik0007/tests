@@ -10158,14 +10158,20 @@ const other = (type, text) => {
                 });
             });
 
-            describe('Нажатие кнопки "Вернуться к списку сотрудников".', () => {
+            describe('Нажатие "Вернуться к списку сотрудников".', () => {
                 decorate.el.button.handler({
                     name: 'Вернуться к списку сотрудников',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.staffReturn.init({
                     timeout: entry.max
                 });
                 it('Ожидание 2 секунды', async () => await page.base.loading(2000));
                 decorate.el.button.handler({
                     name: 'Подтвердить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.staffReturn.initClose({
                     timeout: entry.max
                 });
                 decorate.page.staffActive.init({
