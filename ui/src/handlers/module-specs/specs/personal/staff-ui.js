@@ -9725,6 +9725,7 @@ const other = (type, text) => {
                     });
                 });
             });
+
             describe('Нажатие кнопки "Вернуться к списку сотрудников".', () => {
                 decorate.el.button.handler({
                     name: 'Вернуться к списку сотрудников',
@@ -9737,6 +9738,7 @@ const other = (type, text) => {
                 decorate.page.staffActive.init({
                     timeout: entry.max
                 });
+                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
             });
         });
 
@@ -10168,6 +10170,7 @@ const other = (type, text) => {
                 decorate.page.staffActive.init({
                     timeout: entry.max
                 });
+                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
             });
         });
 
@@ -10293,6 +10296,7 @@ const other = (type, text) => {
             decorate.modal.importFile.initClose({
                 timeout: entry.max
             });
+            it('Ожидание 2 секунды', async () => await page.base.loading(2000));
         });
 
         describe('Проверка таблицы', () => {

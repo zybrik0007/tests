@@ -2721,13 +2721,94 @@ const dataSchedule = {
         name: 'weeklyName1',
         description: 'weeklyDescription1',
         intervals: {
-            day1: {}
-        },
-        rooms: {
-            room1: true
-        },
-        devices: {
-            device1: true
+            day1: {
+                name: 'Понедельник',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day2: {
+                name: 'Вторник',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day3: {
+                name: 'Среда',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day4: {
+                name: 'Четверг',
+                time: 'Рабочее время 00ч 00м',
+            },
+            day5: {
+                name: 'Пятница',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+            day6: {
+                name: 'Суббота',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+            day7: {
+                name: 'Воскресенье',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
         },
         setting: {
             holiday: false,
@@ -2750,7 +2831,112 @@ const dataSchedule = {
             },
         }
     },
-    weekly2: {},
+    weekly2: {
+        name: 'weeklyName2',
+        description: 'weeklyDescription2',
+        intervals: {
+            day1: {
+                name: 'Понедельник',
+                time: 'Рабочее время 00ч 00м',
+            },
+            day2: {
+                name: 'Вторник',
+                time: 'Рабочее время 00ч 00м',
+            },
+            day3: {
+                name: 'Среда',
+                time: 'Рабочее время 12ч 00м',
+                interval1: {
+                    begin: '08:00',
+                    end: '20:00'
+                },
+            },
+            day4: {
+                name: 'Четверг',
+                time: 'Рабочее время 23ч 59м',
+                interval1: {
+                    begin: '00:00',
+                    end: '23:59'
+                },
+            },
+            day5: {
+                name: 'Пятница',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '00:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+            day6: {
+                name: 'Суббота',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+            day7: {
+                name: 'Воскресенье',
+                time: 'Рабочее время 08ч 00м',
+                interval1: {
+                    begin: '09:00',
+                    end: '11:00'
+                },
+                interval2: {
+                    begin: '12:00',
+                    end: '14:00'
+                },
+                interval3: {
+                    begin: '15:00',
+                    end: '17:00'
+                },
+                interval4: {
+                    begin: '18:00',
+                    end: '20:00'
+                },
+            },
+        },
+        setting: {
+            holiday: false,
+            firstEntranceAndLastExit: false,
+            arrival: {
+                hour: '00',
+                minute: '00'
+            },
+            less: {
+                hour: '00',
+                minute: '00'
+            },
+            early: {
+                hour: '00',
+                minute: '00'
+            },
+            overtime: {
+                hour: '00',
+                minute: '00'
+            },
+        }
+    },
     shift1: {},
     shift2: {},
     attendance1: {},
