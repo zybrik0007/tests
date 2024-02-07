@@ -2861,79 +2861,71 @@ const dataSchedule = {
             },
             day5: {
                 name: 'Пятница',
-                time: 'Рабочее время 08ч 00м',
+                time: 'Рабочее время 18ч 59м',
                 interval1: {
                     begin: '00:00',
-                    end: '11:00'
+                    end: '05:00'
                 },
                 interval2: {
-                    begin: '12:00',
-                    end: '14:00'
+                    begin: '08:00',
+                    end: '17:00'
                 },
                 interval3: {
-                    begin: '18:00',
-                    end: '20:00'
+                    begin: '19:00',
+                    end: '23:59'
                 },
             },
             day6: {
                 name: 'Суббота',
-                time: 'Рабочее время 08ч 00м',
+                time: 'Рабочее время 18ч 59м',
                 interval1: {
-                    begin: '09:00',
-                    end: '11:00'
+                    begin: '00:00',
+                    end: '05:00'
                 },
                 interval2: {
-                    begin: '12:00',
-                    end: '14:00'
-                },
-                interval3: {
-                    begin: '15:00',
+                    begin: '08:00',
                     end: '17:00'
                 },
-                interval4: {
-                    begin: '18:00',
-                    end: '20:00'
+                interval3: {
+                    begin: '19:00',
+                    end: '23:59'
                 },
             },
             day7: {
                 name: 'Воскресенье',
-                time: 'Рабочее время 08ч 00м',
+                time: 'Рабочее время 18ч 59м',
                 interval1: {
-                    begin: '09:00',
-                    end: '11:00'
+                    begin: '00:00',
+                    end: '05:00'
                 },
                 interval2: {
-                    begin: '12:00',
-                    end: '14:00'
-                },
-                interval3: {
-                    begin: '15:00',
+                    begin: '08:00',
                     end: '17:00'
                 },
-                interval4: {
-                    begin: '18:00',
-                    end: '20:00'
+                interval3: {
+                    begin: '19:00',
+                    end: '23:59'
                 },
             },
         },
         setting: {
-            holiday: false,
-            firstEntranceAndLastExit: false,
+            holiday: true,
+            firstEntranceAndLastExit: true,
             arrival: {
-                hour: '00',
-                minute: '00'
+                hour: '23',
+                minute: '59'
             },
             less: {
-                hour: '00',
-                minute: '00'
+                hour: '23',
+                minute: '59'
             },
             early: {
-                hour: '00',
-                minute: '00'
+                hour: '23',
+                minute: '59'
             },
             overtime: {
-                hour: '00',
-                minute: '00'
+                hour: '23',
+                minute: '59'
             },
         }
     },
@@ -2964,5 +2956,6 @@ module.exports =  {
     deleteDataSchedule,
     dataVisitor,
     addDataVisitor,
-    deleteDataVisitor
+    deleteDataVisitor,
+    dataSchedule,
 }

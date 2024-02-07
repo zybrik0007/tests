@@ -9731,6 +9731,7 @@ const other = (type, text) => {
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
                 });
+                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
                 decorate.el.button.handler({
                     name: 'Подтвердить',
                     timeout: entry.max
@@ -9738,7 +9739,6 @@ const other = (type, text) => {
                 decorate.page.staffActive.init({
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
             });
         });
 
@@ -10163,6 +10163,7 @@ const other = (type, text) => {
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
                 });
+                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
                 decorate.el.button.handler({
                     name: 'Подтвердить',
                     timeout: entry.max
@@ -10170,7 +10171,6 @@ const other = (type, text) => {
                 decorate.page.staffActive.init({
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
             });
         });
 

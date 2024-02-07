@@ -15,4 +15,4 @@ const oth = require('../../../other/other');
 const decItApi = require('../../../../dictionaries/decorate-it-api');
 const decorate = require('../../../../decorates');
 const db = require('../../../../database');
-const data = require('../../data').dataStaff;
+const data = require('../../data').dataSchedule;
