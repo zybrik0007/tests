@@ -10,4 +10,9 @@ module.exports = {
     initEdit: ({timeout}) => it('Проверка заглавия и url.', async () => await dec.simple(page.schedulePageChange.initEdit,
         [timeout],
         page.schedulePageChange)),
+
+    addInterval: ({numInterval, timeout}) => it(`Создание интервала графика работы для интервала c порядковым номером  +
+        '${numInterval}.'`, async () => await dec.simple(page.schedulePageChange.addInterval,
+        [numInterval, timeout],
+        page.schedulePageChange)),
 }

@@ -445,8 +445,9 @@ class BasePage {
         }
 
         const element = await driver.findElement(By.xpath(event))
-        return await driver.actions()
-            .move({origin: element, x: 0, y: 0, duration})
+        return await driver.actions({async: true})
+            //.move({origin: element, x: 0, y: 0, duration})
+            .move({origin: element, duration})
             .press()
             .move({origin: element, x, y, duration})
             .release()
@@ -459,9 +460,8 @@ class BasePage {
         return await driver.executeScript(event)
             .then(() => {return {error: false, description}})
             .catch(() => {return {error: false, description: `Ошибка. ${description}`}})
-
-
     }
+
 
 
 }

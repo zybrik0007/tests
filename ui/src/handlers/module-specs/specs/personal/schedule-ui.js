@@ -1,3 +1,4 @@
+const {describe, it, before, after} = require('mocha');
 const {expect} = require('chai');
 
 const entry = require('../../../../../../entry');
@@ -21,17 +22,82 @@ const bef = () => before('Вход и открытие подраздела "Г�
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.per, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.per.schedule, entry.max], el.subsection);
-    await dec.simple(page.staffPass.init, [entry.max], page.staffPass);
+    await dec.simple(page.schedule.init, [entry.max], page.schedule);
     await page.base.loading(2000);
 });
 
 const aft = () => after('Выход', async () => await dec.exit());
 
 const other = () => {
+    console.log('d')
     const addWeekMinParams = () => describe('Добавление недельного графика работы ' +
         'с минимальными количеством параметров', () => {
+        console.log('a')
+        describe('Добавление', () => {
+            bef();
+            //aft();
 
+            describe('Открытие на добавление', () => {
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.page.scheduleChange.initAdd({
+                    timeout: entry.max
+                });
+            });
 
+            /*describe('Общие параметры', () => {
+                decorate.el.simpleCell.active({
+                    name: 'Регистрирующие помещения',
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Имя графика',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Имя графика',
+                    placeholder: '',
+                    value: data.weekly1.name,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Описание графика',
+                    placeholder: '',
+                    value: data.weekly1.description,
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Тип графика',
+                    value: 'Недельный',
+                    text: 'Недельный',
+                    timeout: entry.max
+                });
+            });*/
 
+            describe('Интервалы', () => {
+                decorate.el.simpleCell.handler({
+                    name: 'Интервалы',
+                    timeout: entry.max
+                });
+                decorate.el.simpleCell.active({
+                    name: 'Интервалы',
+                    timeout: entry.max
+                });
+                it('Ожидание 20 секунды', async () => await page.base.loading(20000));
+            });
+
+        });
     });
+
+    return {
+        addWeekMinParams
+    }
+}
+
+
+module.exports = {
+    otherSchedule: other()
 }

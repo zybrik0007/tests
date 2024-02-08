@@ -10158,9 +10158,14 @@ const other = (type, text) => {
                 });
             });
 
-            describe('Нажатие в навигации подраздела "Сотрудники".', () => {
-                decorate.el.subsection.handler({
-                    subsection: sub.per.staff,
+            describe('Нажатие кнопки "Вернуться к списку сотрудников".', () => {
+                it('Ожидание 10 секунды', async () => await page.base.loading(10000));
+                decorate.el.button.handler({
+                    name: 'Вернуться к списку сотрудников',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Подтвердить',
                     timeout: entry.max
                 });
                 decorate.page.staffActive.init({

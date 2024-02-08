@@ -5,10 +5,11 @@ module.exports = {
     positionUi: require('./specs/personal/position-ui'),
     additionalDataUi: require('./specs/personal/additional-data-ui'),
     divisionUi: require('./specs/personal/division-ui'),
+    scheduleUi: require('./specs/personal/schedule-ui'),
 
     //Бюро пропусков
     visitorUi: require('./specs/pass-office/visitor-ui'),
-    scheduleUi: require('./specs/pass-office/access-template-schedule-ui'),
+    //scheduleUi: require('./specs/pass-office/access-template-schedule-ui'),
     templateUi: require('./specs/pass-office/access-template-ui'),
 
    //Контроль доступа
