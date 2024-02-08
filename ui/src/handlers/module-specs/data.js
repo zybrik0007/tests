@@ -2115,36 +2115,136 @@ const dataSchedule = {
         },
         db: {
             "name": "weeklyName1",
-            "work_schedule_type_id": 0,
+            "work_schedule_type_id": 2,
             "comment": "weeklyDescription1",
             "allow_coming_later": "00:00",
             "allow_leaving_before": "00:00",
-            "overtime": "string",
-            "undertime": "string",
-            "is_not_holiday": "boolean",
-            "is_first_input_last_output": "boolean",
+            "overtime": "00:00",
+            "undertime": "00:00",
             "allow_breaks": "00:00",
-            "begin_date": "string",
-            "week_hours": "string",
-            "worktime_begin": "string",
-            "worktime_end": "string",
-            "control_coming_before": "string",
-            "control_leaving_later": "string",
+            "begin_date": "2024-02-08",
+            "week_hours": "40:00",
+            "worktime_begin": "00:00",
+            "worktime_end": "23:59",
+            "control_coming_before": "00:00",
+            "control_leaving_later": "00:00",
             "balance_stored": "00:00",
-            "days": 0,
-            "access_zones": {
-                "access_zones": "boolean",
-                "no_access_zones": "boolean"
-            },
             "intervals": [
                 {
+                    desc:"Понедельник",
                     "intervals": [
                         {
                             "begin": 0,
-                            "end": 0,
-                            "type": 0
+                            "end": 86340,
+                            "type": 3
                         }
-                    ]
+                    ],
+                    title: "Рабочее время: 23ч 59м"
+                },
+                {
+                    desc:"Вторник",
+                    "intervals": [
+                        {
+                            "begin": 0,
+                            "end": 86340,
+                            "type": 3
+                        }
+                    ],
+                    title: "Рабочее время: 23ч 59м"
+                },
+                {
+                    desc:"Среда",
+                    "intervals": [
+                        {
+                            "begin": 0,
+                            "end": 86340,
+                            "type": 3
+                        }
+                    ],
+                    title: "Рабочее время: 23ч 59м"
+                },
+                {
+                    desc: "Четверг",
+                    "intervals": [],
+                    title: "Рабочее время: 00ч 00м"
+                },
+                {
+                    desc: "Пятница",
+                    "intervals": [
+                        {
+                            "begin": 32400,
+                            "end": 39600,
+                            "type": 1
+                        },
+                        {
+                            "begin": 43200,
+                            "end": 50400,
+                            "type": 0
+                        },
+                        {
+                            "begin": 54000,
+                            "end": 61200,
+                            "type": 0
+                        },
+                        {
+                            "begin": 64800,
+                            "end": 72000,
+                            "type": 2
+                        },
+                    ],
+                    title: "Рабочее время: 08ч 00м"
+                },
+                {
+                    desc: "Суббота",
+                    "intervals": [
+                        {
+                            "begin": 32400,
+                            "end": 39600,
+                            "type": 1
+                        },
+                        {
+                            "begin": 43200,
+                            "end": 50400,
+                            "type": 0
+                        },
+                        {
+                            "begin": 54000,
+                            "end": 61200,
+                            "type": 0
+                        },
+                        {
+                            "begin": 64800,
+                            "end": 72000,
+                            "type": 2
+                        }
+                    ],
+                    title: "Рабочее время: 08ч 00м"
+                },
+                {
+                    desc: "Воскресенье",
+                    "intervals": [
+                        {
+                            "begin": 32400,
+                            "end": 39600,
+                            "type": 1
+                        },
+                        {
+                            "begin": 43200,
+                            "end": 50400,
+                            "type": 0
+                        },
+                        {
+                            "begin": 54000,
+                            "end": 61200,
+                            "type": 0
+                        },
+                        {
+                            "begin": 64800,
+                            "end": 72000,
+                            "type": 2
+                        }
+                    ],
+                    title: "Рабочее время: 08ч 00м"
                 }
             ]
         }

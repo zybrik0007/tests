@@ -30,20 +30,36 @@ const bef = () => before('Вход и открытие подраздела "Г�
 const aft = () => after('Выход', async () => await dec.exit());
 
 const other = () => {
-    console.log('d')
-    const addWeekMinParams = () => describe('Добавление недельного графика работы ' +
+
+    const addWeekMinParams = () => describe('Редактирование недельного графика работы ' +
         'с минимальными количеством параметров', () => {
-        console.log('a')
-        describe('Добавление', () => {
+
+        /*describe('API добавление недельного графика работы', () => {
+            bef();
+            aft();
+
+            it(`Добавление графика работы "${data.weekly1.name}"`, async () => {
+                const cook = await page.base.getCookie('token');
+                await dec.simple(api.putSchedule,
+                    [[data.weekly1.db], cook.text],
+                    api.putSchedule);
+            });
+        });*/
+
+        describe('Редактирование', () => {
             bef();
             //aft();
 
-            describe('Открытие на добавление', () => {
-                decorate.el.butIcBefore.handler({
-                    icon: but.add,
+            describe('Открытие на редактирование', () => {
+                decorate.el.table.strHandler({
+                    strNumber: 1,
                     timeout: entry.max
                 });
-                decorate.page.scheduleChange.initAdd({
+                decorate.el.butIcBefore.handler({
+                    icon: but.edit,
+                    timeout: entry.max
+                });
+                decorate.page.scheduleChange.initEdit({
                     timeout: entry.max
                 });
             });
@@ -79,15 +95,7 @@ const other = () => {
             });*/
 
             describe('Интервалы', () => {
-                decorate.el.simpleCell.handler({
-                    name: 'Интервалы',
-                    timeout: entry.max
-                });
-                decorate.el.simpleCell.active({
-                    name: 'Интервалы',
-                    timeout: entry.max
-                });
-                it('Ожидание 20 секунды', async () => await page.base.loading(20000));
+
             });
 
         });
