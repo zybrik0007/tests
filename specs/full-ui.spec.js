@@ -9,10 +9,10 @@ const data = require('../ui/src/handlers/module-specs/data');
 //tests.visitorUi.otherVisitorOrder.addBarcodeVisitorMaxParams();
 //tests.visitorUi.otherVisitorOrder.addBarcodeDuplicateVisitor();
 
-//data.addDataStaff();
-//tests.staffUi.other.importMinParamsActive();
-//tests.staffUi.other.importMaxParamsActive();
-//tests.staffUi.other.importFailedParamsActive();
+/*data.addDataStaff();
+tests.staffUi.other.importMinParamsActive();
+tests.staffUi.other.importMaxParamsActive();
+tests.staffUi.other.importFailedParamsActive();*/
 data.deleteDataStaff();
 
 

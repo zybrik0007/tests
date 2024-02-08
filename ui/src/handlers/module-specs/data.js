@@ -2112,6 +2112,41 @@ const dataSchedule = {
                 hour: '00',
                 minute: '00'
             },
+        },
+        db: {
+            "name": "weeklyName1",
+            "work_schedule_type_id": 0,
+            "comment": "weeklyDescription1",
+            "allow_coming_later": "00:00",
+            "allow_leaving_before": "00:00",
+            "overtime": "string",
+            "undertime": "string",
+            "is_not_holiday": "boolean",
+            "is_first_input_last_output": "boolean",
+            "allow_breaks": "00:00",
+            "begin_date": "string",
+            "week_hours": "string",
+            "worktime_begin": "string",
+            "worktime_end": "string",
+            "control_coming_before": "string",
+            "control_leaving_later": "string",
+            "balance_stored": "00:00",
+            "days": 0,
+            "access_zones": {
+                "access_zones": "boolean",
+                "no_access_zones": "boolean"
+            },
+            "intervals": [
+                {
+                    "intervals": [
+                        {
+                            "begin": 0,
+                            "end": 0,
+                            "type": 0
+                        }
+                    ]
+                }
+            ]
         }
     },
     weekly2: {

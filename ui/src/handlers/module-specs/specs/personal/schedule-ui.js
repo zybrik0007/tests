@@ -18,6 +18,7 @@ const decorate = require('../../../../decorates');
 const db = require('../../../../database');
 const data = require('../../data').dataSchedule;
 
+
 const bef = () => before('Вход и открытие подраздела "Графики работы"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.per, entry.max], el.section);

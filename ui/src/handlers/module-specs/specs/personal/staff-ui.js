@@ -17,6 +17,7 @@ const decItApi = require('../../../../dictionaries/decorate-it-api');
 const decorate = require('../../../../decorates');
 const db = require('../../../../database');
 const data = require('../../data').dataStaff;
+const url = require('../../../../dictionaries/url');
 
 const befActive = () => before('Вход и открытие подраздела "Сотрудники" вкладка "Действующие"', async () => {
     await dec.auth(entry.customLogin, entry.customPassword);
@@ -10159,15 +10160,17 @@ const other = (type, text) => {
             });
 
             describe('Нажатие кнопки "Вернуться к списку сотрудников".', () => {
-                it('Ожидание 10 секунды', async () => await page.base.loading(10000));
                 decorate.el.button.handler({
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
                 });
+                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
                 decorate.el.button.handler({
                     name: 'Подтвердить',
                     timeout: entry.max
                 });
+                it(`Открытие url ${url.staffPresentUrl}`, async () => await page.base.open(url.staffPresentUrl))
+                it('Ожидание 10 секунды', async () => await page.base.loading(10000));
                 decorate.page.staffActive.init({
                     timeout: entry.max
                 });
