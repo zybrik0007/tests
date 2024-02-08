@@ -11,8 +11,27 @@ module.exports = {
         [timeout],
         page.schedulePageChange)),
 
-    addInterval: ({numInterval, timeout}) => it(`Создание интервала графика работы для интервала c порядковым номером  +
-        '${numInterval}.'`, async () => await dec.simple(page.schedulePageChange.addInterval,
+    handler: ({numInterval, timeout}) => it(`Нажатие по интервалу с порядковым номером ${numInterval}.`,
+        async () => await dec.simple(page.schedulePageChange.handler,
         [numInterval, timeout],
         page.schedulePageChange)),
+
+    interval: ({numInterval, timeout}) => it(`Отображение интервала c порядковым номером ${numInterval}.`,
+        async () => await dec.simple(page.schedulePageChange.interval,
+            [numInterval, timeout],
+            page.schedulePageChange)),
+
+    interval: ({numInterval, timeout}) => it(`Отображение интервала c порядковым номером ${numInterval}.`,
+        async () => await dec.simple(page.schedulePageChange.interval,
+            [numInterval, timeout],
+            page.schedulePageChange)),
+
+    async intervalActive(timeout) {
+        return await this.xpathElement(elements.pasAccessScheduleActive,
+            `Интерввал активен.`,
+            timeout)
+    }
+
+
+
 }

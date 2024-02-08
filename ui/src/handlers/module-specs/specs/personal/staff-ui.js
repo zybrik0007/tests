@@ -9917,98 +9917,280 @@ const other = (type, text) => {
             });
         });
 
-        describe('Проверка отображения сотрудника в таблице', () => {
+        describe('Проверка сотрудника и удаление', () => {
+
             befActive();
             aft();
-            decorate.el.table.size({
-                strCount: 1,
-                timeout: entry.max
+
+            describe('Проверка отображения сотрудника в таблице', () => {
+                decorate.el.table.size({
+                    strCount: 1,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'ФИО',
+                    strNumber: 1,
+                    cellNumber: 2,
+                    value: data.staff.staff1.lastName + ' ' + data.staff.staff1.firstName + ' ' + data.staff.staff1.middleName,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Табельный номер',
+                    strNumber: 1,
+                    cellNumber: 3,
+                    value: data.staff.staff1.tabelNumber,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Дата приема',
+                    strNumber: 1,
+                    cellNumber: 4,
+                    value: data.staff.staff1.dateIn.date.substr(0, 10),
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Карта',
+                    strNumber: 1,
+                    cellNumber: 5,
+                    value: data.staff.staff1.card.card1,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Штрихкод',
+                    strNumber: 1,
+                    cellNumber: 6,
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.table.cellNoIconLock({
+                    strNumber: 1,
+                    cellNumber: 7,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Подразделение',
+                    strNumber: 1,
+                    cellNumber: 8,
+                    value: data.staff.staff1.division,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Должность',
+                    strNumber: 1,
+                    cellNumber: 9,
+                    value: data.staff.staff1.position,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'График работы',
+                    strNumber: 1,
+                    cellNumber: 10,
+                    value: data.staff.staff1.schedule,
+                    timeout: entry.max
+                });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Транспортное средство',
+                    strNumber: 1,
+                    cellNumber: 13,
+                    value: data.staff.staff1.ts.arrTS.map(obj => obj.number + ' ' + obj.model).join(';'),
+                    timeout: entry.max
+                });
             });
-            decorate.el.table.cellGetText({
-                headTitle: 'ФИО',
-                strNumber: 1,
-                cellNumber: 2,
-                value: data.staff.staff1.lastName + ' ' + data.staff.staff1.firstName + ' ' + data.staff.staff1.middleName,
-                timeout: entry.max
+
+            describe('Проверка отображения параметров сотрудника', () => {
+
+                describe('Открытие сотрудника на редактирование', () => {
+                    decorate.el.table.strHandler({
+                        strNumber: 1,
+                        timeout: entry.max
+                    });
+                    decorate.el.butIcBefore.handler({
+                        icon: but.edit,
+                        timeout: entry.max
+                    });
+                    decorate.page.staffChange.initEdit({
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Проверка данных "Общая информация"', () => {
+                    describe('Основная информация', () => {
+                        decorate.el.input.getValue({
+                            title: 'Фамилия',
+                            placeholder: 'Фамилия',
+                            value: data.staff.staff1.lastName,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Имя',
+                            placeholder: 'Имя',
+                            value: data.staff.staff1.firstName,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Отчество',
+                            placeholder: 'Отчество',
+                            value: data.staff.staff1.middleName,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Номер телефона',
+                            placeholder: 'Номер телефона',
+                            value: data.staff.staff1.phone,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'E-Mail',
+                            placeholder: 'E-Mail',
+                            value: data.staff.staff1.mail,
+                            timeout: entry.max
+                        });
+                    });
+
+                    describe('Учетные данные', () => {
+                        decorate.el.input.getValue({
+                            title: 'Табельный номер',
+                            placeholder: 'Табельный номер',
+                            value: data.staff.staff1.tabelNumber,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Дата приема',
+                            placeholder: 'Дата приема',
+                            value: data.staff.staff1.date.date,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Действует с',
+                            placeholder: 'Действует с',
+                            value: data.staff.staff1.dateIn.date,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Подразделение',
+                            placeholder: 'Подразделение',
+                            value: data.staff.staff1.division,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Должность',
+                            placeholder: 'Должность',
+                            value: data.staff.staff1.position,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'Действует до',
+                            placeholder: 'Действует до',
+                            value: data.staff.staff1.dateAfter.date,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: 'График работы',
+                            placeholder: 'График работы',
+                            value: data.staff.staff1.schedule,
+                            timeout: entry.max
+                        });
+                    });
+
+                    describe('Дополнительные поля', () => {
+                        decorate.el.input.getValue({
+                            title: 'Пин-код',
+                            placeholder: '',
+                            value: data.staff.staff1.pinCode,
+                            timeout: entry.max
+                        });
+                        decorate.el.input.getValue({
+                            title: data.additionalData.data1Text.name,
+                            placeholder: '',
+                            value: data.staff.staff1.data1,
+                            timeout: entry.max
+                        });
+                    });
+                });
+
+                describe('Проверка данных "Карта доступа"', () => {
+                    describe('Открытие информации "Карта доступа"', () => {
+                        decorate.el.simpleCell.handler({
+                            name: 'Карта доступа',
+                            timeout: entry.max
+                        });
+                        decorate.el.simpleCell.active({
+                            name: 'Карта доступа',
+                            timeout: entry.max
+                        });
+                    });
+
+                    describe(`Проверка идентификатора "Основная карта"`, () => {
+                        decorate.el.input.getValue({
+                            title: 'Идентификатор',
+                            placeholder: '',
+                            value: data.staff.staff1.card.card1
+                        });
+                    });
+
+                });
+
+                describe('Проверка данных "Транспортное средство"', () => {
+                    describe('Открытие информации "Транспортное средство"', () => {
+                        decorate.el.simpleCell.handler({
+                            name: 'Транспортное средство',
+                            timeout: entry.max
+                        });
+                        decorate.el.simpleCell.active({
+                            name: 'Транспортное средство',
+                            timeout: entry.max
+                        });
+                    });
+
+                    data.staff.staff1.ts.arrTS.forEach((obj, index) => {
+                        describe(`Проверка ТС ${index + 1}`, () => {
+                            decorate.page.staffChange.getValueCarInput({
+                                title: 'Номер транспортного средства',
+                                number: index + 1,
+                                value: obj.number,
+                                timeout: entry.max
+                            });
+                            decorate.page.staffChange.getValueCarInput({
+                                title: 'Модель транспортного средства',
+                                number: index + 1,
+                                value: obj.model,
+                                timeout: entry.max
+                            });
+                        });
+                    });
+                });
+
+                describe('Нажатие кнопки "Вернуться к списку сотрудников".', () => {
+                    decorate.el.button.handler({
+                        name: 'Вернуться к списку сотрудников',
+                        timeout: entry.max
+                    });
+                    it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
+                        timeout: entry.max
+                    });
+                    decorate.page.staffActive.init({
+                        timeout: entry.max
+                    });
+                });
             });
-            decorate.el.table.cellGetText({
-                headTitle: 'Табельный номер',
-                strNumber: 1,
-                cellNumber: 3,
-                value: data.staff.staff1.tabelNumber,
-                timeout: entry.max
-            });
-            decorate.el.table.cellGetText({
-                headTitle: 'Дата приема',
-                strNumber: 1,
-                cellNumber: 4,
-                value: data.staff.staff1.dateIn.date.substr(0, 10),
-                timeout: entry.max
-            });
-            decorate.el.table.cellGetText({
-                headTitle: 'Карта',
-                strNumber: 1,
-                cellNumber: 5,
-                value: data.staff.staff1.card.card1,
-                timeout: entry.max
-            });
-            decorate.el.table.cellGetText({
-                headTitle: 'Штрихкод',
-                strNumber: 1,
-                cellNumber: 6,
-                value: '',
-                timeout: entry.max
-            });
-            decorate.el.table.cellNoIconLock({
-                strNumber: 1,
-                cellNumber: 7,
-                timeout: entry.max
-            });
-            decorate.el.table.cellGetText({
-                headTitle: 'Подразделение',
-                strNumber: 1,
-                cellNumber: 8,
-                value: data.staff.staff1.division,
-                timeout: entry.max
-            });
-            decorate.el.table.cellGetText({
-                headTitle: 'Должность',
-                strNumber: 1,
-                cellNumber: 9,
-                value: data.staff.staff1.position,
-                timeout: entry.max
-            });
-            decorate.el.table.cellGetText({
-                headTitle: 'График работы',
-                strNumber: 1,
-                cellNumber: 10,
-                value: data.staff.staff1.schedule,
-                timeout: entry.max
-            });
-            decorate.el.table.cellGetText({
-                headTitle: 'Транспортное средство',
-                strNumber: 1,
-                cellNumber: 13,
-                value: data.staff.staff1.ts.arrTS.map(obj => obj.number + ' ' + obj.model).join(';'),
-                timeout: entry.max
+
+            describe('Удаление сотруднкиа из БД', () => {
+                it('Удаление сотрудников', async () => {
+                    const cook = await page.base.getCookie('token');
+                    const arrStaff = await api.getStaff(cook.text);
+                    const staff1 = arrStaff.text.filter(obj => obj.name === data.staff.staff1.fio)[0].id;
+                    await dec.simple(db.deleteAlUserAdditionalData,
+                        [],
+                        db.deleteAlUserAdditionalData);
+                    await dec.simple(db.deleteUser,
+                        [staff1],
+                        db.deleteUser);
+                });
             });
         });
 
-        describe('Удаление сотруднкиа из БД', () => {
-            befActive();
-            aft();
-            it('Удаление сотрудников', async () => {
-                const cook = await page.base.getCookie('token');
-                const arrStaff = await api.getStaff(cook.text);
-                const staff1 = arrStaff.text.filter(obj => obj.name === data.staff.staff1.fio)[0].id;
-                await dec.simple(db.deleteAlUserAdditionalData,
-                    [],
-                    db.deleteAlUserAdditionalData);
-                await dec.simple(db.deleteUser,
-                    [staff1],
-                    db.deleteUser);
-            });
-        });
     });
 
     const importFailedParamsActive = () => describe('Персонал / Сотрудники - вкладка - Действующие. ' +

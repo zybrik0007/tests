@@ -66,16 +66,9 @@ class ScheduleChangePage extends BasePage {
             timeout)
     }
 
-
-
-
-    //Создание интервала в графике работы
-    async addInterval(numInterval, timeout) {
-        return await this.xpathClickMouseSlideRight(elements.pasAccessSchedule(numInterval),
-            `Создание интервала графика работы для интервала c порядковым номером ${numInterval}.`,
-            100,
-            0,
-            2000,
+    async handler(numInterval, timeout) {
+        return await this.xpathHandler(elements.pasAccessSchedule(numInterval),
+            `Нажатие по интервалу с порядковым номером ${numInterval}.`,
             timeout)
     }
 
@@ -90,19 +83,6 @@ class ScheduleChangePage extends BasePage {
     async intervalActive(timeout) {
         return await this.xpathElement(elements.pasAccessScheduleActive,
             `Интерввал активен.`,
-            timeout)
-    }
-
-    //Отображение не активности интервального блока по номеру
-    async intervalDisabled(numInterval, timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleDisabled(numInterval),
-            `Интерввал с порядковым номер ${numInterval} - не активен.`,
-            timeout)
-    }
-
-    async handler(numInterval, timeout) {
-        return await this.xpathHandler(elements.pasAccessSchedule(numInterval),
-            `Нажатие по интервалу с порядковым номером ${numInterval}.`,
             timeout)
     }
 
@@ -234,72 +214,6 @@ class ScheduleChangePage extends BasePage {
             'Скролл недельных интервалов.')
         await this.loading(1000)
         return scroll
-    }
-
-    //Имя недели из списка недель для выбора по порядковому номеру
-    async sWeekName(strNum, timeout) {
-        return await this.xpathGetText(elements.passAccessScheduleChangeSWeekName(1, strNum),
-            `Получение значения названия недели с порядковым номером ${strNum}, в списке выбора недель.`,
-            timeout)
-    }
-
-    //Кнопка из списка недель для выбора по порядковому номеру
-    async sWeekHandler(strNum, timeout) {
-        const handler = await this.xpathHandler(elements.passAccessScheduleChangeSWeekBut(1, strNum),
-            `Нажатие по кнопке добавления недели с порядковым номером ${strNum}, в списке выбора недель.`,
-            timeout)
-        await this.loading(500);
-        return handler
-    }
-
-    //Двйное нажатие кнопка из списка недель для выбора по порядковому номеру
-    async sWeekDBHandler(strNum, timeout) {
-        const handler =  await this.xpathDbHandler(elements.passAccessScheduleChangeSWeekBut(1, strNum),
-            `Двойное нажатие по кнопке добавления недели с порядковым номером ${strNum}, 
-            в списке выбора недель.`,
-            timeout)
-        await this.loading(500)
-        return handler
-    }
-
-    //Список недель из списка для выбора
-    async sWeekList(size, timeout) {
-        return await this.xpathList(elements.passAccessScheduleChangeSWeekList(1),
-            `Количетсво недель для выбора равно ${size}.`,
-            size,
-            timeout)
-    }
-
-    //Скролл недель из списка для выбора
-    async sWeekScroll() {
-        const scroll = await this.script(elements.passAccessScheduleChangeSWeekScroll(0, 726),
-            'Скролл недель из списка для выбора.')
-        await this.loading(1000)
-        return scroll
-    }
-
-    //Имя недели из списка выбранных недель по порядковому номеру
-    async sWeekSelectedName(strNum, timeout) {
-        return await this.xpathGetText(elements.passAccessScheduleChangeSWeekName(2, strNum),
-            `Получение значения названия недели с порядковым номером ${strNum}, в списке выбранных недель.`,
-            timeout)
-    }
-
-    //Кнопка из списка выбранных недель по порядковому номеру
-    async sWeekSelectedHandler(strNum, timeout) {
-        const handler = await this.xpathHandler(elements.passAccessScheduleChangeSWeekBut(2, strNum),
-            `Нажатие по кнопке удаление недели с порядковым номером ${strNum}, в списке выбранных недель.`,
-            timeout)
-        await this.loading(500)
-        return handler
-    }
-
-    //Список недель из списка выбранных
-    async sWeekSelectedList(size, timeout) {
-        return await this.xpathList(elements.passAccessScheduleChangeSWeekList(2),
-            `Количетсво выбранных недель равно ${size}.`,
-            size,
-            timeout)
     }
 
     //Скролл н недель из списка выбранных
