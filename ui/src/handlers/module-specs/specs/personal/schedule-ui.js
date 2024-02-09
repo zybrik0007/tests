@@ -34,7 +34,7 @@ const other = () => {
     const addWeekMinParams = () => describe('Редактирование недельного графика работы ' +
         'с минимальными количеством параметров', () => {
 
-        /*describe('API добавление недельного графика работы', () => {
+        describe('API добавление недельного графика работы', () => {
             bef();
             aft();
 
@@ -44,7 +44,7 @@ const other = () => {
                     [[data.weekly1.db], cook.text],
                     api.putSchedule);
             });
-        });*/
+        });
 
         describe('Редактирование', () => {
             bef();
@@ -95,7 +95,19 @@ const other = () => {
             });*/
 
             describe('Интервалы', () => {
-
+                decorate.el.simpleCell.handler({
+                    name: 'Интервалы',
+                    timeout: entry.max
+                });
+                decorate.el.simpleCell.active({
+                    name: 'Интервалы',
+                    timeout: entry.max
+                });
+                decorate.page.scheduleChange.timeRemove({
+                    numInterval: 1,
+                    numTime: 1,
+                    timeout: entry.max
+                });
             });
 
         });

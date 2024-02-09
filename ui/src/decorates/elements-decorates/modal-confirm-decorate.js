@@ -7,7 +7,7 @@ const ModalConfirmDecorate = (title, body) => {
 
     const modal = new modalConfirm(title, body);
 
-    const init = async({timeout}) => it(`Отображение модального окна "${modal.title ? modal.title : modal.body}".`,
+    const init = ({timeout}) => it(`Отображение модального окна "${modal.title ? modal.title : modal.body}".`,
         async () => await dec.simple(modal.init,
             [timeout],
             modal));

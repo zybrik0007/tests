@@ -21,17 +21,11 @@ module.exports = {
             [numInterval, timeout],
             page.schedulePageChange)),
 
-    interval: ({numInterval, timeout}) => it(`Отображение интервала c порядковым номером ${numInterval}.`,
-        async () => await dec.simple(page.schedulePageChange.interval,
-            [numInterval, timeout],
+    timeRemove: ({numInterval, numTime, timeout}) => it(`Удаление времененного интервала с порядковым номером "${numTime}" 
+    в интервальном блоке c порядковым номером ${numInterval}.`,
+        async () => await dec.simple(page.schedulePageChange.timeRemove,
+            [numInterval, numTime, timeout],
             page.schedulePageChange)),
-
-    async intervalActive(timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleActive,
-            `Интерввал активен.`,
-            timeout)
-    }
-
 
 
 }

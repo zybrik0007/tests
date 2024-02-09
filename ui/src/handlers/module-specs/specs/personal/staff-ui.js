@@ -10176,7 +10176,7 @@ const other = (type, text) => {
                 });
             });
 
-            describe('Удаление сотруднкиа из БД', () => {
+            describe('Удаление сотрудника из БД', () => {
                 it('Удаление сотрудников', async () => {
                     const cook = await page.base.getCookie('token');
                     const arrStaff = await api.getStaff(cook.text);

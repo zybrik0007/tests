@@ -353,6 +353,7 @@ module.exports = {
     modalConfirm: `//pw-modal[@class='modal-confirm']`,
     modalConfirmTitle: (event) => `//pw-modal[@class="modal-confirm"]//div[normalize-space(.)='${event}']`,
     modalConfirmBody: (event) => `//pw-modal[@class="modal-confirm"]//div[normalize-space(.)='${event}']`,
+    //pw-modal[@class="modal-confirm"]//div[normalize-space(.)='Вы действительно хотите удалить эту фотографию?']
     modalConfirmButton: (event) => `//pw-modal[@class="modal-confirm" and contains(@style, "block")]
     //pw-button/button/span[normalize-space(.)="${event}"]`,
     modalConfirmButtonDisabled: (event) => `//pw-modal[@class="modal-confirm" and contains(@style, "block")]

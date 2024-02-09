@@ -13,7 +13,7 @@ class ModalConfirm extends BasePage {
     //Отображение модального окна
     async init(timeout) {
         console.log('this: ', this);
-        console.log('this.xpathElement: ', this.xpathElement);
+        //console.log('this.xpathElement: ', this.xpathElement);
 
         const modal = await this.xpathElement(elements.modalConfirm,
             `Отображение модального окна "${this.title}"`,
@@ -28,14 +28,18 @@ class ModalConfirm extends BasePage {
         const title = await this.xpathElement(elements.modalConfirmTitle(this.title),
             `Отображение заглавие модального окна "${this.title}"`,
             timeout)
+        console.log('title', title)
 
         if(title.error) {
             return title
         }
 
+        console.log(elements.modalConfirmBody(this.body));
+
         const body = await this.xpathElement(elements.modalConfirmBody(this.body),
-            `Отображение сообщения модального окна "${this.title}"`,
+            `Отображение сообщения модального окна "${this.body}"`,
             timeout)
+        console.log('body',body)
 
         if(body.error) {
             return body
