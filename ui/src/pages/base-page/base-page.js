@@ -1,5 +1,6 @@
-const {By, until, Key} = require('selenium-webdriver')
-var driver = require('../../../webdriver-middleware')
+const {By, until, Key} = require('selenium-webdriver');
+const {Select} = require('selenium-webdriver');
+var driver = require('../../../webdriver-middleware');
 
 //Базовая страница
 class BasePage {
@@ -462,8 +463,21 @@ class BasePage {
             .catch(() => {return {error: false, description: `Ошибка. ${description}`}})
     }
 
+    async xpathSelectPutText(event, value, description) {
+        const selectElement = await driver.findElement(By.xpath(event));
+        const select = new Select(selectElement);
+        return await select.selectByVisibleText(value)
+            .then(() => {return {error: false, description}})
+            .catch(() => {return {error: true, description: `Ошибка. ${description}`}})
+    }
 
-
+    async xpathSelectGetText(event, description) {
+        const selectElement = await driver.findElement(By.xpath(event));
+        const select = new Select(selectElement);
+        return await select.getAllSelectedOptions()
+            .then((text) => {return {error: false, text, description}})
+            .catch(() => {return {error: true, text: '', description: `Ошибка. ${description}`}})
+    }
 }
 
 module.exports = BasePage

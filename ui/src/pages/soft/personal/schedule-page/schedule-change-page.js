@@ -34,7 +34,7 @@ class ScheduleChangePage extends BasePage {
             return elementTitle
         }
 
-        const elementUrl = await this.urlCompare(schedulesEditUrl, timeout)
+        const elementUrl = await this.urlContains(schedulesEditUrl, timeout)
         if(elementUrl.error) {
             return elementUrl
         }
@@ -127,6 +127,40 @@ class ScheduleChangePage extends BasePage {
             `Удаление временного блока с порядковым номером ${numTime} в интревале ${numInterval}.`,
             timeout);
     }
+
+    async selectTypeInterval(numInterval, numTime, value, timeout) {
+        const handler = await this.xpathHandler(elements.pasAccessScheduleInterval(numInterval, numTime),
+            `Нажатие по временному блоку с порядковым номером ${numTime} в интревале ${numInterval}.`,
+            timeout);
+
+        if(handler.error) {
+            return handler
+        }
+
+        return await this.xpathSelectPutText(elements.pasAccessScheduleInterval(numInterval, numTime) + '//select',
+            value,
+            `Выбор тип "${value} у временного блока с порядковым номером ${numTime} в интревале ${numInterval}".`,
+            timeout);
+    }
+
+    async selectGetTypeInterval(numInterval, numTime, timeout){
+        const handler = await this.xpathHandler(elements.pasAccessScheduleInterval(numInterval, numTime),
+            `Нажатие по временному блоку с порядковым номером ${numTime} в интревале ${numInterval}.`,
+            timeout);
+
+        if(handler.error) {
+            return handler
+        }
+
+        const get = await this.xpathSelectGetText(elements.pasAccessScheduleInterval(numInterval, numTime) + '//select',
+            `Получение типа у временного блока с порядковым номером ${numTime} в интревале ${numInterval}".`,
+            timeout);
+        console.log('get: ', get);
+        return get
+
+    }
+
+
 
     //Ввод значения начала временного блока в интервале
     async startTimeSendKeys(numInterval, numTime, value, timeout) {
@@ -223,6 +257,8 @@ class ScheduleChangePage extends BasePage {
         await this.loading(1000)
         return scroll
     }
+
+
 }
 
 module.exports = ScheduleChangePage

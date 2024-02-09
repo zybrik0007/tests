@@ -27,5 +27,11 @@ module.exports = {
             [numInterval, numTime, timeout],
             page.schedulePageChange)),
 
+    selectTypeInterval: ({numInterval, numTime, value, timeout}) => it(`Выбор тип "${value} у временного блока с порядковым 
+    номером ${numTime} в интревале ${numInterval}".`,
+        async () => await dec.simple(page.schedulePageChange.selectTypeInterval,
+            [numInterval, numTime, value, timeout],
+            page.schedulePageChange))
+
 
 }

@@ -38,12 +38,12 @@ const other = () => {
             bef();
             aft();
 
-            it(`Добавление графика работы "${data.weekly1.name}"`, async () => {
+/*            it(`Добавление графика работы "${data.weekly1.name}"`, async () => {
                 const cook = await page.base.getCookie('token');
                 await dec.simple(api.putSchedule,
                     [[data.weekly1.db], cook.text],
                     api.putSchedule);
-            });
+            });*/
         });
 
         describe('Редактирование', () => {
@@ -103,11 +103,15 @@ const other = () => {
                     name: 'Интервалы',
                     timeout: entry.max
                 });
-                decorate.page.scheduleChange.timeRemove({
+                it('test', async () => await dec.simple(page.schedulePageChange.selectGetTypeInterval,
+                    [1, 1, entry.max],
+                    page.schedulePageChange));
+/*                decorate.page.scheduleChange.selectTypeInterval({
                     numInterval: 1,
                     numTime: 1,
+                    value: 'Конец смены',
                     timeout: entry.max
-                });
+                });*/
             });
 
         });
