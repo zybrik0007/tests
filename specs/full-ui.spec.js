@@ -21,10 +21,11 @@ const data = require('../ui/src/handlers/module-specs/data');
 //data.deleteDataVisitor()
 
 //tests.scheduleUi.otherSchedule.addWeekMinParams()
+tests.divisionUi.add.addMinParams();
+closeBrowser();
 
-//closeBrowser();
-
+/*
 data.addDataControlAccess();
 tests.identifiersUi.otherAll().exportXLSX();
 data.deleteDataControlAccess();
-closeBrowser();
+closeBrowser();*/

@@ -29,6 +29,7 @@ class DivisionPage extends BasePage {
 
     //Отображения подразделения
     async division(arr, timeout) {
+        console.log('elements.perDivisionTree(arr): ', elements.perDivisionTree(arr))
         return await this.xpathElement(elements.perDivisionTree(arr),
             `Отображения подразделения ${arr[arr.length - 1]}.`,
             timeout)
