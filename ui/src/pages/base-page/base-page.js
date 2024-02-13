@@ -20,7 +20,10 @@ class BasePage {
     async closeDriver() {
         return await driver.quit()
             .then(() => {return {error: false, description: 'Выполнено закрытие браузера'}})
-            .catch(() => {return {error: true, description: 'Не выполнено закрытие браузера'}})
+            .catch((err) => {
+                console.log('err', err)
+                return {error: true, description: 'Не выполнено закрытие браузера'
+                }})
     }
 
     //Совпаление заглавий

@@ -362,7 +362,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -370,7 +370,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 1,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -396,7 +396,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -404,7 +404,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 2,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -430,7 +430,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 3,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -438,7 +438,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 3,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -464,7 +464,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 4,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -472,7 +472,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 4,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -513,7 +513,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -521,7 +521,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 1,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -547,7 +547,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -555,7 +555,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 2,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -596,7 +596,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -604,7 +604,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 1,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -630,7 +630,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.eventDate.event1,
+                    value: data.eventDate.event1.substr(0, 16),
                     timeout: entry.max
                 });
 
@@ -638,7 +638,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Действителен до',
                     strNumber: 2,
                     cellNumber: 4,
-                    value: data.eventDate.event4,
+                    value: data.eventDate.event4.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -738,7 +738,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.eventDate.event5,
+                    value: data.eventDate.event5.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -764,7 +764,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.eventDate.event5,
+                    value: data.eventDate.event5.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -792,7 +792,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.eventDate.event5,
+                    value: data.eventDate.event5.substr(0, 16),
                     timeout: entry.max
                 });
             });
@@ -820,7 +820,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.eventDate.event5,
+                    value: data.eventDate.event5.substr(0, 16),
                     timeout: entry.max
                 });
             });

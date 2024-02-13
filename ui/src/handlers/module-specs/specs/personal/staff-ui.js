@@ -9393,7 +9393,7 @@ const other = (type, text) => {
                 });
             });
 
-            describe('Нажатие кнопки "Вернуться к списку сотрудников".', () => {
+            describe('Нажатие "Вернуться к списку сотрудников".', () => {
                 decorate.el.button.handler({
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
