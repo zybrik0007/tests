@@ -4799,6 +4799,9 @@ const other = (type, text) => {
         if(type === 'active') {
             describe('Редактирование', () => {
 
+                befActive();
+                aft();
+
                 describe('Открытие страницы на редактирование', () => {
                     decorate.el.table.strHandler({
                         strNumber: 1,
