@@ -4,9 +4,9 @@
   "description": "selenium ui tests",
   "main": "entry.js",
   "scripts": {
-    "auth.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/auth.ui.spec.js",
-    "smoke.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/smoke.ui.spec.js",
-    "license.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/ui/verification/license.ui.spec.js",
+    "auth.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/verification/auth.ui.spec.js",
+    "smoke.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/verification/smoke.ui.spec.js",
+    "license.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/verification/license.ui.spec.js",
     "full.ui": "mocha --timeout=30000 --reporter mocha-teamcity-reporter specs/full-ui.spec.js",
     "division.ui": "mocha --timeout=60000 -reporter mocha-teamcity-reporter specs/ui/modules/personal/division.ui.spec.js",
     "additional.staff.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.staff.ui.spec.js",

@@ -223,7 +223,7 @@ const add = () => {
                         el.success));
 
                 it('Отсутствие модального окна "Добавить подразделение"',
-                    async () => await  dec.simple(el.modal.divisionAdd.initClose,
+                    async () => await dec.simple(el.modal.divisionAdd.initClose,
                         [entry.max],
                         el.modal.divisionAdd));
 
