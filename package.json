@@ -11,7 +11,7 @@
     "division.ui": "mocha --timeout=60000 -reporter mocha-teamcity-reporter specs/ui/modules/personal/division.ui.spec.js",
     "additional.staff.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.staff.ui.spec.js",
     "additional.visitor.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/additional.data.visitor.ui.spec.js",
-    "position.ui": "mocha --timeout=60000 specs/ui/modules/personal/position.ui.spec.js",
+    "position.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/personal/position.ui.spec.js",
     "all.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/modules/all.spec.js",
     "personal.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/personal.teamcity.ui.spec.js",
     "passofice.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/passoffice.teamcity.ui.spec.js",

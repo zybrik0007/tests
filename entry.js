@@ -29,7 +29,7 @@ module.exports = {
         port: process.env.a117database_port || '3306',
         user: process.env.a118database_user || 'admin',
         password: process.env.a119database_password || '123456',
-        database: process.env.a120database_name || 'perco_selenium_0502024_1'
+        database: process.env.a120database_name || 'perco_selenium_1402024_2'
     }
 }
 
