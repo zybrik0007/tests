@@ -1492,18 +1492,25 @@ const other = (type, text) => {
         }
 
         if(type === 'visitorPassOrder') {
+
             describe('Добавление', () => {
 
                 befPassOrder();
                 aft();
 
                 describe('Открытие страницы добавления', () => {
+                    decorate.page.base.loading({
+                        timeout: 5000
+                    });
                     decorate.el.butIcBefore.handler({
                         icon: but.add,
                         timeout: entry.max
                     });
                     decorate.page.orderpassChange.initAdd({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                       timeout: 2000
                     });
                 });
 
@@ -1821,6 +1828,9 @@ const other = (type, text) => {
                     });
                     decorate.page.orderpassChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: 2000
                     });
                 });
 
@@ -2286,11 +2296,16 @@ const other = (type, text) => {
             aft();
 
             describe('Открытие печатной формы', () => {
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: 2000
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2369,11 +2384,16 @@ const other = (type, text) => {
             aft();
 
             describe('Открытие печатной формы', () => {
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: 2000
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2818,6 +2838,9 @@ const other = (type, text) => {
             aft();
 
             describe('Экспорт', () => {
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
@@ -2881,6 +2904,9 @@ const other = (type, text) => {
             aft();
 
             describe('Экспорт', () => {
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
@@ -3206,6 +3232,9 @@ const other = (type, text) => {
             aft();
 
             describe('Экспорт', () => {
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
@@ -3266,6 +3295,9 @@ const other = (type, text) => {
             aft();
 
             describe('Экспорт', () => {
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
@@ -9172,6 +9204,9 @@ const other = (type, text) => {
             describe('Удаление в Архив', () => {
                 befPassOrder();
                 aft();
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.table.strHandler({
                     strNumber: 1,
                     timeout: entry.max
@@ -9247,6 +9282,9 @@ const other = (type, text) => {
             describe('Удаление из Архив', () => {
                 befPassArchive();
                 aft();
+                decorate.page.base.loading({
+                    timeout: 5000
+                });
                 decorate.el.table.strHandler({
                     strNumber: 1,
                     timeout: entry.max

@@ -329,7 +329,9 @@ class BasePage {
 
     //Ожидание
     async loading(event) {
-        await driver.sleep(event)
+        return await driver.sleep(event)
+            .then(() => {return {error: false, description: `Выполнено ожидание "${event}".`}})
+            .catch(() => {return {error: false, description: `Не выполнено ожидание "${event}".`}})
     }
 
     //Обвновление страницы
