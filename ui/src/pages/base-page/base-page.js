@@ -18,7 +18,7 @@ class BasePage {
 
     //Закртие страницы по url
     async closeDriver() {
-        return await driver.quit()
+        return await driver.close()
             .then(() => {return {error: false, description: 'Выполнено закрытие браузера'}})
             .catch((err) => {
                 console.log('err', err)

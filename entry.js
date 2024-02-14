@@ -18,6 +18,7 @@ module.exports = {
     max: Number(process.env.a106max) || 30000,
     min: Number(process.env.a105min) || 2000,
     upload: Number(process.env.a107upload) || 50000,
+    sleep: 5000,
     buttonTime: 3000,
     device_name_1: 'Контроллер замка CL05.2',
     device_ip_1: '10.0.77.28',

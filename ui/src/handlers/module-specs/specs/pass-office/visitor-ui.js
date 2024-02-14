@@ -51,7 +51,7 @@ const befPassOrder = () => before('Вход и открытие подразде
     await dec.simple(el.subsection.handler, [sub.ord.order, entry.max], el.subsection);
     await dec.simple(el.tab.handler, ['Заказ пропуска', entry.max], el.tab);
     await dec.simple(page.orderpassOrder.init, [entry.max], page.orderpassOrder);
-    await page.base.loading(2000);
+    await page.base.loading(entry.sleep);
 });
 
 const befPassArchive = () => before('Вход и открытие подраздела "Заказ пропуска" вкладка "Архив"', async () => {
@@ -60,7 +60,7 @@ const befPassArchive = () => before('Вход и открытие подразд
     await dec.simple(el.subsection.handler, [sub.ord.order, entry.max], el.subsection);
     await dec.simple(el.tab.handler, ['Архив', entry.max], el.tab);
     await dec.simple(page.orderpassArchive.init, [entry.max], page.orderpassArchive);
-    await page.base.loading(2000);
+    await page.base.loading(entry.sleep);
 });
 
 const aft = () => after('Выход', async () => await dec.exit());
@@ -1499,9 +1499,6 @@ const other = (type, text) => {
                 aft();
 
                 describe('Открытие страницы добавления', () => {
-                    decorate.page.base.loading({
-                        timeout: 5000
-                    });
                     decorate.el.butIcBefore.handler({
                         icon: but.add,
                         timeout: entry.max
@@ -1510,7 +1507,7 @@ const other = (type, text) => {
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
-                       timeout: 2000
+                        timeout: entry.sleep
                     });
                 });
 
@@ -1754,11 +1751,17 @@ const other = (type, text) => {
                         }],
                         db.updateUserCrateDate);
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
             });
 
             describe('Проверка таблицы', () => {
                 befPassOrder();
                 aft();
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
                 decorate.el.table.size({
                     strCount: 1,
                     timeout: entry.max
@@ -1830,7 +1833,7 @@ const other = (type, text) => {
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
-                        timeout: 2000
+                        timeout: entry.sleep
                     });
                 });
 
@@ -2384,15 +2387,12 @@ const other = (type, text) => {
             aft();
 
             describe('Открытие печатной формы', () => {
-                decorate.page.base.loading({
-                    timeout: 5000
-                });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: 2000
+                    timeout: entry.sleep
                 });
                 decorate.el.menu.menu({
                     timeout: entry.max
@@ -2403,6 +2403,9 @@ const other = (type, text) => {
                 });
                 decorate.modal.printTable.init({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
                 });
             });
 
@@ -2839,13 +2842,15 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: 5000
+                    timeout: entry.sleep
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2896,6 +2901,9 @@ const other = (type, text) => {
                     file: params.nameFilePass,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
             });
         }
 
@@ -2905,13 +2913,15 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: 5000
+                    timeout: entry.sleep
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2961,6 +2971,9 @@ const other = (type, text) => {
                 decorate.el.file.delete({
                     file: params.nameFile,
                     timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
                 });
             });
         }
@@ -3233,13 +3246,15 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: 5000
+                    timeout: entry.sleep
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -3287,6 +3302,9 @@ const other = (type, text) => {
                     file: params.nameFilePass,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
             });
         }
 
@@ -3296,13 +3314,15 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: 5000
+                    timeout: entry.sleep
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -3349,6 +3369,9 @@ const other = (type, text) => {
                 decorate.el.file.delete({
                     file: params.nameFile,
                     timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
                 });
             });
         }
@@ -4331,10 +4354,16 @@ const other = (type, text) => {
                             value: data.visitor1.documentNumber,
                             timeout: entry.max
                         });
+                        decorate.page.base.loading({
+                            timeout: entry.sleep
+                        });
                         decorate.el.input.handler({
                             title: 'Действует до',
                             placeholder: 'Действует до',
                             timeout: entry.max
+                        });
+                        decorate.page.base.loading({
+                            timeout: entry.sleep
                         });
                         decorate.el.datepicker.date({
                             day: data.visitor1.dateAfter.day,
@@ -4391,6 +4420,9 @@ const other = (type, text) => {
                     decorate.el.success.success({
                         text: 'Данные успешно изменены',
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep
                     });
                     decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
@@ -9204,9 +9236,6 @@ const other = (type, text) => {
             describe('Удаление в Архив', () => {
                 befPassOrder();
                 aft();
-                decorate.page.base.loading({
-                    timeout: 5000
-                });
                 decorate.el.table.strHandler({
                     strNumber: 1,
                     timeout: entry.max
@@ -9243,6 +9272,9 @@ const other = (type, text) => {
                             end_date: data.event2
                         }],
                         db.updateUserCrateDate);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
                 });
             });
         }
@@ -9282,9 +9314,6 @@ const other = (type, text) => {
             describe('Удаление из Архив', () => {
                 befPassArchive();
                 aft();
-                decorate.page.base.loading({
-                    timeout: 5000
-                });
                 decorate.el.table.strHandler({
                     strNumber: 1,
                     timeout: entry.max
@@ -9439,6 +9468,10 @@ const other = (type, text) => {
                         [[visitor], cook.text],
                         api.putVisitor);
                 });
+
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
             });
         }
 
@@ -9464,6 +9497,10 @@ const other = (type, text) => {
             await dec.simple(db.deleteUser,
                 [visitor2],
                 db.deleteUser);
+        });
+
+        decorate.page.base.loading({
+            timeout: entry.sleep
         });
     });
 
@@ -9700,6 +9737,9 @@ const other = (type, text) => {
                 decorate.el.selectXpand.xpandNoElement({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
             });
 
             describe('Проверка таблицы после изпользования фильтра "Подразделение" через окно выбора', () => {
@@ -9735,6 +9775,9 @@ const other = (type, text) => {
                 });
                 decorate.modal.divisionFilter.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
                 });
             });
 
@@ -9942,6 +9985,9 @@ const other = (type, text) => {
                     value: data.visitor2.lastName,
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
             });
 
             describe('Проверка таблицы после иcпользования фильтра "Поиск..."', () => {
@@ -9965,6 +10011,9 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 dec.animation();
+                decorate.page.base.loading({
+                    timeout: entry.sleep
+                });
                 decorate.el.table.size({
                     strCount: 2,
                     timeout: entry.max
