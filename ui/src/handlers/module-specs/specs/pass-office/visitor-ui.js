@@ -3073,7 +3073,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -3133,7 +3135,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -3193,7 +3197,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
