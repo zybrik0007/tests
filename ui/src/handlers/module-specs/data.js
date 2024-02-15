@@ -5,9 +5,15 @@ const decItApi = require('../../dictionaries/decorate-it-api');
 const page = require('../../pages');
 const api = require('../other/api');
 const db = require('../../database');
+const decorate = require('../../decorates');
 
 const bef = () => before('Авторизация', async () => await dec.auth(entry.customLogin, entry.customPassword));
-const aft = () => after('Выход', async () => await dec.exit());
+const aft = () => after('Выход', async () => {
+    decorate.page.base.loading({
+        timeout: entry.sleep1
+    });
+    await dec.exit()
+});
 
 const dataControlAccess = {
     rooms: {
