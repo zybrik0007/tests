@@ -14,6 +14,7 @@ const middleware = () => {
             .forBrowser('chrome')
             .setChromeOptions(new chrome.Options()
                 .addArguments('--headless=new')
+                .addArguments("--remote-allow-origins=*")
                 .windowSize({width: width, height: height}))
             .build()
     }
@@ -23,6 +24,7 @@ const middleware = () => {
         return new Builder()
             .forBrowser('chrome')
             .setChromeOptions(new chrome.Options()
+                .addArguments("--remote-allow-origins=*")
                 .windowSize({width: width, height: height}))
             .build()
 
