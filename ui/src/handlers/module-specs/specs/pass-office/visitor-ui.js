@@ -51,19 +51,23 @@ const befPassOrder = () => before('Вход и открытие подразде
     await dec.simple(el.subsection.handler, [sub.ord.order, entry.max], el.subsection);
     await dec.simple(el.tab.handler, ['Заказ пропуска', entry.max], el.tab);
     await dec.simple(page.orderpassOrder.init, [entry.max], page.orderpassOrder);
-    await page.base.loading(entry.sleep);
+    await page.base.loading(entry.sleep1);
 });
 
 const befPassArchive = () => before('Вход и открытие подраздела "Заказ пропуска" вкладка "Архив"', async () => {
+    await page.base.loading(entry.sleep1);
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.ord, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.ord.order, entry.max], el.subsection);
     await dec.simple(el.tab.handler, ['Архив', entry.max], el.tab);
     await dec.simple(page.orderpassArchive.init, [entry.max], page.orderpassArchive);
-    await page.base.loading(entry.sleep);
+    await page.base.loading(entry.sleep1);
 });
 
-const aft = () => after('Выход', async () => await dec.exit());
+const aft = () => after('Выход', async () => {
+    await page.base.loading(entry.sleep1);
+    await dec.exit();
+});
 
 const other = (type, text) => {
 
@@ -1507,7 +1511,7 @@ const other = (type, text) => {
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
-                        timeout: entry.sleep
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -1752,7 +1756,7 @@ const other = (type, text) => {
                         db.updateUserCrateDate);
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
 
@@ -1760,7 +1764,7 @@ const other = (type, text) => {
                 befPassOrder();
                 aft();
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.table.size({
                     strCount: 1,
@@ -1833,7 +1837,7 @@ const other = (type, text) => {
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
-                        timeout: entry.sleep
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -2392,7 +2396,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.menu.menu({
                     timeout: entry.max
@@ -2405,7 +2409,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
 
@@ -2842,14 +2846,14 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.menu.menu({
                     timeout: entry.max
@@ -2902,7 +2906,7 @@ const other = (type, text) => {
                     timeout: entry.upload
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -2913,14 +2917,14 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.menu.menu({
                     timeout: entry.max
@@ -2973,7 +2977,7 @@ const other = (type, text) => {
                     timeout: entry.upload
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -3246,14 +3250,14 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.menu.menu({
                     timeout: entry.max
@@ -3303,7 +3307,7 @@ const other = (type, text) => {
                     timeout: entry.upload
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -3314,14 +3318,14 @@ const other = (type, text) => {
 
             describe('Экспорт', () => {
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.butIcBefore.handler({
                     icon: but.menu,
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.menu.menu({
                     timeout: entry.max
@@ -3371,7 +3375,7 @@ const other = (type, text) => {
                     timeout: entry.upload
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -4355,7 +4359,7 @@ const other = (type, text) => {
                             timeout: entry.max
                         });
                         decorate.page.base.loading({
-                            timeout: entry.sleep
+                            timeout: entry.sleep2
                         });
                         decorate.el.input.handler({
                             title: 'Действует до',
@@ -4363,7 +4367,7 @@ const other = (type, text) => {
                             timeout: entry.max
                         });
                         decorate.page.base.loading({
-                            timeout: entry.sleep
+                            timeout: entry.sleep2
                         });
                         decorate.el.datepicker.date({
                             day: data.visitor1.dateAfter.day,
@@ -4422,7 +4426,7 @@ const other = (type, text) => {
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
-                        timeout: entry.sleep
+                        timeout: entry.sleep2
                     });
                     decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
@@ -9274,7 +9278,7 @@ const other = (type, text) => {
                         db.updateUserCrateDate);
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -9470,7 +9474,7 @@ const other = (type, text) => {
                 });
 
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -9500,7 +9504,7 @@ const other = (type, text) => {
         });
 
         decorate.page.base.loading({
-            timeout: entry.sleep
+            timeout: entry.sleep2
         });
     });
 
@@ -9738,7 +9742,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
 
@@ -9777,7 +9781,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
 
@@ -9986,7 +9990,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
             });
 
@@ -10012,7 +10016,7 @@ const other = (type, text) => {
                 });
                 dec.animation();
                 decorate.page.base.loading({
-                    timeout: entry.sleep
+                    timeout: entry.sleep2
                 });
                 decorate.el.table.size({
                     strCount: 2,
