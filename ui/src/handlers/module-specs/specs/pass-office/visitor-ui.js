@@ -88,6 +88,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initAdd({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Ввод данных "Общая информация"', () => {
@@ -448,6 +451,9 @@ const other = (type, text) => {
                         text: 'Посетитель успешно добавлен',
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -464,6 +470,9 @@ const other = (type, text) => {
                             create_date: data.event1
                         }],
                         db.updateUserCrateDate);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
 
@@ -574,6 +583,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -772,6 +784,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
             });
@@ -1167,6 +1182,9 @@ const other = (type, text) => {
                         text: 'Посетитель успешно добавлен',
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -1183,6 +1201,9 @@ const other = (type, text) => {
                             create_date: data.event1
                         }],
                         db.updateUserCrateDate);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
 
@@ -1292,6 +1313,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -1490,6 +1514,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorCurrent.init({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
             });
@@ -1973,7 +2000,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2091,7 +2120,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2216,7 +2247,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2660,7 +2693,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2711,6 +2746,9 @@ const other = (type, text) => {
                     file: params.nameFile,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
@@ -2723,7 +2761,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2774,6 +2814,9 @@ const other = (type, text) => {
                     file: params.nameFile,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
@@ -2786,7 +2829,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -2836,6 +2881,9 @@ const other = (type, text) => {
                 decorate.el.file.delete({
                     file: params.nameFile,
                     timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -3123,6 +3171,9 @@ const other = (type, text) => {
                     file: params.nameFile,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
@@ -3185,6 +3236,9 @@ const other = (type, text) => {
                     file: params.nameFile,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
@@ -3246,6 +3300,9 @@ const other = (type, text) => {
                 decorate.el.file.delete({
                     file: params.nameFile,
                     timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -3402,7 +3459,9 @@ const other = (type, text) => {
                     icon: but.menu,
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.menu.menu({
                     timeout: entry.max
                 });
@@ -3528,6 +3587,9 @@ const other = (type, text) => {
             decorate.page.visitorChange.initEdit({
                 timeout: entry.max
             });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
 
             decorate.el.selectInput.iconXpand({
                 title: 'Шаблон доступа',
@@ -3559,6 +3621,9 @@ const other = (type, text) => {
             });
             decorate.page.visitorOrder.init({
                 timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
             });
             decorate.el.table.noStr({
                 timeout: entry.max
@@ -3673,6 +3738,9 @@ const other = (type, text) => {
             decorate.page.visitorChange.initEdit({
                 timeout: entry.max
             });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
             decorate.el.selectInput.iconClear({
                 title: 'Шаблон доступа',
                 placeholder: 'Шаблон доступа',
@@ -3692,6 +3760,9 @@ const other = (type, text) => {
             });
             decorate.page.visitorCurrent.init({
                 timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
             });
             decorate.el.table.noStr({
                 timeout: entry.max
@@ -3798,7 +3869,6 @@ const other = (type, text) => {
             describe('Добавление в Архив', () => {
                 befOrdered();
                 aft();
-
                 decorate.el.table.strHandler({
                     strNumber: 1,
                     timeout: entry.max
@@ -3816,6 +3886,9 @@ const other = (type, text) => {
                 });
                 decorate.modalConfirm.visitorArchive.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.table.noStr({
                     timeout: entry.max
@@ -3894,6 +3967,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -4110,6 +4186,9 @@ const other = (type, text) => {
                     decorate.page.visitorArchive.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                     decorate.el.table.noStr({
                         timeout: entry.max
                     });
@@ -4231,6 +4310,9 @@ const other = (type, text) => {
                 decorate.modalConfirm.visitorArchive.initClose({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.table.noStr({
                     timeout: entry.max
                 });
@@ -4302,6 +4384,9 @@ const other = (type, text) => {
                     });
                     decorate.page.orderpassChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -4441,6 +4526,9 @@ const other = (type, text) => {
                     decorate.page.orderpassArchive.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                     decorate.el.table.noStr({
                         timeout: entry.max
                     });
@@ -4545,6 +4633,9 @@ const other = (type, text) => {
                         }],
                         db.updateUserCrateDate);
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
 
             describe('Проверка таблицы Архива', () => {
@@ -4624,6 +4715,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -4879,6 +4973,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorArchive.init({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                     decorate.el.table.noStr({
                         timeout: entry.max
@@ -5148,6 +5245,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Изменение данных "Общая информация"', () => {
@@ -5556,6 +5656,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -5669,6 +5772,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Проверка данных "Общая информация"', () => {
@@ -5867,6 +5973,9 @@ const other = (type, text) => {
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
         }
@@ -5887,6 +5996,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -6313,6 +6425,9 @@ const other = (type, text) => {
                     decorate.page.visitorCurrent.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
             });
@@ -6422,6 +6537,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -6621,6 +6739,9 @@ const other = (type, text) => {
                     decorate.page.visitorCurrent.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
         }
@@ -6668,7 +6789,9 @@ const other = (type, text) => {
                     text: 'Отчество',
                     timeout: entry.max
                 });
-                it('Ожидание 2 секунды', async () => await page.base.loading(2000));
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.select.iconXpand({
                     title: 'Подразделение',
                     value: '',
@@ -6747,6 +6870,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Проверка данных "Общая информация"', () => {
@@ -6788,6 +6914,9 @@ const other = (type, text) => {
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -6814,6 +6943,9 @@ const other = (type, text) => {
                     await dec.simple(api.deleteDivision,
                         [[division1], cook.text],
                         api.deleteDivision);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -6962,6 +7094,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Проверка данных "Общая информация"', () => {
@@ -7015,6 +7150,9 @@ const other = (type, text) => {
                     decorate.page.visitorCurrent.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -7042,10 +7180,13 @@ const other = (type, text) => {
                         [[division1], cook.text],
                         api.deleteDivision);
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
-        if(type === 'visitorPassOrder'){
+        if(type === 'visitorPassOrder') {
             describe('Импорт', () => {
                 befPassOrder();
                 aft();
@@ -7163,6 +7304,9 @@ const other = (type, text) => {
                     decorate.page.orderpassChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Проверка данных "Общая информация"', () => {
@@ -7204,6 +7348,9 @@ const other = (type, text) => {
                     decorate.page.orderpassOrder.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -7230,6 +7377,9 @@ const other = (type, text) => {
                     await dec.simple(api.deleteDivision,
                         [[division1], cook.text],
                         api.deleteDivision);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -7454,6 +7604,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Проверка данных "Общая информация"', () => {
@@ -7583,6 +7736,9 @@ const other = (type, text) => {
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -7609,6 +7765,9 @@ const other = (type, text) => {
                     await dec.simple(api.deleteDivision,
                         [[division1], cook.text],
                         api.deleteDivision);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -7849,6 +8008,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Проверка данных "Общая информация"', () => {
@@ -7978,6 +8140,9 @@ const other = (type, text) => {
                     decorate.page.visitorCurrent.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -8004,6 +8169,9 @@ const other = (type, text) => {
                     await dec.simple(api.deleteDivision,
                         [[division1], cook.text],
                         api.deleteDivision);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -8171,6 +8339,9 @@ const other = (type, text) => {
                     decorate.page.orderpassChange.initEdit({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Проверка данных "Общая информация"', () => {
@@ -8279,6 +8450,9 @@ const other = (type, text) => {
                     decorate.page.orderpassOrder.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
 
@@ -8305,6 +8479,9 @@ const other = (type, text) => {
                     await dec.simple(api.deleteDivision,
                         [[division1], cook.text],
                         api.deleteDivision);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -8511,6 +8688,9 @@ const other = (type, text) => {
                     file: params.fileName,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
@@ -8595,6 +8775,9 @@ const other = (type, text) => {
                 decorate.el.file.delete({
                     file: params.fileName,
                     timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -8681,6 +8864,9 @@ const other = (type, text) => {
                     file: params.fileName,
                     timeout: entry.upload
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
     });
@@ -8753,7 +8939,6 @@ const other = (type, text) => {
                     value: data.visitor1.card,
                     timeout: entry.max
                 });
-
             });
         }
     });
@@ -8774,6 +8959,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorChange.initAdd({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
 
@@ -8850,6 +9038,9 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
             });
@@ -9085,6 +9276,9 @@ const other = (type, text) => {
                     decorate.page.visitorChange.initAdd({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
 
                 describe('Ввод данных "Общая информация"', () => {
@@ -9162,6 +9356,9 @@ const other = (type, text) => {
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                 });
             });
         }
@@ -9191,6 +9388,9 @@ const other = (type, text) => {
                 decorate.modalConfirm.visitorArchive.initClose({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.table.noStr({
                     timeout: entry.max
                 });
@@ -9210,6 +9410,9 @@ const other = (type, text) => {
                             end_date: data.event2
                         }],
                         db.updateUserCrateDate);
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
         }
@@ -9235,6 +9438,9 @@ const other = (type, text) => {
                 });
                 decorate.modalConfirm.visitorArchive.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.table.noStr({
                     timeout: entry.max
@@ -9263,6 +9469,9 @@ const other = (type, text) => {
                 });
                 decorate.modalConfirm.visitorArchive.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.table.noStr({
                     timeout: entry.max
@@ -9314,6 +9523,9 @@ const other = (type, text) => {
                 decorate.modalConfirm.visitorDelete.initClose({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.table.noStr({
                     timeout: entry.max
                 });
@@ -9341,6 +9553,9 @@ const other = (type, text) => {
                 });
                 decorate.modalConfirm.visitorDelete.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.table.noStr({
                     timeout: entry.max
@@ -9390,6 +9605,10 @@ const other = (type, text) => {
                         [[visitor], cook.text],
                         api.putVisitor);
                 });
+
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
@@ -9438,6 +9657,10 @@ const other = (type, text) => {
                         [[visitor], cook.text],
                         api.putVisitor);
                 });
+
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
         }
 
@@ -9484,7 +9707,6 @@ const other = (type, text) => {
                 });
             });
         }
-
     });
 
     const deleteDataVisitorFilter = () => describe(text + 'Удаление данных для тестирвоания фильтров.', () => {
@@ -9557,6 +9779,9 @@ const other = (type, text) => {
                 decorate.el.selectXpand.xpandNoElement({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
 
             describe('Проверка таблицы после изпользования фильтра "Подразделение" через окно выбора', () => {
@@ -9592,6 +9817,9 @@ const other = (type, text) => {
                 });
                 decorate.modal.divisionFilter.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
 
@@ -9652,6 +9880,9 @@ const other = (type, text) => {
                 decorate.el.selectXpand.xpandNoElement({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
 
             describe('Проверка таблицы после изпользования фильтра "Подразделение" через окно выбора', () => {
@@ -9687,6 +9918,9 @@ const other = (type, text) => {
                 });
                 decorate.modal.divisionFilter.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
 
@@ -9843,6 +10077,9 @@ const other = (type, text) => {
                     value: data.visitor2.lastName,
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
 
             describe('Проверка таблицы после иcпользования фильтра "Поиск..."', () => {
@@ -9866,6 +10103,9 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 dec.animation();
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.table.size({
                     strCount: 2,
                     timeout: entry.max
@@ -9919,6 +10159,9 @@ const other = (type, text) => {
                     value: data.visitor2.lastName,
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
 
             describe('Проверка таблицы после иcпользования фильтра "Поиск..."', () => {
@@ -9942,6 +10185,9 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 dec.animation();
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.table.size({
                     strCount: 2,
                     timeout: entry.max

@@ -479,8 +479,8 @@ class BasePage {
     async xpathSelectGetText(event, description) {
         const selectElement = await driver.findElement(By.xpath(event));
         const select = new Select(selectElement);
-        return await select.getAllSelectedOptions()
-            .then((text) => {return {error: false, text, description}})
+        return await select.getFirstSelectedOption()
+            .then((text) => {return {error: false, text: text, description}})
             .catch(() => {return {error: true, text: '', description: `Ошибка. ${description}`}})
     }
 }

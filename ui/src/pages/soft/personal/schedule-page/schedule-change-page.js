@@ -144,20 +144,25 @@ class ScheduleChangePage extends BasePage {
     }
 
     async selectGetTypeInterval(numInterval, numTime, timeout){
-        const handler = await this.xpathHandler(elements.pasAccessScheduleInterval(numInterval, numTime),
-            `Нажатие по временному блоку с порядковым номером ${numTime} в интревале ${numInterval}.`,
+        const get = await this.xpathGetAttribute(elements.pasAccessScheduleInterval(numInterval, numTime),
+            `Получение типа у временного блока с порядковым номером ${numTime} в интревале ${numInterval}".`,
+            'data-interval-type',
             timeout);
 
-        if(handler.error) {
-            return handler
+        if(get.error) {
+            return get
         }
 
-        const get = await this.xpathSelectGetText(elements.pasAccessScheduleInterval(numInterval, numTime) + '//select',
-            `Получение типа у временного блока с порядковым номером ${numTime} в интревале ${numInterval}".`,
-            timeout);
-        console.log('get: ', get);
-        return get
-
+        switch (get.text) {
+            case '0':
+                return {...get, text: 'Промежуточный интервал'}
+            case '1':
+                return {...get, text: 'Начало смены'}
+            case '2':
+                return {...get, text: 'Конец смены'}
+            case '3':
+                return {...get, text: 'Полная смена'}
+        }
     }
 
 

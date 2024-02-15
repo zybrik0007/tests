@@ -31,7 +31,14 @@ module.exports = {
     номером ${numTime} в интревале ${numInterval}".`,
         async () => await dec.simple(page.schedulePageChange.selectTypeInterval,
             [numInterval, numTime, value, timeout],
-            page.schedulePageChange))
+            page.schedulePageChange)),
+
+    getTypeInterval: ({numInterval, numTime, value, timeout}) => it(`Отображение у временного блока с порядковым 
+    номером ${numTime} в интревале ${numInterval}" значения "${value}".`,
+        async () => await dec.simpleText(page.schedulePageChange.selectGetTypeInterval,
+            [numInterval, numTime, timeout],
+            value,
+            page.schedulePageChange)),
 
 
 }
