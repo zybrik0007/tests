@@ -1,6 +1,6 @@
-const {Builder} = require('selenium-webdriver')
-const chrome = require('selenium-webdriver/chrome')
-const firefox = require('selenium-webdriver/firefox')
+const {Builder} = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+const firefox = require('selenium-webdriver/firefox');
 
 
 const {browser, headless, width, height} = require('../entry')
