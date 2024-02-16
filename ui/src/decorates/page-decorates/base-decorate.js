@@ -7,11 +7,9 @@ module.exports = {
         [timeout],
         page.base)),
 
-    refresh: () => describe(`Обновеление страницы`,  () => {
-        it('Обноление', async () => await dec.simple(page.base.refresh,
-            [],
+    loadingTest: () => describe(`Межтестовое ожидание.`,  () => {
+        it(`Ожидание "1 минута".`, async () => await dec.simple(page.base.loading,
+            [60000],
             page.base));
-
-        it('Отсуствие анимация', async () => await dec.animation());
     }),
 }
