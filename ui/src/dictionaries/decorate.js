@@ -38,7 +38,7 @@ const auth = async (login, password) => {
 }
 
 //Отсутствие анимаций
-const animation = async () => {
+const animation = async () =>  {
     const noError = await el.error.errorNoList(entry.max)
     console.log(noError.description)
     expect(noError.error).to.equal(false)
@@ -103,9 +103,6 @@ const exit = async () => {
     const setLocalStorageSidebar = await page.base.setLocalStorage('sidebar', 0)
     console.log(setLocalStorageSidebar.description)
     expect(setLocalStorageSidebar.error).to.equal(false);
-
-    await page.base.refresh();
-    await animation();
 }
 
 //Откат базы данных
