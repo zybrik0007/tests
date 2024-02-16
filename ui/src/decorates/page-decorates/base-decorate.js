@@ -8,8 +8,14 @@ module.exports = {
         page.base)),
 
     loadingTest: () => describe(`Межтестовое ожидание.`,  () => {
-        it(`Ожидание "1 минута".`, async () => await dec.simple(page.base.loading,
-            [60000],
+        it('Обновление страницы', async () => await dec.simple(page.base.refresh,
+            [],
             page.base));
+
+        it(`Ожидание "50 секунд".`, async () => await dec.simple(page.base.loading,
+            [50000],
+            page.base));
+
+        it('Отсутствие анимаций', async () => await dec.animation());
     }),
 }
