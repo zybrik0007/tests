@@ -3077,7 +3077,6 @@ const deleteDataVisitor = () => describe('Удаление данных для �
         decItApi.deleteRoom({
             room: params.rooms.room1
         });
-
     });
 
 module.exports =  {

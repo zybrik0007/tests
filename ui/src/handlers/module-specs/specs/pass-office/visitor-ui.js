@@ -2710,6 +2710,9 @@ const other = (type, text) => {
                 decorate.modal.exportData.init({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.select.iconXpand({
                     title: 'Выберите тип файла для экспорта',
                     value: 'XLSX',
@@ -2734,6 +2737,9 @@ const other = (type, text) => {
                 });
                 decorate.modal.exportData.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
             });
 
@@ -2777,6 +2783,9 @@ const other = (type, text) => {
                 });
                 decorate.modal.exportData.init({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.select.iconXpand({
                     title: 'Выберите тип файла для экспорта',
@@ -2846,6 +2855,9 @@ const other = (type, text) => {
                 decorate.modal.exportData.init({
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.select.iconXpand({
                     title: 'Выберите тип файла для экспорта',
                     value: 'XLSX',
@@ -2913,6 +2925,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Экспорт',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.exportData.init({
                     timeout: entry.max
@@ -2984,6 +2999,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Экспорт',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.exportData.init({
                     timeout: entry.max
@@ -3138,6 +3156,9 @@ const other = (type, text) => {
                     name: 'Экспорт',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.exportData.init({
                     timeout: entry.max
                 });
@@ -3203,6 +3224,9 @@ const other = (type, text) => {
                     name: 'Экспорт',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.exportData.init({
                     timeout: entry.max
                 });
@@ -3267,6 +3291,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Экспорт',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.exportData.init({
                     timeout: entry.max
@@ -3336,6 +3363,9 @@ const other = (type, text) => {
                     name: 'Экспорт',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.exportData.init({
                     timeout: entry.max
                 });
@@ -3403,6 +3433,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Экспорт',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.exportData.init({
                     timeout: entry.max
@@ -3473,6 +3506,9 @@ const other = (type, text) => {
                     name: 'Печать штрихкода',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.printVisitorBarcode.init({
                     timeout: entry.max
                 });
@@ -3533,6 +3569,9 @@ const other = (type, text) => {
                 decorate.el.butIcBefore.handler({
                     icon: but.unsorted_user_card_outline,
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.printDesignCard.init({
                     timeout: entry.max
@@ -3635,10 +3674,8 @@ const other = (type, text) => {
         });
 
         describe('Проверка таблицы Бюро пропусков / Посетители - вкладка - Действующие', () => {
-
             befActive();
             aft();
-
             decorate.el.table.size({
                 strCount: 1,
                 timeout: entry.max
@@ -3730,7 +3767,6 @@ const other = (type, text) => {
         describe('Бюро пропусков / Посетители - вкладка - Действующие. Редактирование', () => {
             befActive();
             aft();
-
             decorate.el.table.strHandler({
                 strNumber: 1,
                 timeout: entry.max
@@ -3969,11 +4005,11 @@ const other = (type, text) => {
                         icon: but.unsorted_reply_outline,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -4598,7 +4634,6 @@ const other = (type, text) => {
             describe('Добавление в Архив', () => {
                 befActive();
                 aft();
-
                 decorate.el.table.strHandler({
                     strNumber: 1,
                     timeout: entry.max
@@ -4616,6 +4651,9 @@ const other = (type, text) => {
                 });
                 decorate.modalConfirm.visitorArchive.initClose({
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.table.noStr({
                     timeout: entry.max
@@ -4717,11 +4755,11 @@ const other = (type, text) => {
                         icon: but.unsorted_reply_outline,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -5129,6 +5167,9 @@ const other = (type, text) => {
                     name: 'Заблокировать',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modalConfirm.visitorBlock.initClose({
                     timeout: entry.max
                 });
@@ -5201,6 +5242,9 @@ const other = (type, text) => {
                     name: 'Разблокировать',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modalConfirm.visitorUnBlock.initClose({
                     timeout: entry.max
                 });
@@ -5246,11 +5290,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -5974,11 +6018,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorOrder.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorOrder.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -5998,11 +6042,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -6426,11 +6470,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorCurrent.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorCurrent.init({
+                        timeout: entry.max
                     });
                 });
 
@@ -6539,11 +6583,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -6740,11 +6784,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorCurrent.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorCurrent.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -6767,6 +6811,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.init({
                     timeout: entry.max
@@ -6830,6 +6877,9 @@ const other = (type, text) => {
                     name: 'Готово',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
                 });
@@ -6871,11 +6921,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -6915,11 +6965,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorOrder.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorOrder.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -6954,7 +7004,7 @@ const other = (type, text) => {
             });
         }
 
-        if(type === 'visitorActive'){
+        if(type === 'visitorActive') {
             describe('Импорт', () => {
                 befActive();
                 aft();
@@ -6968,6 +7018,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.init({
                     timeout: entry.max
@@ -7040,6 +7093,9 @@ const other = (type, text) => {
                     name: 'Готово',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
                 });
@@ -7095,11 +7151,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -7151,11 +7207,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorCurrent.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorCurrent.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -7204,6 +7260,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.init({
                     timeout: entry.max
@@ -7264,6 +7323,9 @@ const other = (type, text) => {
                     name: 'Готово',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
                 });
@@ -7305,11 +7367,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.orderpassChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.orderpassChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -7349,11 +7411,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.orderpassOrder.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.orderpassOrder.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -7405,6 +7467,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.init({
                     timeout: entry.max
@@ -7500,6 +7565,9 @@ const other = (type, text) => {
                 decorate.el.button.handler({
                     name: 'Готово',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
@@ -7605,11 +7673,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -7737,16 +7805,15 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorOrder.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
-                });
+                    decorate.page.visitorOrder.init({
+                        timeout: entry.max
+                    });
             });
 
-            describe('Удаление посетителя из БД', () => {
+                describe('Удаление посетителя из БД', () => {
                 befOrdered();
                 aft();
                 it('Удаление посетителей', async () => {
@@ -7774,6 +7841,7 @@ const other = (type, text) => {
                     timeout: entry.sleep2
                 });
             });
+            });
         }
 
         if(type === 'visitorActive') {
@@ -7790,6 +7858,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.init({
                     timeout: entry.max
@@ -7898,6 +7969,9 @@ const other = (type, text) => {
                     name: 'Готово',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
                 });
@@ -7972,7 +8046,6 @@ const other = (type, text) => {
                     value: data.divisions.division4.name,
                     timeout: entry.max
                 });
-
                 decorate.el.table.cellGetText({
                     headTitle: 'Шаблон доступа',
                     strNumber: 1,
@@ -8009,11 +8082,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -8141,11 +8214,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorCurrent.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorCurrent.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -8194,6 +8267,9 @@ const other = (type, text) => {
                 decorate.el.menu.handler({
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.init({
                     timeout: entry.max
@@ -8278,6 +8354,9 @@ const other = (type, text) => {
                     name: 'Готово',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
                 });
@@ -8340,11 +8419,11 @@ const other = (type, text) => {
                         icon: but.edit,
                         timeout: entry.max
                     });
-                    decorate.page.orderpassChange.initEdit({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.orderpassChange.initEdit({
+                        timeout: entry.max
                     });
                 });
 
@@ -8451,11 +8530,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.orderpassOrder.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.orderpassOrder.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -8625,6 +8704,9 @@ const other = (type, text) => {
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.init({
                     timeout: entry.max
                 });
@@ -8665,6 +8747,9 @@ const other = (type, text) => {
                 decorate.el.button.handler({
                     name: 'Экспорт остатка в файл',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
@@ -8713,6 +8798,9 @@ const other = (type, text) => {
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.init({
                     timeout: entry.max
                 });
@@ -8753,6 +8841,9 @@ const other = (type, text) => {
                 decorate.el.button.handler({
                     name: 'Экспорт остатка в файл',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
@@ -8801,6 +8892,9 @@ const other = (type, text) => {
                     name: 'Импорт из XLS, XLSX',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.importFile.init({
                     timeout: entry.max
                 });
@@ -8841,6 +8935,9 @@ const other = (type, text) => {
                 decorate.el.button.handler({
                     name: 'Экспорт остатка в файл',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.modal.importFile.initClose({
                     timeout: entry.max
@@ -8908,6 +9005,9 @@ const other = (type, text) => {
                     icon: but.card_add,
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.modal.cardControls.init({
                     timeout: entry.max
                 });
@@ -8961,11 +9061,11 @@ const other = (type, text) => {
                         icon: but.add,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initAdd({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initAdd({
+                        timeout: entry.max
                     });
                 });
 
@@ -9040,11 +9140,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorOrder.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorOrder.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -9277,11 +9377,11 @@ const other = (type, text) => {
                         icon: but.add,
                         timeout: entry.max
                     });
-                    decorate.page.visitorChange.initAdd({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorChange.initAdd({
+                        timeout: entry.max
                     });
                 });
 
@@ -9357,11 +9457,11 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorOrder.init({
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorOrder.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -9506,7 +9606,7 @@ const other = (type, text) => {
     const deleteVisitor = () => describe(text + 'Удаления посетителя из архива.', () => {
 
         if(type === 'visitorArchive') {
-            describe('Удаление из Архив', () => {
+            describe('Удаление из Архива', () => {
                 befArchive();
                 aft();
                 decorate.el.table.strHandler({
@@ -9537,7 +9637,7 @@ const other = (type, text) => {
         }
 
         if(type === 'visitorPassArchive') {
-            describe('Удаление из Архив', () => {
+            describe('Удаление из Архива', () => {
                 befPassArchive();
                 aft();
                 decorate.el.table.strHandler({

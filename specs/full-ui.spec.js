@@ -18,7 +18,18 @@ const data = require('../ui/src/handlers/module-specs/data');
 //tests.staffUi.other.addStaffMaxParams();
 //tests.staffUi.other.dimissedStaff();
 //tests.staffUi.other.restoreStaffDimissedEditParamsMaxParams();
-data.deleteDataVisitor()
+
+/*data.addDataVisitor();
+closeBrowser();*/
+
+data.deleteDataVisitor();
+closeBrowser();
+
+data.addDataVisitor();
+closeBrowser();
+
+data.deleteDataVisitor();
+closeBrowser();
 
 //tests.scheduleUi.otherSchedule.addWeekMinParams()
 //tests.divisionUi.add.addMinParams();
