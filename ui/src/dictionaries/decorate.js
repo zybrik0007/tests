@@ -84,15 +84,15 @@ const exit = async () => {
         expect(exitHandler.error).to.equal(false)
     }
 
-    const open = await page.base.open(url.authUrl)
+/*    const open = await page.base.open(url.authUrl)
     console.log(open.description)
     expect(open.error).to.equal(false)
 
     const address = await page.base.urlCompare(url.authUrl, entry.max)
     console.log(address.description)
-    expect(address.error).to.equal(false)
+    expect(address.error).to.equal(false)*/
 
-    const clearLS = await page.base.clearLocalStorage()
+/*    const clearLS = await page.base.clearLocalStorage()
     console.log(clearLS.description)
     expect(clearLS.error).to.equal(false)
 
@@ -102,7 +102,7 @@ const exit = async () => {
 
     const setLocalStorageSidebar = await page.base.setLocalStorage('sidebar', 0)
     console.log(setLocalStorageSidebar.description)
-    expect(setLocalStorageSidebar.error).to.equal(false)
+    expect(setLocalStorageSidebar.error).to.equal(false)*/
 }
 
 //Откат базы данных

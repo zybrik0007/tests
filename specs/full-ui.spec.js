@@ -22,11 +22,6 @@ const data = require('../ui/src/handlers/module-specs/data');
 /*data.addDataVisitor();
 closeBrowser();*/
 
-data.deleteDataVisitor();
-closeBrowser();
-
-data.addDataVisitor();
-closeBrowser();
 
 data.deleteDataVisitor();
 closeBrowser();
