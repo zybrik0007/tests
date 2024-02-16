@@ -9634,6 +9634,14 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
             });
+
+            describe('Проверка таблицы', () => {
+                befArchive();
+                aft();
+                decorate.el.table.noStr({
+                    timeout: entry.max
+                });
+            });
         }
 
         if(type === 'visitorPassArchive') {
@@ -9661,6 +9669,14 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
+                decorate.el.table.noStr({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка таблицы', () => {
+                befPassArchive();
+                aft();
                 decorate.el.table.noStr({
                     timeout: entry.max
                 });

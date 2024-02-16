@@ -26,9 +26,6 @@ closeBrowser();*/
 
 
 data.deleteDataVisitor();
-clearMemory();
-data.addDataVisitor();
-data.deleteDataVisitor();
 
 closeBrowser();
 
