@@ -483,6 +483,30 @@ class BasePage {
             .then((text) => {return {error: false, text: text, description}})
             .catch(() => {return {error: true, text: '', description: `Ошибка. ${description}`}})
     }
+
+    async xpathTabHandler(event, description, timeout) {
+        const element = await this.xpathElement(event, description, timeout);
+        if(element.error) {
+            return elem;
+        }
+
+        //const element = await driver.findElement(By.xpath(event));
+        return await driver.actions().keyDown(Key.TAB).perform()
+            .then((text) => {return {error: false, description: 'Нажатие TAB.'}})
+            .catch(() => {return {error: true, text: '', description: `Ошибка. Нажатие TAB.`}})
+    }
+
+    async xpathEnterHandler(event, description, timeout) {
+        const element = await this.xpathElement(event, description, timeout);
+        if(element.error) {
+            return elem;
+        }
+
+        //const element = await driver.findElement(By.xpath(event));
+        return await driver.actions().keyDown(Key.ENTER).perform()
+            .then((text) => {return {error: false, description: 'Нажатие ENTER.'}})
+            .catch(() => {return {error: true, text: '', description: `Ошибка. Нажатие ENTER.`}})
+    }
 }
 
 module.exports = BasePage

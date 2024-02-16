@@ -1,5 +1,6 @@
 const tests = require('../../../ui/src/handlers/module-specs');
 const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
+const clearMemory = require('../../../ui/src/handlers/other/clearMemory');
 const data = require('../../../ui/src/handlers/module-specs/data');
 const decorate = require('../../../ui/src/decorates');
 console.log = () => function () {};
@@ -24,7 +25,7 @@ tests.visitorUi.otherVisitorOrder.toArchiveVisitor();
 
 // Бюро пропусков / Посетители - вкладка - Архив
 tests.visitorUi.otherVisitorArchive.deleteVisitor();
-decorate.page.base.loadingTest();
+clearMemory();
 
 // Бюро пропусков / Посетители - вкладка - Действующие
 tests.visitorUi.otherVisitorActive.addVisitorMaxParams();
@@ -42,7 +43,7 @@ tests.visitorUi.otherVisitorArchive.printTableVisitorMaxParams();
 tests.visitorUi.otherVisitorArchive.exportXLSXVisitorMaxParams();
 tests.visitorUi.otherVisitorArchive.exportCSVVisitorMaxParams();
 tests.visitorUi.otherVisitorArchive.returnVisitorMaxParamsToActive();
-decorate.page.base.loadingTest();
+clearMemory();
 
 // Бюро пропусков / Посетители - вкладка - Действующие
 tests.visitorUi.otherVisitorActive.addBarcodeVisitorMaxParams();
@@ -56,6 +57,7 @@ tests.visitorUi.otherVisitorArchive.deleteVisitor();
 tests.visitorUi.otherVisitorOrder.importMinParams();
 tests.visitorUi.otherVisitorOrder.importMaxParams();
 tests.visitorUi.otherVisitorOrder.importFailed();
+clearMemory();
 
 // Бюро пропусков / Посетители - вкладка - Действующие
 tests.visitorUi.otherVisitorActive.importMinParams();
@@ -67,15 +69,13 @@ tests.visitorUi.otherVisitorOrder.addDataVisitorFilter();
 tests.visitorUi.otherVisitorOrder.divisionFilterVisitor();
 tests.visitorUi.otherVisitorOrder.searchFilterVisitorActive();
 tests.visitorUi.otherVisitorOrder.deleteDataVisitorFilter();
-decorate.page.base.loadingTest();
 
 // Бюро пропусков / Посетители - вкладка - Действующие
 tests.visitorUi.otherVisitorActive.addDataVisitorFilter();
 tests.visitorUi.otherVisitorActive.divisionFilterVisitor();
 tests.visitorUi.otherVisitorActive.searchFilterVisitorActive();
 tests.visitorUi.otherVisitorActive.deleteDataVisitorFilter();
-data.deleteDataVisitor();
-
+clearMemory();
 
 // Бюро пропусков / Сотрудники
 // Бюро пропусков / Сотрудники
@@ -89,7 +89,6 @@ tests.staffUi.otherPass.addBarcodeStaffMinParams();
 tests.staffUi.otherPass.deleteBarcodeStaffMinParams();
 tests.staffUi.otherPass.editStaffMaxParams();
 tests.staffUi.otherPass.printTableStaffMaxParams();
-decorate.page.base.loadingTest();
 tests.staffUi.otherPass.printBarcodeStaffMaxParams();
 tests.staffUi.otherPass.printDesignCardStaffMaxParams();
 tests.staffUi.otherPass.dimissedRestoreStaffMinParams();
@@ -97,12 +96,13 @@ tests.staffUi.otherPass.exportStaffXLSXMaxParams();
 tests.staffUi.otherPass.exportStaffCSVMaxParams();
 tests.staffUi.other.dimissedStaff();
 tests.staffUi.other.deleteStaff();
-
+clearMemory();
 
 data.addDataStaffFilter();
 tests.staffUi.otherPass.searchFilterStaffActive();
 tests.staffUi.otherPass.divisionFilterStaffActive();
 tests.staffUi.otherPass.cardSearchStaffActive();
 data.deleteDataStaffFilter();
+clearMemory();
 
 closeBrowser();

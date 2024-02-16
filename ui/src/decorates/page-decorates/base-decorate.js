@@ -1,6 +1,7 @@
 const {describe, it} = require('mocha');
 const page = require('../../pages');
 const dec = require('../../dictionaries/decorate');
+const entry = require('../../../../entry');
 
 module.exports = {
     loading: ({timeout}) => it(`Ожидание "${timeout}".`, async () => await dec.simple(page.base.loading,
