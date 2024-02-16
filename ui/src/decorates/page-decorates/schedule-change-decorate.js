@@ -11,11 +11,6 @@ module.exports = {
         [timeout],
         page.schedulePageChange)),
 
-    handler: ({numInterval, timeout}) => it(`Нажатие по интервалу с порядковым номером ${numInterval}.`,
-        async () => await dec.simple(page.schedulePageChange.handler,
-        [numInterval, timeout],
-        page.schedulePageChange)),
-
     interval: ({numInterval, timeout}) => it(`Отображение интервала c порядковым номером ${numInterval}.`,
         async () => await dec.simple(page.schedulePageChange.interval,
             [numInterval, timeout],
@@ -39,6 +34,7 @@ module.exports = {
             [numInterval, numTime, timeout],
             value,
             page.schedulePageChange)),
+
 
 
 }

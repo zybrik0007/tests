@@ -19,33 +19,37 @@ const db = require('../../../../database');
 const data = require('../../data').dataVisitor;
 
 const befOrdered = () => before('Вход и открытие подраздела "Посетители" вкладка "Заказанные"', async () => {
+    await page.base.loading(entry.sleep1);
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.pas, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.pas.visitor, entry.max], el.subsection);
     await dec.simple(el.tab.handler, ['Заказанные', entry.max], el.tab);
     await dec.simple(page.visitorOrdered.init, [entry.max], page.visitorOrdered);
-    await page.base.loading(2000);
+    await page.base.loading(entry.sleep1);
 });
 
 const befActive = () => before('Вход и открытие подраздела "Посетители" вкладка "Действующие"', async () => {
+    await page.base.loading(entry.sleep1);
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.pas, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.pas.visitor, entry.max], el.subsection);
     await dec.simple(el.tab.handler, ['Действующие', entry.max], el.tab);
     await dec.simple(page.visitorCurrent.init, [entry.max], page.visitorCurrent);
-    await page.base.loading(2000);
+    await page.base.loading(entry.sleep1);
 });
 
 const befArchive = () => before('Вход и открытие подраздела "Посетители" вкладка "Архив"', async () => {
+    await page.base.loading(entry.sleep1);
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.pas, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.pas.visitor, entry.max], el.subsection);
     await dec.simple(el.tab.handler, ['Архив', entry.max], el.tab);
     await dec.simple(page.visitorArchive.init, [entry.max], page.visitorArchive);
-    await page.base.loading(2000);
+    await page.base.loading(entry.sleep1);
 });
 
 const befPassOrder = () => before('Вход и открытие подраздела "Заказ пропуска" вкладка "Заказ пропуска"', async () => {
+    await page.base.loading(entry.sleep1);
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.ord, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.ord.order, entry.max], el.subsection);
