@@ -1,5 +1,6 @@
 const tests = require('../../../ui/src/handlers/module-specs');
 const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
+const clearMemory = require('../../../ui/src/handlers/other/clearMemory');
 const data = require('../../../ui/src/handlers/module-specs/data');
 console.log = () => function () {};
 
@@ -26,6 +27,7 @@ tests.whereAboutsUi.otherVisitor().display();
 tests.identifiersUi.otherAll().display();
 tests.identifiersUi.otherStaff().display();
 tests.identifiersUi.otherVisitor().display();
+clearMemory();
 
 // Добавление данных
 data.addDataControlAccess();
@@ -65,6 +67,7 @@ tests.premiseAccessUi.otherVisitor().filterSearch();
 tests.premiseAccessUi.otherVisitor().printTable();
 tests.premiseAccessUi.otherVisitor().exportXLSX();
 tests.premiseAccessUi.otherVisitor().exportCSV();
+clearMemory();
 
 // Котроль доступа: Журнал верификации.
 tests.verificationJournalUi.other().checkData();
@@ -75,6 +78,7 @@ tests.verificationJournalUi.other().printTable();
 tests.verificationJournalUi.other().exportXLSX();
 tests.verificationJournalUi.other().exportCSV();
 tests.verificationJournalUi.other().updateData();
+clearMemory();
 
 // Котроль доступа / Отчет по доступу в помещения / вкладка Все
 tests.premisesAccessReportUi.otherAll().checkData();
@@ -102,6 +106,7 @@ tests.premisesAccessReportUi.otherVisitor().filterSearch();
 tests.premisesAccessReportUi.otherVisitor().printTable();
 tests.premisesAccessReportUi.otherVisitor().exportXLSX();
 tests.premisesAccessReportUi.otherVisitor().exportCSV();
+clearMemory();
 
 // Котроль доступа / Местонахождение / вкладка Все
 tests.whereAboutsUi.otherAll().checkData();
@@ -135,6 +140,7 @@ tests.whereAboutsUi.otherVisitor().printTable();
 tests.whereAboutsUi.otherVisitor().exportXLSX();
 tests.whereAboutsUi.otherVisitor().exportCSV();
 tests.whereAboutsUi.otherVisitor().updateData();
+clearMemory();
 
 // Котроль доступа / Выданные идентификаторы / вкладка Все
 tests.identifiersUi.otherAll().checkData();
@@ -177,5 +183,6 @@ tests.identifiersUi.otherVisitor().deleteIdentifier();
 
 // Удаление данных
 data.deleteDataControlAccess();
+clearMemory();
 
 closeBrowser();

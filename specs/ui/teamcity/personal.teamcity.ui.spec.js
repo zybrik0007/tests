@@ -1,5 +1,6 @@
 const tests = require('../../../ui/src/handlers/module-specs');
 const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
+const clearMemory = require('../../../ui/src/handlers/other/clearMemory');
 const data = require('../../../ui/src/handlers/module-specs/data');
 console.log = () => function () {};
 
@@ -18,6 +19,7 @@ tests.staffUi.other.deleteBarcodeStaffMinParams();
 tests.staffUi.other.dimissedRestoreStaffMinParams();
 tests.staffUi.other.dimissedStaff();
 tests.staffUi.other.deleteStaff();
+clearMemory();
 
 tests.staffUi.other.addStaffMaxParams();
 tests.staffUi.other.printCardStaffMaxParams();
@@ -36,6 +38,7 @@ tests.staffUi.other.restoreStaffDimissedEditParamsMaxParams();
 tests.staffUi.other.editStaffMaxParams();
 tests.staffUi.other.dimissedStaff();
 tests.staffUi.other.deleteStaff();
+clearMemory();
 
 data.addDataStaffFilter();
 tests.staffUi.other.searchFilterStaffActive();
@@ -47,5 +50,6 @@ tests.staffUi.other.importMinParamsActive();
 tests.staffUi.other.importMaxParamsActive();
 tests.staffUi.other.importFailedParamsActive();
 data.deleteDataStaff();
+clearMemory();
 
 closeBrowser();

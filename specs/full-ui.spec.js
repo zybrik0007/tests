@@ -25,11 +25,11 @@ const decorate = require('../ui/src/decorates');
 closeBrowser();*/
 
 
-//data.deleteDataVisitor();
+data.deleteDataVisitor();
 
 //closeBrowser();
 
-tests.scheduleUi.otherSchedule.addWeekMinParams()
+//tests.scheduleUi.otherSchedule.addWeekMinParams()
 //tests.divisionUi.add.addMinParams();
 //closeBrowser();
 
