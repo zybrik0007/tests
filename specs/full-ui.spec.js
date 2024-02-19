@@ -15,7 +15,7 @@ const decorate = require('../ui/src/decorates');
 //tests.staffUi.other.importMinParamsActive();
 //tests.staffUi.other.importMaxParamsActive();
 //tests.staffUi.other.importFailedParamsActive();
-data.deleteDataStaff();
+//data.deleteDataStaff();
 //data.addDataStaff();
 //tests.staffUi.other.addStaffMaxParams();
 //tests.staffUi.other.dimissedStaff();
@@ -29,7 +29,7 @@ closeBrowser();*/
 
 //closeBrowser();
 
-//tests.scheduleUi.otherSchedule.addWeekMinParams()
+tests.scheduleUi.otherSchedule.addWeekMinParams()
 //tests.divisionUi.add.addMinParams();
 //closeBrowser();
 

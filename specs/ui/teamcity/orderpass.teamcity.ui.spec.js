@@ -1,5 +1,6 @@
 const tests = require('../../../ui/src/handlers/module-specs');
 const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
+const clearMemory = require('../../../ui/src/handlers/other/clearMemory');
 const data = require('../../../ui/src/handlers/module-specs/data');
 console.log = () => function () {};
 
@@ -18,6 +19,7 @@ tests.visitorUi.otherVisitorPassArchive.printTableVisitorMaxParams();
 tests.visitorUi.otherVisitorPassArchive.exportXLSXVisitorMaxParams();
 tests.visitorUi.otherVisitorPassArchive.exportCSVVisitorMaxParams();
 tests.visitorUi.otherVisitorPassArchive.deleteVisitor();
+clearMemory();
 
 // Заказ пропуска / Заказ пропуска / Заказ пропуска
 tests.visitorUi.otherVisitorPassOrder.importMinParams();
@@ -30,5 +32,6 @@ tests.visitorUi.otherVisitorPassOrder.divisionFilterVisitor();
 tests.visitorUi.otherVisitorPassOrder.searchFilterVisitorActive();
 tests.visitorUi.otherVisitorPassOrder.deleteDataVisitorFilter();
 data.deleteDataVisitor();
+clearMemory();
 
 closeBrowser();

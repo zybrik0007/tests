@@ -2262,6 +2262,10 @@ const dataSchedule = {
             day1: {
                 name: 'Понедельник',
                 time: 'Рабочее время 00ч 00м',
+                interval1: {
+                    begin: '08:00',
+                    end: '09:00'
+                },
             },
             day2: {
                 name: 'Вторник',
@@ -2277,10 +2281,10 @@ const dataSchedule = {
             },
             day4: {
                 name: 'Четверг',
-                time: 'Рабочее время 23ч 59м',
+                time: 'Рабочее время 00ч 00м',
                 interval1: {
                     begin: '00:00',
-                    end: '23:59'
+                    end: '00:00'
                 },
             },
             day5: {
@@ -2301,17 +2305,13 @@ const dataSchedule = {
             },
             day6: {
                 name: 'Суббота',
-                time: 'Рабочее время 18ч 59м',
+                time: 'Рабочее время 01ч 59м',
                 interval1: {
                     begin: '00:00',
-                    end: '05:00'
+                    end: '01:00'
                 },
                 interval2: {
-                    begin: '08:00',
-                    end: '17:00'
-                },
-                interval3: {
-                    begin: '19:00',
+                    begin: '23:00',
                     end: '23:59'
                 },
             },
