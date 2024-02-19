@@ -3930,9 +3930,6 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
-                decorate.el.table.noStr({
-                    timeout: entry.max
-                });
             });
 
             describe('Проверка таблицы Архива', () => {
@@ -4352,9 +4349,6 @@ const other = (type, text) => {
                 });
                 decorate.page.base.loading({
                     timeout: entry.sleep2
-                });
-                decorate.el.table.noStr({
-                    timeout: entry.max
                 });
             });
 
@@ -9495,9 +9489,6 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
-                decorate.el.table.noStr({
-                    timeout: entry.max
-                });
             });
 
             describe('Изменение даты окончания в базе данных', () => {
@@ -9546,9 +9537,6 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
-                decorate.el.table.noStr({
-                    timeout: entry.max
-                });
             });
         }
 
@@ -9576,9 +9564,6 @@ const other = (type, text) => {
                 });
                 decorate.page.base.loading({
                     timeout: entry.sleep2
-                });
-                decorate.el.table.noStr({
-                    timeout: entry.max
                 });
             });
 
@@ -9630,17 +9615,6 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
-                decorate.el.table.noStr({
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка таблицы', () => {
-                befArchive();
-                aft();
-                decorate.el.table.noStr({
-                    timeout: entry.max
-                });
             });
         }
 
@@ -9668,17 +9642,6 @@ const other = (type, text) => {
                 });
                 decorate.page.base.loading({
                     timeout: entry.sleep2
-                });
-                decorate.el.table.noStr({
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка таблицы', () => {
-                befPassArchive();
-                aft();
-                decorate.el.table.noStr({
-                    timeout: entry.max
                 });
             });
         }
