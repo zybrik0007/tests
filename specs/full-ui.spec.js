@@ -27,7 +27,7 @@ closeBrowser();*/
 
 data.deleteDataVisitor();
 
-closeBrowser();
+//closeBrowser();
 
 //tests.scheduleUi.otherSchedule.addWeekMinParams()
 //tests.divisionUi.add.addMinParams();

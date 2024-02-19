@@ -75,6 +75,7 @@ tests.visitorUi.otherVisitorActive.addDataVisitorFilter();
 tests.visitorUi.otherVisitorActive.divisionFilterVisitor();
 tests.visitorUi.otherVisitorActive.searchFilterVisitorActive();
 tests.visitorUi.otherVisitorActive.deleteDataVisitorFilter();
+data.deleteDataVisitor();
 clearMemory();
 
 // Бюро пропусков / Сотрудники
