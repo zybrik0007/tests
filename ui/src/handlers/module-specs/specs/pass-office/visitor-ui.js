@@ -7805,15 +7805,16 @@ const other = (type, text) => {
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
+                });
             });
 
-                describe('Удаление посетителя из БД', () => {
+            describe('Удаление посетителя из БД', () => {
                 befOrdered();
                 aft();
-                it('Удаление посетителей', async () => {
+                it('Удаление посетителя', async () => {
                     const cook = await page.base.getCookie('token');
                     const arrVisitor = await api.getVisitor(cook.text);
-                    console.log( arrVisitor)
+                    console.log(arrVisitor)
                     const visitor1 = arrVisitor.text.filter(obj => obj.name === data.visitor1.fio)[0].id;
                     await dec.simple(db.deleteAlUserAdditionalData,
                         [],
@@ -7834,7 +7835,6 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
-            });
             });
         }
 
