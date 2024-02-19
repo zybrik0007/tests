@@ -24,12 +24,12 @@ const decorate = require('../ui/src/decorates');
 /*data.addDataVisitor();
 closeBrowser();*/
 
-
-data.deleteDataVisitor();
+//data.deleteDataControlAccess();
+//data.deleteDataStaff();
 
 //closeBrowser();
 
-//tests.scheduleUi.otherSchedule.addWeekMinParams()
+tests.scheduleUi.otherSchedule.addWeekMinParams()
 //tests.divisionUi.add.addMinParams();
 //closeBrowser();
 

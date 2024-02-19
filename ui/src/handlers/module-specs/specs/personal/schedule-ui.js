@@ -34,7 +34,7 @@ const other = () => {
     const addWeekMinParams = () => describe('Редактирование недельного графика работы ' +
         'с минимальными количеством параметров', () => {
 
-        /*describe('API добавление недельного графика работы', () => {
+/*        describe('API добавление недельного графика работы', () => {
             bef();
             aft();
 
@@ -95,26 +95,213 @@ const other = () => {
             });*/
 
             describe('Интервалы', () => {
-                decorate.el.simpleCell.handler({
-                    name: 'Интервалы',
-                    timeout: entry.max
+                describe('Открытие настроек "Интервалы"', () => {
+                    decorate.el.simpleCell.handler({
+                        name: 'Интервалы',
+                        timeout: entry.max
+                    });
+                    decorate.el.simpleCell.active({
+                        name: 'Интервалы',
+                        timeout: entry.max
+                    });
                 });
-                decorate.el.simpleCell.active({
-                    name: 'Интервалы',
-                    timeout: entry.max
+
+                describe('Изменение "Понедельник"', () => {
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 1,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day1.interval1.begin,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 1,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day1.interval1.end,
+                        timeout: entry.max
+                    });
                 });
-                decorate.page.scheduleChange.getTypeInterval({
-                    numInterval: 1,
-                    numTime: 1,
-                    value: 'Полная смена',
-                    timeout: entry.max
+
+                describe('Изменение "Вторник"', () => {
+                    decorate.page.scheduleChange.timeRemove({
+                        numInterval: 2,
+                        numTime: 1,
+                        timeout: entry.max
+                    });
                 });
-/*                decorate.page.scheduleChange.selectTypeInterval({
-                    numInterval: 1,
-                    numTime: 1,
-                    value: 'Конец смены',
-                    timeout: entry.max
-                });*/
+
+                describe('Изменение "Среда"', () => {
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 3,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day3.interval1.begin,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 3,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day3.interval1.end,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Изменение "Пятница"', () => {
+                    decorate.page.scheduleChange.timeRemove({
+                        numInterval: 5,
+                        numTime: 2,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 5,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day5.interval1.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 5,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day5.interval1.end,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 5,
+                        numTime: 3,
+                        value: data.weekly2.intervals.day5.interval3.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 5,
+                        numTime: 3,
+                        value: data.weekly2.intervals.day5.interval3.end,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 5,
+                        numTime: 2,
+                        value: data.weekly2.intervals.day5.interval2.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 5,
+                        numTime: 2,
+                        value: data.weekly2.intervals.day5.interval2.end,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Изменение "Суббота"', () => {
+                    decorate.page.scheduleChange.timeRemove({
+                        numInterval: 6,
+                        numTime: 1,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.timeRemove({
+                        numInterval: 6,
+                        numTime: 3,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.selectTypeInterval({
+                        numInterval: 6,
+                        numTime: 1,
+                        value: 'Начало смены',
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 6,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day6.interval1.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 6,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day6.interval1.end,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.selectTypeInterval({
+                        numInterval: 6,
+                        numTime: 2,
+                        value: 'Конец смены',
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 6,
+                        numTime: 2,
+                        value: data.weekly2.intervals.day6.interval2.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 6,
+                        numTime: 2,
+                        value: data.weekly2.intervals.day6.interval2.end,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Изменение "Воскресенье"', () => {
+                    decorate.page.scheduleChange.scrollTop({
+                        scroll: 500,
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.page.scheduleChange.timeRemove({
+                        numInterval: 7,
+                        numTime: 2,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 7,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day7.interval1.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 7,
+                        numTime: 1,
+                        value: data.weekly2.intervals.day7.interval1.end,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 5,
+                        numTime: 3,
+                        value: data.weekly2.intervals.day7.interval3.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 7,
+                        numTime: 3,
+                        value: data.weekly2.intervals.day7.interval3.end,
+                        timeout: entry.max
+                    });
+
+                    decorate.page.scheduleChange.startTimeSendKeys({
+                        numInterval: 7,
+                        numTime: 2,
+                        value: data.weekly2.intervals.day7.interval2.begin,
+                        timeout: entry.max
+                    });
+                    decorate.page.scheduleChange.endTimeSendKeys({
+                        numInterval: 7,
+                        numTime: 2,
+                        value: data.weekly2.intervals.day7.interval2.end,
+                        timeout: entry.max
+                    });
+                });
+
+            });
+
+            describe('Настройки отчетов', () => {
+
             });
 
         });
