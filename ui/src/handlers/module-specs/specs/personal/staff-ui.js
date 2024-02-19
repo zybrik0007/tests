@@ -6747,14 +6747,14 @@ const other = (type, text) => {
                         headTitle: 'Действует с',
                         strNumber: 1,
                         cellNumber: 9,
-                        value: data.staff.staff1.dateIn.date + ':00',
+                        value: data.staff.staff1.dateIn.date.substr(0, 10),
                         timeout: entry.max
                     });
                     decorate.el.table.cellGetText({
                         headTitle: 'Действует до',
                         strNumber: 1,
                         cellNumber: 10,
-                        value: data.staff.staff1.dateAfter.date + ':00',
+                        value: data.staff.staff1.dateAfter.date.substr(0, 10),
                         timeout: entry.max
                     });
 
@@ -7079,36 +7079,45 @@ const other = (type, text) => {
     });
 
     const deleteStaff = () => describe('Персонал / Сотрудники - вкладка Уволенные. Удаление сотрудника', () => {
-        befDismissed();
-        aft();
-        decorate.el.table.strHandler({
-            strNumber: 1,
-            timeout: entry.max
+
+        describe('Удаление сотрудника', () => {
+            befDismissed();
+            aft();
+            decorate.el.table.strHandler({
+                strNumber: 1,
+                timeout: entry.max
+            });
+            decorate.el.butIcBefore.handler({
+                icon: but.delete,
+                timeout: entry.max
+            });
+            decorate.modalConfirm.staffDelete.init({
+                timeout: entry.max
+            });
+            decorate.el.button.handler({
+                name: 'Удалить',
+                timeout: entry.max
+            });
+            decorate.el.success.success({
+                text: 'Сотрудник удален',
+                timeout: entry.max
+            });
+            decorate.modalConfirm.staffDelete.initClose({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
         });
-        decorate.el.butIcBefore.handler({
-            icon: but.delete,
-            timeout: entry.max
+
+        describe('Персонал / Сотрудники - вкладка - Уволенные. Проверка таблицы.', () => {
+            befDismissed();
+            aft();
+            decorate.el.table.noStr({
+                timeout: entry.max
+            });
         });
-        decorate.modalConfirm.staffDelete.init({
-            timeout: entry.max
-        });
-        decorate.el.button.handler({
-            name: 'Удалить',
-            timeout: entry.max
-        });
-        decorate.el.success.success({
-            text: 'Сотрудник удален',
-            timeout: entry.max
-        });
-        decorate.modalConfirm.staffDelete.initClose({
-            timeout: entry.max
-        });
-        decorate.page.base.loading({
-            timeout: entry.sleep2
-        });
-        decorate.el.table.noStr({
-            timeout: entry.max
-        });
+
     });
 
     const addStaffMinParams = () => describe(text +
@@ -7476,14 +7485,14 @@ const other = (type, text) => {
                         headTitle: 'Действует с',
                         strNumber: 1,
                         cellNumber: 9,
-                        value: data.staff.staff3.dateIn.date + ':00',
+                        value: data.staff.staff3.dateIn.date.substr(0, 10),
                         timeout: entry.max
                     });
                     decorate.el.table.cellGetText({
                         headTitle: 'Действует до',
                         strNumber: 1,
                         cellNumber: 10,
-                        value: data.staff.staff3.dateAfter.date + ':00',
+                        value: data.staff.staff3.dateAfter.date.substr(0, 10),
                         timeout: entry.max
                     });
                     decorate.el.table.cellGetText({
@@ -9100,14 +9109,14 @@ const other = (type, text) => {
                     headTitle: 'Действует с',
                     strNumber: 1,
                     cellNumber: 9,
-                    value: data.staff.staff1.dateIn.date + ':00',
+                    value: data.staff.staff1.dateIn.date.substr(0, 10),
                     timeout: entry.max
                 });
                 decorate.el.table.cellGetText({
                     headTitle: 'Действует до',
                     strNumber: 1,
                     cellNumber: 10,
-                    value: data.staff.staff1.dateAfter.date + ':00',
+                    value: data.staff.staff1.dateAfter.date.substr(0, 10),
                     timeout: entry.max
                 });
                 decorate.el.table.cellImg({

@@ -35,6 +35,49 @@ module.exports = {
             value,
             page.schedulePageChange)),
 
+    intervalSumTime: ({numInterval, value, timeout}) => it(`У интевала с порядковым номером "${numInterval}" 
+    рабочее время равно "${value}".`,
+        async () => await dec.simpleText(page.schedulePageChange.intervalSumTime,
+            [numInterval, timeout],
+            value,
+            page.schedulePageChange)),
 
+    intervalName: ({numInterval, value, timeout}) => it(`У интевала с порядковым номером "${numInterval}" 
+    название равно "${value}".`,
+        async () => await dec.simpleText(page.schedulePageChange.intervalName,
+            [numInterval, timeout],
+            value,
+            page.schedulePageChange)),
+
+    startTimeSendKeys: ({numInterval, numTime, value, timeout}) => it(`Ввод ${value} как значение начала в интервале с 
+    порядковым номером ${numInterval} и временным блоком ${numTime}.`,
+        async () => await dec.simple(page.schedulePageChange.startTimeSendKeys,
+            [numInterval, numTime, value, timeout],
+            page.schedulePageChange)),
+
+    endTimeSendKeys: ({numInterval, numTime, value, timeout}) => it(`Ввод ${value} как значение окончания в интервале 
+            с порядковым номером ${numInterval} и временным блоком ${numTime}.`,
+        async () => await dec.simple(page.schedulePageChange.endTimeSendKeys,
+            [numInterval, numTime, value, timeout],
+            page.schedulePageChange)),
+
+    startTimeGetValue: ({numInterval, numTime, value, timeout}) => it(`Значения времени начала в интервале с порядковым 
+    номером ${numInterval} и временного блока с порядковым номером ${numTime} равно "${value}".`,
+        async () => await dec.simpleText(page.schedulePageChange.startTimeGetValue,
+            [numInterval, numTime, timeout],
+            value,
+            page.schedulePageChange)),
+
+    endTimeGetValue: ({numInterval, numTime, value, timeout}) => it(`Значения времени окончания в интервале с порядковым 
+    номером ${numInterval} и временного блока с порядковым номером ${numTime} равно "${value}".`,
+        async () => await dec.simpleText(page.schedulePageChange.endTimeGetValue,
+            [numInterval, numTime, timeout],
+            value,
+            page.schedulePageChange)),
+
+    scrollTop: ({scroll, timeout}) => it(`Скролл интервалов.`,
+        async () => await dec.simple(page.schedulePageChange.selectTypeInterval,
+            [numInterval, numTime, value, timeout],
+            page.schedulePageChange)),
 
 }

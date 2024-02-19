@@ -104,43 +104,10 @@ class ScheduleChangePage extends BasePage {
         }
     }
 
-
-
-    async room(name, work, nowWork, timeout) {
-        return await this.xpathElement(elements.perSchedule(name, work, nowWork),
-            `Отображение регистрируещего помещения ${name} с настройкой ${work ? "Учет рабочего времени" : ""}
-             ${work ? "и Учет рабочего времени." : "."}`,
-            timeout)
-    }
-
-    /*Нажатие по Учет рабочего времени*/
-    async checkboxWorkHandler(name, timeout) {
-        return await this.xpathHandler(elements.perScheduleCheckbox(name, 1),
-            `Нажатие по сheckbox "Учет рабочего времени" для "${name}"`,
-            timeout)
-    }
-
-    /*Нажатие по Учет нерабочего времени*/
-    async checkboxNoWorkHandler(name, timeout) {
-        return await this.xpathHandler(elements.perScheduleCheckbox(name, 2),
-            `Нажатие по сheckbox "Учет нерабочего времени" для "${name}"`,
-            timeout)
-    }
-
-
-
-
-
-    //Отображение активности интервального блока по номеру
-    async intervalActive(timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleActive,
-            `Интерввал активен.`,
-            timeout)
-    }
-
-    async noTimeInterval(numInterval, timeout) {
-        return await this.xpathNoElement(elements.pasAccessScheduleInterval(numInterval, 1),
-            `Отсутствие временных блоков в интервале с порядковым номер ${numInterval}.`,
+    //Получение значения cуммы инетвалов интервального блока
+    async intervalSumTime(numInterval, timeout) {
+        return await this.xpathGetText(elements.pasAccessScheduleTitle(numInterval),
+            `Получение значение cуммы инетвалов у инеравала с порядковым номером ${numInterval}.`,
             timeout)
     }
 
@@ -148,20 +115,6 @@ class ScheduleChangePage extends BasePage {
     async intervalName(numInterval, timeout) {
         return await this.xpathGetText(elements.pasAccessScheduleName(numInterval),
             `Получение значение имени у инеравала с порядковым номером ${numInterval}.`,
-            timeout)
-    }
-
-    //Получение значения title интервального блока
-    async intervalTitle(numInterval, timeout) {
-        return await this.xpathGetText(elements.pasAccessScheduleTitle(numInterval),
-            `Получение значение заголовка у инеравала с порядковым номером ${numInterval}.`,
-            timeout)
-    }
-
-    //Отображение временного блока в интервале по номеру
-    async time(numInterval, numTime, timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleInterval(numInterval, numTime),
-            `Отображение временного блока с порядковым номером ${numTime} в интревале ${numInterval}.`,
             timeout)
     }
 
@@ -227,10 +180,6 @@ class ScheduleChangePage extends BasePage {
         }
     }
 
-
-
-
-
     //Получение значения врмени начала в интервале по по номеру
     async startTimeGetValue(numInterval, numTime, timeout) {
         return await this.xpathGetAttribute(elements.pasAccessScheduleIntervalInput(numInterval, numTime, 1),
@@ -249,21 +198,56 @@ class ScheduleChangePage extends BasePage {
             timeout)
     }
 
-    // Скролл в недельном графике от верха
-    async scrollWeekTop() {
-        const scroll = await this.script(elements.passAccessScheduleChangeWeekScroll(0, 737),
-            'Скролл недельных интервалов.')
-        await this.loading(1000)
-        return scroll
+    async scrollTop(scroll, timeout) {
+        return await this.script(elements.passAccessScheduleChangeWeekScroll(0, scroll),
+            'Скролл интервалов.',
+            timeout);
     }
 
-    //Скролл н недель из списка выбранных
-    async sWeekSelectedScroll() {
-        const scroll = await this.script(elements.passAccessScheduleChangeSWeekSelectedScroll(0, 726),
-            'Скролл недель из списка выбранных.')
-        await this.loading(1000)
-        return scroll
+
+
+/*    async room(name, work, nowWork, timeout) {
+        return await this.xpathElement(elements.perSchedule(name, work, nowWork),
+            `Отображение регистрируещего помещения ${name} с настройкой ${work ? "Учет рабочего времени" : ""}
+             ${work ? "и Учет рабочего времени." : "."}`,
+            timeout)
     }
+
+    /!*Нажатие по Учет рабочего времени*!/
+    async checkboxWorkHandler(name, timeout) {
+        return await this.xpathHandler(elements.perScheduleCheckbox(name, 1),
+            `Нажатие по сheckbox "Учет рабочего времени" для "${name}"`,
+            timeout)
+    }
+
+    /!*Нажатие по Учет нерабочего времени*!/
+    async checkboxNoWorkHandler(name, timeout) {
+        return await this.xpathHandler(elements.perScheduleCheckbox(name, 2),
+            `Нажатие по сheckbox "Учет нерабочего времени" для "${name}"`,
+            timeout)
+    }
+
+
+    //Отображение активности интервального блока по номеру
+    async intervalActive(timeout) {
+        return await this.xpathElement(elements.pasAccessScheduleActive,
+            `Интерввал активен.`,
+            timeout)
+    }
+
+    async noTimeInterval(numInterval, timeout) {
+        return await this.xpathNoElement(elements.pasAccessScheduleInterval(numInterval, 1),
+            `Отсутствие временных блоков в интервале с порядковым номер ${numInterval}.`,
+            timeout)
+    }
+
+
+    //Отображение временного блока в интервале по номеру
+    async time(numInterval, numTime, timeout) {
+        return await this.xpathElement(elements.pasAccessScheduleInterval(numInterval, numTime),
+            `Отображение временного блока с порядковым номером ${numTime} в интревале ${numInterval}.`,
+            timeout)
+    }*/
 
 
 }

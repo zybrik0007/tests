@@ -15,7 +15,7 @@ const decorate = require('../ui/src/decorates');
 //tests.staffUi.other.importMinParamsActive();
 //tests.staffUi.other.importMaxParamsActive();
 //tests.staffUi.other.importFailedParamsActive();
-//data.deleteDataStaff();
+data.deleteDataStaff();
 //data.addDataStaff();
 //tests.staffUi.other.addStaffMaxParams();
 //tests.staffUi.other.dimissedStaff();
@@ -25,7 +25,7 @@ const decorate = require('../ui/src/decorates');
 closeBrowser();*/
 
 
-data.deleteDataVisitor();
+//data.deleteDataVisitor();
 
 //closeBrowser();
 

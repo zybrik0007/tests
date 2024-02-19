@@ -32,6 +32,7 @@ module.exports = {
     /div[@class="pwTreeNode__column"][${num}]//pw-icon/div[contains(@class, "Icon--check_box_on")]`,
     perScheduleCheckbox: (name, num) => `//div/*[normalize-space(.)="${name}"]/parent::*
     /div[@class="pwTreeNode__column"][${num}]//pw-icon/div[contains(@class, "Icon--check_box_off")]`,
+    perScheduleScroll: (x, y) => `document.querySelector(".pwContainer-content").scrollBy(${x}, ${y});`,
 
     //Подразделения
     perDivisionTree: (arr) => {

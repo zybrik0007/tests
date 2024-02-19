@@ -34,7 +34,7 @@ const other = () => {
     const addWeekMinParams = () => describe('Редактирование недельного графика работы ' +
         'с минимальными количеством параметров', () => {
 
-        describe('API добавление недельного графика работы', () => {
+        /*describe('API добавление недельного графика работы', () => {
             bef();
             aft();
 
@@ -44,7 +44,7 @@ const other = () => {
                     [[data.weekly1.db], cook.text],
                     api.putSchedule);
             });
-        });
+        });*/
 
         describe('Редактирование', () => {
             bef();
