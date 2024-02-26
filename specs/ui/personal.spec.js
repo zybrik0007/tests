@@ -48,4 +48,8 @@ tests.staffUi.other.importMaxParamsActive();
 tests.staffUi.other.importFailedParamsActive();
 data.deleteDataStaff();
 
+
+//Персонал / Графики работы
+tests.scheduleUi.otherSchedule.editWeek();
+
 closeBrowser();

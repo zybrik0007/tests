@@ -543,7 +543,7 @@ const putSchedule = async (array, token) => {
     }));
 
     const put = await Promise.all(promises);
-    console.log('put: ', put)
+    console.log('put: ', put[0].text.error)
 
     const filter = put.filter(item => item.error !== true);
 

@@ -33,6 +33,36 @@ module.exports = {
     perScheduleCheckbox: (name, num) => `//div/*[normalize-space(.)="${name}"]/parent::*
     /div[@class="pwTreeNode__column"][${num}]//pw-icon/div[contains(@class, "Icon--check_box_off")]`,
     perScheduleScroll: (x, y) => `document.querySelector(".pwContainer-content").scrollBy(${x}, ${y});`,
+    perScheduleSettingsHour: (event) => `//div[@class="schedule-bound-item"]/span[normalize-space(.)="${event}"]
+    /parent::*/pw-timepicker//div[@class="pwTimePicker-hour"]//input`,
+    perScheduleSettingsMinute: (event) => `//div[@class="schedule-bound-item"]/span[normalize-space(.)="${event}"]
+    /parent::*/pw-timepicker//div[@class="pwTimePicker-minute"]//input`,
+    perScheduleRoomCheckbox: (room, work, noWork) => {
+      const roomName =  `//div[@class="pwTreeNode"]//div[2][normalize-space(.)="${room}"]`;
+
+      let workValue = `/parent::div[@class="pwTreeNode"]//div[@class="pwTreeNode__column"][1]//pw-checkbox
+      /div[@class!="pwCheckbox pwCheckbox--checked"]`;
+      if(work) {
+          workValue = `/parent::div[@class="pwTreeNode"]//div[@class="pwTreeNode__column"][1]//pw-checkbox
+          /div[@class="pwCheckbox pwCheckbox--checked"]`
+      }
+
+      let noWorkValue = `/parent::*/parent::*/parent::*//div[@class="pwTreeNode__column"][2]//pw-checkbox
+      /div[@class!="pwCheckbox pwCheckbox--checked"]`;
+      if(noWork) {
+          noWorkValue = `/parent::*/parent::*/parent::*//div[@class="pwTreeNode__column"][2]//pw-checkbox
+      /div[@class="pwCheckbox pwCheckbox--checked"]`;
+      }
+
+      return roomName + workValue + noWorkValue
+
+    },
+    perScheduleDay: (event) => `//div[@class="daysSelect"]/button[normalize-space(.)="${event}"]`,
+    perScheduleDayActive: (event) => `//div[@class="daysSelect"]
+    /button[normalize-space(.)="${event}" and contains(@class, "active")]`,
+    perScheduleDayNoActive: (event) => `//div[@class="daysSelect"]
+    /button[normalize-space(.)="${event}" and not(contains(@class, "active"))]`,
+
 
     //Подразделения
     perDivisionTree: (arr) => {

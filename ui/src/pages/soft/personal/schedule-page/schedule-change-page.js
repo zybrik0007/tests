@@ -1,7 +1,7 @@
 const BasePage = require('../../../base-page/base-page')
 const elements = require('../../../../dictionaries/selenium-elements')
 const {schedulesTitle} = require('../../../../dictionaries/title')
-const {schedulesAddUrl, schedulesEditUrl} = require('../../../../dictionaries/url')
+const {schedulesAddUrl, schedulesEditUrl, schedulesCopyUrl} = require('../../../../dictionaries/url')
 
 //Страница изменения в разделе "Персонал", подраздел "Графики работы"
 class ScheduleChangePage extends BasePage {
@@ -45,11 +45,35 @@ class ScheduleChangePage extends BasePage {
         }
     }
 
+    async initCopy(timeout) {
+        const elementTitle = await this.titleCompare(schedulesTitle, timeout);
+        if (elementTitle.error) {
+            return elementTitle
+        }
+
+        const elementUrl = await this.urlContains(schedulesCopyUrl, timeout);
+        if(elementUrl.error) {
+            return elementUrl
+        }
+
+        return {
+            error: false,
+            description: 'Заглавие валидно. Url валиден.',
+        }
+    }
+
     //Отображение интервала блока по номеру
     async interval(numInterval, timeout) {
         return await this.xpathElement(elements.pasAccessSchedule(numInterval),
             `Отображение интервала c порядковым номером ${numInterval}.`,
-            timeout)
+            timeout);
+    }
+
+    //Отображение интервала блока по номеру
+    async noInterval(numInterval, timeout) {
+        return await this.xpathNoElement(elements.pasAccessSchedule(numInterval),
+            `Отсутствие интервала c порядковым номером ${numInterval}.`,
+            timeout);
     }
 
     async timeRemove(numInterval, numTime, timeout) {
@@ -199,39 +223,57 @@ class ScheduleChangePage extends BasePage {
     }
 
     async scrollTop(scroll, timeout) {
-        return await this.script(elements.passAccessScheduleChangeWeekScroll(0, scroll),
+        return await this.script(elements.perScheduleScroll(0, scroll),
             'Скролл интервалов.',
             timeout);
     }
 
-
-
-/*    async room(name, work, nowWork, timeout) {
-        return await this.xpathElement(elements.perSchedule(name, work, nowWork),
-            `Отображение регистрируещего помещения ${name} с настройкой ${work ? "Учет рабочего времени" : ""}
-             ${work ? "и Учет рабочего времени." : "."}`,
-            timeout)
+    async hourSendKeys(name, value, timeout) {
+        return await this.xpathSendKeys(elements.perScheduleSettingsHour(name),
+            `Ввод "${value}" часов в "${name}".`,
+            value,
+            timeout);
     }
 
-    /!*Нажатие по Учет рабочего времени*!/
+    async hourGetValue(name, timeout) {
+        return await this.xpathGetAttribute(elements.perScheduleSettingsHour(name),
+            `Полученние значения часов "${name}."`,
+            'value',
+            timeout);
+    }
+
+    async minuteSendKeys(name, value, timeout) {
+        return await this.xpathSendKeys(elements.perScheduleSettingsMinute(name),
+            `Ввод "${value}" минут в "${name}".`,
+            value,
+            timeout);
+    }
+
+    async minuteGetValue(name, timeout) {
+        return await this.xpathGetAttribute(elements.perScheduleSettingsMinute(name),
+            `Полученние значения минут "${name}."`,
+            'value',
+            timeout);
+    }
+
+    async room(name, work, nowWork, timeout) {
+        return await this.xpathElement(elements.perScheduleRoomCheckbox(name, work, nowWork),
+            `Отображение регистрируещего помещения ${name} с настройкой ${work ? "Учет рабочего времени" : ""}
+             ${work ? "и Учет рабочего времени." : "."}`,
+            timeout);
+    }
+
+    /*Нажатие по Учет рабочего времени*/
     async checkboxWorkHandler(name, timeout) {
         return await this.xpathHandler(elements.perScheduleCheckbox(name, 1),
             `Нажатие по сheckbox "Учет рабочего времени" для "${name}"`,
             timeout)
     }
 
-    /!*Нажатие по Учет нерабочего времени*!/
+    /*Нажатие по Учет нерабочего времени*/
     async checkboxNoWorkHandler(name, timeout) {
         return await this.xpathHandler(elements.perScheduleCheckbox(name, 2),
             `Нажатие по сheckbox "Учет нерабочего времени" для "${name}"`,
-            timeout)
-    }
-
-
-    //Отображение активности интервального блока по номеру
-    async intervalActive(timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleActive,
-            `Интерввал активен.`,
             timeout)
     }
 
@@ -241,14 +283,23 @@ class ScheduleChangePage extends BasePage {
             timeout)
     }
 
+    async dayHandler (day, timeout) {
+        return await this.xpathHandler(elements.perScheduleDay(day),
+            `Нажатие по дню ${day}.`,
+            timeout);
+    }
 
-    //Отображение временного блока в интервале по номеру
-    async time(numInterval, numTime, timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleInterval(numInterval, numTime),
-            `Отображение временного блока с порядковым номером ${numTime} в интревале ${numInterval}.`,
-            timeout)
-    }*/
+    async dayActive (day, timeout) {
+        return await this.xpathElement(elements.perScheduleDayActive(day),
+            `День ${day} активен.`,
+            timeout);
+    }
 
+    async dayNoActive (day, timeout) {
+        return await this.xpathElement(elements.perScheduleDayNoActive(day),
+            `День ${day} не активен.`,
+            timeout);
+    }
 
 }
 

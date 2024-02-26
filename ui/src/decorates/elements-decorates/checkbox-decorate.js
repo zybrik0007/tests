@@ -11,7 +11,7 @@ module.exports = {
         [name, timeout],
         el.checkbox)),
 
-    unchecked: ({name, timeout}) => it(`Чекбокс "${name}" не нажат.`, async () => await dec.simple(el.checkbox.checked,
+    unchecked: ({name, timeout}) => it(`Чекбокс "${name}" не нажат.`, async () => await dec.simple(el.checkbox.unchecked,
         [name, timeout],
         el.checkbox)),
 }

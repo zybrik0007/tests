@@ -12,6 +12,7 @@ module.exports = {
     schedulesUrl: address + 'personal/schedules',
     schedulesAddUrl: address + 'personal/schedules/new',
     schedulesEditUrl: address + 'personal/schedules/edit/',
+    schedulesCopyUrl: address + 'personal/schedules/copy/',
     divisionsUrl: address + 'personal/divisions',
     positionsUrl: address + 'personal/positions',
     additionalDataUrl: address + 'personal/additionaldata',

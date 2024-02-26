@@ -25,13 +25,15 @@ class ModalConfirm extends BasePage {
 
         console.log(elements.modalConfirmTitle(this.title))
 
-        const title = await this.xpathElement(elements.modalConfirmTitle(this.title),
-            `Отображение заглавие модального окна "${this.title}"`,
-            timeout)
-        console.log('title', title)
+        if(this.title) {
+            const title = await this.xpathElement(elements.modalConfirmTitle(this.title),
+                `Отображение заглавие модального окна "${this.title}"`,
+                timeout)
+            console.log('title', title)
 
-        if(title.error) {
-            return title
+            if(title.error) {
+                return title
+            }
         }
 
         console.log(elements.modalConfirmBody(this.body));

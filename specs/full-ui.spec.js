@@ -28,10 +28,15 @@ closeBrowser();*/
 //data.deleteDataStaff();
 
 //closeBrowser();
-
-tests.scheduleUi.otherSchedule.addWeekMinParams()
+//data.addDataSchedule();
+//tests.scheduleUi.otherSchedule.copyShift();
+//tests.scheduleUi.otherSchedule.addBalance();
+tests.scheduleUi.otherSchedule.addBalance();
+//tests.scheduleUi.otherSchedule.deleteSchedule();
+//tests.scheduleUi.otherSchedule.deleteSchedule();
+//tests.scheduleUi.otherSchedule.noStr();
 //tests.divisionUi.add.addMinParams();
-//closeBrowser();
+closeBrowser();
 
 /*
 data.addDataControlAccess();

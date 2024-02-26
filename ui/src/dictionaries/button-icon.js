@@ -11,7 +11,10 @@ module.exports = {
         name: 'unsorted_view_outline',
         description: 'Открыть карточку сотрудника'
     },
-    copy: '',
+    copy: {
+        name: 'content_content_copy',
+        description: 'Копировать'
+    },
     delete: {
         name: 'content_remove',
         description: 'Удалить',
