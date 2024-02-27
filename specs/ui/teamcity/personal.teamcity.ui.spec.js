@@ -53,6 +53,7 @@ data.deleteDataStaff();
 clearMemory();
 
 //Персонал / Графики работы
+data.addDataSchedule();
 tests.scheduleUi.otherSchedule.editWeek();
 tests.scheduleUi.otherSchedule.editWeekInvalidParams();
 tests.scheduleUi.otherSchedule.addWeekNoParams();
@@ -96,6 +97,7 @@ tests.scheduleUi.otherSchedule.deleteSchedule();
 tests.scheduleUi.otherSchedule.searchFilter();
 tests.scheduleUi.otherSchedule.deleteStaffSchedule();
 tests.scheduleUi.otherSchedule.noStr();
+data.deleteDataSchedule();
 clearMemory();
 
 closeBrowser();
