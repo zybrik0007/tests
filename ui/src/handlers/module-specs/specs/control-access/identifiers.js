@@ -1308,7 +1308,7 @@ const other = (user, tab, bef) => {
                     head: 'Дата последнего события',
                     str: 1,
                     cell: 10,
-                    value: '',
+                    value: data.eventDate.event3,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1369,7 +1369,7 @@ const other = (user, tab, bef) => {
                     head: 'Дата последнего события',
                     str: 1,
                     cell: 7,
-                    value: '',
+                    value: data.eventDate.event3,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1379,7 +1379,6 @@ const other = (user, tab, bef) => {
                     value: entry.user,
                     timeout: entry.max
                 });
-
             });
         }
 
@@ -1445,7 +1444,7 @@ const other = (user, tab, bef) => {
                     head: 'Дата последнего события',
                     str: 1,
                     cell: 9,
-                    value: '',
+                    value: data.eventDate.event3,
                     timeout: entry.max
                 });
                 decorate.modal.printTable.cellGetText({
@@ -1500,6 +1499,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division1',
                     __EMPTY_6: 'position1',
+                    __EMPTY_10: `${data.eventDate.event3}`,
                     __EMPTY_11: 'Администратор  '
                 },
                 {
@@ -1511,6 +1511,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division2',
                     __EMPTY_6: 'position2',
+                    __EMPTY_10: `${data.eventDate.event1}`,
                     __EMPTY_11: 'Администратор  '
                 },
                 {
@@ -1523,6 +1524,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_5: 'division1',
                     __EMPTY_8: 'passport',
                     __EMPTY_9: '1',
+                    __EMPTY_10: `${data.eventDate.event3}`,
                     __EMPTY_11: 'Администратор  '
                 },
                 {
@@ -1535,6 +1537,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_5: 'division2',
                     __EMPTY_8: 'passport',
                     __EMPTY_9: '2',
+                    __EMPTY_10: `${data.eventDate.event1}`,
                     __EMPTY_11: 'Администратор  '
                 }
             ],
@@ -1561,6 +1564,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division1',
                     __EMPTY_6: 'position1',
+                    __EMPTY_7: `${data.eventDate.event3}`,
                     __EMPTY_8: 'Администратор  '
                 },
                 {
@@ -1572,6 +1576,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_4: '2033-01-01 00:00',
                     __EMPTY_5: 'division2',
                     __EMPTY_6: 'position2',
+                    __EMPTY_7: `${data.eventDate.event1}`,
                     __EMPTY_8: 'Администратор  '
                 }
             ],
@@ -1601,6 +1606,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_5: 'division1',
                     __EMPTY_7: 'passport',
                     __EMPTY_8: '1',
+                    __EMPTY_9: `${data.eventDate.event3}`,
                     __EMPTY_10: 'Администратор  '
                 },
                 {
@@ -1613,6 +1619,7 @@ const other = (user, tab, bef) => {
                     __EMPTY_5: 'division2',
                     __EMPTY_7: 'passport',
                     __EMPTY_8: '2',
+                    __EMPTY_9: `${data.eventDate.event1}`,
                     __EMPTY_10: 'Администратор  '
                 }
             ],
@@ -1722,6 +1729,7 @@ const other = (user, tab, bef) => {
                     'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division1',
                     'Должность': 'position1',
+                    'Дата последнего события': data.eventDate.event3,
                     'Оператор': 'Администратор  '
                 },
                 {
@@ -1733,6 +1741,7 @@ const other = (user, tab, bef) => {
                     'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division2',
                     'Должность': 'position2',
+                    'Дата последнего события': data.eventDate.event1,
                     'Оператор': 'Администратор  '
                 },
                 {
@@ -1745,6 +1754,7 @@ const other = (user, tab, bef) => {
                     'Куда (подразделение)': 'division1',
                     'Документ': 'passport',
                     'Номер документа': 1,
+                    'Дата последнего события': data.eventDate.event3,
                     'Оператор': 'Администратор  '
                 },
                 {
@@ -1757,6 +1767,7 @@ const other = (user, tab, bef) => {
                     'Куда (подразделение)': 'division2',
                     'Документ': 'passport',
                     'Номер документа': 2,
+                    'Дата последнего события': data.eventDate.event1,
                     'Оператор': 'Администратор  '
                 }
             ],
@@ -1770,6 +1781,7 @@ const other = (user, tab, bef) => {
                     'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division1',
                     'Должность': 'position1',
+                    'Дата последнего события': data.eventDate.event3,
                     'Оператор': 'Администратор  '
                 },
                 {
@@ -1781,6 +1793,7 @@ const other = (user, tab, bef) => {
                     'Действителен до': '2033-01-01 00:00',
                     'Куда (подразделение)': 'division2',
                     'Должность': 'position2',
+                    'Дата последнего события': data.eventDate.event1,
                     'Оператор': 'Администратор  '
                 }
             ],
@@ -1795,6 +1808,7 @@ const other = (user, tab, bef) => {
                     'Куда (подразделение)': 'division1',
                     'Документ': 'passport',
                     'Номер документа': 1,
+                    'Дата последнего события': data.eventDate.event3,
                     'Оператор': 'Администратор  '
                 },
                 {
@@ -1807,6 +1821,7 @@ const other = (user, tab, bef) => {
                     'Куда (подразделение)': 'division2',
                     'Документ': 'passport',
                     'Номер документа': 2,
+                    'Дата последнего события': data.eventDate.event1,
                     'Оператор': 'Администратор  '
                 }
             ],

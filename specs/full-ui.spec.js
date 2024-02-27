@@ -31,11 +31,13 @@ closeBrowser();*/
 //data.addDataSchedule();
 //tests.scheduleUi.otherSchedule.copyShift();
 //tests.scheduleUi.otherSchedule.addBalance();
-tests.scheduleUi.otherSchedule.addBalance();
+//tests.scheduleUi.otherSchedule.addBalance();
 //tests.scheduleUi.otherSchedule.deleteSchedule();
 //tests.scheduleUi.otherSchedule.deleteSchedule();
 //tests.scheduleUi.otherSchedule.noStr();
 //tests.divisionUi.add.addMinParams();
+//data.addDataControlAccess();
+data.deleteDataControlAccess();
 closeBrowser();
 
 /*
