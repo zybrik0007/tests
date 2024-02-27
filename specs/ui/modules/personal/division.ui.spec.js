@@ -1,5 +1,6 @@
 const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/division-ui');
 const closeBrowser = require('../../../../ui/src/handlers/other/closeBrowser');
+const clearMemory = require('../../../../ui/src/handlers/other/clearMemory');
 
 console.log = () => function () {};
 
