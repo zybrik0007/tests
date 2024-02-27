@@ -18,6 +18,7 @@ JSON.parse(process.env.b007positionUiEditMinParams) ? tests.edit.editMinParams()
 JSON.parse(process.env.b008positionUiEditMaxParams) ? tests.edit.editMaxParams() : '';
 JSON.parse(process.env.b009positionUiEditAllParams) ? tests.edit.editAllParams() : '';
 JSON.parse(process.env.b010positionUiEditDuplicate) ? tests.edit.editDuplicate() : '';
+clearMemory();
 
 // Удаление
 JSON.parse(process.env.b011positionUiDeleteOne) ? tests.delete.deleteOne() : '';
@@ -36,6 +37,7 @@ JSON.parse(process.env.b018positionUiExportxlsxHeaderName) ? tests.export.xlsxHe
 JSON.parse(process.env.b019positionUiExportxlsxHeaderNameName) ? tests.export.xlsxHeaderNameName() : '';
 JSON.parse(process.env.b020positionUiExportcsvSystem) ? tests.export.csvSystem() : '';
 JSON.parse(process.env.b021positionUiExportcsvName) ? tests.export.csvName() : '';
+clearMemory();
 
 // Импорт
 JSON.parse(process.env.b022positionUiImportXLSX) ? tests.import.importXLSX() : '';
@@ -51,6 +53,7 @@ JSON.parse(process.env.b027positionUiSort) ? tests.sort() : '';
 
 // Тесты проверки отображений записей и перехода по страницам
 JSON.parse(process.env.b028positionUiFooter) ? tests.footer() : '';
+clearMemory();
 
 closeBrowser();
 

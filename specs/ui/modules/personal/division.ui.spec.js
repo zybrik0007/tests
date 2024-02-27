@@ -24,6 +24,7 @@ JSON.parse(process.env.b013divisionUiEditEditHideShow) ? tests.edit.editHideShow
 JSON.parse(process.env.b014divisionUiEditEditDuplicateOneLevel) ? tests.edit.editDuplicateOneLevel(): '';
 JSON.parse(process.env.b015divisionUiEditEditDuplicateTwoLevel) ? tests.edit.editDuplicateTwoLevel(): '';
 JSON.parse(process.env.b016divisionUiEditEditNoName) ? tests.edit.editNoName(): '';
+clearMemory();
 
 // Удаление
 JSON.parse(process.env.b017divisionUiDeleteDeleteLevelOne) ? tests.delete.deleteLevelOne(): '';
@@ -45,6 +46,7 @@ JSON.parse(process.env.b027divisionUiPrintPrintMaxParams) ? tests.print.printMax
 // Печать дерева
 JSON.parse(process.env.b028divisionUiPrintTreePrintTreeMinParams) ? tests.printTree.printTreeMinParams(): '';
 JSON.parse(process.env.b029divisionUiPrintTreePrintTreeMaxParams) ? tests.printTree.printTreeMaxParams(): '';
+clearMemory();
 
 // Экспорт
 JSON.parse(process.env.b030divisionUiExportMinXLSXSystemNameNoHead) ? tests.export.minXLSX.systemNameNoHead(): '';
@@ -63,6 +65,7 @@ JSON.parse(process.env.b042divisionUiExportMinCSVSystemNameNoHead) ? tests.expor
 JSON.parse(process.env.b043divisionUiExportMinCSVNameNoHead) ? tests.export.minCSV.nameNoHead(): '';
 JSON.parse(process.env.b044divisionUiExportMaxCSVSystemNameNoHead) ? tests.export.maxCSV.systemNameNoHead(): '';
 JSON.parse(process.env.b045divisionUiExportMaxCSVNameNoHead) ? tests.export.maxCSV.nameNoHead(): '';
+clearMemory();
 
 // Импорт
 JSON.parse(process.env.b046divisionUiImportImportXLSXMinParams) ? tests.import.importXLSXMinParams(): '';
@@ -76,6 +79,7 @@ JSON.parse(process.env.b053divisionUiImportImportDuplicateTwoLevel) ? tests.impo
 
 //Фильтр Поиск
 JSON.parse(process.env.b054divisionUiFilterSearch) ? tests.filterSearch(): '';
+clearMemory();
 
 closeBrowser();
 

@@ -1,5 +1,6 @@
 const tests = require('../../../../ui/src/handlers/module-specs/specs/personal/additional-data-ui').staff;
 const closeBrowser = require('../../../../ui/src/handlers/other/closeBrowser');
+const clearMemory = require('../../../../ui/src/handlers/other/clearMemory');
 
 
 console.log = () => function () {};
@@ -39,6 +40,7 @@ JSON.parse(process.env.b027additionalDataUiAddTypeDateTimeNoName) ? tests.add.ty
 JSON.parse(process.env.b028additionalDataUiAddTypeDateTimeDuplicate) ? tests.add.typeDateTimeDuplicate() : '';
 JSON.parse(process.env.b029additionalDataUiAddTextLimit) ? tests.add.textLimit() : '';
 JSON.parse(process.env.b030additionalDataUiAddGraficLimit) ? tests.add.graficLimit() : '';
+clearMemory();
 
 // Редактирвоание
 JSON.parse(process.env.b031additionalDataUiEditTypeTextMinParams) ? tests.edit.typeTextMinParams() : '';
@@ -75,6 +77,7 @@ JSON.parse(process.env.b059additionalDataUiEditTypeDateTimeMaxParams) ? tests.ed
 JSON.parse(process.env.b060additionalDataUiEditDateTimeEditAllMaxParams) ? tests.edit.typeDateTimeEditAllMaxParams():'';
 JSON.parse(process.env.b061additionalDataUiEditTypeDateTimeRemoveName) ? tests.edit.typeDateTimeRemoveName() : '';
 JSON.parse(process.env.b062additionalDataUiEditTypeDateTimeDuplicate) ? tests.edit.typeDateTimeDuplicate() : '';
+clearMemory();
 
 // Удаление
 JSON.parse(process.env.b063additionalDataUiDeleteTypeTextDelete) ? tests.delete.typeTextDelete() : '';
@@ -83,6 +86,7 @@ JSON.parse(process.env.b065additionalDataUiDeleteTypeSelectDelete) ? tests.delet
 JSON.parse(process.env.b066additionalDataUiDeleteTypeCheckboxDelete) ? tests.delete.typeCheckboxDelete() : '';
 JSON.parse(process.env.b067additionalDataUiDeleteTypeDateDelete) ? tests.delete.typeDateDelete() : '';
 JSON.parse(process.env.b068additionalDataUiDeleteDateTimeDelete) ? tests.delete.typeDateTimeDelete() : '';
+clearMemory();
 
 // Служебные поля
 JSON.parse(process.env.b069additionalDataUiServicePhotoEditName) ? tests.service.photoEditName() : '';
@@ -106,7 +110,7 @@ JSON.parse(process.env.b086additionalDataUiServiceTelegramDelete) ? tests.servic
 
 // Тесты сортировки по столбцам
 JSON.parse(process.env.b087additionalDataUiSort) ? tests.sort() : '';
-
+clearMemory();
 closeBrowser();
 
 
