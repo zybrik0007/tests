@@ -23,6 +23,7 @@ JSON.parse(process.env.b012additionalDataUiAddTypeSelectNoName) ? tests.add.type
 JSON.parse(process.env.b013additionalDataUiAddTypeSelectDeleteBox) ? tests.add.typeSelectDeleteBox() : '';
 JSON.parse(process.env.b014additionalDataUiAddTypeSelectNoValueBoxMinParams) ?
     tests.add.typeSelectNoValueBoxMinParams() : '';
+clearMemory();
 JSON.parse(process.env.b015additionalDataUiAddTypeSelectNoValueBoxMaxParams) ?
     tests.add.typeSelectNoValueBoxMaxParams() : '';
 JSON.parse(process.env.b016additionalDataUiAddTypeSelectDuplicate) ? tests.add.typeSelectDuplicate() : '';
@@ -58,6 +59,7 @@ JSON.parse(process.env.b042additionalDataUiEditTypeSelectMaxParams) ? tests.edit
 JSON.parse(process.env.b043additionalDataUiEditTypeSelectEditAllMaxParams) ? tests.edit.typeSelectEditAllMaxParams():'';
 JSON.parse(process.env.b044additionalDataUiEditTypeSelectRemoveValueMinParams)
     ? tests.edit.typeSelectRemoveValueMinParams() : '';
+clearMemory();
 JSON.parse(process.env.b045additionalDataUiEditTypeSelectRemoveValueMaxParams)
     ? tests.edit.typeSelectRemoveValueMaxParams() : '';
 JSON.parse(process.env.b046additionalDataUiEditTypeSelectRemoveName) ? tests.edit.typeSelectRemoveName() : '';
@@ -98,6 +100,7 @@ JSON.parse(process.env.b074additionalDataUiServicePinCodeDelete) ? tests.service
 JSON.parse(process.env.b075additionalDataUiServiceViberEditName) ? tests.service.viberEditName() : '';
 JSON.parse(process.env.b076additionalDataUiServiceViberEditDescription) ? tests.service.viberEditDescription() : '';
 JSON.parse(process.env.b077additionalDataUiServiceViberDelete) ? tests.service.viberDelete() : '';
+clearMemory();
 JSON.parse(process.env.b078additionalDataUiServicePhoneEditName) ? tests.service.phoneEditName() : '';
 JSON.parse(process.env.b079additionalDataUiServicePhoneEditDescription) ? tests.service.phoneEditDescription() : '';
 JSON.parse(process.env.b080additionalDataUiServicePhoneDelete) ? tests.service.phoneDelete() : '';

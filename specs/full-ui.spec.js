@@ -36,7 +36,16 @@ closeBrowser();*/
 //tests.scheduleUi.otherSchedule.deleteSchedule();
 //tests.scheduleUi.otherSchedule.noStr();
 //tests.divisionUi.add.addMinParams();
-//data.addDataControlAccess();
+data.addDataControlAccess();
+tests.identifiersUi.otherAll().printTable();
+tests.identifiersUi.otherAll().exportXLSX();
+tests.identifiersUi.otherAll().exportCSV();
+tests.identifiersUi.otherStaff().printTable();
+tests.identifiersUi.otherStaff().exportXLSX();
+tests.identifiersUi.otherStaff().exportCSV();
+tests.identifiersUi.otherVisitor().printTable();
+tests.identifiersUi.otherVisitor().exportXLSX();
+tests.identifiersUi.otherVisitor().exportCSV();
 data.deleteDataControlAccess();
 closeBrowser();
 

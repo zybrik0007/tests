@@ -25,6 +25,7 @@ JSON.parse(process.env.b014additionalDataUiAddTypeSelectNoValueBoxMinParams) ?
     tests.add.typeSelectNoValueBoxMinParams() : '';
 JSON.parse(process.env.b015additionalDataUiAddTypeSelectNoValueBoxMaxParams) ?
     tests.add.typeSelectNoValueBoxMaxParams() : '';
+clearMemory();
 JSON.parse(process.env.b016additionalDataUiAddTypeSelectDuplicate) ? tests.add.typeSelectDuplicate() : '';
 JSON.parse(process.env.b017additionalDataUiAddTypeCheckboxMinParams) ? tests.add.typeCheckboxMinParams() : '';
 JSON.parse(process.env.b018additionalDataUiAddTypeCheckboxMaxParams) ? tests.add.typeCheckboxMaxParams() : '';
@@ -60,6 +61,7 @@ JSON.parse(process.env.b044additionalDataUiEditTypeSelectRemoveValueMinParams)
     ? tests.edit.typeSelectRemoveValueMinParams() : '';
 JSON.parse(process.env.b045additionalDataUiEditTypeSelectRemoveValueMaxParams)
     ? tests.edit.typeSelectRemoveValueMaxParams() : '';
+clearMemory();
 JSON.parse(process.env.b046additionalDataUiEditTypeSelectRemoveName) ? tests.edit.typeSelectRemoveName() : '';
 JSON.parse(process.env.b047additionalDataUiEditTypeSelectDuplicate) ? tests.edit.typeSelectDuplicate() : '';
 JSON.parse(process.env.b048additionalDataUiEditTypeCheckboxMinParams) ? tests.edit.typeCheckboxMinParams() : '';
@@ -68,6 +70,7 @@ JSON.parse(process.env.b050additionalDataUiEditTypeCheckboxEditAllParams) ? test
 JSON.parse(process.env.b051additionalDataUiEditTypeCheckboxRemoveName) ? tests.edit.typeCheckboxRemoveName() : '';
 JSON.parse(process.env.b052additionalDataUiEditTypeCheckboxDuplicate) ? tests.edit.typeCheckboxDuplicate() : '';
 JSON.parse(process.env.b053additionalDataUiEditTypeDateMinParams) ? tests.edit.typeDateMinParams() : '';
+clearMemory();
 JSON.parse(process.env.b054additionalDataUiEditTypeDateMaxParams) ? tests.edit.typeDateMaxParams() : '';
 JSON.parse(process.env.b055additionalDataUiEditTypeDateEditAllMaxParams) ? tests.edit.typeDateEditAllMaxParams() : '';
 JSON.parse(process.env.b056additionalDataUiEditTypeDateRemoveName) ? tests.edit.typeDateRemoveName() : '';
