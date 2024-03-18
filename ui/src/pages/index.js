@@ -36,8 +36,8 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     IdentifiersVisitor = require('./soft/control-access/identifiers-page/identifiers-visitor-page'),
     OrderpassOrder = require('./soft/orderpass/orderpass/orderpass-order-page'),
     OrderpassArchive = require('./soft/orderpass/orderpass/orderpass-archive-page'),
-    OrderpassChange = require('./soft/orderpass/orderpass/orderpass-change-page');
-
+    OrderpassChange = require('./soft/orderpass/orderpass/orderpass-change-page'),
+    WorkedJournal = require('./soft/urv/worked-journal-page/worked-journal-page');
 
 module.exports = {
     //base
@@ -67,6 +67,8 @@ module.exports = {
     accessTemplateScheduleChangePage: new AccessTemplateScheduleChangePage(),
     accessTemplateScheduleHoliday: new AccessTemplateScheduleHoliday(),
 
+    //УРВ
+    workedJournal: new WorkedJournal(),
 
     //Контроль доступа
     premiseAccessAll: new PremiseAccessAll(),

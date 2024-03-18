@@ -28,6 +28,7 @@ const ButtonIcon = require('./elements/button-icon');
 const FilterTreeNode = require('./elements/filter-tree-node');
 const Photography = require('./elements/photography');
 const GroupCell = require('./elements/group-cell');
+const Timepicker = require('./elements/timepicker');
 
 const Modal = require('./elements/modal');
 const Dialog = require('./elements/dialog');
@@ -78,6 +79,7 @@ module.exports = {
     filterTreeNode: new FilterTreeNode(),
     photography: new Photography(),
     groupCell: new GroupCell(),
+    timepicker: new Timepicker(),
 
     modal: {
         //Персонал

@@ -335,7 +335,7 @@ const other = (user, tab, bef) => {
             });
     });
 
-    const checkData = () => describe(`Котроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
+    const checkData = () => describe(`Контроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
     Проверка отображения данных .`, () => {
 
         bef();
@@ -564,7 +564,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const filterDivision = () => describe(`Котроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
+    const filterDivision = () => describe(`Контроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
     Проверка фильтра по подразделению через выбор из списка.`, () => {
 
         bef();
@@ -774,7 +774,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterDivisionForm = () => describe(`Котроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
+    const filterDivisionForm = () => describe(`Контроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
     Проверка фильтра по подразделению через модальное окно "Подразделение".`, () => {
 
         bef();
@@ -985,7 +985,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterSearch = () => describe(`Котроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
+    const filterSearch = () => describe(`Контроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
     Проверка фильтра по поиску.`, () => {
 
         bef();
@@ -1090,7 +1090,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const printTable = () => describe(`Котроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
+    const printTable = () => describe(`Контроль доступа / Отчет по доступу в помещения / вкладка ${tab}. 
     Проверка печати.`,() => {
 
         bef();
@@ -1419,7 +1419,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportXLSX = () => describe(`Котроль доступа / Отчет по доступу в помещения / вкладка ${tab}. Экспорт XLSX.`,
+    const exportXLSX = () => describe(`Контроль доступа / Отчет по доступу в помещения / вкладка ${tab}. Экспорт XLSX.`,
         () => {
 
         const params = {
@@ -1724,7 +1724,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportCSV = () => describe(`Котроль доступа / Отчет по доступу в помещения / вкладка ${tab}. Экспорт CSV.`,
+    const exportCSV = () => describe(`Контроль доступа / Отчет по доступу в помещения / вкладка ${tab}. Экспорт CSV.`,
         () => {
 
             const params = {

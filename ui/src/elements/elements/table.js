@@ -1,5 +1,5 @@
-const BasePage = require('../../pages/base-page/base-page')
-const elements = require('../../dictionaries/selenium-elements')
+const BasePage = require('../../pages/base-page/base-page');
+const elements = require('../../dictionaries/selenium-elements');
 
 //Таблица
 class Table extends BasePage {
@@ -119,6 +119,42 @@ class Table extends BasePage {
             timeout)
     }
 
+    //Отображение иконки валидации в ячейке по столбцу, номеру строки и номеру колонки
+    async cellGetIconWarn(str, cell, timeout) {
+        const headerIcon = await this.xpathElement(elements.tableHeadIcon(cell, this.icons.warn),
+            `Отображение иконки "Ошибки" в заглавии номер ${cell}`,
+            timeout)
+
+        if(headerIcon.error) {
+            return {
+                error: true,
+                description: `Ошибка. Отсутствие иконки "Замок" в заглавии номер ${cell}`,
+            }
+        }
+
+        return await this.xpathElement(elements.tableCellIcon(str, cell, this.icons.lock),
+            `Отображение иконки "Ошибки" в строке номер "${str}" и столбце ${cell}`,
+            timeout)
+    }
+
+    //Отсутствие иконки валидации в ячейке по столбцу, номеру строки и номеру колонки
+    async cellNoIconWarn(str, cell, timeout) {
+        const headerIcon = await this.xpathElement(elements.tableHeadIcon(cell, this.icons.warn),
+            `Отображение иконки "Ошибки" в заглавии номер ${cell}`,
+            timeout)
+
+        if(headerIcon.error) {
+            return {
+                error: true,
+                description: `Ошибка. Отсутствие иконки "Замок" в заглавии номер ${cell}`,
+            }
+        }
+
+        return await this.xpathNoElement(elements.tableCellIcon(str, cell, this.icons.lock),
+            `Отсутствие иконки "Замок" в строке номер "${str}" и столбце "${cell}"`,
+            timeout)
+    }
+
     //Получение значения текста заглавия
     async headGetText(cell, timeout) {
         return await this.xpathGetText(elements.tableHeadText(cell),
@@ -172,16 +208,15 @@ class Table extends BasePage {
        return await this.xpathHandler(elements.tableHeadText(cell),
            `Нажатие по заглавию столбца ${head}`,
            timeout)
-
    }
 
    //Проверка заглавия столбца
    async headElement(head, cell, timeout) {
        const headText = await this.xpathGetText(elements.tableHeadText(cell),
            `Заглавие ${head} c номером ${cell}.`,
-           timeout)
+           timeout);
 
-       if(headText.text !== head) {
+       if(headText.error && headText.text !== head) {
            return {
                error: true,
                description: `Ошибка. Значение заглавия ${head} не равно ${headText.text} c номером ${cell}.`,

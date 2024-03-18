@@ -147,8 +147,11 @@ module.exports = {
     passAccessScheduleHolidayDelete: (event) => `//pw-group-cell[${event}]//pw-button`,
     passAccessScheduleHoliday: '//pw-group-cell',
 
-
-    //div[contains(@class, 'intervals-block')][${schedule}]/div[@class="timeline"]/div[@class="interval"][${interval}]/input[${input}]
+    //УРВ
+    //Журнал отработанного времени
+    urvJournalStaffParam: (param, value) => `//pw-row//*[normalize-space(.)="${param}"]/parent::*/parent::*/parent::
+    */parent::*//*[normalize-space(.)="${value}"]`,
+    urvJournalStaffFIO: `//h3`,
 
 
     //Администрирование
@@ -290,7 +293,7 @@ module.exports = {
 
     //pop-up-success
     popUpSuccess: (event) => `//div[contains(@class, "pwToast--wrapper-type-success")]
-    /div[@class="pwToast--wrapper--after"]/div[text()="${event}"]`,
+    /div[@class="pwToast--wrapper--after"]/div[text()='${event}']`,
     popUpSuccessStr: '//div[contains(@class, "pwToast--wrapper-type-success")]' +
         '/div[@class="pwToast--wrapper--after"]/div',
 
@@ -484,4 +487,11 @@ module.exports = {
     //printVisitorBarcode
     modalPrintVisitorBarcodeName: (number) => `//app-print-visitor-barcode/div[2]/div[1]/div/span[${number}]`,
     modalPrintVisitorBarcodeValue: (number) => `//app-print-visitor-barcode/div[2]/div[1]/div/p[${number}]`,
+
+    //Timepicker
+    timepicker: '//pw-timepicker',
+    timepickerInput: (number) => `//pw-timepicker/div/div[${number}]//input`,
+
+    pageWorkedJournalClockInput: '//*[normalize-space(.)="Длительность"]//parent::pw-field/pw-input[@icon="unsorted_recent_outline"]//pw-icon'
+
 }

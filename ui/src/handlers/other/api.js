@@ -981,6 +981,98 @@ const rebase = async () => {
 
 };
 
+// Изменение вечернего времени
+const postEveningTime = async (time, token) => {
+    const promise = prRequest({
+        method: 'post',
+        url: entry.address + 'api/taSchedule/eveningTime',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        },
+        body: time,
+        json: true
+    });
+
+    const post = await Promise.all([promise]);
+
+    return {
+        error: false,
+        description: `Вечернее время изменено.`,
+        text: post,
+    };
+};
+
+// Изменение ночного времени
+const postNightTime = async (time, token) => {
+    const promise = prRequest({
+        method: 'post',
+        url: entry.address + 'api/taSchedule/nightTime',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        },
+        body: time,
+        json: true
+    });
+
+    const post = await Promise.all([promise]);
+
+    return {
+        error: false,
+        description: `Ночное время изменено.`,
+        text: post,
+    };
+};
+
+// Добавление прадничного дня
+const putHoliday = async (date, token) => {
+    const promise = prRequest({
+        method: 'put',
+        url: entry.address +'api/taSchedule/holidays',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        },
+        body: date,
+        json: true,
+    });
+
+    const put = await Promise.all([promise]);
+
+    if(put.error) {
+        return {
+            error: true,
+            description: 'Праздничный день не добавлен.'
+        };
+    }
+
+    return {
+        error: false,
+        description: 'Праздничный день добавлен.'
+    };
+};
+
+const deleteHoliday = async (year, token) => {
+    const promise = prRequest({
+        method: 'post',
+        url: entry.address + 'api/taSchedule/holidays/clear?year=' + year,
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
+        },
+        json: true
+    });
+
+    const post = await Promise.all([promise]);
+
+    return {
+        error: false,
+        description: `Удаление праздничных дней.`,
+        text: post,
+    };
+};
+
 
 
 
@@ -1025,5 +1117,9 @@ module.exports = {
     addDeviceInRoom,
     deleteDeviceInRoom,
     getTemplate,
-    deleteTemplate
+    deleteTemplate,
+    postEveningTime,
+    postNightTime,
+    putHoliday,
+    deleteHoliday
 };

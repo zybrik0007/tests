@@ -49,14 +49,17 @@ module.exports = {
     addEvent: async (object) => {
         try {
             //await db.connect(connection);
-            await db.query(connection,`INSERT INTO event (${Object.keys(object).join()}) 
-            VALUES (${Object.values(object).join()})`);
+            console.log('Object.keys(object).join(): ', Object.keys(object).join());
+            console.log('{Object.values(object).join(): ', Object.values(object).join());
+            await db.query(connection,`INSERT INTO event (${Object.keys(object).join()}) VALUES (${Object.values(object).join()})`);
             //await db.close(connection);
             return {
                 error: false,
                 description: 'Событие добавлено.'
             }
         } catch (err) {
+            console.log('Object.keys(object).join(): ', Object.keys(object).join());
+            console.log('{Object.values(object).join(): ', Object.values(object).join());
             console.log('err: ', err)
             return {
                 error: true,

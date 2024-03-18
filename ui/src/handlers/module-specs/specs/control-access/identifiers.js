@@ -47,7 +47,7 @@ const aft = () => after('Выход', async () => await dec.exit());
 
 const other = (user, tab, bef) => {
 
-    const display = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const display = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Общая проверка без данных.`, () => {
 
         bef();
@@ -320,7 +320,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const checkData = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const checkData = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка отображения данных .`, () => {
 
         bef();
@@ -646,7 +646,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterDate = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const filterDate = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка фильтра по дате.`, () => {
 
         bef();
@@ -828,7 +828,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterDivision = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const filterDivision = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка фильтра по подразделению.`, () => {
 
         bef();
@@ -981,7 +981,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const filterDivisionForm = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const filterDivisionForm = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка фильтра по подразделению через модальное окно "Подразделение".`, () => {
 
         bef();
@@ -1132,7 +1132,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const filterSearch = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const filterSearch = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка фильтра по поиску.`, () => {
 
         bef();
@@ -1212,7 +1212,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const printTable = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const printTable = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка печати.`,() => {
 
         bef();
@@ -1468,7 +1468,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportXLSX = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const exportXLSX = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Экспорт XLSX.`, () => {
 
         const params = {
@@ -1714,7 +1714,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportCSV = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const exportCSV = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Экспорт CSV.`, () => {
 
         const params = {
@@ -1909,7 +1909,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const deleteIdentifier = () => describe(`Котроль доступа / Выданные идентификаторы / вкладка ${tab}. 
+    const deleteIdentifier = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка формы выданные идентификаторы. Удаление идентифкаторов`, () => {
 
         bef();

@@ -16,7 +16,8 @@
     "personal.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/personal.teamcity.ui.spec.js",
     "passofice.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/passoffice.teamcity.ui.spec.js",
     "controlaccess.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/controlaccess.teamcity.ui.spec.js",
-    "orderpass.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/orderpass.teamcity.ui.spec.js"
+    "orderpass.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/orderpass.teamcity.ui.spec.js",
+    "urv.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter /specs/ui/teamcity/urv.teamcity.ui.spec.js"
   },
   "keywords": [
     "js",

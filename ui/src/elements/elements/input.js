@@ -84,6 +84,13 @@ class Input extends BasePage {
             timeout)
     }
 
+    //Нажатие иконки часы
+    async iconClock(title, placeholder, timeout) {
+        return await this.xpathHandler(element.inputIcon(title, placeholder, 'Icon--recent_outline'),
+            `Нажатие иконки часов в input ${title ? title : placeholder}.`,
+            timeout)
+    }
+
 }
 
 module.exports = Input

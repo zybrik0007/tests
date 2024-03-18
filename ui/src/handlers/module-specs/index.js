@@ -12,6 +12,9 @@ module.exports = {
     //scheduleUi: require('./specs/pass-office/access-template-schedule-ui'),
     templateUi: require('./specs/pass-office/access-template-ui'),
 
+    //УРВ
+    workedJournalUi: require('./specs/urv/worked-journal-ui'),
+
    //Контроль доступа
     premiseAccessUi: require('./specs/control-access/premise-access'),
     verificationJournalUi: require('./specs/control-access/verification-journal'),

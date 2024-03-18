@@ -68,4 +68,10 @@ module.exports = {
             async () => await dec.simple(el.input.backSpace,
                 [title, placeholder, timeout],
                 el.input)),
+
+    iconClock: ({title, placeholder, timeout}) =>
+        it(`Нажатие иконки часы в поле ввода ${title ? title : placeholder}.`,
+            async () => await dec.simple(el.input.iconClock,
+                [title, placeholder, timeout],
+                el.input)),
 }

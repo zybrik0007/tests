@@ -1,6 +1,6 @@
 module.exports = {
     browser: process.env.a100browser || 'chrome',
-    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): true,
+    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): false,
     width: Number(process.env.a113width) || 1920,
     height: Number(process.env.a114height) || 1080,
     address: process.env.a101address || 'http://172.17.0.50:8080/',
@@ -19,7 +19,8 @@ module.exports = {
     min: Number(process.env.a105min) || 2000,
     upload: Number(process.env.a107upload) || 50000,
     sleep1: 1000,
-    sleep2: 1000,
+    sleep2: 2000,
+    urv: 20000,
     buttonTime: 3000,
     device_name_1: 'Контроллер замка CL05.2',
     device_ip_1: '10.0.77.28',
@@ -31,7 +32,7 @@ module.exports = {
         port: process.env.a117database_port || '3306',
         user: process.env.a118database_user || 'admin',
         password: process.env.a119database_password || '123456',
-        database: process.env.a120database_name || 'perco_selenium_27022024_1'
+        database: process.env.a120database_name || 'perco_selenium_11032023_3'
     }
 }
 

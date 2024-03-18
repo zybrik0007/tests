@@ -13,7 +13,13 @@ class BasePage {
     async open(event) {
         return await driver.get(event)
             .then(() => {return {error: false, description: ''}})
-            .catch(() => {return {error: true, description: `Не открыто приложение с адресом ${event}`}})
+            .catch((error) => {
+                console.log('error open: ', error)
+                return {
+                    error: true,
+                    description: `Не открыто приложение с адресом ${event}`
+                }
+            })
     }
 
     //Закртие страницы по url
@@ -180,7 +186,6 @@ class BasePage {
         }
 
         const element = By.xpath(event)
-
         return await driver.wait(until.elementLocated(element), timeout).getText()
             .then(text => {return {error: false, description, text}})
             .catch(() => {return {error: true, description: `Ошибка. ${description}`, text: ''}})

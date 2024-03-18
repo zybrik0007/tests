@@ -47,6 +47,18 @@ module.exports = {
                 [strNumber, cellNumber, timeout],
                 el.table)),
 
+    cellGetIconWarn: ({strNumber, cellNumber, timeout}) =>
+        it(`Отображение иконки ошибки в строке ${strNumber} в столбце ${cellNumber}.`,
+            async () => await dec.simple(el.table.cellGetIconWarn,
+                [strNumber, cellNumber, timeout],
+                el.table)),
+
+    cellNoIconWarn: ({strNumber, cellNumber, timeout}) =>
+        it(`Отсутствие иконки ошибки в строке ${strNumber} в столбце ${cellNumber}.`,
+            async () => await dec.simple(el.table.cellNoIconWarn,
+                [strNumber, cellNumber, timeout],
+                el.table)),
+
     headGetText: ({headNumber, value, timeout}) => it(`В заглавии столбца ${headNumber} отображается "${value}".`,
         async () => await dec.simpleText(el.table.headGetText,
             [headNumber, timeout],
@@ -84,5 +96,6 @@ module.exports = {
         async () => await dec.simple(el.table. controlStrHandler,
             [cellNumber, timeout],
             el.table)),
+
 }
 

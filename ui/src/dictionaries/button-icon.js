@@ -97,5 +97,13 @@ module.exports = {
     unsorted_reply_outline: {
         name: 'unsorted_reply_outline',
         description: 'Восстановление'
+    },
+    action_update: {
+        name: 'action_update',
+        description: 'Сделать пересчет'
+    },
+    unsorted_billhead_outline: {
+        name: 'unsorted_billhead_outline',
+        description: 'Настройка отчета с задолженностями'
     }
 }

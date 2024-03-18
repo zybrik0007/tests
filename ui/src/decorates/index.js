@@ -33,6 +33,7 @@ module.exports = {
         filterTreeNode: require('./elements-decorates/filter-tree-node'),
         photography: require('./elements-decorates/photography-decorate'),
         groupCell: require('./elements-decorates/group-cell-decorate'),
+        timepicker: require('./elements-decorates/timepicker-decorate'),
     },
     page: {
         staffActive: require('./page-decorates/staff-active-decorate'),
@@ -52,7 +53,8 @@ module.exports = {
         orderpassChange: require('./page-decorates/orderpass-change-dercorate'),
         schedule: require('./page-decorates/schedule-decorate'),
         scheduleChange: require('./page-decorates/schedule-change-decorate'),
-        base: require('./page-decorates/base-decorate')
+        base: require('./page-decorates/base-decorate'),
+        workedJournal: require('./page-decorates/worked-journal-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),

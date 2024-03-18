@@ -47,7 +47,7 @@ const aft = () => after('Выход', async () => await dec.exit());
 
 const other = (user, tab, bef) => {
 
-    const display = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. Общая проверка без данных.`,
+    const display = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. Общая проверка без данных.`,
         () => {
 
         bef();
@@ -339,7 +339,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const checkData = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. 
+    const checkData = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. 
     Проверка отображения данных .`, () => {
 
         bef();
@@ -615,7 +615,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterDate = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. Проверка фильтра по дате.`,
+    const filterDate = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. Проверка фильтра по дате.`,
         () => {
 
         bef();
@@ -790,7 +790,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const filterRoom = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. 
+    const filterRoom = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. 
     Проверка фильтра по помещению.`, () => {
 
         bef();
@@ -942,7 +942,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const filterRoomForm = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. 
+    const filterRoomForm = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. 
     Проверка фильтра по помещению через модальное окно "Помещения"..`, () => {
 
         bef();
@@ -1092,7 +1092,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const filterDivision = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. 
+    const filterDivision = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. 
     Проверка фильтра по подразделению через выбор из списка.`, () => {
 
         bef();
@@ -1246,7 +1246,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterDivisionForm = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. 
+    const filterDivisionForm = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. 
     Проверка фильтра по подразделению через модальное окно "Подразделение".`, () => {
 
         bef();
@@ -1393,7 +1393,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterSearch = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. 
+    const filterSearch = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. 
     Проверка фильтра по поиску.`, () => {
 
         bef();
@@ -1473,7 +1473,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const printTable = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. Проверка печати.`,() => {
+    const printTable = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. Проверка печати.`,() => {
 
         bef();
         aft();
@@ -1762,7 +1762,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportXLSX = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. Экспорт XLSX.`, () => {
+    const exportXLSX = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. Экспорт XLSX.`, () => {
 
         const params = {
             nameFile: 'accessreport.xlsx',
@@ -2103,7 +2103,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportCSV = () => describe(`Котроль доступа / Отчет о проходах / вкладка ${tab}. Экспорт CSV.`, () => {
+    const exportCSV = () => describe(`Контроль доступа / Отчет о проходах / вкладка ${tab}. Экспорт CSV.`, () => {
 
         const params = {
             nameFile: 'accessreport.csv',

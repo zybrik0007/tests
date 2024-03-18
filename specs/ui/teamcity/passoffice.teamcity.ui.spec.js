@@ -104,6 +104,7 @@ tests.staffUi.otherPass.searchFilterStaffActive();
 tests.staffUi.otherPass.divisionFilterStaffActive();
 tests.staffUi.otherPass.cardSearchStaffActive();
 data.deleteDataStaffFilter();
+data.deleteDataStaff();
 clearMemory();
 
 closeBrowser();

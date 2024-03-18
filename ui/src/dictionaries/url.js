@@ -33,6 +33,9 @@ module.exports = {
     accessEditScheduleUrl: address + 'passoffice/access/schedule/edit/',
     accessEditScheduleHolidayUrl: address + 'passoffice/access/schedule/edit/3',
 
+    //УРВ
+    workedJournalUrl: address + 'timetracking/workedjournal',
+
     //Отчет о проходах
     premiseAccessAllUrl: address + 'controlaccess/premisesaccess/all',
     premiseAccessVisitorUrl: address + 'controlaccess/premisesaccess/visitor',

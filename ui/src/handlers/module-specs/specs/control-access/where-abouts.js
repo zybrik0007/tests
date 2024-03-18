@@ -47,7 +47,7 @@ const aft = () => after('Выход', async () => await dec.exit());
 
 const other = (user, tab, bef) => {
 
-    const display = () => describe(`Котроль доступа / Местонахождение / вкладка ${tab}. Общая проверка без данных.`,
+    const display = () => describe(`Контроль доступа / Местонахождение / вкладка ${tab}. Общая проверка без данных.`,
         () => {
 
             bef();
@@ -273,7 +273,7 @@ const other = (user, tab, bef) => {
 
         });
 
-    const checkData = () => describe(`Котроль доступа / Местонахождение / вкладка ${tab}. 
+    const checkData = () => describe(`Контроль доступа / Местонахождение / вкладка ${tab}. 
     Проверка отображения данных .`, () => {
 
         bef();
@@ -537,7 +537,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const filterDate = () => describe(`Котроль доступа / Местонахождение / вкладка ${tab}. Проверка фильтра по дате.`,
+    const filterDate = () => describe(`Контроль доступа / Местонахождение / вкладка ${tab}. Проверка фильтра по дате.`,
         () => {
 
             bef();
@@ -652,7 +652,7 @@ const other = (user, tab, bef) => {
             }
         });
 
-    const filterDivision = () => describe(`Котроль доступа / Местонахождение / вкладка ${tab}. 
+    const filterDivision = () => describe(`Контроль доступа / Местонахождение / вкладка ${tab}. 
     Проверка фильтра по подразделению через выбор из списка.`, () => {
 
         bef();
@@ -805,7 +805,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterDivisionForm = () => describe(`Котроль доступа / Местонахождение / вкладка ${tab}. 
+    const filterDivisionForm = () => describe(`Контроль доступа / Местонахождение / вкладка ${tab}. 
     Проверка фильтра по подразделению через модальное окно "Подразделение".`, () => {
 
         bef();
@@ -956,7 +956,7 @@ const other = (user, tab, bef) => {
 
     });
 
-    const filterSearch = () => describe(`Котроль доступа / Местонахождение / вкладка ${tab}. 
+    const filterSearch = () => describe(`Контроль доступа / Местонахождение / вкладка ${tab}. 
     Проверка фильтра по поиску.`, () => {
 
         bef();
@@ -1036,7 +1036,7 @@ const other = (user, tab, bef) => {
         }
     });
 
-    const printTable = () => describe(`Котроль доступа /  Местонахождение / вкладка ${tab}. Проверка печати.`,() => {
+    const printTable = () => describe(`Контроль доступа /  Местонахождение / вкладка ${tab}. Проверка печати.`,() => {
 
         bef();
         aft();
@@ -1234,7 +1234,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportXLSX = () => describe(`Котроль доступа /  Местонахождение / вкладка ${tab}. Экспорт XLSX.`, () => {
+    const exportXLSX = () => describe(`Контроль доступа /  Местонахождение / вкладка ${tab}. Экспорт XLSX.`, () => {
 
         const params = {
             nameFile: 'whereaboutsreport.xlsx',
@@ -1468,7 +1468,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const exportCSV = () => describe(`Котроль доступа /  Местонахождение / вкладка ${tab}. Экспорт CSV.`, () => {
+    const exportCSV = () => describe(`Контроль доступа /  Местонахождение / вкладка ${tab}. Экспорт CSV.`, () => {
 
         const params = {
             nameFile: 'whereaboutsreport.csv',
@@ -1641,7 +1641,7 @@ const other = (user, tab, bef) => {
         });
     });
 
-    const updateData = () => describe('Котроль доступа / Местонахождение. Проверка кнопки Обновить данные', () => {
+    const updateData = () => describe('Контроль доступа / Местонахождение. Проверка кнопки Обновить данные', () => {
 
         bef();
         aft();
