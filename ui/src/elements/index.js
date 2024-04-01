@@ -29,6 +29,7 @@ const FilterTreeNode = require('./elements/filter-tree-node');
 const Photography = require('./elements/photography');
 const GroupCell = require('./elements/group-cell');
 const Timepicker = require('./elements/timepicker');
+const Radio = require('./elements/radio');
 
 const Modal = require('./elements/modal');
 const Dialog = require('./elements/dialog');
@@ -47,6 +48,7 @@ const CardControlsNumber = require('./modals/card-controls-number');
 const PrintCardStaff = require('./modals/print-card-modal');
 const BarcodePrint = require('./modals/barcode-print');
 const BarcodeVisitorPrint = require('./modals/barcode-visitor-print');
+const UnderTime = require('./modals/under-time');
 
 
 module.exports = {
@@ -80,6 +82,7 @@ module.exports = {
     photography: new Photography(),
     groupCell: new GroupCell(),
     timepicker: new Timepicker(),
+    radio: new Radio(),
 
     modal: {
         //Персонал
@@ -103,6 +106,9 @@ module.exports = {
         scheduleSelect: new ScheduleSelect('schedules', ''),
         timeZoneModalSelect: new TimeZoneModalSelect('timeZonesModalSelect', ''),
         removeIdentifiers: new RemoveIdentifiers('remove-identifiers', 'Неиспользуемые идентификаторы'),
+
+        //УРВ
+        underTime: new UnderTime('under-time', 'Задолженности'),
 
 
         //Конфигурация

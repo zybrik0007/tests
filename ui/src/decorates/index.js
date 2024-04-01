@@ -34,6 +34,7 @@ module.exports = {
         photography: require('./elements-decorates/photography-decorate'),
         groupCell: require('./elements-decorates/group-cell-decorate'),
         timepicker: require('./elements-decorates/timepicker-decorate'),
+        radio: require('./elements-decorates/radio-decorate'),
     },
     page: {
         staffActive: require('./page-decorates/staff-active-decorate'),
@@ -55,6 +56,7 @@ module.exports = {
         scheduleChange: require('./page-decorates/schedule-change-decorate'),
         base: require('./page-decorates/base-decorate'),
         workedJournal: require('./page-decorates/worked-journal-decorate'),
+        timesheet: require('./page-decorates/timesheet-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -79,6 +81,11 @@ module.exports = {
         searchCard: ModalDecorate('card-search', ''),
         importFile: require('./modal-decorates/importFile'),
         printVisitorBarcode: require('./modal-decorates/print-barcode-visitor-decorate'),
+        underTime: require('./modal-decorates/under-time-decorate'),
+        docJustification: ModalDecorate('edit-justification', ''),
+        docOvertime: ModalDecorate('edit-overtime', ''),
+        docExplanatory: ModalDecorate('edit-explanatory', ''),
+
     },
     modalConfirm: {
         //Персонал
@@ -142,6 +149,12 @@ module.exports = {
 
         accessSchedulesDelete: ModalConfirmDecorate('Удаление шаблона доступа',
             'Вы действительно хотите удалить этот шаблон доступа?'),
+
+        // УРВ
+        // Оправдательные документы
+        urvDocumentDelete: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить этот документ?'),
+
 
         //Администрирование
         //Конфигурация

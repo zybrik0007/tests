@@ -4225,24 +4225,29 @@ const dataURV = {
                         "intervals": [
                             {
                                 "begin": 32400,
+                                "end": 46800,
+                                "type": 1
+                            },
+                            {
+                                "begin": 79200,
                                 "end": 86400,
                                 jumpRight: true,
-                                "type": 3
+                                "type": 2
                             }
                         ],
-                        title: "Рабочее время: 15ч 00м"
+                        title: "Рабочее время: 06ч 00м"
                     },
                     {
                         desc:"День 2",
                         "intervals": [
                             {
                                 "begin": 0,
-                                "end": 32400,
+                                "end": 64800,
                                 jumpLeft: true,
-                                "type": 3
+                                "type": 2
                             }
                         ],
-                        title: "Рабочее время: 09ч 00м"
+                        title: "Рабочее время: 18ч 00м"
                     },
                 ]
             }
@@ -4643,24 +4648,29 @@ const dataURV = {
                         "intervals": [
                             {
                                 "begin": 32400,
+                                "end": 46800,
+                                "type": 1
+                            },
+                            {
+                                "begin": 79200,
                                 "end": 86400,
                                 jumpRight: true,
-                                "type": 3
+                                "type": 2
                             }
                         ],
-                        title: "Рабочее время: 15ч 00м"
+                        title: "Рабочее время: 06ч 00м"
                     },
                     {
                         desc:"День 2",
                         "intervals": [
                             {
                                 "begin": 0,
-                                "end": 32400,
+                                "end": 64800,
                                 jumpLeft: true,
-                                "type": 3
+                                "type": 2
                             }
                         ],
-                        title: "Рабочее время: 09ч 00м"
+                        title: "Рабочее время: 18ч 00м"
                     },
                 ]
             }
@@ -4816,7 +4826,7 @@ const dataURV = {
             position: 'position7',
             work_schedule: 'shift_2',
             begin_datetime: '2023-01-01 00:00:00',
-            end_datetime: '2033-01-01 00:00:00',
+            end_datetime: '2023-12-01 00:00:00',
             identifier: [{identifier:"7", is_universal: true}],
         },
         staff8: {
@@ -5167,6 +5177,32 @@ const dataURV = {
                     access_zone_id2: 'Неконтролируемая территория'
                 },
             },
+            day11: {
+                event1: {
+                    time_label: `"${new Date().toLocaleDateString('fr-ca')} 12:00:00"`,
+                    time_label_utc: `"${new Date().toLocaleDateString('fr-ca')} 09:00:00"`,
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '1',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: `"${new Date().toLocaleDateString('fr-ca')} 13:00:00"`,
+                    time_label_utc: `"${new Date().toLocaleDateString('fr-ca')} 10:00:00"`,
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '1',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                }
+            },
         },
         staff2: {
             day1: {
@@ -5183,8 +5219,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event2: {
-                    time_label: '"2023-06-03 09:00:00"',
-                    time_label_utc: '"2023-06-03 06:00:00"',
+                    time_label: '"2023-06-03 18:00:00"',
+                    time_label_utc: '"2023-06-03 15:00:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5209,8 +5245,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event2: {
-                    time_label: '"2023-06-05 09:00:00"',
-                    time_label_utc: '"2023-06-05 06:00:00"',
+                    time_label: '"2023-06-05 18:00:00"',
+                    time_label_utc: '"2023-06-05 15:00:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5235,8 +5271,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event2: {
-                    time_label: '"2023-06-07 09:00:00"',
-                    time_label_utc: '"2023-06-07 06:00:00"',
+                    time_label: '"2023-06-07 18:00:00"',
+                    time_label_utc: '"2023-06-07 15:00:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5261,8 +5297,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event2: {
-                    time_label: '"2023-06-09 08:59:00"',
-                    time_label_utc: '"2023-06-09 05:59:00"',
+                    time_label: '"2023-06-09 17:59:00"',
+                    time_label_utc: '"2023-06-09 14:59:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5287,8 +5323,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event2: {
-                    time_label: '"2023-06-11 08:58:00"',
-                    time_label_utc: '"2023-06-11 05:58:00"',
+                    time_label: '"2023-06-11 17:58:00"',
+                    time_label_utc: '"2023-06-11 14:58:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5337,8 +5373,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event4: {
-                    time_label: '"2023-06-13 09:00:00"',
-                    time_label_utc: '"2023-06-13 06:00:00"',
+                    time_label: '"2023-06-13 18:00:00"',
+                    time_label_utc: '"2023-06-13 15:00:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5387,8 +5423,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event4: {
-                    time_label: '"2023-06-15 09:00:00"',
-                    time_label_utc: '"2023-06-15 06:00:00"',
+                    time_label: '"2023-06-15 18:00:00"',
+                    time_label_utc: '"2023-06-15 15:00:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5413,8 +5449,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event2: {
-                    time_label: '"2023-06-17 09:01:00"',
-                    time_label_utc: '"2023-06-17 06:01:00"',
+                    time_label: '"2023-06-17 18:01:00"',
+                    time_label_utc: '"2023-06-17 15:01:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5439,8 +5475,8 @@ const dataURV = {
                     access_zone_id2: 'room1'
                 },
                 event2: {
-                    time_label: '"2023-06-19 09:02:00"',
-                    time_label_utc: '"2023-06-19 06:02:00"',
+                    time_label: '"2023-06-19 18:02:00"',
+                    time_label_utc: '"2023-06-19 15:02:00"',
                     event_type: 17,
                     resource_number: 1,
                     resource_type: 12,
@@ -5478,7 +5514,21 @@ const dataURV = {
                     access_zone_id1: 'room1',
                     access_zone_id2: 'Неконтролируемая территория'
                 },
-            }
+            },
+            day2: {
+                event1: {
+                    time_label: `"${new Date().toLocaleDateString('fr-ca')} 12:00:00"`,
+                    time_label_utc: `"${new Date().toLocaleDateString('fr-ca')} 09:00:00"`,
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '2',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+            },
         },
         staff4: {
             day1: {
@@ -5863,6 +5913,136 @@ const dataURV = {
                     access_zone_id2: 'Неконтролируемая территория'
                 },
             },
+            day12: {
+                event1: {
+                    time_label: '"2023-05-01 12:00:00"',
+                    time_label_utc: '"2023-05-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2023-05-01 13:00:00"',
+                    time_label_utc: '"2023-05-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day13: {
+                event1: {
+                    time_label: '"2023-03-01 12:00:00"',
+                    time_label_utc: '"2023-03-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2023-03-01 13:00:00"',
+                    time_label_utc: '"2023-03-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day14: {
+                event1: {
+                    time_label: '"2022-12-01 12:00:00"',
+                    time_label_utc: '"2022-12-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2022-12-01 13:00:00"',
+                    time_label_utc: '"2022-12-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day15: {
+                event1: {
+                    time_label: '"2022-06-01 12:00:00"',
+                    time_label_utc: '"2022-06-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2022-06-01 13:00:00"',
+                    time_label_utc: '"2022-06-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day16: {
+                event1: {
+                    time_label: `"${new Date().toLocaleDateString('fr-ca')} 12:00:00"`,
+                    time_label_utc: `"${new Date().toLocaleDateString('fr-ca')} 09:00:00"`,
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: `"${new Date().toLocaleDateString('fr-ca')} 13:00:00"`,
+                    time_label_utc: `"${new Date().toLocaleDateString('fr-ca')} 10:00:00"`,
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '4',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
         },
         staff5: {
             day1: {
@@ -6145,6 +6325,138 @@ const dataURV = {
                     access_zone_id2: 'Неконтролируемая территория'
                 }
             },
+            day9: {
+                event1: {
+                    time_label: '"2023-05-01 12:00:00"',
+                    time_label_utc: '"2023-05-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2023-05-01 13:00:00"',
+                    time_label_utc: '"2023-05-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day10: {
+                event1: {
+                    time_label: '"2023-03-01 12:00:00"',
+                    time_label_utc: '"2023-03-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2023-03-01 13:00:00"',
+                    time_label_utc: '"2023-03-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day11: {
+                event1: {
+                    time_label: '"2022-12-01 12:00:00"',
+                    time_label_utc: '"2022-12-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2022-12-01 13:00:00"',
+                    time_label_utc: '"2022-12-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day12: {
+                event1: {
+                    time_label: '"2022-06-01 12:00:00"',
+                    time_label_utc: '"2022-06-01 09:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+                event2: {
+                    time_label: '"2022-06-01 13:00:00"',
+                    time_label_utc: '"2022-06-01 10:00:00"',
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'room1',
+                    access_zone_id2: 'Неконтролируемая территория'
+                },
+            },
+            day13: {
+                event1: {
+                    time_label: `"${new Date().toLocaleDateString('fr-ca')} 12:00:00"`,
+                    time_label_utc: `"${new Date().toLocaleDateString('fr-ca')} 09:00:00"`,
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '2',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+            },
+            day14: {
+                event1: {
+                    time_label: `"${new Date().toLocaleDateString('fr-ca')} 12:00:00"`,
+                    time_label_utc: `"${new Date().toLocaleDateString('fr-ca')} 09:00:00"`,
+                    event_type: 17,
+                    resource_number: 1,
+                    resource_type: 12,
+                    identifier: '5',
+                    user_id: '',
+                    device_id: '',
+                    access_zone_id1: 'Неконтролируемая территория',
+                    access_zone_id2: 'room1'
+                },
+            },
         },
         staff6: {
             day1: {
@@ -6328,6 +6640,16 @@ const dataURV = {
         year: '2023',
         date: '2023-06-01 – 2023-06-30'
     },
+    date2: {
+        day1: '1',
+        day2: '30',
+        month1: 'Июнь',
+        month2: 'Июнь',
+        year1: '2022',
+        year2: '2023',
+        date: '2022-06-01 – 2023-06-30'
+    },
+    date3: new Date().toLocaleDateString('fr-ca'),
     documents: {
         document1: {
             number: '1',
@@ -6353,6 +6675,44 @@ const dataURV = {
         },
     },
     today: new Date().toLocaleDateString('fr-ca'),
+    doc: {
+        justification: {
+            name: 'justification',
+            sortNumber: '1',
+            codeArticle: 'ЯЯ',
+            codeNumber: '99',
+            addWorkTime: 'Нет',
+            workCount: 'В календарных днях включая праздничные дни'
+        },
+        justificationUpdate: {
+            name: 'justificationUpdate',
+            sortNumber: '2',
+            codeArticle: 'ЧЧ',
+            codeNumber: '98',
+            addWorkTime: 'Добавлять',
+            workCount: 'В рабочих днях'
+        },
+        overtime: {
+            name: 'overtime',
+            sortNumber: '1',
+            codeArticle: 'ЯЯ',
+            codeNumber: '99',
+            over: 'Сверхурочный',
+        },
+        overtimeUpdate: {
+            name: 'overtimeUpdate',
+            sortNumber: '2',
+            codeArticle: 'ЧЧ',
+            codeNumber: '98',
+            over: 'Нет',
+        },
+        explanatory: {
+            name: 'explanatory',
+        },
+        explanatoryUpdate: {
+            name: 'explanatoryUpdate',
+        }
+    }
 }
 
 const addURV = () => describe('Добавление данных для тестирования раздела УРВ.', () => {
@@ -6380,8 +6740,8 @@ const addURV = () => describe('Добавление данных для тест
         });
     });
 
-    describe('Добавление прадничных дней', () => {
-        it('Добавление прадничных дней', async () => {
+    describe('Добавление праздничных дней', () => {
+        it('Добавление праздничных дней', async () => {
             const cook = await page.base.getCookie('token');
 
             await dec.simple(api.putHoliday,
@@ -7344,6 +7704,27 @@ const addURV = () => describe('Добавление данных для тест
                 }],
                 db.addEvent);
 
+            //События Сотрудника 1 - Текуйщий день
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff1.day11.event1,
+                    user_id: staff1,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff1.day11.event2,
+                    user_id: staff1,
+                    device_id: device2,
+                    access_zone_id1: room0,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
             //События Сотрудника 2 - День 1
             await dec.simple(db.addEvent,
                 [{
@@ -7591,6 +7972,17 @@ const addURV = () => describe('Добавление данных для тест
                     device_id: device2,
                     access_zone_id1: room0,
                     access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 3 - Текущий день
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff3.day2.event1,
+                    user_id: staff3,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
                 }],
                 db.addEvent);
 
@@ -7905,6 +8297,111 @@ const addURV = () => describe('Добавление данных для тест
                 }],
                 db.addEvent);
 
+            //События Сотрудника 4 - Май(2023)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day12.event1,
+                    user_id: staff4,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day12.event2,
+                    user_id: staff4,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 4 - Март(2023)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day13.event1,
+                    user_id: staff4,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day13.event2,
+                    user_id: staff4,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 4 - Декабрь(2022)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day14.event1,
+                    user_id: staff4,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day14.event2,
+                    user_id: staff4,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 4 - Июнь(2022)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day15.event1,
+                    user_id: staff4,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day15.event2,
+                    user_id: staff4,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 4 - Текущий день
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day16.event1,
+                    user_id: staff4,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff4.day16.event2,
+                    user_id: staff4,
+                    device_id: device1,
+                    access_zone_id1: room0,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
             //События Сотрудника 5 - День 1
             await dec.simple(db.addEvent,
                 [{
@@ -8133,6 +8630,101 @@ const addURV = () => describe('Добавление данных для тест
                 }],
                 db.addEvent);
 
+            //События Сотрудника 5 - Май(2023)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day9.event1,
+                    user_id: staff5,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day9.event2,
+                    user_id: staff5,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 5 - Март(2023)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day10.event1,
+                    user_id: staff5,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day10.event2,
+                    user_id: staff5,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 5 - Декабрь(2022)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day11.event1,
+                    user_id: staff5,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day11.event2,
+                    user_id: staff5,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 5 - Июнь(2022)
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day12.event1,
+                    user_id: staff5,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day12.event2,
+                    user_id: staff5,
+                    device_id: device2,
+                    access_zone_id1: room2,
+                    access_zone_id2: room1,
+                }],
+                db.addEvent);
+
+            //События Сотрудника 5 - Текущий день
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.events.staff5.day14.event1,
+                    user_id: staff5,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                }],
+                db.addEvent);
+
             //События Сотрудника 6 - День 1
             await dec.simple(db.addEvent,
                 [{
@@ -8256,6 +8848,179 @@ const addURV = () => describe('Добавление данных для тест
                 }],
                 db.addEvent);
         });
+    });
+});
+
+const addURVDocument = () => describe('Добавления оправдательных документов сотрудникам для тестирования УРВ.', () => {
+    const params = {...dataURV}
+
+    bef();
+    aft();
+
+    it('Добавление оправдательных документов сотруднкиа в БД.', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrStaff = await api.getStaff(cook.text);
+        const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff1)[0].id;
+        const staff2 = arrStaff.text.filter(obj => obj.name === params.fio.staff2)[0].id;
+        const staff4 = arrStaff.text.filter(obj => obj.name === params.fio.staff4)[0].id;
+        const staff5 = arrStaff.text.filter(obj => obj.name === params.fio.staff5)[0].id;
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff1,
+                doc_id: 5,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-04"',
+                doc_end_date: '"2023-06-04"',
+                doc_number: '1',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff1,
+                doc_id: 27,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-06"',
+                doc_end_date: '"2023-06-06"',
+                doc_number: '2',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff1,
+                doc_id: 92,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-10"',
+                doc_end_date: '"2023-06-10"',
+                doc_number: '4',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff2,
+                doc_id: 5,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-06"',
+                doc_end_date: '"2023-06-06"',
+                doc_number: '1',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff2,
+                doc_id: 27,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-10"',
+                doc_end_date: '"2023-06-10"',
+                doc_number: '2',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff2,
+                doc_id: 92,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-18"',
+                doc_end_date: '"2023-06-18"',
+                doc_number: '4',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff4,
+                doc_id: 92,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-11"',
+                doc_end_date: '"2023-06-11"',
+                doc_number: '4',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+
+        await dec.simple(db.addDocument,
+            [{
+                user_id: staff5,
+                doc_id: 92,
+                doc_creation_date: '"2023-03-25"',
+                duration: '"00:02:00"',
+                doc_begin_date: '"2023-06-02"',
+                doc_end_date: '"2023-06-02"',
+                doc_number: '4',
+                no_calculate: 0,
+                is_complex: 0,
+                operator_id: 1
+            }],
+            db.addDocument);
+    });
+
+    //ВМ/5 - id 5
+    //ОВ/27 - id 27
+    //С/4 - id 92
+    //НП/32 - id 100
+});
+
+const deleteURVDocument = () => describe('Удаление оправдательных документов сотрудникам для тестирования УРВ.', () => {
+    const params = {...dataURV}
+
+    bef();
+    aft();
+
+    it('Удалениее оправдательных документов сотруднкиа в БД.', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrStaff = await api.getStaff(cook.text);
+        const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff1)[0].id;
+        const staff2 = arrStaff.text.filter(obj => obj.name === params.fio.staff2)[0].id;
+        const staff4 = arrStaff.text.filter(obj => obj.name === params.fio.staff4)[0].id;
+        const staff5 = arrStaff.text.filter(obj => obj.name === params.fio.staff5)[0].id;
+
+        await dec.simple(db.deleteDocument,
+            [staff1],
+            db.addEvent);
+
+        await dec.simple(db.deleteDocument,
+            [staff2],
+            db.addEvent);
+
+        await dec.simple(db.deleteDocument,
+            [staff4],
+            db.addEvent);
+
+        await dec.simple(db.deleteDocument,
+            [staff5],
+            db.addEvent);
     });
 });
 
@@ -8490,4 +9255,6 @@ module.exports =  {
     dataURV,
     addURV,
     deleteURV,
+    addURVDocument,
+    deleteURVDocument,
 }

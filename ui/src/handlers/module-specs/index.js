@@ -14,6 +14,12 @@ module.exports = {
 
     //УРВ
     workedJournalUi: require('./specs/urv/worked-journal-ui'),
+    timesheetUi: require('./specs/urv/timesheet-ui'),
+    reportsUi: require('./specs/urv/reports-ui'),
+    disciplineReportsUi: require('./specs/urv/discipline-reports'),
+    timePresenceUi: require('./specs/urv/time-presence-ui'),
+    supportingUi: require('./specs/urv/supporting-ui'),
+    documentUi: require('./specs/urv/document-ui'),
 
    //Контроль доступа
     premiseAccessUi: require('./specs/control-access/premise-access'),

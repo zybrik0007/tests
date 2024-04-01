@@ -105,5 +105,9 @@ module.exports = {
     unsorted_billhead_outline: {
         name: 'unsorted_billhead_outline',
         description: 'Настройка отчета с задолженностями'
+    },
+    menu_timetracking: {
+        name: 'menu_timetracking',
+        description: 'Задолженности'
     }
 }

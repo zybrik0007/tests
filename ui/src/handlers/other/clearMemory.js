@@ -29,7 +29,7 @@ module.exports = () => describe('Удаление Кэш', () => {
             page.base));
 
         decorate.page.base.loading({
-            timeout: 30000
+            timeout: 10000
         });
     }
 });

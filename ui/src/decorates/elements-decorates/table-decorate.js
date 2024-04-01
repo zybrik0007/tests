@@ -97,5 +97,11 @@ module.exports = {
             [cellNumber, timeout],
             el.table)),
 
+    cellGetTextNoHead: ({strNumber, cellNumber, value, timeout}) =>
+        it(`В строке ${strNumber} в столбце ${cellNumber} отображается "${value}".`,
+            async () => await dec.simpleText(el.table.cellGetTextNoHead,
+                [strNumber, cellNumber, timeout],
+                value,
+                el.table)),
 }
 

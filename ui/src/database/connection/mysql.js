@@ -191,5 +191,40 @@ module.exports = {
         }
     },
 
+    addDocument: async (object) => {
+        try {
+            console.log('Object.keys(object).join(): ', Object.keys(object).join());
+            console.log('{Object.values(object).join(): ', Object.values(object).join());
+            await db.query(connection,`INSERT INTO user_doc (${Object.keys(object).join()}) VALUES (${Object.values(object).join()})`);
+            return {
+                error: false,
+                description: 'Документ добавлен.'
+            }
+        } catch (err) {
+            console.log('Object.keys(object).join(): ', Object.keys(object).join());
+            console.log('{Object.values(object).join(): ', Object.values(object).join());
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Документ не добавлен.'
+            }
+        }
+    },
+
+    deleteDocument: async (userId) => {
+        try {
+            await db.query(connection,`DELETE FROM user_doc WHERE user_id=${userId}`);
+            return {
+                error: false,
+                description: 'Документ удален.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Документ не удален.'
+            }
+        }
+    },
 }
 

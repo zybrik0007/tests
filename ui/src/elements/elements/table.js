@@ -61,11 +61,13 @@ class Table extends BasePage {
 
     //Получение текста из ячейки по столбцу, номеру строки и номеру колонки
     async cellGetText(head, str, cell, timeout) {
+        console.log('head, str, cell, timeout', head, str, cell, timeout)
         const headText = await this.headElement(head, cell)
         if (headText.error) {
+            console.log('headText', headText)
             return headText
         }
-
+        console.log('headText', headText)
         return await this.xpathGetText(elements.tableCellText(str, cell),
             `Значение столбца ${head}.`,
             timeout)
@@ -234,6 +236,13 @@ class Table extends BasePage {
     async controlStrHandler(event, timeout) {
         return await this.xpathControlHandler(elements.tableStrNum(event),
             `Нажатие "Control" и номер ${event}  строки.`,
+            timeout)
+    }
+
+    //Получение текста из ячейки по столбцу, номеру строки и номеру колонки
+    async cellGetTextNoHead(str, cell, timeout) {
+        return await this.xpathGetText(elements.tableCellText(str, cell),
+            `Значение строки ${str} и столбца ${cell}.`,
             timeout)
     }
 }

@@ -37,7 +37,21 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     OrderpassOrder = require('./soft/orderpass/orderpass/orderpass-order-page'),
     OrderpassArchive = require('./soft/orderpass/orderpass/orderpass-archive-page'),
     OrderpassChange = require('./soft/orderpass/orderpass/orderpass-change-page'),
-    WorkedJournal = require('./soft/urv/worked-journal-page/worked-journal-page');
+    WorkedJournal = require('./soft/urv/worked-journal-page/worked-journal-page'),
+    Timesheet = require('./soft/urv/timesheet-page/timesheet-page'),
+    Reports = require('./soft/urv/reports-page/reports-page'),
+    Violator = require('./soft/urv/discipline-reports-page/violators-page'),
+    Presence = require('./soft/urv/discipline-reports-page/presences-page'),
+    Absent = require('./soft/urv/discipline-reports-page/absents-page'),
+    Late = require('./soft/urv/discipline-reports-page/lates-page'),
+    Early = require('./soft/urv/discipline-reports-page/earlys-page'),
+    Overwork = require('./soft/urv/discipline-reports-page/overworks-page'),
+    TimePresence = require('./soft/urv/time-presence-page/time-presence-page'),
+    Supporting = require('./soft/urv/support-page/supporting-page'),
+    PaidOvertime = require('./soft/urv/support-page/paid-overtime-page'),
+    DocumentJustificationPage = require('./soft/urv/document-page/document-justification-page'),
+    DocumentOvertimePage = require('./soft/urv/document-page/document-overtime-page'),
+    DocumentExplanatoryPage = require('./soft/urv/document-page/document-explanatory-page');
 
 module.exports = {
     //base
@@ -69,6 +83,20 @@ module.exports = {
 
     //УРВ
     workedJournal: new WorkedJournal(),
+    timesheet: new Timesheet(),
+    reports: new Reports(),
+    violator: new Violator(),
+    presence: new Presence(),
+    absent: new Absent(),
+    late: new Late(),
+    early: new Early(),
+    overwork: new Overwork(),
+    timePresence: new TimePresence(),
+    supporting: new Supporting(),
+    paidOvertime: new PaidOvertime(),
+    documentJustification: new DocumentJustificationPage(),
+    documentOvertime: new DocumentOvertimePage(),
+    documentExplanatory: new DocumentExplanatoryPage(),
 
     //Контроль доступа
     premiseAccessAll: new PremiseAccessAll(),

@@ -21,7 +21,20 @@ module.exports = {
     accessTemplatesTitle: title + 'Шаблоны доступа',
 
     //УРВ
-    workedJournalTitle:  title + 'Журнал отработанного времени',
+    workedJournalTitle: title + 'Журнал отработанного времени',
+    timesheetTitle: title + 'Формирование табеля',
+    urvReportsTitle: title + 'Отчёт УРВ',
+    urvViolatorsTitle: title + 'Отчеты по дисциплине',
+    urvPresencesTitle:  title + 'Отчеты по дисциплине',
+    urvAbsentsTitle: title + 'Отчеты по дисциплине',
+    urvLatesTitle: title + 'Отчеты по дисциплине',
+    urvEarlysTitle: title + 'Отчеты по дисциплине',
+    urvOverworksTitle: title + 'Отчеты по дисциплине',
+    urvTimePresenceTitle: title + 'Время присутствия',
+    urvSupportingTitle: title + 'Выданные документы',
+    urvDocumentJustificationTitle: title + 'Оправдательные документы',
+    urvDocumentOvertimeTitle: title + 'Оправдательные документы',
+    urvDocumentExplanatoryTitle: title + 'Оправдательные документы',
 
     // Контроль доступа
     premiseAccessTitle: title + 'Отчет о проходах',

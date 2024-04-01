@@ -35,6 +35,20 @@ module.exports = {
 
     //УРВ
     workedJournalUrl: address + 'timetracking/workedjournal',
+    timesheetUrl: address + 'timetracking/timesheetsformation',
+    urvReportsUrl: address + 'timetracking/reports',
+    urvViolatorsUrl: address + 'timetracking/disciplinereports/violators',
+    urvPresencesUrl: address + 'timetracking/disciplinereports/presences',
+    urvAbsentsUrl: address + 'timetracking/disciplinereports/absents',
+    urvLatesUrl: address + 'timetracking/disciplinereports/lates',
+    urvEarlysUrl:  address + 'timetracking/disciplinereports/earlys',
+    urvOverworksUrl: address + 'timetracking/disciplinereports/overworks',
+    urvTimePresenceUrl: address + 'timetracking/timepresence',
+    urvSupportingUrl: address + 'timetracking/userdocs/supporting',
+    urvPaidOvertimeUrl: address + 'timetracking/userdocs/paid-overtime',
+    urvDocJustificationUrl: address + 'timetracking/documenttype/justification',
+    urvDocOvertimeUrl: address + 'timetracking/documenttype/overtime',
+    urvDocExplanatoryUrl: address + 'timetracking/documenttype/explanatory',
 
     //Отчет о проходах
     premiseAccessAllUrl: address + 'controlaccess/premisesaccess/all',

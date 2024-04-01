@@ -264,6 +264,9 @@ module.exports = {
     buttonDisabled: (event) => `//pw-button[contains(@class, "disabled")]//span[normalize-space(.)="${event}"]
     /parent::*/parent::*`,
 
+    //radio
+    radio: (event) => `//app-radio//*[normalize-space(.)="${event}"]`,
+
     //button-icon
     buttonIcon: (event) => `//pw-button//pw-icon/div[contains(@class, "${event}")]`,
 
@@ -311,6 +314,7 @@ module.exports = {
     "pwTableHeaderColumn--name")]//pw-icon/div[contains(@class, "${icon}")]`,
     tableCellText: (str, cell) => `//pw-table-body/div[2]//pw-table-body-row[${str}]//pw-table-body-row-column[${cell}]
     /div/div`,
+//pw-table-body/div[2]//pw-table-body-row[1]//pw-table-body-row-column[45]/div/div
     tableCellImg: (str, cell) => `//pw-table-body/div[2]//pw-table-body-row[${str}]//pw-table-body-row-column[${cell}]
     /div/div//img`,
     tableCellIcon: (str, cell, icon) => `//pw-table-body/div[2]//pw-table-body-row[${str}]
@@ -319,6 +323,11 @@ module.exports = {
     /div//pw-icon/div[contains(@class, "${icon}")]`,
     tableHeadNoSort: (num, asc, desc) => `//div[@class="datatable-row-center"][1]/
     div[1][not(contains(@class, "${asc}")) and not(contains(@class, "${desc}"))]`,
+    tableSuperHeadText: (event) => `//div[@class="pwTableHeaderColumnSuper"][${event}]/pw-table-header-column/div/div[1]`,
+    tableSubSuperHeadText: (superCell, subCell) => `//div[@class="pwTableHeaderColumnSuper"][${superCell}]
+    /div[1]/pw-table-header-column[${subCell}]/div/div[2]`,
+
+
 
 
     //header
@@ -491,7 +500,12 @@ module.exports = {
     //Timepicker
     timepicker: '//pw-timepicker',
     timepickerInput: (number) => `//pw-timepicker/div/div[${number}]//input`,
+    pageWorkedJournalClockInput: '//*[normalize-space(.)="Длительность"]//parent::pw-field' +
+        '/pw-input[@icon="unsorted_recent_outline"]//pw-icon',
 
-    pageWorkedJournalClockInput: '//*[normalize-space(.)="Длительность"]//parent::pw-field/pw-input[@icon="unsorted_recent_outline"]//pw-icon'
+    //timesheet
+    timesheetDay: (str, cell) => `//tr[${str}]/td[${cell}]`,
+    timesheetSelectIcon: (event) => `//*[normalize-space(.)="${event}"]/parent::*//pw-icon`
+
 
 }
