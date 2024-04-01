@@ -24,7 +24,7 @@ module.exports = {
             page.workedJournal)),
 
     tableCellGetText: ({headTitle, strNumber, cellNumber, value, timeout}) =>
-        it(`Значение в строке ${strNumber} столбце ${strNumber} - "${headTitle}" равно "${value}".`,
+        it(`Значение в строке ${strNumber} столбце ${cellNumber} - "${headTitle}" равно "${value}".`,
             async () => await dec.simpleText(page.workedJournal.tableCellGetText,
                 [headTitle, strNumber, cellNumber, timeout],
                 value,
