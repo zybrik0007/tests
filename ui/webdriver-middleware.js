@@ -12,8 +12,13 @@ const middleware = () => {
         return new Builder()
             .forBrowser('chrome')
             .setChromeOptions(new chrome.Options()
-                .addArguments('--headless=new')
-                .addArguments("--remote-allow-origins=*")
+                .addArguments(
+                    '--headless=new',
+                    '--no-sandbox',
+                    '--remote-allow-origins=*',
+                    '--disable-features=DownloadBubble,DownloadBubbleV2',
+                    '--disable-popup-blocking'
+                )
                 .windowSize({width: width, height: height}))
             .build()
     }
