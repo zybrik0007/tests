@@ -4,17 +4,26 @@ const clearMemory = require('../ui/src/handlers/other/clearMemory');
 const data = require('../ui/src/handlers/module-specs/data');
 const decorate = require('../ui/src/decorates');
 
-tests.documentUi.otherJustification.addDocument();
-tests.documentUi.otherJustification.editDocument();
-tests.documentUi.otherJustification.deleteDocument();
+/*data.deleteURVDocument();
+data.deleteURV();
+data.addURV();
+tests.workedJournalUi.other.calculationDateWorkedJournal();
+tests.workedJournalUi.other.documentCalculationWorkedJournal();
+tests.workedJournalUi.other.deleteCompositeDocumentWorkedJournal();
+data.deleteURVDocument();
+data.addURVDocument();
+data.deleteURVDocument();
+tests.workedJournalUi.other.calculationDateWorkedJournal();*/
+//tests.disciplineReportsUi.otherOverwork.exportXLSX();
+//tests.disciplineReportsUi.otherOverwork.exportCSV();
 
-tests.documentUi.otherOvertime.addDocument();
-tests.documentUi.otherOvertime.editDocument();
-tests.documentUi.otherOvertime.deleteDocument();
+//data.deleteURVDocument();
+//tests.workedJournalUi.other.calculationDateWorkedJournal();
+data.deleteURVDocument();
+data.addURVDocument();
+tests.supportingUi.otherPaid.exportXLSX();
+tests.supportingUi.otherSupport.exportXLSX();
 
-tests.documentUi.otherExplanatory.addDocument();
-tests.documentUi.otherExplanatory.editDocument();
-tests.documentUi.otherExplanatory.deleteDocument();
 closeBrowser();
 
 /*

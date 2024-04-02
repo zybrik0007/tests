@@ -101,7 +101,7 @@ tests.disciplineReportsUi.otherEarly.divisionFilter();
 tests.disciplineReportsUi.otherEarly.searchFilter();
 clearMemory();
 
-//УРВ / Отчеты по дисциплине - вкладка Нарушители
+//УРВ / Отчеты по дисциплине - вкладка Переработка
 tests.disciplineReportsUi.otherOverwork.checkTable();
 tests.disciplineReportsUi.otherOverwork.printTable();
 tests.disciplineReportsUi.otherOverwork.exportXLSX();

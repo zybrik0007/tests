@@ -14242,7 +14242,7 @@ const other = () => {
             });
     });
 
-    const searchFilterWorkedJournal = () => describe('УРВ. Журнал отработанного времени.  Проверка фильтра "Поиск...".',
+    const searchFilterWorkedJournal = () => describe('УРВ. Журнал отработанного времени. Проверка фильтра "Поиск...".',
         () => {
 
         bef();

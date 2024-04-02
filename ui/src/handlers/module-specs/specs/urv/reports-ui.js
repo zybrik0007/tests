@@ -419,7 +419,7 @@ const other = () => {
             const params = {
                 nameFile: 'timeattendancereport.xlsx',
                 json:  [
-                    { 'УРВ Отчет': '2024-03-22 10:52:03' },
+                    { 'УРВ Отчет': '2023-06-01 - 2023-06-30' },
                     {
                         'УРВ Отчет': 'Фамилия',
                         __EMPTY: 'Имя',
