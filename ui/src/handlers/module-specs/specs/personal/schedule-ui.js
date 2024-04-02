@@ -20,6 +20,7 @@ const data = require('../../data').dataSchedule;
 
 
 const bef = () => before('Вход и открытие подраздела "Графики работы"', async () => {
+    await page.base.loading(entry.sleep1);
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.per, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.per.schedule, entry.max], el.subsection);
@@ -3423,7 +3424,7 @@ const other = () => {
                     timeout: entry.max
                 });
                 decorate.el.error.error({
-                    text: '',
+                    text: 'Такое название уже используется',
                     timeout: entry.max
                 });
                 decorate.page.base.loading({

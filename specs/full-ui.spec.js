@@ -20,9 +20,7 @@ tests.workedJournalUi.other.calculationDateWorkedJournal();*/
 //data.deleteURVDocument();
 //tests.workedJournalUi.other.calculationDateWorkedJournal();
 data.deleteURVDocument();
-data.addURVDocument();
-tests.supportingUi.otherPaid.exportXLSX();
-tests.supportingUi.otherSupport.exportXLSX();
+data.deleteURV();
 
 closeBrowser();
 
