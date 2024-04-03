@@ -781,7 +781,14 @@ const other = (type, text) => {
                     });
                 });
 
-/*                describe('Нажатие кнопки "Вернуться к списку посетителей".', () => {
+                describe('Нажатие кнопки "Вернуться к списку посетителей".', () => {
+                    decorate.el.button.handler({
+                        name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                     decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
@@ -792,7 +799,7 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
-                });*/
+                });
             });
         }
 
@@ -9133,8 +9140,15 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
-/*                    decorate.el.button.handler({
+                    decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
@@ -9142,7 +9156,7 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
-                    });*/
+                    });
                 });
             });
         }
@@ -9453,8 +9467,15 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
-/*                    decorate.el.button.handler({
+                    decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
@@ -9462,8 +9483,7 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
-                    });*/
-                });
+                    });
             });
         }
     });
