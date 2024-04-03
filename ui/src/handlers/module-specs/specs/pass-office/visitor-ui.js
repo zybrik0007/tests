@@ -9447,6 +9447,16 @@ const other = (type, text) => {
                             'подразделение division1 в качестве штрих-кода',
                         timeout: entry.max
                     });
+/*                    decorate.el.button.handler({
+                        name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.page.visitorOrder.init({
+                        timeout: entry.max
+                    });*/
                 });
             });
         }
