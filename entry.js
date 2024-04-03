@@ -19,7 +19,7 @@ module.exports = {
     min: Number(process.env.a105min) || 2000,
     upload: Number(process.env.a107upload) || 50000,
     sleep1: Number(process.env.a107xsleep1) || 1000,
-    sleep2: Number(process.env.a107xsleep2) || 5000,
+    sleep2: Number(process.env.a107xsleep2) || 2000,
     datepicker: Number(process.env.a107xsleepDate) || 500,
     urv: 10000,
     buttonTime: 3000,

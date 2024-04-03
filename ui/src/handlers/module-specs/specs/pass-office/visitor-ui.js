@@ -451,10 +451,6 @@ const other = (type, text) => {
                         name: 'Сохранить изменения',
                         timeout: entry.max
                     });
-                    decorate.el.success.success({
-                        text: 'Посетитель успешно добавлен',
-                        timeout: entry.max
-                    });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
@@ -782,19 +778,22 @@ const other = (type, text) => {
                 });
 
                 describe('Нажатие кнопки "Вернуться к списку посетителей".', () => {
-                    decorate.page.base.refresh();
-                    decorate.page.base.loading({
-                        timeout: entry.sleep2
-                    });
                     decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorOrder.init({
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorOrder.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -1520,11 +1519,18 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.visitorCurrent.init({
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
                         timeout: entry.max
                     });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
+                    });
+                    decorate.page.visitorCurrent.init({
+                        timeout: entry.max
                     });
                 });
             });
@@ -1989,7 +1995,17 @@ const other = (type, text) => {
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
-                    decorate.page.orderpassOrder.init({
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
                 });
@@ -9481,7 +9497,7 @@ const other = (type, text) => {
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
-            });
+                });
             });
         }
     });

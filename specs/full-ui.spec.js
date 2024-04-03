@@ -19,7 +19,8 @@ tests.workedJournalUi.other.calculationDateWorkedJournal();*/
 
 //data.deleteURVDocument();
 //tests.workedJournalUi.other.calculationDateWorkedJournal();
-data.addDataVisitor();
+//data.addDataVisitor();
+tests.visitorUi.otherVisitorOrder.addVisitorMaxParams();
 
 closeBrowser();
 
