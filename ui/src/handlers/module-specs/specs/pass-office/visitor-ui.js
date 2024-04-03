@@ -9485,6 +9485,7 @@ const other = (type, text) => {
                         timeout: entry.max
                     });
             });
+            });
         }
     });
 
