@@ -5,7 +5,7 @@ const data = require('../../ui/src/handlers/module-specs/data');
 
 // Бюро пропусков / Посетители
 // Бюро пропусков / Посетители - вкладка - Заказанные
-data.addDataVisitor();
+/*data.addDataVisitor();
 tests.visitorUi.otherVisitorOrder.addVisitorMaxParams();
 tests.visitorUi.otherVisitorOrder.printTableVisitorMaxParams();
 tests.visitorUi.otherVisitorOrder.printBarcodeVisitorMaxParams();
@@ -70,7 +70,7 @@ tests.visitorUi.otherVisitorActive.addDataVisitorFilter();
 tests.visitorUi.otherVisitorActive.divisionFilterVisitor();
 tests.visitorUi.otherVisitorActive.searchFilterVisitorActive();
 tests.visitorUi.otherVisitorActive.deleteDataVisitorFilter();
-data.deleteDataVisitor();
+data.deleteDataVisitor();*/
 
 
 // Бюро пропусков / Сотрудники

@@ -1176,8 +1176,14 @@ const other = (type, text) => {
                         name: 'Вернуться к списку сотрудников',
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                     decorate.modalConfirm.staffReturn.init({
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                     decorate.el.button.handler({
                         name: 'Подтвердить',
@@ -7407,12 +7413,8 @@ const other = (type, text) => {
                             name: 'Вернуться к списку сотрудников',
                             timeout: entry.max
                         });
-                        decorate.modalConfirm.staffReturn.init({
-                            timeout: entry.max
-                        });
-                        decorate.el.button.handler({
-                            name: 'Подтвердить',
-                            timeout: entry.max
+                        decorate.page.base.loading({
+                            timeout: entry.sleep2
                         });
                         decorate.page.staffActive.init({
                             timeout: entry.max
