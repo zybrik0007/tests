@@ -9130,7 +9130,7 @@ const other = (type, text) => {
                             'подразделение division1 в качестве карты',
                         timeout: entry.max
                     });
-                    decorate.el.button.handler({
+/*                    decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
                     });
@@ -9139,7 +9139,7 @@ const other = (type, text) => {
                     });
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
-                    });
+                    });*/
                 });
             });
         }
