@@ -782,10 +782,7 @@ const other = (type, text) => {
                 });
 
                 describe('Нажатие кнопки "Вернуться к списку посетителей".', () => {
-                    decorate.el.button.handler({
-                        name: 'Вернуться к списку посетителей',
-                        timeout: entry.max
-                    });
+                    decorate.page.base.refresh();
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });

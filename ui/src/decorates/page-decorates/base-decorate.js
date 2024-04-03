@@ -19,4 +19,8 @@ module.exports = {
 
         it('Отсутствие анимаций', async () => await dec.animation());
     }),
+
+    refresh: () => it('Обновление страницы', async () => await dec.simple(page.base.refresh,
+    [],
+    page.bax)),
 }
