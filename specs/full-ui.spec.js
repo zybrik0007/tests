@@ -20,8 +20,15 @@ tests.workedJournalUi.other.calculationDateWorkedJournal();*/
 //data.deleteURVDocument();
 //tests.workedJournalUi.other.calculationDateWorkedJournal();
 //data.addDataVisitor();
-tests.visitorUi.otherVisitorOrder.addVisitorMaxParams();
-tests.visitorUi.otherVisitorOrder.editVisitorMaxParams();
+// Бюро пропусков / Посетители - вкладка - Заказанные
+tests.visitorUi.otherVisitorOrder.importMinParams();
+tests.visitorUi.otherVisitorOrder.importMaxParams();
+tests.visitorUi.otherVisitorOrder.importFailed();
+
+// Бюро пропусков / Посетители - вкладка - Действующие
+tests.visitorUi.otherVisitorActive.importMinParams();
+tests.visitorUi.otherVisitorActive.importMaxParams();
+tests.visitorUi.otherVisitorActive.importFailed();
 
 closeBrowser();
 

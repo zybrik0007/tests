@@ -27,5 +27,6 @@ module.exports = {
     },
     visitor: {
         importVisitor: path.join(__dirname, 'files/visitor/import.visitor.xlsx.xlsx'),
+        importVisitorFaild: path.join(__dirname, 'files/visitor/import.visitor.faild.xlsx.xlsx'),
     }
 }

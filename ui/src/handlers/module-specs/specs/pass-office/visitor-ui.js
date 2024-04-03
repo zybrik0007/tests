@@ -6812,8 +6812,19 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
+                    decorate.el.button.handler({
+                        name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
                     decorate.page.visitorCurrent.init({
                         timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
             });
@@ -6822,7 +6833,7 @@ const other = (type, text) => {
 
     const importMinParams = () => describe(text + 'Проверка импорта с минимальным количеством параметров.', () => {
 
-        if(type === 'visitorOrder'){
+        if(type === 'visitorOrder') {
             describe('Импорт', () => {
                 befOrdered();
                 aft();
@@ -6850,19 +6861,19 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
@@ -6871,7 +6882,7 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Подразделение',
                     value: '',
-                    text: 'Подразделение',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.scrollTop({
@@ -6895,7 +6906,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.bodyGetText({
-                    value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                    value: 'Импорт завершен',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -7057,37 +7068,37 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Подразделение',
                     value: '',
-                    text: 'Подразделение',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Шаблон доступа',
                     value: '',
-                    text: 'Шаблон доступа',
+                    text: 'Шаблон доступа1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Карта доступа',
                     value: '',
-                    text: 'Карта',
+                    text: 'Карта1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.scrollTop({
@@ -7111,7 +7122,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.bodyGetText({
-                    value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                    value: 'Импорт завершен',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -7299,25 +7310,25 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.iconXpand({
                     title: 'Подразделение',
                     value: '',
-                    text: 'Подразделение',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.scrollTop({
@@ -7341,7 +7352,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.bodyGetText({
-                    value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                    value: 'Импорт завершен',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -7506,43 +7517,43 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Подразделение',
                     value: '',
-                    text: 'Подразделение',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Действует с',
                     value: '',
-                    text: 'Действителен c',
+                    text: 'Действителен c1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Действует до',
                     value: '',
-                    text: 'Действителен до',
+                    text: 'Действителен до1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Транспортные средства',
                     value: '',
-                    text: 'Транспортные средства',
+                    text: 'Транспортные средства1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.scrollTop({
@@ -7552,19 +7563,19 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Дата заказа',
                     value: '',
-                    text: 'Дата заказа',
+                    text: 'Дата заказа1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Email',
                     value: '',
-                    text: 'Email',
+                    text: 'Email1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Пин-код',
                     value: '',
-                    text: 'Пин-код',
+                    text: 'Пин-код1',
                     timeout: entry.max
                 });
                 decorate.el.checkbox.handler({
@@ -7584,7 +7595,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.bodyGetText({
-                    value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                    value: 'Импорт завершен',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -7833,6 +7844,20 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
+                    decorate.el.button.handler({
+                        name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                     decorate.page.visitorOrder.init({
                         timeout: entry.max
                     });
@@ -7897,43 +7922,43 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Подразделение',
                     value: '',
-                    text: 'Подразделение',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Шаблон доступа',
                     value: '',
-                    text: 'Шаблон доступа',
+                    text: 'Шаблон доступа1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Карта доступа',
                     value: '',
-                    text: 'Карта',
+                    text: 'Карта1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Действует с',
                     value: '',
-                    text: 'Действителен c',
+                    text: 'Действителен c1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.scrollTop({
@@ -7943,31 +7968,31 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Действует до',
                     value: '',
-                    text: 'Действителен до',
+                    text: 'Действителен до1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Транспортные средства',
                     value: '',
-                    text: 'Транспортные средства',
+                    text: 'Транспортные средства1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Дата создания',
                     value: '',
-                    text: 'Дата заказа',
+                    text: 'Дата заказа1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Email',
                     value: '',
-                    text: 'Email',
+                    text: 'Email1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Пин-код',
                     value: '',
-                    text: 'Пин-код',
+                    text: 'Пин-код1',
                     timeout: entry.max
                 });
                 decorate.el.checkbox.handler({
@@ -7987,7 +8012,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.bodyGetText({
-                    value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                    value: 'Импорт завершен',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -8242,6 +8267,20 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
+                    decorate.el.button.handler({
+                        name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                     decorate.page.visitorCurrent.init({
                         timeout: entry.max
                     });
@@ -8305,26 +8344,26 @@ const other = (type, text) => {
                 });
                 decorate.el.select.iconXpand({
                     title: 'Имя',
-                    value: '',
-                    text: 'Имя',
+                    value: 'Имя1',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
-                    value: '',
-                    text: 'Фамилия',
+                    value: 'Фамилия1',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
-                    value: '',
-                    text: 'Отчество',
+                    value: 'Отчество1',
+                    text: 'Отчество1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.iconXpand({
                     title: 'Подразделение',
-                    value: '',
-                    text: 'Подразделение',
+                    value: 'Подразделение1',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
@@ -8341,7 +8380,7 @@ const other = (type, text) => {
                 });
                 decorate.el.select.iconXpand({
                     title: 'Транспортные средства',
-                    value: '',
+                    value: 'Транспортные средства1',
                     text: 'Транспортные средства',
                     timeout: entry.max
                 });
@@ -8351,7 +8390,7 @@ const other = (type, text) => {
                 });
                 decorate.el.select.iconXpand({
                     title: 'Email',
-                    value: '',
+                    value: 'Email1',
                     text: 'Email',
                     timeout: entry.max
                 });
@@ -8372,7 +8411,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.bodyGetText({
-                    value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                    value: 'Импорт завершен',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -8558,6 +8597,20 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
+                    decorate.el.button.handler({
+                        name: 'Вернуться к списку посетителей',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
                     decorate.page.orderpassOrder.init({
                         timeout: entry.max
                     });
@@ -8600,21 +8653,21 @@ const other = (type, text) => {
             fileName: 'unimported.xlsx',
             jsonVisitorOrder: [
                 {
-                    'Отчет "Неимпортированные данные"': 'Фамилия',
-                    __EMPTY: 'Имя',
-                    __EMPTY_1: 'Отчество',
-                    __EMPTY_2: 'Сопровождающий',
-                    __EMPTY_3: 'Документ',
-                    __EMPTY_4: 'Номер документа',
-                    __EMPTY_5: 'Подразделение',
-                    __EMPTY_6: 'Дата заказа',
-                    __EMPTY_7: 'Действителен c',
-                    __EMPTY_8: 'Действителен до',
-                    __EMPTY_9: 'Шаблон доступа',
-                    __EMPTY_10: 'Карта',
-                    __EMPTY_11: 'Транспортные средства',
-                    __EMPTY_12: 'Email',
-                    __EMPTY_13: 'Пин-код',
+                    'Отчет "Неимпортированные данные"': 'Фамилия1',
+                    __EMPTY: 'Имя1',
+                    __EMPTY_1: 'Отчество1',
+                    __EMPTY_2: 'Сопровождающий1',
+                    __EMPTY_3: 'Документ1',
+                    __EMPTY_4: 'Номер документа1',
+                    __EMPTY_5: 'Подразделение1',
+                    __EMPTY_6: 'Дата заказа1',
+                    __EMPTY_7: 'Действителен c1',
+                    __EMPTY_8: 'Действителен до1',
+                    __EMPTY_9: 'Шаблон доступа1',
+                    __EMPTY_10: 'Карта1',
+                    __EMPTY_11: 'Транспортные средства1',
+                    __EMPTY_12: 'Email1',
+                    __EMPTY_13: 'Пин-код1',
                     __EMPTY_14: 'Ошибка'
                 },
                 {
@@ -8624,7 +8677,7 @@ const other = (type, text) => {
                     __EMPTY_2: 'staff name 1',
                     __EMPTY_3: 'passport',
                     __EMPTY_4: '2202 191535',
-                    __EMPTY_5: 'division4',
+                    __EMPTY_5: 'division100',
                     __EMPTY_6: '2023-06-01',
                     __EMPTY_7: '2023-06-01 00:00:00',
                     __EMPTY_8: '2033-06-01 23:59:00',
@@ -8633,26 +8686,26 @@ const other = (type, text) => {
                     __EMPTY_11: 'abc123 xyz123;abc1234 xyz1234;abc12345 xyz12345;abc12346 xyz123456',
                     __EMPTY_12: 'zybrik007@gmail.com',
                     __EMPTY_13: 'test-123456',
-                    __EMPTY_14: 'Отсутствует обязательное поле Подразделение'
+                    __EMPTY_14: 'Подразделение не валидно или не существует'
                 }
             ],
             jsonVisitorActive: [
                 {
-                    'Отчет "Неимпортированные данные"': 'Фамилия',
-                    __EMPTY: 'Имя',
-                    __EMPTY_1: 'Отчество',
-                    __EMPTY_2: 'Сопровождающий',
-                    __EMPTY_3: 'Документ',
-                    __EMPTY_4: 'Номер документа',
-                    __EMPTY_5: 'Подразделение',
-                    __EMPTY_6: 'Дата заказа',
-                    __EMPTY_7: 'Действителен c',
-                    __EMPTY_8: 'Действителен до',
-                    __EMPTY_9: 'Шаблон доступа',
-                    __EMPTY_10: 'Карта',
-                    __EMPTY_11: 'Транспортные средства',
-                    __EMPTY_12: 'Email',
-                    __EMPTY_13: 'Пин-код',
+                    'Отчет "Неимпортированные данные"': 'Фамилия1',
+                    __EMPTY: 'Имя1',
+                    __EMPTY_1: 'Отчество1',
+                    __EMPTY_2: 'Сопровождающий1',
+                    __EMPTY_3: 'Документ1',
+                    __EMPTY_4: 'Номер документа1',
+                    __EMPTY_5: 'Подразделение1',
+                    __EMPTY_6: 'Дата заказа1',
+                    __EMPTY_7: 'Действителен c1',
+                    __EMPTY_8: 'Действителен до1',
+                    __EMPTY_9: 'Шаблон доступа1',
+                    __EMPTY_10: 'Карта1',
+                    __EMPTY_11: 'Транспортные средства1',
+                    __EMPTY_12: 'Email1',
+                    __EMPTY_13: 'Пин-код1',
                     __EMPTY_14: 'Ошибка'
                 },
                 {
@@ -8662,7 +8715,7 @@ const other = (type, text) => {
                     __EMPTY_2: 'staff name 1',
                     __EMPTY_3: 'passport',
                     __EMPTY_4: '2202 191535',
-                    __EMPTY_5: 'division4',
+                    __EMPTY_5: 'division100',
                     __EMPTY_6: '2023-06-01',
                     __EMPTY_7: '2023-06-01 00:00:00',
                     __EMPTY_8: '2033-06-01 23:59:00',
@@ -8671,7 +8724,7 @@ const other = (type, text) => {
                     __EMPTY_11: 'abc123 xyz123;abc1234 xyz1234;abc12345 xyz12345;abc12346 xyz123456',
                     __EMPTY_12: 'zybrik007@gmail.com',
                     __EMPTY_13: 'test-123456',
-                    __EMPTY_14: 'Отсутствует обязательное поле Подразделение'
+                    __EMPTY_14: 'Подразделение не валидно или не существует'
                 }
             ],
             jsonVisitorPassOrder: [
@@ -8736,25 +8789,31 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.uploadFile({
-                    src: imp.visitor.importVisitor,
+                    src: imp.visitor.importVisitorFaild,
                     timeout: entry.upload
                 });
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Подразделение',
+                    value: '',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -8830,25 +8889,31 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.uploadFile({
-                    src: imp.visitor.importVisitor,
+                    src: imp.visitor.importVisitorFaild,
                     timeout: entry.upload
                 });
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Подразделение',
+                    value: '',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
@@ -8924,25 +8989,31 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.importFile.uploadFile({
-                    src: imp.visitor.importVisitor,
+                    src: imp.visitor.importVisitorFaild,
                     timeout: entry.upload
                 });
                 decorate.el.select.iconXpand({
                     title: 'Имя',
                     value: '',
-                    text: 'Имя',
+                    text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
                     value: '',
-                    text: 'Фамилия',
+                    text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
                     value: '',
-                    text: 'Отчество',
+                    text: 'Отчество1',
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Подразделение',
+                    value: '',
+                    text: 'Подразделение1',
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
