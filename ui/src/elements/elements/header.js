@@ -30,6 +30,7 @@ class Header extends BasePage {
 
     //Нажатие Выхода
     async exitHandler(timeout) {
+        await this.loading(1000);
         return await this.xpathHandler(elements.headerMenuItem('Выход'),
             'Нажатие "Выход" в заглавии.',
             timeout)

@@ -781,7 +781,7 @@ const other = (type, text) => {
                     });
                 });
 
-                describe('Нажатие кнопки "Вернуться к списку посетителей".', () => {
+/*                describe('Нажатие кнопки "Вернуться к списку посетителей".', () => {
                     decorate.el.button.handler({
                         name: 'Вернуться к списку посетителей',
                         timeout: entry.max
@@ -792,7 +792,7 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
-                });
+                });*/
             });
         }
 

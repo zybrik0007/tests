@@ -9236,6 +9236,21 @@ const deleteURV = () => describe('Удаление данных для тест�
     });
 });
 
+const dataTemplate = {
+    zone: {
+        name: 'zoneName',
+        description: 'zoneDescription'
+    },
+    zoneUpdate: {
+        name: 'zoneNameUpdate',
+        description: 'zoneDescriptionUpdate'
+    },
+    week: {},
+    slideZone: {},
+    slideWeek: {},
+    template: {},
+}
+
 module.exports =  {
     dataControlAccess,
     addDataControlAccess,

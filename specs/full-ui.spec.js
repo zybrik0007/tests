@@ -19,8 +19,7 @@ tests.workedJournalUi.other.calculationDateWorkedJournal();*/
 
 //data.deleteURVDocument();
 //tests.workedJournalUi.other.calculationDateWorkedJournal();
-data.deleteURVDocument();
-data.deleteURV();
+data.addDataVisitor();
 
 closeBrowser();
 
