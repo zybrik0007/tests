@@ -6035,8 +6035,19 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
-                    decorate.page.visitorOrder.init({
+                    decorate.el.button.handler({
+                        name: 'Вернуться к списку посетителей',
                         timeout: entry.max
+                    });
+                    decorate.modalConfirm.staffReturn.init({
+                        timeout: entry.max
+                    });
+                    decorate.el.button.handler({
+                        name: 'Подтвердить',
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                 });
             });

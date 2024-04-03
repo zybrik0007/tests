@@ -21,6 +21,7 @@ tests.workedJournalUi.other.calculationDateWorkedJournal();*/
 //tests.workedJournalUi.other.calculationDateWorkedJournal();
 //data.addDataVisitor();
 tests.visitorUi.otherVisitorOrder.addVisitorMaxParams();
+tests.visitorUi.otherVisitorOrder.editVisitorMaxParams();
 
 closeBrowser();
 
