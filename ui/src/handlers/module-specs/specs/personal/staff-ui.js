@@ -7016,6 +7016,13 @@ const other = (type, text) => {
                             name: 'Вернуться к списку сотрудников',
                             timeout: entry.max
                         });
+                        decorate.modalConfirm.staffReturn.init({
+                            timeout: entry.max
+                        });
+                        decorate.el.button.handler({
+                            name: 'Подтвердить',
+                            timeout: entry.max
+                        });
                         decorate.page.staffPass.init({
                             timeout: entry.max
                         });
