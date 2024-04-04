@@ -9495,20 +9495,19 @@ const other = (type, text) => {
 
             describe('Проверка таблицы после изпользования фильтра "Подразделение" через модальное окно "Подразделение"',
                 () => {
-                    decorate.el.table.size({
-                        strCount: 1,
-                        timeout: entry.max
-                    });
-                    decorate.el.table.cellGetText({
-                        headTitle: 'Подразделение',
-                        strNumber: 1,
-                        cellNumber: 4,
-                        value: data.divisions.division1.name,
-                        timeout: entry.max
-                    });
+                decorate.el.table.size({
+                    strCount: 1,
+                    timeout: entry.max
                 });
+                decorate.el.table.cellGetText({
+                    headTitle: 'Подразделение',
+                    strNumber: 1,
+                    cellNumber: 4,
+                    value: data.divisions.division1.name,
+                    timeout: entry.max
+                });
+            });
         }
-
     });
 
     const cardSearchStaffActive = () => describe(text + 'Проверка поиска по номеру карты.', () => {
@@ -9592,18 +9591,11 @@ const other = (type, text) => {
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
                 });
-                decorate.modalConfirm.staffReturn.init({
-                    timeout: entry.max
-                });
-                decorate.el.button.handler({
-                    name: 'Подтвердить',
-                    timeout: entry.max
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.page.staffActive.init({
                     timeout: entry.max
-                });
-                decorate.page.base.loading({
-                    timeout: entry.sleep2
                 });
             });
         }
@@ -9751,7 +9743,7 @@ const other = (type, text) => {
                 timeout: entry.max
             });
             decorate.modal.importFile.bodyGetText({
-                value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                value: 'Импорт завершен',
                 timeout: entry.max
             });
             decorate.el.button.handler({
@@ -9892,10 +9884,6 @@ const other = (type, text) => {
                     });
                     decorate.page.base.loading({
                         timeout: entry.sleep2
-                    });
-                    decorate.el.button.handler({
-                        name: 'Подтвердить',
-                        timeout: entry.max
                     });
                     decorate.page.staffActive.init({
                         timeout: entry.max
@@ -10070,7 +10058,7 @@ const other = (type, text) => {
                 timeout: entry.max
             });
             decorate.modal.importFile.bodyGetText({
-                value: 'Импорт завершен. 0 записей из 1 не было импортировано',
+                value: 'Импорт завершен',
                 timeout: entry.max
             });
             decorate.el.button.handler({
@@ -10375,23 +10363,23 @@ const other = (type, text) => {
             fileName: 'unimported.xlsx',
             json: [
                 {
-                    'Отчет "Неимпортированные данные"': 'Фамилия',
-                    __EMPTY: 'Имя',
-                    __EMPTY_1: 'Отчество',
-                    __EMPTY_2: 'Табельный номер',
-                    __EMPTY_3: 'Дата приема',
-                    __EMPTY_4: 'Действует с',
-                    __EMPTY_5: 'Действует до',
-                    __EMPTY_6: 'Подразделение',
-                    __EMPTY_7: 'Должность',
-                    __EMPTY_8: 'Шаблон доступа',
-                    __EMPTY_9: 'График работы',
-                    __EMPTY_10: 'Карта доступа',
-                    __EMPTY_11: 'Email',
-                    __EMPTY_12: 'Телефон',
-                    __EMPTY_13: 'Пин-код',
-                    __EMPTY_14: 'data1',
-                    __EMPTY_15: 'Транспортные средства',
+                    'Отчет "Неимпортированные данные"': 'Фамилия1',
+                    __EMPTY: 'Имя1',
+                    __EMPTY_1: 'Отчество1',
+                    __EMPTY_2: 'Табельный номер1',
+                    __EMPTY_3: 'Дата приема1',
+                    __EMPTY_4: 'Действует с1',
+                    __EMPTY_5: 'Действует до1',
+                    __EMPTY_6: 'Подразделение1',
+                    __EMPTY_7: 'Должность1',
+                    __EMPTY_8: 'Шаблон доступа1',
+                    __EMPTY_9: 'График работы1',
+                    __EMPTY_10: 'Карта доступа1',
+                    __EMPTY_11: 'Email1',
+                    __EMPTY_12: 'Телефон1',
+                    __EMPTY_13: 'Пин-код1',
+                    __EMPTY_14: 'data11',
+                    __EMPTY_15: 'Транспортные средства1',
                     __EMPTY_16: '__EMPTY',
                     __EMPTY_17: '__EMPTY_1',
                     __EMPTY_18: 'Ошибка'
@@ -10404,11 +10392,11 @@ const other = (type, text) => {
                     __EMPTY_3: '2023-06-01',
                     __EMPTY_4: '2023-06-01 00:00:00',
                     __EMPTY_5: '2033-06-01 23:00:00',
-                    __EMPTY_6: 'division1',
+                    __EMPTY_6: 'division100',
                     __EMPTY_7: 'position1',
                     __EMPTY_8: 'template1',
                     __EMPTY_9: 'schedule1',
-                    __EMPTY_10: 1,
+                    __EMPTY_10: '1',
                     __EMPTY_11: 'zybrik0007@rambler.ru',
                     __EMPTY_12: '+79819314277',
                     __EMPTY_13: 'test-123456',
@@ -10416,7 +10404,7 @@ const other = (type, text) => {
                     __EMPTY_15: 'abc123 xyz123;abc1234 xyz1234;abc12345 xyz12345;abc12346 xyz123456',
                     __EMPTY_16: '',
                     __EMPTY_17: '',
-                    __EMPTY_18: 'Отсутствует обязательное поле Подразделение'
+                    __EMPTY_18: 'Подразделение не валидно или не существует'
                 }
             ]
         }
@@ -10440,7 +10428,7 @@ const other = (type, text) => {
                 timeout: entry.max
             });
             decorate.modal.importFile.uploadFile({
-                src: imp.staff.importStaff,
+                src: imp.staff.importStaffFailed,
                 timeout: entry.upload
             });
             decorate.el.select.iconXpand({
@@ -10453,6 +10441,24 @@ const other = (type, text) => {
                 title: 'Фамилия',
                 value: '',
                 text: 'Фамилия1',
+                timeout: entry.max
+            });
+            decorate.el.select.iconXpand({
+                title: 'Отчество',
+                value: '',
+                text: 'Отчество1',
+                timeout: entry.max
+            });
+            decorate.el.select.iconXpand({
+                title: 'Табельный номер',
+                value: '',
+                text: 'Табельный номер1',
+                timeout: entry.max
+            });
+            decorate.el.select.iconXpand({
+                title: 'Подразделение',
+                value: '',
+                text: 'Подразделение1',
                 timeout: entry.max
             });
             decorate.el.button.handler({
