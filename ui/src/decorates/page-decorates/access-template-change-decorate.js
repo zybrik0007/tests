@@ -1,243 +1,116 @@
-/*
 const {it} = require('mocha');
 const page = require('../../pages');
 const dec = require('../../dictionaries/decorate');
 
 module.exports = {
 
-    init: ({timeout}) => it('Проверка заглавия и url.', async () => await dec.simple(page.orderpassArchive.init,
-        [timeout],
-        page.orderpassArchive)),
+    interval: ({numInterval, timeout}) => it('Отображение интервала блока по номеру.',
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.interval,
+            [numInterval, timeout],
+            page.accessTemplateScheduleChangePage)),
 
+    intervalActive: ({numInterval, timeout}) => it('Отображение активности интервального блока по номеру.',
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.intervalActive,
+            [numInterval, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    //Отображение интервала блока по номеру
-    async interval(numInterval, timeout) {
-        return await this.xpathElement(elements.pasAccessSchedule(numInterval),
-            `Отображение интервала c порядковым номером ${numInterval}.`,
-            timeout)
-    }
+    handler: ({numInterval, timeout}) => it(`Нажатие по интервалу с порядковым номером "${numInterval}".`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.handler,
+            [numInterval, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    //Отображение активности интервального блока по номеру
-    async intervalActive(timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleActive,
-            `Интерввал активен.`,
-            timeout)
-    }
+    noTimeInterval: ({numInterval, timeout}) =>
+        it(`Отсутствие временных блоков в интервале с порядковым номер "${numInterval}".`,
+            async () => await dec.simple(page.accessTemplateScheduleChangePage.noTimeInterval,
+            [numInterval, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    //Отображение не активности интервального блока по номеру
-    async intervalDisabled(numInterval, timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleDisabled(numInterval),
-            `Интерввал с порядковым номер ${numInterval} - не активен.`,
-            timeout)
-    }
+    intervalName: ({numInterval, value, timeout}) =>
+        it(`Название у интеравала с порядковым номером "${numInterval}" равно "${value}".`,
+            async () => await dec.simpleText(page.accessTemplateScheduleChangePage.intervalName,
+                [numInterval, timeout],
+                value,
+                page.accessTemplateScheduleChangePage)),
 
-    async handler(numInterval, timeout) {
-        return await this.xpathHandler(elements.pasAccessSchedule(numInterval),
-            `Нажатие по интервалу с порядковым номером ${numInterval}.`,
-            timeout)
-    }
+    intervalTitle: ({numInterval, value, timeout}) =>
+        it(`Название заголовка у интеравала с порядковым номером "${numInterval}" равно "${value}".`,
+            async () => await dec.simpleText(page.accessTemplateScheduleChangePage.intervalTitle,
+                [numInterval, timeout],
+                value,
+                page.accessTemplateScheduleChangePage)),
 
-    async noTimeInterval(numInterval, timeout) {
-        return await this.xpathNoElement(elements.pasAccessScheduleInterval(numInterval, 1),
-            `Отсутствие временных блоков в интервале с порядковым номер ${numInterval}.`,
-            timeout)
-    }
+    time: ({numInterval, numTime, timeout}) =>
+        it(`Отображение временного блока с порядковым номером "${numTime}" в интревале "${numInterval}".`,
+            async () => await dec.simple(page.accessTemplateScheduleChangePage.time,
+                [umInterval, numTime, timeout],
+                page.accessTemplateScheduleChangePage)),
 
-    //Получение значения имени интервального
-    async intervalName(numInterval, timeout) {
-        return await this.xpathGetText(elements.pasAccessScheduleName(numInterval),
-            `Получение значение имени у инеравала с порядковым номером ${numInterval}.`,
-            timeout)
-    }
+    timeRemove: ({numInterval, numTime, timeout}) =>
+        it(`Удаление временного блока с порядковым номером "${numTime}" в интревале "${numInterval}".`,
+            async () => await dec.simple(page.accessTemplateScheduleChangePage.timeRemove,
+                [numInterval, numTime, timeout],
+                page.accessTemplateScheduleChangePage)),
 
-    //Получение значения title интервального блока
-    async intervalTitle(numInterval, timeout) {
-        return await this.xpathGetText(elements.pasAccessScheduleTitle(numInterval),
-            `Получение значение заголовка у инеравала с порядковым номером ${numInterval}.`,
-            timeout)
-    }
+    startTimeSendKeys: ({numInterval, numTime, value, timeout}) => it(`Ввод ${value} как значение начала в интервале 
+    с порядковым номером ${numInterval} и временным блоком ${numTime}.`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.startTimeSendKeys,
+            [numInterval, numTime, value, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    //Отображение временного блока в интервале по номеру
-    async time(numInterval, numTime, timeout) {
-        return await this.xpathElement(elements.pasAccessScheduleInterval(numInterval, numTime),
-            `Отображение временного блока с порядковым номером ${numTime} в интревале ${numInterval}.`,
-            timeout)
-    }
+    endTimeSendKeys: ({numInterval, numTime, value, timeout}) => it(`Ввод ${value} как значение конца в интервале 
+    с порядковым номером ${numInterval} и временным блоком ${numTime}.`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.endTimeSendKeys,
+            [numInterval, numTime, value, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    async timeRemove(numInterval, numTime, timeout) {
-
-        const handler = await this.xpathHandler(elements.pasAccessScheduleInterval(numInterval, numTime),
-            `Нажатие по временному блоку с порядковым номером ${numTime} в интревале ${numInterval}.`,
-            timeout);
-
-        if(handler.error) {
-            return handler
-        }
-
-        return await this.xpathHandler(elements.pasAccessScheduleIntervalIcon(numInterval, numTime),
-            `Удаление временного блока с порядковым номером ${numTime} в интревале ${numInterval}.`,
-            timeout);
-    }
-
-    //Ввод значения начала временного блока в интервале
-    async startTimeSendKeys(numInterval, numTime, value, timeout) {
-
-        const handler = await this.xpathHandler(elements.pasAccessScheduleIntervalInput(numInterval, numTime, 1),
-            'click',
-            timeout)
-        if(handler.error) {
-            return handler
-        }
-
-        const send = await this.xpathSendKeys(elements.pasAccessScheduleIntervalInput(numInterval, numTime, 1),
-            `Ввод ${value} как значение начала в интервале с порядковым номером ${numInterval} и временным блоком ${numTime}.`,
+    startTimeGetValue: ({numInterval, numTime, value, timeout}) => it(`Значения времени начала в интервале с порядковым 
+    номером ${numInterval} и временного блока с порядковым номером ${numTime} равно "${value}".`,
+        async () => await dec.simpleText(page.accessTemplateScheduleChangePage.startTimeGetValue,
+            [numInterval, numTime, timeout],
             value,
-            timeout)
+            page.accessTemplateScheduleChangePage)),
 
-        if(send.error) {
-            return error
-        }
-
-        const enterHandler = await this.enter()
-        if(enterHandler.error) {
-            return error
-        }
-
-        return {
-            error: false,
-            description: `Введено ${value} как значение начала 
-            в интервале с порядковым номером ${numInterval} и временным блоком ${numTime}.`,
-        }
-
-    }
-
-    //Ввод значения окончания временного блока в интервале
-    async endTimeSendKeys(numInterval, numTime, value, timeout) {
-        const handler = await this.xpathHandler(elements.pasAccessScheduleIntervalInput(numInterval, numTime, 2),
-            'click',
-            timeout)
-        if(handler.error) {
-            return handler
-        }
-
-        const send = await this.xpathSendKeys(elements.pasAccessScheduleIntervalInput(numInterval, numTime, 2),
-            `Ввод ${value} как значение окончания в интервале 
-            с порядковым номером ${numInterval} и временным блоком ${numTime}.`,
+    endTimeGetValue: ({numInterval, numTime, value, timeout}) => it(`Значения времени конца в интервале с порядковым 
+    номером ${numInterval} и временного блока с порядковым номером ${numTime} равно "${value}".`,
+        async () => await dec.simpleText(page.accessTemplateScheduleChangePage.endTimeGetValue,
+            [numInterval, numTime, timeout],
             value,
-            timeout)
-        if(send.error) {
-            return error
-        }
+            page.accessTemplateScheduleChangePage)),
 
-        const enterHandler = await this.enter()
-        if(enterHandler.error) {
-            return error
-        }
+    sWeekName: ({strNum, value, timeout}) => it(`Значения названия недели с порядковым номером ${strNum}, в 
+    списке выбора недель равно "${value}".`,
+        async () => await dec.simpleText(page.accessTemplateScheduleChangePage.sWeekName,
+            [strNum, timeout],
+            value,
+            page.accessTemplateScheduleChangePage)),
 
-        return {
-            error: false,
-            description: `Введено ${value} как значение окончания в интервале 
-            с порядковым номером ${numInterval} и временным блоком ${numTime}.`,
-        }
-    }
-
-    //Получение значения врмени начала в интервале по по номеру
-    async startTimeGetValue(numInterval, numTime, timeout) {
-        return await this.xpathGetAttribute(elements.pasAccessScheduleIntervalInput(numInterval, numTime, 1),
-            `Получение значения времени начала в интервале с порядковым номером ${numInterval} 
-            и временного блока с порядковым номером ${numTime}`,
-            'value',
-            timeout)
-    }
-
-    //Получение значения врмени окончания в интервале по по номеру
-    async endTimeGetValue(numInterval, numTime, timeout) {
-        return await this.xpathGetAttribute(elements.pasAccessScheduleIntervalInput(numInterval, numTime, 2),
-            `Получение значения времени окончания в интервале с порядковым номером ${numInterval} 
-            и временного блока с порядковым номером ${numTime}`,
-            'value',
-            timeout)
-    }
-
-    // Скролл в недельном графике от верха
-    async scrollWeekTop() {
-        const scroll = await this.script(elements.passAccessScheduleChangeWeekScroll(0, 737),
-            'Скролл недельных интервалов.')
-        await this.loading(1000)
-        return scroll
-    }
-
-    //Имя недели из списка недель для выбора по порядковому номеру
-    async sWeekName(strNum, timeout) {
-        return await this.xpathGetText(elements.passAccessScheduleChangeSWeekName(1, strNum),
-            `Получение значения названия недели с порядковым номером ${strNum}, в списке выбора недель.`,
-            timeout)
-    }
-
-    //Кнопка из списка недель для выбора по порядковому номеру
-    async sWeekHandler(strNum, timeout) {
-        const handler = await this.xpathHandler(elements.passAccessScheduleChangeSWeekBut(1, strNum),
-            `Нажатие по кнопке добавления недели с порядковым номером ${strNum}, в списке выбора недель.`,
-            timeout)
-        await this.loading(500);
-        return handler
-    }
-
-    //Двйное нажатие кнопка из списка недель для выбора по порядковому номеру
-    async sWeekDBHandler(strNum, timeout) {
-        const handler =  await this.xpathDbHandler(elements.passAccessScheduleChangeSWeekBut(1, strNum),
-            `Двойное нажатие по кнопке добавления недели с порядковым номером ${strNum}, 
+    sWeekHandler: ({strNum, timeout}) => it(`Нажатие по кнопке добавления недели с порядковым номером ${strNum}, 
             в списке выбора недель.`,
-            timeout)
-        await this.loading(500)
-        return handler
-    }
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.sWeekHandler,
+            [strNum, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    //Список недель из списка для выбора
-    async sWeekList(size, timeout) {
-        return await this.xpathList(elements.passAccessScheduleChangeSWeekList(1),
-            `Количетсво недель для выбора равно ${size}.`,
-            size,
-            timeout)
-    }
+    sWeekList: ({size, timeout}) => it(`Количетсво недель для выбора равно ${size}.`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.sWeekList,
+            [size, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    //Скролл недель из списка для выбора
-    async sWeekScroll() {
-        const scroll = await this.script(elements.passAccessScheduleChangeSWeekScroll(0, 726),
-            'Скролл недель из списка для выбора.')
-        await this.loading(1000)
-        return scroll
-    }
+    sWeekSelectedName: ({strNum, value, timeout}) => it(`Значения названия недели с порядковым номером ${strNum}, 
+    в списке выбранных недель равно "${value}".`,
+        async () => await dec.simpleText(page.accessTemplateScheduleChangePage.sWeekSelectedName,
+            [strNum, timeout],
+            value,
+            page.accessTemplateScheduleChangePage)),
 
-    //Имя недели из списка выбранных недель по порядковому номеру
-    async sWeekSelectedName(strNum, timeout) {
-        return await this.xpathGetText(elements.passAccessScheduleChangeSWeekName(2, strNum),
-            `Получение значения названия недели с порядковым номером ${strNum}, в списке выбранных недель.`,
-            timeout)
-    }
+    sWeekSelectedHandler: ({strNum, timeout}) => it(`Нажатие по кнопке удаление недели с порядковым номером ${strNum}, 
+    в списке выбранных недель.`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.sWeekSelectedHandler,
+            [strNum, timeout],
+            page.accessTemplateScheduleChangePage)),
 
-    //Кнопка из списка выбранных недель по порядковому номеру
-    async sWeekSelectedHandler(strNum, timeout) {
-        const handler = await this.xpathHandler(elements.passAccessScheduleChangeSWeekBut(2, strNum),
-            `Нажатие по кнопке удаление недели с порядковым номером ${strNum}, в списке выбранных недель.`,
-            timeout)
-        await this.loading(500)
-        return handler
-    }
-
-    //Список недель из списка выбранных
-    async sWeekSelectedList(size, timeout) {
-        return await this.xpathList(elements.passAccessScheduleChangeSWeekList(2),
-            `Количетсво выбранных недель равно ${size}.`,
-            size,
-            timeout)
-    }
-
-    //Скролл н недель из списка выбранных
-    async sWeekSelectedScroll() {
-        const scroll = await this.script(elements.passAccessScheduleChangeSWeekSelectedScroll(0, 726),
-            'Скролл недель из списка выбранных.')
-        await this.loading(1000)
-        return scroll
-    }
-}*/
+    sWeekSelectedList: ({strNum, timeout}) => it(`Нажатие по кнопке удаление недели с порядковым номером ${strNum}, 
+    в списке выбранных недель.`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.sWeekSelectedList,
+        [size, timeout],
+        page.accessTemplateScheduleChangePage)),
+}
