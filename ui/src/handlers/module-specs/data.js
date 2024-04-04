@@ -9239,11 +9239,19 @@ const deleteURV = () => describe('Удаление данных для тест�
 const dataTemplate = {
     zone: {
         name: 'zoneName',
-        description: 'zoneDescription'
+        intervalsValue: [
+            {begin: 0, end: 21540},
+            {begin: 21600, end: 43140},
+            {begin: 43200, end: 64740},
+            {begin: 64800, end: 86340}
+        ]
     },
     zoneUpdate: {
         name: 'zoneNameUpdate',
-        description: 'zoneDescriptionUpdate'
+        description: 'zoneDescriptionUpdate',
+        intervals: [
+            {begin: '00:05', end: '23:55'},
+        ]
     },
     week: {},
     slideZone: {},
@@ -9272,4 +9280,5 @@ module.exports =  {
     deleteURV,
     addURVDocument,
     deleteURVDocument,
+    dataTemplate,
 }

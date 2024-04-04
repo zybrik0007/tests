@@ -2005,7 +2005,7 @@ const other = (type, text) => {
                     decorate.page.base.loading({
                         timeout: entry.sleep2
                     });
-                    decorate.page.visitorOrder.init({
+                    decorate.page.orderpassOrder.init({
                         timeout: entry.max
                     });
                 });
@@ -8344,25 +8344,25 @@ const other = (type, text) => {
                 });
                 decorate.el.select.iconXpand({
                     title: 'Имя',
-                    value: 'Имя1',
+                    value: '',
                     text: 'Имя1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Фамилия',
-                    value: 'Фамилия1',
+                    value: '',
                     text: 'Фамилия1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Отчество',
-                    value: 'Отчество1',
+                    value: '',
                     text: 'Отчество1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.iconXpand({
                     title: 'Подразделение',
-                    value: 'Подразделение1',
+                    value: '',
                     text: 'Подразделение1',
                     timeout: entry.max
                 });
@@ -8380,8 +8380,8 @@ const other = (type, text) => {
                 });
                 decorate.el.select.iconXpand({
                     title: 'Транспортные средства',
-                    value: 'Транспортные средства1',
-                    text: 'Транспортные средства',
+                    value: '',
+                    text: 'Транспортные средства1',
                     timeout: entry.max
                 });
                 decorate.modal.importFile.scrollTop({
@@ -8390,7 +8390,7 @@ const other = (type, text) => {
                 });
                 decorate.el.select.iconXpand({
                     title: 'Email',
-                    value: 'Email1',
+                    value: '',
                     text: 'Email',
                     timeout: entry.max
                 });

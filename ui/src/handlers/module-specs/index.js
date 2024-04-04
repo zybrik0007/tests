@@ -10,7 +10,7 @@ module.exports = {
     //Бюро пропусков
     visitorUi: require('./specs/pass-office/visitor-ui'),
     //scheduleUi: require('./specs/pass-office/access-template-schedule-ui'),
-    templateUi: require('./specs/pass-office/access-template-ui'),
+    templateUi: require('./specs/pass-office/template-ui'),
 
     //УРВ
     workedJournalUi: require('./specs/urv/worked-journal-ui'),

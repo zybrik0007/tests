@@ -8,7 +8,7 @@ module.exports = {
             [title, value, timeout],
             el.select)),
 
-    noSelect: ({title, value, timeout}) => it(`Отсуствие выпадающего списка ${title} - ${value}.`,
+    noSelect: ({title, value, timeout}) => it(`Отсутствие выпадающего списка ${title} - ${value}.`,
         async () => await dec.simple(el.select.noSelect,
             [title, value, timeout],
             el.select)),

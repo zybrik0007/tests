@@ -1,6 +1,8 @@
 const ModalConfirmDecorate = require('./elements-decorates/modal-confirm-decorate');
 const ModalDecorate = require('./elements-decorates/modal-decorate');
-const modalPhoto = require('./modal-decorates/photo-modal-decorate')
+const modalPhoto = require('./modal-decorates/photo-modal-decorate');
+const page = require('../pages');
+const init = require('./other/init');
 
 module.exports = {
     el: {
@@ -176,5 +178,9 @@ module.exports = {
             'сотрудников. Ранее введенные карты посетителей и карты сотрудников больше 100 (в порядке добавления) ' +
             'будут заблокированы. Также будут отключены остальные модули, кроме "Базовый пакет".')
     },
+    init: {
+        accessSchedule: () => init(page.accessTemplateSchedulePage),
+        accessScheduleChangeAdd: () => init(page.accessTemplateScheduleChangePage)
+    }
 }
 
