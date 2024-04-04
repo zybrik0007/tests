@@ -4,8 +4,11 @@ const clearMemory = require('../ui/src/handlers/other/clearMemory');
 const data = require('../ui/src/handlers/module-specs/data');
 const decorate = require('../ui/src/decorates');
 
-
-tests.templateUi.otherZone.add();
+//data.addDataVisitor();
+tests.visitorUi.otherVisitorPassOrder.addVisitorMaxParams();
+tests.visitorUi.otherVisitorPassOrder.exportXLSXVisitorMaxParams();
+tests.visitorUi.otherVisitorPassOrder.exportCSVVisitorMaxParams();
+data.deleteDataVisitor();
 
 closeBrowser();
 

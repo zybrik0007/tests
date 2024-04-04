@@ -1,9 +1,9 @@
 module.exports = {
     browser: process.env.a100browser || 'chrome',
-    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): false,
+    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): true,
     width: Number(process.env.a113width) || 1920,
     height: Number(process.env.a114height) || 1080,
-    address: process.env.a101address || 'http://localhost/',
+    address: process.env.a101address || 'http://172.17.0.50:8080/',
     user: process.env.a110user || 'Администратор',
     login: process.env.a111admLogin || 'adm',
     password: process.env.a112admPassword || 'admin1',
@@ -33,7 +33,7 @@ module.exports = {
         port: process.env.a117database_port || '3306',
         user: process.env.a118database_user || 'admin',
         password: process.env.a119database_password || '123456',
-        database: process.env.a120database_name || 'auto_dev_20032024'
+        database: process.env.a120database_name || 'perco_selenium_01042024_1'
     }
 }
 
