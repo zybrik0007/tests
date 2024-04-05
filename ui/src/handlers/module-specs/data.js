@@ -3690,6 +3690,7 @@ const dataVisitor = {
     },
     event1: new Date().toLocaleDateString('fr-ca') + ' 00:00:00',
     event2: new Date().toLocaleDateString('fr-ca') + ' 01:00:00',
+    event3: new Date().toLocaleDateString('fr-ca') + ' 23:59:00',
 }
 
 const addDataVisitor = () => describe('Добавление данных для тестирвоания фильтров подразделов: ' +

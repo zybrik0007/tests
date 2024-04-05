@@ -8359,13 +8359,13 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Действует с',
                     value: '',
-                    text: 'Действителен c',
+                    text: 'Действителен c1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
                     title: 'Действует до',
                     value: '',
-                    text: 'Действителен до',
+                    text: 'Действителен до1',
                     timeout: entry.max
                 });
                 decorate.el.select.iconXpand({
@@ -8381,7 +8381,7 @@ const other = (type, text) => {
                 decorate.el.select.iconXpand({
                     title: 'Email',
                     value: '',
-                    text: 'Email',
+                    text: 'Email1',
                     timeout: entry.max
                 });
                 decorate.el.checkbox.handler({
@@ -8719,21 +8719,21 @@ const other = (type, text) => {
             ],
             jsonVisitorPassOrder: [
                 {
-                    'Отчет "Неимпортированные данные"': 'Фамилия',
-                    __EMPTY: 'Имя',
-                    __EMPTY_1: 'Отчество',
-                    __EMPTY_2: 'Сопровождающий',
-                    __EMPTY_3: 'Документ',
-                    __EMPTY_4: 'Номер документа',
-                    __EMPTY_5: 'Подразделение',
-                    __EMPTY_6: 'Дата заказа',
-                    __EMPTY_7: 'Действителен c',
-                    __EMPTY_8: 'Действителен до',
-                    __EMPTY_9: 'Шаблон доступа',
-                    __EMPTY_10: 'Карта',
-                    __EMPTY_11: 'Транспортные средства',
-                    __EMPTY_12: 'Email',
-                    __EMPTY_13: 'Пин-код',
+                    'Отчет "Неимпортированные данные"': 'Фамилия1',
+                    __EMPTY: 'Имя1',
+                    __EMPTY_1: 'Отчество1',
+                    __EMPTY_2: 'Сопровождающий1',
+                    __EMPTY_3: 'Документ1',
+                    __EMPTY_4: 'Номер документа1',
+                    __EMPTY_5: 'Подразделение1',
+                    __EMPTY_6: 'Дата заказа1',
+                    __EMPTY_7: 'Действителен c1',
+                    __EMPTY_8: 'Действителен до1',
+                    __EMPTY_9: 'Шаблон доступа1',
+                    __EMPTY_10: 'Карта1',
+                    __EMPTY_11: 'Транспортные средства1',
+                    __EMPTY_12: 'Email1',
+                    __EMPTY_13: 'Пин-код1',
                     __EMPTY_14: 'Ошибка'
                 },
                 {
@@ -8743,7 +8743,7 @@ const other = (type, text) => {
                     __EMPTY_2: 'staff name 1',
                     __EMPTY_3: 'passport',
                     __EMPTY_4: '2202 191535',
-                    __EMPTY_5: 'division4',
+                    __EMPTY_5: 'division100',
                     __EMPTY_6: '2023-06-01',
                     __EMPTY_7: '2023-06-01 00:00:00',
                     __EMPTY_8: '2033-06-01 23:59:00',
@@ -8752,7 +8752,7 @@ const other = (type, text) => {
                     __EMPTY_11: 'abc123 xyz123;abc1234 xyz1234;abc12345 xyz12345;abc12346 xyz123456',
                     __EMPTY_12: 'zybrik007@gmail.com',
                     __EMPTY_13: 'test-123456',
-                    __EMPTY_14: 'Отсутствует обязательное поле Подразделение'
+                    __EMPTY_14: 'Подразделение не валидно или не существует'
                 }
             ]
         }
