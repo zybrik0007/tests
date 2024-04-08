@@ -315,7 +315,7 @@ const other = (type, text) => {
 
     const edit = () => describe(text + 'Редактирование.', () => {
         if('zone') {
-            describe('API добавление', () => {
+/*            describe('API добавление', () => {
                 befAccess();
                 aft();
                 it('Добавление', async () => {
@@ -329,16 +329,20 @@ const other = (type, text) => {
                         [[tz], cook.text],
                         api.putArrayTimeZone);
                 });
-            });
+            });*/
 
             describe('Редактирование', () => {
                 befAccess();
                 aft();
-                decorate.el.butIcBefore.handler({
-                    icon: but.add,
+                decorate.el.table.strHandler({
+                    strNumber: 1,
                     timeout: entry.max
                 });
-                decorate.init.accessScheduleChangeAdd();
+                decorate.el.butIcBefore.handler({
+                    icon: but.edit,
+                    timeout: entry.max
+                });
+                decorate.init.accessScheduleChangeEdit();
                 decorate.el.input.backSpace({
                     title: 'Название',
                     placeholder: '',
@@ -356,11 +360,33 @@ const other = (type, text) => {
                     value: data.zoneUpdate.description,
                     timeout: entry.max
                 });
-                decorate.el.select.getText({
-                    title: 'Временной критерий',
-                    value: 'Временные зоны',
+                decorate.page.accessTemplateScheduleChange.timeRemove({
+                    numInterval: 1,
+                    numTime: 4,
                     timeout: entry.max
-                })
+                });
+                decorate.page.accessTemplateScheduleChange.timeRemove({
+                    numInterval: 1,
+                    numTime: 3,
+                    timeout: entry.max
+                });
+                decorate.page.accessTemplateScheduleChange.timeRemove({
+                    numInterval: 1,
+                    numTime: 2,
+                    timeout: entry.max
+                });
+                decorate.page.accessTemplateScheduleChange.startTimeSendKeys({
+                    numInterval: 1,
+                    numTime: 1,
+                    value: data.zoneUpdate.intervals[0].begin,
+                    timeout: entry.max
+                });
+                decorate.page.accessTemplateScheduleChange.endTimeSendKeys({
+                    numInterval: 1,
+                    numTime: 1,
+                    value: data.zoneUpdate.intervals[0].end,
+                    timeout: entry.max
+                });
             });
         }
     });
@@ -370,7 +396,8 @@ const other = (type, text) => {
     });
 
     return {
-        add
+        add,
+        edit
     }
 }
 

@@ -66,6 +66,10 @@ const dataControlAccess = {
             parent_id: 0,
             name: 'division3',
         },
+        division4: {
+            parent_id: 0,
+            name: 'division4',
+        },
     },
     positions: {
         position1: {
@@ -80,11 +84,16 @@ const dataControlAccess = {
             name: 'position3',
             comment: ''
         },
+        position4: {
+            name: 'position4',
+            comment: ''
+        },
     },
     templates: {
         template1: 'template1',
         template2: 'template2',
         template3: 'template3',
+        template4: 'template4',
     },
     template: (name, zone1Id, zone2Id, zone3Id) => {
         return {
@@ -222,6 +231,19 @@ const dataControlAccess = {
             end_datetime: '2033-01-01 00:00:00',
             identifier: [{identifier:"3", is_universal: true}],
         },
+        staff4: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '4',
+            tabel_number: '4',
+            hiring_date: '2023-02-01',
+            division: 'division4',
+            position: 'position4',
+            access_template: ['template4'],
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00',
+            identifier: [{identifier:"7", is_universal: true}],
+        },
     },
     visitor: {
         visitor1: {
@@ -265,6 +287,7 @@ const dataControlAccess = {
         staff1: 'staff name 1',
         staff2: 'staff name 2',
         staff3: 'staff name 3',
+        staff4: 'staff name 4',
         visitor1: 'visitor name 1',
         visitor2: 'visitor name 2',
         visitor3: 'visitor name 3',
@@ -414,6 +437,20 @@ const dataControlAccess = {
                 access_zone_id1: 'Неконтролируемая территория',
                 access_zone_id2: 'room1'
             },
+            event2: {
+                time_label: '"2023-06-01 08:00:00"',
+                time_label_utc: '"2023-06-01 05:00:00"',
+                event_type: 17,
+                resource_number: 1,
+                resource_type: 12,
+                identifier: '6',
+                user_id: '',
+                device_id: '',
+                access_zone_id1: 'Неконтролируемая территория',
+                access_zone_id2: 'room1'
+            },
+
+
         },
     },
     eventDate: {
@@ -422,6 +459,7 @@ const dataControlAccess = {
         event3: new Date().toLocaleDateString('fr-ca') + ' ' + '05:00:00',
         event4: '2033-01-01 00:00:00',
         event5: '2023-06-01 08:00:00',
+        event6: '2023-06-01 08:00:00',
     },
     date: () => {
         const yesterday = new Date(new Date() - 24*3600*1000).toLocaleDateString('fr-ca');
@@ -450,7 +488,7 @@ const dataControlAccess = {
     dateCard: '2023-06-01 08:00:00',
     endDate: '2033-01-01',
     june6Now: () => '2023-06-06 ' + new Date().toLocaleTimeString().slice(0,-3),
-    june7Now: () => '2023-06-07 ' + new Date().toLocaleTimeString().slice(0,-3)
+    june7Now: () => '2023-06-07 ' + new Date().toLocaleTimeString().slice(0,-3),
 }
 
 const addDataControlAccess = () => describe('Добавление данных для тестирования отчетов раздела Котроль доступа',
@@ -499,12 +537,14 @@ const addDataControlAccess = () => describe('Добавление данных �
         decItApi.addDivision(params.divisions.division1);
         decItApi.addDivision(params.divisions.division2);
         decItApi.addDivision(params.divisions.division3);
+        decItApi.addDivision(params.divisions.division4);
     });
 
     describe('Добавление должностей', () => {
         decItApi.addPosition(params.positions.position1);
         decItApi.addPosition(params.positions.position2);
         decItApi.addPosition(params.positions.position3);
+        decItApi.addPosition(params.positions.position4);
     });
 
     describe('Добавление шаблонов доступа', () => {
@@ -537,6 +577,16 @@ const addDataControlAccess = () => describe('Добавление данных �
             const arrZone = await api.getRoom(cook.text);
             const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
             const template = params.templateOneRoom(params.templates.template3, id1);
+            await dec.simple(api.putAccessTemplate,
+                [[template], cook.text],
+                api.putAccessTemplate);
+        });
+
+        it(`Добавление шаблона доступа "${params.templates.template4}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrZone = await api.getRoom(cook.text);
+            const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
+            const template = params.templateOneRoom(params.templates.template4, id1);
             await dec.simple(api.putAccessTemplate,
                 [[template], cook.text],
                 api.putAccessTemplate);
@@ -592,6 +642,25 @@ const addDataControlAccess = () => describe('Добавление данных �
             const templateId = arrTemplate.text.filter(obj => obj.name === params.staff.staff3.access_template[0])[0].id;
             const staff = {
                 ...params.staff.staff3,
+                division: divisionId,
+                position: positionId,
+                access_template: [templateId]
+            }
+            await dec.simple(api.putStaff,
+                [[staff], cook.text],
+                api.putStaff);
+        });
+
+        it(`Добавление сотрудника "${params.fio.staff4}".`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrDivision = await api.getDivision(cook.text);
+            const divisionId = arrDivision.text.filter(obj => obj.name === params.staff.staff4.division)[0].id;
+            const arrPosition = await api.getPosition(cook.text);
+            const positionId = arrPosition.text.filter(obj => obj.name === params.staff.staff4.position)[0].id;
+            const arrTemplate = await api.getTemplate(cook.text);
+            const templateId = arrTemplate.text.filter(obj => obj.name === params.staff.staff4.access_template[0])[0].id;
+            const staff = {
+                ...params.staff.staff4,
                 division: divisionId,
                 position: positionId,
                 access_template: [templateId]
@@ -659,6 +728,7 @@ const addDataControlAccess = () => describe('Добавление данных �
             const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff1)[0].id;
             const staff2 = arrStaff.text.filter(obj => obj.name === params.fio.staff2)[0].id;
             const staff3 = arrStaff.text.filter(obj => obj.name === params.fio.staff3)[0].id;
+            const staff4 = arrStaff.text.filter(obj => obj.name === params.fio.staff4)[0].id;
 
             const arrVisitor = await api.getVisitor(cook.text);
             const visitor1 = arrVisitor.text.filter(obj => obj.name === params.fio.visitor1)[0].id;
@@ -929,6 +999,15 @@ const addDataControlAccess = () => describe('Добавление данных �
 
             await dec.simple(db.updateUserCard,
                 [{
+                    user_id: staff4,
+                    identifier: params.staff.staff4.identifier[0].identifier,
+                    operator_id: 1,
+                    create_date: params.dateCard
+                }],
+                db.addEvent);
+
+            await dec.simple(db.updateUserCard,
+                [{
                     user_id: visitor1,
                     identifier: params.visitor.visitor1.identifier[0].identifier,
                     operator_id: 1,
@@ -951,6 +1030,17 @@ const addDataControlAccess = () => describe('Добавление данных �
                     identifier: params.visitor.visitor3.identifier[0].identifier,
                     operator_id: 1,
                     create_date: params.dateCard
+                }],
+                db.addEvent);
+
+            await dec.simple(db.addEvent,
+                [{
+                    ...params.event.visitor3.event2,
+                    user_id: visitor3,
+                    device_id: device1,
+                    access_zone_id1: room1,
+                    access_zone_id2: room0,
+                    event_type: 17
                 }],
                 db.addEvent);
         });
@@ -1016,6 +1106,7 @@ const deleteDataControlAccess = () => describe('Удаление данных д
             const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff1)[0].id;
             const staff2 = arrStaff.text.filter(obj => obj.name === params.fio.staff2)[0].id;
             const staff3 = arrStaff.text.filter(obj => obj.name === params.fio.staff3)[0].id;
+            const staff4 = arrStaff.text.filter(obj => obj.name === params.fio.staff4)[0].id;
 
             await dec.simple(db.deleteUser,
                 [staff1],
@@ -1029,9 +1120,10 @@ const deleteDataControlAccess = () => describe('Удаление данных д
                 [staff3],
                 db.deleteUser);
 
-            /*        await dec.simple(api.deleteStaff,
-                        [[staff1, staff2, staff3], cook.text],
-                        api.deleteStaff);*/
+            await dec.simple(db.deleteUser,
+                [staff4],
+                db.deleteUser);
+
         });
 
         it('Удаление посетителей', async () => {
@@ -1064,9 +1156,10 @@ const deleteDataControlAccess = () => describe('Удаление данных д
             const position1 = arrPosition.text.filter(obj => obj.name === params.positions.position1.name)[0].id;
             const position2 = arrPosition.text.filter(obj => obj.name === params.positions.position2.name)[0].id;
             const position3 = arrPosition.text.filter(obj => obj.name === params.positions.position3.name)[0].id;
+            const position4 = arrPosition.text.filter(obj => obj.name === params.positions.position4.name)[0].id;
 
             await dec.simple(api.deletePosition,
-                [[position1, position2, position3], cook.text],
+                [[position1, position2, position3, position4], cook.text],
                 api.deletePosition)
         });
 
@@ -1077,9 +1170,10 @@ const deleteDataControlAccess = () => describe('Удаление данных д
             const template1 = arrTemplate.text.filter(obj => obj.name === params.templates.template1)[0].id;
             const template2 = arrTemplate.text.filter(obj => obj.name === params.templates.template2)[0].id;
             const template3 = arrTemplate.text.filter(obj => obj.name === params.templates.template3)[0].id;
+            const template4 = arrTemplate.text.filter(obj => obj.name === params.templates.template4)[0].id;
             console.log(template1)
             await dec.simple(api.deleteTemplate,
-                [[template1, template2, template3], cook.text],
+                [[template1, template2, template3, template4], cook.text],
                 api.deleteTemplate);
         });
 
@@ -1089,9 +1183,10 @@ const deleteDataControlAccess = () => describe('Удаление данных д
             const division1 = arrDivision.text.filter(obj => obj.name === params.divisions.division1.name)[0].id;
             const division2 = arrDivision.text.filter(obj => obj.name === params.divisions.division2.name)[0].id;
             const division3 = arrDivision.text.filter(obj => obj.name === params.divisions.division3.name)[0].id;
+            const division4 = arrDivision.text.filter(obj => obj.name === params.divisions.division4.name)[0].id;
 
             await dec.simple(api.deleteDivision,
-                [[division1, division2, division3], cook.text],
+                [[division1, division2, division3, division4], cook.text],
                 api.deleteDivision);
         });
 

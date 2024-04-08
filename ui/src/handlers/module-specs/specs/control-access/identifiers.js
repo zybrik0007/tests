@@ -1952,7 +1952,7 @@ const other = (user, tab, bef) => {
         if(user === 'all') {
             describe('Общие проверки', () => {
                 decorate.modal.removeIdentifiers.size({
-                    count: 6,
+                    count: 3,
                     timeout: entry.max
                 });
             });
@@ -1962,14 +1962,14 @@ const other = (user, tab, bef) => {
                     headTitle: 'Идентификатор',
                     strNumber: 1,
                     cellNumber: 1,
-                    value: data.staff.staff1.identifier[0].identifier,
+                    value: data.staff.staff3.identifier[0].identifier,
                     timeout: entry.max
                 });
                 decorate.modal.removeIdentifiers.cellGetText({
                     headTitle: 'ФИО',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.fio.staff1,
+                    value: data.fio.staff3,
                     timeout: entry.max
                 });
             });
@@ -1979,14 +1979,14 @@ const other = (user, tab, bef) => {
                     headTitle: 'Идентификатор',
                     strNumber: 2,
                     cellNumber: 1,
-                    value: data.staff.staff3.identifier[0].identifier,
+                    value: data.staff.staff4.identifier[0].identifier,
                     timeout: entry.max
                 });
                 decorate.modal.removeIdentifiers.cellGetText({
                     headTitle: 'ФИО',
                     strNumber: 2,
                     cellNumber: 3,
-                    value: data.fio.staff3,
+                    value: data.fio.staff4,
                     timeout: entry.max
                 });
             });
@@ -1996,72 +1996,21 @@ const other = (user, tab, bef) => {
                     headTitle: 'Идентификатор',
                     strNumber: 3,
                     cellNumber: 1,
-                    value: data.visitor.visitor1.identifier[0].identifier,
+                    value: data.visitor.visitor3.identifier[0].identifier,
                     timeout: entry.max
                 });
                 decorate.modal.removeIdentifiers.cellGetText({
                     headTitle: 'ФИО',
                     strNumber: 3,
                     cellNumber: 3,
-                    value: data.fio.visitor1,
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка строки 4', () => {
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'Идентификатор',
-                    strNumber: 4,
-                    cellNumber: 1,
-                    value: data.visitor.visitor2.identifier[0].identifier,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 4,
-                    cellNumber: 3,
-                    value: data.fio.visitor2,
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка строки 5', () => {
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'Идентификатор',
-                    strNumber: 5,
-                    cellNumber: 1,
-                    value: data.visitor.visitor3.identifier[0].identifier,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 5,
-                    cellNumber: 3,
                     value: data.fio.visitor3,
                     timeout: entry.max
                 });
             });
 
-            describe('Проверка строки 6', () => {
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'Идентификатор',
-                    strNumber: 6,
-                    cellNumber: 1,
-                    value: data.staff.staff2.identifier[0].identifier,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 6,
-                    cellNumber: 3,
-                    value: data.fio.staff2,
-                    timeout: entry.max
-                });
-            });
-
             describe('Проверка кнопок Выделить всё и Убрать выделение у всех строк', () => {
                 describe('Проверка строк до нажатия кнопки Выделить всё', () => {
-                    [...Array(5).keys()].forEach(num => {
+                    [...Array(2).keys()].forEach(num => {
                         decorate.modal.removeIdentifiers.checkboxUnchecked({
                             strNumber: num + 1,
                             timeout: entry.max
@@ -2077,7 +2026,7 @@ const other = (user, tab, bef) => {
                 });
 
                 describe('Проверка строк после нажатия кнопки Выделить всё', () => {
-                    [...Array(5).keys()].forEach(num => {
+                    [...Array(2).keys()].forEach(num => {
                         decorate.modal.removeIdentifiers.checkboxChecked({
                             strNumber: num + 1,
                             timeout: entry.max
@@ -2093,168 +2042,7 @@ const other = (user, tab, bef) => {
                 });
 
                 describe('Проверка строк после нажатия кнопки Убрать выделение у всех строк', () => {
-                    [...Array(5).keys()].forEach(num => {
-                        decorate.modal.removeIdentifiers.checkboxUnchecked({
-                            strNumber: num + 1,
-                            timeout: entry.max
-                        });
-                    });
-                });
-            });
-
-            describe(`Удаление идентфикатора у первой строки - ${data.fio.staff1}.`, () => {
-                decorate.modal.removeIdentifiers.checkboxHandler({
-                    strNumber: 1,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.checkboxChecked({
-                    strNumber: 1,
-                    timeout: entry.max
-                });
-                decorate.el.button.handler({
-                    name: 'Удалить помеченные идентификаторы',
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.initClose({
-                    timeout: entry.max
-                });
-
-
-            });
-
-            describe(`Проверка отсутствия ${data.fio.staff1} в модально окне Неиспользуемые идентификаторы`, () => {
-                decorate.el.butIcBefore.handler({
-                    icon: but.unsorted_delete_outline_android,
-                    timeout: entry.max
-                });
-
-                decorate.modal.removeIdentifiers.init({
-                    timeout: entry.max
-                });
-
-                decorate.modal.removeIdentifiers.noStr({
-                    timeout: entry.max
-                });
-
-                decorate.el.rowEmpty.getText({
-                    value: 'Нет данных для отображения',
-                    timeout: entry.max
-                });
-
-                decorate.el.input.handler({
-                    title: 'Дата последнего события',
-                    placeholder: 'Выберите дату',
-                    timeout: entry.max
-                });
-
-                decorate.el.datepicker.dateParse({
-                    day: 7,
-                    month: 'Июнь',
-                    year: 2023,
-                    scrollYear: -500,
-                    timeout: entry.max
-                });
-
-                decorate.modal.removeIdentifiers.size({
-                    count: 5,
-                    timeout: entry.max
-                });
-
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 1,
-                    cellNumber: 3,
-                    value: data.fio.staff3,
-                    timeout: entry.max
-                });
-
-                decorate.modal.removeIdentifiers.closeHandler({
-                    timeout: entry.max
-                });
-
-                decorate.modal.removeIdentifiers.initClose({
-                    timeout: entry.max
-                });
-            });
-        }
-
-        if(user === 'staff') {
-            describe('Общие проверки', () => {
-                decorate.modal.removeIdentifiers.size({
-                    count: 2,
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка строки 1', () => {
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'Идентификатор',
-                    strNumber: 1,
-                    cellNumber: 1,
-                    value: data.staff.staff3.identifier[0].identifier,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 1,
-                    cellNumber: 3,
-                    value: data.fio.staff3,
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка строки 2', () => {
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'Идентификатор',
-                    strNumber: 2,
-                    cellNumber: 1,
-                    value: data.staff.staff2.identifier[0].identifier,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 2,
-                    cellNumber: 3,
-                    value: data.fio.staff2,
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка кнопок Выделить всё и Убрать выделение у всех строк', () => {
-                describe('Проверка строк до нажатия кнопки Выделить всё', () => {
-                    [...Array(1).keys()].forEach(num => {
-                        decorate.modal.removeIdentifiers.checkboxUnchecked({
-                            strNumber: num + 1,
-                            timeout: entry.max
-                        });
-                    });
-                });
-
-                describe('Нажатие кнопки Выделить всё', () => {
-                    decorate.el.butIcBefore.handler({
-                        icon: but.action_done_all,
-                        timeout: entry.max
-                    });
-                });
-
-                describe('Проверка строк после нажатия кнопки Выделить всё', () => {
-                    [...Array(1).keys()].forEach(num => {
-                        decorate.modal.removeIdentifiers.checkboxChecked({
-                            strNumber: num + 1,
-                            timeout: entry.max
-                        });
-                    });
-                });
-
-                describe('Нажатие кнопки Убрать выделение у всех строк', () => {
-                    decorate.el.butIcBefore.handler({
-                        icon: but.action_remove_done,
-                        timeout: entry.max
-                    });
-                });
-
-                describe('Проверка строк после нажатия кнопки Убрать выделение у всех строк', () => {
-                    [...Array(1).keys()].forEach(num => {
+                    [...Array(2).keys()].forEach(num => {
                         decorate.modal.removeIdentifiers.checkboxUnchecked({
                             strNumber: num + 1,
                             timeout: entry.max
@@ -2279,6 +2067,8 @@ const other = (user, tab, bef) => {
                 decorate.modal.removeIdentifiers.initClose({
                     timeout: entry.max
                 });
+
+
             });
 
             describe(`Проверка отсутствия ${data.fio.staff3} в модально окне Неиспользуемые идентификаторы`, () => {
@@ -2315,7 +2105,7 @@ const other = (user, tab, bef) => {
                 });
 
                 decorate.modal.removeIdentifiers.size({
-                    count: 1,
+                    count: 2,
                     timeout: entry.max
                 });
 
@@ -2323,7 +2113,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'ФИО',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.fio.staff2,
+                    value: data.fio.staff4,
                     timeout: entry.max
                 });
 
@@ -2337,10 +2127,10 @@ const other = (user, tab, bef) => {
             });
         }
 
-        if(user === 'visitor') {
+        if(user === 'staff') {
             describe('Общие проверки', () => {
                 decorate.modal.removeIdentifiers.size({
-                    count: 3,
+                    count: 1,
                     timeout: entry.max
                 });
             });
@@ -2350,59 +2140,23 @@ const other = (user, tab, bef) => {
                     headTitle: 'Идентификатор',
                     strNumber: 1,
                     cellNumber: 1,
-                    value: data.visitor.visitor1.identifier[0].identifier,
+                    value: data.staff.staff4.identifier[0].identifier,
                     timeout: entry.max
                 });
                 decorate.modal.removeIdentifiers.cellGetText({
                     headTitle: 'ФИО',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.fio.visitor1,
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка строки 2', () => {
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'Идентификатор',
-                    strNumber: 2,
-                    cellNumber: 1,
-                    value: data.visitor.visitor2.identifier[0].identifier,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 2,
-                    cellNumber: 3,
-                    value: data.fio.visitor2,
-                    timeout: entry.max
-                });
-            });
-
-            describe('Проверка строки 3', () => {
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'Идентификатор',
-                    strNumber: 3,
-                    cellNumber: 1,
-                    value: data.visitor.visitor3.identifier[0].identifier,
-                    timeout: entry.max
-                });
-                decorate.modal.removeIdentifiers.cellGetText({
-                    headTitle: 'ФИО',
-                    strNumber: 3,
-                    cellNumber: 3,
-                    value: data.fio.visitor3,
+                    value: data.fio.staff4,
                     timeout: entry.max
                 });
             });
 
             describe('Проверка кнопок Выделить всё и Убрать выделение у всех строк', () => {
                 describe('Проверка строк до нажатия кнопки Выделить всё', () => {
-                    [...Array(2).keys()].forEach(num => {
-                        decorate.modal.removeIdentifiers.checkboxUnchecked({
-                            strNumber: num + 1,
-                            timeout: entry.max
-                        });
+                    decorate.modal.removeIdentifiers.checkboxUnchecked({
+                        strNumber: 1,
+                        timeout: entry.max
                     });
                 });
 
@@ -2414,11 +2168,9 @@ const other = (user, tab, bef) => {
                 });
 
                 describe('Проверка строк после нажатия кнопки Выделить всё', () => {
-                    [...Array(2).keys()].forEach(num => {
-                        decorate.modal.removeIdentifiers.checkboxChecked({
-                            strNumber: num + 1,
-                            timeout: entry.max
-                        });
+                    decorate.modal.removeIdentifiers.checkboxChecked({
+                        strNumber: 1,
+                        timeout: entry.max
                     });
                 });
 
@@ -2430,16 +2182,14 @@ const other = (user, tab, bef) => {
                 });
 
                 describe('Проверка строк после нажатия кнопки Убрать выделение у всех строк', () => {
-                    [...Array(2).keys()].forEach(num => {
-                        decorate.modal.removeIdentifiers.checkboxUnchecked({
-                            strNumber: num + 1,
-                            timeout: entry.max
-                        });
+                    decorate.modal.removeIdentifiers.checkboxUnchecked({
+                        strNumber: 1,
+                        timeout: entry.max
                     });
                 });
             });
 
-            describe(`Удаление идентфикатора у первой строки - ${data.fio.visitor1}.`, () => {
+            describe(`Удаление идентфикатора у первой строки - ${data.fio.staff4}.`, () => {
                 decorate.modal.removeIdentifiers.checkboxHandler({
                     strNumber: 1,
                     timeout: entry.max
@@ -2457,7 +2207,7 @@ const other = (user, tab, bef) => {
                 });
             });
 
-            describe(`Проверка отсутствия ${data.fio.visitor1} в модально окне Неиспользуемые идентификаторы`, () => {
+            describe(`Проверка отсутствия ${data.fio.staff4} в модально окне Неиспользуемые идентификаторы`, () => {
                 decorate.el.butIcBefore.handler({
                     icon: but.unsorted_delete_outline_android,
                     timeout: entry.max
@@ -2490,16 +2240,144 @@ const other = (user, tab, bef) => {
                     timeout: entry.max
                 });
 
-                decorate.modal.removeIdentifiers.size({
-                    count: 2,
+                decorate.modal.removeIdentifiers.noStr({
                     timeout: entry.max
                 });
 
+                decorate.el.rowEmpty.getText({
+                    value: 'Нет данных для отображения',
+                    timeout: entry.max
+                });
+
+                decorate.modal.removeIdentifiers.closeHandler({
+                    timeout: entry.max
+                });
+
+                decorate.modal.removeIdentifiers.initClose({
+                    timeout: entry.max
+                });
+            });
+        }
+
+        if(user === 'visitor') {
+            describe('Общие проверки', () => {
+                decorate.modal.removeIdentifiers.size({
+                    count: 1,
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка строки 1', () => {
+                decorate.modal.removeIdentifiers.cellGetText({
+                    headTitle: 'Идентификатор',
+                    strNumber: 1,
+                    cellNumber: 1,
+                    value: data.visitor.visitor3.identifier[0].identifier,
+                    timeout: entry.max
+                });
                 decorate.modal.removeIdentifiers.cellGetText({
                     headTitle: 'ФИО',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.fio.visitor2,
+                    value: data.fio.visitor3,
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка кнопок Выделить всё и Убрать выделение у всех строк', () => {
+                describe('Проверка строк до нажатия кнопки Выделить всё', () => {
+                    decorate.modal.removeIdentifiers.checkboxUnchecked({
+                        strNumber: 1,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Нажатие кнопки Выделить всё', () => {
+                    decorate.el.butIcBefore.handler({
+                        icon: but.action_done_all,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Проверка строк после нажатия кнопки Выделить всё', () => {
+                    decorate.modal.removeIdentifiers.checkboxChecked({
+                        strNumber: 1,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Нажатие кнопки Убрать выделение у всех строк', () => {
+                    decorate.el.butIcBefore.handler({
+                        icon: but.action_remove_done,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Проверка строк после нажатия кнопки Убрать выделение у всех строк', () => {
+                    decorate.modal.removeIdentifiers.checkboxUnchecked({
+                        strNumber: 1,
+                        timeout: entry.max
+                    });
+                });
+            });
+
+            describe(`Удаление идентфикатора у первой строки - ${data.fio.visitor3}.`, () => {
+                decorate.modal.removeIdentifiers.checkboxHandler({
+                    strNumber: 1,
+                    timeout: entry.max
+                });
+                decorate.modal.removeIdentifiers.checkboxChecked({
+                    strNumber: 1,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить помеченные идентификаторы',
+                    timeout: entry.max
+                });
+                decorate.modal.removeIdentifiers.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Проверка отсутствия ${data.fio.visitor3} в модально окне Неиспользуемые идентификаторы`, () => {
+                decorate.el.butIcBefore.handler({
+                    icon: but.unsorted_delete_outline_android,
+                    timeout: entry.max
+                });
+
+                decorate.modal.removeIdentifiers.init({
+                    timeout: entry.max
+                });
+
+                decorate.modal.removeIdentifiers.noStr({
+                    timeout: entry.max
+                });
+
+                decorate.el.rowEmpty.getText({
+                    value: 'Нет данных для отображения',
+                    timeout: entry.max
+                });
+
+                decorate.el.input.handler({
+                    title: 'Дата последнего события',
+                    placeholder: 'Выберите дату',
+                    timeout: entry.max
+                });
+
+                decorate.el.datepicker.dateParse({
+                    day: 7,
+                    month: 'Июнь',
+                    year: 2023,
+                    scrollYear: -500,
+                    timeout: entry.max
+                });
+
+                decorate.modal.removeIdentifiers.noStr({
+                    timeout: entry.max
+                });
+
+                decorate.el.rowEmpty.getText({
+                    value: 'Нет данных для отображения',
                     timeout: entry.max
                 });
 

@@ -345,29 +345,24 @@ const other = (user, tab, bef) => {
             decorate.el.table.noStr({
                 timeout: entry.max
             });
-
             decorate.el.selectInput.iconXpand({
                 title: '',
                 placeholder: 'Помещение',
                 timeout: entry.max
             });
-
             decorate.el.selectXpand.xpand({
                 timeout: entry.max
             });
-
             decorate.el.selectXpand.handler({
                 value: data.rooms.room3,
                 timeout: entry.max
             });
-
             decorate.el.selectXpand.xpandNoElement({
                 timeout: entry.max
             });
         });
 
         if(user === 'all') {
-
             describe('Общие проверки', () => {
                 decorate.el.input.getValue({
                     title: '',
@@ -375,7 +370,6 @@ const other = (user, tab, bef) => {
                     value: data.rooms.room3,
                     timeout: entry.max
                 });
-
                 decorate.el.table.size({
                     strCount: 4,
                     timeout: entry.max

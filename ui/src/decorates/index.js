@@ -2,7 +2,7 @@ const ModalConfirmDecorate = require('./elements-decorates/modal-confirm-decorat
 const ModalDecorate = require('./elements-decorates/modal-decorate');
 const modalPhoto = require('./modal-decorates/photo-modal-decorate');
 const page = require('../pages');
-const init = require('./other/init');
+const {init, initAdd, initEdit} = require('./other/init');
 
 module.exports = {
     el: {
@@ -59,6 +59,7 @@ module.exports = {
         base: require('./page-decorates/base-decorate'),
         workedJournal: require('./page-decorates/worked-journal-decorate'),
         timesheet: require('./page-decorates/timesheet-decorate'),
+        accessTemplateScheduleChange: require('./page-decorates/access-template-change-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -180,7 +181,8 @@ module.exports = {
     },
     init: {
         accessSchedule: () => init(page.accessTemplateSchedulePage),
-        accessScheduleChangeAdd: () => init(page.accessTemplateScheduleChangePage)
+        accessScheduleChangeAdd: () => initAdd(page.accessTemplateScheduleChangePage),
+        accessScheduleChangeEdit: () => initEdit(page.accessTemplateScheduleChangePage)
     }
 }
 
