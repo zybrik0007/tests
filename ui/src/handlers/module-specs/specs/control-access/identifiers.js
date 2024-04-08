@@ -701,13 +701,22 @@ const other = (user, tab, bef) => {
         if(user === 'all') {
             describe('Количество строк после применения фильтра по дате', () => {
                 decorate.el.table.size({
+                    strCount: 3,
+                    timeout: entry.max
+                });
+            });
+        }
+
+        if(user === 'staff') {
+            describe('Количество строк после применения фильтра по дате', () => {
+                decorate.el.table.size({
                     strCount: 2,
                     timeout: entry.max
                 });
             });
         }
 
-        if(user === 'staff' || user === 'visitor') {
+        if(user === 'visitor') {
             describe('Количество строк после применения фильтра по дате', () => {
                 decorate.el.table.size({
                     strCount: 1,
@@ -748,7 +757,7 @@ const other = (user, tab, bef) => {
                     headTitle: 'ФИО',
                     strNumber: 2,
                     cellNumber: 1,
-                    value: data.fio.visitor3,
+                    value: data.fio.staff4,
                     timeout: entry.max
                 });
 
@@ -756,13 +765,39 @@ const other = (user, tab, bef) => {
                     headTitle: 'Идентификатор',
                     strNumber: 2,
                     cellNumber: 2,
-                    value: data.visitor.visitor3.identifier[0].identifier,
+                    value: data.staff.staff4.identifier[0].identifier,
                     timeout: entry.max
                 });
 
                 decorate.el.table.cellGetText({
                     headTitle: 'Дата выдачи',
                     strNumber: 2,
+                    cellNumber: 3,
+                    value: data.eventDate.event5.substr(0, 16),
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка строки 3.', () => {
+                decorate.el.table.cellGetText({
+                    headTitle: 'ФИО',
+                    strNumber: 3,
+                    cellNumber: 1,
+                    value: data.fio.visitor3,
+                    timeout: entry.max
+                });
+
+                decorate.el.table.cellGetText({
+                    headTitle: 'Идентификатор',
+                    strNumber: 3,
+                    cellNumber: 2,
+                    value: data.visitor.visitor3.identifier[0].identifier,
+                    timeout: entry.max
+                });
+
+                decorate.el.table.cellGetText({
+                    headTitle: 'Дата выдачи',
+                    strNumber: 3,
                     cellNumber: 3,
                     value: data.eventDate.event5.substr(0, 16),
                     timeout: entry.max
@@ -791,6 +826,32 @@ const other = (user, tab, bef) => {
                 decorate.el.table.cellGetText({
                     headTitle: 'Дата выдачи',
                     strNumber: 1,
+                    cellNumber: 3,
+                    value: data.eventDate.event5.substr(0, 16),
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка строки 2.', () => {
+                decorate.el.table.cellGetText({
+                    headTitle: 'ФИО',
+                    strNumber: 2,
+                    cellNumber: 1,
+                    value: data.fio.staff4,
+                    timeout: entry.max
+                });
+
+                decorate.el.table.cellGetText({
+                    headTitle: 'Идентификатор',
+                    strNumber: 2,
+                    cellNumber: 2,
+                    value: data.staff.staff4.identifier[0].identifier,
+                    timeout: entry.max
+                });
+
+                decorate.el.table.cellGetText({
+                    headTitle: 'Дата выдачи',
+                    strNumber: 2,
                     cellNumber: 3,
                     value: data.eventDate.event5.substr(0, 16),
                     timeout: entry.max

@@ -599,7 +599,26 @@ const other = (user, tab, bef) => {
 
             if(user === 'all' || user === 'staff') {
                 describe('Количество строк после применения фильтра по дате', () => {
-                    decorate.el.table.noStr({
+                    decorate.el.table.size({
+                        strCount: 1,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Проверка строки 1.', () => {
+                    decorate.el.table.cellGetText({
+                        headTitle: 'ФИО',
+                        strNumber: 1,
+                        cellNumber: 2,
+                        value: data.fio.staff2,
+                        timeout: entry.max
+                    });
+
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Дата входа',
+                        strNumber: 1,
+                        cellNumber: 3,
+                        value: data.event.staff2.event3.time_label.replace(/"/g, ''),
                         timeout: entry.max
                     });
                 });
@@ -607,7 +626,26 @@ const other = (user, tab, bef) => {
 
             if(user === 'visitor') {
                 describe('Количество строк после применения фильтра по дате', () => {
-                    decorate.el.table.noStr({
+                    decorate.el.table.size({
+                        strCount: 1,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Проверка строки 1.', () => {
+                    decorate.el.table.cellGetText({
+                        headTitle: 'ФИО',
+                        strNumber: 1,
+                        cellNumber: 1,
+                        value: data.fio.visitor2,
+                        timeout: entry.max
+                    });
+
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Дата входа',
+                        strNumber: 1,
+                        cellNumber: 2,
+                        value: data.event.visitor2.event3.time_label.replace(/"/g, ''),
                         timeout: entry.max
                     });
                 });

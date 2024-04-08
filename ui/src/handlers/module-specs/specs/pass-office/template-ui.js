@@ -315,7 +315,7 @@ const other = (type, text) => {
 
     const edit = () => describe(text + 'Редактирование.', () => {
         if('zone') {
-/*            describe('API добавление', () => {
+            describe('API добавление', () => {
                 befAccess();
                 aft();
                 it('Добавление', async () => {
@@ -329,7 +329,7 @@ const other = (type, text) => {
                         [[tz], cook.text],
                         api.putArrayTimeZone);
                 });
-            });*/
+            });
 
             describe('Редактирование', () => {
                 befAccess();
@@ -387,6 +387,18 @@ const other = (type, text) => {
                     value: data.zoneUpdate.intervals[0].end,
                     timeout: entry.max
                 });
+                decorate.el.button.handler({
+                    name: 'Сохранить изменения',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.success.success({
+                    text: 'Сохранено успешно',
+                    timeout: entry.max
+                });
+                decorate.init.accessSchedule();
             });
         }
     });

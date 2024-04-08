@@ -6,7 +6,12 @@ const decorate = require('../ui/src/decorates');
 
 // Котроль доступа / Выданные идентификаторы / вкладка Все
 //data.deleteDataControlAccess();
-data.addDataControlAccess();
+//data.addDataControlAccess();
+
+tests.identifiersUi.otherStaff().filterDate();
+tests.identifiersUi.otherAll().filterDate();
+tests.identifiersUi.otherVisitor().filterDate();
+
 /*// Котроль доступа / Выданные идентификаторы / вкладка Все
 tests.identifiersUi.otherAll().checkData();
 tests.identifiersUi.otherAll().filterDate();
