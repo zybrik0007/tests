@@ -9557,6 +9557,27 @@ const deleteDataTemplate = () => describe('Удаление данных для 
     });
 });
 
+const dataDesign = {
+    designStaff1: 'designStaffName1',
+    designStaff2: 'designStaffName2',
+    designVisitor1: 'designVisitorName1',
+    designVisitor2: 'designVisitorName2',
+
+    staffs: {
+        staff1: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '1',
+            division: 1,
+            hiring_date: '2023-01-01',
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00'
+        },
+    },
+    fio: {
+        staff1: 'staff name 1'
+    },
+}
 
 module.exports =  {
     dataControlAccess,

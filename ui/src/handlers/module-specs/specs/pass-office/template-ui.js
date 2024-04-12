@@ -1593,6 +1593,9 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.init.accessScheduleChangeEdit();
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.input.backSpace({
                     title: 'Название',
                     placeholder: '',
@@ -1614,6 +1617,9 @@ const other = (type, text) => {
                     title: 'Дата начала смены',
                     placeholder: '',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.datepicker.dateParse({
                     day: '1',
@@ -1895,6 +1901,9 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.init.accessScheduleChangeEdit();
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.input.backSpace({
                     title: 'Название',
                     placeholder: '',
@@ -1916,6 +1925,9 @@ const other = (type, text) => {
                     title: 'Дата начала смены',
                     placeholder: '',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.el.datepicker.dateParse({
                     day: '1',

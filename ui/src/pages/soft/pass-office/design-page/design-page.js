@@ -27,14 +27,25 @@ class DesignPage extends BasePage {
         }
     }
 
+    // Нажатие по карте
+    async handler(num, timeout) {
+        return this.xpathHandler(elements.designCard(num),
+            `Нажатие по дизайну пропуска с порядковым номером "${num}".`,
+            timeout)
+    }
+
     // Количество карт
-    async cardCount() {}
+    async size(size, timeout) {
+        return await this.xpathList(elements.designCardSize,
+            `Отображение `,
+            timeout)
+    }
 
     // Получение названия наименования
-    async cardGetName() {}
+    async name() {}
 
     // Получение названия юзера
-    async cardGetUser() {}
+    async user() {}
 
 
 }

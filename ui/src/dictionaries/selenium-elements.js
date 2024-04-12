@@ -147,6 +147,10 @@ module.exports = {
     passAccessScheduleHolidayDelete: (event) => `//pw-group-cell[${event}]//pw-button`,
     passAccessScheduleHoliday: '//pw-group-cell',
     passAccessRoom: (event) => `//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="${event}"]`,
+    designCardSize: `(event) => `` //div[@class="card_wrapper"]/app-business-card`,
+    designCard: (event) => ` //div[@class="card_wrapper"][${event}]/app-business-card`,
+    designCardTitle: (event) => ` //div[@class="card_wrapper"][${event}]//div[@class="cw-title"]`,
+    designCardName: (event) => ` //div[@class="card_wrapper"][${event}]//div[@class="cw-user_type"]`,
 
     //УРВ
     //Журнал отработанного времени

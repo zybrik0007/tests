@@ -134,7 +134,6 @@ clearMemory();
 tests.templateUi.otherTemplate.copy();
 tests.templateUi.otherTemplate.searchFilter();
 data.addDataStaffTemplate();
-clearMemory();
 tests.templateUi.otherTemplate.deleteFailedTemplate();
 data.deleteDataStaffTemplate();
 tests.templateUi.otherTemplate.deleted();
