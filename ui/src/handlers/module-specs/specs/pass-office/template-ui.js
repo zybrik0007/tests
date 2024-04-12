@@ -1625,6 +1625,7 @@ const other = (type, text) => {
                     day: '1',
                     month: 'Июнь',
                     year: '2023',
+                    scrollYear: -500,
                     timeout: entry.max
                 });
 
@@ -1933,6 +1934,7 @@ const other = (type, text) => {
                     day: '1',
                     month: 'Июнь',
                     year: '2023',
+                    scrollYear: -500,
                     timeout: entry.max
                 });
                 decorate.page.accessTemplateScheduleChange.sWeekHandler({

@@ -35,9 +35,6 @@ const aft = () => after('Выход', async () => {
 
 const other = (type, text) => {
 
-    const weekData = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС', 'Тип 1', 'Тип 2', 'Тип 3', 'Тип 4', 'Тип 5',
-        'Тип 6', 'Тип 7', 'Тип 8',]
-
     const add = () => describe(text + 'Добавление.', () => {
         if(type === 'week') {
             describe('Добавление', () => {

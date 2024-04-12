@@ -31,22 +31,29 @@ class DesignPage extends BasePage {
     async handler(num, timeout) {
         return this.xpathHandler(elements.designCard(num),
             `Нажатие по дизайну пропуска с порядковым номером "${num}".`,
-            timeout)
+            timeout);
     }
 
     // Количество карт
     async size(size, timeout) {
         return await this.xpathList(elements.designCardSize,
-            `Отображение `,
-            timeout)
+            `Количество дизайнов пропуска равно "${size}".`,
+            timeout);
     }
 
     // Получение названия наименования
-    async name() {}
+    async name(num, timeout) {
+        return await this.xpathGetText(elements.designCardName(num),
+            `Полученеи значение наименования дизайна пропуска с порядковым номером ${num}`,
+            timeout);
+    }
 
-    // Получение названия юзера
-    async user() {}
-
+    // Получение названия типа
+    async type(num, timeout) {
+        return await this.xpathGetText(elements.designCardName(num),
+            `Полученеи значение типа дизайна пропуска с порядковым номером ${num}`,
+            timeout);
+    }
 
 }
 
