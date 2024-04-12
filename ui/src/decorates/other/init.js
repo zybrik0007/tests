@@ -14,4 +14,8 @@ module.exports = {
     initEdit: (classed) => it('Проверка URL и TITLE', async () => await dec.simple(classed.initEdit,
         [entry.max],
         classed)),
+
+    initCopy: (classed) => it('Проверка URL и TITLE', async () => await dec.simple(classed.initCopy,
+        [entry.max],
+        classed)),
 };

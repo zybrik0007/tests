@@ -16,6 +16,12 @@ class TimeZoneModalSelect extends Modal {
             timeout)
     }
 
+    async noInterval(numInterval, timeout) {
+        return this.xpathNoElement(elements.modalId(this.id) + elements.pasAccessSchedule(numInterval),
+            `Отсутствие интевала с порядковым номером ${numInterval} в модальном окне ${this.id}.`,
+            timeout)
+    }
+
     //Отображение активности интервала по порядковому номеру
     async intervalActive(timeout) {
         return this.xpathElement(elements.modalId(this.id) + elements.pasAccessScheduleActive,
@@ -61,9 +67,6 @@ class TimeZoneModalSelect extends Modal {
         await this.loading(1000)
         return scroll
     }
-
-
-
 }
 
 module.exports = TimeZoneModalSelect

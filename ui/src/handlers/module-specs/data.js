@@ -9333,6 +9333,54 @@ const deleteURV = () => describe('Удаление данных для тест�
 });
 
 const dataTemplate = {
+    rooms: {
+        room1: 'room1',
+        room2: 'room2',
+        room3: 'room3'
+    },
+    devices: {
+        device1: {
+            name: 'Контроллер замка CL05',
+            ip: '10.10.5.10',
+            obj: {
+                "device_type": 16,
+                "ip_addr": "10.10.5.10",
+                "mac_addr": "02:42:2f:97:86:32"
+            }
+        },
+        device2: {
+            name: 'Контроллер CL15',
+            ip: '10.10.5.2',
+            obj: {
+                "device_type": 902,
+                "ip_addr": "10.10.5.2",
+                "mac_addr": "02:42:2f:97:86:40"
+            }
+        },
+        device3: {
+            name: 'ЛИКОН 2',
+            ip: '10.10.5.9',
+            obj: {
+                "device_type": 65,
+                "ip_addr": "10.10.5.9",
+                "mac_addr": "02:42:2f:97:86:33"
+            }
+        }
+    },
+    staffs: {
+        staff1: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '1',
+            division: 1,
+            hiring_date: '2023-01-01',
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00'
+        },
+    },
+    fio: {
+        staff1: 'staff name 1'
+    },
     zone: {
         name: 'zoneName',
         intervalsValue: [
@@ -9349,11 +9397,166 @@ const dataTemplate = {
             {begin: '00:05', end: '23:55'},
         ]
     },
-    week: {},
-    slideZone: {},
-    slideWeek: {},
-    template: {},
+    week: {
+        name: 'weekName',
+        description: 'weekDescription',
+    },
+    weekUpdate: {
+        name: 'weekNameUpdate',
+        description: 'weekDescriptionUpdate',
+    },
+    tzSlide: {
+        name: 'tzSlideName',
+        description: 'tzSlideDescription',
+        date: new Date().toLocaleDateString('fr-ca'),
+    },
+    tzSlideUpdate: {
+        name: 'tzSlideNameUpdate',
+        description: 'tzSlideDescriptionUpdate',
+        date: '2023-06-01'
+    },
+    sSlide: {
+        name: 'sSlideName',
+        description: 'sSlideDescription',
+        date: new Date().toLocaleDateString('fr-ca'),
+    },
+    sSlideUpdate: {
+        name: 'sSlideNameUpdate',
+        description: 'sSlideDescriptionUpdate',
+        date: '2023-06-01',
+    },
+    template: {
+        name: 'templateName'
+    },
+    templateUpdate: {
+        name: 'templateNameUpdate',
+        description: 'templateDescriptionUpdate'
+    },
 }
+
+const addDataTemplate = () => describe('Добавление данных для тестирования подраздела Шаблоны доступа', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataTemplate}
+
+    describe('Добавление помещений', () => {
+        decItApi.addRoomParent({
+            room: params.rooms.room1
+        });
+        decItApi.addRoomChild({
+            child: params.rooms.room2,
+            parent: params.rooms.room1
+        });
+        decItApi.addRoomChild({
+            child: params.rooms.room3,
+            parent: params.rooms.room2
+        });
+    });
+
+    describe('Добавление устройств', () => {
+        decItApi.addDevice(params.devices.device1.obj);
+        decItApi.addDevice(params.devices.device2.obj);
+        decItApi.addDevice(params.devices.device3.obj);
+    });
+
+    describe('Добавление устройств в помещение', () => {
+        decItApi.addDeviceInRoom({
+            device: params.devices.device1.ip,
+            room: params.rooms.room1
+        });
+        decItApi.addDeviceInRoom({
+            device: params.devices.device2.ip,
+            room: params.rooms.room2
+        });
+        decItApi.addDeviceInRoom({
+            device: params.devices.device3.ip,
+            room: params.rooms.room3
+        });
+    });
+});
+
+const addDataStaffTemplate = () => describe('Добавление данных для тестирования подраздела Шаблоны доступа ' +
+    '- Удаление шаблона.', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataTemplate}
+
+    describe('Добавление сотрудника', () => {
+        it(`Добавление сотрудника "${params.fio.staff1}".`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrTemplate = await api.getTemplate(cook.text);
+            const templateId = arrTemplate.text.filter(obj => obj.name === params.templateUpdate.name)[0].id;
+            const staff = {
+                ...params.staffs.staff1,
+                access_template: [templateId]
+            }
+            await dec.simple(api.putStaff,
+                [[staff], cook.text],
+                api.putStaff);
+        });
+    });
+});
+
+const deleteDataStaffTemplate = () => describe('Удаление данных для тестирования подраздела Шаблоны доступа ' +
+    '- Удаление шаблона.', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataTemplate}
+
+    it('Удаление сотрудников', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrStaff = await api.getStaff(cook.text);
+        const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff1)[0].id;
+        await dec.simple(db.deleteUser,
+            [staff1],
+            db.deleteUser);
+    });
+});
+
+const deleteDataTemplate = () => describe('Удаление данных для тестирования подраздела Шаблоны доступа', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataTemplate}
+
+    decItApi.deleteDeviceInRoom({
+        ip: params.devices.device1.ip
+    });
+    decItApi.deleteDeviceInRoom({
+        ip: params.devices.device2.ip,
+    });
+    decItApi.deleteDeviceInRoom({
+        ip: params.devices.device3.ip,
+    });
+
+    decItApi.deleteDevice({
+        ip: params.devices.device1.ip
+    });
+    decItApi.deleteDevice({
+        ip: params.devices.device2.ip,
+    });
+    decItApi.deleteDevice({
+        ip: params.devices.device3.ip,
+    });
+
+    decItApi.deleteRoom({
+        room: params.rooms.room3
+    });
+    decItApi.deleteRoom({
+        room: params.rooms.room2
+    });
+    decItApi.deleteRoom({
+        room: params.rooms.room1
+    });
+});
+
 
 module.exports =  {
     dataControlAccess,
@@ -9377,4 +9580,8 @@ module.exports =  {
     addURVDocument,
     deleteURVDocument,
     dataTemplate,
+    addDataTemplate,
+    deleteDataTemplate,
+    addDataStaffTemplate,
+    deleteDataStaffTemplate
 }

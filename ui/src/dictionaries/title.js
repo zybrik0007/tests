@@ -19,6 +19,7 @@ module.exports = {
     //Бюро пропусков
     visitorTitle: title + 'Посетители',
     accessTemplatesTitle: title + 'Шаблоны доступа',
+    designTitle: title + 'Дизайн пропуска',
 
     //УРВ
     workedJournalTitle: title + 'Журнал отработанного времени',

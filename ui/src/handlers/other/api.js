@@ -475,6 +475,8 @@ const putStaff = async (array, token) => {
 
     const put = await Promise.all(promises);
 
+    console.log('put =', put)
+
     const filter = put.filter(item => item.error !== true);
 
     if(array.length !== filter.length) {

@@ -78,7 +78,7 @@ tests.visitorUi.otherVisitorActive.deleteDataVisitorFilter();
 data.deleteDataVisitor();
 clearMemory();
 
-// Бюро пропусков / Сотрудники
+
 // Бюро пропусков / Сотрудники
 data.addDataStaff();
 tests.staffUi.otherPass.addStaffMinParams();
@@ -106,5 +106,50 @@ tests.staffUi.otherPass.cardSearchStaffActive();
 data.deleteDataStaffFilter();
 data.deleteDataStaff();
 clearMemory();
+
+
+// Бюро пропусков / Шаблоны доступа
+data.addDataTemplate()
+tests.templateUi.otherZone.edit();
+tests.templateUi.otherWeek.add();
+tests.templateUi.otherWeek.edit();
+tests.templateUi.otherSlideTZ.add();
+tests.templateUi.otherSlideTZ.edit();
+tests.templateUi.otherSlideW.add();
+tests.templateUi.otherSlideW.edit();
+tests.templateUi.otherWeek.searchFilter();
+tests.templateUi.other.searchType();
+clearMemory();
+tests.templateUi.otherZone.deletedFailedAccess();
+tests.templateUi.otherWeek.deletedFailedAccess();
+tests.templateUi.otherTemplate.add();
+tests.templateUi.other.addDuplicate();
+tests.templateUi.otherSlideTZ.deleteFailedTemplate();
+tests.templateUi.otherSlideW.deleteFailedTemplate();
+tests.templateUi.otherTemplate.edit();
+tests.templateUi.otherSlideTZ.deleted();
+tests.templateUi.otherSlideW.deleted();
+tests.templateUi.otherWeek.deleteFailedTemplate();
+clearMemory();
+tests.templateUi.otherTemplate.copy();
+tests.templateUi.otherTemplate.searchFilter();
+data.addDataStaffTemplate();
+clearMemory();
+tests.templateUi.otherTemplate.deleteFailedTemplate();
+data.deleteDataStaffTemplate();
+tests.templateUi.otherTemplate.deleted();
+tests.templateUi.otherWeek.deleted();
+tests.templateUi.otherZone.deleted();
+tests.templateUi.other.deleteServiceFailed();
+tests.templateUi.other.editServiceFailed();
+tests.templateUi.other.holiday();
+tests.templateUi.otherZone.addFailed();
+tests.templateUi.otherWeek.addFailed();
+clearMemory();
+tests.templateUi.otherSlideTZ.addFailed();
+tests.templateUi.otherSlideW.addFailed();
+tests.templateUi.otherTemplate.addFailed();
+tests.templateUi.otherCommission.commission();
+data.deleteDataTemplate();
 
 closeBrowser();

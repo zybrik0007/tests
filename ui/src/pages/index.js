@@ -51,7 +51,11 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     PaidOvertime = require('./soft/urv/support-page/paid-overtime-page'),
     DocumentJustificationPage = require('./soft/urv/document-page/document-justification-page'),
     DocumentOvertimePage = require('./soft/urv/document-page/document-overtime-page'),
-    DocumentExplanatoryPage = require('./soft/urv/document-page/document-explanatory-page');
+    DocumentExplanatoryPage = require('./soft/urv/document-page/document-explanatory-page'),
+    AccessTemplateComissionPage = require('./soft/pass-office/access-page/access-template-comission-page'),
+    DesignPage = require('./soft/pass-office/design-page/design-page'),
+    DesignChangePage = require('./soft/pass-office/design-page/design-change-page');
+
 
 module.exports = {
     //base
@@ -80,6 +84,9 @@ module.exports = {
     accessTemplateSchedulePage: new AccessTemplateSchedulePage(),
     accessTemplateScheduleChangePage: new AccessTemplateScheduleChangePage(),
     accessTemplateScheduleHoliday: new AccessTemplateScheduleHoliday(),
+    accessTemplateComission: new AccessTemplateComissionPage(),
+    design: new Design(),
+    designChange: new DesignChangePage(),
 
     //УРВ
     workedJournal: new WorkedJournal(),

@@ -2,7 +2,7 @@ const ModalConfirmDecorate = require('./elements-decorates/modal-confirm-decorat
 const ModalDecorate = require('./elements-decorates/modal-decorate');
 const modalPhoto = require('./modal-decorates/photo-modal-decorate');
 const page = require('../pages');
-const {init, initAdd, initEdit} = require('./other/init');
+const {init, initAdd, initEdit, initCopy} = require('./other/init');
 
 module.exports = {
     el: {
@@ -60,6 +60,8 @@ module.exports = {
         workedJournal: require('./page-decorates/worked-journal-decorate'),
         timesheet: require('./page-decorates/timesheet-decorate'),
         accessTemplateScheduleChange: require('./page-decorates/access-template-change-decorate'),
+        templateChange: require('./page-decorates/template-change-decorate'),
+        accessCommission: require('./page-decorates/access-commission-decorate')
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -88,6 +90,9 @@ module.exports = {
         docJustification: ModalDecorate('edit-justification', ''),
         docOvertime: ModalDecorate('edit-overtime', ''),
         docExplanatory: ModalDecorate('edit-explanatory', ''),
+        timeZone: require('./modal-decorates/time-zone-decorate'),
+        schedules: ModalDecorate('schedules', ''),
+        schedulesList: ModalDecorate('schedulesList', '')
 
     },
     modalConfirm: {
@@ -153,6 +158,9 @@ module.exports = {
         accessSchedulesDelete: ModalConfirmDecorate('Удаление шаблона доступа',
             'Вы действительно хотите удалить этот шаблон доступа?'),
 
+        designDelete: ModalConfirmDecorate('Удаление шаблона доступа',
+            'Вы действительно хотите удалить данный дизайн пропуска?'),
+
         // УРВ
         // Оправдательные документы
         urvDocumentDelete: ModalConfirmDecorate('Подтвердите действие',
@@ -182,7 +190,16 @@ module.exports = {
     init: {
         accessSchedule: () => init(page.accessTemplateSchedulePage),
         accessScheduleChangeAdd: () => initAdd(page.accessTemplateScheduleChangePage),
-        accessScheduleChangeEdit: () => initEdit(page.accessTemplateScheduleChangePage)
+        accessScheduleChangeEdit: () => initEdit(page.accessTemplateScheduleChangePage),
+        template: () => init(page.accessTemplate),
+        templateAdd: () => initAdd(page.accessTemplateChange),
+        templateEdit: () => initEdit(page.accessTemplateChange),
+        templateCopy: () => initCopy(page.accessTemplateChange),
+        aceessComission: () => init(page.accessTemplateComission),
+        design: () => init(page.design),
+        designAdd: () => initAdd(page.designChange),
+        designEdit: () => initEdit(page.designChange),
+        designCopy: () => initCopy(page.designChange)
     }
 }
 

@@ -1,7 +1,7 @@
-const BasePage = require('../../../base-page/base-page')
-const elements = require('../../../../dictionaries/selenium-elements')
-const {accessTemplatesTitle} = require('../../../../dictionaries/title')
-const {accessAddTemplateUrl, accessEditTemplateUrl} = require('../../../../dictionaries/url')
+const BasePage = require('../../../base-page/base-page');
+const elements = require('../../../../dictionaries/selenium-elements');
+const {accessTemplatesTitle} = require('../../../../dictionaries/title');
+const {accessAddTemplateUrl, accessEditTemplateUrl, accessCopyTemplateUrl} = require('../../../../dictionaries/url');
 
 //Страница изменения в "Бюро пропусков", подраздел "Шабалоны доступа", вкладка "Шаблоны доступа"
 class AccessTemplateChangePage extends BasePage {
@@ -28,13 +28,31 @@ class AccessTemplateChangePage extends BasePage {
     }
 
     //Отображение страницы редактирования
-    async initEdit(id, timeout) {
+    async initEdit(timeout) {
         const title =  await this.titleCompare(accessTemplatesTitle, timeout)
         if(title.error) {
             return  title
         }
 
-        const url = await this.urlCompare(accessEditTemplateUrl + `${id}`, timeout)
+        const url = await this.urlContains(accessEditTemplateUrl, timeout)
+        if(url.error) {
+            return url
+        }
+
+        return {
+            error: false,
+            description: `Заглавие валидно. Url валиден.`,
+        }
+    }
+
+    //Отображение страницы копирования
+    async initCopy(timeout) {
+        const title =  await this.titleCompare(accessTemplatesTitle, timeout)
+        if(title.error) {
+            return  title
+        }
+
+        const url = await this.urlContains(accessCopyTemplateUrl, timeout)
         if(url.error) {
             return url
         }

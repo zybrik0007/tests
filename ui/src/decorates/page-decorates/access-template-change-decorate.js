@@ -108,9 +108,31 @@ module.exports = {
             [strNum, timeout],
             page.accessTemplateScheduleChangePage)),
 
-    sWeekSelectedList: ({strNum, timeout}) => it(`Нажатие по кнопке удаление недели с порядковым номером ${strNum}, 
-    в списке выбранных недель.`,
+    sWeekSelectedList: ({size, timeout}) => it(`Количетсво выбранных недель равно "${size}".`,
         async () => await dec.simple(page.accessTemplateScheduleChangePage.sWeekSelectedList,
         [size, timeout],
         page.accessTemplateScheduleChangePage)),
+
+    holidayDate: ({num, value, timeout}) => it(`Значение даты с порядковым номером ${num} равно "${value}".`,
+        async () => await dec.simpleText(page.accessTemplateScheduleChangePage.holidayDate,
+            [num, timeout],
+            value,
+            page.accessTemplateScheduleChangePage)),
+
+    holidayType: ({num, value, timeout}) => it(`Значение типа с порядковым номером ${num} равно "${value}".`,
+        async () => await dec.simpleText(page.accessTemplateScheduleChangePage.holidayType,
+            [num, timeout],
+            value,
+            page.accessTemplateScheduleChangePage)),
+
+    holidayDelete: ({num, timeout}) => it(`Удаление строки праздника по номеру ${num}.`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.holidayDelete,
+            [num, timeout],
+            page.accessTemplateScheduleChangePage)),
+
+    holidayCount: ({count, timeout}) => it(`Отображение ${count} строк выбранных дат.`,
+        async () => await dec.simple(page.accessTemplateScheduleChangePage.holidayCount,
+            [count, timeout],
+            page.accessTemplateScheduleChangePage)),
+
 }

@@ -4,56 +4,47 @@ const clearMemory = require('../ui/src/handlers/other/clearMemory');
 const data = require('../ui/src/handlers/module-specs/data');
 const decorate = require('../ui/src/decorates');
 
-// Котроль доступа / Выданные идентификаторы / вкладка Все
-//data.deleteDataControlAccess();
-//data.addDataControlAccess();
+data.deleteDataTemplate();
+//data.addDataTemplate();
+data.addDataTemplate()
+tests.templateUi.otherZone.edit();
+tests.templateUi.otherWeek.add();
+tests.templateUi.otherWeek.edit();
+tests.templateUi.otherSlideTZ.add();
+tests.templateUi.otherSlideTZ.edit();
+tests.templateUi.otherSlideW.add();
+tests.templateUi.otherSlideW.edit();
+tests.templateUi.otherWeek.searchFilter();
+tests.templateUi.other.searchType();
+tests.templateUi.otherZone.deletedFailedAccess();
+tests.templateUi.otherWeek.deletedFailedAccess();
+tests.templateUi.otherTemplate.add();
+tests.templateUi.other.addDuplicate();
+tests.templateUi.otherSlideTZ.deleteFailedTemplate();
+tests.templateUi.otherSlideW.deleteFailedTemplate();
+tests.templateUi.otherTemplate.edit();
+tests.templateUi.otherSlideTZ.deleted();
+tests.templateUi.otherSlideW.deleted();
+tests.templateUi.otherWeek.deleteFailedTemplate();
+tests.templateUi.otherTemplate.copy();
+tests.templateUi.otherTemplate.searchFilter();
+data.addDataStaffTemplate();
+tests.templateUi.otherTemplate.deleteFailedTemplate();
+data.deleteDataStaffTemplate();
+tests.templateUi.otherTemplate.deleted();
+tests.templateUi.otherWeek.deleted();
+tests.templateUi.otherZone.deleted();
+tests.templateUi.other.deleteServiceFailed();
+tests.templateUi.other.editServiceFailed();
+tests.templateUi.other.holiday();
+tests.templateUi.otherZone.addFailed();
+tests.templateUi.otherWeek.addFailed();
+tests.templateUi.otherSlideTZ.addFailed();
+tests.templateUi.otherSlideW.addFailed();
+tests.templateUi.otherTemplate.addFailed();
+tests.templateUi.otherCommission.commission();
+data.deleteDataTemplate();
 
-tests.identifiersUi.otherStaff().filterDate();
-tests.identifiersUi.otherAll().filterDate();
-tests.identifiersUi.otherVisitor().filterDate();
-
-/*// Котроль доступа / Выданные идентификаторы / вкладка Все
-tests.identifiersUi.otherAll().checkData();
-tests.identifiersUi.otherAll().filterDate();
-tests.identifiersUi.otherAll().filterDivision();
-tests.identifiersUi.otherAll().filterDivisionForm();
-tests.identifiersUi.otherAll().filterSearch();
-tests.identifiersUi.otherAll().printTable();
-tests.identifiersUi.otherAll().exportXLSX();
-tests.identifiersUi.otherAll().exportCSV();
-
-// Котроль доступа / Выданные идентификаторы / вкладка Сотрудники
-tests.identifiersUi.otherStaff().checkData();
-tests.identifiersUi.otherStaff().filterDate();
-tests.identifiersUi.otherStaff().filterDivision();
-tests.identifiersUi.otherStaff().filterDivisionForm();
-tests.identifiersUi.otherStaff().filterSearch();
-tests.identifiersUi.otherStaff().printTable();
-tests.identifiersUi.otherStaff().exportXLSX();
-tests.identifiersUi.otherStaff().exportCSV();
-
-// Котроль доступа / Выданные идентификаторы / вкладка Посетители
-tests.identifiersUi.otherVisitor().checkData();
-tests.identifiersUi.otherVisitor().filterDate();
-tests.identifiersUi.otherVisitor().filterDivision();
-tests.identifiersUi.otherVisitor().filterDivisionForm();
-tests.identifiersUi.otherVisitor().filterSearch();
-tests.identifiersUi.otherVisitor().printTable();
-tests.identifiersUi.otherVisitor().exportXLSX();
-tests.identifiersUi.otherVisitor().exportCSV();
-
-// Котроль доступа / Выданные идентификаторы / вкладка Все
-tests.identifiersUi.otherAll().deleteIdentifier();
-
-// Котроль доступа / Выданные идентификаторы / вкладка Сотрудники
-tests.identifiersUi.otherStaff().deleteIdentifier();
-
-// Котроль доступа / Выданные идентификаторы / вкладка Посетители
-tests.identifiersUi.otherVisitor().deleteIdentifier();*/
-
-
-//tests.templateUi.otherZone.edit();
-//data.deleteURV();
 closeBrowser();
 
 

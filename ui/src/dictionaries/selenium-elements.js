@@ -146,6 +146,7 @@ module.exports = {
     passAccessScheduleHolidayType: (event) => `//pw-group-cell[${event}]/div/div/span[2]`,
     passAccessScheduleHolidayDelete: (event) => `//pw-group-cell[${event}]//pw-button`,
     passAccessScheduleHoliday: '//pw-group-cell',
+    passAccessRoom: (event) => `//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="${event}"]`,
 
     //УРВ
     //Журнал отработанного времени

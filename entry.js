@@ -19,7 +19,7 @@ module.exports = {
     min: Number(process.env.a105min) || 2000,
     upload: Number(process.env.a107upload) || 50000,
     sleep1: Number(process.env.a107xsleep1) || 1000,
-    sleep2: Number(process.env.a107xsleep2) || 2000,
+    sleep2: Number(process.env.a107xsleep2) || 1000,
     datepicker: Number(process.env.a107xsleepDate) || 500,
     urv: 10000,
     buttonTime: 3000,
@@ -33,7 +33,7 @@ module.exports = {
         port: process.env.a117database_port || '3306',
         user: process.env.a118database_user || 'admin',
         password: process.env.a119database_password || '123456',
-        database: process.env.a120database_name || 'perco_selenium_01042024_1'
+        database: process.env.a120database_name || 'perco_selenium_09042024_2'
     }
 }
 

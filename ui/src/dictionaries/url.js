@@ -28,10 +28,17 @@ module.exports = {
     accessTemplatesUrl: address + 'passoffice/access/accesstemplates',
     accessAddTemplateUrl: address + 'passoffice/access/template/new',
     accessEditTemplateUrl: address + 'passoffice/access/template/edit/',
+    accessCopyTemplateUrl: address + 'passoffice/access/template/copy/',
+    accessTemplateCommissionUrl: address + 'passoffice/access/accesscommission',
     accessScheduleUrl: address + 'passoffice/access/accessschedules',
     accessAddScheduleUrl: address + 'passoffice/access/schedule/new',
     accessEditScheduleUrl: address + 'passoffice/access/schedule/edit/',
     accessEditScheduleHolidayUrl: address + 'passoffice/access/schedule/edit/3',
+    designUrl: address + 'passoffice/design',
+    designAddUrl: address + 'passoffice/design/new',
+    designEditUrl: address + 'passoffice/design/edit/',
+    designCopyUrl: address + 'passoffice/design/copy/',
+
 
     //УРВ
     workedJournalUrl: address + 'timetracking/workedjournal',
