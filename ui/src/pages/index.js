@@ -85,7 +85,7 @@ module.exports = {
     accessTemplateScheduleChangePage: new AccessTemplateScheduleChangePage(),
     accessTemplateScheduleHoliday: new AccessTemplateScheduleHoliday(),
     accessTemplateComission: new AccessTemplateComissionPage(),
-    design: new Design(),
+    design: new DesignPage(),
     designChange: new DesignChangePage(),
 
     //УРВ
