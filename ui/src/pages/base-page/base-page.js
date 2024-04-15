@@ -315,7 +315,8 @@ class BasePage {
     async xpathList(event, description, size, timeout) {
         let timer = timeout
         while (timer > 0) {
-            const element = await driver.findElements(By.xpath(event)).catch(error => error)
+            const element = await driver.findElements(By.xpath(event)).catch(error => error);
+            console.log('element', element)
             if (element.length === size) {
                 return {
                     error: false,

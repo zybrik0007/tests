@@ -10681,4 +10681,5 @@ const other = (type, text) => {
 module.exports = {
     other: other('active', 'Персонал / Сотрудники - вкладка - Действующие.'),
     otherPass: other('pass', 'Бюро пропусков / Сотрудники.'),
+    befStaffActive: () => befActive()
 }

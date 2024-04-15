@@ -38,20 +38,21 @@ class DesignPage extends BasePage {
     async size(size, timeout) {
         return await this.xpathList(elements.designCardSize,
             `Количество дизайнов пропуска равно "${size}".`,
+            size,
             timeout);
     }
 
     // Получение названия наименования
     async name(num, timeout) {
         return await this.xpathGetText(elements.designCardName(num),
-            `Полученеи значение наименования дизайна пропуска с порядковым номером ${num}`,
+            `Получение значение наименования дизайна пропуска с порядковым номером ${num}`,
             timeout);
     }
 
     // Получение названия типа
     async type(num, timeout) {
-        return await this.xpathGetText(elements.designCardName(num),
-            `Полученеи значение типа дизайна пропуска с порядковым номером ${num}`,
+        return await this.xpathGetText(elements.designCardType(num),
+            `Получение значение типа дизайна пропуска с порядковым номером ${num}`,
             timeout);
     }
 

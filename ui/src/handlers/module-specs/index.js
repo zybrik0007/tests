@@ -11,6 +11,7 @@ module.exports = {
     visitorUi: require('./specs/pass-office/visitor-ui'),
     //scheduleUi: require('./specs/pass-office/access-template-schedule-ui'),
     templateUi: require('./specs/pass-office/template-ui'),
+    designUi: require('./specs/pass-office/design-ui'),
 
     //УРВ
     workedJournalUi: require('./specs/urv/worked-journal-ui'),

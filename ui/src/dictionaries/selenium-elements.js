@@ -149,8 +149,8 @@ module.exports = {
     passAccessRoom: (event) => `//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="${event}"]`,
     designCardSize: '//div[@class="card_wrapper"]/app-business-card',
     designCard: (event) => `//div[@class="card_wrapper"][${event}]/app-business-card`,
-    designCardTitle: (event) => ` //div[@class="card_wrapper"][${event}]//div[@class="cw-title"]`,
-    designCardName: (event) => ` //div[@class="card_wrapper"][${event}]//div[@class="cw-user_type"]`,
+    designCardName: (event) => `//div[@class="card_wrapper"][${event}]//div[@class="cw-title"]`,
+    designCardType: (event) => `//div[@class="card_wrapper"][${event}]//div[@class="cw-user_type"]`,
 
     //УРВ
     //Журнал отработанного времени

@@ -61,7 +61,8 @@ module.exports = {
         timesheet: require('./page-decorates/timesheet-decorate'),
         accessTemplateScheduleChange: require('./page-decorates/access-template-change-decorate'),
         templateChange: require('./page-decorates/template-change-decorate'),
-        accessCommission: require('./page-decorates/access-commission-decorate')
+        accessCommission: require('./page-decorates/access-commission-decorate'),
+        design: require('./page-decorates/design-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -158,7 +159,7 @@ module.exports = {
         accessSchedulesDelete: ModalConfirmDecorate('Удаление шаблона доступа',
             'Вы действительно хотите удалить этот шаблон доступа?'),
 
-        designDelete: ModalConfirmDecorate('Удаление шаблона доступа',
+        designDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить данный дизайн пропуска?'),
 
         // УРВ

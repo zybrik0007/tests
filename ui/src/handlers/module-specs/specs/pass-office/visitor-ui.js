@@ -10523,4 +10523,5 @@ module.exports = {
     otherVisitorArchive: other('visitorArchive', 'Бюро пропусков / Посетители - вкладка - Архив. '),
     otherVisitorPassOrder: other('visitorPassOrder', 'Заказ пропуска / Заказ пропуска - вкладка - Заказ пропуска. '),
     otherVisitorPassArchive: other('visitorPassArchive', 'Заказ пропуска / Заказ пропуска - вкладка - Архив. '),
+    befVisitorOrdered: () => befOrdered()
 }

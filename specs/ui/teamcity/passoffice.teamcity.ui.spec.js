@@ -151,4 +151,18 @@ tests.templateUi.otherTemplate.addFailed();
 tests.templateUi.otherCommission.commission();
 data.deleteDataTemplate();
 
+
+// Бюро пропусков / Дизайн пропуска
+data.addDataDesign();
+tests.designUi.otherStaff.add();
+tests.designUi.otherVisitor.add();
+tests.designUi.otherStaff.edit();
+tests.designUi.otherVisitor.edit();
+tests.designUi.otherStaff.copy();
+tests.designUi.otherVisitor.copy();
+tests.designUi.other.typeFilter();
+tests.designUi.other.deleted();
+data.deleteDataDesign();
+
+
 closeBrowser();
