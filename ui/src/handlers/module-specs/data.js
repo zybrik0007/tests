@@ -10118,13 +10118,13 @@ const dataVisitorReport = {
     todayDate: () => new Date().toLocaleDateString('fr-ca'),
     dateCard: '2023-06-01 08:00:00',
     endDate: '2033-01-01',
-    june6Now: () => '2023-06-06 ' + new Date().toLocaleTimeString().slice(0,-3),
-    june7Now: () => '2023-06-07 ' + new Date().toLocaleTimeString().slice(0,-3),
+    june6Now: '2023-06-01',
+    june7Now: '2023-06-07',
 }
 
 const addDataVisitorReport = () => describe('Добавление данных для тестирования отчетов раздела Котроль доступа',
     () => {
-        const params = {...dataControlAccess}
+        const params = {...dataVisitorReport }
 
         bef();
         aft();
@@ -10680,7 +10680,7 @@ const addDataVisitorReport = () => describe('Добавление данных �
 
 const deleteDataVisitorReport = () => describe('Удаление данных для тестетирование отчетов раздела Котроль доступа',
     () => {
-        const params = {...dataControlAccess}
+        const params = {...dataVisitorReport }
 
         bef();
         aft();

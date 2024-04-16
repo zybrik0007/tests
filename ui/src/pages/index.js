@@ -54,7 +54,8 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     DocumentExplanatoryPage = require('./soft/urv/document-page/document-explanatory-page'),
     AccessTemplateComissionPage = require('./soft/pass-office/access-page/access-template-comission-page'),
     DesignPage = require('./soft/pass-office/design-page/design-page'),
-    DesignChangePage = require('./soft/pass-office/design-page/design-change-page');
+    DesignChangePage = require('./soft/pass-office/design-page/design-change-page'),
+    VisitorReportPage = require('./soft/pass-office/visitor-report-page/visitor-report-page');
 
 
 module.exports = {
@@ -87,6 +88,7 @@ module.exports = {
     accessTemplateComission: new AccessTemplateComissionPage(),
     design: new DesignPage(),
     designChange: new DesignChangePage(),
+    visitorReport: new VisitorReportPage(),
 
     //УРВ
     workedJournal: new WorkedJournal(),

@@ -20,6 +20,7 @@ module.exports = {
     visitorTitle: title + 'Посетители',
     accessTemplatesTitle: title + 'Шаблоны доступа',
     designTitle: title + 'Дизайн пропуска',
+    visitorReportTitle: title + 'Посетители',
 
     //УРВ
     workedJournalTitle: title + 'Журнал отработанного времени',

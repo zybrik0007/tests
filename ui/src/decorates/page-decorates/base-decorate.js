@@ -23,4 +23,8 @@ module.exports = {
     refresh: () => it('Обновление страницы', async () => await dec.simple(page.base.refresh,
     [],
     page.bax)),
+
+    enter: () => it('Нажатие ENTER', async () => await dec.simple(page.base.enter,
+        [],
+        page.bax)),
 }

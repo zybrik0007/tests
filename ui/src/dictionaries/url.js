@@ -38,6 +38,7 @@ module.exports = {
     designAddUrl: address + 'passoffice/design/new',
     designEditUrl: address + 'passoffice/design/edit/',
     designCopyUrl: address + 'passoffice/design/copy/',
+    visitorReportUrl: address + 'passoffice/visitorsreport',
 
 
     //УРВ

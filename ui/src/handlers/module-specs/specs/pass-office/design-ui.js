@@ -20,8 +20,7 @@ const data = require('../../data').dataDesign;
 const {befStaffActive} = require('../personal/staff-ui');
 const {befVisitorOrdered} = require('../pass-office/visitor-ui');
 
-const befDesign = () => before('Вход и открытие подраздела "Дизайн пропуска"',
-    async () => {
+const befDesign = () => before('Вход и открытие подраздела "Дизайн пропуска"', async () => {
         await page.base.loading(entry.sleep1);
         await dec.auth(entry.customLogin, entry.customPassword);
         await dec.simple(el.section.handler, [sec.pas, entry.max], el.section);

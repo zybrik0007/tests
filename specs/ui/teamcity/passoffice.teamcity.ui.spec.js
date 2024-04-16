@@ -163,6 +163,18 @@ tests.designUi.otherVisitor.copy();
 tests.designUi.other.typeFilter();
 tests.designUi.other.deleted();
 data.deleteDataDesign();
+clearMemory();
 
+
+// Бюро пропусков / Отчет по посетителям
+data.addDataVisitorReport();
+tests.visitorReportUi.other.checkData();
+tests.visitorReportUi.other.filterDate();
+tests.visitorReportUi.other.divisionFilter();
+tests.visitorReportUi.other.filterSearch();
+tests.visitorReportUi.other.printTable();
+tests.visitorReportUi.other.exportXLSX();
+tests.visitorReportUi.other.exportCSV();
+data.deleteDataVisitorReport();
 
 closeBrowser();
