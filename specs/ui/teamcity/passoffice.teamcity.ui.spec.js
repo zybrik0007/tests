@@ -175,7 +175,8 @@ tests.visitorReportUi.other.filterSearch();
 tests.visitorReportUi.other.printTable();
 tests.visitorReportUi.other.exportXLSX();
 tests.visitorReportUi.other.exportCSV();
+tests.visitorReportUi.other.resetFilter();s
 data.deleteDataVisitorReport();
-tests.visitorReportUi.other.resetFilter();
+
 
 closeBrowser();
