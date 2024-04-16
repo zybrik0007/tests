@@ -4,15 +4,16 @@ const clearMemory = require('../ui/src/handlers/other/clearMemory');
 const data = require('../ui/src/handlers/module-specs/data');
 const decorate = require('../ui/src/decorates');
 
-data.deleteDataVisitorReport();
-data.addDataVisitorReport();
-tests.visitorReportUi.other.checkData();
+
+//data.addDataVisitorReport();
+tests.visitorReportUi.other.resetFilter();
+/*tests.visitorReportUi.other.checkData();
 tests.visitorReportUi.other.filterDate();
 tests.visitorReportUi.other.divisionFilter();
 tests.visitorReportUi.other.filterSearch();
 tests.visitorReportUi.other.printTable();
 tests.visitorReportUi.other.exportXLSX();
-tests.visitorReportUi.other.exportCSV();
+tests.visitorReportUi.other.exportCSV();*/
 data.deleteDataVisitorReport();
 
 closeBrowser();

@@ -10303,7 +10303,7 @@ const addDataVisitorReport = () => describe('Добавление данных �
         });
 
         describe('Добавление посетителей', () => {
-            it(`Добавление пометителя "${params.fio.visitor1}".`, async () => {
+            it(`Добавление посетителя "${params.fio.visitor1}".`, async () => {
                 const cook = await page.base.getCookie('token');
                 const arrDivision = await api.getDivision(cook.text);
                 const divisionId = arrDivision.text.filter(obj => obj.name === params.visitor.visitor1.division)[0].id;
@@ -10319,7 +10319,7 @@ const addDataVisitorReport = () => describe('Добавление данных �
                     api.putVisitor);
             });
 
-            it(`Добавление пометителя "${params.fio.visitor2}".`, async () => {
+            it(`Добавление посетителя "${params.fio.visitor2}".`, async () => {
                 const cook = await page.base.getCookie('token');
                 const arrDivision = await api.getDivision(cook.text);
                 const divisionId = arrDivision.text.filter(obj => obj.name === params.visitor.visitor2.division)[0].id;
@@ -10335,7 +10335,7 @@ const addDataVisitorReport = () => describe('Добавление данных �
                     api.putVisitor);
             });
 
-            it(`Добавление пометителя "${params.fio.visitor2}".`, async () => {
+            it(`Добавление посетителя "${params.fio.visitor2}".`, async () => {
                 const cook = await page.base.getCookie('token');
                 const arrDivision = await api.getDivision(cook.text);
                 const divisionId = arrDivision.text.filter(obj => obj.name === params.visitor.visitor3.division)[0].id;

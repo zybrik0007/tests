@@ -1100,6 +1100,105 @@ const other = () => {
         });
     });
 
+    const resetFilter = () => describe('Бюро пропусков / Отчет по посетителям. Проверка "Сбросить фильтры".', () => {
+
+        bef();
+        aft();
+
+        describe('Проверка таблицы до использования фильтров', () => {
+            decorate.el.table.size({
+                strCount: 3,
+                timeout: entry.max
+            });
+        });
+
+        describe(`Ввод в фильтр "${data.fio.visitor3}"`, () => {
+            decorate.el.input.sendKeys({
+                title: '',
+                placeholder: 'Поиск...',
+                value: data.fio.visitor2,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.page.base.enter();
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        });
+
+        describe(`Выбор в фильтре "${data.divisions.division3.name}" через окно выбора`, () => {
+            decorate.el.selectInput.iconXpand({
+                title: '',
+                placeholder: 'Подразделение',
+                timeout: entry.max
+            });
+            decorate.el.selectXpand.xpand({
+                timeout: entry.max
+            });
+            decorate.el.selectXpand.handler({
+                value: data.divisions.division3.name,
+                timeout: entry.max
+            });
+            decorate.el.selectXpand.xpandNoElement({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        });
+
+        describe('Проверка таблицы после использования фильтров', () => {
+            decorate.el.table.size({
+                strCount: 0,
+                timeout: entry.max
+            });
+        });
+
+        describe('Нажатие "Сбросить фильтра"', () => {
+            decorate.el.butIcBefore.handler({
+                icon: but.menu,
+                timeout: entry.max
+            });
+            decorate.el.menu.menu({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.menu.menu({
+                timeout: entry.max
+            });
+            decorate.el.menu.handler({
+                name: 'Сбросить фильтры',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        });
+
+        describe('Проверка таблицы', () => {
+            decorate.el.table.size({
+                strCount: 3,
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: '',
+                placeholder: 'Поиск...',
+                value: '',
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: '',
+                placeholder: 'Подразделение',
+                value: '',
+                timeout: entry.max
+            });
+        });
+    });
+
     return {
         checkData,
         divisionFilter,
@@ -1107,7 +1206,8 @@ const other = () => {
         filterDate,
         printTable,
         exportXLSX,
-        exportCSV
+        exportCSV,
+        resetFilter
     }
 }
 
