@@ -4690,6 +4690,10 @@ const other = (type, text) => {
             aft();
 
             describe('Открыти на редатирование', () => {
+                decorate.page.base.refresh();
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
                 decorate.el.table.strHandler({
                     strNumber: 1,
                     timeout: entry.max
