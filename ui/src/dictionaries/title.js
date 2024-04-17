@@ -14,6 +14,7 @@ module.exports = {
     divisionsTitle: title + 'Подразделения',
     positionsTitle: title + 'Должности',
     additionalDataTitle: title + 'Дополнительные данные',
+    holidayTitle: title + 'Праздничные дни',
 
 
     //Бюро пропусков

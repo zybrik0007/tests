@@ -63,6 +63,7 @@ module.exports = {
         templateChange: require('./page-decorates/template-change-decorate'),
         accessCommission: require('./page-decorates/access-commission-decorate'),
         design: require('./page-decorates/design-decorate'),
+        holiday: require('./page-decorates/holday-decorate')
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -93,7 +94,9 @@ module.exports = {
         docExplanatory: ModalDecorate('edit-explanatory', ''),
         timeZone: require('./modal-decorates/time-zone-decorate'),
         schedules: ModalDecorate('schedules', ''),
-        schedulesList: ModalDecorate('schedulesList', '')
+        schedulesList: ModalDecorate('schedulesList', ''),
+        holiday: ModalDecorate('predefined-holidays', 'Календарь предопределенных праздничных дней'),
+        holidayType: ModalDecorate('set-holiday-type', '')
 
     },
     modalConfirm: {
@@ -137,6 +140,12 @@ module.exports = {
         //Дополнительные данные
         additionalDataDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить данное дополнительное поле?'),
+
+        //Праздничные дни
+        resetHoliday: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите очистить календарь?'),
+        addHoliday: ModalConfirmDecorate('Подтвердите действие',
+            'Заполнить предопределенными значениями'),
 
         //Бюро пропусков
         //Посетители

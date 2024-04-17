@@ -109,5 +109,9 @@ module.exports = {
     menu_timetracking: {
         name: 'menu_timetracking',
         description: 'Задолженности'
+    },
+    action_open_in_browser: {
+        name: 'action_open_in_browser',
+        description: 'Заполнить предопределнными значениями'
     }
 }

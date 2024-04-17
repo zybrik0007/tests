@@ -6,6 +6,7 @@ module.exports = {
     additionalDataUi: require('./specs/personal/additional-data-ui'),
     divisionUi: require('./specs/personal/division-ui'),
     scheduleUi: require('./specs/personal/schedule-ui'),
+    holiday: require('./specs/personal/holiday-ui'),
 
     //Бюро пропусков
     visitorUi: require('./specs/pass-office/visitor-ui'),

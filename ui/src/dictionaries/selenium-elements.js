@@ -80,6 +80,12 @@ module.exports = {
     perDivisionIcon: (name, icon) => `//pw-tree-row/div/pw-tree-node/*[normalize-space(.)="${name}"]
     //div[contains(@class, "${icon}")]`,
 
+    perHolidayMonth: (event) => `//div[@class="calendar"]/div[${event}]//div[@class="pwCalendarHoliday-title"]`,
+    perHolidayDay: (month, day) => `//div[@class="calendar"]/div[${month}]//div[@class="pwCalendarHoliday-days"]/div[${day}]`,
+    perHolidayDayNumber: (month, day) => `//div[@class="calendar"]/div[${month}]//div[@class="pwCalendarHoliday-days"]
+    /div[${day}]/div`,
+
+
     //Бюро пропусков
     //Шаблоны доступа - изменение
     pasAccessTemplateChangeRoom: (event) => `//pw-tree-node/div/div/div/div

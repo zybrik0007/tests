@@ -16,6 +16,7 @@ module.exports = {
     divisionsUrl: address + 'personal/divisions',
     positionsUrl: address + 'personal/positions',
     additionalDataUrl: address + 'personal/additionaldata',
+    holidayUrl: address + 'personal/holidays',
 
     //Бюро пропусков
     visitorAddUrl: address + 'passoffice/visitors/new',

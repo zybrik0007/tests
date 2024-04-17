@@ -4,18 +4,14 @@ const clearMemory = require('../ui/src/handlers/other/clearMemory');
 const data = require('../ui/src/handlers/module-specs/data');
 const decorate = require('../ui/src/decorates');
 
-
-//data.addDataVisitorReport();
-tests.templateUi.other.holiday();
-/*tests.visitorReportUi.other.checkData();
-tests.visitorReportUi.other.filterDate();
-tests.visitorReportUi.other.divisionFilter();
-tests.visitorReportUi.other.filterSearch();
-tests.visitorReportUi.other.printTable();
-tests.visitorReportUi.other.exportXLSX();
-tests.visitorReportUi.other.exportCSV();*/
-
-
+tests.holiday.other.addHoliday();
+tests.holiday.other.addPreHoliday();
+tests.holiday.other.addMark();
+tests.holiday.other.addWork();
+tests.holiday.other.yearFilter();
+tests.holiday.other.reset();
+tests.holiday.other.addCalendar();
+tests.holiday.other.reset();
 closeBrowser();
 
 
