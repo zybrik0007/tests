@@ -4321,29 +4321,29 @@ const dataURV = {
                         "intervals": [
                             {
                                 "begin": 32400,
-                                "end": 46800,
-                                "type": 1
-                            },
-                            {
-                                "begin": 79200,
                                 "end": 86400,
                                 jumpRight: true,
-                                "type": 2
+                                "type": 1
                             }
                         ],
-                        title: "Рабочее время: 06ч 00м"
+                        title: "Рабочее время: 15ч 00м"
                     },
                     {
                         desc:"День 2",
                         "intervals": [
                             {
                                 "begin": 0,
-                                "end": 64800,
+                                "end": 3300,
                                 jumpLeft: true,
+                                "type": 1
+                            },
+                            {
+                                "begin": 4500,
+                                "end": 64800,
                                 "type": 2
                             }
                         ],
-                        title: "Рабочее время: 18ч 00м"
+                        title: "Рабочее время: 17ч 40м"
                     },
                 ]
             }
@@ -4744,29 +4744,29 @@ const dataURV = {
                         "intervals": [
                             {
                                 "begin": 32400,
-                                "end": 46800,
-                                "type": 1
-                            },
-                            {
-                                "begin": 79200,
                                 "end": 86400,
                                 jumpRight: true,
-                                "type": 2
+                                "type": 1
                             }
                         ],
-                        title: "Рабочее время: 06ч 00м"
+                        title: "Рабочее время: 15ч 00м"
                     },
                     {
                         desc:"День 2",
                         "intervals": [
                             {
                                 "begin": 0,
-                                "end": 64800,
+                                "end": 3300,
                                 jumpLeft: true,
+                                "type": 1
+                            },
+                            {
+                                "begin": 4500,
+                                "end": 64800,
                                 "type": 2
                             }
                         ],
-                        title: "Рабочее время: 18ч 00м"
+                        title: "Рабочее время: 17ч 40м"
                     },
                 ]
             }
@@ -10122,7 +10122,7 @@ const dataVisitorReport = {
     june7Now: '2023-06-07',
 }
 
-const addDataVisitorReport = () => describe('Добавление данных для тестирования отчетов раздела Котроль доступа',
+const addDataVisitorReport = () => describe('Добавление данных для тестирования подраздела Отчет по посетителям',
     () => {
         const params = {...dataVisitorReport }
 
@@ -10678,7 +10678,7 @@ const addDataVisitorReport = () => describe('Добавление данных �
         });
     });
 
-const deleteDataVisitorReport = () => describe('Удаление данных для тестетирование отчетов раздела Котроль доступа',
+const deleteDataVisitorReport = () => describe('Удаление данных для тестирование подраздела Отчет по посетителям',
     () => {
         const params = {...dataVisitorReport }
 
@@ -10853,6 +10853,523 @@ const deleteDataVisitorReport = () => describe('Удаление данных д
 
     });
 
+const dataDivision = {
+    divisions: {
+        division1: 'division1',
+        division2: 'division2',
+        division3: 'division3'
+    },
+    divisionsUpdate: {
+        division1: {
+            division:  'division1Update',
+            phone: 'phone1',
+            description: 'description1'
+        },
+        division2: {
+            division:  'division2Update',
+            phone: 'phone2',
+            description: 'description2'
+        },
+        division3: {
+            division:  'division3Update',
+            phone: 'phone3',
+            description: 'description3'
+        }
+    },
+    rooms: {
+        room1: 'room1',
+        room2: 'room2',
+        room3: 'room3'
+    },
+    devices: {
+        device1: {
+            name: 'Контроллер замка CL05',
+            ip: '10.10.5.10',
+            obj: {
+                "device_type": 16,
+                "ip_addr": "10.10.5.10",
+                "mac_addr": "02:42:2f:97:86:32"
+            }
+        },
+        device2: {
+            name: 'Контроллер CL15',
+            ip: '10.10.5.2',
+            obj: {
+                "device_type": 902,
+                "ip_addr": "10.10.5.2",
+                "mac_addr": "02:42:2f:97:86:40"
+            }
+        },
+        device3: {
+            name: 'ЛИКОН 2',
+            ip: '10.10.5.9',
+            obj: {
+                "device_type": 65,
+                "ip_addr": "10.10.5.9",
+                "mac_addr": "02:42:2f:97:86:33"
+            }
+        }
+    },
+    templates: {
+        template1: 'template1',
+        template2: 'template2',
+        template3: 'template3',
+    },
+    template: (name, zone1Id, zone2Id, zone3Id) => {
+        return {
+            "name": `${name}`,
+            "comment": '',
+            "access": [
+                {
+                    "access_zone_id": zone1Id,
+                    "template_type":0,
+                    "rights": {
+                        "is_guard":0,
+                        "is_antipass":0,
+                        "is_verify":0,
+                        "right_type": 1,
+                        "schedule_id": 2,
+                        "schedule_type_id": 1,
+                        "commission_type":0,
+                        "commission_group_1":0,
+                        "commission_group_2":0,
+                        "verify_po_schedule":0,
+                        "verify_vvu_schedule":0,
+                        "verify_pdu_schedule":0,
+                        "verify_alcobarier_schedule":0
+
+                    }
+                },
+                {
+                    "access_zone_id": zone2Id,
+                    "template_type":0,
+                    "rights": {
+                        "is_guard":0,
+                        "is_antipass":0,
+                        "is_verify":0,
+                        "right_type": 1,
+                        "schedule_id": 2,
+                        "schedule_type_id": 1,
+                        "commission_type":0,
+                        "commission_group_1":0,
+                        "commission_group_2":0,
+                        "verify_po_schedule":0,
+                        "verify_vvu_schedule":0,
+                        "verify_pdu_schedule":0,
+                        "verify_alcobarier_schedule":0
+
+                    }
+                },
+                {
+                    "access_zone_id": zone3Id,
+                    "template_type":0,
+                    "rights": {
+                        "is_guard":0,
+                        "is_antipass":0,
+                        "is_verify":0,
+                        "right_type": 1,
+                        "schedule_id": 2,
+                        "schedule_type_id": 1,
+                        "commission_type":0,
+                        "commission_group_1":0,
+                        "commission_group_2":0,
+                        "verify_po_schedule":0,
+                        "verify_vvu_schedule":0,
+                        "verify_pdu_schedule":0,
+                        "verify_alcobarier_schedule":0
+
+                    }
+                },
+            ]
+        }
+    },
+    schedules: {
+        schedule1: {
+            name: 'schedule1',
+            comment: '',
+            work_schedule_type_id: 4
+        },
+        schedule2: {
+            name: 'schedule2',
+            comment: '',
+            work_schedule_type_id: 4
+        },
+        schedule3: {
+            name: 'schedule3',
+            comment: '',
+            work_schedule_type_id: 4
+        }
+    },
+    staff: {
+        staff1: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '1',
+            tabel_number: '1',
+            hiring_date: '2023-01-01',
+            division: 'division1',
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00',
+            identifier: [],
+        },
+        staff2: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '2',
+            tabel_number: '2',
+            hiring_date: '2023-02-01',
+            division: 'division2',
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00',
+            identifier: [],
+        },
+        staff3: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '3',
+            tabel_number: '3',
+            hiring_date: '2023-02-01',
+            division: 'division3',
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00',
+            identifier: [],
+        },
+        staff4: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '4',
+            tabel_number: '4',
+            hiring_date: '2023-02-01',
+            division: 'division4',
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00',
+            identifier: [],
+        },
+    },
+    fio: {
+        staff1: 'staff name 1',
+        staff2: 'staff name 2',
+        staff3: 'staff name 3',
+        staff4: 'staff name 4',
+    }
+}
+
+const  addDataDivision = () => describe('Добавление данных для тестирования подраздела Подразделения', () => {
+
+    const params = {...dataDivision}
+
+    bef();
+    aft();
+
+    describe('Добавление помещений', () => {
+        decItApi.addRoomParent({
+            room: params.rooms.room1
+        });
+        decItApi.addRoomChild({
+            child: params.rooms.room2,
+            parent: params.rooms.room1
+        });
+        decItApi.addRoomChild({
+            child: params.rooms.room3,
+            parent: params.rooms.room2
+        });
+    });
+
+    describe('Добавление устройств', () => {
+        decItApi.addDevice(params.devices.device1.obj);
+        decItApi.addDevice(params.devices.device2.obj);
+        decItApi.addDevice(params.devices.device3.obj);
+    });
+
+    describe('Добавление устройств в помещение', () => {
+        decItApi.addDeviceInRoom({
+            device: params.devices.device1.ip,
+            room: params.rooms.room1
+        });
+        decItApi.addDeviceInRoom({
+            device: params.devices.device2.ip,
+            room: params.rooms.room2
+        });
+        decItApi.addDeviceInRoom({
+            device: params.devices.device3.ip,
+            room: params.rooms.room3
+        });
+    });
+
+    describe('Добавление шаблонов доступа', () => {
+        it(`Добавление шаблона доступа "${params.templates.template1}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrZone = await api.getRoom(cook.text);
+            const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
+            const id2 = arrZone.text.filter(obj => obj.name === params.rooms.room2)[0].id;
+            const id3 = arrZone.text.filter(obj => obj.name === params.rooms.room3)[0].id;
+            const template = params.template(params.templates.template1, id1, id2, id3);
+            await dec.simple(api.putAccessTemplate,
+                [[template], cook.text],
+                api.putAccessTemplate);
+        });
+
+        it(`Добавление шаблона доступа "${params.templates.template2}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrZone = await api.getRoom(cook.text);
+            const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
+            const id2 = arrZone.text.filter(obj => obj.name === params.rooms.room2)[0].id;
+            const id3 = arrZone.text.filter(obj => obj.name === params.rooms.room3)[0].id;
+            const template = params.template(params.templates.template2, id1, id2, id3);
+            await dec.simple(api.putAccessTemplate,
+                [[template], cook.text],
+                api.putAccessTemplate);
+        });
+
+        it(`Добавление шаблона доступа "${params.templates.template3}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrZone = await api.getRoom(cook.text);
+            const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
+            const id2 = arrZone.text.filter(obj => obj.name === params.rooms.room2)[0].id;
+            const id3 = arrZone.text.filter(obj => obj.name === params.rooms.room3)[0].id;
+            const template = params.template(params.templates.template3, id1, id2, id3);
+            await dec.simple(api.putAccessTemplate,
+                [[template], cook.text],
+                api.putAccessTemplate);
+        });
+    });
+
+    describe('Добавление графиков работы', () => {
+        it(`Добавление графика работы "${params.schedules.schedule1.name}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            await dec.simple(api.putSchedule,
+                [[params.schedules.schedule1], cook.text],
+                api.putSchedule);
+        });
+
+        it(`Добавление графика работы "${params.schedules.schedule2.name}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            await dec.simple(api.putSchedule,
+                [[params.schedules.schedule2], cook.text],
+                api.putSchedule);
+        });
+
+        it(`Добавление графика работы "${params.schedules.schedule3.name}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            await dec.simple(api.putSchedule,
+                [[params.schedules.schedule3], cook.text],
+                api.putSchedule);
+        });
+    });
+
+    describe('Добавление сотрудников', () => {
+        it(`Добавление сотрудника "${params.fio.staff1}".`, async () => {
+            const cook = await page.base.getCookie('token');
+            const staff = {
+                ...params.staff.staff1,
+                division: 1
+            }
+            await dec.simple(api.putStaff,
+                [[staff], cook.text],
+                api.putStaff);
+        });
+
+        it(`Добавление сотрудника "${params.fio.staff2}".`, async () => {
+            const cook = await page.base.getCookie('token');
+            const staff = {
+                ...params.staff.staff2,
+                division: 1
+            }
+            await dec.simple(api.putStaff,
+                [[staff], cook.text],
+                api.putStaff);
+        });
+
+        it(`Добавление сотрудника "${params.fio.staff3}".`, async () => {
+            const cook = await page.base.getCookie('token');
+            const staff = {
+                ...params.staff.staff3,
+                division: 1
+            }
+            await dec.simple(api.putStaff,
+                [[staff], cook.text],
+                api.putStaff);
+        });
+    });
+
+});
+
+const  deleteDataDivision = () => describe('Удаление данных для тестирования подраздела Подразделения', () => {
+
+    const params = {...dataDivision}
+
+    bef();
+    aft();
+
+    it('Удаление сотрудников', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrStaff = await api.getStaff(cook.text);
+        const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff1)[0].id;
+        const staff2 = arrStaff.text.filter(obj => obj.name === params.fio.staff2)[0].id;
+        const staff3 = arrStaff.text.filter(obj => obj.name === params.fio.staff3)[0].id;
+
+        await dec.simple(db.deleteUser,
+            [staff1],
+            db.deleteUser);
+
+        await dec.simple(db.deleteUser,
+            [staff2],
+            db.deleteUser);
+
+        await dec.simple(db.deleteUser,
+            [staff3],
+            db.deleteUser);
+    });
+
+    it('Удаление шаблонов доступа', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrTemplate = await api.getTemplate(cook.text);
+        const template1 = arrTemplate.text.filter(obj => obj.name === params.templates.template1)[0].id;
+        const template2 = arrTemplate.text.filter(obj => obj.name === params.templates.template2)[0].id;
+        const template3 = arrTemplate.text.filter(obj => obj.name === params.templates.template3)[0].id;
+        await dec.simple(api.deleteTemplate,
+            [[template1, template2, template3], cook.text],
+            api.deleteTemplate);
+    });
+
+    decItApi.deleteSchedule({
+        name: params.schedules.schedule1.name
+    });
+    decItApi.deleteSchedule({
+        name: params.schedules.schedule2.name
+    });
+    decItApi.deleteSchedule({
+        name: params.schedules.schedule3.name
+    });
+
+    decItApi.deleteDeviceInRoom({
+        ip: params.devices.device1.ip
+    });
+    decItApi.deleteDeviceInRoom({
+        ip: params.devices.device2.ip,
+    });
+    decItApi.deleteDeviceInRoom({
+        ip: params.devices.device3.ip,
+    });
+
+    decItApi.deleteDevice({
+        ip: params.devices.device1.ip
+    });
+    decItApi.deleteDevice({
+        ip: params.devices.device2.ip,
+    });
+    decItApi.deleteDevice({
+        ip: params.devices.device3.ip,
+    });
+
+    decItApi.deleteRoom({
+        room: params.rooms.room3
+    });
+    decItApi.deleteRoom({
+        room: params.rooms.room2
+    });
+    decItApi.deleteRoom({
+        room: params.rooms.room1
+    });
+});
+
+const addDataStaffDivision = () => describe('Добавление данных для тестирования подраздела Подразделения ', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataDivision}
+
+    it(`Добавление сотрудника "${params.fio.staff4}".`, async () => {
+        const cook = await page.base.getCookie('token');
+        const arrDivision = await api.getDivision(cook.text);
+        const divisionId = arrDivision.text.filter(obj => obj.name === params.divisionsUpdate.division1.division)[0].id;
+        const staff = {
+            ...params.staff.staff4,
+            division: divisionId
+        }
+        await dec.simple(api.putStaff,
+            [[staff], cook.text],
+            api.putStaff);
+    });
+});
+
+const deleteDataStaffDivision = () => describe('Удаление данных для тестирования подраздела Подразделения ', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataDivision}
+
+    it('Удаление сотрудников', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrStaff = await api.getStaff(cook.text);
+        const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff4)[0].id;
+        await dec.simple(db.deleteUser,
+            [staff1],
+            db.deleteUser);
+    });
+});
+
+const dataAdditinalData = {
+    text: {
+        name: 'textName'
+    },
+    grafic: {
+        name: 'graficName'
+    },
+    list: {
+        name: 'listName',
+        data: 'data1'
+    },
+    checkbox: {
+        name: 'checkboxName',
+        data: 'Да'
+    },
+    date: {
+        name: 'dateName',
+    },
+    dateTime: {
+        name: 'dateTimeName',
+    },
+
+    textUpdate: {
+        name: 'textNameUpdate',
+        description: 'textDescriptionUpdate',
+        data: 'textDataUpdate'
+    },
+    graficUpdate: {
+        name: 'graficUpdate',
+        description: 'graficDescriptionUpdate',
+    },
+    listUpdate: {
+        name: 'listNameUpdate',
+        description: 'listDescriptionUpdate',
+        data1: 'data1Update',
+        data2: 'data2Update',
+        data3: 'data3Update',
+        data4: 'data4Update',
+        data5: 'data5Update',
+        data6: 'data6Update',
+        data7: 'data7Update',
+        data8: 'data8Update',
+        defaultData: 'data2Update'
+    },
+    checkboxUpdate: {
+        name: 'checkboxNameUpdate',
+        description: 'checkboxDescriptionUpdate',
+        data: 'Нет'
+    },
+    dateUpdate: {
+        name: 'dateNameUpdate',
+        description: 'dateDescriptionUpdate',
+    },
+    dateTimeUpdate: {
+        name: 'dateTimeNameUpdate',
+        description: 'dateTimeDescriptionUpdate',
+    },
+}
+
 
 module.exports =  {
     dataControlAccess,
@@ -10885,5 +11402,11 @@ module.exports =  {
     deleteDataDesign,
     dataVisitorReport,
     addDataVisitorReport,
-    deleteDataVisitorReport
+    deleteDataVisitorReport,
+    dataDivision,
+    addDataDivision,
+    deleteDataDivision,
+    addDataStaffDivision,
+    deleteDataStaffDivision,
+    dataAdditinalData
 }

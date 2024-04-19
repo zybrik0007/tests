@@ -37,6 +37,8 @@ class Select extends BasePage {
             `Нажатие по иконке xpand в select ${title ? title : value}`,
             timeout);
 
+        console.log(element.selectIcon(title, value, 'Icon--expand_more'))
+
         if(iconHandler.error) {
             return iconHandler
         }

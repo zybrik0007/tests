@@ -63,7 +63,8 @@ module.exports = {
         templateChange: require('./page-decorates/template-change-decorate'),
         accessCommission: require('./page-decorates/access-commission-decorate'),
         design: require('./page-decorates/design-decorate'),
-        holiday: require('./page-decorates/holday-decorate')
+        holiday: require('./page-decorates/holday-decorate'),
+        division: require('./page-decorates/division-decorate')
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -96,7 +97,11 @@ module.exports = {
         schedules: ModalDecorate('schedules', ''),
         schedulesList: ModalDecorate('schedulesList', ''),
         holiday: ModalDecorate('predefined-holidays', 'Календарь предопределенных праздничных дней'),
-        holidayType: ModalDecorate('set-holiday-type', '')
+        holidayType: ModalDecorate('set-holiday-type', ''),
+        divisionAdd: ModalDecorate('departments', 'Добавить подразделение'),
+        divisionEdit: ModalDecorate('departments', 'Редактировать подразделение'),
+        additionalDataAdd: ModalDecorate('additional-data-modal', 'Добавить дополнительное поле'),
+        additionalDataEdit: ModalDecorate('additional-data-modal', 'Редактировать дополнительное поле'),
 
     },
     modalConfirm: {

@@ -62,6 +62,8 @@ class SelectMulti extends BasePage {
             `Нажатие по иконке xpand в select ${title}.`,
             timeout);
 
+        console.log(element.selectMultiIcon(title,'Icon--expand_more'))
+
         if(iconHandler.error) {
             return iconHandler
         }

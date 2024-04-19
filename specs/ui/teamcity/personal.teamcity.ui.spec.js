@@ -100,6 +100,25 @@ tests.scheduleUi.otherSchedule.noStr();
 data.deleteDataSchedule();
 clearMemory();
 
+//Персонал / Подразделения
+data.addDataDivision();
+tests.divisionUi.other.add();
+tests.divisionUi.other.edit();
+tests.divisionUi.other.print();
+tests.divisionUi.other.printTree();
+tests.divisionUi.other.exportXLSX();
+tests.divisionUi.other.exportCSV();
+tests.divisionUi.other.searchFilter();
+tests.divisionUi.other.addDuplicate();
+tests.divisionUi.other.deletedFailedHead();
+data.addDataStaffDivision();
+tests.divisionUi.other.deletedFailedStaff();
+data.deleteDataStaffDivision();
+tests.divisionUi.other.importFile();
+tests.divisionUi.other.importFailed();
+tests.divisionUi.other.deleted();
+data.deleteDataDivision();
+
 //Персонал / Праздничные дни
 tests.holiday.other.addHoliday();
 tests.holiday.other.addPreHoliday();
