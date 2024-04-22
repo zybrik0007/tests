@@ -11273,7 +11273,7 @@ const  deleteDataDivision = () => describe('Удаление данных для
     });
 });
 
-const addDataStaffDivision = () => describe('Добавление данных для тестирования подраздела Подразделения ', () => {
+const addDataStaffDivision = () => describe('Добавление данных для тестирования подраздела Подразделения', () => {
 
     bef();
     aft();
@@ -11294,7 +11294,7 @@ const addDataStaffDivision = () => describe('Добавление данных �
     });
 });
 
-const deleteDataStaffDivision = () => describe('Удаление данных для тестирования подраздела Подразделения ', () => {
+const deleteDataStaffDivision = () => describe('Удаление данных для тестирования подраздела Подразделения', () => {
 
     bef();
     aft();
@@ -11332,7 +11332,6 @@ const dataAdditinalData = {
     dateTime: {
         name: 'dateTimeName',
     },
-
     textUpdate: {
         name: 'textNameUpdate',
         description: 'textDescriptionUpdate',
@@ -11370,6 +11369,70 @@ const dataAdditinalData = {
     },
 }
 
+const dataPosition = {
+    position1: {
+        name: 'positionName1',
+        description: 'positionDescription1',
+    },
+    position2: {
+        name: 'positionName2',
+        description: 'positionDescription2',
+    },
+    staff: {
+        staff1: {
+            last_name: 'staff',
+            first_name: 'name',
+            middle_name: '1',
+            tabel_number: '1',
+            hiring_date: '2023-01-01',
+            division: 1,
+            begin_datetime: '2023-01-01 00:00:00',
+            end_datetime: '2033-01-01 00:00:00',
+            identifier: [],
+        },
+    },
+    fio: {
+        staff1: 'staff name 1',
+    }
+}
+
+const addDataStaffPosition = () => describe('Добавление данных для тестирования подраздела Должности', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataPosition}
+
+    it(`Добавление сотрудника "${params.fio.staff1}".`, async () => {
+        const cook = await page.base.getCookie('token');
+        const arrPosition = await api.getPosition(cook.text);
+        const positionId = arrPosition.text.filter(obj => obj.name === params.position1.name)[0].id;
+        const staff = {
+            ...params.staff.staff1,
+            position: positionId
+        }
+        await dec.simple(api.putStaff,
+            [[staff], cook.text],
+            api.putStaff);
+    });
+});
+
+const deleteDataStaffPosition  = () => describe('Удаление данных для тестирования подраздела Должности', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataPosition}
+
+    it('Удаление сотрудников', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrStaff = await api.getStaff(cook.text);
+        const staff1 = arrStaff.text.filter(obj => obj.name === params.fio.staff1)[0].id;
+        await dec.simple(db.deleteUser,
+            [staff1],
+            db.deleteUser);
+    });
+});
 
 module.exports =  {
     dataControlAccess,
@@ -11408,5 +11471,8 @@ module.exports =  {
     deleteDataDivision,
     addDataStaffDivision,
     deleteDataStaffDivision,
-    dataAdditinalData
+    dataAdditinalData,
+    dataPosition,
+    addDataStaffPosition,
+    deleteDataStaffPosition
 }

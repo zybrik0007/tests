@@ -12,6 +12,8 @@ module.exports = {
         importXLSSuccess: path.join(__dirname, 'files/position/import.position.xls.success.xls'),
         importXLSXFailed: path.join(__dirname, 'files/position/import.position.xlsx.failed.xlsx'),
         importXLSXPartlySuccess: path.join(__dirname, 'files/position/import.position.xlsx.partly.success.xlsx'),
+        importPosition: path.join(__dirname, 'files/position/position.xlsx'),
+        importPositionFailed: path.join(__dirname, 'files/position/position.failed.xlsx')
     },
     division: {
         importDivision: path.join(__dirname, 'files/division/division.xlsx'),

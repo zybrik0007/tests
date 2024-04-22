@@ -52,6 +52,8 @@ tests.staffUi.other.importFailedParamsActive();
 data.deleteDataStaff();
 clearMemory();
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //Персонал / Графики работы
 data.addDataSchedule();
 tests.scheduleUi.otherSchedule.editWeek();
@@ -100,6 +102,8 @@ tests.scheduleUi.otherSchedule.noStr();
 data.deleteDataSchedule();
 clearMemory();
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //Персонал / Подразделения
 data.addDataDivision();
 tests.divisionUi.other.add();
@@ -120,6 +124,24 @@ tests.divisionUi.other.deleted();
 data.deleteDataDivision();
 clearMemory();
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Персонал / Должности
+tests.positionUi.other.add();
+tests.positionUi.other.edit();
+tests.positionUi.other.printTable();
+tests.positionUi.other.exportXLSX();
+tests.positionUi.other.exportCSV();
+tests.positionUi.other.importFile();
+tests.positionUi.other.search();
+tests.positionUi.other.importFailed();
+data.addDataStaffPosition();
+tests.positionUi.other.deletedStaff();
+data.deleteDataStaffPosition();
+tests.positionUi.other.deleted();
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //Персонал / Праздничные дни
 tests.holiday.other.addHoliday();
 tests.holiday.other.addPreHoliday();
@@ -131,6 +153,8 @@ tests.holiday.other.addCalendar();
 tests.holiday.other.reset();
 clearMemory();
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //Персонал / Дополнительные данные - вкладки: Сотруднки, Посетители
 tests.additionalDataUi.otherStaff.add();
 tests.additionalDataUi.otherStaff.edit();
@@ -141,8 +165,6 @@ tests.additionalDataUi.otherVisitor.edit();
 tests.additionalDataUi.otherVisitor.deleted();
 clearMemory();
 
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 closeBrowser();

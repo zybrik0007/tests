@@ -6,15 +6,20 @@ const decorate = require('../ui/src/decorates');
 
 
 
-data.deleteURVDocument();
-data.addURVDocument();
-tests.reportsUi.other.calculationDateReports();
-tests.reportsUi.other.checkCalculationReports();
-tests.reportsUi.other.printReports();
-tests.reportsUi.other.exportReportsXLSX();
-tests.reportsUi.other.exportReportsCSV();
-tests.reportsUi.other.checkCalculationNoNullReports();
-tests.reportsUi.other.documentCalculateReports();
+tests.positionUi.other.add();
+tests.positionUi.other.edit();
+tests.positionUi.other.printTable();
+tests.positionUi.other.exportXLSX();
+tests.positionUi.other.exportCSV();
+tests.positionUi.other.importFile();
+tests.positionUi.other.search();
+tests.positionUi.other.importFailed();
+data.addDataStaffPosition();
+tests.positionUi.other.deletedStaff();
+data.deleteDataStaffPosition();
+tests.positionUi.other.deleted();
+
+
 
 closeBrowser();
 

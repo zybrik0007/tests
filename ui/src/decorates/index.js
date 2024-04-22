@@ -102,6 +102,8 @@ module.exports = {
         divisionEdit: ModalDecorate('departments', 'Редактировать подразделение'),
         additionalDataAdd: ModalDecorate('additional-data-modal', 'Добавить дополнительное поле'),
         additionalDataEdit: ModalDecorate('additional-data-modal', 'Редактировать дополнительное поле'),
+        addPosition: ModalDecorate('edit-position', 'Добавление должности'),
+        editPosition: ModalDecorate('edit-position', 'Редактирование должности'),
 
     },
     modalConfirm: {
