@@ -11339,7 +11339,7 @@ const dataAdditinalData = {
         data: 'textDataUpdate'
     },
     graficUpdate: {
-        name: 'graficUpdate',
+        name: 'graficNameUpdate',
         description: 'graficDescriptionUpdate',
     },
     listUpdate: {

@@ -1,6 +1,6 @@
 module.exports = {
     browser: process.env.a100browser || 'chrome',
-    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): false,
+    headless: process.env.a102headless ? JSON.parse(process.env.a102headless): true,
     width: Number(process.env.a113width) || 1920,
     height: Number(process.env.a114height) || 1080,
     address: process.env.a101address || 'http://172.17.0.50:8080/',
@@ -19,7 +19,7 @@ module.exports = {
     min: Number(process.env.a105min) || 2000,
     upload: Number(process.env.a107upload) || 50000,
     sleep1: Number(process.env.a107xsleep1) || 1000,
-    sleep2: Number(process.env.a107xsleep2) || 1000,
+    sleep2: Number(process.env.a107xsleep2) || 2000,
     datepicker: Number(process.env.a107xsleepDate) || 500,
     urv: 10000,
     buttonTime: 3000,

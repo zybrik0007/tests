@@ -152,6 +152,10 @@ module.exports = {
         addHoliday: ModalConfirmDecorate('Подтвердите действие',
             'Заполнить предопределенными значениями'),
 
+        //Дополниеотные поля
+        deleteAdditionalData: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данное дополнительное поле?'),
+
         //Бюро пропусков
         //Посетители
         visitorBlock: ModalConfirmDecorate('Подтвердите действие',

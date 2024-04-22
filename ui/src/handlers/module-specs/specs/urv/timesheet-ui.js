@@ -529,7 +529,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 36,
                     td: 31,
-                    value: '6(144)',
+                    value: '6(198)',
                     timeout: entry.max
                 });
 
@@ -542,7 +542,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 2,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -554,7 +554,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 4,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -566,7 +566,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 6,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -578,7 +578,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 8,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -590,7 +590,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 10,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -602,7 +602,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 12,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -614,7 +614,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 14,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -626,7 +626,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 17,
-                    value: '168',
+                    value: '229',
                     timeout: entry.max
                 });
 
@@ -669,14 +669,14 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 38,
                     td: 18,
-                    value: '216',
+                    value: '294',
                     timeout: entry.max
                 });
 
                 decorate.page.timesheet.table({
                     tr: 39,
                     td: 1,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -688,7 +688,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 39,
                     td: 3,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -706,7 +706,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 39,
                     td: 17,
-                    value: '48',
+                    value: '65',
                     timeout: entry.max
                 });
             });
@@ -1526,7 +1526,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 37,
                     td: 2,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
 
@@ -1551,7 +1551,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 38,
                     td: 18,
-                    value: '168',
+                    value: '229',
                     timeout: entry.max
                 });
 
@@ -1659,7 +1659,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 36,
                     td: 29,
-                    value: '6(144)',
+                    value: '6(198)',
                     timeout: entry.max
                 });
 
@@ -1697,14 +1697,14 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 38,
                     td: 18,
-                    value: '48',
+                    value: '65',
                     timeout: entry.max
                 });
 
                 decorate.page.timesheet.table({
                     tr: 39,
                     td: 17,
-                    value: '48',
+                    value: '65',
                     timeout: entry.max
                 });
             });
@@ -1938,8 +1938,7 @@ const other = () => {
 
     });
 
-    const filterDivisionTimesheet = () => describe('УРВ / Формировнаие табеля. ' +
-        'Проверка фильтра "Подразделнеие".', () => {
+    const filterDivisionTimesheet = () => describe('УРВ / Формировнаие табеля. Проверка фильтра "Подразделние".', () => {
 
         bef();
         aft();
@@ -2234,7 +2233,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 32,
                     td: 31,
-                    value: '6(144)',
+                    value: '6(198)',
                     timeout: entry.max
                 });
 
@@ -2247,7 +2246,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 2,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2259,7 +2258,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 4,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2271,7 +2270,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 6,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2283,7 +2282,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 8,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2295,7 +2294,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 10,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2307,7 +2306,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 12,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2319,7 +2318,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 14,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2331,7 +2330,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 33,
                     td: 17,
-                    value: '168',
+                    value: '229',
                     timeout: entry.max
                 });
 
@@ -2374,14 +2373,14 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 34,
                     td: 18,
-                    value: '216',
+                    value: '294',
                     timeout: entry.max
                 });
 
                 decorate.page.timesheet.table({
                     tr: 35,
                     td: 1,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2393,7 +2392,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 35,
                     td: 3,
-                    value: '22/2',
+                    value: '31/2',
                     timeout: entry.max
                 });
                 decorate.page.timesheet.table({
@@ -2411,7 +2410,7 @@ const other = () => {
                 decorate.page.timesheet.table({
                     tr: 35,
                     td: 17,
-                    value: '48',
+                    value: '65',
                     timeout: entry.max
                 });
             });
@@ -2426,11 +2425,11 @@ const other = () => {
 
     });
 
-    const downloadXLSXTimesheet = () => describe('УРВ / Формировнаие табеля. Проверка "Скачать файл в Excel".', () => {
+    const downloadXLSXTimesheet = () => describe('УРВ / Формирование табеля. Проверка "Скачать файл в Excel".', () => {
 
         const params = {
             nameFile: 't13.xlsx',
-            json:  [
+            json: [
                 {
                     __EMPTY_20: 'Постановление Госкомстата РФ от 5 января 2004 г. № 1'
                 },
@@ -2652,26 +2651,26 @@ const other = () => {
                     __EMPTY_26: 'ОВ',
                     __EMPTY_27: '1 ()',
                     __EMPTY_28: 'нн',
-                    __EMPTY_29: '6 (144)'
+                    __EMPTY_29: '6 (198)'
                 },
                 {
                     __EMPTY_3: '',
-                    __EMPTY_4: '22/2',
+                    __EMPTY_4: '31/2',
                     __EMPTY_5: '',
-                    __EMPTY_6: '22/2',
+                    __EMPTY_6: '31/2',
                     __EMPTY_7: '',
-                    __EMPTY_8: '22/2',
+                    __EMPTY_8: '31/2',
                     __EMPTY_9: '',
-                    __EMPTY_10: '22/2',
+                    __EMPTY_10: '31/2',
                     __EMPTY_11: '',
-                    __EMPTY_12: '22/2',
+                    __EMPTY_12: '31/2',
                     __EMPTY_13: '',
-                    __EMPTY_14: '22/2',
+                    __EMPTY_14: '31/2',
                     __EMPTY_15: '',
-                    __EMPTY_16: '22/2',
+                    __EMPTY_16: '31/2',
                     __EMPTY_17: '',
                     __EMPTY_18: 'X',
-                    __EMPTY_19: 168,
+                    __EMPTY_19: 229,
                     __EMPTY_26: '',
                     __EMPTY_27: '',
                     __EMPTY_28: '',
@@ -2694,16 +2693,16 @@ const other = () => {
                     __EMPTY_16: 'в',
                     __EMPTY_17: 'нн',
                     __EMPTY_19: 2,
-                    __EMPTY_20: 216,
+                    __EMPTY_20: 294,
                     __EMPTY_26: '',
                     __EMPTY_27: '',
                     __EMPTY_28: '',
                     __EMPTY_29: ''
                 },
                 {
-                    __EMPTY_3: '22/2',
+                    __EMPTY_3: '31/2',
                     __EMPTY_4: '',
-                    __EMPTY_5: '22/2',
+                    __EMPTY_5: '31/2',
                     __EMPTY_6: '',
                     __EMPTY_7: '',
                     __EMPTY_8: '',
@@ -2716,7 +2715,7 @@ const other = () => {
                     __EMPTY_15: '',
                     __EMPTY_16: '',
                     __EMPTY_17: '',
-                    __EMPTY_19: 48,
+                    __EMPTY_19: 65,
                     __EMPTY_26: '',
                     __EMPTY_27: '',
                     __EMPTY_28: '',
@@ -3125,13 +3124,13 @@ const other = () => {
                     __EMPTY_19: 1,
                     __EMPTY_20: 1,
                     __EMPTY_26: 'нн',
-                    __EMPTY_27: '14 (336)',
+                    __EMPTY_27: '14 (462)',
                     __EMPTY_28: '',
                     __EMPTY_29: ''
                 },
                 {
                     __EMPTY_3: '',
-                    __EMPTY_4: '14/1',
+                    __EMPTY_4: '23/1',
                     __EMPTY_5: '',
                     __EMPTY_6: '',
                     __EMPTY_7: '',
@@ -3146,7 +3145,7 @@ const other = () => {
                     __EMPTY_16: '',
                     __EMPTY_17: '',
                     __EMPTY_18: 'X',
-                    __EMPTY_19: 15,
+                    __EMPTY_19: 24,
                     __EMPTY_26: '',
                     __EMPTY_27: '',
                     __EMPTY_28: '',
@@ -3169,7 +3168,7 @@ const other = () => {
                     __EMPTY_16: 'в',
                     __EMPTY_17: 'нн',
                     __EMPTY_19: 0,
-                    __EMPTY_20: 15,
+                    __EMPTY_20: 24,
                     __EMPTY_26: '',
                     __EMPTY_27: '',
                     __EMPTY_28: '',

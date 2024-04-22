@@ -118,6 +118,7 @@ tests.divisionUi.other.importFile();
 tests.divisionUi.other.importFailed();
 tests.divisionUi.other.deleted();
 data.deleteDataDivision();
+clearMemory();
 
 //Персонал / Праздничные дни
 tests.holiday.other.addHoliday();
@@ -128,6 +129,19 @@ tests.holiday.other.yearFilter();
 tests.holiday.other.reset();
 tests.holiday.other.addCalendar();
 tests.holiday.other.reset();
+clearMemory();
+
+//Персонал / Дополнительные данные - вкладки: Сотруднки, Посетители
+tests.additionalDataUi.otherStaff.add();
+tests.additionalDataUi.otherStaff.edit();
+tests.additionalDataUi.otherStaff.deleted();
+
+tests.additionalDataUi.otherVisitor.add();
+tests.additionalDataUi.otherVisitor.edit();
+tests.additionalDataUi.otherVisitor.deleted();
+clearMemory();
+
+
 
 
 

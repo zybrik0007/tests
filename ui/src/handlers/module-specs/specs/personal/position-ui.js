@@ -20,7 +20,7 @@ const bef = () => before('Вход и открытие подраздела "Д�
 });
 const aft = () => after('Выход', async () => await dec.exit());
 
-/*// api - Добавление должности
+/*/!*!// api - Добавление должности
 const addPosition = (name, description) => it('Добавление должности', async () => {
     const cook = await page.base.getCookie('token');
     const obj = {
@@ -31,7 +31,7 @@ const addPosition = (name, description) => it('Добавление должно
     await dec.simple(api.putPosition,
         [[obj], cook.text],
         api.putPosition);
-});*/
+});*!/
 
 // api - Добавление должности
 const addPosition = (name, description) => it('Добавление должности', async () => {
@@ -2778,11 +2778,43 @@ const print = () => describe('Должности. Проверка печати.
     })
 
     deletePosition();
-})
+})*/
+
+const other = () => {
+
+    const add = () => describe('Персонал / Должности. Добавление.', () => {});
+
+    const edit = () => describe('Персонал / Должности. Редактирование.', () => {});
+
+    const exportXLSX = () => describe('Персонал / Должности. Проверка экспорта в XLSX.', () => {});
+
+    const exportCSV = () => describe('Персонал / Должности. Проверка экспорта в CSV.', () => {});
+
+    const importXLSX = () => describe('Персонал / Должности. Проверка импорта.', () => {});
+
+    const search = () => describe('Персонал / Должности. Проверка филтра "Поиск".', () => {});
+
+    const importFailed = () => describe('Персонал / Должности. Проверка импорта с ошибкой.', () => {});
+
+    const deleted = () => describe('Персонал / Должности. Удаление.', () => {});
+
+    const deletedStaff = () => describe('Персонал / Должности. Удаление должности, добавленной сотруднику.', () => {});
+
+    return {
+        add,
+        edit,
+        exportXLSX,
+        exportCSV,
+        importXLSX,
+        importFailed,
+        deleted,
+        deletedStaff
+    }
+}
 
 
 module.exports = {
-    display,
+/*    display,
     add: add(),
     edit: edit(),
     delete: remove(),
@@ -2791,5 +2823,5 @@ module.exports = {
     print,
     footer,
     filterSearch,
-    sort
+    sort*/
 }
