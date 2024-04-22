@@ -107,6 +107,7 @@ clearMemory();
 //Персонал / Подразделения
 data.addDataDivision();
 tests.divisionUi.other.add();
+tests.positionUi.other.addDuplicate();
 tests.divisionUi.other.edit();
 tests.divisionUi.other.print();
 tests.divisionUi.other.printTree();
@@ -139,6 +140,7 @@ data.addDataStaffPosition();
 tests.positionUi.other.deletedStaff();
 data.deleteDataStaffPosition();
 tests.positionUi.other.deleted();
+clearMemory();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

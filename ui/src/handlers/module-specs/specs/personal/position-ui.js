@@ -2890,6 +2890,47 @@ const other = () => {
         });
     });
 
+    const addDuplicate = () => describe('Персонал / Должности. Попытка дублирования.', () => {
+        bef();
+        aft();
+        decorate.el.butIcBefore.handler({
+            icon: but.add,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.modal.addPosition.init({
+            timeout: entry.max
+        });
+        decorate.el.input.sendKeys({
+            title: 'Название',
+            placeholder: '',
+            value: data.position1.name,
+            timeout: entry.max
+        });
+        decorate.el.button.handler({
+            name: 'Сохранить',
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.error.error({
+            text: 'Должность с таким названием уже существует',
+            timeout: entry.max
+        });
+        decorate.modal.addPosition.closeHandler({
+            timeout: entry.max
+        });
+        decorate.modal.addPosition.initClose({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+    });
+
     const edit = () => describe('Персонал / Должности. Редактирование.', () => {
         describe('Редактирование', () => {
             bef();
@@ -3570,6 +3611,7 @@ const other = () => {
 
     return {
         add,
+        addDuplicate,
         edit,
         printTable,
         exportXLSX,
