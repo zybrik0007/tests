@@ -107,7 +107,6 @@ clearMemory();
 //Персонал / Подразделения
 data.addDataDivision();
 tests.divisionUi.other.add();
-tests.positionUi.other.addDuplicate();
 tests.divisionUi.other.edit();
 tests.divisionUi.other.print();
 tests.divisionUi.other.printTree();
@@ -129,6 +128,7 @@ clearMemory();
 
 //Персонал / Должности
 tests.positionUi.other.add();
+tests.positionUi.other.addDuplicate();
 tests.positionUi.other.edit();
 tests.positionUi.other.printTable();
 tests.positionUi.other.exportXLSX();
