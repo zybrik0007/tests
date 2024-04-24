@@ -56,7 +56,10 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     DesignPage = require('./soft/pass-office/design-page/design-page'),
     DesignChangePage = require('./soft/pass-office/design-page/design-change-page'),
     VisitorReportPage = require('./soft/pass-office/visitor-report-page/visitor-report-page'),
-    HolidayPage = require('./soft/personal/holiday-page/holiday-page');
+    HolidayPage = require('./soft/personal/holiday-page/holiday-page'),
+    EventRenamePage = require('./soft/administration/configuration-page/configuration-event-page'),
+    TemplateCameraPage = require('./soft/administration/configuration-page/configuration-camera-page'),
+    SystemPage = require('./soft/administration/configuration-page/configuration-system-page');
 
 
 module.exports = {
@@ -132,6 +135,9 @@ module.exports = {
     //Администрирование
     room: new Rooms(),
     device: new Devices(),
+    eventRename: new EventRenamePage(),
+    camera: new TemplateCameraPage(),
+    system: new SystemPage(),
     license: new License(),
 
 }

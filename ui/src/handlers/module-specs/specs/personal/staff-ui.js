@@ -10011,6 +10011,18 @@ const other = (type, text) => {
                 timeout: entry.max
             });
             decorate.el.select.iconXpand({
+                title: 'Блокировка',
+                value: '',
+                text: 'Блокировка1',
+                timeout: entry.max
+            });
+            decorate.el.select.iconXpand({
+                title: 'Штрихкод',
+                value: '',
+                text: 'Штрихкод1',
+                timeout: entry.max
+            });
+            decorate.el.select.iconXpand({
                 title: 'Действует до',
                 value: '',
                 text: 'Действует до1',
@@ -10026,34 +10038,6 @@ const other = (type, text) => {
                 title: 'Дата приема',
                 value: '',
                 text: 'Дата приема1',
-                timeout: entry.max
-            });
-            decorate.el.select.iconXpand({
-                title: 'Email',
-                value: '',
-                text: 'Email1',
-                timeout: entry.max
-            });
-            decorate.modal.importFile.scrollTop({
-                number: '500',
-                timeout: entry.max
-            });
-            decorate.el.select.iconXpand({
-                title: 'Телефон',
-                value: '',
-                text: 'Телефон1',
-                timeout: entry.max
-            });
-            decorate.el.select.iconXpand({
-                title: 'Пин-код',
-                value: '',
-                text: 'Пин-код1',
-                timeout: entry.max
-            });
-            decorate.el.select.iconXpand({
-                title: 'data1',
-                value: '',
-                text: 'data11',
                 timeout: entry.max
             });
             decorate.el.button.handler({
@@ -10119,7 +10103,7 @@ const other = (type, text) => {
                     headTitle: 'Штрихкод',
                     strNumber: 1,
                     cellNumber: 6,
-                    value: '',
+                    value: '1887126009860',
                     timeout: entry.max
                 });
                 decorate.el.table.cellNoIconLock({
@@ -10196,18 +10180,6 @@ const other = (type, text) => {
                             value: data.staff.staff1.middleName,
                             timeout: entry.max
                         });
-                        decorate.el.input.getValue({
-                            title: 'Номер телефона',
-                            placeholder: 'Номер телефона',
-                            value: data.staff.staff1.phone,
-                            timeout: entry.max
-                        });
-                        decorate.el.input.getValue({
-                            title: 'E-Mail',
-                            placeholder: 'E-Mail',
-                            value: data.staff.staff1.mail,
-                            timeout: entry.max
-                        });
                     });
 
                     describe('Учетные данные', () => {
@@ -10251,21 +10223,6 @@ const other = (type, text) => {
                             title: 'График работы',
                             placeholder: 'График работы',
                             value: data.staff.staff1.schedule,
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Дополнительные поля', () => {
-                        decorate.el.input.getValue({
-                            title: 'Пин-код',
-                            placeholder: '',
-                            value: data.staff.staff1.pinCode,
-                            timeout: entry.max
-                        });
-                        decorate.el.input.getValue({
-                            title: data.additionalData.data1Text.name,
-                            placeholder: '',
-                            value: data.staff.staff1.data1,
                             timeout: entry.max
                         });
                     });

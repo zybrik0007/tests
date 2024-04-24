@@ -83,5 +83,8 @@ module.exports = {
     //Администрирование
     roomUrl: address + 'administration/premisesconfiguration/rooms',
     deviceUrl: address + 'administration/premisesconfiguration/controllers',
+    eventRenameUrl: address + 'administration/premisesconfiguration/event-rename',
+    templateCameraUrl: address + 'administration/premisesconfiguration/cameratemplates',
+    systemUrl: address + 'administration/premisesconfiguration/system',
     licenseUrl: address + 'administration/license',
 }

@@ -6,9 +6,8 @@ const decorate = require('../ui/src/decorates');
 
 
 
-tests.positionUi.other.add();
-tests.positionUi.other.addDuplicate();
-
+//data.addDataStaff();
+tests.staffUi.other.importMaxParamsActive();
 
 
 

@@ -52,5 +52,8 @@ module.exports = {
     //Конфигурация
     roomsTitle: title + 'Конфигурация',
     deviceTitle: title + 'Конфигурация',
+    eventRenameTitle: title + 'Конфигурация',
+    systemTitle: title + 'Конфигурация',
+    templateCameraTitle: title + 'Конфигурация',
     licenseTitle: title + 'Лицензии',
 }
