@@ -11434,6 +11434,14 @@ const deleteDataStaffPosition  = () => describe('Удаление данных �
     });
 });
 
+const dataConfiguration = {
+    rooms: {
+        room1: 'room1',
+        room2: 'room2',
+        room3: 'room3'
+    }
+}
+
 module.exports =  {
     dataControlAccess,
     addDataControlAccess,
@@ -11474,5 +11482,6 @@ module.exports =  {
     dataAdditinalData,
     dataPosition,
     addDataStaffPosition,
-    deleteDataStaffPosition
+    deleteDataStaffPosition,
+    dataConfiguration
 }

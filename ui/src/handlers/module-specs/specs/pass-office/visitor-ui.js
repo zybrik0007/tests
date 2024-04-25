@@ -7556,17 +7556,9 @@ const other = (type, text) => {
                     text: 'Дата заказа1',
                     timeout: entry.max
                 });
-                decorate.el.select.iconXpand({
-                    title: 'Email',
-                    value: '',
-                    text: 'Email1',
-                    timeout: entry.max
-                });
-                decorate.el.select.iconXpand({
-                    title: 'Пин-код',
-                    value: '',
-                    text: 'Пин-код1',
-                    timeout: entry.max
+                decorate.modal.importFile.scrollTop({
+                    number: 500,
+                    timout: entry.max
                 });
                 decorate.el.checkbox.handler({
                     name: 'Импорт несуществующих подразделений',
@@ -7727,12 +7719,6 @@ const other = (type, text) => {
                             value: data.visitor1.middleName,
                             timeout: entry.max
                         });
-                        decorate.el.input.getValue({
-                            title: 'E-Mail',
-                            placeholder: 'E-Mail',
-                            value: data.visitor1.mail,
-                            timeout: entry.max
-                        });
                     });
 
                     describe('Учетные данные', () => {
@@ -7782,15 +7768,6 @@ const other = (type, text) => {
                             title: 'Действует до',
                             placeholder: 'Действует до',
                             value: data.visitor1.dateAfter.date,
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Дополнительные поля', () => {
-                        decorate.el.input.getValue({
-                            title: 'Пин-код',
-                            placeholder: '',
-                            value: data.visitor1.pinCode,
                             timeout: entry.max
                         });
                     });
@@ -7973,17 +7950,9 @@ const other = (type, text) => {
                     text: 'Дата заказа1',
                     timeout: entry.max
                 });
-                decorate.el.select.iconXpand({
-                    title: 'Email',
-                    value: '',
-                    text: 'Email1',
-                    timeout: entry.max
-                });
-                decorate.el.select.iconXpand({
-                    title: 'Пин-код',
-                    value: '',
-                    text: 'Пин-код1',
-                    timeout: entry.max
+                decorate.modal.importFile.scrollTop({
+                    number: 500,
+                    timout: entry.max
                 });
                 decorate.el.checkbox.handler({
                     name: 'Импорт несуществующих подразделений',
@@ -8150,12 +8119,6 @@ const other = (type, text) => {
                             value: data.visitor1.middleName,
                             timeout: entry.max
                         });
-                        decorate.el.input.getValue({
-                            title: 'E-Mail',
-                            placeholder: 'E-Mail',
-                            value: data.visitor1.mail,
-                            timeout: entry.max
-                        });
                     });
 
                     describe('Учетные данные', () => {
@@ -8205,15 +8168,6 @@ const other = (type, text) => {
                             title: 'Действует до',
                             placeholder: 'Действует до',
                             value: data.visitor1.dateAfter.date,
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Дополнительные поля', () => {
-                        decorate.el.input.getValue({
-                            title: 'Пин-код',
-                            placeholder: '',
-                            value: data.visitor1.pinCode,
                             timeout: entry.max
                         });
                     });
@@ -8378,12 +8332,6 @@ const other = (type, text) => {
                     number: 500,
                     timout: entry.max
                 });
-                decorate.el.select.iconXpand({
-                    title: 'Email',
-                    value: '',
-                    text: 'Email1',
-                    timeout: entry.max
-                });
                 decorate.el.checkbox.handler({
                     name: 'Импорт несуществующих подразделений',
                     timout: entry.max
@@ -8499,12 +8447,6 @@ const other = (type, text) => {
                             title: 'Отчество',
                             placeholder: 'Отчество',
                             value: data.visitor1.middleName,
-                            timeout: entry.max
-                        });
-                        decorate.el.input.getValue({
-                            title: 'E-Mail',
-                            placeholder: 'E-Mail',
-                            value: data.visitor1.mail,
                             timeout: entry.max
                         });
                     });

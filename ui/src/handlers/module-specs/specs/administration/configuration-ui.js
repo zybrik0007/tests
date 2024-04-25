@@ -14,7 +14,7 @@ const oth = require('../../../other/other');
 const decItApi = require('../../../../dictionaries/decorate-it-api');
 const decorate = require('../../../../decorates');
 const db = require('../../../../database');
-const data = require('../../data').dataControlAccess;
+const data = require('../../data').dataConfiguration;
 
 const befARoom = () => before('Вход и открытие подраздела "Конфигурация" вкладка "Помещения"', async () => {
     await page.base.loading(entry.sleep1);
@@ -66,8 +66,6 @@ const befSystem = () => before('Вход и открытие подраздел�
     await page.base.loading(entry.sleep1);
 });
 
-
-
 const aft = () => after('Выход', async () => {
     await page.base.loading(entry.sleep1);
     await dec.exit();
@@ -75,7 +73,78 @@ const aft = () => after('Выход', async () => {
 
 const other = (type, text) => {
 
-    const addDeviceSearch = () => describe(text + 'Добавление устройства через общий поиск.', () => {});
+    const addDeviceSearch = () => describe(text + 'Добавление устройства через общий поиск.', () => {
+
+        if(type === 'device') {
+            describe('Добавление', () => {
+                befDevice();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.search,
+                    timeout: entry.max
+                });
+                decorate.modal.searchDevice.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Поиск всех устройств',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.input({
+                    title: '',
+                    placeholder: 'Поиск...',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Добавить устройства',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'Поиск...',
+                    value: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.modal.searchDevice.deviceHandler({
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Добавить устройства',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.modal.searchDevice.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+            });
+        }
+
+    });
 
     const addDeviceIP = () => describe(text + 'Добавление устройства через общий поиск.', () => {
 
@@ -141,7 +210,58 @@ const other = (type, text) => {
         }
     });
 
-    const deleteDevice = () => describe(text + 'Удаление устройства.', () => {});
+    const deleteDevice = () => describe(text + 'Удаление устройства.', () => {
+
+        if(type === 'device') {
+            describe('Удаление', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.noDevice({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
 
     const activateDevice = () => describe(text + 'Активация устройства.', () => {
 
@@ -340,7 +460,26 @@ const other = (type, text) => {
         }
     });
 
-    const addRoom = () => describe(text + 'Добавить помещение.', () => {});
+    const addRoom = () => describe(text + 'Добавить помещение.', () => {
+        if(type === 'room') {
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.room.room({
+                    arr: ['1'],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: ['1', '2'],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: ['1', '2', '3'],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
 
     const addDuplicateRoom = () => describe(text + 'Добавить дублирующие помещение.', () => {});
 
@@ -353,15 +492,19 @@ const other = (type, text) => {
     const deleteParentRoom = () =>describe(text + 'Удаление родительского помещения.', () => {});
 
     return {
+        addDeviceSearch,
         addDeviceIP,
+        deleteDevice,
         activateDevice,
         deactivateDevice,
         fireAlarmDevice,
-        blockFireAlarmDevice
+        blockFireAlarmDevice,
+        addRoom
     }
 
 }
 
 module.exports = {
-    otherDevice: other('device', 'Администрирование / Конфигурация - вкладка Устройства. ')
+    otherDevice: other('device', 'Администрирование / Конфигурация - вкладка Устройства. '),
+    otherRoom: other('room', 'дминистрирование / Конфигурация - вкладка Помещения. ')
 }

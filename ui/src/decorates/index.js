@@ -66,6 +66,7 @@ module.exports = {
         holiday: require('./page-decorates/holday-decorate'),
         division: require('./page-decorates/division-decorate'),
         device: require('./page-decorates/device-decorate'),
+        room: require('./page-decorates/room-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),

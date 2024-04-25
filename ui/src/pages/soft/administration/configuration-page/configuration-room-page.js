@@ -27,65 +27,26 @@ class Rooms extends BasePage {
         }
     }
 
-    //Отображение "Неконтролируемая территория"
-    async rootElement(timeout) {
-        return await this.xpathElement(elements.admConfRoomTreeRoot,
-            'Отображение "Неконтролируемая территория".',
-            timeout)
-    }
-
-    //Нжатие по "Неконтролируемая территория"
-    async rootHandler(timeout) {
-        return await this.xpathHandler(elements.admConfRoomTreeRoot,
-            'Нжатие по "Неконтролируемая территория".',
-            timeout)
-    }
-
     //Отображение помещения
-    async roomElement(arr, timeout) {
-        return await this.xpathElement(elements.admConfRoomTree(arr),
+    async room(arr, timeout) {
+        return await this.xpathElement(elements.room(arr),
             `Отображение помещения "${arr[arr.length - 1]}".`,
-            timeout)
+            timeout);
     }
 
-    //Нажатие по помещению
+    async device(arr, timeout) {
+        return await this.xpathElement(elements.roomDevice(arr) +
+            elements.admDevice(arr[arr.length - 2], arr[arr.length - 1]),
+            `Отображение устройства "${arr[arr.length - 2]} - ${arr[arr.length - 1]}" 
+            в помещении "${arr[arr.length - 3]}".`,
+            timeout);
+    }
+
     async roomHandler(arr, timeout) {
-        return await this.xpathHandler(elements.admConfRoomTree(arr),
-            `Нажатие по помещению "${arr[arr.length - 1]}"`,
-            timeout)
+        return await this.xpathHandler(elements.room(arr),
+            `Нажатие по помещению "${arr[arr.length - 1]}".`,
+            timeout);
     }
-
-    //Отсутствие помещения
-    async roomNoElement(arr, timeout) {
-        return await this.xpathNoElement(elements.admConfRoomTree(arr),
-            `Отсутствие помещения "${arr[arr.length - 1]}"`,
-            timeout)
-    }
-
-    //Отсутствие устройства
-    async deviceElement(arr, name, ip, active, timeout){
-        return await this.xpathElement(elements.admConfRoomTreeDevice(arr, name, ip, active),
-            `Отображение ${active ? 'активированого': 'деактивированого'} устройства "${name}"
-             c ip ${ip} в помещении "${arr[arr.length - 1]}".`,
-            timeout)
-    }
-
-    //Нажатие по стройству
-    async deviceHandler(arr, name, ip, active, timeout) {
-        return await this.xpathHandler(elements.admConfRoomTreeDevice(arr, name, ip, active),
-            `Нажатие по ${active ? 'активированому': 'деактивированому'} устройству "${name}" 
-            c ip "${ip}" в помещении "${arr[arr.length - 1]}".`,
-            timeout)
-    }
-
-    //Отсутствие устройства
-    async deviceNoElement(arr, name, ip, active, timeout) {
-        return await this.xpathElement(elements.admConfRoomTreeDevice(arr, name, ip, active),
-            `Отсутствие ${active ? 'активированого': 'деактивированого'} устройства "${name}" 
-            c ip ${ip} в помещении "${arr[arr.length - 1]}".`,
-            timeout)
-    }
-
 }
 
 module.exports = Rooms

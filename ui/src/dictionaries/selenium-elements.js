@@ -166,6 +166,46 @@ module.exports = {
 
 
     //Администрирование
+    room: (arr) => {
+        const head = `//pw-tree-row//pw-tree-node//div[@class="pwTreeNode--node_el-name" and 
+        normalize-space(.)="${arr[0]}"]`;
+        let body = '';
+
+        if(arr.length === 1) {
+            return head;
+        } else {
+            let arrSlice = arr.slice(1);
+            arrSlice.forEach(item => {
+                body += '//parent::*/parent::*/parent::*/parent::*/parent::*/parent::*/pw-tree-row' +
+                    `//pw-tree-node//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="${item}"]`;
+            });
+            return head + body;
+        }
+    },
+
+    roomDevice: (arr) => {
+        const head = `//pw-tree-row//pw-tree-node//div[@class="pwTreeNode--node_el-name" and 
+        normalize-space(.)="${arr[0]}"]`;
+        let body = '';
+
+        if(arr.length === 3) {
+            return head + '//parent::*/parent::*/parent::*/parent::*/parent::*/parent::*/pw-tree-row';
+        } else {
+            let arrSlice = arr.slice(1, arr.length - 2);
+            arrSlice.forEach(item => {
+                body += '//parent::*/parent::*/parent::*/parent::*/parent::*/parent::*/pw-tree-row' +
+                    `//pw-tree-node//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="${item}"]`;
+            });
+            return head + body;
+        }
+
+    },
+
+    //pw-tree-row//pw-tree-node//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="1"]
+    //parent::*/parent::*/parent::*/parent::*/parent::*/parent::*/pw-tree-row
+    //pw-tree-node//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="2"]
+
+
     admSearchDevice: (event) => `//span/span[2][normalize-space(.)="(${event})"]`,
     admSearchDeviceActive: (event) => `//span[contains(@class, "active")]/span[2][normalize-space(.)="(${event})"]`,
     admDevice: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]/parent::*

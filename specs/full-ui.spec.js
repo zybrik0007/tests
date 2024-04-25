@@ -8,8 +8,16 @@ const decorate = require('../ui/src/decorates');
 //tests.configurationUi.otherDevice.addDeviceIP();
 //tests.configurationUi.otherDevice.activateDevice();
 //tests.configurationUi.otherDevice.deactivateDevice();
-tests.configurationUi.otherDevice.fireAlarmDevice();
-tests.configurationUi.otherDevice.blockFireAlarmDevice();
+//tests.configurationUi.otherDevice.fireAlarmDevice();
+//tests.configurationUi.otherDevice.blockFireAlarmDevice();
+//tests.configurationUi.otherDevice.addDeviceSearch();
+//tests.configurationUi.otherDevice.deleteDevice();
+//tests.configurationUi.otherRoom.addRoom();
+
+//data.addDataVisitorReport();
+tests.visitorReportUi.other.exportXLSX();
+
+
 closeBrowser();
 
 
