@@ -30,4 +30,7 @@ module.exports = {
     whereAboutsUi: require('./specs/control-access/where-abouts'),
     premisesAccessReportUi: require('./specs/control-access/premises-access-report'),
     identifiersUi: require('./specs/control-access/identifiers'),
+
+    //Администрирование
+    configurationUi: require('./specs/administration/configuration-ui'),
 }

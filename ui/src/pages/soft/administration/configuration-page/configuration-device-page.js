@@ -28,24 +28,50 @@ class ConfigurationDevicePage extends BasePage {
     }
 
     //Отображение устройства
-    async deviceElement(name, ip, active, timeout) {
-        return await this.xpathElement(elements.admConfDevice(name, ip, active),
-            `Отображение ${active ? 'активированного' : 'деактивированного'} устройства "${name}" c ip "${ip}"`,
-            timeout)
-    }
-
-    //Нажатие по устройству
-    async deviceHandler(name, ip, active, timeout) {
-        return await this.xpathHandler(elements.admConfDevice(name, ip, active),
-            `Нажатие по ${active ? 'активированному' : 'деактивированному'} устройству "${name}" c ip "${ip}"`,
+    async deviceElement(name, ip, timeout) {
+        return await this.xpathElement(elements.admDevice(name, ip),
+            `Отображение устройства "${name}" c ip "${ip}"`,
             timeout)
     }
 
     //Отсутствие устройства
-    async deviceNoElement(name, ip, active, timeout) {
-        return await this.xpathNoElement(elements.admConfDevice(name, ip, active),
-            `Отсутствие ${active ? 'активированного' : 'деактивированного'} устройства "${name}" c ip "${ip}"`,
+    async deviceNoElement(name, ip, timeout) {
+        return await this.xpathNoElement(elements.admDevice(name, ip),
+            `Отсутствие устройства "${name}" c ip "${ip}"`,
             timeout)
+    }
+
+    //Нажатие по устройству
+    async deviceHandler(name, ip,timeout) {
+        return await this.xpathHandler(elements.admDevice(name, ip),
+            `Нажатие по устройству "${name}" c ip "${ip}"`,
+            timeout)
+    }
+
+    async deviceActive(name, ip, timeout) {
+        return await this.xpathElement(elements.admDeviceActive(name, ip),
+            `Устройства "${name}" c ip "${ip}" активно.`,
+            timeout)
+    }
+
+    async deviceNoActive(name, ip, timeout) {
+        return await this.xpathNoElement(elements.admDeviceActive(name, ip),
+            `Устройства "${name}" c ip "${ip}" не активно.`,
+            timeout)
+    }
+
+    async deviceGetStatusLock(name, ip, timeout) {
+        return await this.xpathGetAttribute(elements.admDeviceLockStatus(name, ip),
+            `Получение значения статуса замка у устройства "${name}" c ip "${ip}"`,
+            'title',
+            timeout);
+    }
+
+    async deviceGetStatusIU(name, ip, timeout) {
+        return await this.xpathGetAttribute(elements.admDeviceIUStatus(name, ip),
+            `Получение значения статуса ИУ у устройства "${name}" c ip "${ip}"`,
+            'title',
+            timeout);
     }
 
 }

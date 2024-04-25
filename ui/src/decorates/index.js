@@ -64,7 +64,8 @@ module.exports = {
         accessCommission: require('./page-decorates/access-commission-decorate'),
         design: require('./page-decorates/design-decorate'),
         holiday: require('./page-decorates/holday-decorate'),
-        division: require('./page-decorates/division-decorate')
+        division: require('./page-decorates/division-decorate'),
+        device: require('./page-decorates/device-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -104,7 +105,7 @@ module.exports = {
         additionalDataEdit: ModalDecorate('additional-data-modal', 'Редактировать дополнительное поле'),
         addPosition: ModalDecorate('edit-position', 'Добавление должности'),
         editPosition: ModalDecorate('edit-position', 'Редактирование должности'),
-
+        searchDevice: require('./modal-decorates/searchDevice'),
     },
     modalConfirm: {
         //Персонал

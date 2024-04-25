@@ -113,5 +113,14 @@ module.exports = {
     action_open_in_browser: {
         name: 'action_open_in_browser',
         description: 'Заполнить предопределнными значениями'
-    }
+    },
+    fire_alarm_activate: {
+        name: 'unsorted_check_shield_outline',
+        description: 'Поставить на охрану'
+    },
+    fire_alarm_deactivate: {
+        name: 'unsorted_cancel_shield_outline',
+        description: 'Снятие с охраны'
+    },
+
 }

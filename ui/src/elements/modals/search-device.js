@@ -11,17 +11,17 @@ class SearchDevice extends Modal {
     }
 
     //Нажатие по устроству по названию и ip
-    async deviceHandler(device, ip, timeout) {
-        const handler = await this.xpathHandler(elements.admSearchDeviceModalCEll(device ,ip),
-            `Нажатие по контроллеру "${device}" c ip "${ip}" в модальном окне ${this.title}`,
+    async deviceHandler(ip, timeout) {
+        const handler = await this.xpathHandler(elements.admSearchDevice(ip),
+            `Нажатие по контроллеру c ip "${ip}" в модальном окне ${this.title}.`,
             timeout)
 
         if(handler.error) {
             return handler
         }
 
-        const elementActive = await this.xpathElement(elements.admSearchDeviceModalCEllActive(device, ip),
-            `Контроллер  "${device}" c ip "${ip}" в модальном окне ${this.title} нажат`,
+        const elementActive = await this.xpathElement(elements.admSearchDeviceActive(ip),
+            `Контроллер c ip "${ip}" в модальном окне ${this.title} нажат.`,
             timeout)
 
         if(elementActive.error) {

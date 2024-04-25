@@ -166,11 +166,17 @@ module.exports = {
 
 
     //Администрирование
-    admSelectDeviceModalCell: (device, ip) => `//*[normalize-space(.)="${device} ${ip}"]/div`,
-    admSearchDeviceModalCEll: (device, ip) => `//span/span[normalize-space(.)="${device}"]
-    /parent::*/span[normalize-space(.)="(${ip})"]/parent::*`,
-    admSearchDeviceModalCEllActive: (device, ip) => `//span[contains(@class, "active")]
-    /span[normalize-space(.)="${device}"]/parent::*/span[normalize-space(.)="(${ip})"]/parent::*`,
+    admSearchDevice: (event) => `//span/span[2][normalize-space(.)="(${event})"]`,
+    admSearchDeviceActive: (event) => `//span[contains(@class, "active")]/span[2][normalize-space(.)="(${event})"]`,
+    admDevice: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]/parent::*
+    //div[normalize-space(.)="(${ip})"]/parent::*`,
+    admDeviceActive: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]/parent::*
+    //div[normalize-space(.)="(${ip})"]/parent::*//span[@class="device-lock"]`,
+    admDeviceLockStatus: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]
+    /parent::*//div[normalize-space(.)="(${ip})"]/parent::*//span[contains(@class, "device-lock-status")]`,
+    admDeviceIUStatus: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]
+    /parent::*//div[normalize-space(.)="(${ip})"]/parent::*//span[contains(@class, "iu-state")]`,
+
 
     //Конфигурация
     admConfRoomTreeRoot: '//pw-tree-row/div/pw-tree-node/div/div/div[normalize-space(.)="Неконтролируемая территория"]',
