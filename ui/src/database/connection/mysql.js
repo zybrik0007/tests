@@ -226,5 +226,23 @@ module.exports = {
             }
         }
     },
+
+    updateDateUserChange: async (begin_date) => {
+        try {
+            await db.query(connection,
+                `UPDATE user_change SET 
+                begin_date="${begin_date}"`);
+            return {
+                error: false,
+                description: 'Строка в таблице user_change изменена.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Строка в таблице user не изменена.'
+            }
+        }
+    },
 }
 

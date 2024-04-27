@@ -208,6 +208,67 @@ const other = (type, text) => {
                 });
             });
         }
+
+        if(type === 'room') {
+            describe('Добавление', () => {
+                befARoom();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.search,
+                    timeout: entry.max
+                });
+                decorate.modal.searchDevice.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'Поиск конкретного устройства по IP адресу',
+                    value: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: `Найти устройство по IP: ${entry.device_ip_1}`,
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Добавить устройства',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.modal.searchDevice.deviceHandler({
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Добавить устройства',
+                    timeout: entry.max
+                });
+                decorate.modal.searchDevice.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+            });
+        }
     });
 
     const deleteDevice = () => describe(text + 'Удаление устройства.', () => {
@@ -314,6 +375,56 @@ const other = (type, text) => {
                 });
             });
         }
+
+        if(type === 'room') {
+            describe('Активация', () => {
+                befARoom();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.unlock,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceActivate.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Активировать',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceActivate.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.device.active({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+            });
+        }
     });
 
     const deactivateDevice = () => describe(text + 'Деактивация устройства.', () => {
@@ -372,6 +483,61 @@ const other = (type, text) => {
                 });
             });
         }
+
+        if(type === 'room') {
+            describe('Деактивация', () => {
+                befARoom();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.lock,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDeactivate.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Деактивировать',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDeactivate.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.noActive({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+            });
+        }
     });
 
     const fireAlarmDevice = () => describe(text + 'Поставить на охрану устройства.', () => {
@@ -403,6 +569,47 @@ const other = (type, text) => {
 
             describe('Проверка', () => {
                 befDevice();
+                aft();
+                decorate.page.base.loading({
+                    timeout: entry.sleep3
+                });
+                decorate.page.device.deviceGetStatusLock({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    value: 'Охрана',
+                    timeout: entry.max
+                });
+            });
+        }
+
+        if(type === 'room') {
+            describe('Поставить на охрану', () => {
+                befARoom();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.fire_alarm_activate,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep3
+                });
+            });
+
+            describe('Проверка', () => {
+                befARoom();
                 aft();
                 decorate.page.base.loading({
                     timeout: entry.sleep3
@@ -458,38 +665,943 @@ const other = (type, text) => {
                 });
             });
         }
-    });
 
-    const addRoom = () => describe(text + 'Добавить помещение.', () => {
         if(type === 'room') {
+            describe('Поставить на охрану', () => {
+                befARoom();
+                aft();
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.fire_alarm_deactivate,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep3
+                });
+            });
+
             describe('Проверка', () => {
                 befARoom();
                 aft();
-                decorate.page.room.room({
-                    arr: ['1'],
-                    timeout: entry.max
+                decorate.page.base.loading({
+                    timeout: entry.sleep3
                 });
-                decorate.page.room.room({
-                    arr: ['1', '2'],
-                    timeout: entry.max
-                });
-                decorate.page.room.room({
-                    arr: ['1', '2', '3'],
+                decorate.page.device.deviceGetStatusLock({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    value: 'Контроль',
                     timeout: entry.max
                 });
             });
         }
     });
 
-    const addDuplicateRoom = () => describe(text + 'Добавить дублирующие помещение.', () => {});
+    const addRoom = () => describe(text + 'Добавить помещение.', () => {
+        if(type === 'room') {
+            describe('Добавление', () => {
+                befARoom();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.modal.addRoom.init({
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.rooms.room2,
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.modal.addRoom.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
 
-    const addChildrenRoom = () => describe(text + 'Добавить дочернее помещение.', () => {});
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.room.room({
+                    arr: [data.rooms.room2],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
 
-    const editRoom = () => describe(text + 'Редактировать помещение.', () => {});
+    const addDuplicateRoom = () => describe(text + 'Добавить дублирующие помещение.', () => {
+        if(type === 'room') {
+            describe('Попытка добавления дублирующего помещения', () => {
+                befARoom();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.modal.addRoom.init({
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.rooms.room2,
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.error.error({
+                    text: 'Такое название помещения уже используется',
+                    timeout: entry.max
+                });
+                decorate.modal.addRoom.closeHandler({
+                    timeout: entry.max
+                });
+                decorate.modal.addRoom.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+    });
 
-    const deleteRoom = () => describe(text + 'Редактировать помещение.', () => {});
+    const addChildrenRoom = () => describe(text + 'Добавить дочернее помещение.', () => {
+        if(type === 'room') {
+            describe('Добавление', () => {
+                befARoom();
+                aft();
+                decorate.page.room.handler({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.modal.addRoom.init({
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.rooms.room2,
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.modal.addRoom.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
 
-    const deleteParentRoom = () =>describe(text + 'Удаление родительского помещения.', () => {});
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const editRoom = () => describe(text + 'Редактировать помещение.', () => {
+        if(type === 'room') {
+            describe('Редактирование', () => {
+                befARoom();
+                aft();
+                decorate.page.room.handler({
+                    arr: [data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.edit,
+                    timeout: entry.max
+                });
+                decorate.modal.editRoom.init({
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Название',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.rooms.room1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.modal.editRoom.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const deleteRoom = () => describe(text + 'Удалить помещение.', () => {});
+
+    const deleteParentRoom = () => describe(text + 'Удаление родительского помещения.', () => {
+        if(type === 'room') {
+            describe('Попытка удаление родительского помещения', () => {
+                befARoom();
+                aft();
+                decorate.page.room.handler({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.roomDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.el.error.error({
+                    text: 'Нельзя удалить помещение, которое содержит дочерние',
+                    timeout: entry.max
+                });
+                decorate.modal.editRoom.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+    });
+
+    const deleteRoomAndDevice = () => describe(text + 'Удаление помещения, при наличии устрйоства', () => {
+        if(type === 'room') {
+            describe('Попытка удаление родительского помещения', () => {
+                befARoom();
+                aft();
+                decorate.page.room.handler({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.roomDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.el.error.error({
+                    text: 'Помещения с контроллерами удалить нельзя',
+                    timeout: entry.max
+                });
+                decorate.modal.editRoom.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+    });
+
+    const addDeviceInRoom = () => describe(text + 'Добавление контроллеров в помещения.', () => {
+        describe('Добавление фиктивного устройства чере API', () => {
+            befARoom();
+            aft();
+            decItApi.addDevice(data.device.obj);
+        });
+
+        describe(`Добавление контроллера "${data.device.name-data.device.ip}" в помещение ${data.rooms.room1}`,
+            () => {
+             befARoom();
+             aft();
+             decorate.page.room.handler({
+                 arr: [data.rooms.room1],
+                 timeout: entry.max
+             });
+             decorate.page.base.loading({
+                 timeout: entry.sleep2
+             });
+             decorate.el.butIcBefore.handler({
+                 icon: but.device_list,
+                 timeout: entry.max
+             });
+             decorate.modal.deviceSelect.init({
+                 timeout: entry.max
+             });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.groupCell.handler({
+                name: data.device.ip,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.button.handler({
+                name: 'Выбрать',
+                timeout: entry.max
+            });
+            decorate.modal.deviceSelect.initClose({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        });
+
+        describe(`Добавление контроллера "Контроллер CL15 - 172.17.100.4" в помещение ${data.rooms.room2}`,
+            () => {
+            befARoom();
+            aft();
+            decorate.page.room.handler({
+                arr: [data.rooms.room1, data.rooms.room2],
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.butIcBefore.handler({
+                icon: but.device_list,
+                timeout: entry.max
+            });
+            decorate.modal.deviceSelect.init({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.groupCell.handler({
+                name: entry.device_ip_1,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.button.handler({
+                name: 'Выбрать',
+                timeout: entry.max
+            });
+            decorate.modal.deviceSelect.initClose({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        });
+
+        describe('Проверка', () => {
+            befARoom();
+            aft();
+            decorate.page.room.device({
+                arr: [data.rooms.room1, data.device.name, data.device.ip],
+                timeout: entry.max
+            });
+            decorate.page.room.device({
+                arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                timeout: entry.max
+            });
+        });
+
+    });
+
+    const exportXLSX = () => describe(text + 'Проверка экспорта в XLSX.', () => {
+        if(type === 'room') {
+            const params = {
+                nameFile: 'roomswithdevices.xlsx',
+                json: [
+                    {
+                        'Отчет "Помещения"': 'Помещение',
+                        __EMPTY: 'Контроллеры',
+                        __EMPTY_1: 'Направление прохода',
+                        __EMPTY_2: 'Считыватели'
+                    },
+                    { 'Отчет "Помещения"': 'Неконтролируемая территория', __EMPTY: '' },
+                    { 'Отчет "Помещения"': 'room1', __EMPTY: '' },
+                    {
+                        'Отчет "Помещения"': '',
+                        __EMPTY: 'Контроллер замка CL05',
+                        __EMPTY_1: "Вход в 'room1' Выход из 'Неконтролируемая территория'",
+                        __EMPTY_2: 'Вход: Считыватель 1 Выход: Считыватель 2'
+                    },
+                    { 'Отчет "Помещения"': 'room2', __EMPTY: '' },
+                    {
+                        'Отчет "Помещения"': '',
+                        __EMPTY: 'Контроллер CL15',
+                        __EMPTY_1: "Вход в 'room2' Выход из 'room1'",
+                        __EMPTY_2: 'Вход: Считыватель 1 Выход: Считыватель 2'
+                    }
+                ]
+            }
+
+            befARoom();
+            aft();
+
+            describe('Экспорт', () => {
+                decorate.el.butIcBefore.handler({
+                    icon: but.menu,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Экспорт',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.init({
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Выберите тип файла для экспорта',
+                    value: 'XLSX',
+                    text: 'XLSX',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя выходного файла',
+                    placeholder: 'Определяется системой',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Заголовок',
+                    value: 'Добавить заголовок к файлу',
+                    text: 'Добавить заголовок к файлу',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Экспортировать',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка файла', () => {
+                decorate.el.file.display({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.el.file.comparison({
+                    file: params.nameFile,
+                    json: params.json
+                });
+                decorate.el.file.delete({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+
+        if(type === 'device') {
+            const params = {
+                nameFile: 'devices.xlsx',
+                json: [
+                    {
+                        'Отчет "Отчет по устройствам"': 'Контроллер',
+                        __EMPTY: 'IP',
+                        __EMPTY_1: 'Считыватель 1',
+                        __EMPTY_2: 'Считыватель 2'
+                    },
+                    {
+                        'Отчет "Отчет по устройствам"': 'Контроллер CL15',
+                        __EMPTY: '172.17.100.4',
+                        __EMPTY_1: 'room2',
+                        __EMPTY_2: 'room1'
+                    }
+                ]
+            }
+
+            befDevice();
+            aft();
+
+            describe('Экспорт', () => {
+                decorate.el.butIcBefore.handler({
+                    icon: but.menu,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Экспорт',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.init({
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Выберите тип файла для экспорта',
+                    value: 'XLSX',
+                    text: 'XLSX',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя выходного файла',
+                    placeholder: 'Определяется системой',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Заголовок',
+                    value: 'Добавить заголовок к файлу',
+                    text: 'Добавить заголовок к файлу',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Экспортировать',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка файла', () => {
+                decorate.el.file.display({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.el.file.comparison({
+                    file: params.nameFile,
+                    json: params.json
+                });
+                decorate.el.file.delete({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+    });
+
+    const exportCSV = () => describe(text + 'Проверка экспорта в CSV.', () => {
+        if(type === 'room') {
+            const params = {
+                nameFile: 'roomswithdevices.csv',
+                json: [
+                    { 'Помещение': 'Неконтролируемая территория' },
+                    { 'Помещение': 'room1' },
+                    {
+                        'Контроллеры': 'Контроллер замка CL05',
+                        'Направление прохода': "Вход в 'room1' Выход из 'Неконтролируемая территория'",
+                        'Считыватели': 'Вход: Считыватель 1 Выход: Считыватель 2'
+                    },
+                    { 'Помещение': 'room2' },
+                    {
+                        'Контроллеры': 'Контроллер CL15',
+                        'Направление прохода': "Вход в 'room2' Выход из 'room1'",
+                        'Считыватели': 'Вход: Считыватель 1 Выход: Считыватель 2'
+                    }
+                ]
+            }
+
+            befARoom();
+            aft();
+
+            describe('Экспорт', () => {
+                decorate.el.butIcBefore.handler({
+                    icon: but.menu,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Экспорт',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.init({
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Выберите тип файла для экспорта',
+                    value: 'XLSX',
+                    text: 'CSV',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя выходного файла',
+                    placeholder: 'Определяется системой',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Экспортировать',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка файла', () => {
+                decorate.el.file.display({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.el.file.comparison({
+                    file: params.nameFile,
+                    json: params.json
+                });
+                decorate.el.file.delete({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+        }
+
+        if(type === 'device') {
+            const params = {
+                nameFile: 'devices.csv',
+                json: [
+                    {
+                        'Контроллер': 'Контроллер CL15',
+                        IP: '172.17.100.4',
+                        'Считыватель 1': 'room2',
+                        'Считыватель 2': 'room1'
+                    }
+                ]
+            }
+
+            befDevice();
+            aft();
+
+            describe('Экспорт', () => {
+                decorate.el.butIcBefore.handler({
+                    icon: but.menu,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Экспорт',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.init({
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Выберите тип файла для экспорта',
+                    value: 'XLSX',
+                    text: 'CSV',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя выходного файла',
+                    placeholder: 'Определяется системой',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Экспортировать',
+                    timeout: entry.max
+                });
+                decorate.modal.exportData.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка файла', () => {
+                decorate.el.file.display({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.el.file.comparison({
+                    file: params.nameFile,
+                    json: params.json
+                });
+                decorate.el.file.delete({
+                    file: params.nameFile,
+                    timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+        }
+    });
+
+    const addCamera = () => describe(text + 'Добавление камеры.', () => {
+        if(type === 'device') {
+            befDevice();
+            aft();
+
+            describe('Добавление', () => {
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Добавить камеру',
+                    timeout: entry.max
+                });
+                decorate.modal.addCamera.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Имя камеры',
+                    placeholder: '',
+                    value: data.camera.name,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Хост камеры',
+                    placeholder: '',
+                    value: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Порт',
+                    placeholder: '',
+                    value: data.camera.port,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Логин',
+                    placeholder: '',
+                    value: data.camera.login,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Пароль',
+                    placeholder: '',
+                    value: data.camera.password,
+                    timeout: entry.max
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Шаблон камеры',
+                    value: '',
+                    text: data.camera.template,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Добавить',
+                    timeout: entry.max
+                });
+                decorate.modal.addCamera.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const deleteCamera = () => describe(text + 'Удаление камеры.', () => {
+        befDevice();
+        aft();
+
+        describe('Добавление', () => {
+            decorate.el.butIcBefore.handler({
+                icon: but.add,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.menu.menu({
+                timeout: entry.max
+            });
+            decorate.el.menu.handler({
+                name: 'Добавить камеру',
+                timeout: entry.max
+            });
+            decorate.modal.addCamera.init({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.sendKeys({
+                title: 'Имя камеры',
+                placeholder: '',
+                value: data.camera.name,
+                timeout: entry.max
+            });
+            decorate.el.input.sendKeys({
+                title: 'Хост камеры',
+                placeholder: '',
+                value: data.camera.ip,
+                timeout: entry.max
+            });
+            decorate.el.input.sendKeys({
+                title: 'Порт',
+                placeholder: '',
+                value: data.camera.port,
+                timeout: entry.max
+            });
+            decorate.el.input.sendKeys({
+                title: 'Логин',
+                placeholder: '',
+                value: data.camera.login,
+                timeout: entry.max
+            });
+            decorate.el.input.sendKeys({
+                title: 'Пароль',
+                placeholder: '',
+                value: data.camera.password,
+                timeout: entry.max
+            });
+            decorate.el.select.iconXpand({
+                title: 'Шаблон камеры',
+                value: '',
+                text: data.camera.template,
+                timeout: entry.max
+            });
+            decorate.el.button.handler({
+                name: 'Добавить',
+                timeout: entry.max
+            });
+            decorate.modal.addCamera.initClose({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        });
+
+        describe('Проверка', () => {
+            befDevice();
+            aft();
+            decorate.page.device.device({
+                name: data.camera.name,
+                ip: data.camera.ip,
+                timeout: entry.max
+            });
+        });
+    });
 
     return {
         addDeviceSearch,
@@ -499,12 +1611,20 @@ const other = (type, text) => {
         deactivateDevice,
         fireAlarmDevice,
         blockFireAlarmDevice,
-        addRoom
+        addRoom,
+        editRoom,
+        addChildrenRoom,
+        addDuplicateRoom,
+        deleteParentRoom,
+        addDeviceInRoom,
+        deleteRoomAndDevice,
+        exportXLSX,
+        exportCSV
     }
 
 }
 
 module.exports = {
     otherDevice: other('device', 'Администрирование / Конфигурация - вкладка Устройства. '),
-    otherRoom: other('room', 'дминистрирование / Конфигурация - вкладка Помещения. ')
+    otherRoom: other('room', 'Администрирование / Конфигурация - вкладка Помещения. ')
 }

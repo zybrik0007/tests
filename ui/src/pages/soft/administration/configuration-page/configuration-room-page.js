@@ -35,6 +35,7 @@ class Rooms extends BasePage {
     }
 
     async device(arr, timeout) {
+        console.log(elements.roomDevice(arr) + elements.admDevice(arr[arr.length - 2], arr[arr.length - 1]));
         return await this.xpathElement(elements.roomDevice(arr) +
             elements.admDevice(arr[arr.length - 2], arr[arr.length - 1]),
             `Отображение устройства "${arr[arr.length - 2]} - ${arr[arr.length - 1]}" 

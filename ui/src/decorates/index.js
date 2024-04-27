@@ -107,6 +107,10 @@ module.exports = {
         addPosition: ModalDecorate('edit-position', 'Добавление должности'),
         editPosition: ModalDecorate('edit-position', 'Редактирование должности'),
         searchDevice: require('./modal-decorates/searchDevice'),
+        addRoom: ModalDecorate('room-modal', 'Добавить помещение'),
+        editRoom: ModalDecorate('room-modal', 'Редактировать помещение'),
+        deviceSelect: ModalDecorate('device-select', 'Список устройств'),
+        addCamera: ModalDecorate('camera-add', 'Добавить камеру'),
     },
     modalConfirm: {
         //Персонал

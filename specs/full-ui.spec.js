@@ -13,9 +13,24 @@ const decorate = require('../ui/src/decorates');
 //tests.configurationUi.otherDevice.addDeviceSearch();
 //tests.configurationUi.otherDevice.deleteDevice();
 //tests.configurationUi.otherRoom.addRoom();
+//tests.configurationUi.otherRoom.editRoom();
+//tests.configurationUi.otherRoom.addChildrenRoom();
+//tests.configurationUi.otherRoom.addDuplicateRoom();
+//tests.configurationUi.otherRoom.deleteParentRoom();
+//tests.configurationUi.otherRoom.addDeviceIP();
+//tests.configurationUi.otherRoom.addDeviceInRoom();
+//tests.configurationUi.otherRoom.deleteRoomAndDevice();
+//tests.configurationUi.otherRoom.activateDevice();
+//tests.configurationUi.otherRoom.fireAlarmDevice();
+//tests.configurationUi.otherRoom.blockFireAlarmDevice();
+//tests.configurationUi.otherRoom.exportXLSX();
+//tests.configurationUi.otherRoom.exportCSV();
+//tests.configurationUi.otherDevice.exportXLSX();
+//tests.configurationUi.otherDevice.exportCSV();
 
-//data.addDataVisitorReport();
-tests.visitorReportUi.other.exportXLSX();
+//data.deleteURV();
+data.addURV();
+
 
 
 closeBrowser();

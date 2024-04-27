@@ -15,7 +15,7 @@ module.exports = {
             page.room)),
 
     handler: ({arr, timeout}) => it(`Нажатие по помещению "${arr[arr.length - 1]}".`,
-        async () => await dec.simple(page.room.device,
+        async () => await dec.simple(page.room.roomHandler,
             [arr, timeout],
             page.room)),
 }

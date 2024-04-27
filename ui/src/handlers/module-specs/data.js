@@ -7506,6 +7506,14 @@ const addURV = () => describe('Добавление данных для тест
         });
     });
 
+    describe('Изменение планировщика у сотрудников', () => {
+        it('Изменнеие даты на начала на "2023-01-01 00:00:00"', async () => {
+            await dec.simple(db.updateDateUserChange,
+                ['2023-01-01 00:00:00'],
+                db.updateDateUserChange)
+        });
+    });
+
     describe('Добавление проходов', () => {
         it('Добавление проходов сотрудникам', async () => {
             const cook = await page.base.getCookie('token');
@@ -11439,6 +11447,54 @@ const dataConfiguration = {
         room1: 'room1',
         room2: 'room2',
         room3: 'room3'
+    },
+    device: {
+        name: 'Контроллер замка CL05',
+        ip: '10.10.5.10',
+        obj: {
+            "device_type": 16,
+            "ip_addr": "10.10.5.10",
+            "mac_addr": "02:42:2f:97:86:32"
+        }
+    },
+    camera: {
+        name: 'camera1',
+        ip: '172.17.0.1',
+        port: '8333',
+        login: 'admin',
+        password: 'admin1',
+        template: 'AXIS - All (mjpeg_over_http)'
+    },
+    biosmart: {
+        name: 'biosmart1',
+        ip: '172.17.0.2',
+        port: '8333',
+        login: 'admin',
+        password: 'admin1',
+    },
+    trassir: {
+        name: 'trassir1',
+        ip: '172.17.0.3',
+        port: '8333',
+        http: '333',
+        sdk: 'admin1',
+        login: 'admin',
+        password: 'admin1',
+    },
+    axxon: {
+        name: 'axon1',
+        ip: '172.17.0.4',
+        port: '8333',
+        https: true,
+        login: 'admin',
+        password: 'admin1',
+    },
+    bolid: {
+        name: 'bolid1',
+        addrees: '3',
+        type: 'Шлюз ModBus TCP',
+        ip: '172.17.0.5',
+        port: '8333',
     }
 }
 
