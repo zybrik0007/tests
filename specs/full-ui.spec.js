@@ -28,8 +28,7 @@ const decorate = require('../ui/src/decorates');
 //tests.configurationUi.otherDevice.exportXLSX();
 //tests.configurationUi.otherDevice.exportCSV();
 
-//data.deleteURV();
-data.addURV();
+
 
 
 

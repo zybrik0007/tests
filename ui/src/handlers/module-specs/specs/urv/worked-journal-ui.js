@@ -7518,6 +7518,10 @@ const other = () => {
 
             describe('Добавление оправдательного документа с добавлением рабочего времени', () => {
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 1,
                         timeout: entry.max
@@ -7679,6 +7683,10 @@ const other = () => {
             describe('Добавление оправдательного документа без добавления рабочего времени', () => {
 
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 1,
                         timeout: entry.max
@@ -7836,6 +7844,10 @@ const other = () => {
             describe('Добавление сверхурочного документа', () => {
 
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 1,
                         timeout: entry.max
@@ -7974,6 +7986,10 @@ const other = () => {
 
             describe('Добавление оправдательного документа с добавлением рабочего времени', () => {
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 2,
                         timeout: entry.max
@@ -8135,6 +8151,10 @@ const other = () => {
             describe('Добавление оправдательного документа без добавления рабочего времени', () => {
 
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 2,
                         timeout: entry.max
@@ -8292,6 +8312,10 @@ const other = () => {
             describe('Добавление сверхурочного документа', () => {
 
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 2,
                         timeout: entry.max
@@ -8430,6 +8454,10 @@ const other = () => {
 
             describe('Добавление оправдательного документа через фунционал Задолженности', () => {
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 4,
                         timeout: entry.max
@@ -8529,6 +8557,10 @@ const other = () => {
             describe('Добавление сверхурочного документа', () => {
 
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 4,
                         timeout: entry.max
@@ -8667,6 +8699,10 @@ const other = () => {
 
             describe('Добавление оправдательного документа через фунционал Задолженности', () => {
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 5,
                         timeout: entry.max
@@ -8766,6 +8802,10 @@ const other = () => {
             describe('Добавление сверхурочного документа', () => {
 
                 describe(`Открытие расчетов по дням`, () => {
+                    decorate.el.table.size({
+                        strCount: 8,
+                        timeout: entry.max
+                    });
                     decorate.el.table.strHandler({
                         strNumber: 5,
                         timeout: entry.max
