@@ -916,7 +916,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 1,
                             cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -946,7 +946,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 2,
                             cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -976,7 +976,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 3,
                             cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -1006,7 +1006,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 4,
                             cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -1036,7 +1036,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 5,
                             cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -2487,28 +2487,28 @@ const other = (type, text) => {
                     headTitle: 'Учетные данные',
                     strNumber: 1,
                     cellNumber: 1,
-                    value: 'Шаблон доступа',
+                    value: 'Должность',
                     timeout: entry.max
                 });
                 decorate.el.table.cellGetText({
                     headTitle: 'Дата начала',
                     strNumber: 1,
                     cellNumber: 2,
-                    value: data.staff.staff1.dateIn.date.substr(0, 10),
+                    value: data.today,
                     timeout: entry.max
                 });
                 decorate.el.table.cellGetText({
                     headTitle: 'Дата окончания',
                     strNumber: 1,
                     cellNumber: 3,
-                    value: data.yesterday,
+                    value: '',
                     timeout: entry.max
                 });
                 decorate.el.table.cellGetText({
                     headTitle: 'Значение',
                     strNumber: 1,
                     cellNumber: 4,
-                    value: data.staff.staff1.template.template2,
+                    value: data.staff.staff1.position,
                     timeout: entry.max
                 });
             });
@@ -2517,116 +2517,26 @@ const other = (type, text) => {
                     headTitle: 'Учетные данные',
                     strNumber: 2,
                     cellNumber: 1,
-                    value: 'Шаблон доступа',
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Дата начала',
-                    strNumber: 2,
-                    cellNumber: 2,
-                    value: data.staff.staff1.dateIn.date.substr(0, 10),
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Дата окончания',
-                    strNumber: 2,
-                    cellNumber: 3,
-                    value: data.yesterday,
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Значение',
-                    strNumber: 2,
-                    cellNumber: 4,
-                    value: data.staff.staff1.template.template1,
-                    timeout: entry.max
-                });
-            });
-            describe('Проверка строки 3', () => {
-                decorate.el.table.cellGetText({
-                    headTitle: 'Учетные данные',
-                    strNumber: 3,
-                    cellNumber: 1,
-                    value: 'График работы',
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Дата начала',
-                    strNumber: 3,
-                    cellNumber: 2,
-                    value: data.staff.staff1.dateIn.date.substr(0, 10),
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Дата окончания',
-                    strNumber: 3,
-                    cellNumber: 3,
-                    value: data.yesterday,
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Значение',
-                    strNumber: 3,
-                    cellNumber: 4,
-                    value: data.staff.staff1.schedule,
-                    timeout: entry.max
-                });
-            });
-            describe('Проверка строки 4', () => {
-                decorate.el.table.cellGetText({
-                    headTitle: 'Учетные данные',
-                    strNumber: 4,
-                    cellNumber: 1,
-                    value: 'Должность',
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Дата начала',
-                    strNumber: 4,
-                    cellNumber: 2,
-                    value: data.staff.staff1.dateIn.date.substr(0, 10),
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Дата окончания',
-                    strNumber: 4,
-                    cellNumber: 3,
-                    value: '',
-                    timeout: entry.max
-                });
-                decorate.el.table.cellGetText({
-                    headTitle: 'Значение',
-                    strNumber: 4,
-                    cellNumber: 4,
-                    value: data.staff.staff1.position,
-                    timeout: entry.max
-                });
-            });
-            describe('Проверка строки 5', () => {
-                decorate.el.table.cellGetText({
-                    headTitle: 'Учетные данные',
-                    strNumber: 5,
-                    cellNumber: 1,
                     value: 'Подразделение',
                     timeout: entry.max
                 });
                 decorate.el.table.cellGetText({
                     headTitle: 'Дата начала',
-                    strNumber: 5,
+                    strNumber: 2,
                     cellNumber: 2,
-                    value: data.staff.staff1.dateIn.date.substr(0, 10),
+                    value: data.today,
                     timeout: entry.max
                 });
                 decorate.el.table.cellGetText({
                     headTitle: 'Дата окончания',
-                    strNumber: 5,
+                    strNumber: 2,
                     cellNumber: 3,
                     value: '',
                     timeout: entry.max
                 });
                 decorate.el.table.cellGetText({
                     headTitle: 'Значение',
-                    strNumber: 5,
+                    strNumber: 2,
                     cellNumber: 4,
                     value: data.staff.staff1.division,
                     timeout: entry.max
@@ -4304,7 +4214,7 @@ const other = (type, text) => {
                             headTitle: 'Значение',
                             strNumber: 1,
                             cellNumber: 4,
-                            value: data.staff.staff2.template.template2,
+                            value: data.templates.template3,
                             timeout: entry.max
                         });
                     });
@@ -4335,7 +4245,7 @@ const other = (type, text) => {
                             headTitle: 'Значение',
                             strNumber: 2,
                             cellNumber: 4,
-                            value: data.staff.staff2.template.template1,
+                            value: data.templates.template2,
                             timeout: entry.max
                         });
                     });
@@ -4352,7 +4262,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 3,
                             cellNumber: 2,
-                            value: data.staff.staff2.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -4383,7 +4293,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 4,
                             cellNumber: 2,
-                            value: data.staff.staff2.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -4414,7 +4324,7 @@ const other = (type, text) => {
                             headTitle: 'Дата начала',
                             strNumber: 5,
                             cellNumber: 2,
-                            value: data.staff.staff2.dateIn.date.substr(0, 10),
+                            value: data.today,
                             timeout: entry.max
                         });
                         decorate.el.table.cellGetText({
@@ -4460,161 +4370,6 @@ const other = (type, text) => {
                             strNumber: 6,
                             cellNumber: 4,
                             value: 'Заблокирована карта',
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Проверка строки 7', () => {
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Учетные данные',
-                            strNumber: 7,
-                            cellNumber: 1,
-                            value: 'Шаблон доступа',
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата начала',
-                            strNumber: 7,
-                            cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата окончания',
-                            strNumber: 7,
-                            cellNumber: 3,
-                            value: data.yesterday,
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Значение',
-                            strNumber: 7,
-                            cellNumber: 4,
-                            value: data.staff.staff1.template.template2,
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Проверка строки 8', () => {
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Учетные данные',
-                            strNumber: 8,
-                            cellNumber: 1,
-                            value: 'Шаблон доступа',
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата начала',
-                            strNumber: 8,
-                            cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата окончания',
-                            strNumber: 8,
-                            cellNumber: 3,
-                            value: data.yesterday,
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Значение',
-                            strNumber: 8,
-                            cellNumber: 4,
-                            value: data.staff.staff1.template.template1,
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Проверка строки 9', () => {
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Учетные данные',
-                            strNumber: 9,
-                            cellNumber: 1,
-                            value: 'График работы',
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата начала',
-                            strNumber: 9,
-                            cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата окончания',
-                            strNumber: 9,
-                            cellNumber: 3,
-                            value: data.yesterday,
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Значение',
-                            strNumber: 9,
-                            cellNumber: 4,
-                            value: data.staff.staff1.schedule,
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Проверка строки 10', () => {
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Учетные данные',
-                            strNumber: 10,
-                            cellNumber: 1,
-                            value: 'Должность',
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата начала',
-                            strNumber: 10,
-                            cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата окончания',
-                            strNumber: 10,
-                            cellNumber: 3,
-                            value: '',
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Значение',
-                            strNumber: 10,
-                            cellNumber: 4,
-                            value: data.staff.staff1.position,
-                            timeout: entry.max
-                        });
-                    });
-
-                    describe('Проверка строки 11', () => {
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Учетные данные',
-                            strNumber: 11,
-                            cellNumber: 1,
-                            value: 'Подразделение',
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата начала',
-                            strNumber: 11,
-                            cellNumber: 2,
-                            value: data.staff.staff1.dateIn.date.substr(0, 10),
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Дата окончания',
-                            strNumber: 11,
-                            cellNumber: 3,
-                            value: '',
-                            timeout: entry.max
-                        });
-                        decorate.el.table.cellGetText({
-                            headTitle: 'Значение',
-                            strNumber: 11,
-                            cellNumber: 4,
-                            value: data.staff.staff1.division,
                             timeout: entry.max
                         });
                     });

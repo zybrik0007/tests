@@ -1435,10 +1435,9 @@ const other = (type, text) => {
 
     const addCamera = () => describe(text + 'Добавление камеры.', () => {
         if(type === 'device') {
-            befDevice();
-            aft();
-
             describe('Добавление', () => {
+                befDevice();
+                aft();
                 decorate.el.butIcBefore.handler({
                     icon: but.add,
                     timeout: entry.max
@@ -1495,7 +1494,7 @@ const other = (type, text) => {
                     text: data.camera.template,
                     timeout: entry.max
                 });
-                decorate.el.button.handler({
+                decorate.modal.addCamera.buttonHandler({
                     name: 'Добавить',
                     timeout: entry.max
                 });
@@ -1520,87 +1519,188 @@ const other = (type, text) => {
     });
 
     const deleteCamera = () => describe(text + 'Удаление камеры.', () => {
-        befDevice();
-        aft();
+        if(type === 'device') {
+            describe('Удаление', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
 
-        describe('Добавление', () => {
-            decorate.el.butIcBefore.handler({
-                icon: but.add,
-                timeout: entry.max
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.noDevice({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
             });
-            decorate.page.base.loading({
-                timeout: entry.sleep2
-            });
-            decorate.el.menu.menu({
-                timeout: entry.max
-            });
-            decorate.el.menu.handler({
-                name: 'Добавить камеру',
-                timeout: entry.max
-            });
-            decorate.modal.addCamera.init({
-                timeout: entry.max
-            });
-            decorate.page.base.loading({
-                timeout: entry.sleep2
-            });
-            decorate.el.input.sendKeys({
-                title: 'Имя камеры',
-                placeholder: '',
-                value: data.camera.name,
-                timeout: entry.max
-            });
-            decorate.el.input.sendKeys({
-                title: 'Хост камеры',
-                placeholder: '',
-                value: data.camera.ip,
-                timeout: entry.max
-            });
-            decorate.el.input.sendKeys({
-                title: 'Порт',
-                placeholder: '',
-                value: data.camera.port,
-                timeout: entry.max
-            });
-            decorate.el.input.sendKeys({
-                title: 'Логин',
-                placeholder: '',
-                value: data.camera.login,
-                timeout: entry.max
-            });
-            decorate.el.input.sendKeys({
-                title: 'Пароль',
-                placeholder: '',
-                value: data.camera.password,
-                timeout: entry.max
-            });
-            decorate.el.select.iconXpand({
-                title: 'Шаблон камеры',
-                value: '',
-                text: data.camera.template,
-                timeout: entry.max
-            });
-            decorate.el.button.handler({
-                name: 'Добавить',
-                timeout: entry.max
-            });
-            decorate.modal.addCamera.initClose({
-                timeout: entry.max
-            });
-            decorate.page.base.loading({
-                timeout: entry.sleep2
-            });
-        });
+        }
+    });
 
-        describe('Проверка', () => {
-            befDevice();
-            aft();
-            decorate.page.device.device({
-                name: data.camera.name,
-                ip: data.camera.ip,
-                timeout: entry.max
+    const addBiosmart = () => describe(text + 'Добавление сервера Biosmart SmartHub.', () => {
+        if(type === 'device') {
+            describe('Добавление', () => {
+                befDevice();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Добавить сервер Biosmart SmartHub',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.input({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    value: data.biosmart.ip,
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Порт сервера',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Порт сервера',
+                    placeholder: '',
+                    value: data.biosmart.port,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Логин',
+                    placeholder: '',
+                    value: data.biosmart.login,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Пароль',
+                    placeholder: '',
+                    value: data.biosmart.password,
+                    timeout: entry.max
+                });
+
+                decorate.modal.addCamera.buttonHandler({
+                    name: 'Добавить',
+                    timeout: entry.max
+                });
+                decorate.modal.addCamera.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
             });
-        });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const deleteBiosmart = () => describe(text + 'Удаление сервера Biosmart SmartHub.', () => {
+        if(type === 'device') {
+            describe('Удаление', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.noDevice({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+        }
     });
 
     return {
@@ -1619,7 +1719,9 @@ const other = (type, text) => {
         addDeviceInRoom,
         deleteRoomAndDevice,
         exportXLSX,
-        exportCSV
+        exportCSV,
+        addCamera,
+        deleteCamera
     }
 
 }

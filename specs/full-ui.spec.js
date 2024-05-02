@@ -28,8 +28,14 @@ const decorate = require('../ui/src/decorates');
 //tests.configurationUi.otherDevice.exportXLSX();
 //tests.configurationUi.otherDevice.exportCSV();
 
+//tests.configurationUi.otherDevice.addCamera();
+//tests.configurationUi.otherDevice.deleteCamera();
 
-
+//data.addDataStaff();
+tests.staffUi.other.addStaffMaxParams();
+tests.staffUi.other.dimissedStaffMaxParams();
+tests.staffUi.other.openDimissedStaffMaxParams();
+tests.staffUi.other.restoreStaffDimissedEditParamsMaxParams();
 
 
 closeBrowser();

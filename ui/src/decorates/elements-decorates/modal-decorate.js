@@ -30,7 +30,7 @@ const ModalDecorate = (id, title) => {
     const buttonHandler = ({name, timeout}) =>
         it(`Нажатие кнопки "${name}" в модальном окне "${modal.title ? modal.title: modal.id}".`,
             async () => await dec.simple(modal.buttonHandler,
-                [timeout],
+                [name, timeout],
                 modal));
 
     const buttonActive = ({name, timeout}) =>
