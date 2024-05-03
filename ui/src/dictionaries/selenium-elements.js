@@ -503,7 +503,7 @@ module.exports = {
 
     //menu
     menuNavigation: '//pw-action-sheet',
-    menuNavigationItem:  (event) => `//pw-action-sheet-item/*[normalize-space(.)="${event}"]`,
+    menuNavigationItem:  (event) => `//pw-action-sheet-item/*[normalize-space(.)='${event}']`,
     menuNavigationItemActive:  (event) => `//pw-action-sheet-item[not(contains(@class, "disabled"))]
     /*[normalize-space(.)="${event}"]`,
     menuNavigationItemDisabled: (event) => `//pw-action-sheet-item[contains(@class, "disabled")]

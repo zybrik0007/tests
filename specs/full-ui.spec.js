@@ -30,13 +30,18 @@ const decorate = require('../ui/src/decorates');
 
 //tests.configurationUi.otherDevice.addCamera();
 //tests.configurationUi.otherDevice.deleteCamera();
+//tests.configurationUi.otherDevice.addBiosmart();
+//tests.configurationUi.otherDevice.deleteBiosmart();
+//tests.configurationUi.otherDevice.addTrassir();
+//tests.configurationUi.otherDevice.deleteTrassir();
+//tests.configurationUi.otherDevice.addAxxon();
+//tests.configurationUi.otherDevice.deleteAxxon();
+//tests.configurationUi.otherDevice.addBolid()
+//tests.configurationUi.otherDevice.deleteBolid();
 
-//data.addDataStaff();
-tests.staffUi.other.addStaffMaxParams();
-tests.staffUi.other.dimissedStaffMaxParams();
-tests.staffUi.other.openDimissedStaffMaxParams();
-tests.staffUi.other.restoreStaffDimissedEditParamsMaxParams();
-
+//data.addDataVisitorReport();
+//tests.visitorReportUi.other.exportXLSX();
+data.deleteDataVisitorReport();
 
 closeBrowser();
 

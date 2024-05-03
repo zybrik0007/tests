@@ -33,6 +33,7 @@ class Menu extends BasePage{
     }
 
     async handler(text, timeout) {
+        console.log(elements.menuNavigationItem(text));
         return await this.xpathHandler(elements.menuNavigationItem(text),
             `Нажатие по параметру "${text}" в меню.`,
             timeout)

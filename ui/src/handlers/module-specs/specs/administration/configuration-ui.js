@@ -1592,6 +1592,17 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
+                decorate.el.input.backSpace({
+                    title: 'Название',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.biosmart.name,
+                    timeout: entry.max
+                });
                 decorate.el.input.input({
                     title: 'IP-адрес',
                     placeholder: '',
@@ -1626,12 +1637,8 @@ const other = (type, text) => {
                     value: data.biosmart.password,
                     timeout: entry.max
                 });
-
-                decorate.modal.addCamera.buttonHandler({
-                    name: 'Добавить',
-                    timeout: entry.max
-                });
-                decorate.modal.addCamera.initClose({
+                decorate.el.button.handler({
+                    name: 'Сохранить изменения в устройство',
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
@@ -1643,8 +1650,8 @@ const other = (type, text) => {
                 befDevice();
                 aft();
                 decorate.page.device.device({
-                    name: data.camera.name,
-                    ip: data.camera.ip,
+                    name: data.biosmart.name,
+                    ip: data.biosmart.ip,
                     timeout: entry.max
                 });
             });
@@ -1657,13 +1664,13 @@ const other = (type, text) => {
                 befDevice();
                 aft();
                 decorate.page.device.device({
-                    name: data.camera.name,
-                    ip: data.camera.ip,
+                    name: data.biosmart.name,
+                    ip: data.biosmart.ip,
                     timeout: entry.max
                 });
                 decorate.page.device.handler({
-                    name: data.camera.name,
-                    ip: data.camera.ip,
+                    name: data.biosmart.name,
+                    ip: data.biosmart.ip,
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
@@ -1695,8 +1702,448 @@ const other = (type, text) => {
                 befDevice();
                 aft();
                 decorate.page.device.noDevice({
-                    name: data.camera.name,
-                    ip: data.camera.ip,
+                    name: data.biosmart.name,
+                    ip: data.biosmart.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const addTrassir = () => describe(text + 'Добавление сервера TRASSIR.', () => {
+        if(type === 'device') {
+            describe('Добавление', () => {
+                befDevice();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Добавить сервер TRASSIR',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.backSpace({
+                    title: 'Название',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.trassir.name,
+                    timeout: entry.max
+                });
+                decorate.el.input.input({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    value: data.trassir.ip,
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Порт сервера',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Порт сервера',
+                    placeholder: '',
+                    value: data.trassir.port,
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Порт потокового вещания HTTP',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Порт потокового вещания HTTP',
+                    placeholder: '',
+                    value: data.trassir.http,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Пароль SDK',
+                    placeholder: '',
+                    value: data.trassir.sdk,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Логин оператора',
+                    placeholder: '',
+                    value: data.biosmart.login,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Пароль оператора',
+                    placeholder: '',
+                    value: data.biosmart.password,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить изменения в устройство',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.trassir.name,
+                    ip: data.trassir.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const deleteTrassir = () => describe(text + 'Удаление сервера TRASSIR.', () => {
+        if(type === 'device') {
+            describe('Удаление', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.trassir.name,
+                    ip: data.trassir.ip,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: data.trassir.name,
+                    ip: data.trassir.ip,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.noDevice({
+                    name: data.trassir.name,
+                    ip: data.trassir.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const addAxxon = () => describe(text + 'Добавление сервера Axxon Next.', () => {
+        if(type === 'device') {
+            describe('Добавление', () => {
+                befDevice();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Добавить сервер Axxon Next',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.backSpace({
+                    title: 'Название',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.axxon.name,
+                    timeout: entry.max
+                });
+                decorate.el.input.input({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    value: data.axxon.ip,
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Порт сервера',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Порт сервера',
+                    placeholder: '',
+                    value: data.axxon.port,
+                    timeout: entry.max
+                });
+                decorate.el.checkbox.handler({
+                    name: 'HTTPS',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Логин',
+                    placeholder: '',
+                    value: data.axxon.login,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Пароль',
+                    placeholder: '',
+                    value: data.axxon.password,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить изменения в устройство',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.axxon.name,
+                    ip: data.axxon.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const deleteAxxon = () => describe(text + 'Удаление сервера Axxon Next.', () => {
+        if(type === 'device') {
+            describe('Удаление', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.axxon.name,
+                    ip: data.axxon.ip,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: data.axxon.name,
+                    ip: data.axxon.ip,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.noDevice({
+                    name: data.axxon.name,
+                    ip: data.axxon.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const addBolid = () => describe(text + 'Добавление ИСО "Орион" (Bolid).', () => {
+        if(type === 'device') {
+            describe('Добавление', () => {
+                befDevice();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Добавить ИСО "Орион" (Bolid)',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.backSpace({
+                    title: 'Название',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.bolid.name,
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Адрес прибора C2000-ПП',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Адрес прибора C2000-ПП',
+                    placeholder: '',
+                    value: data.bolid.addrees,
+                    timeout: entry.max
+                });
+                decorate.el.input.input({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'IP-адрес',
+                    placeholder: '',
+                    value: data.bolid.ip,
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Порт',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Порт',
+                    placeholder: '',
+                    value: data.bolid.port,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить изменения в устройство',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.bolid.name,
+                    ip: data.bolid.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const deleteBolid = () => describe(text + 'Удаление ИСО "Орион" (Bolid).', () => {
+        if(type === 'device') {
+            describe('Удаление', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.bolid.name,
+                    ip: data.bolid.ip,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: data.bolid.name,
+                    ip: data.bolid.ip,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deviceDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.noDevice({
+                    name: data.bolid.name,
+                    ip: data.bolid.ip,
                     timeout: entry.max
                 });
             });
@@ -1721,7 +2168,15 @@ const other = (type, text) => {
         exportXLSX,
         exportCSV,
         addCamera,
-        deleteCamera
+        deleteCamera,
+        addBiosmart,
+        deleteBiosmart,
+        addTrassir,
+        deleteTrassir,
+        addAxxon,
+        deleteAxxon,
+        addBolid,
+        deleteBolid
     }
 
 }
