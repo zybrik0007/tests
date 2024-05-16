@@ -55,5 +55,6 @@ module.exports = {
     eventRenameTitle: title + 'Конфигурация',
     systemTitle: title + 'Конфигурация',
     templateCameraTitle: title + 'Конфигурация',
+    eventTitle: title + 'События системы',
     licenseTitle: title + 'Лицензии',
 }

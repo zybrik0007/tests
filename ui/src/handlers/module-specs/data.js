@@ -11459,6 +11459,7 @@ const dataConfiguration = {
     },
     camera: {
         name: 'camera1',
+        name2: 'camera2',
         ip: '172.17.0.1',
         port: '8333',
         login: 'admin',
@@ -11491,11 +11492,50 @@ const dataConfiguration = {
     },
     bolid: {
         name: 'bolid1',
-        addrees: '3',
+        address: '3',
         type: 'Шлюз ModBus TCP',
         ip: '172.17.0.5',
         port: '8333',
-    }
+    },
+    lockCTL14: {
+        name: 'Шлюз CТL14',
+        cell: 'Шлюз',
+        algorithm: 'Мягкий',
+        time: '100',
+        error: 'Заданы не все параметры шлюза'
+    },
+    lockCL15: {
+        name: 'Шлюз CL15',
+        cell: 'Шлюз',
+        algorithm: 'Мягкий',
+        time: '100',
+        error: 'Заданы не все параметры шлюза'
+    },
+    objectCL15: {
+        name: 'Составной объект CL15',
+        cell: 'Составной объект',
+        algorithm: 'Турникет',
+        controller1: 'Не выбрано',
+        controller2: 'Не выбрано',
+        error: 'Заданы не все параметры шлюза'
+    },
+    event: {
+        name1: 'Нормализация входа',
+        name2: 'Test name2'
+    },
+    cameraTemplate1: {
+        maker: 'ACTi',
+        model: 'model1',
+        video: 'video1',
+        type: 'mjpeg_over_http',
+        template: 'ACTi - model1 (mjpeg_over_http)'
+    },
+    cameraTemplate2: {
+        maker: 'TRASSIR',
+        model: 'model2',
+        video: 'video2',
+        type: 'mjpeg_over_http',
+    },
 }
 
 module.exports =  {

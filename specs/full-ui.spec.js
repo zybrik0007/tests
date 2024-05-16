@@ -5,43 +5,7 @@ const data = require('../ui/src/handlers/module-specs/data');
 const decorate = require('../ui/src/decorates');
 
 
-//tests.configurationUi.otherDevice.addDeviceIP();
-//tests.configurationUi.otherDevice.activateDevice();
-//tests.configurationUi.otherDevice.deactivateDevice();
-//tests.configurationUi.otherDevice.fireAlarmDevice();
-//tests.configurationUi.otherDevice.blockFireAlarmDevice();
-//tests.configurationUi.otherDevice.addDeviceSearch();
-//tests.configurationUi.otherDevice.deleteDevice();
-//tests.configurationUi.otherRoom.addRoom();
-//tests.configurationUi.otherRoom.editRoom();
-//tests.configurationUi.otherRoom.addChildrenRoom();
-//tests.configurationUi.otherRoom.addDuplicateRoom();
-//tests.configurationUi.otherRoom.deleteParentRoom();
-//tests.configurationUi.otherRoom.addDeviceIP();
-//tests.configurationUi.otherRoom.addDeviceInRoom();
-//tests.configurationUi.otherRoom.deleteRoomAndDevice();
-//tests.configurationUi.otherRoom.activateDevice();
-//tests.configurationUi.otherRoom.fireAlarmDevice();
-//tests.configurationUi.otherRoom.blockFireAlarmDevice();
-//tests.configurationUi.otherRoom.exportXLSX();
-//tests.configurationUi.otherRoom.exportCSV();
-//tests.configurationUi.otherDevice.exportXLSX();
-//tests.configurationUi.otherDevice.exportCSV();
 
-//tests.configurationUi.otherDevice.addCamera();
-//tests.configurationUi.otherDevice.deleteCamera();
-//tests.configurationUi.otherDevice.addBiosmart();
-//tests.configurationUi.otherDevice.deleteBiosmart();
-//tests.configurationUi.otherDevice.addTrassir();
-//tests.configurationUi.otherDevice.deleteTrassir();
-//tests.configurationUi.otherDevice.addAxxon();
-//tests.configurationUi.otherDevice.deleteAxxon();
-//tests.configurationUi.otherDevice.addBolid()
-//tests.configurationUi.otherDevice.deleteBolid();
-
-//data.addDataVisitorReport();
-//tests.visitorReportUi.other.exportXLSX();
-data.deleteDataVisitorReport();
 
 closeBrowser();
 

@@ -27,6 +27,18 @@ class ConfigurationSystemPage extends BasePage {
         }
     }
 
+    async getVersion(timeout) {
+        return await this.xpathGetText(elements.admSystemVersionNumber(1),
+            `Получение значение версии системы.`,
+            timeout)
+    }
+
+    async getNumber(timeout) {
+        return await this.xpathGetText(elements.admSystemVersionNumber(2),
+            `Получение значение номера сборки.`,
+            timeout)
+    }
+
 }
 
 module.exports = ConfigurationSystemPage

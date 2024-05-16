@@ -122,5 +122,9 @@ module.exports = {
         name: 'unsorted_cancel_shield_outline',
         description: 'Снятие с охраны'
     },
+    unsorted_smartphone_outline: {
+        name: 'unsorted_smartphone_outline',
+        description: 'Мобильный интервал'
+    },
 
 }

@@ -34,11 +34,25 @@ class Rooms extends BasePage {
             timeout);
     }
 
+    async noRoom(arr, timeout) {
+        return await this.xpathNoElement(elements.room(arr),
+            `Отсутсвие помещения "${arr[arr.length - 1]}".`,
+            timeout);
+    }
+
     async device(arr, timeout) {
         console.log(elements.roomDevice(arr) + elements.admDevice(arr[arr.length - 2], arr[arr.length - 1]));
         return await this.xpathElement(elements.roomDevice(arr) +
             elements.admDevice(arr[arr.length - 2], arr[arr.length - 1]),
             `Отображение устройства "${arr[arr.length - 2]} - ${arr[arr.length - 1]}" 
+            в помещении "${arr[arr.length - 3]}".`,
+            timeout);
+    }
+
+    async noDevice(arr, timeout) {
+        return await this.xpathNoElement(elements.roomDevice(arr) +
+            elements.admDevice(arr[arr.length - 2], arr[arr.length - 1]),
+            `Отсутсвие устройства "${arr[arr.length - 2]} - ${arr[arr.length - 1]}" 
             в помещении "${arr[arr.length - 3]}".`,
             timeout);
     }

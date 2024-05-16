@@ -7,6 +7,7 @@ const dec = require('../../../../dictionaries/decorate');
 const sec = require('../../../../dictionaries/section');
 const sub = require('../../../../dictionaries/subsection');
 const but = require('../../../../dictionaries/button-icon');
+const imp = require('../../../../upload-files');
 const icon = require('../../../../dictionaries/icon');
 const api = require('../../../other/api');
 const deleteData = require('../../../other/deleteData');
@@ -15,6 +16,7 @@ const decItApi = require('../../../../dictionaries/decorate-it-api');
 const decorate = require('../../../../decorates');
 const db = require('../../../../database');
 const data = require('../../data').dataConfiguration;
+const bedSystemEvent = require('./event-ui').befEvent;
 
 const befARoom = () => before('Вход и открытие подраздела "Конфигурация" вкладка "Помещения"', async () => {
     await page.base.loading(entry.sleep1);
@@ -61,7 +63,7 @@ const befSystem = () => before('Вход и открытие подраздел�
     await dec.auth(entry.customLogin, entry.customPassword);
     await dec.simple(el.section.handler, [sec.adm, entry.max], el.section);
     await dec.simple(el.subsection.handler, [sub.adm.conf, entry.max], el.subsection);
-    await dec.simple(el.tab.handler, ['Системы', entry.max], el.tab);
+    await dec.simple(el.tab.handler, ['Система', entry.max], el.tab);
     await dec.simple(page.system.init, [entry.max], page.system);
     await page.base.loading(entry.sleep1);
 });
@@ -146,7 +148,7 @@ const other = (type, text) => {
 
     });
 
-    const addDeviceIP = () => describe(text + 'Добавление устройства через общий поиск.', () => {
+    const addDeviceIP = () => describe(text + 'Добавление устройства через IP.', () => {
 
         if(type === 'device') {
             describe('Добавление', () => {
@@ -271,8 +273,50 @@ const other = (type, text) => {
         }
     });
 
-    const deleteDevice = () => describe(text + 'Удаление устройства.', () => {
+    const addDeviceIPFailed = () => describe(text + 'Добавление невалидного устройства через IP.', () => {
+        if(type === 'device') {
+            befDevice();
+            aft();
+            decorate.el.butIcBefore.handler({
+                icon: but.search,
+                timeout: entry.max
+            });
+            decorate.modal.searchDevice.init({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.sendKeys({
+                title: '',
+                placeholder: 'Поиск конкретного устройства по IP адресу',
+                value: '100.100.100.100',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.button.handler({
+                name: `Найти устройство по IP: 100.100.100.100`,
+                timeout: entry.max
+            });
+            decorate.el.error.error({
+                text: 'Не удалось найти устройство',
+                timeout: entry.max
+            });
+            decorate.modal.searchDevice.closeHandler({
+                timeout: entry.max
+            });
+            decorate.modal.searchDevice.initClose({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        }
+    });
 
+    const deleteDevice = () => describe(text + 'Удаление устройства.', () => {
         if(type === 'device') {
             describe('Удаление', () => {
                 befDevice();
@@ -901,7 +945,159 @@ const other = (type, text) => {
         }
     });
 
-    const deleteRoom = () => describe(text + 'Удалить помещение.', () => {});
+    const deleteRoomDevice = () => describe(text + 'Отвязать устройства от помещения и удалить помещения.', () => {
+        if(type === 'room') {
+
+            describe('Удаление', () => {
+                befARoom();
+                aft();
+
+                describe(`Удаление ${entry.device_name_1} - ${entry.device_ip_1}`, () => {
+                    decorate.page.device.handler({
+                        name: entry.device_name_1,
+                        ip: entry.device_ip_1,
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.butIcBefore.handler({
+                        icon: but.delete,
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.deviceDeleteRoom.init({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.button.handler({
+                        name: 'Удалить',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.deviceDeleteRoom.initClose({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                });
+
+                describe(`Удаление помещения ${data.rooms.room2}`, () => {
+                    decorate.page.room.handler({
+                        arr: [data.rooms.room1, data.rooms.room2],
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.butIcBefore.handler({
+                        icon: but.delete,
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.roomDelete.init({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.button.handler({
+                        name: 'Удалить',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.roomDelete.initClose({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                });
+
+                describe(`Удаление ${data.camera.name} - ${data.camera.ip}`, () => {
+                    decorate.page.device.handler({
+                        name: data.camera.name,
+                        ip: data.camera.ip,
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.butIcBefore.handler({
+                        icon: but.delete,
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.deviceDeleteRoom.init({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.button.handler({
+                        name: 'Удалить',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.deviceDeleteRoom.initClose({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                });
+
+                describe(`Удаление помещения ${data.rooms.room1}`, () => {
+                    decorate.page.room.handler({
+                        arr: [data.rooms.room1],
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.butIcBefore.handler({
+                        icon: but.delete,
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.roomDelete.init({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.button.handler({
+                        name: 'Удалить',
+                        timeout: entry.max
+                    });
+                    decorate.modalConfirm.roomDelete.initClose({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                });
+            });
+
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.room.noRoom({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.noRoom({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+        }
+
+    });
 
     const deleteParentRoom = () => describe(text + 'Удаление родительского помещения.', () => {
         if(type === 'room') {
@@ -933,7 +1129,7 @@ const other = (type, text) => {
                     text: 'Нельзя удалить помещение, которое содержит дочерние',
                     timeout: entry.max
                 });
-                decorate.modal.editRoom.initClose({
+                decorate.modalConfirm.roomDelete.initClose({
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
@@ -943,7 +1139,7 @@ const other = (type, text) => {
         }
     });
 
-    const deleteRoomAndDevice = () => describe(text + 'Удаление помещения, при наличии устрйоства', () => {
+    const deleteRoomAndDevice = () => describe(text + 'Удаление помещения, при наличии устройства', () => {
         if(type === 'room') {
             describe('Попытка удаление родительского помещения', () => {
                 befARoom();
@@ -984,13 +1180,8 @@ const other = (type, text) => {
     });
 
     const addDeviceInRoom = () => describe(text + 'Добавление контроллеров в помещения.', () => {
-        describe('Добавление фиктивного устройства чере API', () => {
-            befARoom();
-            aft();
-            decItApi.addDevice(data.device.obj);
-        });
 
-        describe(`Добавление контроллера "${data.device.name-data.device.ip}" в помещение ${data.rooms.room1}`,
+        describe(`Добавление камеры "${data.camera.name-data.camera.ip}" в помещение ${data.rooms.room1}`,
             () => {
              befARoom();
              aft();
@@ -1012,7 +1203,7 @@ const other = (type, text) => {
                 timeout: entry.sleep2
             });
             decorate.el.groupCell.handler({
-                name: data.device.ip,
+                name: data.camera.ip,
                 timeout: entry.max
             });
             decorate.page.base.loading({
@@ -1074,7 +1265,7 @@ const other = (type, text) => {
             befARoom();
             aft();
             decorate.page.room.device({
-                arr: [data.rooms.room1, data.device.name, data.device.ip],
+                arr: [data.rooms.room1, data.camera.name, data.camera.ip],
                 timeout: entry.max
             });
             decorate.page.room.device({
@@ -1100,7 +1291,7 @@ const other = (type, text) => {
                     { 'Отчет "Помещения"': 'room1', __EMPTY: '' },
                     {
                         'Отчет "Помещения"': '',
-                        __EMPTY: 'Контроллер замка CL05',
+                        __EMPTY: 'camera1',
                         __EMPTY_1: "Вход в 'room1' Выход из 'Неконтролируемая территория'",
                         __EMPTY_2: 'Вход: Считыватель 1 Выход: Считыватель 2'
                     },
@@ -1192,6 +1383,12 @@ const other = (type, text) => {
                         __EMPTY_2: 'Считыватель 2'
                     },
                     {
+                        'Отчет "Отчет по устройствам"': 'camera1',
+                        __EMPTY: '172.17.0.1',
+                        __EMPTY_1: 'room1',
+                        __EMPTY_2: 'Неконтролируемая территория'
+                    },
+                    {
                         'Отчет "Отчет по устройствам"': 'Контроллер CL15',
                         __EMPTY: '172.17.100.4',
                         __EMPTY_1: 'room2',
@@ -1276,7 +1473,7 @@ const other = (type, text) => {
                     { 'Помещение': 'Неконтролируемая территория' },
                     { 'Помещение': 'room1' },
                     {
-                        'Контроллеры': 'Контроллер замка CL05',
+                        'Контроллеры': 'camera1',
                         'Направление прохода': "Вход в 'room1' Выход из 'Неконтролируемая территория'",
                         'Считыватели': 'Вход: Считыватель 1 Выход: Считыватель 2'
                     },
@@ -1358,6 +1555,12 @@ const other = (type, text) => {
             const params = {
                 nameFile: 'devices.csv',
                 json: [
+                    {
+                        'Контроллер': 'camera1',
+                        IP: '172.17.0.1',
+                        'Считыватель 1': 'room1',
+                        'Считыватель 2': 'Неконтролируемая территория'
+                    },
                     {
                         'Контроллер': 'Контроллер CL15',
                         IP: '172.17.100.4',
@@ -1461,7 +1664,7 @@ const other = (type, text) => {
                 decorate.el.input.sendKeys({
                     title: 'Имя камеры',
                     placeholder: '',
-                    value: data.camera.name,
+                    value: data.camera.name2,
                     timeout: entry.max
                 });
                 decorate.el.input.sendKeys({
@@ -1499,6 +1702,68 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.modal.addCamera.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.camera.name2,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const editCamera = () => describe(text + 'Редактировнаие камеры.', () => {
+        if(type === 'device') {
+            describe('Редактирование', () => {
+                befDevice();
+                aft();
+                decorate.page.device.device({
+                    name: data.camera.name2,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.page.device.handler({
+                    name: data.camera.name2,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.edit,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.input({
+                    title: 'Название',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Название',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Название',
+                    placeholder: '',
+                    value: data.camera.name,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить изменения в устройство',
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
@@ -2052,7 +2317,7 @@ const other = (type, text) => {
                 decorate.el.input.sendKeys({
                     title: 'Адрес прибора C2000-ПП',
                     placeholder: '',
-                    value: data.bolid.addrees,
+                    value: data.bolid.address,
                     timeout: entry.max
                 });
                 decorate.el.input.input({
@@ -2150,9 +2415,2177 @@ const other = (type, text) => {
         }
     });
 
+    const displayLockCTL14 = () => describe(text + 'Проверка отображения страницы добавления шлюза CTL14 ' +
+        'и отображение ошибки при невалидном добавлении.', () => {
+        if(type === 'device') {
+            befDevice();
+            aft();
+            decorate.el.butIcBefore.handler({
+                icon: but.add,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.menu.menu({
+                timeout: entry.max
+            });
+            decorate.el.menu.handler({
+                name: 'Добавить шлюз CTL14',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.getValue({
+                title: 'Название',
+                placeholder: '',
+                value: data.lockCTL14.name,
+                timeout: entry.max
+            });
+            decorate.el.simpleCell.active({
+                name: data.lockCTL14.cell,
+                timeout: entry.max
+            });
+            decorate.el.select.select({
+                title: 'Алгоритм прохода',
+                value: data.lockCTL14.algorithm,
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'Время нахождения в шлюзе (сек)',
+                placeholder: '',
+                value: data.lockCTL14.time,
+                timeout: entry.max
+            });
+            decorate.el.button.handler({
+                name: 'Сохранить изменения в устройство',
+                timeout: entry.max
+            });
+            decorate.el.error.error({
+                text: data.lockCTL14.error,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        }
+    });
+
+    const displayLockCL15 = () => describe(text + 'Проверка отображения страницы добавления шлюза CL15 ' +
+        'и отображение ошибки при невалидном добавлении.', () => {
+        if(type === 'device') {
+            befDevice();
+            aft();
+            decorate.el.butIcBefore.handler({
+                icon: but.add,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.menu.menu({
+                timeout: entry.max
+            });
+            decorate.el.menu.handler({
+                name: 'Добавить шлюз CL15',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.getValue({
+                title: 'Название',
+                placeholder: '',
+                value: data.lockCL15.name,
+                timeout: entry.max
+            });
+            decorate.el.simpleCell.active({
+                name: data.lockCL15.cell,
+                timeout: entry.max
+            });
+            decorate.el.select.select({
+                title: 'Алгоритм прохода',
+                value: data.lockCL15.algorithm,
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'Время нахождения в шлюзе (сек)',
+                placeholder: '',
+                value: data.lockCL15.time,
+                timeout: entry.max
+            });
+            decorate.el.button.handler({
+                name: 'Сохранить изменения в устройство',
+                timeout: entry.max
+            });
+            decorate.el.error.error({
+                text: data.lockCL15.error,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        }
+    });
+
+    const displayObjectCL15 = () => describe(text + 'Проверка отображения страницы добавления составного объекта CL15 '+
+        'и отображение ошибки при невалидном добавлении.', () => {
+        if(type === 'device') {
+            befDevice();
+            aft();
+            decorate.el.butIcBefore.handler({
+                icon: but.add,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.menu.menu({
+                timeout: entry.max
+            });
+            decorate.el.menu.handler({
+                name: 'Добавить составной объект CL15',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.getValue({
+                title: 'Название',
+                placeholder: '',
+                value: data.objectCL15.name,
+                timeout: entry.max
+            });
+            decorate.el.simpleCell.active({
+                name: data.objectCL15.cell,
+                timeout: entry.max
+            });
+            decorate.el.select.select({
+                title: 'Алгоритм',
+                value: data.objectCL15.algorithm,
+                timeout: entry.max
+            });
+            decorate.el.select.select({
+                title: 'Контроллер 1',
+                value: data.objectCL15.controller1,
+                timeout: entry.max
+            });
+            decorate.el.select.select({
+                title: 'Контроллер 1',
+                value: data.objectCL15.controller2,
+                timeout: entry.max
+            });
+            decorate.el.button.handler({
+                name: 'Сохранить изменения в устройство',
+                timeout: entry.max
+            });
+            decorate.el.error.error({
+                text: data.objectCL15.error,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        }
+    });
+
+    const displayMobileTerminal = () => describe(text + 'Проверка отображения модального окна "Мобильный интервал".',
+        () => {
+
+        if(type === 'device') {
+            befDevice();
+            aft();
+            decorate.el.butIcBefore.handler({
+                icon: but.unsorted_smartphone_outline,
+                timeout: entry.max
+            });
+            decorate.modal.addMobileInterval.init({
+                timeout: entry.max
+            });
+            decorate.modal.addMobileInterval.closeHandler({
+                timeout: entry.max
+            });
+            decorate.modal.addMobileInterval.initClose({
+                timeout: entry.max
+            });
+        }
+    });
+
+    const filterIP = () => describe(text + 'Проверка фильтра по IP адресу.', () => {
+
+        if(type === 'device') {
+
+            befDevice();
+            aft();
+
+            describe('Отображение до применения фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Ввод "${entry.device_ip_1}" в поиск по IP адресу`, () => {
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'IP адрес',
+                    value: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.noDevice({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Удаление "${entry.device_ip_1}" из поиска по IP адресу`, () => {
+                decorate.el.input.backSpace({
+                    title: '',
+                    placeholder: 'IP адрес',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после удаления фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+
+        if(type === 'room') {
+
+            befARoom();
+            aft();
+
+            describe('Отображение до применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Ввод "${data.camera.ip}" в поиск по IP адресу`, () => {
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'IP адрес',
+                    value: data.camera.ip,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.noRoom({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Удаление "${data.camera.ip}" из поиска по IP адресу`, () => {
+                decorate.el.input.backSpace({
+                    title: '',
+                    placeholder: 'IP адрес',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после удаления фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const filterName = () => describe(text + 'Проверка фильтра по Названию', () => {
+
+        if(type === 'device') {
+
+            befDevice();
+            aft();
+
+            describe('Отображение до применения фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Ввод "${entry.device_name_1}" в поиск по Названию`, () => {
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'Название',
+                    value: entry.device_name_1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.noDevice({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Удаление "${entry.device_name_1}" из поиска по Названию`, () => {
+                decorate.el.input.backSpace({
+                    title: '',
+                    placeholder: 'Название',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после удаления фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+
+        if(type === 'room') {
+
+            befARoom();
+            aft();
+
+            describe('Отображение до применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Ввод "${data.camera.name}" в поиск по Названию`, () => {
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'Название',
+                    value: data.camera.name,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.noRoom({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe(`Удаление "${data.camera.name}" из поиска по Названию`, () => {
+                decorate.el.input.backSpace({
+                    title: '',
+                    placeholder: 'Название',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после удаления фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const filterType = () => describe(text + 'Проверка фильтра по Типу.', () => {
+
+        if(type === 'device') {
+
+            befDevice();
+            aft();
+
+            describe('Отображение до применения фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Устройства', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Любой тип',
+                    text: 'Устройства',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.noDevice({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Видеокамеры', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Устройства',
+                    text: 'Видеокамеры',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.device.noDevice({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Шлюзы', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Видеокамеры',
+                    text: 'Шлюзы',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.device.noDevice({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.noDevice({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Любой тип', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Шлюзы',
+                    text: 'Любой тип',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.device.device({
+                    name: entry.device_name_1,
+                    ip: entry.device_ip_1,
+                    timeout: entry.max
+                });
+                decorate.page.device.device({
+                    name: data.camera.name,
+                    ip: data.camera.ip,
+                    timeout: entry.max
+                });
+            });
+        }
+
+        if(type === 'room') {
+
+            befARoom();
+            aft();
+
+            describe('Отображение до применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Помещения', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Любой тип',
+                    text: 'Помещения',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Устройства', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Помещения',
+                    text: 'Устройства',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Видеокамеры', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Устройства',
+                    text: 'Видеокамеры',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.noRoom({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Шлюзы', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Видеокамеры',
+                    text: 'Шлюзы',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.room.noRoom({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.noRoom({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.noDevice({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+
+            describe('Выбора Тип - Любой тип', () => {
+                decorate.el.select.iconXpand({
+                    title: 'Тип',
+                    value: 'Шлюзы',
+                    text: 'Любой тип',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Отображение после применения фильтра', () => {
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.camera.name, data.camera.ip],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.room.device({
+                    arr: [data.rooms.room1, data.rooms.room2, entry.device_name_1, entry.device_ip_1],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const addEvent = () => describe(text + 'Добавление изменения названия события.', () => {
+        if(type === 'event') {
+            describe('Добавление', () => {
+                befEvent();
+                aft();
+                decorate.page.room.handler({
+                    arr: [entry.device_name_1],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'Выберите событие для переименования',
+                    value: data.event.name1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.selectXpand.xpand({
+                    timeout: entry.max
+                });
+                decorate.el.selectXpand.handler({
+                    value: data.event.name1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.selectXpand.xpandNoElement({
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Добавить',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.sendKeys({
+                    title: '',
+                    placeholder: 'Новое название',
+                    value: data.event.name2,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Удаление всех событий из БД.', () => {
+                it('Удаление всех событий  из БД', () => dec.simple(db.truncateEvent,
+                    [],
+                    db.truncateEvent));
+            });
+
+            describe('Добавление события прохода', () => {
+                decorate.page.base.open({
+                    url: 'http://172.17.100.4/api/setEvent?uid=617&card=13242237&dir=0'
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка таблицы "События"', () => {
+                bedSystemEvent();
+                aft();
+                decorate.el.table.cellGetText({
+                    headTitle: 'Событие',
+                    strNumber: 2,
+                    cellNumber: 2,
+                    value: data.event.name2,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const addCheckEvent = () => describe(text + 'Проверка изменнного названия, после добавления изменения.', () => {
+        if(type === 'event') {
+            describe('Удаление всех событий из БД.', () => {
+                it('Удаление всех событий  из БД', () => dec.simple(db.truncateEvent,
+                    [],
+                    db.truncateEvent));
+            });
+
+            describe('Добавление события прохода', () => {
+                decorate.page.base.open({
+                    url: 'http://172.17.100.4/api/setEvent?uid=617&card=13242237&dir=0'
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка таблицы "События"', () => {
+                bedSystemEvent();
+                aft();
+                decorate.el.table.cellGetText({
+                    headTitle: 'Событие',
+                    strNumber: 2,
+                    cellNumber: 2,
+                    value: data.event.name2,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const addDuplicateEvent = () => describe(text + 'Добавление дублирования изменения названия события.', () => {
+
+        befEvent();
+        aft();
+        decorate.page.room.handler({
+            arr: [entry.device_name_1],
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.input.sendKeys({
+            title: '',
+            placeholder: 'Выберите событие для переименования',
+            value: data.event.name1,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.selectXpand.xpand({
+            timeout: entry.max
+        });
+        decorate.el.selectXpand.handler({
+            value: data.event.name1,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.selectXpand.xpandNoElement({
+            timeout: entry.max
+        });
+        decorate.el.button.handler({
+            name: 'Добавить',
+            timeout: entry.max
+        });
+        decorate.el.error.error({
+            text: 'Уже существует',
+            timeout: entry.max
+        });
+    });
+
+    const deleteEvent = () => describe(text + 'Удаление изменения названия события.', () => {
+
+        if(type === 'event') {
+            describe('Удаление', () => {
+                befEvent();
+                aft();
+                decorate.page.room.handler({
+                    arr: [entry.device_name_1],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcAfter.handler({
+                    icon: but.unsorted_delete_outline_android,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deleteEventRename.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Подтвердить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.deleteEventRename.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+    });
+
+    const deleteCheckEvent = () => describe(text + 'Проверка изменнного названия, после удаления изменения.', () => {
+        if(type === 'event') {
+            describe('Удаление всех событий из БД.', () => {
+                it('Удаление всех событий  из БД', () => dec.simple(db.truncateEvent,
+                    [],
+                    db.truncateEvent));
+            });
+
+            describe('Добавление события прохода', () => {
+                decorate.page.base.open({
+                    url: 'http://172.17.100.4/api/setEvent?uid=617&card=13242237&dir=0'
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка таблицы "События"', () => {
+                bedSystemEvent();
+                aft();
+                decorate.el.table.cellGetText({
+                    headTitle: 'Событие',
+                    strNumber: 2,
+                    cellNumber: 2,
+                    value: data.event.name1,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const addCameraTemplate = () => describe(text + 'Добавление шаблона камеры.', () => {
+        if(type === 'camera') {
+            describe('Добавление', () => {
+                befCamera();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.add,
+                    timeout: entry.max
+                });
+
+                decorate.modal.addCameraTemplate.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.handler({
+                    title: 'Производитель',
+                    placeholder: 'Выберите или введите нового производителя',
+                    timeout: entry.max
+                });
+                decorate.el.selectXpand.xpand({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.selectXpand.handler({
+                    value: data.cameraTemplate1.maker,
+                    timeout: entry.max
+                });
+                decorate.el.selectXpand.xpandNoElement({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+
+                decorate.el.input.sendKeys({
+                    title: 'Модель',
+                    placeholder: '',
+                    value: data.cameraTemplate1.model,
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Путь к видеопотоку',
+                    placeholder: 'Пример: /video.mpeg4',
+                    value: data.cameraTemplate1.video,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.modal.addCameraTemplate.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befCamera();
+                aft();
+
+                describe('Проверка таблицы', () => {
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Производитель',
+                        strNumber: 1,
+                        cellNumber: 1,
+                        value: data.cameraTemplate1.maker,
+                        timeout: entry.max
+                    });
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Модель',
+                        strNumber: 1,
+                        cellNumber: 2,
+                        value: data.cameraTemplate1.model,
+                        timeout: entry.max
+                    });
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Тип потока',
+                        strNumber: 1,
+                        cellNumber: 3,
+                        value: data.cameraTemplate1.type,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Проверка параметров', () => {
+                    decorate.el.table.strHandler({
+                        strNumber: 1,
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.butIcBefore.handler({
+                        icon: but.edit,
+                        timeout: entry.max
+                    });
+                    decorate.modal.editCameraTemplate.init({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.input.getValue({
+                        title: 'Производитель',
+                        placeholder: 'Выберите или введите нового производителя',
+                        value: data.cameraTemplate1.maker,
+                        timeout: entry.max
+                    });
+                    decorate.el.input.getValue({
+                        title: 'Модель',
+                        placeholder: '',
+                        value: data.cameraTemplate1.model,
+                        timeout: entry.max
+                    });
+                    decorate.el.input.getValue({
+                        title: 'Путь к видеопотоку',
+                        placeholder: 'Пример: /video.mpeg4',
+                        value: data.cameraTemplate1.video,
+                        timeout: entry.max
+                    });
+                    decorate.modal.editCameraTemplate.closeHandler({
+                        timeout: entry.max
+                    });
+                    decorate.modal.editCameraTemplate.initClose({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                });
+            });
+        }
+    });
+
+    const addCameraTemplateDuplicate = () => describe(text + 'Дублирование шаблона камеры.', () => {
+        if(type === 'camera') {
+            befCamera();
+            aft();
+            decorate.el.butIcBefore.handler({
+                icon: but.add,
+                timeout: entry.max
+            });
+
+            decorate.modal.addCameraTemplate.init({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.handler({
+                title: 'Производитель',
+                placeholder: 'Выберите или введите нового производителя',
+                timeout: entry.max
+            });
+            decorate.el.selectXpand.xpand({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.selectXpand.handler({
+                value: data.cameraTemplate1.maker,
+                timeout: entry.max
+            });
+            decorate.el.selectXpand.xpandNoElement({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+
+            decorate.el.input.sendKeys({
+                title: 'Модель',
+                placeholder: '',
+                value: data.cameraTemplate1.model,
+                timeout: entry.max
+            });
+            decorate.el.input.sendKeys({
+                title: 'Путь к видеопотоку',
+                placeholder: 'Пример: /video.mpeg4',
+                value: data.cameraTemplate1.video,
+                timeout: entry.max
+            });
+            decorate.el.button.handler({
+                name: 'Сохранить',
+                timeout: entry.max
+            });
+            decorate.el.error.error({
+                text: 'Шаблон для камеры такого типа уже добавлен',
+                timeout: entry.max
+            });
+            decorate.modal.addCameraTemplate.initClose({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        }
+    });
+
+    const checkCameraTemplate = () => describe(text + 'Проверка отображения шаблона камеры, при добавлении камеры.',
+        () => {
+        if(type === 'camera') {
+            befDevice();
+            aft();
+            decorate.el.butIcBefore.handler({
+                icon: but.add,
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.menu.menu({
+                timeout: entry.max
+            });
+            decorate.el.menu.handler({
+                name: 'Добавить камеру',
+                timeout: entry.max
+            });
+            decorate.modal.addCamera.init({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.select.iconXpand({
+                title: 'Шаблон камеры',
+                value: '',
+                text: data.cameraTemplate1.template,
+                timeout: entry.max
+            });
+            decorate.modal.addCamera.closeHandler({
+                timeout: entry.max
+            });
+            decorate.modal.addCamera.initClose({
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+        }
+    });
+
+    const editCameraTemplate = () => describe(text + 'Редактирование шаблона камеры.', () => {
+        if(type === 'camera') {
+            describe('Редактирование', () => {
+                befCamera();
+                aft();
+                decorate.el.table.strHandler({
+                    strNumber: 1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.edit,
+                    timeout: entry.max
+                });
+
+                decorate.modal.editCameraTemplate.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.handler({
+                    title: 'Производитель',
+                    placeholder: 'Выберите или введите нового производителя',
+                    timeout: entry.max
+                });
+                decorate.el.selectXpand.xpand({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.selectXpand.handler({
+                    value: data.cameraTemplate2.maker,
+                    timeout: entry.max
+                });
+                decorate.el.selectXpand.xpandNoElement({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+
+                decorate.el.input.backSpace({
+                    title: 'Модель',
+                    placeholder: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Модель',
+                    placeholder: '',
+                    value: data.cameraTemplate2.model,
+                    timeout: entry.max
+                });
+                decorate.el.input.backSpace({
+                    title: 'Путь к видеопотоку',
+                    placeholder: 'Пример: /video.mpeg4',
+                    timeout: entry.max
+                });
+                decorate.el.input.sendKeys({
+                    title: 'Путь к видеопотоку',
+                    placeholder: 'Пример: /video.mpeg4',
+                    value: data.cameraTemplate2.video,
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.modal.editCameraTemplate.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка', () => {
+                befCamera();
+                aft();
+
+                describe('Проверка таблицы', () => {
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Производитель',
+                        strNumber: 1,
+                        cellNumber: 1,
+                        value: data.cameraTemplate2.maker,
+                        timeout: entry.max
+                    });
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Модель',
+                        strNumber: 1,
+                        cellNumber: 2,
+                        value: data.cameraTemplate2.model,
+                        timeout: entry.max
+                    });
+                    decorate.el.table.cellGetText({
+                        headTitle: 'Тип потока',
+                        strNumber: 1,
+                        cellNumber: 3,
+                        value: data.cameraTemplate2.type,
+                        timeout: entry.max
+                    });
+                });
+
+                describe('Проверка параметров', () => {
+                    decorate.el.table.strHandler({
+                        strNumber: 1,
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.butIcBefore.handler({
+                        icon: but.edit,
+                        timeout: entry.max
+                    });
+                    decorate.modal.editCameraTemplate.init({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.input.getValue({
+                        title: 'Производитель',
+                        placeholder: 'Выберите или введите нового производителя',
+                        value: data.cameraTemplate2.maker,
+                        timeout: entry.max
+                    });
+                    decorate.el.input.getValue({
+                        title: 'Модель',
+                        placeholder: '',
+                        value: data.cameraTemplate2.model,
+                        timeout: entry.max
+                    });
+                    decorate.el.input.getValue({
+                        title: 'Путь к видеопотоку',
+                        placeholder: 'Пример: /video.mpeg4',
+                        value: data.cameraTemplate2.video,
+                        timeout: entry.max
+                    });
+                    decorate.modal.editCameraTemplate.closeHandler({
+                        timeout: entry.max
+                    });
+                    decorate.modal.editCameraTemplate.initClose({
+                        timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                });
+            });
+        }
+    });
+
+    const deleteCameraTemplate = () => describe(text + 'Удаление шаблона камеры.', () => {
+        if(type === 'camera') {
+            describe('Проверка таблицы до удаления', () => {
+                befCamera();
+                aft();
+                decorate.el.table.size({
+                    strCount: 7,
+                    timeout: entry.max
+                });
+            });
+
+            describe('Удаление', () => {
+                befCamera();
+                aft();
+                decorate.el.table.strHandler({
+                    strNumber: 1,
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.cameraTemplateDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Подтвердить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.cameraTemplateDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка таблицы после удаления', () => {
+                befCamera();
+                aft();
+                decorate.el.table.size({
+                    strCount: 6,
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const displaySystem = () => describe(text + 'Проверка отображения.', () => {
+        befSystem();
+        aft();
+
+        describe('Вкладка Основные параметры', () => {
+            describe('Общие настройки', () => {
+                decorate.el.pwMenu.active({
+                    value: 'Основные параметры',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Формат даты',
+                    value: 'YYYY-MM-DD',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Язык системы',
+                    value: 'Русский',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Регион',
+                    value: 'Россия',
+                    timeout: entry.max
+                });
+            });
+
+            describe('Очистка событий', () => {
+                decorate.el.select.select({
+                    title: 'Выберите тип',
+                    value: 'Выберите тип',
+                    timeout: entry.max
+                });
+            });
+
+            describe('Система', () => {
+                decorate.el.checkbox.checked({
+                    name: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Максимальное количество экспортируемых строк',
+                    placeholder: '',
+                    value: '100000',
+                    timeout: entry.max
+                });
+            });
+        });
+
+        describe('Рассылки и уведомления', () => {
+            describe('Нажатие по Рассылки и уведомления', () => {
+                decorate.el.pwMenu.handler({
+                    value: 'Рассылки и уведомления',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Почтовая рассылка', () => {
+                decorate.el.pwMenu.handler({
+                    value: 'Почтовая рассылка',
+                    timeout: entry.max
+                });
+                decorate.el.pwMenu.active({
+                    value: 'Почтовая рассылка',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.getValue({
+                    title: 'Адрес SMTP сервера',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Тип защиты',
+                    value: 'Нет',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Порт',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Пользователь',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Пароль',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Email отправителя',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя отправителя',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Тема письма',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Записывать в события системы',
+                    value: 'Нет',
+                    timeout: entry.max
+                });
+                decorate.el.checkbox.unchecked({
+                    name: '',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Тестовое сообщение',
+                    timeout: entry.max
+                });
+            });
+
+            describe('SMS-уведомления', () => {
+                decorate.el.pwMenu.handler({
+                    value: 'SMS-уведомления',
+                    timeout: entry.max
+                });
+                decorate.el.pwMenu.active({
+                    value: 'SMS-уведомления',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.select.select({
+                    title: 'Шаблон',
+                    value: 'Шаблон не выбран',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'SMPP - сервер',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'SMPP - порт',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Source address TON',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Source address NPI',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Destination address TON',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Destination address NPI',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Пользователь',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Пароль',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя отправителя',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Записывать в события системы',
+                    value: 'Нет',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Тестовое сообщение',
+                    timeout: entry.max
+                });
+            });
+
+            describe('Настройки Viber', () => {
+                decorate.el.pwMenu.handler({
+                    value: 'Настройки Viber',
+                    timeout: entry.max
+                });
+                decorate.el.pwMenu.active({
+                    value: 'Настройки Viber',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.getValue({
+                    title: 'Токен',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Ссылка на аватар',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Записывать в события системы',
+                    value: 'Нет',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Тестовое сообщение',
+                    timeout: entry.max
+                });
+            });
+
+            describe('Настройки Telegram', () => {
+                decorate.el.pwMenu.handler({
+                    value: 'Настройки Telegram',
+                    timeout: entry.max
+                });
+                decorate.el.pwMenu.active({
+                    value: 'Настройки Telegram',
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.input.getValue({
+                    title: 'Токен',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.input.getValue({
+                    title: 'Имя',
+                    placeholder: '',
+                    value: '',
+                    timeout: entry.max
+                });
+                decorate.el.select.select({
+                    title: 'Записывать в события системы',
+                    value: 'Нет',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Сохранить',
+                    timeout: entry.max
+                });
+            });
+        });
+
+        describe('Видеозапись', () => {
+            decorate.el.pwMenu.handler({
+                value: 'Видеозапись',
+                timeout: entry.max
+            });
+            decorate.el.pwMenu.active({
+                value: 'Видеозапись',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.getValue({
+                title: 'Каталог для записи видео файлов',
+                placeholder: '',
+                value: '',
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'Продолжительность предзаписи (секунд)',
+                placeholder: '',
+                value: '8',
+                timeout: entry.max
+            });
+            decorate.el.button.button({
+                name: 'Сохранить',
+                timeout: entry.max
+            });
+        });
+
+        describe('OpenID Connect', () => {
+            decorate.el.pwMenu.handler({
+                value: 'OpenID Connect',
+                timeout: entry.max
+            });
+            decorate.el.pwMenu.active({
+                value: 'OpenID Connect',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.input.getValue({
+                title: 'Адрес сервера',
+                placeholder: 'http://...',
+                value: '',
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'Область (Realm)',
+                placeholder: '',
+                value: '',
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'ID клиента',
+                placeholder: '',
+                value: '',
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'Имя пользователя',
+                placeholder: '',
+                value: '',
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'Пароль',
+                placeholder: '',
+                value: '',
+                timeout: entry.max
+            });
+            decorate.el.input.getValue({
+                title: 'Период синхронизации (Секундах)',
+                placeholder: '',
+                value: '60',
+                timeout: entry.max
+            });
+            decorate.el.button.button({
+                name: 'Сохранить',
+                timeout: entry.max
+            });
+        });
+
+        describe('Плагины', () => {
+            decorate.el.pwMenu.handler({
+                value: 'Плагины',
+                timeout: entry.max
+            });
+            decorate.el.pwMenu.active({
+                value: 'Плагины',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.placeholderText.getText({
+                text: 'Нет установленных плагинов',
+                timeout: entry.max
+            });
+
+        });
+
+        describe('О системе', () => {
+            decorate.el.pwMenu.handler({
+                value: 'О системе',
+                timeout: entry.max
+            });
+            decorate.el.pwMenu.active({
+                value: 'О системе',
+                timeout: entry.max
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.page.system.getVersion({
+                value: entry.version,
+                timeout: entry.max
+            });
+            decorate.page.system.getNumber({
+                value: entry.number,
+                timeout: entry.max
+            });
+        });
+    });
+
+    const importRoom = () => describe(text + 'Проверка импорта.', () => {
+        if(type === 'room') {
+            describe('Импорт', () => {
+                befARoom();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.menu,
+                    timeout: entry.max
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Импорт из XLS, XLSX',
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.init({
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.uploadFile({
+                    src: imp.room.importRoom,
+                    timeout: entry.upload
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Помещения',
+                    value: '',
+                    text: 'Помещение1',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Далее',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Готово',
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.bodyGetText({
+                    value: 'Импорт завершен',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Готово',
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.initClose({
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка', () => {
+                befARoom();
+                aft();
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+            });
+        }
+    });
+
+    const importRoomFailed = () => describe('Персонал / Должности. Проверка импорта с ошибкой - дублирование.', () => {
+
+        if(type === 'room') {
+            const params = {
+                fileName: 'unimported.xlsx',
+                json: [
+                    {
+                        'Отчет "Неимпортированные данные"': 'Помещение1',
+                        __EMPTY: 'Ошибка'
+                    },
+                    {
+                        'Отчет "Неимпортированные данные"': 'Неконтролируемая территория/room1',
+                        __EMPTY: 'Помещение уже существует'
+                    },
+                    {
+                        'Отчет "Неимпортированные данные"': 'Неконтролируемая территория/room1/room2',
+                        __EMPTY: 'Помещение уже существует'
+                    }
+                ]
+            }
+
+            describe('Импорт', () => {
+                befARoom();
+                aft();
+                decorate.el.butIcBefore.handler({
+                    icon: but.menu,
+                    timeout: entry.max
+                });
+                decorate.el.menu.menu({
+                    timeout: entry.max
+                });
+                decorate.el.menu.handler({
+                    name: 'Импорт из XLS, XLSX',
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.init({
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.uploadFile({
+                    src: imp.room.importRoom,
+                    timeout: entry.upload
+                });
+                decorate.el.select.iconXpand({
+                    title: 'Помещения',
+                    value: '',
+                    text: 'Помещение1',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Далее',
+                    timeout: entry.max
+                });
+                decorate.el.button.button({
+                    name: 'Экспорт остатка в файл',
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.bodyGetText({
+                    value: 'Импорт завершен. 2 записей из 2 не было импортировано',
+                    timeout: entry.max
+                });
+                decorate.el.button.handler({
+                    name: 'Экспорт остатка в файл',
+                    timeout: entry.max
+                });
+                decorate.modal.importFile.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe('Проверка таблицы', () => {
+                befARoom();
+                aft();
+                decorate.page.room.room({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.room.room({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+            });
+
+            describe('Проверка файла с ошибками', () => {
+                decorate.el.file.display({
+                    file: params.fileName,
+                    timeout: entry.upload
+                });
+                decorate.el.file.comparison({
+                    file: params.fileName,
+                    json: params.json
+                });
+                decorate.el.file.delete({
+                    file: params.fileName,
+                    timeout: entry.upload
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+    });
+
+    const deleteRooms = () => describe('Удаление помещения', () => {
+        if(type === 'room') {
+            befARoom();
+            aft();
+            describe(`Удаление помещения ${data.rooms.room2}`, () => {
+                decorate.page.room.handler({
+                    arr: [data.rooms.room1, data.rooms.room2],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.roomDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.roomDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+
+            describe(`Удаление помещения ${data.rooms.room1}`, () => {
+                decorate.page.room.handler({
+                    arr: [data.rooms.room1],
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.butIcBefore.handler({
+                    icon: but.delete,
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.roomDelete.init({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.button.handler({
+                    name: 'Удалить',
+                    timeout: entry.max
+                });
+                decorate.modalConfirm.roomDelete.initClose({
+                    timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+            });
+        }
+    });
+
     return {
         addDeviceSearch,
         addDeviceIP,
+        addDeviceIPFailed,
         deleteDevice,
         activateDevice,
         deactivateDevice,
@@ -2168,6 +4601,7 @@ const other = (type, text) => {
         exportXLSX,
         exportCSV,
         addCamera,
+        editCamera,
         deleteCamera,
         addBiosmart,
         deleteBiosmart,
@@ -2176,12 +4610,37 @@ const other = (type, text) => {
         addAxxon,
         deleteAxxon,
         addBolid,
-        deleteBolid
+        deleteBolid,
+        displayLockCTL14,
+        displayLockCL15,
+        displayObjectCL15,
+        displayMobileTerminal,
+        filterIP,
+        filterName,
+        filterType,
+        deleteRoomDevice,
+        addEvent,
+        addCheckEvent,
+        addDuplicateEvent,
+        deleteEvent,
+        deleteCheckEvent,
+        addCameraTemplate,
+        checkCameraTemplate,
+        addCameraTemplateDuplicate,
+        editCameraTemplate,
+        deleteCameraTemplate,
+        displaySystem,
+        importRoom,
+        importRoomFailed,
+        deleteRooms
     }
 
 }
 
 module.exports = {
     otherDevice: other('device', 'Администрирование / Конфигурация - вкладка Устройства. '),
-    otherRoom: other('room', 'Администрирование / Конфигурация - вкладка Помещения. ')
+    otherRoom: other('room', 'Администрирование / Конфигурация - вкладка Помещения. '),
+    otherEvent: other('event', 'Администрирование / Конфигурация - вкладка События. '),
+    otherCamera: other('camera', 'Администрирование / Конфигурация - вкладка Шаблоны камер. '),
+    otherSystem: other('system', 'Администрирование / Конфигурация - вкладка Система. ')
 }

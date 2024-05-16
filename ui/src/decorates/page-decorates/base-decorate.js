@@ -22,9 +22,13 @@ module.exports = {
 
     refresh: () => it('Обновление страницы', async () => await dec.simple(page.base.refresh,
     [],
-    page.bax)),
+    page.base)),
 
     enter: () => it('Нажатие ENTER', async () => await dec.simple(page.base.enter,
         [],
-        page.bax)),
+        page.base)),
+
+    open: ({url}) => it(`Открытие "${url}"`, async () => await dec.simple(page.base.open,
+        [url],
+        page.base)),
 }

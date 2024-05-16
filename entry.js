@@ -34,7 +34,9 @@ module.exports = {
         port: process.env.a117database_port || '3306',
         user: process.env.a118database_user || 'admin',
         password: process.env.a119database_password || '123456',
-        database: process.env.a120database_name || 'selenium_02052024_1'
-    }
+        database: process.env.a120database_name || 'selenium_15052024_1'
+    },
+    version: '2.0',
+    number: '12.0'
 }
 

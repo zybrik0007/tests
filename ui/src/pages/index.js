@@ -59,7 +59,8 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     HolidayPage = require('./soft/personal/holiday-page/holiday-page'),
     EventRenamePage = require('./soft/administration/configuration-page/configuration-event-page'),
     TemplateCameraPage = require('./soft/administration/configuration-page/configuration-camera-page'),
-    SystemPage = require('./soft/administration/configuration-page/configuration-system-page');
+    SystemPage = require('./soft/administration/configuration-page/configuration-system-page'),
+    EventPage = require('./soft/administration/event-page/event-page');
 
 
 module.exports = {
@@ -138,6 +139,7 @@ module.exports = {
     eventRename: new EventRenamePage(),
     camera: new TemplateCameraPage(),
     system: new SystemPage(),
+    event: new EventPage(),
     license: new License(),
 
 }

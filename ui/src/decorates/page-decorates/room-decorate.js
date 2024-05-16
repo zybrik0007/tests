@@ -8,9 +8,20 @@ module.exports = {
             [arr, timeout],
             page.room)),
 
+    noRoom: ({arr, timeout}) => it(`Отсутствие помещения "${arr[arr.length - 1]}".`,
+        async () => await dec.simple(page.room.noRoom,
+            [arr, timeout],
+            page.room)),
+
     device: ({arr, timeout}) => it(`Отображение устройства "${arr[arr.length - 2]} - ${arr[arr.length - 1]}" в помещении 
     "${arr[arr.length - 3]}".`,
         async () => await dec.simple(page.room.device,
+            [arr, timeout],
+            page.room)),
+
+    noDevice: ({arr, timeout}) => it(`Отсутствие устройства "${arr[arr.length - 2]} - ${arr[arr.length - 1]}" 
+    в помещении "${arr[arr.length - 3]}".`,
+        async () => await dec.simple(page.room.noDevice,
             [arr, timeout],
             page.room)),
 

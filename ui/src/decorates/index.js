@@ -7,7 +7,7 @@ const {init, initAdd, initEdit, initCopy} = require('./other/init');
 module.exports = {
     el: {
         button: require('./elements-decorates/button-decorate'),
-        butIcAfter: '',
+        butIcAfter: require('./elements-decorates/button-icon-after-decorate'),
         butIcBefore: require('./elements-decorates/button-icon-before-decorate'),
         checkbox: require('./elements-decorates/checkbox-decorate'),
         datepicker: require('./elements-decorates/datepicker-decorate'),
@@ -37,6 +37,7 @@ module.exports = {
         groupCell: require('./elements-decorates/group-cell-decorate'),
         timepicker: require('./elements-decorates/timepicker-decorate'),
         radio: require('./elements-decorates/radio-decorate'),
+        pwMenu: require('./elements-decorates/pw-menu-decorate'),
     },
     page: {
         staffActive: require('./page-decorates/staff-active-decorate'),
@@ -67,6 +68,7 @@ module.exports = {
         division: require('./page-decorates/division-decorate'),
         device: require('./page-decorates/device-decorate'),
         room: require('./page-decorates/room-decorate'),
+        system: require('./page-decorates/system-decorate')
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -111,6 +113,10 @@ module.exports = {
         editRoom: ModalDecorate('room-modal', 'Редактировать помещение'),
         deviceSelect: ModalDecorate('device-select', 'Список устройств'),
         addCamera: ModalDecorate('camera-add', 'Добавить камеру'),
+        addMobileInterval: ModalDecorate('mobile', 'Список NFC устройств'),
+        addCameraTemplate: ModalDecorate('template-camera', 'Добавить шаблон'),
+        editCameraTemplate: ModalDecorate('template-camera', 'Редактировать шаблон'),
+
     },
     modalConfirm: {
         //Персонал
@@ -207,6 +213,15 @@ module.exports = {
 
         deviceDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить этот контроллер?'),
+
+        deviceDeleteRoom: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данное устройство?'),
+
+        deleteEventRename: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данное переименование?'),
+
+        cameraTemplateDelete: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данный шаблон?'),
 
         //Лицензии
         licenseStandardDeactivate: ModalConfirmDecorate('Подтвердите действие',

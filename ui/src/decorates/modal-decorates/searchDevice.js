@@ -13,6 +13,11 @@ module.exports = {
             [timeout],
             el.modal.deviceSearch)),
 
+    closeHandler: ({timeout}) => it(`Нажатие кнопки закрытия модального окна.`,
+        async() => await dec.simple(el.modal.deviceSearch.closeHandler,
+            [timeout],
+            el.modal.deviceSearch)),
+
     deviceHandler: ({ip, timeout}) => it(`Нажатие по устройству с ip ${ip}.`,
         async() => await dec.simple(el.modal.deviceSearch.deviceHandler,
             [ip, timeout],

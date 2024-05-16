@@ -86,5 +86,6 @@ module.exports = {
     eventRenameUrl: address + 'administration/premisesconfiguration/event-rename',
     templateCameraUrl: address + 'administration/premisesconfiguration/cameratemplates',
     systemUrl: address + 'administration/premisesconfiguration/system',
+    eventUrl: address + 'administration/eventssystem',
     licenseUrl: address + 'administration/license',
 }

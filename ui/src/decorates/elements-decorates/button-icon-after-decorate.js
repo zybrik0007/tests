@@ -8,22 +8,22 @@ module.exports = {
     handler: ({icon, timeout}) => it(`Нажатие кнопки "${icon.description}".`,
         async () => await dec.simple(el.butIcAfter.handler,
             [icon, timeout],
-            el.butIcBefore)),
+            el.butIcAfter)),
 
     button: ({icon, timeout}) => it(`Отображение кнопки "${icon.description}".`,
         async () => await  dec.simple(el.butIcAfter.button,
             [icon, timeout],
-            el.butIcBefore)),
+            el.butIcAfter)),
 
     active: ({icon, timeout}) => it(`Отображение активной кнопки "${icon.description}".`,
         async () => await dec.simple(el.butIcAfter.active,
             [icon, timeout],
-            el.butIcBefore)),
+            el.butIcAfter)),
 
     disabled: ({icon, timeout}) => it(`Отображение заблокированной кнопки "${icon.description}"`,
         async () => await dec.simple(el.butIcAfter.disabled,
             [icon, timeout],
-            el.butIcBefore))
+            el.butIcAfter))
 }
 
 

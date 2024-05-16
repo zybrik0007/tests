@@ -8,10 +8,10 @@ module.exports = {
     },
 
     position: {
-        importXLSXSuccess: path.join(__dirname, 'files/position/import.position.xlsx.success.xlsx'),
+        importXLSXSuccess: path.join(__dirname, 'files/position/import.room.xlsx.success.xlsx'),
         importXLSSuccess: path.join(__dirname, 'files/position/import.position.xls.success.xls'),
-        importXLSXFailed: path.join(__dirname, 'files/position/import.position.xlsx.failed.xlsx'),
-        importXLSXPartlySuccess: path.join(__dirname, 'files/position/import.position.xlsx.partly.success.xlsx'),
+        importXLSXFailed: path.join(__dirname, 'files/position/import.room.xlsx.failed.xlsx'),
+        importXLSXPartlySuccess: path.join(__dirname, 'files/position/import.room.xlsx.partly.success.xlsx'),
         importPosition: path.join(__dirname, 'files/position/position.xlsx'),
         importPositionFailed: path.join(__dirname, 'files/position/position.failed.xlsx')
     },
@@ -34,5 +34,9 @@ module.exports = {
     visitor: {
         importVisitor: path.join(__dirname, 'files/visitor/import.visitor.xlsx.xlsx'),
         importVisitorFaild: path.join(__dirname, 'files/visitor/import.visitor.faild.xlsx.xlsx'),
+    },
+    room: {
+        importRoom: path.join(__dirname, 'files/room/room.xlsx'),
+        importRoomFailed: path.join(__dirname, 'files/room/room.failed.xlsx')
     }
 }

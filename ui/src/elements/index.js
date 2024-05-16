@@ -30,6 +30,7 @@ const Photography = require('./elements/photography');
 const GroupCell = require('./elements/group-cell');
 const Timepicker = require('./elements/timepicker');
 const Radio = require('./elements/radio');
+const PwMenu = require('./elements/pw-menu');
 
 const Modal = require('./elements/modal');
 const Dialog = require('./elements/dialog');
@@ -83,6 +84,7 @@ module.exports = {
     groupCell: new GroupCell(),
     timepicker: new Timepicker(),
     radio: new Radio(),
+    pwMenu: new PwMenu(),
 
     modal: {
         //Персонал

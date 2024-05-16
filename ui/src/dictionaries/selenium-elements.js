@@ -236,6 +236,7 @@ module.exports = {
 
         return `//div[normalize-space(.)="${name}"]/parent::*/div/div/div[normalize-space(.)="(${ip})"]`
     },
+    admSystemVersionNumber: (event) => `//div[@class="information__description"]/div[2]/div[${event}]/b`,
 
     //Лицензии
     licenseDisabled: (title, name) => `//div[@class="block-license"]//h4[normalize-space(.)='${title}']
@@ -358,7 +359,6 @@ module.exports = {
     "pwTableHeaderColumn--name")]//pw-icon/div[contains(@class, "${icon}")]`,
     tableCellText: (str, cell) => `//pw-table-body/div[2]//pw-table-body-row[${str}]//pw-table-body-row-column[${cell}]
     /div/div`,
-//pw-table-body/div[2]//pw-table-body-row[1]//pw-table-body-row-column[45]/div/div
     tableCellImg: (str, cell) => `//pw-table-body/div[2]//pw-table-body-row[${str}]//pw-table-body-row-column[${cell}]
     /div/div//img`,
     tableCellIcon: (str, cell, icon) => `//pw-table-body/div[2]//pw-table-body-row[${str}]
@@ -489,6 +489,10 @@ module.exports = {
     //simple-cell
     simpleCell: (event) => `//*[contains(@class, "pwSimpleCell") and normalize-space(.)="${event}"]`,
     simpleCellActive: (event) => `//*[contains(@class, "pwSimpleCell--active") and normalize-space(.)="${event}"]`,
+
+    //pwMenu__item
+    pwMenu: (event) => `//*[@class="pwMenu__item" and normalize-space(.)="${event}" ]`,
+    pwMenuActive: (event) => `//*[contains(@class, "pwMenu__item--active") and normalize-space(.)="${event}"]`,
 
     //pw-group-cell
     pwGroupCell: (event) => `//pw-group-cell//*[contains(text(), "${event}")]/parent::*`,

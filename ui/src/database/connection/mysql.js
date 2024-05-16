@@ -244,5 +244,20 @@ module.exports = {
             }
         }
     },
+
+    truncateEvent: async () => {
+        try {
+            await db.query(connection,`TRUNCATE TABLE event`);
+            return {
+                error: false,
+                description: 'Удалены все события.'
+            }
+        } catch (err) {
+            return {
+                error: true,
+                description: 'Не удалены все события.'
+            }
+        }
+    },
 }
 

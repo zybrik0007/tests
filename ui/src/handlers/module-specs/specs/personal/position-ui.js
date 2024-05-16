@@ -1396,7 +1396,7 @@ const exportFiles = () => {
         'Системное имя файла.', () => {
 
         const params = {
-            xlsx: 'position.xlsx',
+            xlsx: 'room.xlsx',
             division: {
                 name: 'SeleniumPositionImportXLSXNameOne',
                 comment: 'SeleniumPositionImportXLSXDescriptionOne',
@@ -1498,7 +1498,7 @@ const exportFiles = () => {
         'C заголовком. Системное имя файла.', () => {
 
         const params = {
-                xlsx: 'position.xlsx',
+                xlsx: 'room.xlsx',
                 division: {
                     name: 'SeleniumPositionImportXLSXNameOne',
                     comment: 'SeleniumPositionImportXLSXDescriptionOne',
@@ -1604,7 +1604,7 @@ const exportFiles = () => {
         'Системное имя файла.', () => {
 
         const params = {
-                xlsx: 'position.xlsx',
+                xlsx: 'room.xlsx',
                 header: 'header',
                 division: {
                     name: 'SeleniumPositionImportXLSXNameOne',
@@ -3099,7 +3099,7 @@ const other = () => {
 
     const exportXLSX = () => describe('Персонал / Должности. Проверка экспорта в XLSX.', () => {
         const params = {
-            nameFile: 'position.xlsx',
+            nameFile: 'room.xlsx',
             json: [
                 { 'Отчет "Должности"': 'Должность', __EMPTY: 'Описание' },
                 {

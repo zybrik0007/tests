@@ -26,7 +26,7 @@ class SimpleCell extends BasePage {
     async handler(text, timeout) {
         return await this.xpathHandler(elements.simpleCell(text),
             `Нажатие по вкладки настроек "${text}"`,
-            timeout)
+            timeout);
     }
 
 }
