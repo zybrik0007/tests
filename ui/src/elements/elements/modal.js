@@ -121,6 +121,21 @@ class Modal extends BasePage {
             timeout)
     }
 
+    // Нажатие по тексту
+    async handler(text, classed, timeout) {
+        return await this.xpathHandler(elements.modalText(this.id, classed, text),
+            `Нажатие по "${text}" в модальном окне "${this.title ? this.title : 'c id ' + this.id}".`,
+            timeout);
+    }
+
+    async getTextTag(tag, timeout) {
+        console.log(elements.modalId(this.id) + `//${tag}`);
+        console.log(await this.xpathGetText(elements.modalId(this.id) + `//${tag}`));
+        return await this.xpathGetText(elements.modalId(this.id) + `//${tag}`,
+            `Получение текста по тегу в модальном окне "${this.title ? this.title : 'c id ' + this.id}".`,
+            timeout);
+    }
+
 }
 
 module.exports = Modal;

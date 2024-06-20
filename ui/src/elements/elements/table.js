@@ -245,6 +245,13 @@ class Table extends BasePage {
             `Значение строки ${str} и столбца ${cell}.`,
             timeout)
     }
+
+    //Двойно клик по строке
+    async doubleHandler(str, timeout) {
+        return await this.xpathDbHandler(elements.tableStrNum(str),
+            `Двойное нажатие по строке с номером "${str}" в таблице.`,
+            timeout);
+    }
 }
 
 module.exports = Table

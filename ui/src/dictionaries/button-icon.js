@@ -3,6 +3,10 @@ module.exports = {
         name: 'content_add',
         description: 'Добавить',
     },
+    unsorted_add_outline: {
+      name: 'unsorted_add_outline',
+      description: 'Добавить',
+    },
     edit: {
         name: 'editor_mode_edit_outline',
         description: 'Редактировать',

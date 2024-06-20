@@ -60,7 +60,18 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     EventRenamePage = require('./soft/administration/configuration-page/configuration-event-page'),
     TemplateCameraPage = require('./soft/administration/configuration-page/configuration-camera-page'),
     SystemPage = require('./soft/administration/configuration-page/configuration-system-page'),
-    EventPage = require('./soft/administration/event-page/event-page');
+    EventPage = require('./soft/administration/event-page/event-page'),
+    EventactionPage = require('./soft/administration/eventaction-page/eventaction-page'),
+    EventactionChangePage = require('./soft/administration/eventaction-page/eventaction-change-page'),
+    TaskPage = require('./soft/administration/task/task-page'),
+    TaskChangePage = require('./soft/administration/task/task-change-page'),
+    OperatorPage = require('./soft/administration/operator-page/operator-page'),
+    OperatorChangePage = require('./soft/administration/operator-page/operator-change-page'),
+    RolePage = require('./soft/administration/role-page/role-page'),
+    RoleChangePage  = require('./soft/administration/role-page/role-change-page'),
+    VerificationPage = require('./soft/verification/verification/verification-page'),
+    VerificationConfigPage = require('./soft/verification/verification-config/verification-config-page'),
+    VerificationConfigChangePage = require('./soft/verification/verification-config/verification-config-change-page');
 
 
 module.exports = {
@@ -128,6 +139,11 @@ module.exports = {
     identifiersStaff: new IdentifiersStaff(),
     identifiersVisitor: new IdentifiersVisitor(),
 
+    // Верификация
+    verify: new VerificationPage(),
+    verifyConfig: new VerificationConfigPage(),
+    verifyConfigChange: new VerificationConfigChangePage(),
+
     //Заказ пропуска
     orderpassOrder: new OrderpassOrder(),
     orderpassArchive: new OrderpassArchive(),
@@ -140,6 +156,14 @@ module.exports = {
     camera: new TemplateCameraPage(),
     system: new SystemPage(),
     event: new EventPage(),
+    eventaction: new EventactionPage(),
+    eventactionChange: new EventactionChangePage(),
+    task: new TaskPage(),
+    taskChange: new TaskChangePage(),
+    operator:  new OperatorPage(),
+    operatorChange: new OperatorChangePage(),
+    role: new RolePage(),
+    roleChange: new RoleChangePage(),
     license: new License(),
 
 }

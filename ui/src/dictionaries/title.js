@@ -46,8 +46,14 @@ module.exports = {
     premisesAccessReportTitle: title + 'Отчет по доступу в помещения',
     identifiersTitle: title + 'Выданные идентификаторы',
 
+    // Верификация
+    verificationTitle: title + 'Верификация',
+
     //Заказ пропуска
     orderpassOrderpassTitle: title + 'Заказ пропуска',
+
+    // Мониторинг
+    planTitle: title + 'Интерактивный план',
 
     //Конфигурация
     roomsTitle: title + 'Конфигурация',
@@ -56,5 +62,9 @@ module.exports = {
     systemTitle: title + 'Конфигурация',
     templateCameraTitle: title + 'Конфигурация',
     eventTitle: title + 'События системы',
+    eventactionTitle: title + 'Реакции на события',
+    taskTitle: title + 'Задания',
+    operatorTitle: title + 'Операторы',
+    roleTitle: title + 'Роли и права операторов',
     licenseTitle: title + 'Лицензии',
 }

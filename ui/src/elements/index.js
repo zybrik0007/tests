@@ -118,6 +118,9 @@ module.exports = {
         roomEdit: new Modal('room-modal', 'Редактировать помещение'),
         deviceSearch: new DeviceSearch('search-device', 'Поиск устройств'),
         deviceSelect: new DeviceSelect('device-select', 'Список устройств'),
+        eventActionSelect: new Modal('event-action-select', 'Выбрать событие'),
+        httpRequest: new Modal('http-request', 'Выполнить http-запрос'),
+        hardware: new Modal('hardware', 'Добавить внутреннюю реакцию на событие'),
 
         //Импорт
         importData: new ImportDate('import-data', 'Импорт'),

@@ -33,4 +33,7 @@ module.exports = {
 
     //Администрирование
     configurationUi: require('./specs/administration/configuration-ui'),
+    eventactionUi: require('./specs/administration/eventaction-ui'),
+    taskUi: require('./specs/administration/task-ui'),
+    operatorRoleUi: require('./specs/administration/operator-role-ui')
 }

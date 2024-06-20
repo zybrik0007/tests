@@ -11538,6 +11538,449 @@ const dataConfiguration = {
     },
 }
 
+const dataEventaction = {
+    condition: 'Условия',
+    action: 'Действие',
+    eventaction1: {
+        name: 'eventaction1',
+        condition: 'Добавление должности',
+        conditionTitle: 'Событие',
+        conditionDescription: 'Содержит "Работа с должностями" → "Добавление должности"',
+        request: 'test',
+        actionTitle: 'Выполнить http-запрос',
+        actionDescription: 'Выполнить ч.ttp-запрос: test',
+        eventName: 'Выполнение рассылки',
+        eventBody: 'Тип: http, Статус: Ошибка запроса: test\n' +
+            'Закрыть',
+    },
+    eventaction2: {
+        name: 'eventaction2',
+        condition: 'Удаление должности',
+        conditionTitle: 'Событие',
+        conditionDescription: 'Содержит "Работа с должностями" → "Удаление должности"',
+        request: 'test2',
+        actionTitle: 'Выполнить http-запрос',
+        actionDescription: 'Выполнить ч.ttp-запрос: test2',
+        eventName: 'Выполнение рассылки',
+        eventBody: 'Тип: http, Статус: Ошибка запроса: test2\n' +
+            'Закрыть',
+    },
+    eventaction3: {
+        name: 'eventaction3',
+        device: 'Контроллер CL15',
+        resource: 'Контроллер',
+        condition: 'Активизация датчика вскрытия корпуса',
+        action: 'Маскировать вход',
+        contact: 'Вход №3 - In3',
+        type: 'Время после срабатывания',
+        time: 'Бесконечность'
+    },
+    eventaction4: {
+        name: 'eventaction4',
+        device: 'Вход №3 - In3',
+        resource: 'Вход №3 - In3',
+        condition: 'Активизация входа',
+        action: 'Активизировать выход',
+        contact: 'Выход №1 - NO1/C1/NC1',
+        type: 'Время срабатывания',
+        time: 'Секунды'
+    },
+    position1: 'position1',
+    position2: 'position2',
+    positionEvent: 'Добавление должности'
+}
+
+const dataTask = {
+    task1: {
+        name: 'task1',
+        time: 'Дни недели',
+        day7: 'ВС',
+        timeStart: '01:00:00',
+        timeEnd: '23:00:00',
+        action1: 'Резервное копирование базы данных'
+    },
+    task2: {
+        name: 'task2',
+        time: 'Дата',
+        date: '2023-01-01',
+        timeStart: '01:00:00',
+        timeEnd: '23:00:00',
+        action1: 'Команда в устройство',
+        action2: 'Резервное копирование базы данных',
+        command: 'ИУ: Поставить на охрану'
+    },
+    task3: {
+        name: 'task3',
+        time: 'День месяца',
+        day: '10',
+        timeStart: '01:00:00',
+        timeEnd: '23:00:00',
+        action1: 'Выполнить перерасчет Журнала рабочего времени',
+        action2: 'Команда в устройство',
+        command: 'ИУ: Поставить на охрану',
+        action3: 'Резервное копирование базы данных',
+        actionData3: 'вторая половина предыдущего месяца',
+    },
+    defaultValue: 'Резервное копирование базы данных'
+}
+
+const dataRoleOperator = {
+    rooms: {
+        room1: 'room1',
+        room2: 'room2',
+        room3: 'room3'
+    },
+    devices: {
+        device1: {
+            name: 'Контроллер замка CL05',
+            ip: '10.10.5.10',
+            obj: {
+                "device_type": 16,
+                "ip_addr": "10.10.5.10",
+                "mac_addr": "02:42:2f:97:86:32"
+            }
+        },
+        device2: {
+            name: 'Контроллер CL15',
+            ip: '10.10.5.2',
+            obj: {
+                "device_type": 902,
+                "ip_addr": "10.10.5.2",
+                "mac_addr": "02:42:2f:97:86:40"
+            }
+        },
+        device3: {
+            name: 'ЛИКОН 2',
+            ip: '10.10.5.9',
+            obj: {
+                "device_type": 65,
+                "ip_addr": "10.10.5.9",
+                "mac_addr": "02:42:2f:97:86:33"
+            }
+        }
+    },
+    templates: {
+        template1: 'template1',
+        template2: 'template2',
+        template3: 'template3',
+    },
+    template: (name, zone1Id, zone2Id, zone3Id) => {
+        return {
+            "name": `${name}`,
+            "comment": '',
+            "access": [
+                {
+                    "access_zone_id": zone1Id,
+                    "template_type":0,
+                    "rights": {
+                        "is_guard":0,
+                        "is_antipass":0,
+                        "is_verify":0,
+                        "right_type": 1,
+                        "schedule_id": 2,
+                        "schedule_type_id": 1,
+                        "commission_type":0,
+                        "commission_group_1":0,
+                        "commission_group_2":0,
+                        "verify_po_schedule":0,
+                        "verify_vvu_schedule":0,
+                        "verify_pdu_schedule":0,
+                        "verify_alcobarier_schedule":0
+
+                    }
+                },
+                {
+                    "access_zone_id": zone2Id,
+                    "template_type":0,
+                    "rights": {
+                        "is_guard":0,
+                        "is_antipass":0,
+                        "is_verify":0,
+                        "right_type": 1,
+                        "schedule_id": 2,
+                        "schedule_type_id": 1,
+                        "commission_type":0,
+                        "commission_group_1":0,
+                        "commission_group_2":0,
+                        "verify_po_schedule":0,
+                        "verify_vvu_schedule":0,
+                        "verify_pdu_schedule":0,
+                        "verify_alcobarier_schedule":0
+
+                    }
+                },
+                {
+                    "access_zone_id": zone3Id,
+                    "template_type":0,
+                    "rights": {
+                        "is_guard":0,
+                        "is_antipass":0,
+                        "is_verify":0,
+                        "right_type": 1,
+                        "schedule_id": 2,
+                        "schedule_type_id": 1,
+                        "commission_type":0,
+                        "commission_group_1":0,
+                        "commission_group_2":0,
+                        "verify_po_schedule":0,
+                        "verify_vvu_schedule":0,
+                        "verify_pdu_schedule":0,
+                        "verify_alcobarier_schedule":0
+
+                    }
+                },
+            ]
+        }
+    },
+    schedules: {
+        schedule1: {
+            name: 'schedule1',
+            comment: '',
+            work_schedule_type_id: 4
+        },
+        schedule2: {
+            name: 'schedule2',
+            comment: '',
+            work_schedule_type_id: 4
+        },
+        schedule3: {
+            name: 'schedule3',
+            comment: '',
+            work_schedule_type_id: 4
+        }
+    },
+    positions: {
+        position1: {
+            name: 'position1',
+            comment: ''
+        },
+        position2: {
+            name: 'position2',
+            comment: ''
+        },
+        position3: {
+            name: 'position3',
+            comment: ''
+        },
+    },
+    divisions: {
+        division1: {
+            parent_id: 0,
+            name: 'division1',
+        },
+        division2: {
+            parent_id: 0,
+            name: 'division2',
+        },
+        division3: {
+            parent_id: 0,
+            name: 'division3',
+        },
+    },
+    designs: {
+        design1: {
+            name: `'design1'`,
+            data: `'{"backgroundColor":"#ffffff","backgroundImage":"none","items":[],"version":"2.0.0","scale":1}'`,
+            user_type: `'1'`
+        },
+        design2: {
+            name: `'design2'`,
+            data: `'{"backgroundColor":"#ffffff","backgroundImage":"none","items":[],"version":"2.0.0","scale":1}'`,
+            user_type: `'1'`
+        },
+        design3: {
+            name: `'design3'`,
+            data: `'{"backgroundColor":"#ffffff","backgroundImage":"none","items":[],"version":"2.0.0","scale":1}'`,
+            user_type: `'1'`
+        }
+    },
+    verify: {
+        verify1: {
+            is_const: `'0'`,
+            name: `'verify1'`,
+            comment: `''`,
+            field_visibility_staff: `'{"fio":true,"tabel_number":true,"division_name":true,"position_name":true,"schedule_name":true,"template_name":true}'`,
+            field_visibility_visitor: `'{"fio":true,"division_name":true,"template_name":true,"accompanying":true,"supporting_document":true,"supporting_document_number":true}'`
+        },
+        verify2: {
+            is_const: `'0'`,
+            name: `'verify2'`,
+            comment: `''`,
+            field_visibility_staff: `'{"fio":true,"tabel_number":true,"division_name":true,"position_name":true,"schedule_name":true,"template_name":true}'`,
+            field_visibility_visitor: `'{"fio":true,"division_name":true,"template_name":true,"accompanying":true,"supporting_document":true,"supporting_document_number":true}'`
+        },
+        verify3: {
+            is_const: `'0'`,
+            name: `'verify3'`,
+            comment: `''`,
+            field_visibility_staff: `'{"fio":true,"tabel_number":true,"division_name":true,"position_name":true,"schedule_name":true,"template_name":true}'`,
+            field_visibility_visitor: `'{"fio":true,"division_name":true,"template_name":true,"accompanying":true,"supporting_document":true,"supporting_document_number":true}'`
+        }
+    },
+    plan: {
+        plan1: {
+            name: `'plan1'`,
+            property: `'{"className":"Project","floor":0,"id":1718809211525.6067,"name":"plan1","devices":[],"items":[{"className":"Floor","width":2000,"height":2000,"scaleModeIdx":2,"position":"topLeft","hubs":[],"bg":{"bgType":"texture","bgValue":"floor/lines_1.png"},"id":1718809211526.8171,"name":"Новая схема 1","items":[{"className":"Room","accessZone":null,"bg":{"bgType":"color","bgValue":"rgba(211,211,211,1)","borderValue":"rgba(105,105,105,1)","borderSize":4},"id":1718809225895.2014,"name":"Новая комната 1","items":[{"className":"Wall","id":1718809225897.6348,"type":"Line","items":[{"className":"Point","id":1718809225900.1533,"x":0,"y":0}]},{"className":"Wall","id":1718809225901.852,"type":"Line","items":[{"className":"Point","id":1718809225902.5696,"x":300,"y":0}]},{"className":"Wall","id":1718809225902.6404,"type":"Line","items":[{"className":"Point","id":1718809225903.9536,"x":300,"y":300}]},{"className":"Wall","id":1718809225905.716,"type":"Line","items":[{"className":"Point","id":1718809225905.237,"x":0,"y":300}]}]}]}]}'`,
+            event_filter: `'{"filterStrategy":"or","filterEventSubcategories":{},"filterDevices":{},"eventSubcategoriesColors":{},"roomColors":{"0":"rgba(14,213,255,1)","1":"rgba(178,255,204,1)","2":"rgba(255,139,145,1)","3":"rgba(253,255,108,1)","4":"rgba(253,255,108,1)","5":"rgba(255,139,145,1)","6":"rgba(255,139,145,1)","7":"rgba(253,255,108,1)"}}'`
+        },
+        plan2: {
+            name: `'plan2'`,
+            property: `'{"className":"Project","floor":0,"id":1718799336395.0344,"name":"plan2","items":[{"className":"Floor","width":2000,"height":2000,"scaleModeIdx":2,"position":"topLeft","hubs":[],"bg":{"bgType":"texture","bgValue":"floor/lines_1.png"},"id":1718799336395.4333,"name":"Новая схема 1","items":[{"className":"Room","accessZone":null,"bg":{"bgType":"color","bgValue":"rgba(211,211,211,1)","borderValue":"rgba(105,105,105,1)","borderSize":4},"id":1718799344692.3604,"name":"Новая комната 1","items":[{"className":"Wall","id":1718799344694.6174,"type":"Line","items":[{"className":"Point","id":1718799344695.6462,"x":0,"y":0}]},{"className":"Wall","id":1718799344696.5786,"type":"Line","items":[{"className":"Point","id":1718799344696.2961,"x":300,"y":0}]},{"className":"Wall","id":1718799344696.634,"type":"Line","items":[{"className":"Point","id":1718799344696.4988,"x":300,"y":300}]},{"className":"Wall","id":1718799344697.6697,"type":"Line","items":[{"className":"Point","id":1718799344697.1191,"x":0,"y":300}]}]}]},{"className":"Floor","width":2000,"height":2000,"scaleModeIdx":2,"position":"topLeft","hubs":[],"bg":{"bgType":"texture","bgValue":"floor/lines_1.png"},"id":1718799337632.2576,"name":"Новая схема 2","items":[{"className":"Room","accessZone":null,"bg":{"bgType":"color","bgValue":"rgba(211,211,211,1)","borderValue":"rgba(105,105,105,1)","borderSize":4},"id":1718799346398.0134,"name":"Новая комната 2","items":[{"className":"Wall","id":1718799346398.7847,"type":"Line","items":[{"className":"Point","id":1718799346398.827,"x":0,"y":0}]},{"className":"Wall","id":1718799346399.8257,"type":"Line","items":[{"className":"Point","id":1718799346399.644,"x":300,"y":0}]},{"className":"Wall","id":1718799346399.3398,"type":"Line","items":[{"className":"Point","id":1718799346399.8494,"x":300,"y":300}]},{"className":"Wall","id":1718799346399.1558,"type":"Line","items":[{"className":"Point","id":1718799346399.4456,"x":0,"y":300}]}]}]},{"className":"Floor","width":2000,"height":2000,"scaleModeIdx":2,"position":"topLeft","hubs":[],"bg":{"bgType":"texture","bgValue":"floor/lines_1.png"},"id":1718799339232.761,"name":"Новая схема 3","items":[{"className":"Room","accessZone":null,"bg":{"bgType":"color","bgValue":"rgba(211,211,211,1)","borderValue":"rgba(105,105,105,1)","borderSize":4},"id":1718799351440.4607,"name":"Новая комната 3","items":[{"className":"Wall","id":1718799351440.1663,"type":"Line","items":[{"className":"Point","id":1718799351441.236,"x":0,"y":0}]},{"className":"Wall","id":1718799351441.7007,"type":"Line","items":[{"className":"Point","id":1718799351441.7576,"x":300,"y":0}]},{"className":"Wall","id":1718799351441.4211,"type":"Line","items":[{"className":"Point","id":1718799351441.6895,"x":300,"y":300}]},{"className":"Wall","id":1718799351441.105,"type":"Line","items":[{"className":"Point","id":1718799351442.6243,"x":0,"y":300}]}]}]}],"devices":[]}'`,
+            event_filter: `'{"filterStrategy":"or","filterEventSubcategories":{},"filterDevices":{},"eventSubcategoriesColors":{},"roomColors":{"0":"rgba(14,213,255,1)","1":"rgba(178,255,204,1)","2":"rgba(255,139,145,1)","3":"rgba(253,255,108,1)","4":"rgba(253,255,108,1)","5":"rgba(255,139,145,1)","6":"rgba(255,139,145,1)","7":"rgba(253,255,108,1)"}}'`
+        },
+    },
+}
+
+const addDataRoleOperator = () => describe('Добавление данных для тестирования подразделов ' +
+    'Роли и права операторов и Операторы', () => {
+
+    const params = {...dataRoleOperator}
+
+    bef();
+    aft();
+
+    describe('Добавление помещений', () => {
+        decItApi.addRoomParent({
+            room: params.rooms.room1
+        });
+        decItApi.addRoomParent({
+            room: params.rooms.room2
+        });
+        decItApi.addRoomParent({
+            room: params.rooms.room3
+        });
+    });
+
+    describe('Добавление устройств', () => {
+        decItApi.addDevice(params.devices.device1.obj);
+        decItApi.addDevice(params.devices.device2.obj);
+        decItApi.addDevice(params.devices.device3.obj);
+    });
+
+    describe('Добавление подразделений', () => {
+        decItApi.addDivision(params.divisions.division1);
+        decItApi.addDivision(params.divisions.division2);
+        decItApi.addDivision(params.divisions.division3);
+    });
+
+    describe('Добавление должностей', () => {
+        decItApi.addPosition(params.positions.position1);
+        decItApi.addPosition(params.positions.position2);
+        decItApi.addPosition(params.positions.position3);
+    });
+
+    describe('Добавление графиков работы', () => {
+        it(`Добавление графика работы "${params.schedules.schedule1.name}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            await dec.simple(api.putSchedule,
+                [[params.schedules.schedule1], cook.text],
+                api.putSchedule);
+        });
+
+        it(`Добавление графика работы "${params.schedules.schedule2.name}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            await dec.simple(api.putSchedule,
+                [[params.schedules.schedule2], cook.text],
+                api.putSchedule);
+        });
+
+        it(`Добавление графика работы "${params.schedules.schedule3.name}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            await dec.simple(api.putSchedule,
+                [[params.schedules.schedule3], cook.text],
+                api.putSchedule);
+        });
+    });
+
+    describe('Добавление шаблонов доступа', () => {
+        it(`Добавление шаблона доступа "${params.templates.template1}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrZone = await api.getRoom(cook.text);
+            const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
+            const id2 = arrZone.text.filter(obj => obj.name === params.rooms.room2)[0].id;
+            const id3 = arrZone.text.filter(obj => obj.name === params.rooms.room3)[0].id;
+            const template = params.template(params.templates.template1, id1, id2, id3);
+            await dec.simple(api.putAccessTemplate,
+                [[template], cook.text],
+                api.putAccessTemplate);
+        });
+
+        it(`Добавление шаблона доступа "${params.templates.template2}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrZone = await api.getRoom(cook.text);
+            const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
+            const id2 = arrZone.text.filter(obj => obj.name === params.rooms.room2)[0].id;
+            const id3 = arrZone.text.filter(obj => obj.name === params.rooms.room3)[0].id;
+            const template = params.template(params.templates.template2, id1, id2, id3);
+            await dec.simple(api.putAccessTemplate,
+                [[template], cook.text],
+                api.putAccessTemplate);
+        });
+
+        it(`Добавление шаблона доступа "${params.templates.template3}"`, async () => {
+            const cook = await page.base.getCookie('token');
+            const arrZone = await api.getRoom(cook.text);
+            const id1 = arrZone.text.filter(obj => obj.name === params.rooms.room1)[0].id;
+            const id2 = arrZone.text.filter(obj => obj.name === params.rooms.room2)[0].id;
+            const id3 = arrZone.text.filter(obj => obj.name === params.rooms.room3)[0].id;
+            const template = params.template(params.templates.template3, id1, id2, id3);
+            await dec.simple(api.putAccessTemplate,
+                [[template], cook.text],
+                api.putAccessTemplate);
+        });
+    });
+
+    describe('Добавление шаблонов пропуска', () => {
+        it(`Добавление шаблон дизайна "${params.designs.design1.name}"`,
+            async () => await dec.simple(db.addDesignTemplate,
+                [params.designs.design1],
+                db.addDesignTemplate));
+
+        it(`Добавление шаблон дизайна "${params.designs.design2.name}"`,
+            async () => await dec.simple(db.addDesignTemplate,
+                [params.designs.design2],
+                db.addDesignTemplate));
+
+        it(`Добавление шаблон дизайна "${params.designs.design3.name}"`,
+            async () => await dec.simple(db.addDesignTemplate,
+                [params.designs.design3],
+                db.addDesignTemplate));
+    });
+
+    describe('Добавление шаблоны верификаций', () => {
+        it(`Добавление шаблон верификации "${params.verify.verify1.name}"`,
+            async () => await dec.simple(db.addVerifyTemplate,
+                [params.verify.verify1],
+                db.addVerifyTemplate));
+
+        it(`Добавление шаблон верификации "${params.verify.verify2.name}"`,
+            async () => await dec.simple(db.addVerifyTemplate,
+                [params.verify.verify2],
+                db.addVerifyTemplate));
+
+        it(`Добавление шаблон верификации "${params.verify.verify3.name}"`,
+            async () => await dec.simple(db.addVerifyTemplate,
+                [params.verify.verify3],
+                db.addVerifyTemplate));
+    });
+
+    describe('Добавление планы помещений', () => {
+        it(`Добавление интерактивного плана "${params.plan.plan1.name}"`,
+            async () => await dec.simple(db.addPlan,
+                [params.plan.plan1],
+                db.addPlan));
+
+        it(`Добавление интерактивного плана "${params.plan.plan2.name}"`,
+            async () => await dec.simple(db.addPlan,
+                [params.plan.plan2],
+                db.addPlan));
+    });
+});
+
+
+
+
+
 module.exports =  {
     dataControlAccess,
     addDataControlAccess,
@@ -11579,5 +12022,8 @@ module.exports =  {
     dataPosition,
     addDataStaffPosition,
     deleteDataStaffPosition,
-    dataConfiguration
+    dataConfiguration,
+    dataEventaction,
+    dataTask,
+    addDataRoleOperator
 }

@@ -3,7 +3,7 @@ const closeBrowser = require('../../ui/src/handlers/other/closeBrowser');
 const data = require('../../ui/src/handlers/module-specs/data');
 console.log = () => function () {};
 
-// Администрирование
+// Администрирование / Конфигурация
 tests.configurationUi.otherDevice.addDeviceIP();
 tests.configurationUi.otherDevice.activateDevice();
 tests.configurationUi.otherDevice.fireAlarmDevice();
@@ -77,5 +77,33 @@ tests.configurationUi.otherCamera.editCameraTemplate();
 tests.configurationUi.otherCamera.deleteCameraTemplate();
 
 tests.configurationUi.otherSystem.displaySystem();
+
+
+// Администрирование / Реакции на события
+tests.configurationUi.otherDevice.addDeviceIP();
+tests.configurationUi.otherDevice.activateDevice();
+tests.eventactionUi.other.addEvent();
+tests.eventactionUi.other.addDuplicate();
+tests.eventactionUi.other.checkTurnOnEvent();
+tests.eventactionUi.other.checkTurnOffEvent();
+tests.eventactionUi.other.editEvent();
+tests.eventactionUi.other.addEventDevice();
+tests.eventactionUi.other.editEventDevice();
+tests.eventactionUi.other.searchFilter();
+tests.eventactionUi.other.deleteEvents();
+tests.eventactionUi.other.addFailed();
+tests.configurationUi.otherDevice.deleteDevice();
+
+
+// Администрирование / Задания
+tests.configurationUi.otherDevice.addDeviceIP();
+tests.configurationUi.otherDevice.activateDevice();
+tests.taskUi.other.addTask();
+tests.taskUi.other.editTask();
+tests.taskUi.other.editTaskUpdate();
+tests.taskUi.other.searchFilter();
+tests.taskUi.other.deleteTask();
+tests.taskUi.other.addFailed();
+tests.configurationUi.otherDevice.deleteDevice();
 
 closeBrowser();

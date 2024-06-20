@@ -47,6 +47,12 @@ module.exports = {
         it(`Нажатие по иконке clear у выпадающего списка ${title ? title : value}.`,
             async () => await dec.simple(el.select.iconClear,
                 [title, value, timeout],
+                el.select)),
+
+    iconRecentOutline: ({title, value, timeout}) =>
+        it(`Нажатие по иконке recent_outline у выпадающего списка ${title ? title : value}.`,
+            async () => await dec.simple(el.select.iconRecentOutline,
+                [title, value, timeout],
                 el.select))
 }
 

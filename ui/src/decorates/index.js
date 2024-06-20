@@ -68,7 +68,9 @@ module.exports = {
         division: require('./page-decorates/division-decorate'),
         device: require('./page-decorates/device-decorate'),
         room: require('./page-decorates/room-decorate'),
-        system: require('./page-decorates/system-decorate')
+        system: require('./page-decorates/system-decorate'),
+        eventactionChange: require('./page-decorates/eventaction-change-decorate'),
+        taskChange: require('./page-decorates/task-change-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -116,7 +118,12 @@ module.exports = {
         addMobileInterval: ModalDecorate('mobile', 'Список NFC устройств'),
         addCameraTemplate: ModalDecorate('template-camera', 'Добавить шаблон'),
         editCameraTemplate: ModalDecorate('template-camera', 'Редактировать шаблон'),
-
+        eventActionSelect: ModalDecorate('event-action-select', ''),
+        httpRequest: ModalDecorate('http-request', 'Выполнить http-запрос'),
+        modalEventSystem: ModalDecorate('modal-event-system', ''),
+        hardwareAdd: ModalDecorate('hardware', 'Добавить внутреннюю реакцию на событие'),
+        hardwareEdit: ModalDecorate('hardware', 'Редактировать внутреннюю реакцию на событие'),
+        selectPeriod: ModalDecorate('select-period', 'Период'),
     },
     modalConfirm: {
         //Персонал
@@ -223,6 +230,15 @@ module.exports = {
         cameraTemplateDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить данный шаблон?'),
 
+        deleteEventaction: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данную реакцию на события?'),
+
+        taskActionDelete: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить данное действие?'),
+
+        deleteTask: ModalConfirmDecorate('Удаление задания',
+            'Вы действительно хотите удалить это задание?'),
+
         //Лицензии
         licenseStandardDeactivate: ModalConfirmDecorate('Подтвердите действие',
             'При отключении модуля "Стандартный пакет" количество действующих карт будет ограничено 100 картами '+
@@ -241,7 +257,23 @@ module.exports = {
         design: () => init(page.design),
         designAdd: () => initAdd(page.designChange),
         designEdit: () => initEdit(page.designChange),
-        designCopy: () => initCopy(page.designChange)
+        designCopy: () => initCopy(page.designChange),
+        eventaction: () => init(page.eventaction),
+        task: () => init(page.task),
+        taskChangeAdd: () => initAdd(page.taskChange),
+        taskChangeEdit: () => initEdit(page.taskChange),
+        operator: () => init(page.operator),
+        operatorAdd: () => initAdd(page.operatorChange),
+        operatorEdit: () => initEdit(page.operatorChange),
+        operatorCopy: () => initCopy(page.operatorChange),
+        role: () => init(page.role),
+        roleAdd: () => initAdd(page.roleChange),
+        roleEdit: () => initEdit(page.roleChange),
+        roleCopy: () => initCopy(page.roleChange),
+        verify: () => init(page.verify),
+        verifyConfig: () => init(page.verifyConfig),
+        verifyConfigAdd: () => initAdd(page.verifyConfigChange),
+        verifyConfigEdit: () => initEdit(page.verifyConfigChange)
     }
 }
 

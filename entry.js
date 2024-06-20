@@ -15,7 +15,7 @@ module.exports = {
     bd: 'selenium_3-2023-04-27-13-17-38_postgres.sql',
     download: process.env.a108directory || '/home/qwe/Загрузки/',
     failedExport: process.env.a109failedExport || 'unimported.xlsx',
-    max: Number(process.env.a106max) || 30000,
+    max: Number(process.env.a106max) || 60000,
     min: Number(process.env.a105min) || 2000,
     upload: Number(process.env.a107upload) || 50000,
     sleep1: Number(process.env.a107xsleep1) || 1000,
@@ -34,7 +34,7 @@ module.exports = {
         port: process.env.a117database_port || '3306',
         user: process.env.a118database_user || 'admin',
         password: process.env.a119database_password || '123456',
-        database: process.env.a120database_name || 'selenium_15052024_1'
+        database: process.env.a120database_name || 'selenium_17062024_1'
     },
     version: '2.0',
     number: '12.0'

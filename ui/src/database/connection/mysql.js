@@ -259,5 +259,100 @@ module.exports = {
             }
         }
     },
+
+    addDesignTemplate: async (object) => {
+        try {
+            //console.log(Object.keys({name, data, user_type}).join());
+            //console.log(Object.values({name, data, user_type}).join());
+            await db.query(connection,`INSERT INTO pass_template_design (${Object.keys(object).join()}) VALUES (${Object.values(object).join()})`);
+            return {
+                error: false,
+                description: 'Добавление Дизайна пропуска.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Не добавлен Дизайн пропуска.'
+            }
+        }
+    },
+
+    deleteDesignTemplate: async (name) => {
+        try {
+            await db.query(connection,`DELETE FROM pass_template_design WHERE name=${name}`);
+            return {
+                error: false,
+                description: 'Удаление дизайна прпоуска.'
+            }
+        } catch (err) {
+            return {
+                error: true,
+                description: 'Дизайн пропуска не удален.'
+            }
+        }
+    },
+
+    addVerifyTemplate: async (object) => {
+        try {
+            await db.query(connection,`INSERT INTO verify_template (${Object.keys(object).join()}) VALUES (${Object.values(object).join()})`);
+            return {
+                error: false,
+                description: 'Добавление Шаблона верификации.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Не добавлен Шаблон верификации.'
+            }
+        }
+    },
+
+    deleteVerifyTemplate: async (name) => {
+        try {
+            await db.query(connection,`DELETE FROM verify_template WHERE name=${name}`);
+            return {
+                error: false,
+                description: 'Удаление Шаблона верификации.'
+            }
+        } catch (err) {
+            return {
+                error: true,
+                description: 'Шаблон верификации не удален.'
+            }
+        }
+    },
+
+    addPlan: async (object) => {
+        try {
+            await db.query(connection,`INSERT INTO plan (${Object.keys(object).join()}) VALUES (${Object.values(object).join()})`);
+            return {
+                error: false,
+                description: 'Добавление Интерактивного плана.'
+            }
+        } catch (err) {
+            console.log('err: ', err)
+            return {
+                error: true,
+                description: 'Не добавлен Интерактивный план.'
+            }
+        }
+    },
+
+    deletePlan: async (name) => {
+        try {
+            await db.query(connection,`DELETE FROM plan WHERE name=${name}`);
+            return {
+                error: false,
+                description: 'Удаление Интерактивного плана.'
+            }
+        } catch (err) {
+            return {
+                error: true,
+                description: 'Интерактивный план не удален.'
+            }
+        }
+    },
 }
 

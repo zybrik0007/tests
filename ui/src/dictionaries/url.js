@@ -74,6 +74,12 @@ module.exports = {
     identifiersStaffUrl: address + 'controlaccess/identifiers/staff',
     identifiersVisitorUrl: address + 'controlaccess/identifiers/visitor',
 
+    // Верификация
+    verificationUrl: address + 'verification/verification',
+    verificationConfigUrl: address + 'verification/verificationconfig',
+    verificationConfigChangeAdd: address + 'verification/verificationconfig/new',
+    verificationConfigChangeEdit: address + 'verification/verificationconfig/edit/',
+
     //Заказ пропуска
     orderpassOrder: address + 'orderpass/index',
     orderpassArchive: address + 'orderpass/archive',
@@ -87,5 +93,19 @@ module.exports = {
     templateCameraUrl: address + 'administration/premisesconfiguration/cameratemplates',
     systemUrl: address + 'administration/premisesconfiguration/system',
     eventUrl: address + 'administration/eventssystem',
+    eventactionUrl: address + 'administration/eventaction',
+    eventactionUrlAdd: address + 'administration/eventaction/new',
+    eventactionUrlEdit: address + 'administration/eventaction/edit/',
+    taskUrl: address + 'administration/task',
+    taskUrlAdd: address + 'administration/task/detail/new',
+    taskUrlEdit: address + 'administration/task/detail/edit/',
+    operatorUrl: 'administration/operators',
+    operatorAddUrl: 'administration/operators/new',
+    operatorEditUrl: 'administration/operators/edit/',
+    operatorCopyUrl: 'administration/operators/copy/',
+    roleUrl: 'administration/roles',
+    roleAddUrl: 'administration/roles/new',
+    roleEditUrl: 'administration/roles/edit/',
+    roleCopyUrl: 'administration/roles/copy/',
     licenseUrl: address + 'administration/license',
 }

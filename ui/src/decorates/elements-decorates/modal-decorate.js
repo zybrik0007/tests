@@ -65,6 +65,19 @@ const ModalDecorate = (id, title) => {
                 [title, placeholder, timeout],
                 modal));
 
+    const handler = ({text, classed, timeout}) =>
+        it(`Нажатие по "${text}" в модальном окне "${modal.title ? modal.title: modal.id}".`,
+            async () => await dec.simple(modal.handler,
+                [text, classed, timeout],
+                modal));
+
+    const getTextTag = ({tag, text, timeout}) =>
+        it(`Отображение текста "${text}" в модальном окне "${this.title ? this.title : 'c id ' + this.id}".`,
+            async () => await dec.simpleText(modal.getTextTag,
+                [tag, timeout],
+                text,
+                modal));
+
     return {
         init,
         initClose,
@@ -75,71 +88,11 @@ const ModalDecorate = (id, title) => {
         buttonDisabled,
         inputSendKeys,
         inputGetValue,
-        inputBackSpace
+        inputBackSpace,
+        handler,
+        getTextTag
     }
 }
 
 module.exports = ModalDecorate;
 
-
-
-/*module.exports =  {
-
-    init: ({timeout}) => it(`Отображение модального окна 'Экспортировать данные'.`,
-        async () => await dec.simple(modal.init,
-            [timeout],
-            modal)),
-
-    initClose: ({timeout}) => it(`Отсутствие модального окна 'Экспортировать данные'.`,
-        async () => await dec.simple(modal.initClose,
-            [timeout],
-            modal)),
-
-    closeHandler: ({timeout}) => it(`Нажатие кнопки закрытия модального окна 'Экспортировать данные'.`,
-        async () => await dec.simple(modal.closeHandler,
-            [timeout],
-            modal)),
-
-    close: ({timeout}) => it(`Отображение кнопки закрытия модального окна 'Экспортировать данные'.`,
-        async () => await dec.simple(modal.close,
-            [timeout],
-            modal)),
-
-    buttonHandler: ({button, timeout}) =>
-        it(`Нажатие кнопки ${button} в модальном окне 'Экспортировать данные'.`,
-            async () => await dec.simple(modal.buttonHandler,
-                [button, timeout],
-                modal)),
-
-    buttonActive: ({button, timeout}) =>
-        it(`Кнопка ${button} в модальном окне 'Экспортировать данные' активна.`,
-            async () => await dec.simple(modal.buttonActive,
-                [button, timeout],
-                modal)),
-
-    buttonDisabled: ({button, timeout}) =>
-        it(`Кнопка ${button} в модальном окне 'Экспортировать данные' не активна.`,
-            async () => await dec.simple(modal.buttonDisabled,
-                [button, timeout],
-                modal)),
-
-    inputSendKeys: ({title, placeholder, value, timeout}) =>
-        it(`Ввод значения ${value} в поле ввода ${title ? title : placeholder} 
-        в модальном окне 'Экспортировать данные'.`,
-            async () => await dec.simple(modal.inputSendKeys,
-                [title, placeholder, value, timeout],
-                modal)),
-
-    inputGetValue: ({title, placeholder, value, timeout}) =>
-        it(`В поле ввода ${title ? title : placeholder} в модальном окне 'Экспортировать данные' отображается ${value}`,
-            async () => await dec.simpleText(modal.inputGetValue,
-                [title, placeholder, timeout],
-                value,
-                modal)),
-
-    inputBackSpace: ({title, placeholder, timeout}) =>
-        it(`Удаление значения в поле ввода ${title ? title : placeholder} в модальном окне 'Экспортировать данные'.`,
-            async () => await dec.simple(modal.inputBackSpace,
-                [title, placeholder, timeout],
-                modal))
-}*/

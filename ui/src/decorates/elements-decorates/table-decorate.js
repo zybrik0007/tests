@@ -103,5 +103,10 @@ module.exports = {
                 [strNumber, cellNumber, timeout],
                 value,
                 el.table)),
+
+    strDoubleHandler: ({strNumber, timeout}) => it(`Двойное нажатие по строке ${strNumber} в таблице.`,
+        async () => await dec.simple(el.table.doubleHandler,
+            [strNumber, timeout],
+            el.table)),
 }
 

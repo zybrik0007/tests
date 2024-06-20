@@ -16,6 +16,7 @@ const decItApi = require('../../../../dictionaries/decorate-it-api');
 const decorate = require('../../../../decorates');
 const db = require('../../../../database');
 const data = require('../../data').dataConfiguration;
+
 const bedSystemEvent = require('./event-ui').befEvent;
 
 const befARoom = () => before('Вход и открытие подраздела "Конфигурация" вкладка "Помещения"', async () => {
@@ -96,7 +97,7 @@ const other = (type, text) => {
                     timeout: entry.max
                 });
                 decorate.page.base.loading({
-                    timeout: entry.sleep2
+                    timeout: entry.sleep3
                 });
                 decorate.el.input.input({
                     title: '',

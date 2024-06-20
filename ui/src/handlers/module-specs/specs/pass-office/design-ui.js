@@ -663,7 +663,6 @@ const other = (type, text) => {
         });
     });
 
-
     return {
         add,
         edit,

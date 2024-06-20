@@ -93,6 +93,13 @@ class Select extends BasePage {
             timeout)
     }
 
+    //Нажатие по иконки Icon--recent_outline в select
+    async iconRecentOutline(title, value, timeout) {
+        return await this.xpathHandler(element.selectIcon(title, value, 'Icon--recent_outline'),
+            `Нажатие по иконке recent_outline в select ${title ? title : value}`,
+            timeout)
+    }
+
     //Нажатие по иконки clear в select
     async iconClear(title, value, timeout) {
         return await this.xpathHandler(element.selectIcon(title, value, 'Icon--clear'),

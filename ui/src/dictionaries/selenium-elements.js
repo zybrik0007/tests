@@ -55,7 +55,6 @@ module.exports = {
       }
 
       return roomName + workValue + noWorkValue
-
     },
     perScheduleDay: (event) => `//div[@class="daysSelect"]/button[normalize-space(.)="${event}"]`,
     perScheduleDayActive: (event) => `//div[@class="daysSelect"]
@@ -238,6 +237,15 @@ module.exports = {
     },
     admSystemVersionNumber: (event) => `//div[@class="information__description"]/div[2]/div[${event}]/b`,
 
+    //Задания
+    taskDay: (event) => `//div[contains(@class, "flat-btn") and normalize-space(.)="${event}"]`,
+    taskDayActive: (event) => `//div[@class="flat-btn active" and normalize-space(.)="${event}"]`,
+    taskDayNoActive: (event) => `//div[@class="flat-btn" and normalize-space(.)="${event}"]`,
+    taskActionSelectedGetText: (event) => `//div[@class="pwActionTask"]/div[contains(@class, "actionItem")][${event}]
+    //div[@class="actionItem__title"]`,
+    taskActionSelectedDelete: (event) => `//div[@class="pwActionTask"]/div[contains(@class, "actionItem")][${event}]//button`,
+    taskActionHandler: (event) => `//div[@class="pwActionTask"]/div/div[@class="actionItem__text" and normalize-space(.)="${event}"]`,
+
     //Лицензии
     licenseDisabled: (title, name) => `//div[@class="block-license"]//h4[normalize-space(.)='${title}']
     /parent::*/parent::*//div[normalize-space(.)='${name}']`,
@@ -403,6 +411,7 @@ module.exports = {
     //span[normalize-space(.)="${text}"]/parent::*/parent::*`,
     modalButtonActive: (id, text) => `//pw-modal[@id="${id}"]//pw-button[not(contains(@class, "disabled"))]
     //span[normalize-space(.)="${text}"]/parent::*/parent::*`,
+    modalText: (id, classed, text) => `//pw-modal[@id="${id}"]//*[contains(@class, "${classed}")]//*[normalize-space(.)="${text}"]`,
 
     //dialog
     dialog: '//pw-dialog',
