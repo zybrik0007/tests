@@ -246,6 +246,25 @@ module.exports = {
     taskActionSelectedDelete: (event) => `//div[@class="pwActionTask"]/div[contains(@class, "actionItem")][${event}]//button`,
     taskActionHandler: (event) => `//div[@class="pwActionTask"]/div/div[@class="actionItem__text" and normalize-space(.)="${event}"]`,
 
+    //Операторы
+    operatorHideShow: (event) => `//div[@class="item-wrapper"]//div[@class="root-section-name" 
+    and normalize-space(.)="${event}"]/parent::*/parent::*/parent::*/div[@class="hide-and-shower"]`,
+    operatorSectionCheckbox: (event) => `//div[@class="item-wrapper"]//div[@class="root-section-name" and 
+    normalize-space(.)="${event}"]/parent::*//pw-icon`,
+    operatorSectionChecked: (event) => `//div[@class="item-wrapper"]//div[@class="root-section-name" and 
+    normalize-space(.)="${event}"]/parent::*//pw-icon/div[contains(@class, "Icon--check_box_on")]`,
+    operatorSectionUnchecked: (event) => `//div[@class="item-wrapper"]//div[@class="root-section-name" and 
+    normalize-space(.)="${event}"]/parent::*//pw-icon/div[contains(@class, "Icon--check_box_off")]`,
+    operatorSubsectionCheckbox: (sec, sub) => `//div[@class="item-wrapper"]//div[@class="root-section-name" 
+    and normalize-space(.)="${sec}"]/parent::*/parent::*//div[@class="sub-section item" and normalize-space(.)="${sub}"]
+    /pw-icon`,
+    operatorSubsectionChecked: (sec, sub) => `//div[@class="item-wrapper"]//div[@class="root-section-name" 
+    and normalize-space(.)="${sec}"]/parent::*/parent::*//div[@class="sub-section item" and normalize-space(.)="${sub}"]
+    /pw-icon/div[contains(@class, "Icon--check_box_on")]`,
+    operatorSubsectionUnchecked: (sec, sub) => `//div[@class="item-wrapper"]//div[@class="root-section-name" 
+    and normalize-space(.)="${sec}"]/parent::*/parent::*//div[@class="sub-section item" and normalize-space(.)="${sub}"]
+    /pw-icon/div[contains(@class, "Icon--check_box_off")]`,
+
     //Лицензии
     licenseDisabled: (title, name) => `//div[@class="block-license"]//h4[normalize-space(.)='${title}']
     /parent::*/parent::*//div[normalize-space(.)='${name}']`,
@@ -338,6 +357,13 @@ module.exports = {
     checkboxChecked: (event) => `//pw-checkbox//*[normalize-space(.)="${event}"]//pw-icon
     /div[contains(@class, "Icon--check_box_on")]`,
     checkboxUnchecked: (event) => `//pw-checkbox//*[normalize-space(.)="${event}"]//pw-icon
+    /div[contains(@class, "Icon--check_box_off")]`,
+
+    //node-checkbox
+    nodeCheckbox: (event) => `//pw-tree-node/*[normalize-space(.)="${event}"]//pw-checkbox//pw-icon`,
+    nodeCheckboxChecked: (event) => `//pw-tree-node/*[normalize-space(.)="${event}"]//pw-checkbox//pw-icon
+    /div[contains(@class, "Icon--check_box_on")]`,
+    nodeCheckboxUnchecked: (event) => `//pw-tree-node/*[normalize-space(.)="${event}"]//pw-checkbox//pw-icon
     /div[contains(@class, "Icon--check_box_off")]`,
 
     //pop-up-error

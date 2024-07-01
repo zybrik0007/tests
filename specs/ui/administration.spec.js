@@ -2,6 +2,7 @@ const tests = require('../../ui/src/handlers/module-specs');
 const closeBrowser = require('../../ui/src/handlers/other/closeBrowser');
 const data = require('../../ui/src/handlers/module-specs/data');
 console.log = () => function () {};
+const clearMemory = require('../../ui/src/handlers/other/clearMemory');
 
 // Администрирование / Конфигурация
 tests.configurationUi.otherDevice.addDeviceIP();
@@ -27,6 +28,7 @@ tests.configurationUi.otherDevice.displayLockCL15();
 tests.configurationUi.otherDevice.displayObjectCL15();
 tests.configurationUi.otherDevice.displayMobileTerminal();
 tests.configurationUi.otherDevice.addDeviceIPFailed();
+clearMemory();
 
 tests.configurationUi.otherRoom.addRoom();
 tests.configurationUi.otherRoom.editRoom();
@@ -41,6 +43,7 @@ tests.configurationUi.otherRoom.deactivateDevice();
 tests.configurationUi.otherRoom.activateDevice();
 tests.configurationUi.otherRoom.fireAlarmDevice();
 tests.configurationUi.otherRoom.blockFireAlarmDevice();
+clearMemory();
 
 tests.configurationUi.otherRoom.exportXLSX();
 tests.configurationUi.otherRoom.exportCSV();
@@ -77,7 +80,7 @@ tests.configurationUi.otherCamera.editCameraTemplate();
 tests.configurationUi.otherCamera.deleteCameraTemplate();
 
 tests.configurationUi.otherSystem.displaySystem();
-
+clearMemory();
 
 // Администрирование / Реакции на события
 tests.configurationUi.otherDevice.addDeviceIP();
@@ -93,7 +96,7 @@ tests.eventactionUi.other.searchFilter();
 tests.eventactionUi.other.deleteEvents();
 tests.eventactionUi.other.addFailed();
 tests.configurationUi.otherDevice.deleteDevice();
-
+clearMemory();
 
 // Администрирование / Задания
 tests.configurationUi.otherDevice.addDeviceIP();

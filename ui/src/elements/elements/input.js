@@ -91,6 +91,12 @@ class Input extends BasePage {
             timeout)
     }
 
+    async iconMenu(title, placeholder, timeout) {
+        return await this.xpathHandler(element.inputIcon(title, placeholder, 'Icon--menu'),
+            `Нажатие иконки menu в input ${title ? title : placeholder}.`,
+            timeout)
+    }
+
 }
 
 module.exports = Input

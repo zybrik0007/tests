@@ -74,4 +74,10 @@ module.exports = {
             async () => await dec.simple(el.input.iconClock,
                 [title, placeholder, timeout],
                 el.input)),
+
+    iconMenu: ({title, placeholder, timeout}) =>
+        it(`Нажатие иконки меню в поле ввода ${title ? title : placeholder}.`,
+            async () => await dec.simple(el.input.iconMenu,
+                [title, placeholder, timeout],
+                el.input)),
 }

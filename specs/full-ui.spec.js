@@ -33,7 +33,10 @@ tests.configurationUi.otherDevice.deleteDevice();
 data.addURV();
 tests.workedJournalUi.other.calculateСurrentWorkedJournal();
 tests.workedJournalUi.other.calculationDateWorkedJournal();*/
-data.addDataRoleOperator();
+//data.addDataRoleOperator();
+//tests.operatorRoleUi.otherRole().add();
+//tests.operatorRoleUi.otherOperator().add();
+tests.operatorRoleUi.otherRole().edit();
 
 
 closeBrowser();

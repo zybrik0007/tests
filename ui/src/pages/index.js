@@ -71,7 +71,8 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     RoleChangePage  = require('./soft/administration/role-page/role-change-page'),
     VerificationPage = require('./soft/verification/verification/verification-page'),
     VerificationConfigPage = require('./soft/verification/verification-config/verification-config-page'),
-    VerificationConfigChangePage = require('./soft/verification/verification-config/verification-config-change-page');
+    VerificationConfigChangePage = require('./soft/verification/verification-config/verification-config-change-page'),
+    PlanPage = require('./soft/monitoring/plan/plan-page');
 
 
 module.exports = {
@@ -148,6 +149,9 @@ module.exports = {
     orderpassOrder: new OrderpassOrder(),
     orderpassArchive: new OrderpassArchive(),
     orderpassChange: new OrderpassChange(),
+
+    // Мониторинг
+    plan: new PlanPage(),
 
     //Администрирование
     room: new Rooms(),

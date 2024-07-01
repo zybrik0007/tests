@@ -86,6 +86,9 @@ module.exports = {
     orderpassChangeAdd: address + 'orderpass/new',
     orderpassChangeEdit: address + 'orderpass',
 
+    // Мониторинг
+    planUrl: address + 'centralpost/plan',
+
     //Администрирование
     roomUrl: address + 'administration/premisesconfiguration/rooms',
     deviceUrl: address + 'administration/premisesconfiguration/controllers',
@@ -99,13 +102,13 @@ module.exports = {
     taskUrl: address + 'administration/task',
     taskUrlAdd: address + 'administration/task/detail/new',
     taskUrlEdit: address + 'administration/task/detail/edit/',
-    operatorUrl: 'administration/operators',
-    operatorAddUrl: 'administration/operators/new',
-    operatorEditUrl: 'administration/operators/edit/',
-    operatorCopyUrl: 'administration/operators/copy/',
-    roleUrl: 'administration/roles',
-    roleAddUrl: 'administration/roles/new',
-    roleEditUrl: 'administration/roles/edit/',
-    roleCopyUrl: 'administration/roles/copy/',
+    operatorUrl: address + 'administration/operators',
+    operatorAddUrl: address + 'administration/operators/new',
+    operatorEditUrl: address + 'administration/operators/edit/',
+    operatorCopyUrl: address + 'administration/operators/copy/',
+    roleUrl: address + 'administration/roles',
+    roleAddUrl: address + 'administration/roles/new',
+    roleEditUrl: address + 'administration/roles/edit/',
+    roleCopyUrl: address + 'administration/roles/copy/',
     licenseUrl: address + 'administration/license',
 }

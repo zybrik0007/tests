@@ -31,6 +31,7 @@ const GroupCell = require('./elements/group-cell');
 const Timepicker = require('./elements/timepicker');
 const Radio = require('./elements/radio');
 const PwMenu = require('./elements/pw-menu');
+const NodeCheckbox = require('./elements/node-checkbox');
 
 const Modal = require('./elements/modal');
 const Dialog = require('./elements/dialog');
@@ -85,6 +86,7 @@ module.exports = {
     timepicker: new Timepicker(),
     radio: new Radio(),
     pwMenu: new PwMenu(),
+    nodeCheckbox: new NodeCheckbox(),
 
     modal: {
         //Персонал

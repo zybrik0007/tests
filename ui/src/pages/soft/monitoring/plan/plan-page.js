@@ -1,7 +1,7 @@
-const BasePage = require('../../../base-page/base-page')
-const elements = require('../../../../dictionaries/selenium-elements')
-const {planTitle} = require('../../../../dictionaries/title')
-const {verificationUrl} = require('../../../../dictionaries/url')
+const BasePage = require('../../../base-page/base-page');
+const elements = require('../../../../dictionaries/selenium-elements');
+const {planTitle} = require('../../../../dictionaries/title');
+const {planUrl} = require('../../../../dictionaries/url');
 
 
 class PlanPage extends BasePage {
@@ -17,7 +17,7 @@ class PlanPage extends BasePage {
             return elementTitle
         }
 
-        const elementUrl = await this.urlContains(verificationUrl, timeout)
+        const elementUrl = await this.urlContains(planUrl, timeout)
         if(elementUrl.error) {
             return elementUrl
         }

@@ -130,5 +130,9 @@ module.exports = {
         name: 'unsorted_smartphone_outline',
         description: 'Мобильный интервал'
     },
+    av_library_add_check: {
+        name: 'av_library_add_check',
+        description: 'Выбрать Абсолютные права на раздел'
+    }
 
 }

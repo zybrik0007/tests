@@ -11829,6 +11829,60 @@ const dataRoleOperator = {
             event_filter: `'{"filterStrategy":"or","filterEventSubcategories":{},"filterDevices":{},"eventSubcategoriesColors":{},"roomColors":{"0":"rgba(14,213,255,1)","1":"rgba(178,255,204,1)","2":"rgba(255,139,145,1)","3":"rgba(253,255,108,1)","4":"rgba(253,255,108,1)","5":"rgba(255,139,145,1)","6":"rgba(255,139,145,1)","7":"rgba(253,255,108,1)"}}'`
         },
     },
+    role1: {
+        name: 'roleName1',
+        description: 'roleDescription1'
+    },
+    role2: {
+        name: 'roleName2',
+        description: 'roleDescription2'
+    },
+    role3: {
+        name: 'roleName3',
+        description: 'roleDescription3'
+    },
+    staff1: {
+        last_name: 'staff',
+        first_name: 'name',
+        middle_name: '1',
+        tabel_number: '1',
+        hiring_date: '2023-01-01',
+        division: 1,
+        begin_datetime: '2023-01-01 00:00:00',
+        end_datetime: '2033-01-01 00:00:00',
+        identifier: [{identifier:"1", is_universal: true}],
+    },
+    staff2: {
+        last_name: 'staff',
+        first_name: 'name',
+        middle_name: '2',
+        tabel_number: '2',
+        hiring_date: '2023-02-01',
+        division: 1,
+        begin_datetime: '2023-01-01 00:00:00',
+        end_datetime: '2033-01-01 00:00:00',
+        identifier: [{identifier:"2", is_universal: true}],
+    },
+    operator1: {
+        fio: 'staff name 1',
+        role: 'roleName1',
+        login: 'usertest1',
+        password: 'usertest1'
+    },
+    design: {
+        design1: 'design1',
+        design2: 'design2',
+        design3: 'design3'
+    },
+    verif: {
+        verify1: 'verify1',
+        verify2: 'verify2',
+        verify3: 'verify3'
+    },
+    plans: {
+        plan1: 'plan1',
+        plan2: 'plan2'
+    }
 }
 
 const addDataRoleOperator = () => describe('Добавление данных для тестирования подразделов ' +
@@ -11975,9 +12029,19 @@ const addDataRoleOperator = () => describe('Добавление данных д
                 [params.plan.plan2],
                 db.addPlan));
     });
+
+    describe('Доблавние сотрудников', () => {
+        it('Добавление сотруднков', async () => {
+            const cook = await page.base.getCookie('token');
+            await dec.simple(api.putStaff,
+                [[params.staff1], cook.text],
+                api.putStaff);
+            await dec.simple(api.putStaff,
+                [[params.staff2], cook.text],
+                api.putStaff)
+        });
+    });
 });
-
-
 
 
 
@@ -12025,5 +12089,6 @@ module.exports =  {
     dataConfiguration,
     dataEventaction,
     dataTask,
+    dataRoleOperator,
     addDataRoleOperator
 }

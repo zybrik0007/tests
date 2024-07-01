@@ -339,7 +339,7 @@ const other = () => {
 
     const exportXLSX = () => describe('Персонал / Должности. Проверка экспорта в XLSX.', () => {
         const params = {
-            nameFile: 'division.xlsx',
+            nameFile: 'position.xlsx',
             json: [
                 { 'Отчет "Должности"': 'Должность', __EMPTY: 'Описание' },
                 {

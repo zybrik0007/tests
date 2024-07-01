@@ -38,6 +38,7 @@ module.exports = {
         timepicker: require('./elements-decorates/timepicker-decorate'),
         radio: require('./elements-decorates/radio-decorate'),
         pwMenu: require('./elements-decorates/pw-menu-decorate'),
+        nodeCheckbox: require('./elements-decorates/node-checkbox-decorate')
     },
     page: {
         staffActive: require('./page-decorates/staff-active-decorate'),
@@ -71,6 +72,7 @@ module.exports = {
         system: require('./page-decorates/system-decorate'),
         eventactionChange: require('./page-decorates/eventaction-change-decorate'),
         taskChange: require('./page-decorates/task-change-decorate'),
+        operatorChange: require('./page-decorates/operator-change-decorate')
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -124,6 +126,7 @@ module.exports = {
         hardwareAdd: ModalDecorate('hardware', 'Добавить внутреннюю реакцию на событие'),
         hardwareEdit: ModalDecorate('hardware', 'Редактировать внутреннюю реакцию на событие'),
         selectPeriod: ModalDecorate('select-period', 'Период'),
+        staffSelect: ModalDecorate('staff-select', 'Оператор'),
     },
     modalConfirm: {
         //Персонал
@@ -154,6 +157,10 @@ module.exports = {
 
         staffDelete:  ModalConfirmDecorate('Подтвердите действие',
             'Сотрудник будет удален безвозвратно, его восстановление в дальнейшем будет невозможно.'),
+
+        //Графики работы
+        deleteSchedule: ModalConfirmDecorate('Удаление графика работы',
+            'Вы действительно хотите удалить данный график работы?'),
 
         //Должности
         positionDelete: ModalConfirmDecorate('Подтвердите действие',
@@ -205,6 +212,11 @@ module.exports = {
         // Оправдательные документы
         urvDocumentDelete: ModalConfirmDecorate('Подтвердите действие',
             'Вы действительно хотите удалить этот документ?'),
+
+        //Верификация
+        // Конфигурация верификации
+        deleteVerifyConfig: ModalConfirmDecorate('Подтвердите действие',
+            'Вы действительно хотите удалить эту конфигурацию?'),
 
 
         //Администрирование
@@ -273,7 +285,8 @@ module.exports = {
         verify: () => init(page.verify),
         verifyConfig: () => init(page.verifyConfig),
         verifyConfigAdd: () => initAdd(page.verifyConfigChange),
-        verifyConfigEdit: () => initEdit(page.verifyConfigChange)
+        verifyConfigEdit: () => initEdit(page.verifyConfigChange),
+        plan: () => init(page.plan)
     }
 }
 

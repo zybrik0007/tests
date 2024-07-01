@@ -4,7 +4,7 @@ const dec = require('../../dictionaries/decorate');
 
 
 module.exports = {
-    getText: ({text, timeout}) => it(`Получение значения текста в заглавии.`,
+    getText: ({text, timeout}) => it(`Значения текста по умолчанию - "${text}".`,
         async () => await dec.simpleText(el.placeText.getText,
             [timeout],
             text,

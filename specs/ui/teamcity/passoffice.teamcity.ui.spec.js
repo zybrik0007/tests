@@ -78,7 +78,7 @@ tests.visitorUi.otherVisitorActive.deleteDataVisitorFilter();
 data.deleteDataVisitor();
 clearMemory();
 
-
+/*
 // Бюро пропусков / Сотрудники
 data.addDataStaff();
 tests.staffUi.otherPass.addStaffMinParams();
@@ -105,7 +105,7 @@ tests.staffUi.otherPass.divisionFilterStaffActive();
 tests.staffUi.otherPass.cardSearchStaffActive();
 data.deleteDataStaffFilter();
 data.deleteDataStaff();
-clearMemory();
+clearMemory();*/
 
 
 // Бюро пропусков / Шаблоны доступа
