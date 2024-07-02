@@ -27,7 +27,7 @@ tests.taskUi.other.deleteTask();
 tests.taskUi.other.addFailed();
 tests.configurationUi.otherDevice.deleteDevice();
 */
-
+//data.addURV();
 //tests.templateUi.other.holiday();
 /*data.deleteURV();
 data.addURV();
@@ -36,7 +36,9 @@ tests.workedJournalUi.other.calculationDateWorkedJournal();*/
 //data.addDataRoleOperator();
 //tests.operatorRoleUi.otherRole().add();
 //tests.operatorRoleUi.otherOperator().add();
-tests.operatorRoleUi.otherRole().edit();
+//tests.operatorRoleUi.otherRole().edit();
+
+
 
 
 closeBrowser();
