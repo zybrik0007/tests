@@ -15,7 +15,7 @@ module.exports = {
     bd: 'selenium_3-2023-04-27-13-17-38_postgres.sql',
     download: process.env.a108directory || '/home/qwe/Загрузки/',
     failedExport: process.env.a109failedExport || 'unimported.xlsx',
-    max: Number(process.env.a106max) || 60000,
+    max: Number(process.env.a106max) || 30000,
     min: Number(process.env.a105min) || 2000,
     upload: Number(process.env.a107upload) || 50000,
     sleep1: Number(process.env.a107xsleep1) || 1000,

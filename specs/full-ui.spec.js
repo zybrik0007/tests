@@ -38,7 +38,10 @@ tests.workedJournalUi.other.calculationDateWorkedJournal();*/
 //tests.operatorRoleUi.otherOperator().add();
 //tests.operatorRoleUi.otherRole().edit();
 
-
+//data.addDataStaff();
+tests.staffUi.other.addStaffMaxParams();
+//tests.staffUi.other.dimissedStaffMaxParams();
+//tests.staffUi.other.restoreStaffDimissedEditParamsMaxParams();
 
 
 closeBrowser();

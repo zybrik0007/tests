@@ -1,4 +1,4 @@
-const {By, until, Key} = require('selenium-webdriver');
+const {By, until, Key, Browser} = require('selenium-webdriver');
 const {Select} = require('selenium-webdriver');
 var driver = require('../../../webdriver-middleware');
 
@@ -12,6 +12,18 @@ class BasePage {
     //Открытие страницы по url
     async open(event) {
         return await driver.get(event)
+            .then(() => {return {error: false, description: ''}})
+            .catch((error) => {
+                console.log('error open: ', error)
+                return {
+                    error: true,
+                    description: `Не открыто приложение с адресом ${event}`
+                }
+            })
+    }
+
+    async openAfter(event) {
+        return await driver.navigate().to(event)
             .then(() => {return {error: false, description: ''}})
             .catch((error) => {
                 console.log('error open: ', error)
@@ -434,6 +446,19 @@ class BasePage {
         return driver.actions().sendKeys(Key.ENTER).perform()
             .then(() => {return{error: false, description: 'Нажатие Enter.'}})
             .catch(() => {return {error: true, description: 'Ошибка. Нажатие Enter.'}})
+    }
+
+    async acceptAlert() {
+        await driver.wait(until.alertIsPresent());
+        return await driver.switchTo().alert().accept()
+            .then(() => {return{error: false, description: 'alert'}})
+            .catch((err) => {
+                console.log('err: ', err)
+                return {
+                    error: false,
+                    description: 'alert false'
+                }
+            });
     }
 
     //Нажатие Control + элемент

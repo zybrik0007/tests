@@ -560,9 +560,22 @@ const other = (type, text) => {
                 decorate.page.base.loading({
                     timeout: entry.sleep2
                 });
+                decorate.el.error.errorNoList({
+                    timeout: entry.max
+                });
                 decorate.el.button.handler({
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.modalConfirm.staffReturn.initLock({
+                    button: 'Подтвердить',
+                    timeout: entry.min
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.page.staffActive.init({
                     timeout: entry.max
@@ -2690,18 +2703,28 @@ const other = (type, text) => {
                 name: 'Вернуться к списку сотрудников',
                 timeout: entry.max
             });
-            decorate.modalConfirm.staffReturn.init({
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.el.error.errorNoList({
                 timeout: entry.max
             });
             decorate.el.button.handler({
-                name: 'Подтвердить',
-                timeout: entry.max
-            });
-            decorate.page.staffDimissed.init({
+                name: 'Вернуться к списку сотрудников',
                 timeout: entry.max
             });
             decorate.page.base.loading({
                 timeout: entry.sleep2
+            });
+            decorate.modalConfirm.staffReturn.initLock({
+                button: 'Подтвердить',
+                timeout: entry.min
+            });
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
+            decorate.page.staffDimissed.init({
+                timeout: entry.max
             });
         });
     });
@@ -3883,11 +3906,27 @@ const other = (type, text) => {
                 });
                 decorate.el.success.success({
                     text: 'Данные успешно изменены',
+                    timeout: entry.min
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.error.errorNoList({
                     timeout: entry.max
                 });
                 decorate.el.button.handler({
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.modalConfirm.staffReturn.initLock({
+                    button: 'Подтвердить',
+                    timeout: entry.min
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.page.staffDimissed.init({
                     timeout: entry.max
@@ -5483,9 +5522,25 @@ const other = (type, text) => {
                         text: 'Данные успешно изменены',
                         timeout: entry.max
                     });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.el.error.errorNoList({
+                        timeout: entry.max
+                    });
                     decorate.el.button.handler({
                         name: 'Вернуться к списку сотрудников',
                         timeout: entry.max
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.modalConfirm.staffReturn.initLock({
+                        button: 'Подтвердить',
+                        timeout: entry.min
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                     decorate.page.staffActive.init({
                         timeout: entry.max
@@ -6432,9 +6487,18 @@ const other = (type, text) => {
                         text: 'Данные успешно изменены',
                         timeout: entry.max
                     });
-                    decorate.el.button.handler({
-                        name: 'Вернуться к списку сотрудников',
-                        timeout: entry.max
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.page.base.open({
+                        url: url.staffPassUrl
+                    });
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
+                    });
+                    decorate.page.base.enter();
+                    decorate.page.base.loading({
+                        timeout: entry.sleep2
                     });
                     decorate.page.staffPass.init({
                         timeout: entry.max
@@ -7000,9 +7064,25 @@ const other = (type, text) => {
                     text: 'Сотрудник успешно добавлен',
                     timeout: entry.max
                 });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.el.error.errorNoList({
+                    timeout: entry.max
+                });
                 decorate.el.button.handler({
                     name: 'Вернуться к списку сотрудников',
                     timeout: entry.max
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
+                });
+                decorate.modalConfirm.staffReturn.initLock({
+                    button: 'Подтвердить',
+                    timeout: entry.min
+                });
+                decorate.page.base.loading({
+                    timeout: entry.sleep2
                 });
                 decorate.page.staffActive.init({
                     timeout: entry.max
@@ -8714,7 +8794,9 @@ const other = (type, text) => {
                 name: 'Восстановить сотрудника',
                 timeout: entry.max
             });
-            it('Ожидание 2 секунды', async () => await  page.base.loading(2000));
+            decorate.page.base.loading({
+                timeout: entry.sleep2
+            });
             decorate.el.menu.menu({
                 timeout: entry.max
             });
@@ -8726,6 +8808,7 @@ const other = (type, text) => {
                 text: 'Сотрудник восстановлен',
                 timeout: entry.max
             });
+
         });
 
         if(type === 'active') {

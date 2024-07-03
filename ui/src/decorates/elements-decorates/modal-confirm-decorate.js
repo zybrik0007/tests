@@ -30,7 +30,7 @@ const ModalConfirmDecorate = (title, body) => {
     const buttonHandler = (name, timeout) =>
         it(`Нажатие кнопки "${name}" в модальном окне "${modal.title ? modal.title : modal.body}".`,
             async () => await dec.simple(modal.buttonHandler,
-                [timeout],
+                [name, timeout],
                 modal));
 
     const buttonActive = (name, timeout) =>
@@ -41,9 +41,25 @@ const ModalConfirmDecorate = (title, body) => {
 
     const buttonDisabled = (name, timeout) =>
         it(`Кнопка "${name}" не активна в модальном окне "${modal.title ? modal.title : modal.body}".`,
-            async () => await dec.simple(modal.buttonActive,
+            async () => await dec.simple(modal.buttonDisabled,
                 [name, timeout],
                 modal));
+
+    const initLock = ({button, timeout}) => it(`Проверка отображение модального окна 
+    "${modal.title ? modal.title : modal.body}" и нажатие кнопки "${button}".`, async () => {
+
+        const init = await modal.init(timeout);
+        if(init.error) {
+            return {
+                error: false,
+                description: 'Модальное окно не отображается'
+            }
+        }
+
+        return await dec.simple(modal.buttonHandler,
+            [button, timeout],
+            modal);
+    });
 
     return {
         init,
@@ -51,7 +67,8 @@ const ModalConfirmDecorate = (title, body) => {
         closeHandler,
         buttonHandler,
         buttonActive,
-        buttonDisabled
+        buttonDisabled,
+        initLock
     }
 }
 

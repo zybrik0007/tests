@@ -31,4 +31,12 @@ module.exports = {
     open: ({url}) => it(`Открытие "${url}"`, async () => await dec.simple(page.base.open,
         [url],
         page.base)),
+
+    openAfter: ({url}) => it(`Открытие "${url}"`, async () => await dec.simple(page.base.openAfter,
+        [url],
+        page.base)),
+
+    acceptAlert: () => it('alert', () => async () => await dec.simple(page.base.acceptAlert,
+        [],
+        page.base))
 }

@@ -1,6 +1,7 @@
 const tests = require('../../ui/src/handlers/module-specs');
 const closeBrowser = require('../../ui/src/handlers/other/closeBrowser');
 const data = require('../../ui/src/handlers/module-specs/data');
+const clearMemory = require('../../ui/src/handlers/other/clearMemory');
 console.log = () => function () {};
 
 // Персонал / Сотрудники - вкладки: Действующие, Уволенные
@@ -18,6 +19,7 @@ tests.staffUi.other.deleteBarcodeStaffMinParams();
 tests.staffUi.other.dimissedRestoreStaffMinParams();
 tests.staffUi.other.dimissedStaff();
 tests.staffUi.other.deleteStaff();
+clearMemory();
 
 tests.staffUi.other.addStaffMaxParams();
 tests.staffUi.other.printCardStaffMaxParams();
@@ -36,7 +38,7 @@ tests.staffUi.other.restoreStaffDimissedEditParamsMaxParams();
 tests.staffUi.other.editStaffMaxParams();
 tests.staffUi.other.dimissedStaff();
 tests.staffUi.other.deleteStaff();
-
+clearMemory();
 data.addDataStaffFilter();
 tests.staffUi.other.searchFilterStaffActive();
 tests.staffUi.other.divisionFilterStaffActive();
@@ -47,7 +49,7 @@ tests.staffUi.other.importMinParamsActive();
 tests.staffUi.other.importMaxParamsActive();
 tests.staffUi.other.importFailedParamsActive();
 data.deleteDataStaff();
-
+clearMemory();
 
 //Персонал / Графики работы
 tests.scheduleUi.otherSchedule.editWeek();
