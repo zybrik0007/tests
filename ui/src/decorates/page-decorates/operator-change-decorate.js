@@ -24,7 +24,7 @@ module.exports = {
             page.operatorChange)),
 
     subsectionCheckboxHandler: ({section, subsection, timeout}) =>
-        it(`Нажатие по чекбоксу пораздела "${subsection}" в разделе "${section}".`,
+        it(`Нажатие по чекбоксу подраздела "${subsection}" в разделе "${section}".`,
             async () => await dec.simple(page.operatorChange.subsectionCheckboxHandler,
                 [section, subsection, timeout],
                 page.operatorChange)),

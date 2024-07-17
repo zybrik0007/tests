@@ -73,6 +73,7 @@ module.exports = {
     identifiersAllUrl: address + 'controlaccess/identifiers/all',
     identifiersStaffUrl: address + 'controlaccess/identifiers/staff',
     identifiersVisitorUrl: address + 'controlaccess/identifiers/visitor',
+    deviceManagementUrl: address + 'controlaccess/devicemanagement',
 
     // Верификация
     verificationUrl: address + 'verification/verification',

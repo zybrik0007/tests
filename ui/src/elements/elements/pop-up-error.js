@@ -28,6 +28,25 @@ class PopUpError extends BasePage {
             `Закрытие ошибки "${text}".`,
             timeout)
     }
+
+    async checkError(timeout) {
+        const checkError = await this.xpathNoElement(elements.popUpErrorStr,
+            'Отсутствует отображение ошибок.',
+            timeout);
+
+        if(!checkError.error) {
+            return {
+                ...checkError,
+                text: ''
+            }
+        }
+
+        return await this.xpathGetText(elements.popErrorCheck,
+            'Получение значения ошибки.',
+            timeout);
+    }
+
+
 }
 
 module.exports = PopUpError

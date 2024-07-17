@@ -41,6 +41,7 @@ module.exports = {
 
     // Контроль доступа
     premiseAccessTitle: title + 'Отчет о проходах',
+    deviceManagementTitle: title + 'Управление устройствами',
     verificationJournalTitle: title + 'Журнал верификации',
     whereAboutsTitle: title + 'Местонахождение',
     premisesAccessReportTitle: title + 'Отчет по доступу в помещения',

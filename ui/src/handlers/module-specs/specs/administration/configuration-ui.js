@@ -74,6 +74,213 @@ const aft = () => after('Выход', async () => {
     await dec.exit();
 });
 
+const otherTest = () => {
+
+    const addDeviceIP = ({ip}) => describe('Администрирование / Конфигурация. Добавление устройства через IP.', () => {
+        befDevice();
+        aft();
+        decorate.el.butIcBefore.handler({
+            icon: but.search,
+            timeout: entry.max
+        });
+        decorate.modal.searchDevice.init({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.input.sendKeys({
+            title: '',
+            placeholder: 'Поиск конкретного устройства по IP адресу',
+            value: ip,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.button.handler({
+            name: `Найти устройство по IP: ${ip}`,
+            timeout: entry.max
+        });
+        decorate.el.button.button({
+            name: 'Добавить устройства',
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.modal.searchDevice.deviceHandler({
+            ip: ip,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.button.handler({
+            name: 'Добавить устройства',
+            timeout: entry.max
+        });
+        decorate.modal.searchDevice.initClose({
+            timeout: entry.max
+        });
+    });
+
+    const addCamera = ({name, ip, port, login, password, template}) => describe('Администрирование / Конфигурация.' +
+        'Добавление камеры.', () => {
+        befDevice();
+        aft();
+        decorate.el.butIcBefore.handler({
+            icon: but.add,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.menu.menu({
+            timeout: entry.max
+        });
+        decorate.el.menu.handler({
+            name: 'Добавить камеру',
+            timeout: entry.max
+        });
+        decorate.modal.addCamera.init({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.input.sendKeys({
+            title: 'Имя камеры',
+            placeholder: '',
+            value: name,
+            timeout: entry.max
+        });
+        decorate.el.input.sendKeys({
+            title: 'Хост камеры',
+            placeholder: '',
+            value: ip,
+            timeout: entry.max
+        });
+        decorate.el.input.sendKeys({
+            title: 'Порт',
+            placeholder: '',
+            value: port,
+            timeout: entry.max
+        });
+        decorate.el.input.sendKeys({
+            title: 'Логин',
+            placeholder: '',
+            value: login,
+            timeout: entry.max
+        });
+        decorate.el.input.sendKeys({
+            title: 'Пароль',
+            placeholder: '',
+            value: password,
+            timeout: entry.max
+        });
+        decorate.el.select.iconXpand({
+            title: 'Шаблон камеры',
+            value: '',
+            text: template,
+            timeout: entry.max
+        });
+        decorate.modal.addCamera.buttonHandler({
+            name: 'Добавить',
+            timeout: entry.max
+        });
+        decorate.modal.addCamera.initClose({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+    });
+
+    const activateDevice = ({ip, name}) => describe('Администрирование / Конфигурация. Активация устройства.', () => {
+        befDevice();
+        aft();
+        decorate.page.device.device({
+            name: name,
+            ip: ip,
+            timeout: entry.max
+        });
+        decorate.page.device.handler({
+            name: name,
+            ip: ip,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.butIcBefore.handler({
+            icon: but.unlock,
+            timeout: entry.max
+        });
+        decorate.modalConfirm.deviceActivate.init({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.button.handler({
+            name: 'Активировать',
+            timeout: entry.max
+        });
+        decorate.modalConfirm.deviceActivate.initClose({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+    });
+
+    const deleteDevice = ({ip, name}) => describe('Администрирование / Конфигурация. Удаление устройства.', () => {
+        befDevice();
+        aft();
+        decorate.page.device.device({
+            name: name,
+            ip: ip,
+            timeout: entry.max
+        });
+        decorate.page.device.handler({
+            name: name,
+            ip: ip,
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.butIcBefore.handler({
+            icon: but.delete,
+            timeout: entry.max
+        });
+        decorate.modalConfirm.deviceDelete.init({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+        decorate.el.button.handler({
+            name: 'Удалить',
+            timeout: entry.max
+        });
+        decorate.modalConfirm.deviceDelete.initClose({
+            timeout: entry.max
+        });
+        decorate.page.base.loading({
+            timeout: entry.sleep2
+        });
+    });
+
+    return {
+        addDeviceIP,
+        addCamera,
+        activateDevice,
+        deleteDevice
+    }
+}
+
 const other = (type, text) => {
 
     const addDeviceSearch = () => describe(text + 'Добавление устройства через общий поиск.', () => {
@@ -4635,13 +4842,14 @@ const other = (type, text) => {
         importRoomFailed,
         deleteRooms
     }
-
 }
+
 
 module.exports = {
     otherDevice: other('device', 'Администрирование / Конфигурация - вкладка Устройства. '),
     otherRoom: other('room', 'Администрирование / Конфигурация - вкладка Помещения. '),
     otherEvent: other('event', 'Администрирование / Конфигурация - вкладка События. '),
     otherCamera: other('camera', 'Администрирование / Конфигурация - вкладка Шаблоны камер. '),
-    otherSystem: other('system', 'Администрирование / Конфигурация - вкладка Система. ')
+    otherSystem: other('system', 'Администрирование / Конфигурация - вкладка Система. '),
+    configuration: otherTest()
 }

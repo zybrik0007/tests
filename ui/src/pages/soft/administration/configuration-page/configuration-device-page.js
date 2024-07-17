@@ -68,11 +68,25 @@ class ConfigurationDevicePage extends BasePage {
     }
 
     async deviceGetStatusIU(name, ip, timeout) {
+        console.log('elements.admDeviceIUStatus(name, ip)', elements.admDeviceIUStatus(name, ip))
         return await this.xpathGetAttribute(elements.admDeviceIUStatus(name, ip),
             `Получение значения статуса ИУ у устройства "${name}" c ip "${ip}"`,
             'title',
             timeout);
     }
+
+    async deviceGetStatusAlarm(name, ip, timeout) {
+        return await this.xpathGetText(elements.admDeviceAlarmStatus(name, ip),
+            `Получение значения статуса тревоги у устройства "${name}" c ip "${ip}"`,
+            timeout);
+    }
+
+    async deviceNoStatusAlarm(name, ip, timeout) {
+        return await this.xpathNoElement(elements.admDeviceAlarmStatus(name, ip),
+            `Получение значения статуса тревоги у устройства "${name}" c ip "${ip}"`,
+            timeout);
+    }
+
 
 }
 

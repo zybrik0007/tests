@@ -3,7 +3,7 @@ const el = require('../../elements');
 const dec = require('../../dictionaries/decorate');
 
 module.exports = {
-    error: ({tab, timeout}) => it(`Вкладка "${tab}".`,
+    tab: ({tab, timeout}) => it(`Вкладка "${tab}".`,
         async () => await dec.simple(el.tab.tab,
             [tab, timeout],
             el.tab)),

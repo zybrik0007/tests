@@ -448,6 +448,13 @@ class BasePage {
             .catch(() => {return {error: true, description: 'Ошибка. Нажатие Enter.'}})
     }
 
+    //Нажатеи кнопки
+    async keyButton(event) {
+        return driver.actions().sendKeys(Key[event]).perform()
+            .then(() => {return{error: false, description: 'Нажатие Enter.'}})
+            .catch(() => {return {error: true, description: 'Ошибка. Нажатие Enter.'}})
+    }
+
     async acceptAlert() {
         await driver.wait(until.alertIsPresent());
         return await driver.switchTo().alert().accept()

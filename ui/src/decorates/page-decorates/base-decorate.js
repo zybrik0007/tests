@@ -38,5 +38,11 @@ module.exports = {
 
     acceptAlert: () => it('alert', () => async () => await dec.simple(page.base.acceptAlert,
         [],
-        page.base))
+        page.base)),
+
+    animation: () => it('Отсустствие лоудера', () => async () => await dec.animation()),
+
+    keyButton: ({button}) => it(`Нажатие кнопки "${button}".`, async () => await dec.simple(page.base.keyButton,
+        [button],
+        page.base)),
 }

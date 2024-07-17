@@ -50,7 +50,7 @@ class RoleChangePage extends BasePage {
             return title;
         }
 
-        const url = await this.urlCompare(roleCopyUrl, timeout);
+        const url = await this.urlContains(roleCopyUrl, timeout);
         if(url.error) {
             return url;
         }

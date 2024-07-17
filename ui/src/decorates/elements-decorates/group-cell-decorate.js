@@ -9,6 +9,11 @@ module.exports = {
             [name, timeout],
             el.groupCell)),
 
+    noActive: ({name, timeout}) => it(`Строка "${name}" не активна.`,
+        async () => await dec.simple(el.groupCell.noActive,
+            [name, timeout],
+            el.groupCell)),
+
     handler: ({name, timeout}) => it(`Нажатие по строке "${name}".`,
         async () => await dec.simple(el.groupCell.handler,
             [name, timeout],

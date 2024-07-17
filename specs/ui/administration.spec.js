@@ -82,6 +82,18 @@ tests.configurationUi.otherCamera.deleteCameraTemplate();
 tests.configurationUi.otherSystem.displaySystem();
 clearMemory();
 
+// Администрирование / События системы
+tests.configurationUi.otherDevice.addDeviceIP();
+tests.configurationUi.otherDevice.activateDevice();
+tests.eventUi.other().updateData();
+tests.eventUi.other().filterDate();
+tests.eventUi.other().exportXLSX();
+tests.eventUi.other().exportCSV();
+tests.eventUi.other().print();
+tests.eventUi.other().filterSearch();
+tests.eventUi.other().resetFilter();
+tests.configurationUi.otherDevice.deleteDevice();
+
 // Администрирование / Реакции на события
 tests.configurationUi.otherDevice.addDeviceIP();
 tests.configurationUi.otherDevice.activateDevice();
@@ -108,5 +120,26 @@ tests.taskUi.other.searchFilter();
 tests.taskUi.other.deleteTask();
 tests.taskUi.other.addFailed();
 tests.configurationUi.otherDevice.deleteDevice();
+
+// Операторы
+// Роли и права операторов
+data.addDataRoleOperator();
+tests.operatorRoleUi.otherRole().add();
+tests.operatorRoleUi.otherOperator().add();
+tests.operatorRoleUi.otherRole().edit();
+tests.operatorRoleUi.otherOperator().edit();
+tests.operatorRoleUi.otherOperator().block();
+tests.operatorRoleUi.otherOperator().unblock();
+tests.operatorRoleUi.otherOperator().addFailed();
+tests.operatorRoleUi.otherRole().deleteFailed();
+tests.operatorRoleUi.otherRole().addDuplicate();
+tests.operatorRoleUi.otherOperator().addDuplicate();
+tests.operatorRoleUi.otherRole().copy();
+tests.operatorRoleUi.otherOperator().copy();
+tests.operatorRoleUi.otherRole().search();
+tests.operatorRoleUi.otherOperator().search();
+tests.operatorRoleUi.otherOperator().deleted();
+tests.operatorRoleUi.otherRole().deleted();
+data.deleteDataRoleOperator();
 
 closeBrowser();

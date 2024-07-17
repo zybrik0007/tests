@@ -80,4 +80,11 @@ module.exports = {
             async () => await dec.simple(el.input.iconMenu,
                 [title, placeholder, timeout],
                 el.input)),
+
+    iconKeyboard: ({title, placeholder, timeout}) =>
+        it(`Нажатие иконки клавиатура в поле ввода ${title ? title : placeholder}.`,
+            async () => await dec.simple(el.input.iconKeyboard,
+                [title, placeholder, timeout],
+                el.input)),
+
 }

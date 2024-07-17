@@ -280,7 +280,7 @@ module.exports = {
 
     deleteDesignTemplate: async (name) => {
         try {
-            await db.query(connection,`DELETE FROM pass_template_design WHERE name=${name}`);
+            await db.query(connection,`DELETE FROM pass_template_design WHERE name='${name}'`);
             return {
                 error: false,
                 description: 'Удаление дизайна прпоуска.'
@@ -311,7 +311,7 @@ module.exports = {
 
     deleteVerifyTemplate: async (name) => {
         try {
-            await db.query(connection,`DELETE FROM verify_template WHERE name=${name}`);
+            await db.query(connection,`DELETE FROM verify_template WHERE name='${name}'`);
             return {
                 error: false,
                 description: 'Удаление Шаблона верификации.'
@@ -342,7 +342,7 @@ module.exports = {
 
     deletePlan: async (name) => {
         try {
-            await db.query(connection,`DELETE FROM plan WHERE name=${name}`);
+            await db.query(connection,`DELETE FROM plan WHERE name='${name}'`);
             return {
                 error: false,
                 description: 'Удаление Интерактивного плана.'

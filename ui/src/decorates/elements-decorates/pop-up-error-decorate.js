@@ -18,4 +18,10 @@ module.exports = {
             [text, timeout],
             el.error)),
 
+    checkError: ({timeout}) => it('Проверка наличия ошибки', async () =>
+        await dec.simpleText(el.error.checkError,
+            [timeout],
+            '',
+            el.error)),
+
 }

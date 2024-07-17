@@ -64,10 +64,9 @@ class Table extends BasePage {
         console.log('head, str, cell, timeout', head, str, cell, timeout)
         const headText = await this.headElement(head, cell)
         if (headText.error) {
-            console.log('headText', headText)
             return headText
         }
-        console.log('headText', headText)
+        console.log('elements.tableCellText(str, cell)', elements.tableCellText(str, cell))
         return await this.xpathGetText(elements.tableCellText(str, cell),
             `Значение столбца ${head}.`,
             timeout)
@@ -217,6 +216,8 @@ class Table extends BasePage {
        const headText = await this.xpathGetText(elements.tableHeadText(cell),
            `Заглавие ${head} c номером ${cell}.`,
            timeout);
+
+       console.log(headText);
 
        if(headText.error && headText.text !== head) {
            return {

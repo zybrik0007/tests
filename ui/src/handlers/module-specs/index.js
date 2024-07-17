@@ -26,14 +26,19 @@ module.exports = {
 
    //Контроль доступа
     premiseAccessUi: require('./specs/control-access/premise-access'),
+    deviceManagementUi: require('./specs/control-access/device-management'),
     verificationJournalUi: require('./specs/control-access/verification-journal'),
     whereAboutsUi: require('./specs/control-access/where-abouts'),
     premisesAccessReportUi: require('./specs/control-access/premises-access-report'),
     identifiersUi: require('./specs/control-access/identifiers'),
 
+    // Верификация
+    verifyUi: require('./specs/verification/verify-config-ui'),
+
     //Администрирование
     configurationUi: require('./specs/administration/configuration-ui'),
     eventactionUi: require('./specs/administration/eventaction-ui'),
+    eventUi: require('./specs/administration/event-ui'),
     taskUi: require('./specs/administration/task-ui'),
     operatorRoleUi: require('./specs/administration/operator-role-ui')
 }

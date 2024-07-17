@@ -22,7 +22,6 @@ const footer = (nameHead, nameCell, str, cell, bef, aft) => {
     describe('Проверка первичного отображения', () => {
 
         bef();
-
         aft();
 
         it('Отображение "20" в настройке количества записей', async () => dec.simpleText(el.footer.selectGetText,

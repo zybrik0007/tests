@@ -15,6 +15,13 @@ class GroupCell extends BasePage {
             timeout)
     }
 
+    //Состояние вкладки - активно
+    async noActive(text, timeout) {
+        return await this.xpathElement(elements.pwGroupCellUnchecked(text),
+            `Вкладка настроек "${text}" не активна`,
+            timeout)
+    }
+
     //Нажатие по вкладке
     async handler(text, timeout) {
         console.log(elements.pwGroupCell(text))
@@ -22,6 +29,8 @@ class GroupCell extends BasePage {
             `Нажатие строки "${text}".`,
             timeout)
     }
+
+
 }
 
 module.exports = GroupCell

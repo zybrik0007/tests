@@ -32,6 +32,7 @@ const Timepicker = require('./elements/timepicker');
 const Radio = require('./elements/radio');
 const PwMenu = require('./elements/pw-menu');
 const NodeCheckbox = require('./elements/node-checkbox');
+const Element = require('./elements/element');
 
 const Modal = require('./elements/modal');
 const Dialog = require('./elements/dialog');
@@ -87,6 +88,7 @@ module.exports = {
     radio: new Radio(),
     pwMenu: new PwMenu(),
     nodeCheckbox: new NodeCheckbox(),
+    element: new Element(),
 
     modal: {
         //Персонал

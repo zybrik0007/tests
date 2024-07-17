@@ -97,6 +97,12 @@ class Input extends BasePage {
             timeout)
     }
 
+    async iconKeyboard(title, placeholder, timeout) {
+        return await this.xpathHandler(element.inputIcon(title, placeholder, 'Icon--keyboard_outline'),
+            `Нажатие иконки keyboard в input ${title ? title : placeholder}.`,
+            timeout)
+    }
+
 }
 
 module.exports = Input

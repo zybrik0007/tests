@@ -50,7 +50,7 @@ class OperatorChangePage extends BasePage {
             return title;
         }
 
-        const url = await this.urlCompare(operatorCopyUrl, timeout);
+        const url = await this.urlContains(operatorCopyUrl, timeout);
         if(url.error) {
             return url;
         }
@@ -98,7 +98,7 @@ class OperatorChangePage extends BasePage {
     }
 
     async subsectionUnchecked(section, subsection, timeout) {
-        return await this.xpathElement(elements.operatorSubsectionChecked(section, subsection),
+        return await this.xpathElement(elements.operatorSubsectionUnchecked(section, subsection),
             `Чекбокс пораздела "${subsection}" в разделе "${section}" не нажат.`,
             timeout);
     }

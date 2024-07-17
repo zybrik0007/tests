@@ -11838,7 +11838,7 @@ const dataRoleOperator = {
         description: 'roleDescription2'
     },
     role3: {
-        name: 'roleName3',
+        name: 'roleName2 (копия)',
         description: 'roleDescription3'
     },
     staff1: {
@@ -11868,6 +11868,18 @@ const dataRoleOperator = {
         role: 'roleName1',
         login: 'usertest1',
         password: 'usertest1'
+    },
+    operator2: {
+        fio: 'staff name 2',
+        role: 'roleName2',
+        login: 'usertest2',
+        password: 'usertest2'
+    },
+    operator2: {
+        fio: 'staff name 2',
+        role: 'roleName2',
+        login: 'usertest2',
+        password: 'usertest2'
     },
     design: {
         design1: 'design1',
@@ -12043,6 +12055,424 @@ const addDataRoleOperator = () => describe('Добавление данных д
     });
 });
 
+const deleteDataRoleOperator = () => describe('Удаление данных для тестирования подразделов ' +
+    'Роли и права операторов и Операторы', () => {
+
+    const params = {...dataRoleOperator}
+
+    bef();
+    aft();
+
+    it('Удаление сотрудников', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrStaff = await api.getStaff(cook.text);
+        const staff1 = arrStaff.text.filter(obj => obj.name === params.operator1.fio)[0].id;
+        const staff2 = arrStaff.text.filter(obj => obj.name === params.operator2.fio)[0].id;
+
+        await dec.simple(db.deleteUser,
+            [staff1],
+            db.deleteUser);
+
+        await dec.simple(db.deleteUser,
+            [staff2],
+            db.deleteUser);
+    });
+
+    it('Удаление должностей', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrPosition = await api.getPosition(cook.text);
+        const position2 = arrPosition.text.filter(obj => obj.name === params.positions.position2.name)[0].id;
+
+        await dec.simple(api.deletePosition,
+            [[position2], cook.text],
+            api.deletePosition)
+    });
+
+    it('Удаление шаблонов доступа', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrTemplate = await api.getTemplate(cook.text);
+
+        const template2 = arrTemplate.text.filter(obj => obj.name === params.templates.template2)[0].id;
+        await dec.simple(api.deleteTemplate,
+            [[template2], cook.text],
+            api.deleteTemplate);
+    });
+
+    it('Удаление подразделений', async () => {
+        const cook = await page.base.getCookie('token');
+        const arrDivision = await api.getDivision(cook.text);
+        const division2 = arrDivision.text.filter(obj => obj.name === params.divisions.division2.name)[0].id;
+
+        await dec.simple(api.deleteDivision,
+            [[division2], cook.text],
+            api.deleteDivision);
+    });
+
+    decItApi.deleteSchedule({
+        name: params.schedules.schedule2.name
+    });
+
+    decItApi.deleteDevice({
+        ip: params.devices.device2.ip,
+    });
+
+    decItApi.deleteRoom({
+        room: params.rooms.room2
+    });
+
+    it('Удаление Дизайн пропуска', async() => await dec.simple(db.deleteDesignTemplate,
+        [params.design.design2],
+        db.deleteDesignTemplate));
+
+    it('Удаление Плана', async() => await dec.simple(db.deletePlan,
+        [params.plans.plan1],
+        db.deletePlan));
+
+    it('Удаление Плана', async() => await dec.simple(db.deletePlan,
+        [params.plans.plan2],
+        db.deletePlan));
+
+    it('Удаление Шаблона верификации', async() => await dec.simple(db.deleteVerifyTemplate,
+        [params.verif.verify2],
+        db.deleteVerifyTemplate));
+
+    it('Удаление Дизайн пропуска', async() => await dec.simple(db.deleteVerifyTemplate,
+        [params.verif.verify1],
+        db.deleteVerifyTemplate));
+});
+
+const dataEvent = {
+    position: {
+        name: 'position1',
+        comment: ''
+    },
+    event1: {
+        name: 'Добавление должности',
+        operator: 'adm',
+        category: 'Действия пользователя',
+        subcategory: 'Работа с должностями'
+    },
+    event2: {
+        name: 'Нормализация входа',
+        date: '2023-06-01 15:00:00',
+        utc: '2023-06-01 12:00:00',
+        additional: 'Вход 1',
+        ip: '172.17.100.4',
+        device: 'Контроллер CL15',
+        category: 'События контроллеров',
+        subcategory: 'События, связанные с состояниями входов/выходов'
+    },
+    event3: {
+        name: 'Проход по идентификатору',
+        date: '2023-06-01 15:00:00',
+        utc: '2023-06-01 12:00:00',
+        additional: 'Считыватель 1',
+        ip: '172.17.100.4',
+        device: 'Контроллер CL15',
+        card: '13242237',
+        category: 'События контроллеров',
+        subcategory: 'События, связанные с доступом по коду идентификатора'
+    },
+    event4: {
+        name: 'Активизация входа',
+        date: '2023-06-01 15:00:00',
+        utc: '2023-06-01 12:00:00',
+        additional: 'Вход 1',
+        ip: '172.17.100.4',
+        device: 'Контроллер CL15',
+        category: 'События контроллеров',
+        subcategory: 'События, связанные с состояниями входов/выходов'
+    },
+
+    date1: {
+        data: new Date().toLocaleDateString('fr-ca') + ' 00:00 – 23:59'
+    }
+}
+
+const dataDeviceManagement = {
+    rooms: {
+        room1: 'room1',
+        room2: 'room2'
+    },
+    camera: {
+        name: 'camera1',
+        ip: '172.17.0.1',
+        port: '8333',
+        login: 'admin',
+        password: 'admin1',
+        template: 'AXIS - All (mjpeg_over_http)'
+    },
+    device: {
+        name: entry.device_name_2,
+        ip: entry.device_ip_2
+    }
+}
+
+const addDataDeviceManagement = () => describe('Добавление данных для тестирования подраздела ' +
+    'Управление устройствами', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataDeviceManagement}
+
+    describe('Добавление помещений', () => {
+        decItApi.addRoomParent({
+            room: params.rooms.room1
+        });
+        decItApi.addRoomChild({
+            child: params.rooms.room2,
+            parent: params.rooms.room1
+        });
+    });
+
+    describe('Добавление устройств в помещение', () => {
+        decItApi.addDeviceInRoom({
+            device: entry.device_ip_2,
+            room: params.rooms.room1
+        });
+        decItApi.addDeviceInRoom({
+            device: params.camera.ip,
+            room: params.rooms.room2
+        });
+    })
+
+});
+
+const deleteDataDeviceManagement = () => describe('Удаление данных для тестирования подраздела ' +
+    'Управление устройствами', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataDeviceManagement}
+
+    describe('Добавление устройств из помещения', () => {
+        decItApi.deleteDeviceInRoom({
+            ip: params.device.ip,
+        });
+        decItApi.deleteDeviceInRoom({
+            ip: params.camera.ip,
+        });
+    });
+
+    describe('Удаление помещений', () => {
+        decItApi.deleteRoom({
+            room: params.rooms.room2
+        });
+        decItApi.deleteRoom({
+            room: params.rooms.room1
+        });
+    });
+
+});
+
+const dataVerify = {
+    verify1: {
+        name: 'verifyName1',
+        displayData: {
+            fio: true,
+            tabel: true,
+            divison: true,
+            position: true,
+            schedule: true,
+            template: true,
+            transport: false,
+            email: false,
+            phone: false,
+            pinCode: false
+        },
+        point1: {
+            params: {
+                info: {
+                    display: 'Не более чем',
+                    value: '2'
+                },
+                video: {
+                    prerecord: '8',
+                    record: '6',
+                    framed: '2'
+                }
+            },
+            reaction: {
+                staff: {
+                    pass: 'Отслеживать',
+                    verify: 'Нет (режим индикации)',
+                    time: 'Отслеживать',
+                    zone: 'Отслеживать',
+                    security: 'Отслеживать',
+                    unguarding: 'Отслеживать',
+                },
+                visitor: {
+                    time:  'Отслеживать',
+                    verify: 'Нет (режим индикации)',
+                    zone: 'Отслеживать',
+                    pass: 'Отслеживать',
+                },
+                event: {
+                    registered: 'Отслеживать',
+                    blocked: 'Отслеживать',
+                    expired: 'Отслеживать',
+                    wdd: 'Отслеживать',
+                    bw: 'Отслеживать',
+                    du: 'Отслеживать',
+                }
+            }
+        }
+    },
+    verify2: {
+        name: 'verifyName2',
+        description: 'verifyDescription2',
+        displayData: {
+            fio: true,
+            tabel: true,
+            divison: true,
+            position: true,
+            schedule: true,
+            template: true,
+            transport: true,
+            email: true,
+            phone: true,
+            pinCode: true
+        },
+        keyboardResolve: 'F1',
+        keyboardProhibit: 'F2',
+        http: 'https://github.com/zybrik0007/tests',
+        point1: {
+            params: {
+                info: {
+                    display: 'Постоянно'
+                },
+                video: {
+                    prerecord: '120',
+                    record: '255',
+                    framed: '10'
+                }
+            },
+            reaction: {
+                staff: {
+                    pass: 'Не отслеживать',
+                    time: 'Не отслеживать',
+                    zone: 'Не отслеживать',
+                    security: 'Не отслеживать',
+                    unguarding: 'Не отслеживать',
+                },
+                visitor: {
+                    time: 'Не отслеживать',
+                    zone: 'Не отслеживать',
+                    pass: 'Не отслеживать',
+                },
+                event: {
+                    registered: 'Не отслеживать',
+                    blocked: 'Не отслеживать',
+                    expired: 'Не отслеживать',
+                    wdd: 'Не отслеживать',
+                    bw: 'Не отслеживать',
+                    du: 'Не отслеживать',
+                }
+            }
+        },
+    },
+    verify3: {
+        name: 'verifyName3',
+        keyboardResolve: 'F1',
+        keyboardProhibit: 'F1',
+    },
+    point1: {
+        name: 'point1',
+        device: entry.device_name_1,
+        reader: 'Направление 1',
+        camera: 'camera1'
+    },
+    point2: {
+        name: 'point2',
+        device: entry.device_name_1,
+        reader: 'Направление 1',
+        camera: 'camera1'
+    },
+    point3: {
+        name: 'point3',
+        device: entry.device_name_1,
+        reader: 'Направление 1',
+        camera: 'camera1'
+    },
+    device: {
+        ip: entry.device_ip_1,
+        name: entry.device_name_1
+    },
+    camera: {
+        name: 'camera1',
+        ip: '172.17.0.1',
+        port: '8333',
+        login: 'admin',
+        password: 'admin1',
+        template: 'AXIS - All (mjpeg_over_http)'
+    },
+    rooms: {
+        room1: 'room1',
+        room2: 'room2'
+    },
+}
+
+const addDataVerify = () => describe('Добавление данных для тестирования подраздела ' +
+    'Конфигурация верификация', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataVerify}
+
+    describe('Добавление помещений', () => {
+        decItApi.addRoomParent({
+            room: params.rooms.room1
+        });
+        decItApi.addRoomChild({
+            child: params.rooms.room2,
+            parent: params.rooms.room1
+        });
+    });
+
+    describe('Добавление устройств в помещение', () => {
+        decItApi.addDeviceInRoom({
+            device: params.device.ip,
+            room: params.rooms.room1
+        });
+        decItApi.addDeviceInRoom({
+            device: params.camera.ip,
+            room: params.rooms.room2
+        });
+    })
+
+});
+
+const deleteDataVerify = () => describe('Удаление данных для тестирования подраздела ' +
+    'Конфигурация верификация', () => {
+
+    bef();
+    aft();
+
+    const params = {...dataVerify}
+
+    describe('Добавление устройств из помещения', () => {
+        decItApi.deleteDeviceInRoom({
+            ip: params.device.ip,
+        });
+        decItApi.deleteDeviceInRoom({
+            ip: params.camera.ip,
+        });
+    });
+
+    describe('Удаление помещений', () => {
+        decItApi.deleteRoom({
+            room: params.rooms.room2
+        });
+        decItApi.deleteRoom({
+            room: params.rooms.room1
+        });
+    });
+
+});
+
 
 
 module.exports =  {
@@ -12090,5 +12520,13 @@ module.exports =  {
     dataEventaction,
     dataTask,
     dataRoleOperator,
-    addDataRoleOperator
+    addDataRoleOperator,
+    deleteDataRoleOperator,
+    dataEvent,
+    dataDeviceManagement,
+    addDataDeviceManagement,
+    deleteDataDeviceManagement,
+    dataVerify,
+    addDataVerify,
+    deleteDataVerify
 }

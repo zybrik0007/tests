@@ -201,7 +201,9 @@ module.exports = {
     admDeviceLockStatus: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]
     /parent::*//div[normalize-space(.)="(${ip})"]/parent::*//span[contains(@class, "device-lock-status")]`,
     admDeviceIUStatus: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]
-    /parent::*//div[normalize-space(.)="(${ip})"]/parent::*//span[contains(@class, "iu-state")]`,
+    /parent::*//div[normalize-space(.)="(${ip})"]/parent::*//div[contains(@class, "iu-state")]`,
+    admDeviceAlarmStatus: (device, ip) => `//pw-tree-node//div[normalize-space(.)="${device}"]
+    /parent::*//div[normalize-space(.)="(${ip})"]/parent::*//div[contains(@class, "device-status--alarm")]/span`,
 
 
     //Конфигурация
@@ -294,8 +296,8 @@ module.exports = {
     tabActive: (event) => `//div[@class="tab"]/div[contains(@class, "active") and normalize-space(.)="${event}"]`,
 
     //input
-    input: (title, placeholder) =>`//*[normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]`,
-    inputIcon: (title, placeholder, icon) => `//*[normalize-space(.)="${title}"]
+    input: (title, placeholder) =>`//*[normalize-space(.)='${title}']//input[@placeholder='${placeholder}']`,
+    inputIcon: (title, placeholder, icon) => `//*[normalize-space(.)='${title}']
     //input[@placeholder="${placeholder}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
     //input-number
@@ -330,7 +332,7 @@ module.exports = {
         `document.querySelector("pw-select-expand > div > div > ng-scrollbar > div > div > div").scrollBy(${x}, ${y});`,
 
     //button
-    button: (event) => `//pw-button//span[normalize-space(.)="${event}"]/parent::*/parent::*`,
+    button: (event) => `//pw-button//span[normalize-space(.)='${event}']/parent::*/parent::*`,
     buttonActive: (event) => `//pw-button[not(contains(@class, "disabled"))]//span[normalize-space(.)="${event}"]/span
     /parent::*/parent::*`,
     buttonDisabled: (event) => `//pw-button[contains(@class, "disabled")]//span[normalize-space(.)="${event}"]
@@ -372,6 +374,7 @@ module.exports = {
     popUpErrorStr: '//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]/div',
     popUpClose: (event) => `//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]
     /div[normalize-space(.)='${event}']/parent::*/parent::*/div[contains(@class, "pwToast--wrapper--close")]`,
+    popErrorCheck: '//div[contains(@class, "pwToast--wrapper-type-error")]/div[@class="pwToast--wrapper--after"]/div',
 
     //pop-up-success
     popUpSuccess: (event) => `//div[contains(@class, "pwToast--wrapper-type-success")]
@@ -533,6 +536,8 @@ module.exports = {
     pwGroupCell: (event) => `//pw-group-cell//*[contains(text(), "${event}")]/parent::*`,
     pwGroupCellChecked: (event) => `//pw-group-cell//*[contains(text(), "${event}")]
     /parent::*//*[contains(@class, "Icon--check_circle_filled_blue")]`,
+    pwGroupCellUnchecked: (event) => `//pw-group-cell//*[contains(text(), "${event}")]
+    /parent::*//*[contains(@class, "Icon--check_circle_off")]`,
 
     //empty-row
     emptyRow: '//*[@class="empty-row"]',
@@ -588,7 +593,9 @@ module.exports = {
 
     //timesheet
     timesheetDay: (str, cell) => `//tr[${str}]/td[${cell}]`,
-    timesheetSelectIcon: (event) => `//*[normalize-space(.)="${event}"]/parent::*//pw-icon`
+    timesheetSelectIcon: (event) => `//*[normalize-space(.)="${event}"]/parent::*//pw-icon`,
+
+    elementText: (event) => `//*[normalize-space(.)='${event}']`
 
 
 }

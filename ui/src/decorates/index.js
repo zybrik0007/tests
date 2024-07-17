@@ -3,6 +3,7 @@ const ModalDecorate = require('./elements-decorates/modal-decorate');
 const modalPhoto = require('./modal-decorates/photo-modal-decorate');
 const page = require('../pages');
 const {init, initAdd, initEdit, initCopy} = require('./other/init');
+const before = require('./before-after-decorate/before-after-decorate')
 
 module.exports = {
     el: {
@@ -38,7 +39,8 @@ module.exports = {
         timepicker: require('./elements-decorates/timepicker-decorate'),
         radio: require('./elements-decorates/radio-decorate'),
         pwMenu: require('./elements-decorates/pw-menu-decorate'),
-        nodeCheckbox: require('./elements-decorates/node-checkbox-decorate')
+        nodeCheckbox: require('./elements-decorates/node-checkbox-decorate'),
+        element: require('./elements-decorates/element-decorate'),
     },
     page: {
         staffActive: require('./page-decorates/staff-active-decorate'),
@@ -127,6 +129,10 @@ module.exports = {
         hardwareEdit: ModalDecorate('hardware', 'Редактировать внутреннюю реакцию на событие'),
         selectPeriod: ModalDecorate('select-period', 'Период'),
         staffSelect: ModalDecorate('staff-select', 'Оператор'),
+        blockOperator: ModalDecorate('confirm-modal-lock-operator', 'Заблокировать оператора'),
+        unblockOperator: ModalDecorate('confirm-modal-lock-operator', 'Разаблокировать оператора'),
+        paramCommand: ModalDecorate('param-command', ''),
+        selectDevice: ModalDecorate('select-device', 'Новая точка верификации'),
     },
     modalConfirm: {
         //Персонал
@@ -251,6 +257,11 @@ module.exports = {
         deleteTask: ModalConfirmDecorate('Удаление задания',
             'Вы действительно хотите удалить это задание?'),
 
+        deleteOperator: ModalConfirmDecorate('Удаление оператора',
+            'Вы действительно хотите удалить данного оператора?'),
+
+        deleteRole: ModalConfirmDecorate('Удаление роли','Вы действительно хотите удалить данную роль?'),
+
         //Лицензии
         licenseStandardDeactivate: ModalConfirmDecorate('Подтвердите действие',
             'При отключении модуля "Стандартный пакет" количество действующих карт будет ограничено 100 картами '+
@@ -258,9 +269,11 @@ module.exports = {
             'будут заблокированы. Также будут отключены остальные модули, кроме "Базовый пакет".')
     },
     init: {
+        staffActive: () => init(page.staffActive),
         accessSchedule: () => init(page.accessTemplateSchedulePage),
         accessScheduleChangeAdd: () => initAdd(page.accessTemplateScheduleChangePage),
         accessScheduleChangeEdit: () => initEdit(page.accessTemplateScheduleChangePage),
+        deviceManagement: () => init(page.deviceManagement),
         template: () => init(page.accessTemplate),
         templateAdd: () => initAdd(page.accessTemplateChange),
         templateEdit: () => initEdit(page.accessTemplateChange),
@@ -270,6 +283,7 @@ module.exports = {
         designAdd: () => initAdd(page.designChange),
         designEdit: () => initEdit(page.designChange),
         designCopy: () => initCopy(page.designChange),
+        event: () => init(page.event),
         eventaction: () => init(page.eventaction),
         task: () => init(page.task),
         taskChangeAdd: () => initAdd(page.taskChange),
@@ -287,6 +301,7 @@ module.exports = {
         verifyConfigAdd: () => initAdd(page.verifyConfigChange),
         verifyConfigEdit: () => initEdit(page.verifyConfigChange),
         plan: () => init(page.plan)
-    }
+    },
+    befAft: {...before}
 }
 

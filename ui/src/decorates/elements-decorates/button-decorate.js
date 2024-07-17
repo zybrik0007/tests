@@ -21,8 +21,13 @@ module.exports = {
             [name, timeout],
             el.button)),
 
-    handlerNoActive: ({name, timeout}) => it(`Отображение заблокированной кнопки "${name}".`,
+    handlerNoActive: ({name, timeout}) => it(`Нажатие заблокированной кнопки "${name}".`,
         async () => await dec.simple(el.button.handlerNoActive,
+            [name, timeout],
+            el.button)),
+
+    handlerNoStatus: ({name, timeout}) => it(`Нажатие кнопки "${name}".`,
+        async () => await dec.simple(el.button.handlerNoStatus,
             [name, timeout],
             el.button)),
 }

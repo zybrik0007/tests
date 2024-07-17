@@ -39,4 +39,16 @@ module.exports = {
             [name, ip, timeout],
             value,
             page.device)),
+
+    deviceGetStatusAlarm: ({name, ip, value, timeout}) => it(`У устройства "${name}" c ip "${ip}" статус тревоги "${value}".`,
+        async () => await dec.simpleText(page.device.deviceGetStatusAlarm,
+            [name, ip, timeout],
+            value,
+            page.device)),
+
+    deviceNoStatusAlarm: ({name, ip, timeout}) => it(`У устройства "${name}" c ip "${ip}" отсуствует статус тревоги.`,
+        async () => await dec.simple(page.device.deviceNoStatusAlarm,
+            [name, ip, timeout],
+            page.device)),
+
 }

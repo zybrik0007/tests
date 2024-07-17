@@ -72,7 +72,8 @@ const Base = require('./base-page/base-page'), Auth = require('./auth-page/auth-
     VerificationPage = require('./soft/verification/verification/verification-page'),
     VerificationConfigPage = require('./soft/verification/verification-config/verification-config-page'),
     VerificationConfigChangePage = require('./soft/verification/verification-config/verification-config-change-page'),
-    PlanPage = require('./soft/monitoring/plan/plan-page');
+    PlanPage = require('./soft/monitoring/plan/plan-page'),
+    DeviceManagementPage = require('./soft/control-access/device-management-page/device-management-page');
 
 
 module.exports = {
@@ -129,6 +130,7 @@ module.exports = {
     premiseAccessAll: new PremiseAccessAll(),
     premiseAccessStaff: new PremiseAccessStaff(),
     premiseAccessVisitor: new PremiseAccessVisitor(),
+    deviceManagement: new DeviceManagementPage(),
     verificationJournal: new VerificationJournal(),
     whereAboutsAll: new WhereAboutsAll(),
     whereAboutsStaff: new WhereAboutsStaff(),
