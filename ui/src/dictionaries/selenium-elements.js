@@ -152,7 +152,7 @@ module.exports = {
     passAccessScheduleHolidayDelete: (event) => `//pw-group-cell[${event}]//pw-button`,
     passAccessScheduleHoliday: '//pw-group-cell',
     passAccessRoom: (event) => `//div[@class="pwTreeNode--node_el-name" and normalize-space(.)="${event}"]`,
-    designCardSize: '//div[@class="card_wrapper"]/app-business-card',
+    designCardSize: '//div[@class="card_wrapper"]/app-pages-business-card',
     designCard: (event) => `//div[@class="card_wrapper"][${event}]/app-business-card`,
     designCardName: (event) => `//div[@class="card_wrapper"][${event}]//div[@class="cw-title"]`,
     designCardType: (event) => `//div[@class="card_wrapper"][${event}]//div[@class="cw-user_type"]`,
@@ -245,8 +245,10 @@ module.exports = {
     taskDayNoActive: (event) => `//div[@class="flat-btn" and normalize-space(.)="${event}"]`,
     taskActionSelectedGetText: (event) => `//div[@class="pwActionTask"]/div[contains(@class, "actionItem")][${event}]
     //div[@class="actionItem__title"]`,
-    taskActionSelectedDelete: (event) => `//div[@class="pwActionTask"]/div[contains(@class, "actionItem")][${event}]//button`,
-    taskActionHandler: (event) => `//div[@class="pwActionTask"]/div/div[@class="actionItem__text" and normalize-space(.)="${event}"]`,
+    taskActionSelectedDelete: (event) => `//div[@class="pwActionTask"]/div[contains(@class, "actionItem")][${event}]
+    //button`,
+    taskActionHandler: (event) => `//div[@class="pwActionTask"]/div/div[@class="actionItem__text" 
+    and normalize-space(.)="${event}"]`,
 
     //Операторы
     operatorHideShow: (event) => `//div[@class="item-wrapper"]//div[@class="root-section-name" 
@@ -268,17 +270,15 @@ module.exports = {
     /pw-icon/div[contains(@class, "Icon--check_box_off")]`,
 
     //Лицензии
-    licenseDisabled: (title, name) => `//div[@class="block-license"]//h4[normalize-space(.)='${title}']
-    /parent::*/parent::*//div[normalize-space(.)='${name}']`,
-    licenseActive: (title, name) => `//div[@class="block-license block-license-warning"]
-    //h4[normalize-space(.)='${title}']/parent::*/parent::*//div[normalize-space(.)='${name}']`,
-    licenseInfo: (title, name, text) => `//div[@class="block-license block-license-warning"]
-    //h4[normalize-space(.)='${title}']/parent::*/parent::*//div[normalize-space(.)='${name}']
-    /parent::*//*[contains(normalize-space(), "${text}")]`,
-    licenseSwitch: (title, name) => `//div[contains(@class, "block-license")]//h4[normalize-space(.)='${title}']
-    /parent::*/parent::*//div[normalize-space(.)='${name}']/parent::*//pw-icon[@name='power_settings_new']`,
-    licenseMore: (title, name) => `//div[contains(@class, "block-license")]//h4[normalize-space(.)='${title}']
-    /parent::*/parent::*//div[normalize-space(.)='${name}']/parent::*//span[normalize-space(.)='Подробно']`,
+    licenseHeader: (event) => `//*[@class="page-license"]/div[${event}]/div[@class="block-license--header"]/h4`,
+    licenseContent: (event) => `//*[@class="page-license"]/div[${event}]/div[@class="block-license--content"]`,
+    licenseKey: (event) => `//*[@class="page-license"]/div[${event}]//span[@class="text-link"]`,
+    licenseDetail: (event) => `//*[@class="page-license"]/div[${event}]//span[contains(@class, "text-link--underline")]`,
+    licenseTurn: (event) => `//*[@class="page-license"]/div[${event}]//pw-icon[@name="power_settings_new"]`,
+    licenseView: '//div[@class="license-text-view"]',
+    licenseChecked: (number, text) => `//*[@class="page-license"]/div[${number}]
+    /div[contains(normalize-space(), '${text}')]`,
+    licenseUnchecked: (event) => `//*[@class="page-license"]/div[${event}]//div[@class="block-license--footer-right"]`,
 
     //Авторизация
     authLoginInput: '//pw-input[@id="login"]/label/input',
@@ -301,7 +301,8 @@ module.exports = {
     //input[@placeholder="${placeholder}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
     //input-number
-    inputNumber: (title, placeholder, num) =>`//*[${num}][normalize-space(.)="${title}"]//input[@placeholder="${placeholder}"]`,
+    inputNumber: (title, placeholder, num) =>`//*[${num}][normalize-space(.)="${title}"]
+    //input[@placeholder="${placeholder}"]`,
     inputNumberIcon: (title, placeholder, num, icon) => `//*[${num}][normalize-space(.)="${title}"]
     //input[@placeholder="${placeholder}"]/parent::*//pw-icon/div[contains(@class, "${icon}")]`,
 
@@ -596,6 +597,7 @@ module.exports = {
     timesheetSelectIcon: (event) => `//*[normalize-space(.)="${event}"]/parent::*//pw-icon`,
 
     elementText: (event) => `//*[normalize-space(.)='${event}']`
+
 
 
 }

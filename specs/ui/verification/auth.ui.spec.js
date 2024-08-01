@@ -9,6 +9,7 @@ const url = require('../../../ui/src/dictionaries/url');
 
 /*Авторизация*/
 console.log = function() {};
+
 describe('Первая авторизация', () => {
     
     const params = {
@@ -656,6 +657,7 @@ describe('Первая авторизация', () => {
     });
 
 });
+
 describe('Закрытие браузера', () => {
     it('Закрытие', async () => await page.base.closeDriver());
 });

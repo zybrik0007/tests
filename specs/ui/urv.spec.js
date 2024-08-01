@@ -1,7 +1,7 @@
-const tests = require('../../ui/src/handlers/module-specs');
-const closeBrowser = require('../../ui/src/handlers/other/closeBrowser');
-const data = require('../../ui/src/handlers/module-specs/data');
-const clearMemory = require('../../ui/src/handlers/other/clearMemory');
+const tests = require('../../ui/src/tests/regression.ui.tests');
+const closeBrowser = require('../../ui/src/decorates/other/closeBrowser');
+const data = require('../../ui/src/tests/regression.ui.tests/data');
+const clearMemory = require('../../ui/src/decorates/other/clearMemory');
 //console.log = () => function () {};
 
 // УРВ

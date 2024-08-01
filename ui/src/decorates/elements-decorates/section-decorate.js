@@ -18,7 +18,7 @@ module.exports = {
             [section, timeout],
             el.section)),
 
-    noElement: ({section, timeout}) => it(`Нажатие по разделу "${section.description}".`,
+    noElement: ({section, timeout}) => it(`Отсутствие раздела "${section.description}".`,
         async () => await dec.simple(el.section.noElement,
             [section, timeout],
             el.section)),

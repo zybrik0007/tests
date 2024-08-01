@@ -412,8 +412,8 @@ module.exports  = {
             await page.base.loading(entry.sleep1);
         }),
 
-        beforeDeviceManagementDevice: () => before('Вход и открытие подраздела "Выданные идентификаторы"' +
-            'вкладка "Сотрудники"', async () => {
+        beforeDeviceManagementDevice: () => before('Вход и открытие подраздела "Управление устройствами"' +
+            'вкладка "Устройства"', async () => {
             await page.base.loading(entry.sleep1);
             await dec.auth(entry.customLogin, entry.customPassword);
             await dec.simple(el.section.handler, [sec.con, entry.max], el.section);
@@ -498,6 +498,39 @@ module.exports  = {
             await dec.simple(el.subsection.handler, [sub.con.location, entry.max], el.subsection);
             await dec.simple(el.tab.handler, ['Посетители', entry.max], el.tab);
             await dec.simple(page.whereAboutsVisitor.init, [entry.max], page.whereAboutsVisitor);
+            await page.base.loading(entry.sleep1);
+        }),
+
+        beforeReportIdentifierAll: () => before('Вход и открытие подраздела "Выданные идентификаторы" вкладка "Все"',
+            async () => {
+            await page.base.loading(entry.sleep1);
+            await dec.auth(entry.customLogin, entry.customPassword);
+            await dec.simple(el.section.handler, [sec.con, entry.max], el.section);
+            await dec.simple(el.subsection.handler, [sub.con.card, entry.max], el.subsection);
+            await dec.simple(el.tab.handler, ['Все', entry.max], el.tab);
+            await dec.simple(page.identifiersAll.init, [entry.max], page.identifiersAll);
+            await page.base.loading(entry.sleep1);
+        }),
+
+        beforeReportIdentifierAStaff: () => before('Вход и открытие подраздела "Выданные идентификаторы" ' +
+            'вкладка "Сотрудники"', async () => {
+            await page.base.loading(entry.sleep1);
+            await dec.auth(entry.customLogin, entry.customPassword);
+            await dec.simple(el.section.handler, [sec.con, entry.max], el.section);
+            await dec.simple(el.subsection.handler, [sub.con.card, entry.max], el.subsection);
+            await dec.simple(el.tab.handler, ['Сотрудники', entry.max], el.tab);
+            await dec.simple(page.identifiersStaff.init, [entry.max], page.identifiersStaff);
+            await page.base.loading(entry.sleep1);
+        }),
+
+        beforeReportIdentifierVisitor: () => before('Вход и открытие подраздела "Выданные идентификаторы" ' +
+            'вкладка "Посетители"', async () => {
+            await page.base.loading(entry.sleep1);
+            await dec.auth(entry.customLogin, entry.customPassword);
+            await dec.simple(el.section.handler, [sec.con, entry.max], el.section);
+            await dec.simple(el.subsection.handler, [sub.con.card, entry.max], el.subsection);
+            await dec.simple(el.tab.handler, ['Посетители', entry.max], el.tab);
+            await dec.simple(page.identifiersVisitor.init, [entry.max], page.identifiersVisitor);
             await page.base.loading(entry.sleep1);
         }),
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -656,16 +689,26 @@ module.exports  = {
             await dec.simple(page.role.init, [entry.max], page.role);
             await page.base.loading(entry.sleep1);
         }),
+
+        // Администрирование / Лицензии
+        beforeLicense: () => before('Вход и открытие подраздела "Лицензии"', async () => {
+            await page.base.loading(entry.sleep1);
+            await dec.auth(entry.customLogin, entry.customPassword);
+            await dec.simple(el.section.handler, [sec.adm, entry.max], el.section);
+            await dec.simple(el.subsection.handler, [sub.adm.license, entry.max], el.subsection);
+            await dec.simple(page.license.init, [entry.max], page.license);
+            await page.base.loading(entry.sleep1);
+        }),
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     },
 
     after: {
-        exit: () => after('Выход', async () => {
+        after: () => after('Выход', async () => {
             await page.base.loading(entry.sleep1);
             await dec.exit();
             await page.base.loading(entry.sleep1);
         }),
-        exitNoLoader: () => after('Выход', async () => {
+        afterNoLoader: () => after('Выход', async () => {
             await page.base.loading(entry.sleep1);
             await dec.exitNoLoader();
             await page.base.loading(entry.sleep1);

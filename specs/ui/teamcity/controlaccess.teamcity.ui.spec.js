@@ -1,7 +1,7 @@
-const tests = require('../../../ui/src/handlers/module-specs');
-const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
-const clearMemory = require('../../../ui/src/handlers/other/clearMemory');
-const data = require('../../../ui/src/handlers/module-specs/data');
+const tests = require('../../../ui/src/tests/regression.ui.tests');
+const closeBrowser = require('../../../ui/src/decorates/other/closeBrowser');
+const clearMemory = require('../../../ui/src/decorates/other/clearMemory');
+const data = require('../../../ui/src/tests/regression.ui.tests/data');
 console.log = () => function () {};
 
 //// Раздел Контроль доступа

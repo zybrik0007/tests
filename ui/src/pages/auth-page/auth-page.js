@@ -1,4 +1,4 @@
-const BasePage = require('../base-page/base-page')
+const BasePage = require('../base-page/base-page');
 
 //Страница аторизации
 class AuthPage extends BasePage {
@@ -7,6 +7,6 @@ class AuthPage extends BasePage {
     }
 }
 
-module.exports = AuthPage
+module.exports = AuthPage;
 
 

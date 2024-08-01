@@ -1,7 +1,7 @@
-const tests = require('../../../ui/src/handlers/module-specs');
-const data = require('../../../ui/src/handlers/module-specs/data');
-const decItApi = require('../../../ui/src/dictionaries/decorate-it-api');
-const closeBrowser = require('../../../ui/src/handlers/other/closeBrowser');
+const tests = require('../../../ui/src/tests/regression.ui.tests');
+const data = require('../../../ui/src/tests/regression.ui.tests/data');
+const decItApi = require('../../../ui/src/decorates/api-decorates/decorate-it-api');
+const closeBrowser = require('../../../ui/src/decorates/other/closeBrowser');
 
 console.log = () => function () {};
 

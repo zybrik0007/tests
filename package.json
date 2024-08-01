@@ -17,7 +17,9 @@
     "passofice.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/passoffice.teamcity.ui.spec.js",
     "controlaccess.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/controlaccess.teamcity.ui.spec.js",
     "orderpass.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/orderpass.teamcity.ui.spec.js",
-    "urv.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/urv.teamcity.ui.spec.js"
+    "urv.ui": "mocha --timeout=60000 --reporter mocha-teamcity-reporter specs/ui/teamcity/urv.teamcity.ui.spec.js",
+
+    "staff.ui": "mocha --timeout=60000 --reporter specs/ui.specs/regression.ui.specs/app.ui.specs/personal.ui.specs/staff.ui.specs.js"
   },
   "keywords": [
     "js",
@@ -42,6 +44,8 @@
     "mocha-teamcity-reporter": "^4.2.0",
     "mysql": "^2.18.1",
     "mysql-async-simple": "^1.0.3",
+    "mysql-await": "^2.2.3",
+    "mysql2": "^3.10.3",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "selenium-webdriver": "^4.8.1",

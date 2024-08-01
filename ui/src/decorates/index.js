@@ -3,7 +3,9 @@ const ModalDecorate = require('./elements-decorates/modal-decorate');
 const modalPhoto = require('./modal-decorates/photo-modal-decorate');
 const page = require('../pages');
 const {init, initAdd, initEdit, initCopy} = require('./other/init');
-const before = require('./before-after-decorate/before-after-decorate')
+const before = require('./before-after-decorate/before-after-decorate');
+const db = require('./database-decorate/database-decorate');
+const api = require('./api-decorates/decorate-it-api');
 
 module.exports = {
     el: {
@@ -74,7 +76,8 @@ module.exports = {
         system: require('./page-decorates/system-decorate'),
         eventactionChange: require('./page-decorates/eventaction-change-decorate'),
         taskChange: require('./page-decorates/task-change-decorate'),
-        operatorChange: require('./page-decorates/operator-change-decorate')
+        operatorChange: require('./page-decorates/operator-change-decorate'),
+        license: require('./page-decorates/license-decorate'),
     },
     modal: {
         printTable: require('./modal-decorates/print-table-decorate'),
@@ -264,9 +267,10 @@ module.exports = {
 
         //Лицензии
         licenseStandardDeactivate: ModalConfirmDecorate('Подтвердите действие',
-            'При отключении модуля "Стандартный пакет" количество действующих карт будет ограничено 100 картами '+
-            'сотрудников. Ранее введенные карты посетителей и карты сотрудников больше 100 (в порядке добавления) ' +
-            'будут заблокированы. Также будут отключены остальные модули, кроме "Базовый пакет".')
+            'При отключении модуля "Стандартный пакет" количество действующих карт будет ограничено ' +
+            '100 картами сотрудников. Ранее введенные карты посетителей и карты сотрудников больше ' +
+            '100 (в порядке добавления) будут заблокированы. Также будут отключены остальные модули, ' +
+            'кроме "Базовый пакет".')
     },
     init: {
         staffActive: () => init(page.staffActive),
@@ -278,7 +282,7 @@ module.exports = {
         templateAdd: () => initAdd(page.accessTemplateChange),
         templateEdit: () => initEdit(page.accessTemplateChange),
         templateCopy: () => initCopy(page.accessTemplateChange),
-        aceessComission: () => init(page.accessTemplateComission),
+        accessCommission: () => init(page.accessTemplateComission),
         design: () => init(page.design),
         designAdd: () => initAdd(page.designChange),
         designEdit: () => initEdit(page.designChange),
@@ -300,8 +304,11 @@ module.exports = {
         verifyConfig: () => init(page.verifyConfig),
         verifyConfigAdd: () => initAdd(page.verifyConfigChange),
         verifyConfigEdit: () => initEdit(page.verifyConfigChange),
-        plan: () => init(page.plan)
+        plan: () => init(page.plan),
+        license: () => init(page.license)
     },
-    befAft: {...before}
+    befAft: {...before},
+    db,
+    api
 }
 

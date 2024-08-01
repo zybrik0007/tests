@@ -1,8 +1,15 @@
-const tests = require('../ui/src/handlers/module-specs');
-const closeBrowser = require('../ui/src/handlers/other/closeBrowser');
-const clearMemory = require('../ui/src/handlers/other/clearMemory');
-const data = require('../ui/src/handlers/module-specs/data');
+const tests = require('../ui/src/tests/regression.ui.tests');
+const closeBrowser = require('../ui/src/decorates/other/closeBrowser');
+//const clearMemory = require('../ui/src/tests/regression.ui.tests/other/clearMemory');
+//const data = require('../ui/src/tests/regression.ui.tests/data');
+//const decorate = require('../ui/src/decorates');
+/*const db = require('../ui/src/database/connection/mysql');
+const api = require('../ui/src/dictionaries/api');
+const page = require('../ui/src/pages');
 const decorate = require('../ui/src/decorates');
+
+const {beforeStaffActive} = require('../ui/src/decorates/before-after-decorate/before-after-decorate').before;
+const {after} = require('../ui/src/decorates/before-after-decorate/before-after-decorate').after;*/
 
 /*data.addDataRoleOperator();
 tests.operatorRoleUi.otherRole().add();
@@ -33,56 +40,6 @@ tests.eventUi.other().print();
 tests.eventUi.other().filterSearch();
 tests.eventUi.other().resetFilter();*/
 
-/*tests.deviceManagementUi.addDevice();
-tests.deviceManagementUi.addCamera();
-tests.deviceManagementUi.activateDevice();
-data.addDataDeviceManagement();
-
-tests.deviceManagementUi.otherRoom.display();
-tests.deviceManagementUi.otherRoom.giveAlarm();
-tests.deviceManagementUi.otherRoom.resetAlarm();
-tests.deviceManagementUi.otherRoom.modeClose();
-tests.deviceManagementUi.otherRoom.modeOpen();
-tests.deviceManagementUi.otherRoom.modeControl();
-tests.deviceManagementUi.otherRoom.IUOpen();
-tests.deviceManagementUi.otherRoom.IUClose();
-tests.deviceManagementUi.otherRoom.addSecurity();
-tests.deviceManagementUi.otherRoom.removeSecurity();
-tests.deviceManagementUi.otherRoom.giveAlarm();
-tests.deviceManagementUi.otherRoom.removeAlarm();
-tests.deviceManagementUi.otherRoom.displayZone();
-tests.deviceManagementUi.otherRoom.activate();
-tests.deviceManagementUi.otherRoom.normalize();
-tests.deviceManagementUi.otherRoom.searchIP();
-tests.deviceManagementUi.otherRoom.searchName();
-tests.deviceManagementUi.otherRoom.searchType();
-clearMemory();
-
-
-tests.deviceManagementUi.otherDevice.display();
-tests.deviceManagementUi.otherDevice.giveAlarm();
-tests.deviceManagementUi.otherDevice.resetAlarm();
-tests.deviceManagementUi.otherDevice.modeClose();
-tests.deviceManagementUi.otherDevice.modeOpen();
-tests.deviceManagementUi.otherDevice.modeControl();
-tests.deviceManagementUi.otherDevice.IUOpen();
-tests.deviceManagementUi.otherDevice.IUClose();
-tests.deviceManagementUi.otherDevice.addSecurity();
-tests.deviceManagementUi.otherDevice.removeSecurity();
-tests.deviceManagementUi.otherDevice.giveAlarm();
-tests.deviceManagementUi.otherDevice.removeAlarm();
-tests.deviceManagementUi.otherDevice.displayZone();
-tests.deviceManagementUi.otherDevice.activate();
-tests.deviceManagementUi.otherDevice.normalize();
-tests.deviceManagementUi.otherDevice.searchIP();
-tests.deviceManagementUi.otherDevice.searchName();
-tests.deviceManagementUi.otherDevice.searchType();
-
-data.deleteDataDeviceManagement();
-tests.deviceManagementUi.deleteDevice();
-tests.deviceManagementUi.deleteCamera();
-clearMemory();*/
-
 
 
 /*tests.verifyUi.addDevice();
@@ -99,7 +56,17 @@ tests.verifyUi.otherConfig.deleted();
 data.deleteDataVerify();
 tests.verifyUi.deleteCamera();
 tests.verifyUi.deleteDevice();*/
-tests.verifyUi.otherVerify.display();
+
+
+
+describe('Test', () => {
+    //tests.licenseUI.test.activateLicense();
+    //tests.licenseUI.test.deactivateLicense();
+    //tests.licenseUI.test.activateAllLicense();
+    //tests.licenseUI.test.deactivateStandard();
+    //tests.licenseUI.test.activateAllLicense();
+    //tests.licenseUI.test.deactivateURV();
+});
 
 closeBrowser();
 

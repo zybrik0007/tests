@@ -3,69 +3,69 @@ const title = 'PERCo-Web - '
 module.exports = {
 
     //auth
-    authTitle: 'PERCo-Web',
+    authTITLE: 'PERCo-Web',
 
     //Менеджер
-    managerTitle: 'Менеджер PERCo-Web',
+    managerTITLE: 'Менеджер PERCo-Web',
 
     //Персонал
-    staffTitle: title + 'Сотрудники',
-    schedulesTitle:  title + 'Графики работы',
-    divisionsTitle: title + 'Подразделения',
-    positionsTitle: title + 'Должности',
-    additionalDataTitle: title + 'Дополнительные данные',
-    holidayTitle: title + 'Праздничные дни',
+    staffTITLE: title + 'Сотрудники',
+    schedulesTITLE:  title + 'Графики работы',
+    divisionsTITLE: title + 'Подразделения',
+    positionsTITLE: title + 'Должности',
+    additionalDataTITLE: title + 'Дополнительные данные',
+    holidayTITLE: title + 'Праздничные дни',
 
 
     //Бюро пропусков
-    visitorTitle: title + 'Посетители',
-    accessTemplatesTitle: title + 'Шаблоны доступа',
-    designTitle: title + 'Дизайн пропуска',
-    visitorReportTitle: title + 'Посетители',
+    visitorTITLE: title + 'Посетители',
+    accessTemplatesTITLE: title + 'Шаблоны доступа',
+    designTITLE: title + 'Дизайн пропуска',
+    visitorReportTITLE: title + 'Посетители',
 
     //УРВ
-    workedJournalTitle: title + 'Журнал отработанного времени',
-    timesheetTitle: title + 'Формирование табеля',
-    urvReportsTitle: title + 'Отчёт УРВ',
-    urvViolatorsTitle: title + 'Отчеты по дисциплине',
-    urvPresencesTitle:  title + 'Отчеты по дисциплине',
-    urvAbsentsTitle: title + 'Отчеты по дисциплине',
-    urvLatesTitle: title + 'Отчеты по дисциплине',
-    urvEarlysTitle: title + 'Отчеты по дисциплине',
-    urvOverworksTitle: title + 'Отчеты по дисциплине',
-    urvTimePresenceTitle: title + 'Время присутствия',
-    urvSupportingTitle: title + 'Выданные документы',
-    urvDocumentJustificationTitle: title + 'Оправдательные документы',
-    urvDocumentOvertimeTitle: title + 'Оправдательные документы',
-    urvDocumentExplanatoryTitle: title + 'Оправдательные документы',
+    workedJournalTITLE: title + 'Журнал отработанного времени',
+    timesheetTITLE: title + 'Формирование табеля',
+    urvReportsTITLE: title + 'Отчёт УРВ',
+    urvViolatorsTITLE: title + 'Отчеты по дисциплине',
+    urvPresencesTITLE:  title + 'Отчеты по дисциплине',
+    urvAbsentsTITLE: title + 'Отчеты по дисциплине',
+    urvLateTITLE: title + 'Отчеты по дисциплине',
+    urvEarlyTITLE: title + 'Отчеты по дисциплине',
+    urvOverworksTITLE: title + 'Отчеты по дисциплине',
+    urvTimePresenceTITLE: title + 'Время присутствия',
+    urvSupportingTITLE: title + 'Выданные документы',
+    urvDocumentJustificationTITLE: title + 'Оправдательные документы',
+    urvDocumentOvertimeTITLE: title + 'Оправдательные документы',
+    urvDocumentExplanatoryTITLE: title + 'Оправдательные документы',
 
     // Контроль доступа
-    premiseAccessTitle: title + 'Отчет о проходах',
-    deviceManagementTitle: title + 'Управление устройствами',
-    verificationJournalTitle: title + 'Журнал верификации',
-    whereAboutsTitle: title + 'Местонахождение',
-    premisesAccessReportTitle: title + 'Отчет по доступу в помещения',
-    identifiersTitle: title + 'Выданные идентификаторы',
+    premiseAccessTITLE: title + 'Отчет о проходах',
+    deviceManagementTITLE: title + 'Управление устройствами',
+    verificationJournalTITLE: title + 'Журнал верификации',
+    whereAboutsTITLE: title + 'Местонахождение',
+    premisesAccessReportTITLE: title + 'Отчет по доступу в помещения',
+    identifiersTITLE: title + 'Выданные идентификаторы',
 
     // Верификация
-    verificationTitle: title + 'Верификация',
+    verificationTITLE: title + 'Верификация',
 
     //Заказ пропуска
-    orderpassOrderpassTitle: title + 'Заказ пропуска',
+    orderpassOrderpassTITLE: title + 'Заказ пропуска',
 
     // Мониторинг
-    planTitle: title + 'Интерактивный план',
+    planTITLE: title + 'Интерактивный план',
 
     //Конфигурация
-    roomsTitle: title + 'Конфигурация',
-    deviceTitle: title + 'Конфигурация',
-    eventRenameTitle: title + 'Конфигурация',
-    systemTitle: title + 'Конфигурация',
-    templateCameraTitle: title + 'Конфигурация',
-    eventTitle: title + 'События системы',
-    eventactionTitle: title + 'Реакции на события',
-    taskTitle: title + 'Задания',
-    operatorTitle: title + 'Операторы',
-    roleTitle: title + 'Роли и права операторов',
-    licenseTitle: title + 'Лицензии',
+    roomsTITLE: title + 'Конфигурация',
+    deviceTITLE: title + 'Конфигурация',
+    eventRenameTITLE: title + 'Конфигурация',
+    systemTITLE: title + 'Конфигурация',
+    templateCameraTITLE: title + 'Конфигурация',
+    eventTITLE: title + 'События системы',
+    eventactionTITLE: title + 'Реакции на события',
+    taskTITLE: title + 'Задания',
+    operatorTITLE: title + 'Операторы',
+    roleTITLE: title + 'Роли и права операторов',
+    licenseTITLE: title + 'Лицензии',
 }

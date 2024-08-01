@@ -31,7 +31,6 @@ const middleware = () => {
                 .addArguments("--remote-allow-origins=*")
                 .windowSize({width: width, height: height}))
             .build()
-
     }
 
     //firefox хром с headless

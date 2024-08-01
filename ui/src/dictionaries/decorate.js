@@ -3,12 +3,12 @@ const page = require('../pages')
 const el = require('../elements')
 const entry = require('../../../entry')
 const url = require('../dictionaries/url')
-const api = require('../handlers/other/api')
+const api = require('./api')
 
 //Авторизация
 const auth = async (login, password) => {
     console.log('login, password: ', login, password)
-    const open = await page.base.open(url.authUrl)
+    const open = await page.base.open(url.authURL)
     console.log(open.description)
     expect(open.error).to.equal(false)
 
@@ -32,7 +32,7 @@ const auth = async (login, password) => {
     console.log(buttonHandler.description)
     expect(buttonHandler.error).to.equal(false)
 
-    const address = await page.base.urlCompare(url.staffPresentUrl, entry.max)
+    const address = await page.base.urlCompare(url.staffPresentURL, entry.max)
     console.log(address.description)
     expect(address.error).to.equal(false)
 }
@@ -57,7 +57,6 @@ const exit = async () => {
     const noLoader = await el.loader.loaderLargeNoElement(entry.max)
     console.log(noLoader.description)
     expect(noLoader.error).to.equal(false)
-
     const profileHandler = await el.header.profileHandler(entry.max)
     if(profileHandler.error) {
         await animation()
@@ -68,11 +67,9 @@ const exit = async () => {
         console.log(profileHandler.description)
         expect(profileHandler.error).to.equal(false)
     }
-
     const menu = await el.header.menu(entry.max)
     console.log(menu.description)
     expect(menu.error).to.equal(false)
-
     const exitHandler = await el.header.exitHandler(entry.max)
     if(exitHandler.error) {
         await animation()
@@ -83,12 +80,11 @@ const exit = async () => {
         console.log(exitHandler.description)
         expect(exitHandler.error).to.equal(false)
     }
-
-    const open = await page.base.open(url.authUrl)
+    const open = await page.base.open(url.authURL)
     console.log(open.description)
     expect(open.error).to.equal(false)
 
-    const address = await page.base.urlCompare(url.authUrl, entry.max)
+    const address = await page.base.urlCompare(url.authURL, entry.max)
     console.log(address.description)
     expect(address.error).to.equal(false)
 
@@ -132,11 +128,11 @@ const exitNoLoader = async () => {
         expect(exitHandler.error).to.equal(false)
     }
 
-    const open = await page.base.open(url.authUrl)
+    const open = await page.base.open(url.authURL)
     console.log(open.description)
     expect(open.error).to.equal(false)
 
-    const address = await page.base.urlCompare(url.authUrl, entry.max)
+    const address = await page.base.urlCompare(url.authURL, entry.max)
     console.log(address.description)
     expect(address.error).to.equal(false)
 
@@ -164,6 +160,7 @@ const rebase = async () => {
 //Проверка на утверждение
 const simple = async (func, array, context = false) => {
     const data = await func.bind(context)(...array);
+    console.log('data', data)
     console.log(data.description)
     expect(data.error).to.equal(false)
 }
