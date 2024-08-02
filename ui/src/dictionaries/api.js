@@ -2,7 +2,6 @@ const request = require('request');
 const entry = require('../../../entry');
 const formData = require('form-data');
 
-
 //api запрос
 const prRequest = (options) => {
     return new Promise((resolve) => {
@@ -952,47 +951,6 @@ const deleteTemplate = async (array, token) => {
     };
 };
 
-// Откат базы данных
-const rebase = async () => {
-    const base64encodedData = Buffer.from(entry.managerLogin + ':' + entry.managerPassword).toString('base64');
-    const formDataExt = new formData();
-    formDataExt.append('filename', entry.bd)
-
-    const opts = {
-        method: 'post',
-        url: entry.manager + 'restoreDatabaseBackupItem',
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: 'Basic ' + base64encodedData,
-            ...formDataExt.getHeaders(),
-        },
-        body: formDataExt,
-    }
-
-    const promise = () => {
-        return new Promise((resolve) => {
-            return request(opts, function (error) {
-
-                if(error) {
-                    console.log('error: ', error)
-                    resolve({
-                        error: true,
-                        description: 'Ошибка отката базы данных.'
-                    })
-                }
-
-                resolve({
-                    error: false,
-                    description: 'Выполнен откат базы данных.'
-                })
-            })
-        })
-    };
-
-    return await promise();
-
-};
-
 // Изменение вечернего времени
 const postEveningTime = async (time, token) => {
     const promise = prRequest({
@@ -1089,7 +1047,6 @@ const deleteHoliday = async (year, token) => {
 module.exports = {
     putManyPosition,
     putArrayPosition,
-    rebase,
     getAccessSchedules,
     deleteAccessSchedule,
     putArrayTimeZone,
