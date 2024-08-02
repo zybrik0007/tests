@@ -4,7 +4,7 @@ module.exports = {
     width: Number(process.env.a113width) || 1920,
     height: Number(process.env.a114height) || 1080,
     address: process.env.a101address || 'http://172.17.0.50:8080/',
-    user: process.env.a110user || 'Администратор',
+    operator: process.env.a110user || 'Администратор',
     login: process.env.a111admLogin || 'adm',
     password: process.env.a112admPassword || 'admin1',
     customLogin: process.env.a103login || 'adm',
@@ -37,6 +37,9 @@ module.exports = {
         database: process.env.a120database_name || 'selenium_26072024_3'
     },
     version: '2.0',
-    number: '12.0'
+    number: '12.0',
+    personal: {
+        b100PersonalStaff: ''
+    }
 }
 

@@ -2,8 +2,9 @@ const tests = require('../../../ui/src/tests/regression.ui.tests');
 const closeBrowser = require('../../../ui/src/decorates/other/closeBrowser');
 const clearMemory = require('../../../ui/src/decorates/other/clearMemory');
 const data = require('../../../ui/src/tests/regression.ui.tests/data');
-console.log = () => function () {};
+//console.log = () => function () {};
 
+console.log(process.env);
 // Персонал / Сотрудники - вкладки: Действующие, Уволенные
 data.addDataStaff();
 tests.staffUi.other.addStaffMinParams();

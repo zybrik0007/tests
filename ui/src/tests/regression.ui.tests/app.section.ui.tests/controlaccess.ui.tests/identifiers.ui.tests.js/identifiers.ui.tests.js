@@ -17,270 +17,6 @@ const aft = () => decorate.befAft.after.after();
 
 const test = (user, tab, bef) => {
 
-    const display = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
-    Общая проверка без данных.`, () => {
-
-        bef();
-        aft();
-
-        describe('Общее отображение', () => {
-            decorate.el.section.active({
-                section: sec.con,
-                timeout: entry.max
-            });
-            decorate.el.subsection.active({
-                subsection: sub.con.card,
-                timeout: entry.max
-            });
-            decorate.el.subsection.headerGetText({
-                value: 'КОНТРОЛЬ ДОСТУПА',
-                timeout: entry.max
-            });
-
-            decorate.el.subsection.headerGetText({
-                value: 'КОНТРОЛЬ ДОСТУПА',
-                timeout: entry.max
-            });
-
-            decorate.el.header.getText({
-                value: 'Выданные идентификаторы',
-                timeout: entry.max
-            });
-
-            decorate.el.header.userGetText({
-                value: entry.user,
-                timeout: entry.max
-            });
-        });
-
-        describe('Отображение фильтров и кнопок', () => {
-            decorate.el.butIcBefore.active({
-                icon: but.unsorted_delete_outline_android,
-                timeout: entry.max
-            });
-            decorate.el.butIc.button({
-                icon: icon.expanded_filter,
-                timeout: entry.max
-            });
-            decorate.el.butIcBefore.active({
-                icon: but.menu,
-                timeout: entry.max
-            });
-            it(`Отображение календаря и выбранной даты ${data.date()}`,
-                async () => await dec.simpleText(el.input.getValue,
-                    ['', '', entry.max],
-                    data.date(),
-                    el.input));
-            decorate.el.selectInput.select({
-                title: '',
-                placeholder: 'Подразделение'
-            });
-            decorate.el.input.input({
-                title: '',
-                placeholder: 'Поиск...'
-            });
-        });
-
-        if(user === 'all') {
-            describe('Отображние таблицы', () => {
-                decorate.el.table.headGetText({
-                    headNumber: 1,
-                    value: 'ФИО',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 2,
-                    value: 'Идентификатор',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 3,
-                    value: 'Дата выдачи',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 4,
-                    value: 'Действителен до',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 5,
-                    value: 'Куда (подразделение)',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 6,
-                    value: 'Должность',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 7,
-                    value: 'Сопровождающий',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 8,
-                    value: 'Документ',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 9,
-                    value: 'Номер документа',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 10,
-                    value: 'Дата последнего события',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 11,
-                    value: 'Оператор',
-                    timeout: entry.max
-                });
-
-            });
-        }
-
-        if(user === 'staff') {
-            describe('Отображние таблицы', () => {
-                decorate.el.table.headGetText({
-                    headNumber: 1,
-                    value: 'ФИО',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 2,
-                    value: 'Идентификатор',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 3,
-                    value: 'Дата выдачи',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 4,
-                    value: 'Действителен до',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 5,
-                    value: 'Куда (подразделение)',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 6,
-                    value: 'Должность',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 7,
-                    value: 'Дата последнего события',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 8,
-                    value: 'Оператор',
-                    timeout: entry.max
-                });
-
-            });
-        }
-
-        if(user === 'visitor') {
-            describe('Отображние таблицы', () => {
-                decorate.el.table.headGetText({
-                    headNumber: 1,
-                    value: 'ФИО',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 2,
-                    value: 'Идентификатор',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 3,
-                    value: 'Дата выдачи',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 4,
-                    value: 'Действителен до',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 5,
-                    value: 'Куда (подразделение)',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 6,
-                    value: 'Сопровождающий',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 7,
-                    value: 'Документ',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 8,
-                    value: 'Номер документа',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 9,
-                    value: 'Дата последнего события',
-                    timeout: entry.max
-                });
-
-                decorate.el.table.headGetText({
-                    headNumber: 10,
-                    value: 'Оператор',
-                    timeout: entry.max
-                });
-            });
-        }
-
-        describe('Отображние данных в таблице', () => {
-            decorate.el.table.noStr({
-                timeout: entry.max
-            });
-
-            decorate.el.rowEmpty.getText({
-                value: 'Нет данных для отображения',
-                timeout: entry.max
-            });
-        });
-    });
-
     const checkData = () => describe(`Контроль доступа / Выданные идентификаторы / вкладка ${tab}. 
     Проверка отображения данных .`, () => {
 
@@ -1311,7 +1047,7 @@ const test = (user, tab, bef) => {
                     head: 'Оператор',
                     str: 1,
                     cell: 11,
-                    value: entry.user,
+                    value: entry.operator,
                     timeout: entry.max
                 });
             });
@@ -1372,7 +1108,7 @@ const test = (user, tab, bef) => {
                     head: 'Оператор',
                     str: 1,
                     cell: 8,
-                    value: entry.user,
+                    value: entry.operator,
                     timeout: entry.max
                 });
             });
@@ -1447,7 +1183,7 @@ const test = (user, tab, bef) => {
                     head: 'Оператор',
                     str: 1,
                     cell: 10,
-                    value: entry.user,
+                    value: entry.operator,
                     timeout: entry.max
                 });
             });
