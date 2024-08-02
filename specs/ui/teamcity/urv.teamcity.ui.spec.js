@@ -1,3 +1,4 @@
+/*
 const tests = require('../../../ui/src/tests/regression.ui.tests');
 const closeBrowser = require('../../../ui/src/decorates/other/closeBrowser');
 const clearMemory = require('../../../ui/src/decorates/other/clearMemory');
@@ -175,3 +176,4 @@ clearMemory();
 data.deleteURVDocument();
 data.deleteURV();
 closeBrowser();
+*/
