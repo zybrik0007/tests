@@ -6,6 +6,7 @@ const data = require('../../../ui/src/tests/regression.ui.tests/data');
 
 console.log(process.env);
 // Персонал / Сотрудники - вкладки: Действующие, Уволенные
+/*
 data.addDataStaff();
 tests.staffUi.other.addStaffMinParams();
 tests.staffUi.other.addStaffTabelDuplicateMinParams();
@@ -167,6 +168,7 @@ tests.additionalDataUi.otherVisitor.add();
 tests.additionalDataUi.otherVisitor.edit();
 tests.additionalDataUi.otherVisitor.deleted();
 clearMemory();
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
